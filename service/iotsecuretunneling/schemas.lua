@@ -597,4 +597,110 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.iotsecuretunneling", "IoTSecuredTunneling"),
+    version = "2018-10-05",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CloseTunnel = schema.operation({
+    id = id.from("com.amazonaws.iotsecuretunneling", "CloseTunnel"),
+    input = M.CloseTunnelInput,
+    output = M.CloseTunnelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tunnels/{tunnelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTunnel = schema.operation({
+    id = id.from("com.amazonaws.iotsecuretunneling", "DescribeTunnel"),
+    input = M.DescribeTunnelInput,
+    output = M.DescribeTunnelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tunnels/{tunnelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.iotsecuretunneling", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTunnels = schema.operation({
+    id = id.from("com.amazonaws.iotsecuretunneling", "ListTunnels"),
+    input = M.ListTunnelsInput,
+    output = M.ListTunnelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tunnels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.OpenTunnel = schema.operation({
+    id = id.from("com.amazonaws.iotsecuretunneling", "OpenTunnel"),
+    input = M.OpenTunnelInput,
+    output = M.OpenTunnelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tunnels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RotateTunnelAccessToken = schema.operation({
+    id = id.from("com.amazonaws.iotsecuretunneling", "RotateTunnelAccessToken"),
+    input = M.RotateTunnelAccessTokenInput,
+    output = M.RotateTunnelAccessTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tunnel/{tunnelId}/rotate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.iotsecuretunneling", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.iotsecuretunneling", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/untag" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

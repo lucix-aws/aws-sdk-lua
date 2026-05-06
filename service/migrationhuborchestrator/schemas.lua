@@ -3292,4 +3292,386 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "AWSMigrationHubOrchestrator"),
+    version = "2021-08-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTemplate = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "CreateTemplate"),
+    input = M.CreateTemplateInput,
+    output = M.CreateTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/template" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkflow = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "CreateWorkflow"),
+    input = M.CreateWorkflowInput,
+    output = M.CreateWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/migrationworkflow/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkflowStep = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "CreateWorkflowStep"),
+    input = M.CreateWorkflowStepInput,
+    output = M.CreateWorkflowStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workflowstep" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkflowStepGroup = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "CreateWorkflowStepGroup"),
+    input = M.CreateWorkflowStepGroupInput,
+    output = M.CreateWorkflowStepGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workflowstepgroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTemplate = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "DeleteTemplate"),
+    input = M.DeleteTemplateInput,
+    output = M.DeleteTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/template/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkflow = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "DeleteWorkflow"),
+    input = M.DeleteWorkflowInput,
+    output = M.DeleteWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/migrationworkflow/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkflowStep = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "DeleteWorkflowStep"),
+    input = M.DeleteWorkflowStepInput,
+    output = M.DeleteWorkflowStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workflowstep/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkflowStepGroup = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "DeleteWorkflowStepGroup"),
+    input = M.DeleteWorkflowStepGroupInput,
+    output = M.DeleteWorkflowStepGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workflowstepgroup/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemplate = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "GetTemplate"),
+    input = M.GetTemplateInput,
+    output = M.GetTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/migrationworkflowtemplate/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemplateStep = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "GetTemplateStep"),
+    input = M.GetTemplateStepInput,
+    output = M.GetTemplateStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/templatestep/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemplateStepGroup = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "GetTemplateStepGroup"),
+    input = M.GetTemplateStepGroupInput,
+    output = M.GetTemplateStepGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/templates/{templateId}/stepgroups/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflow = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "GetWorkflow"),
+    input = M.GetWorkflowInput,
+    output = M.GetWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/migrationworkflow/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflowStep = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "GetWorkflowStep"),
+    input = M.GetWorkflowStepInput,
+    output = M.GetWorkflowStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflowstep/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflowStepGroup = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "GetWorkflowStepGroup"),
+    input = M.GetWorkflowStepGroupInput,
+    output = M.GetWorkflowStepGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflowstepgroup/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPlugins = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "ListPlugins"),
+    input = M.ListPluginsInput,
+    output = M.ListPluginsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/plugins" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTemplates = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "ListTemplates"),
+    input = M.ListTemplatesInput,
+    output = M.ListTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/migrationworkflowtemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTemplateStepGroups = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "ListTemplateStepGroups"),
+    input = M.ListTemplateStepGroupsInput,
+    output = M.ListTemplateStepGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/templatestepgroups/{templateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTemplateSteps = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "ListTemplateSteps"),
+    input = M.ListTemplateStepsInput,
+    output = M.ListTemplateStepsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/templatesteps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflows = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "ListWorkflows"),
+    input = M.ListWorkflowsInput,
+    output = M.ListWorkflowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/migrationworkflows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflowStepGroups = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "ListWorkflowStepGroups"),
+    input = M.ListWorkflowStepGroupsInput,
+    output = M.ListWorkflowStepGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflowstepgroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflowSteps = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "ListWorkflowSteps"),
+    input = M.ListWorkflowStepsInput,
+    output = M.ListWorkflowStepsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflow/{workflowId}/workflowstepgroups/{stepGroupId}/workflowsteps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetryWorkflowStep = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "RetryWorkflowStep"),
+    input = M.RetryWorkflowStepInput,
+    output = M.RetryWorkflowStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/retryworkflowstep/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartWorkflow = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "StartWorkflow"),
+    input = M.StartWorkflowInput,
+    output = M.StartWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/migrationworkflow/{id}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopWorkflow = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "StopWorkflow"),
+    input = M.StopWorkflowInput,
+    output = M.StopWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/migrationworkflow/{id}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTemplate = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "UpdateTemplate"),
+    input = M.UpdateTemplateInput,
+    output = M.UpdateTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/template/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkflow = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "UpdateWorkflow"),
+    input = M.UpdateWorkflowInput,
+    output = M.UpdateWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/migrationworkflow/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkflowStep = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "UpdateWorkflowStep"),
+    input = M.UpdateWorkflowStepInput,
+    output = M.UpdateWorkflowStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workflowstep/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkflowStepGroup = schema.operation({
+    id = id.from("com.amazonaws.migrationhuborchestrator", "UpdateWorkflowStepGroup"),
+    input = M.UpdateWorkflowStepGroupInput,
+    output = M.UpdateWorkflowStepGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workflowstepgroup/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

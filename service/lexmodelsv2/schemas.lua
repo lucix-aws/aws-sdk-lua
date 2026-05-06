@@ -18058,4 +18058,1298 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.lexmodelsv2", "LexModelBuildingServiceV2"),
+    version = "2020-08-07",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateCustomVocabularyItem = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "BatchCreateCustomVocabularyItem"),
+    input = M.BatchCreateCustomVocabularyItemInput,
+    output = M.BatchCreateCustomVocabularyItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/batchcreate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteCustomVocabularyItem = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "BatchDeleteCustomVocabularyItem"),
+    input = M.BatchDeleteCustomVocabularyItemInput,
+    output = M.BatchDeleteCustomVocabularyItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/batchdelete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateCustomVocabularyItem = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "BatchUpdateCustomVocabularyItem"),
+    input = M.BatchUpdateCustomVocabularyItemInput,
+    output = M.BatchUpdateCustomVocabularyItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/batchupdate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BuildBotLocale = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "BuildBotLocale"),
+    input = M.BuildBotLocaleInput,
+    output = M.BuildBotLocaleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBot = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "CreateBot"),
+    input = M.CreateBotInput,
+    output = M.CreateBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBotAlias = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "CreateBotAlias"),
+    input = M.CreateBotAliasInput,
+    output = M.CreateBotAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botaliases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBotLocale = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "CreateBotLocale"),
+    input = M.CreateBotLocaleInput,
+    output = M.CreateBotLocaleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions/{botVersion}/botlocales" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBotReplica = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "CreateBotReplica"),
+    input = M.CreateBotReplicaInput,
+    output = M.CreateBotReplicaOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/replicas" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBotVersion = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "CreateBotVersion"),
+    input = M.CreateBotVersionInput,
+    output = M.CreateBotVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExport = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "CreateExport"),
+    input = M.CreateExportInput,
+    output = M.CreateExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/exports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIntent = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "CreateIntent"),
+    input = M.CreateIntentInput,
+    output = M.CreateIntentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/intents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "CreateResourcePolicy"),
+    input = M.CreateResourcePolicyInput,
+    output = M.CreateResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResourcePolicyStatement = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "CreateResourcePolicyStatement"),
+    input = M.CreateResourcePolicyStatementInput,
+    output = M.CreateResourcePolicyStatementOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policy/{resourceArn}/statements" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSlot = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "CreateSlot"),
+    input = M.CreateSlotInput,
+    output = M.CreateSlotOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/intents/{intentId}/slots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSlotType = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "CreateSlotType"),
+    input = M.CreateSlotTypeInput,
+    output = M.CreateSlotTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/slottypes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTestSetDiscrepancyReport = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "CreateTestSetDiscrepancyReport"),
+    input = M.CreateTestSetDiscrepancyReportInput,
+    output = M.CreateTestSetDiscrepancyReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/testsets/{testSetId}/testsetdiscrepancy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUploadUrl = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "CreateUploadUrl"),
+    input = M.CreateUploadUrlInput,
+    output = M.CreateUploadUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/createuploadurl" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBot = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteBot"),
+    input = M.DeleteBotInput,
+    output = M.DeleteBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/bots/{botId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBotAlias = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteBotAlias"),
+    input = M.DeleteBotAliasInput,
+    output = M.DeleteBotAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/bots/{botId}/botaliases/{botAliasId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBotAnalyzerRecommendation = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteBotAnalyzerRecommendation"),
+    input = M.DeleteBotAnalyzerRecommendationInput,
+    output = M.DeleteBotAnalyzerRecommendationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/bots/{botId}/botanalyzer/{botAnalyzerRequestId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBotLocale = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteBotLocale"),
+    input = M.DeleteBotLocaleInput,
+    output = M.DeleteBotLocaleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBotReplica = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteBotReplica"),
+    input = M.DeleteBotReplicaInput,
+    output = M.DeleteBotReplicaOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/bots/{botId}/replicas/{replicaRegion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBotVersion = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteBotVersion"),
+    input = M.DeleteBotVersionInput,
+    output = M.DeleteBotVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/bots/{botId}/botversions/{botVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomVocabulary = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteCustomVocabulary"),
+    input = M.DeleteCustomVocabularyInput,
+    output = M.DeleteCustomVocabularyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteExport = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteExport"),
+    input = M.DeleteExportInput,
+    output = M.DeleteExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/exports/{exportId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteImport = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteImport"),
+    input = M.DeleteImportInput,
+    output = M.DeleteImportOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/imports/{importId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIntent = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteIntent"),
+    input = M.DeleteIntentInput,
+    output = M.DeleteIntentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/intents/{intentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/policy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicyStatement = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteResourcePolicyStatement"),
+    input = M.DeleteResourcePolicyStatementInput,
+    output = M.DeleteResourcePolicyStatementOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/policy/{resourceArn}/statements/{statementId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSlot = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteSlot"),
+    input = M.DeleteSlotInput,
+    output = M.DeleteSlotOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/intents/{intentId}/slots/{slotId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSlotType = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteSlotType"),
+    input = M.DeleteSlotTypeInput,
+    output = M.DeleteSlotTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/slottypes/{slotTypeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTestSet = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteTestSet"),
+    input = M.DeleteTestSetInput,
+    output = M.DeleteTestSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/testsets/{testSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUtterances = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DeleteUtterances"),
+    input = M.DeleteUtterancesInput,
+    output = M.DeleteUtterancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/bots/{botId}/utterances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBot = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeBot"),
+    input = M.DescribeBotInput,
+    output = M.DescribeBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/bots/{botId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBotAlias = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeBotAlias"),
+    input = M.DescribeBotAliasInput,
+    output = M.DescribeBotAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/bots/{botId}/botaliases/{botAliasId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBotAnalyzerRecommendation = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeBotAnalyzerRecommendation"),
+    input = M.DescribeBotAnalyzerRecommendationInput,
+    output = M.DescribeBotAnalyzerRecommendationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botanalyzer/describe/{botAnalyzerRequestId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBotLocale = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeBotLocale"),
+    input = M.DescribeBotLocaleInput,
+    output = M.DescribeBotLocaleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBotRecommendation = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeBotRecommendation"),
+    input = M.DescribeBotRecommendationInput,
+    output = M.DescribeBotRecommendationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBotReplica = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeBotReplica"),
+    input = M.DescribeBotReplicaInput,
+    output = M.DescribeBotReplicaOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/bots/{botId}/replicas/{replicaRegion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBotResourceGeneration = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeBotResourceGeneration"),
+    input = M.DescribeBotResourceGenerationInput,
+    output = M.DescribeBotResourceGenerationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/generations/{generationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBotVersion = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeBotVersion"),
+    input = M.DescribeBotVersionInput,
+    output = M.DescribeBotVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/bots/{botId}/botversions/{botVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCustomVocabularyMetadata = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeCustomVocabularyMetadata"),
+    input = M.DescribeCustomVocabularyMetadataInput,
+    output = M.DescribeCustomVocabularyMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExport = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeExport"),
+    input = M.DescribeExportInput,
+    output = M.DescribeExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/exports/{exportId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImport = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeImport"),
+    input = M.DescribeImportInput,
+    output = M.DescribeImportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/imports/{importId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIntent = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeIntent"),
+    input = M.DescribeIntentInput,
+    output = M.DescribeIntentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/intents/{intentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeResourcePolicy"),
+    input = M.DescribeResourcePolicyInput,
+    output = M.DescribeResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSlot = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeSlot"),
+    input = M.DescribeSlotInput,
+    output = M.DescribeSlotOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/intents/{intentId}/slots/{slotId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSlotType = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeSlotType"),
+    input = M.DescribeSlotTypeInput,
+    output = M.DescribeSlotTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/slottypes/{slotTypeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTestExecution = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeTestExecution"),
+    input = M.DescribeTestExecutionInput,
+    output = M.DescribeTestExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/testexecutions/{testExecutionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTestSet = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeTestSet"),
+    input = M.DescribeTestSetInput,
+    output = M.DescribeTestSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/testsets/{testSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTestSetDiscrepancyReport = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeTestSetDiscrepancyReport"),
+    input = M.DescribeTestSetDiscrepancyReportInput,
+    output = M.DescribeTestSetDiscrepancyReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/testsetdiscrepancy/{testSetDiscrepancyReportId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTestSetGeneration = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "DescribeTestSetGeneration"),
+    input = M.DescribeTestSetGenerationInput,
+    output = M.DescribeTestSetGenerationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/testsetgenerations/{testSetGenerationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateBotElement = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "GenerateBotElement"),
+    input = M.GenerateBotElementInput,
+    output = M.GenerateBotElementOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/generate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTestExecutionArtifactsUrl = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "GetTestExecutionArtifactsUrl"),
+    input = M.GetTestExecutionArtifactsUrlInput,
+    output = M.GetTestExecutionArtifactsUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/testexecutions/{testExecutionId}/artifacturl" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAggregatedUtterances = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListAggregatedUtterances"),
+    input = M.ListAggregatedUtterancesInput,
+    output = M.ListAggregatedUtterancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/aggregatedutterances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBotAliases = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListBotAliases"),
+    input = M.ListBotAliasesInput,
+    output = M.ListBotAliasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botaliases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBotAliasReplicas = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListBotAliasReplicas"),
+    input = M.ListBotAliasReplicasInput,
+    output = M.ListBotAliasReplicasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/replicas/{replicaRegion}/botaliases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBotAnalyzerHistory = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListBotAnalyzerHistory"),
+    input = M.ListBotAnalyzerHistoryInput,
+    output = M.ListBotAnalyzerHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botanalyzer/history" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBotLocales = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListBotLocales"),
+    input = M.ListBotLocalesInput,
+    output = M.ListBotLocalesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botversions/{botVersion}/botlocales" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBotRecommendations = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListBotRecommendations"),
+    input = M.ListBotRecommendationsInput,
+    output = M.ListBotRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBotReplicas = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListBotReplicas"),
+    input = M.ListBotReplicasInput,
+    output = M.ListBotReplicasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/replicas" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBotResourceGenerations = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListBotResourceGenerations"),
+    input = M.ListBotResourceGenerationsInput,
+    output = M.ListBotResourceGenerationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/generations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBots = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListBots"),
+    input = M.ListBotsInput,
+    output = M.ListBotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBotVersionReplicas = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListBotVersionReplicas"),
+    input = M.ListBotVersionReplicasInput,
+    output = M.ListBotVersionReplicasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/replicas/{replicaRegion}/botversions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBotVersions = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListBotVersions"),
+    input = M.ListBotVersionsInput,
+    output = M.ListBotVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botversions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBuiltInIntents = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListBuiltInIntents"),
+    input = M.ListBuiltInIntentsInput,
+    output = M.ListBuiltInIntentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/builtins/locales/{localeId}/intents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBuiltInSlotTypes = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListBuiltInSlotTypes"),
+    input = M.ListBuiltInSlotTypesInput,
+    output = M.ListBuiltInSlotTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/builtins/locales/{localeId}/slottypes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomVocabularyItems = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListCustomVocabularyItems"),
+    input = M.ListCustomVocabularyItemsInput,
+    output = M.ListCustomVocabularyItemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExports = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListExports"),
+    input = M.ListExportsInput,
+    output = M.ListExportsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/exports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImports = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListImports"),
+    input = M.ListImportsInput,
+    output = M.ListImportsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/imports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIntentMetrics = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListIntentMetrics"),
+    input = M.ListIntentMetricsInput,
+    output = M.ListIntentMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/analytics/intentmetrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIntentPaths = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListIntentPaths"),
+    input = M.ListIntentPathsInput,
+    output = M.ListIntentPathsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/analytics/intentpaths" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIntents = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListIntents"),
+    input = M.ListIntentsInput,
+    output = M.ListIntentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/intents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIntentStageMetrics = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListIntentStageMetrics"),
+    input = M.ListIntentStageMetricsInput,
+    output = M.ListIntentStageMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/analytics/intentstagemetrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommendedIntents = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListRecommendedIntents"),
+    input = M.ListRecommendedIntentsInput,
+    output = M.ListRecommendedIntentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}/intents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessionAnalyticsData = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListSessionAnalyticsData"),
+    input = M.ListSessionAnalyticsDataInput,
+    output = M.ListSessionAnalyticsDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/analytics/sessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessionMetrics = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListSessionMetrics"),
+    input = M.ListSessionMetricsInput,
+    output = M.ListSessionMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/analytics/sessionmetrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSlots = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListSlots"),
+    input = M.ListSlotsInput,
+    output = M.ListSlotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/intents/{intentId}/slots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSlotTypes = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListSlotTypes"),
+    input = M.ListSlotTypesInput,
+    output = M.ListSlotTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/slottypes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestExecutionResultItems = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListTestExecutionResultItems"),
+    input = M.ListTestExecutionResultItemsInput,
+    output = M.ListTestExecutionResultItemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/testexecutions/{testExecutionId}/results" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestExecutions = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListTestExecutions"),
+    input = M.ListTestExecutionsInput,
+    output = M.ListTestExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/testexecutions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestSetRecords = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListTestSetRecords"),
+    input = M.ListTestSetRecordsInput,
+    output = M.ListTestSetRecordsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/testsets/{testSetId}/records" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestSets = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListTestSets"),
+    input = M.ListTestSetsInput,
+    output = M.ListTestSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/testsets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUtteranceAnalyticsData = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListUtteranceAnalyticsData"),
+    input = M.ListUtteranceAnalyticsDataInput,
+    output = M.ListUtteranceAnalyticsDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/analytics/utterances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUtteranceMetrics = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "ListUtteranceMetrics"),
+    input = M.ListUtteranceMetricsInput,
+    output = M.ListUtteranceMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/analytics/utterancemetrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchAssociatedTranscripts = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "SearchAssociatedTranscripts"),
+    input = M.SearchAssociatedTranscriptsInput,
+    output = M.SearchAssociatedTranscriptsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}/associatedtranscripts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartBotAnalyzer = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "StartBotAnalyzer"),
+    input = M.StartBotAnalyzerInput,
+    output = M.StartBotAnalyzerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botanalyzer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartBotRecommendation = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "StartBotRecommendation"),
+    input = M.StartBotRecommendationInput,
+    output = M.StartBotRecommendationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartBotResourceGeneration = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "StartBotResourceGeneration"),
+    input = M.StartBotResourceGenerationInput,
+    output = M.StartBotResourceGenerationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/startgeneration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartImport = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "StartImport"),
+    input = M.StartImportInput,
+    output = M.StartImportOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/imports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTestExecution = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "StartTestExecution"),
+    input = M.StartTestExecutionInput,
+    output = M.StartTestExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/testsets/{testSetId}/testexecutions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTestSetGeneration = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "StartTestSetGeneration"),
+    input = M.StartTestSetGenerationInput,
+    output = M.StartTestSetGenerationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/testsetgenerations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopBotAnalyzer = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "StopBotAnalyzer"),
+    input = M.StopBotAnalyzerInput,
+    output = M.StopBotAnalyzerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botanalyzer/{botAnalyzerRequestId}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopBotRecommendation = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "StopBotRecommendation"),
+    input = M.StopBotRecommendationInput,
+    output = M.StopBotRecommendationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}/stopbotrecommendation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBot = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "UpdateBot"),
+    input = M.UpdateBotInput,
+    output = M.UpdateBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBotAlias = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "UpdateBotAlias"),
+    input = M.UpdateBotAliasInput,
+    output = M.UpdateBotAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botaliases/{botAliasId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBotLocale = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "UpdateBotLocale"),
+    input = M.UpdateBotLocaleInput,
+    output = M.UpdateBotLocaleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBotRecommendation = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "UpdateBotRecommendation"),
+    input = M.UpdateBotRecommendationInput,
+    output = M.UpdateBotRecommendationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateExport = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "UpdateExport"),
+    input = M.UpdateExportInput,
+    output = M.UpdateExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/exports/{exportId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIntent = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "UpdateIntent"),
+    input = M.UpdateIntentInput,
+    output = M.UpdateIntentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/intents/{intentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "UpdateResourcePolicy"),
+    input = M.UpdateResourcePolicyInput,
+    output = M.UpdateResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/policy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSlot = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "UpdateSlot"),
+    input = M.UpdateSlotInput,
+    output = M.UpdateSlotOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/intents/{intentId}/slots/{slotId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSlotType = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "UpdateSlotType"),
+    input = M.UpdateSlotTypeInput,
+    output = M.UpdateSlotTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/slottypes/{slotTypeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTestSet = schema.operation({
+    id = id.from("com.amazonaws.lexmodelsv2", "UpdateTestSet"),
+    input = M.UpdateTestSetInput,
+    output = M.UpdateTestSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/testsets/{testSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

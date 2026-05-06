@@ -7,6 +7,7 @@ local endpoint_rules = require("pinpointemail.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("pinpointemail.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ses", signing_region = cfg.region } }
                 else
@@ -49,549 +52,171 @@ function M.new(cfg)
 end
 
 function Client:createConfigurationSet(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfigurationSet",
-        input_schema = schemas.CreateConfigurationSetInput,
-        output_schema = schemas.CreateConfigurationSetOutput,
-        http_method = "POST",
-        http_path = "/v1/email/configuration-sets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSet, input, options)
 end
 
 function Client:createConfigurationSetEventDestination(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfigurationSetEventDestination",
-        input_schema = schemas.CreateConfigurationSetEventDestinationInput,
-        output_schema = schemas.CreateConfigurationSetEventDestinationOutput,
-        http_method = "POST",
-        http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/event-destinations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSetEventDestination, input, options)
 end
 
 function Client:createDedicatedIpPool(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDedicatedIpPool",
-        input_schema = schemas.CreateDedicatedIpPoolInput,
-        output_schema = schemas.CreateDedicatedIpPoolOutput,
-        http_method = "POST",
-        http_path = "/v1/email/dedicated-ip-pools",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDedicatedIpPool, input, options)
 end
 
 function Client:createDeliverabilityTestReport(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDeliverabilityTestReport",
-        input_schema = schemas.CreateDeliverabilityTestReportInput,
-        output_schema = schemas.CreateDeliverabilityTestReportOutput,
-        http_method = "POST",
-        http_path = "/v1/email/deliverability-dashboard/test",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDeliverabilityTestReport, input, options)
 end
 
 function Client:createEmailIdentity(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEmailIdentity",
-        input_schema = schemas.CreateEmailIdentityInput,
-        output_schema = schemas.CreateEmailIdentityOutput,
-        http_method = "POST",
-        http_path = "/v1/email/identities",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEmailIdentity, input, options)
 end
 
 function Client:deleteConfigurationSet(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfigurationSet",
-        input_schema = schemas.DeleteConfigurationSetInput,
-        output_schema = schemas.DeleteConfigurationSetOutput,
-        http_method = "DELETE",
-        http_path = "/v1/email/configuration-sets/{ConfigurationSetName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSet, input, options)
 end
 
 function Client:deleteConfigurationSetEventDestination(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfigurationSetEventDestination",
-        input_schema = schemas.DeleteConfigurationSetEventDestinationInput,
-        output_schema = schemas.DeleteConfigurationSetEventDestinationOutput,
-        http_method = "DELETE",
-        http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSetEventDestination, input, options)
 end
 
 function Client:deleteDedicatedIpPool(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDedicatedIpPool",
-        input_schema = schemas.DeleteDedicatedIpPoolInput,
-        output_schema = schemas.DeleteDedicatedIpPoolOutput,
-        http_method = "DELETE",
-        http_path = "/v1/email/dedicated-ip-pools/{PoolName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDedicatedIpPool, input, options)
 end
 
 function Client:deleteEmailIdentity(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEmailIdentity",
-        input_schema = schemas.DeleteEmailIdentityInput,
-        output_schema = schemas.DeleteEmailIdentityOutput,
-        http_method = "DELETE",
-        http_path = "/v1/email/identities/{EmailIdentity}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEmailIdentity, input, options)
 end
 
 function Client:getAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccount",
-        input_schema = schemas.GetAccountInput,
-        output_schema = schemas.GetAccountOutput,
-        http_method = "GET",
-        http_path = "/v1/email/account",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccount, input, options)
 end
 
 function Client:getBlacklistReports(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBlacklistReports",
-        input_schema = schemas.GetBlacklistReportsInput,
-        output_schema = schemas.GetBlacklistReportsOutput,
-        http_method = "GET",
-        http_path = "/v1/email/deliverability-dashboard/blacklist-report",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBlacklistReports, input, options)
 end
 
 function Client:getConfigurationSet(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConfigurationSet",
-        input_schema = schemas.GetConfigurationSetInput,
-        output_schema = schemas.GetConfigurationSetOutput,
-        http_method = "GET",
-        http_path = "/v1/email/configuration-sets/{ConfigurationSetName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConfigurationSet, input, options)
 end
 
 function Client:getConfigurationSetEventDestinations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConfigurationSetEventDestinations",
-        input_schema = schemas.GetConfigurationSetEventDestinationsInput,
-        output_schema = schemas.GetConfigurationSetEventDestinationsOutput,
-        http_method = "GET",
-        http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/event-destinations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConfigurationSetEventDestinations, input, options)
 end
 
 function Client:getDedicatedIp(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDedicatedIp",
-        input_schema = schemas.GetDedicatedIpInput,
-        output_schema = schemas.GetDedicatedIpOutput,
-        http_method = "GET",
-        http_path = "/v1/email/dedicated-ips/{Ip}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDedicatedIp, input, options)
 end
 
 function Client:getDedicatedIps(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDedicatedIps",
-        input_schema = schemas.GetDedicatedIpsInput,
-        output_schema = schemas.GetDedicatedIpsOutput,
-        http_method = "GET",
-        http_path = "/v1/email/dedicated-ips",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDedicatedIps, input, options)
 end
 
 function Client:getDeliverabilityDashboardOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDeliverabilityDashboardOptions",
-        input_schema = schemas.GetDeliverabilityDashboardOptionsInput,
-        output_schema = schemas.GetDeliverabilityDashboardOptionsOutput,
-        http_method = "GET",
-        http_path = "/v1/email/deliverability-dashboard",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDeliverabilityDashboardOptions, input, options)
 end
 
 function Client:getDeliverabilityTestReport(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDeliverabilityTestReport",
-        input_schema = schemas.GetDeliverabilityTestReportInput,
-        output_schema = schemas.GetDeliverabilityTestReportOutput,
-        http_method = "GET",
-        http_path = "/v1/email/deliverability-dashboard/test-reports/{ReportId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDeliverabilityTestReport, input, options)
 end
 
 function Client:getDomainDeliverabilityCampaign(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDomainDeliverabilityCampaign",
-        input_schema = schemas.GetDomainDeliverabilityCampaignInput,
-        output_schema = schemas.GetDomainDeliverabilityCampaignOutput,
-        http_method = "GET",
-        http_path = "/v1/email/deliverability-dashboard/campaigns/{CampaignId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDomainDeliverabilityCampaign, input, options)
 end
 
 function Client:getDomainStatisticsReport(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDomainStatisticsReport",
-        input_schema = schemas.GetDomainStatisticsReportInput,
-        output_schema = schemas.GetDomainStatisticsReportOutput,
-        http_method = "GET",
-        http_path = "/v1/email/deliverability-dashboard/statistics-report/{Domain}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDomainStatisticsReport, input, options)
 end
 
 function Client:getEmailIdentity(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEmailIdentity",
-        input_schema = schemas.GetEmailIdentityInput,
-        output_schema = schemas.GetEmailIdentityOutput,
-        http_method = "GET",
-        http_path = "/v1/email/identities/{EmailIdentity}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEmailIdentity, input, options)
 end
 
 function Client:listConfigurationSets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConfigurationSets",
-        input_schema = schemas.ListConfigurationSetsInput,
-        output_schema = schemas.ListConfigurationSetsOutput,
-        http_method = "GET",
-        http_path = "/v1/email/configuration-sets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConfigurationSets, input, options)
 end
 
 function Client:listDedicatedIpPools(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDedicatedIpPools",
-        input_schema = schemas.ListDedicatedIpPoolsInput,
-        output_schema = schemas.ListDedicatedIpPoolsOutput,
-        http_method = "GET",
-        http_path = "/v1/email/dedicated-ip-pools",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDedicatedIpPools, input, options)
 end
 
 function Client:listDeliverabilityTestReports(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDeliverabilityTestReports",
-        input_schema = schemas.ListDeliverabilityTestReportsInput,
-        output_schema = schemas.ListDeliverabilityTestReportsOutput,
-        http_method = "GET",
-        http_path = "/v1/email/deliverability-dashboard/test-reports",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDeliverabilityTestReports, input, options)
 end
 
 function Client:listDomainDeliverabilityCampaigns(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDomainDeliverabilityCampaigns",
-        input_schema = schemas.ListDomainDeliverabilityCampaignsInput,
-        output_schema = schemas.ListDomainDeliverabilityCampaignsOutput,
-        http_method = "GET",
-        http_path = "/v1/email/deliverability-dashboard/domains/{SubscribedDomain}/campaigns",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDomainDeliverabilityCampaigns, input, options)
 end
 
 function Client:listEmailIdentities(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEmailIdentities",
-        input_schema = schemas.ListEmailIdentitiesInput,
-        output_schema = schemas.ListEmailIdentitiesOutput,
-        http_method = "GET",
-        http_path = "/v1/email/identities",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEmailIdentities, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/v1/email/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putAccountDedicatedIpWarmupAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "PutAccountDedicatedIpWarmupAttributes",
-        input_schema = schemas.PutAccountDedicatedIpWarmupAttributesInput,
-        output_schema = schemas.PutAccountDedicatedIpWarmupAttributesOutput,
-        http_method = "PUT",
-        http_path = "/v1/email/account/dedicated-ips/warmup",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutAccountDedicatedIpWarmupAttributes, input, options)
 end
 
 function Client:putAccountSendingAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "PutAccountSendingAttributes",
-        input_schema = schemas.PutAccountSendingAttributesInput,
-        output_schema = schemas.PutAccountSendingAttributesOutput,
-        http_method = "PUT",
-        http_path = "/v1/email/account/sending",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutAccountSendingAttributes, input, options)
 end
 
 function Client:putConfigurationSetDeliveryOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "PutConfigurationSetDeliveryOptions",
-        input_schema = schemas.PutConfigurationSetDeliveryOptionsInput,
-        output_schema = schemas.PutConfigurationSetDeliveryOptionsOutput,
-        http_method = "PUT",
-        http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/delivery-options",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutConfigurationSetDeliveryOptions, input, options)
 end
 
 function Client:putConfigurationSetReputationOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "PutConfigurationSetReputationOptions",
-        input_schema = schemas.PutConfigurationSetReputationOptionsInput,
-        output_schema = schemas.PutConfigurationSetReputationOptionsOutput,
-        http_method = "PUT",
-        http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/reputation-options",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutConfigurationSetReputationOptions, input, options)
 end
 
 function Client:putConfigurationSetSendingOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "PutConfigurationSetSendingOptions",
-        input_schema = schemas.PutConfigurationSetSendingOptionsInput,
-        output_schema = schemas.PutConfigurationSetSendingOptionsOutput,
-        http_method = "PUT",
-        http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/sending",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutConfigurationSetSendingOptions, input, options)
 end
 
 function Client:putConfigurationSetTrackingOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "PutConfigurationSetTrackingOptions",
-        input_schema = schemas.PutConfigurationSetTrackingOptionsInput,
-        output_schema = schemas.PutConfigurationSetTrackingOptionsOutput,
-        http_method = "PUT",
-        http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/tracking-options",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutConfigurationSetTrackingOptions, input, options)
 end
 
 function Client:putDedicatedIpInPool(input, options)
-    return self:invokeOperation(input, {
-        name = "PutDedicatedIpInPool",
-        input_schema = schemas.PutDedicatedIpInPoolInput,
-        output_schema = schemas.PutDedicatedIpInPoolOutput,
-        http_method = "PUT",
-        http_path = "/v1/email/dedicated-ips/{Ip}/pool",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutDedicatedIpInPool, input, options)
 end
 
 function Client:putDedicatedIpWarmupAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "PutDedicatedIpWarmupAttributes",
-        input_schema = schemas.PutDedicatedIpWarmupAttributesInput,
-        output_schema = schemas.PutDedicatedIpWarmupAttributesOutput,
-        http_method = "PUT",
-        http_path = "/v1/email/dedicated-ips/{Ip}/warmup",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutDedicatedIpWarmupAttributes, input, options)
 end
 
 function Client:putDeliverabilityDashboardOption(input, options)
-    return self:invokeOperation(input, {
-        name = "PutDeliverabilityDashboardOption",
-        input_schema = schemas.PutDeliverabilityDashboardOptionInput,
-        output_schema = schemas.PutDeliverabilityDashboardOptionOutput,
-        http_method = "PUT",
-        http_path = "/v1/email/deliverability-dashboard",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutDeliverabilityDashboardOption, input, options)
 end
 
 function Client:putEmailIdentityDkimAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "PutEmailIdentityDkimAttributes",
-        input_schema = schemas.PutEmailIdentityDkimAttributesInput,
-        output_schema = schemas.PutEmailIdentityDkimAttributesOutput,
-        http_method = "PUT",
-        http_path = "/v1/email/identities/{EmailIdentity}/dkim",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutEmailIdentityDkimAttributes, input, options)
 end
 
 function Client:putEmailIdentityFeedbackAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "PutEmailIdentityFeedbackAttributes",
-        input_schema = schemas.PutEmailIdentityFeedbackAttributesInput,
-        output_schema = schemas.PutEmailIdentityFeedbackAttributesOutput,
-        http_method = "PUT",
-        http_path = "/v1/email/identities/{EmailIdentity}/feedback",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutEmailIdentityFeedbackAttributes, input, options)
 end
 
 function Client:putEmailIdentityMailFromAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "PutEmailIdentityMailFromAttributes",
-        input_schema = schemas.PutEmailIdentityMailFromAttributesInput,
-        output_schema = schemas.PutEmailIdentityMailFromAttributesOutput,
-        http_method = "PUT",
-        http_path = "/v1/email/identities/{EmailIdentity}/mail-from",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutEmailIdentityMailFromAttributes, input, options)
 end
 
 function Client:sendEmail(input, options)
-    return self:invokeOperation(input, {
-        name = "SendEmail",
-        input_schema = schemas.SendEmailInput,
-        output_schema = schemas.SendEmailOutput,
-        http_method = "POST",
-        http_path = "/v1/email/outbound-emails",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SendEmail, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/v1/email/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/v1/email/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateConfigurationSetEventDestination(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConfigurationSetEventDestination",
-        input_schema = schemas.UpdateConfigurationSetEventDestinationInput,
-        output_schema = schemas.UpdateConfigurationSetEventDestinationOutput,
-        http_method = "PUT",
-        http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationSetEventDestination, input, options)
 end
 
 return M

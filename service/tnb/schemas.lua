@@ -3371,4 +3371,410 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.tnb", "TNB"),
+    version = "2008-10-21",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelSolNetworkOperation = schema.operation({
+    id = id.from("com.amazonaws.tnb", "CancelSolNetworkOperation"),
+    input = M.CancelSolNetworkOperationInput,
+    output = M.CancelSolNetworkOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sol/nslcm/v1/ns_lcm_op_occs/{nsLcmOpOccId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSolFunctionPackage = schema.operation({
+    id = id.from("com.amazonaws.tnb", "CreateSolFunctionPackage"),
+    input = M.CreateSolFunctionPackageInput,
+    output = M.CreateSolFunctionPackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sol/vnfpkgm/v1/vnf_packages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSolNetworkInstance = schema.operation({
+    id = id.from("com.amazonaws.tnb", "CreateSolNetworkInstance"),
+    input = M.CreateSolNetworkInstanceInput,
+    output = M.CreateSolNetworkInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sol/nslcm/v1/ns_instances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSolNetworkPackage = schema.operation({
+    id = id.from("com.amazonaws.tnb", "CreateSolNetworkPackage"),
+    input = M.CreateSolNetworkPackageInput,
+    output = M.CreateSolNetworkPackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sol/nsd/v1/ns_descriptors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSolFunctionPackage = schema.operation({
+    id = id.from("com.amazonaws.tnb", "DeleteSolFunctionPackage"),
+    input = M.DeleteSolFunctionPackageInput,
+    output = M.DeleteSolFunctionPackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSolNetworkInstance = schema.operation({
+    id = id.from("com.amazonaws.tnb", "DeleteSolNetworkInstance"),
+    input = M.DeleteSolNetworkInstanceInput,
+    output = M.DeleteSolNetworkInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSolNetworkPackage = schema.operation({
+    id = id.from("com.amazonaws.tnb", "DeleteSolNetworkPackage"),
+    input = M.DeleteSolNetworkPackageInput,
+    output = M.DeleteSolNetworkPackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSolFunctionInstance = schema.operation({
+    id = id.from("com.amazonaws.tnb", "GetSolFunctionInstance"),
+    input = M.GetSolFunctionInstanceInput,
+    output = M.GetSolFunctionInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sol/vnflcm/v1/vnf_instances/{vnfInstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSolFunctionPackage = schema.operation({
+    id = id.from("com.amazonaws.tnb", "GetSolFunctionPackage"),
+    input = M.GetSolFunctionPackageInput,
+    output = M.GetSolFunctionPackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSolFunctionPackageContent = schema.operation({
+    id = id.from("com.amazonaws.tnb", "GetSolFunctionPackageContent"),
+    input = M.GetSolFunctionPackageContentInput,
+    output = M.GetSolFunctionPackageContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/package_content" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSolFunctionPackageDescriptor = schema.operation({
+    id = id.from("com.amazonaws.tnb", "GetSolFunctionPackageDescriptor"),
+    input = M.GetSolFunctionPackageDescriptorInput,
+    output = M.GetSolFunctionPackageDescriptorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/vnfd" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSolNetworkInstance = schema.operation({
+    id = id.from("com.amazonaws.tnb", "GetSolNetworkInstance"),
+    input = M.GetSolNetworkInstanceInput,
+    output = M.GetSolNetworkInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSolNetworkOperation = schema.operation({
+    id = id.from("com.amazonaws.tnb", "GetSolNetworkOperation"),
+    input = M.GetSolNetworkOperationInput,
+    output = M.GetSolNetworkOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sol/nslcm/v1/ns_lcm_op_occs/{nsLcmOpOccId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSolNetworkPackage = schema.operation({
+    id = id.from("com.amazonaws.tnb", "GetSolNetworkPackage"),
+    input = M.GetSolNetworkPackageInput,
+    output = M.GetSolNetworkPackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSolNetworkPackageContent = schema.operation({
+    id = id.from("com.amazonaws.tnb", "GetSolNetworkPackageContent"),
+    input = M.GetSolNetworkPackageContentInput,
+    output = M.GetSolNetworkPackageContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd_content" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSolNetworkPackageDescriptor = schema.operation({
+    id = id.from("com.amazonaws.tnb", "GetSolNetworkPackageDescriptor"),
+    input = M.GetSolNetworkPackageDescriptorInput,
+    output = M.GetSolNetworkPackageDescriptorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InstantiateSolNetworkInstance = schema.operation({
+    id = id.from("com.amazonaws.tnb", "InstantiateSolNetworkInstance"),
+    input = M.InstantiateSolNetworkInstanceInput,
+    output = M.InstantiateSolNetworkInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}/instantiate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSolFunctionInstances = schema.operation({
+    id = id.from("com.amazonaws.tnb", "ListSolFunctionInstances"),
+    input = M.ListSolFunctionInstancesInput,
+    output = M.ListSolFunctionInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sol/vnflcm/v1/vnf_instances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSolFunctionPackages = schema.operation({
+    id = id.from("com.amazonaws.tnb", "ListSolFunctionPackages"),
+    input = M.ListSolFunctionPackagesInput,
+    output = M.ListSolFunctionPackagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sol/vnfpkgm/v1/vnf_packages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSolNetworkInstances = schema.operation({
+    id = id.from("com.amazonaws.tnb", "ListSolNetworkInstances"),
+    input = M.ListSolNetworkInstancesInput,
+    output = M.ListSolNetworkInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sol/nslcm/v1/ns_instances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSolNetworkOperations = schema.operation({
+    id = id.from("com.amazonaws.tnb", "ListSolNetworkOperations"),
+    input = M.ListSolNetworkOperationsInput,
+    output = M.ListSolNetworkOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sol/nslcm/v1/ns_lcm_op_occs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSolNetworkPackages = schema.operation({
+    id = id.from("com.amazonaws.tnb", "ListSolNetworkPackages"),
+    input = M.ListSolNetworkPackagesInput,
+    output = M.ListSolNetworkPackagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sol/nsd/v1/ns_descriptors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.tnb", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSolFunctionPackageContent = schema.operation({
+    id = id.from("com.amazonaws.tnb", "PutSolFunctionPackageContent"),
+    input = M.PutSolFunctionPackageContentInput,
+    output = M.PutSolFunctionPackageContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/package_content" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSolNetworkPackageContent = schema.operation({
+    id = id.from("com.amazonaws.tnb", "PutSolNetworkPackageContent"),
+    input = M.PutSolNetworkPackageContentInput,
+    output = M.PutSolNetworkPackageContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd_content" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.tnb", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateSolNetworkInstance = schema.operation({
+    id = id.from("com.amazonaws.tnb", "TerminateSolNetworkInstance"),
+    input = M.TerminateSolNetworkInstanceInput,
+    output = M.TerminateSolNetworkInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}/terminate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.tnb", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSolFunctionPackage = schema.operation({
+    id = id.from("com.amazonaws.tnb", "UpdateSolFunctionPackage"),
+    input = M.UpdateSolFunctionPackageInput,
+    output = M.UpdateSolFunctionPackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSolNetworkInstance = schema.operation({
+    id = id.from("com.amazonaws.tnb", "UpdateSolNetworkInstance"),
+    input = M.UpdateSolNetworkInstanceInput,
+    output = M.UpdateSolNetworkInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSolNetworkPackage = schema.operation({
+    id = id.from("com.amazonaws.tnb", "UpdateSolNetworkPackage"),
+    input = M.UpdateSolNetworkPackageInput,
+    output = M.UpdateSolNetworkPackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateSolFunctionPackageContent = schema.operation({
+    id = id.from("com.amazonaws.tnb", "ValidateSolFunctionPackageContent"),
+    input = M.ValidateSolFunctionPackageContentInput,
+    output = M.ValidateSolFunctionPackageContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/package_content/validate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateSolNetworkPackageContent = schema.operation({
+    id = id.from("com.amazonaws.tnb", "ValidateSolNetworkPackageContent"),
+    input = M.ValidateSolNetworkPackageContentInput,
+    output = M.ValidateSolNetworkPackageContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd_content/validate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

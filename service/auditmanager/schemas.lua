@@ -5443,4 +5443,758 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.auditmanager", "BedrockAssessmentManagerLambda"),
+    version = "2017-07-25",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAssessmentReportEvidenceFolder = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "AssociateAssessmentReportEvidenceFolder"),
+    input = M.AssociateAssessmentReportEvidenceFolderInput,
+    output = M.AssociateAssessmentReportEvidenceFolderOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assessments/{assessmentId}/associateToAssessmentReport" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAssociateAssessmentReportEvidence = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "BatchAssociateAssessmentReportEvidence"),
+    input = M.BatchAssociateAssessmentReportEvidenceInput,
+    output = M.BatchAssociateAssessmentReportEvidenceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assessments/{assessmentId}/batchAssociateToAssessmentReport" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateDelegationByAssessment = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "BatchCreateDelegationByAssessment"),
+    input = M.BatchCreateDelegationByAssessmentInput,
+    output = M.BatchCreateDelegationByAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assessments/{assessmentId}/delegations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteDelegationByAssessment = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "BatchDeleteDelegationByAssessment"),
+    input = M.BatchDeleteDelegationByAssessmentInput,
+    output = M.BatchDeleteDelegationByAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assessments/{assessmentId}/delegations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDisassociateAssessmentReportEvidence = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "BatchDisassociateAssessmentReportEvidence"),
+    input = M.BatchDisassociateAssessmentReportEvidenceInput,
+    output = M.BatchDisassociateAssessmentReportEvidenceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assessments/{assessmentId}/batchDisassociateFromAssessmentReport" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchImportEvidenceToAssessmentControl = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "BatchImportEvidenceToAssessmentControl"),
+    input = M.BatchImportEvidenceToAssessmentControlInput,
+    output = M.BatchImportEvidenceToAssessmentControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assessments/{assessmentId}/controlSets/{controlSetId}/controls/{controlId}/evidence" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssessment = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "CreateAssessment"),
+    input = M.CreateAssessmentInput,
+    output = M.CreateAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assessments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssessmentFramework = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "CreateAssessmentFramework"),
+    input = M.CreateAssessmentFrameworkInput,
+    output = M.CreateAssessmentFrameworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assessmentFrameworks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssessmentReport = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "CreateAssessmentReport"),
+    input = M.CreateAssessmentReportInput,
+    output = M.CreateAssessmentReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assessments/{assessmentId}/reports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateControl = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "CreateControl"),
+    input = M.CreateControlInput,
+    output = M.CreateControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/controls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssessment = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "DeleteAssessment"),
+    input = M.DeleteAssessmentInput,
+    output = M.DeleteAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assessments/{assessmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssessmentFramework = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "DeleteAssessmentFramework"),
+    input = M.DeleteAssessmentFrameworkInput,
+    output = M.DeleteAssessmentFrameworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assessmentFrameworks/{frameworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssessmentFrameworkShare = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "DeleteAssessmentFrameworkShare"),
+    input = M.DeleteAssessmentFrameworkShareInput,
+    output = M.DeleteAssessmentFrameworkShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assessmentFrameworkShareRequests/{requestId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssessmentReport = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "DeleteAssessmentReport"),
+    input = M.DeleteAssessmentReportInput,
+    output = M.DeleteAssessmentReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assessments/{assessmentId}/reports/{assessmentReportId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteControl = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "DeleteControl"),
+    input = M.DeleteControlInput,
+    output = M.DeleteControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/controls/{controlId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterAccount = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "DeregisterAccount"),
+    input = M.DeregisterAccountInput,
+    output = M.DeregisterAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/account/deregisterAccount" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterOrganizationAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "DeregisterOrganizationAdminAccount"),
+    input = M.DeregisterOrganizationAdminAccountInput,
+    output = M.DeregisterOrganizationAdminAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/account/deregisterOrganizationAdminAccount" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateAssessmentReportEvidenceFolder = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "DisassociateAssessmentReportEvidenceFolder"),
+    input = M.DisassociateAssessmentReportEvidenceFolderInput,
+    output = M.DisassociateAssessmentReportEvidenceFolderOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assessments/{assessmentId}/disassociateFromAssessmentReport" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountStatus = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetAccountStatus"),
+    input = M.GetAccountStatusInput,
+    output = M.GetAccountStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/account/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssessment = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetAssessment"),
+    input = M.GetAssessmentInput,
+    output = M.GetAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assessments/{assessmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssessmentFramework = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetAssessmentFramework"),
+    input = M.GetAssessmentFrameworkInput,
+    output = M.GetAssessmentFrameworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assessmentFrameworks/{frameworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssessmentReportUrl = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetAssessmentReportUrl"),
+    input = M.GetAssessmentReportUrlInput,
+    output = M.GetAssessmentReportUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assessments/{assessmentId}/reports/{assessmentReportId}/url" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChangeLogs = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetChangeLogs"),
+    input = M.GetChangeLogsInput,
+    output = M.GetChangeLogsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assessments/{assessmentId}/changelogs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetControl = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetControl"),
+    input = M.GetControlInput,
+    output = M.GetControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/controls/{controlId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDelegations = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetDelegations"),
+    input = M.GetDelegationsInput,
+    output = M.GetDelegationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/delegations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEvidence = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetEvidence"),
+    input = M.GetEvidenceInput,
+    output = M.GetEvidenceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders/{evidenceFolderId}/evidence/{evidenceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEvidenceByEvidenceFolder = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetEvidenceByEvidenceFolder"),
+    input = M.GetEvidenceByEvidenceFolderInput,
+    output = M.GetEvidenceByEvidenceFolderOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders/{evidenceFolderId}/evidence" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEvidenceFileUploadUrl = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetEvidenceFileUploadUrl"),
+    input = M.GetEvidenceFileUploadUrlInput,
+    output = M.GetEvidenceFileUploadUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/evidenceFileUploadUrl" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEvidenceFolder = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetEvidenceFolder"),
+    input = M.GetEvidenceFolderInput,
+    output = M.GetEvidenceFolderOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders/{evidenceFolderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEvidenceFoldersByAssessment = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetEvidenceFoldersByAssessment"),
+    input = M.GetEvidenceFoldersByAssessmentInput,
+    output = M.GetEvidenceFoldersByAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assessments/{assessmentId}/evidenceFolders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEvidenceFoldersByAssessmentControl = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetEvidenceFoldersByAssessmentControl"),
+    input = M.GetEvidenceFoldersByAssessmentControlInput,
+    output = M.GetEvidenceFoldersByAssessmentControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assessments/{assessmentId}/evidenceFolders-by-assessment-control/{controlSetId}/{controlId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInsights = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetInsights"),
+    input = M.GetInsightsInput,
+    output = M.GetInsightsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/insights" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInsightsByAssessment = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetInsightsByAssessment"),
+    input = M.GetInsightsByAssessmentInput,
+    output = M.GetInsightsByAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/insights/assessments/{assessmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOrganizationAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetOrganizationAdminAccount"),
+    input = M.GetOrganizationAdminAccountInput,
+    output = M.GetOrganizationAdminAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/account/organizationAdminAccount" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServicesInScope = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetServicesInScope"),
+    input = M.GetServicesInScopeInput,
+    output = M.GetServicesInScopeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/services" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSettings = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "GetSettings"),
+    input = M.GetSettingsInput,
+    output = M.GetSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/settings/{attribute}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssessmentControlInsightsByControlDomain = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "ListAssessmentControlInsightsByControlDomain"),
+    input = M.ListAssessmentControlInsightsByControlDomainInput,
+    output = M.ListAssessmentControlInsightsByControlDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/insights/controls-by-assessment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssessmentFrameworks = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "ListAssessmentFrameworks"),
+    input = M.ListAssessmentFrameworksInput,
+    output = M.ListAssessmentFrameworksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assessmentFrameworks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssessmentFrameworkShareRequests = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "ListAssessmentFrameworkShareRequests"),
+    input = M.ListAssessmentFrameworkShareRequestsInput,
+    output = M.ListAssessmentFrameworkShareRequestsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assessmentFrameworkShareRequests" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssessmentReports = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "ListAssessmentReports"),
+    input = M.ListAssessmentReportsInput,
+    output = M.ListAssessmentReportsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assessmentReports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssessments = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "ListAssessments"),
+    input = M.ListAssessmentsInput,
+    output = M.ListAssessmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assessments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListControlDomainInsights = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "ListControlDomainInsights"),
+    input = M.ListControlDomainInsightsInput,
+    output = M.ListControlDomainInsightsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/insights/control-domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListControlDomainInsightsByAssessment = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "ListControlDomainInsightsByAssessment"),
+    input = M.ListControlDomainInsightsByAssessmentInput,
+    output = M.ListControlDomainInsightsByAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/insights/control-domains-by-assessment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListControlInsightsByControlDomain = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "ListControlInsightsByControlDomain"),
+    input = M.ListControlInsightsByControlDomainInput,
+    output = M.ListControlInsightsByControlDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/insights/controls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListControls = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "ListControls"),
+    input = M.ListControlsInput,
+    output = M.ListControlsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/controls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKeywordsForDataSource = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "ListKeywordsForDataSource"),
+    input = M.ListKeywordsForDataSourceInput,
+    output = M.ListKeywordsForDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/dataSourceKeywords" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotifications = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "ListNotifications"),
+    input = M.ListNotificationsInput,
+    output = M.ListNotificationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/notifications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterAccount = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "RegisterAccount"),
+    input = M.RegisterAccountInput,
+    output = M.RegisterAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/account/registerAccount" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterOrganizationAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "RegisterOrganizationAdminAccount"),
+    input = M.RegisterOrganizationAdminAccountInput,
+    output = M.RegisterOrganizationAdminAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/account/registerOrganizationAdminAccount" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAssessmentFrameworkShare = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "StartAssessmentFrameworkShare"),
+    input = M.StartAssessmentFrameworkShareInput,
+    output = M.StartAssessmentFrameworkShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assessmentFrameworks/{frameworkId}/shareRequests" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssessment = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "UpdateAssessment"),
+    input = M.UpdateAssessmentInput,
+    output = M.UpdateAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assessments/{assessmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssessmentControl = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "UpdateAssessmentControl"),
+    input = M.UpdateAssessmentControlInput,
+    output = M.UpdateAssessmentControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assessments/{assessmentId}/controlSets/{controlSetId}/controls/{controlId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssessmentControlSetStatus = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "UpdateAssessmentControlSetStatus"),
+    input = M.UpdateAssessmentControlSetStatusInput,
+    output = M.UpdateAssessmentControlSetStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assessments/{assessmentId}/controlSets/{controlSetId}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssessmentFramework = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "UpdateAssessmentFramework"),
+    input = M.UpdateAssessmentFrameworkInput,
+    output = M.UpdateAssessmentFrameworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assessmentFrameworks/{frameworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssessmentFrameworkShare = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "UpdateAssessmentFrameworkShare"),
+    input = M.UpdateAssessmentFrameworkShareInput,
+    output = M.UpdateAssessmentFrameworkShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assessmentFrameworkShareRequests/{requestId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssessmentStatus = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "UpdateAssessmentStatus"),
+    input = M.UpdateAssessmentStatusInput,
+    output = M.UpdateAssessmentStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assessments/{assessmentId}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateControl = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "UpdateControl"),
+    input = M.UpdateControlInput,
+    output = M.UpdateControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/controls/{controlId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSettings = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "UpdateSettings"),
+    input = M.UpdateSettingsInput,
+    output = M.UpdateSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateAssessmentReportIntegrity = schema.operation({
+    id = id.from("com.amazonaws.auditmanager", "ValidateAssessmentReportIntegrity"),
+    input = M.ValidateAssessmentReportIntegrityInput,
+    output = M.ValidateAssessmentReportIntegrityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assessmentReports/integrity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

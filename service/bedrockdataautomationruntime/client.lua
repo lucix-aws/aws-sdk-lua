@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("bedrockdataautomationruntime.endpoint_rules")
 local schemas = require("bedrockdataautomationruntime.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bedrock", signing_region = cfg.region } }
                 else
@@ -49,81 +52,27 @@ function M.new(cfg)
 end
 
 function Client:getDataAutomationStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDataAutomationStatus",
-        input_schema = schemas.GetDataAutomationStatusInput,
-        output_schema = schemas.GetDataAutomationStatusOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDataAutomationStatus, input, options)
 end
 
 function Client:invokeDataAutomation(input, options)
-    return self:invokeOperation(input, {
-        name = "InvokeDataAutomation",
-        input_schema = schemas.InvokeDataAutomationInput,
-        output_schema = schemas.InvokeDataAutomationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InvokeDataAutomation, input, options)
 end
 
 function Client:invokeDataAutomationAsync(input, options)
-    return self:invokeOperation(input, {
-        name = "InvokeDataAutomationAsync",
-        input_schema = schemas.InvokeDataAutomationAsyncInput,
-        output_schema = schemas.InvokeDataAutomationAsyncOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InvokeDataAutomationAsync, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 return M

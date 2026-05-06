@@ -187,4 +187,26 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.signerdata", "SignerDataPlane"),
+    version = "2017-08-25",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRevocationStatus = schema.operation({
+    id = id.from("com.amazonaws.signerdata", "GetRevocationStatus"),
+    input = M.GetRevocationStatusInput,
+    output = M.GetRevocationStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/revocations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

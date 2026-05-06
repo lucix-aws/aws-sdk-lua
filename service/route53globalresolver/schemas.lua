@@ -6723,4 +6723,578 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.route53globalresolver", "EC2DNSGlobalResolverCustomerAPI"),
+    version = "2022-09-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateHostedZone = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "AssociateHostedZone"),
+    input = M.AssociateHostedZoneInput,
+    output = M.AssociateHostedZoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/hosted-zone-associations/{hostedZoneId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateFirewallRule = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "BatchCreateFirewallRule"),
+    input = M.BatchCreateFirewallRuleInput,
+    output = M.BatchCreateFirewallRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/firewall-rules/batch-create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteFirewallRule = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "BatchDeleteFirewallRule"),
+    input = M.BatchDeleteFirewallRuleInput,
+    output = M.BatchDeleteFirewallRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/firewall-rules/batch-delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateFirewallRule = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "BatchUpdateFirewallRule"),
+    input = M.BatchUpdateFirewallRuleInput,
+    output = M.BatchUpdateFirewallRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/firewall-rules/batch-update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccessSource = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "CreateAccessSource"),
+    input = M.CreateAccessSourceInput,
+    output = M.CreateAccessSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/access-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccessToken = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "CreateAccessToken"),
+    input = M.CreateAccessTokenInput,
+    output = M.CreateAccessTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tokens/{dnsViewId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDNSView = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "CreateDNSView"),
+    input = M.CreateDNSViewInput,
+    output = M.CreateDNSViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/dns-views/{globalResolverId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFirewallDomainList = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "CreateFirewallDomainList"),
+    input = M.CreateFirewallDomainListInput,
+    output = M.CreateFirewallDomainListOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/firewall-domain-lists/{globalResolverId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFirewallRule = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "CreateFirewallRule"),
+    input = M.CreateFirewallRuleInput,
+    output = M.CreateFirewallRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/firewall-rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGlobalResolver = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "CreateGlobalResolver"),
+    input = M.CreateGlobalResolverInput,
+    output = M.CreateGlobalResolverOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/global-resolver" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccessSource = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "DeleteAccessSource"),
+    input = M.DeleteAccessSourceInput,
+    output = M.DeleteAccessSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/access-sources/{accessSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccessToken = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "DeleteAccessToken"),
+    input = M.DeleteAccessTokenInput,
+    output = M.DeleteAccessTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tokens/{accessTokenId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDNSView = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "DeleteDNSView"),
+    input = M.DeleteDNSViewInput,
+    output = M.DeleteDNSViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/dns-views/{dnsViewId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFirewallDomainList = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "DeleteFirewallDomainList"),
+    input = M.DeleteFirewallDomainListInput,
+    output = M.DeleteFirewallDomainListOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/firewall-domain-lists/{firewallDomainListId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFirewallRule = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "DeleteFirewallRule"),
+    input = M.DeleteFirewallRuleInput,
+    output = M.DeleteFirewallRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/firewall-rules/{firewallRuleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGlobalResolver = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "DeleteGlobalResolver"),
+    input = M.DeleteGlobalResolverInput,
+    output = M.DeleteGlobalResolverOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/global-resolver/{globalResolverId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableDNSView = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "DisableDNSView"),
+    input = M.DisableDNSViewInput,
+    output = M.DisableDNSViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/dns-views/{dnsViewId}/disable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateHostedZone = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "DisassociateHostedZone"),
+    input = M.DisassociateHostedZoneInput,
+    output = M.DisassociateHostedZoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/hosted-zone-associations/hosted-zone/{hostedZoneId}/resource-arn/{resourceArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableDNSView = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "EnableDNSView"),
+    input = M.EnableDNSViewInput,
+    output = M.EnableDNSViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/dns-views/{dnsViewId}/enable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccessSource = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "GetAccessSource"),
+    input = M.GetAccessSourceInput,
+    output = M.GetAccessSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/access-sources/{accessSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccessToken = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "GetAccessToken"),
+    input = M.GetAccessTokenInput,
+    output = M.GetAccessTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tokens/{accessTokenId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDNSView = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "GetDNSView"),
+    input = M.GetDNSViewInput,
+    output = M.GetDNSViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/dns-views/{dnsViewId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFirewallDomainList = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "GetFirewallDomainList"),
+    input = M.GetFirewallDomainListInput,
+    output = M.GetFirewallDomainListOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/firewall-domain-lists/{firewallDomainListId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFirewallRule = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "GetFirewallRule"),
+    input = M.GetFirewallRuleInput,
+    output = M.GetFirewallRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/firewall-rules/{firewallRuleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGlobalResolver = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "GetGlobalResolver"),
+    input = M.GetGlobalResolverInput,
+    output = M.GetGlobalResolverOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-resolver/{globalResolverId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHostedZoneAssociation = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "GetHostedZoneAssociation"),
+    input = M.GetHostedZoneAssociationInput,
+    output = M.GetHostedZoneAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/hosted-zone-associations/{hostedZoneAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetManagedFirewallDomainList = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "GetManagedFirewallDomainList"),
+    input = M.GetManagedFirewallDomainListInput,
+    output = M.GetManagedFirewallDomainListOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/managed-firewall-domain-lists/{managedFirewallDomainListId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportFirewallDomains = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "ImportFirewallDomains"),
+    input = M.ImportFirewallDomainsInput,
+    output = M.ImportFirewallDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/firewall-domain-lists/{firewallDomainListId}/domains/s3_file_url" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccessSources = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "ListAccessSources"),
+    input = M.ListAccessSourcesInput,
+    output = M.ListAccessSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/access-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccessTokens = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "ListAccessTokens"),
+    input = M.ListAccessTokensInput,
+    output = M.ListAccessTokensOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tokens/dns-view/{dnsViewId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDNSViews = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "ListDNSViews"),
+    input = M.ListDNSViewsInput,
+    output = M.ListDNSViewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/dns-views/resolver/{globalResolverId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFirewallDomainLists = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "ListFirewallDomainLists"),
+    input = M.ListFirewallDomainListsInput,
+    output = M.ListFirewallDomainListsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/firewall-domain-lists" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFirewallDomains = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "ListFirewallDomains"),
+    input = M.ListFirewallDomainsInput,
+    output = M.ListFirewallDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/firewall-domain-lists/{firewallDomainListId}/domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFirewallRules = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "ListFirewallRules"),
+    input = M.ListFirewallRulesInput,
+    output = M.ListFirewallRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/firewall-rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGlobalResolvers = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "ListGlobalResolvers"),
+    input = M.ListGlobalResolversInput,
+    output = M.ListGlobalResolversOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-resolver" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHostedZoneAssociations = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "ListHostedZoneAssociations"),
+    input = M.ListHostedZoneAssociationsInput,
+    output = M.ListHostedZoneAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/hosted-zone-associations/resource-arn/{resourceArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedFirewallDomainLists = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "ListManagedFirewallDomainLists"),
+    input = M.ListManagedFirewallDomainListsInput,
+    output = M.ListManagedFirewallDomainListsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/list-managed-firewall-domain-lists/{managedFirewallDomainListType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-all-tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/untag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccessSource = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "UpdateAccessSource"),
+    input = M.UpdateAccessSourceInput,
+    output = M.UpdateAccessSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/access-sources/{accessSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccessToken = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "UpdateAccessToken"),
+    input = M.UpdateAccessTokenInput,
+    output = M.UpdateAccessTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/tokens/{accessTokenId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDNSView = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "UpdateDNSView"),
+    input = M.UpdateDNSViewInput,
+    output = M.UpdateDNSViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/dns-views/{dnsViewId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFirewallDomains = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "UpdateFirewallDomains"),
+    input = M.UpdateFirewallDomainsInput,
+    output = M.UpdateFirewallDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/firewall-domain-lists/{firewallDomainListId}/domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFirewallRule = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "UpdateFirewallRule"),
+    input = M.UpdateFirewallRuleInput,
+    output = M.UpdateFirewallRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/firewall-rules/{firewallRuleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGlobalResolver = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "UpdateGlobalResolver"),
+    input = M.UpdateGlobalResolverInput,
+    output = M.UpdateGlobalResolverOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/global-resolver/{globalResolverId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHostedZoneAssociation = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "UpdateHostedZoneAssociation"),
+    input = M.UpdateHostedZoneAssociationInput,
+    output = M.UpdateHostedZoneAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/hosted-zone-associations/{hostedZoneAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

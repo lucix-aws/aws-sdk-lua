@@ -7,6 +7,7 @@ local endpoint_rules = require("auditmanager.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("auditmanager.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "auditmanager", signing_region = cfg.region } }
                 else
@@ -49,809 +52,251 @@ function M.new(cfg)
 end
 
 function Client:associateAssessmentReportEvidenceFolder(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateAssessmentReportEvidenceFolder",
-        input_schema = schemas.AssociateAssessmentReportEvidenceFolderInput,
-        output_schema = schemas.AssociateAssessmentReportEvidenceFolderOutput,
-        http_method = "PUT",
-        http_path = "/assessments/{assessmentId}/associateToAssessmentReport",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateAssessmentReportEvidenceFolder, input, options)
 end
 
 function Client:batchAssociateAssessmentReportEvidence(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchAssociateAssessmentReportEvidence",
-        input_schema = schemas.BatchAssociateAssessmentReportEvidenceInput,
-        output_schema = schemas.BatchAssociateAssessmentReportEvidenceOutput,
-        http_method = "PUT",
-        http_path = "/assessments/{assessmentId}/batchAssociateToAssessmentReport",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchAssociateAssessmentReportEvidence, input, options)
 end
 
 function Client:batchCreateDelegationByAssessment(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchCreateDelegationByAssessment",
-        input_schema = schemas.BatchCreateDelegationByAssessmentInput,
-        output_schema = schemas.BatchCreateDelegationByAssessmentOutput,
-        http_method = "POST",
-        http_path = "/assessments/{assessmentId}/delegations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchCreateDelegationByAssessment, input, options)
 end
 
 function Client:batchDeleteDelegationByAssessment(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDeleteDelegationByAssessment",
-        input_schema = schemas.BatchDeleteDelegationByAssessmentInput,
-        output_schema = schemas.BatchDeleteDelegationByAssessmentOutput,
-        http_method = "PUT",
-        http_path = "/assessments/{assessmentId}/delegations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDeleteDelegationByAssessment, input, options)
 end
 
 function Client:batchDisassociateAssessmentReportEvidence(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDisassociateAssessmentReportEvidence",
-        input_schema = schemas.BatchDisassociateAssessmentReportEvidenceInput,
-        output_schema = schemas.BatchDisassociateAssessmentReportEvidenceOutput,
-        http_method = "PUT",
-        http_path = "/assessments/{assessmentId}/batchDisassociateFromAssessmentReport",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDisassociateAssessmentReportEvidence, input, options)
 end
 
 function Client:batchImportEvidenceToAssessmentControl(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchImportEvidenceToAssessmentControl",
-        input_schema = schemas.BatchImportEvidenceToAssessmentControlInput,
-        output_schema = schemas.BatchImportEvidenceToAssessmentControlOutput,
-        http_method = "POST",
-        http_path = "/assessments/{assessmentId}/controlSets/{controlSetId}/controls/{controlId}/evidence",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchImportEvidenceToAssessmentControl, input, options)
 end
 
 function Client:createAssessment(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAssessment",
-        input_schema = schemas.CreateAssessmentInput,
-        output_schema = schemas.CreateAssessmentOutput,
-        http_method = "POST",
-        http_path = "/assessments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAssessment, input, options)
 end
 
 function Client:createAssessmentFramework(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAssessmentFramework",
-        input_schema = schemas.CreateAssessmentFrameworkInput,
-        output_schema = schemas.CreateAssessmentFrameworkOutput,
-        http_method = "POST",
-        http_path = "/assessmentFrameworks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAssessmentFramework, input, options)
 end
 
 function Client:createAssessmentReport(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAssessmentReport",
-        input_schema = schemas.CreateAssessmentReportInput,
-        output_schema = schemas.CreateAssessmentReportOutput,
-        http_method = "POST",
-        http_path = "/assessments/{assessmentId}/reports",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAssessmentReport, input, options)
 end
 
 function Client:createControl(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateControl",
-        input_schema = schemas.CreateControlInput,
-        output_schema = schemas.CreateControlOutput,
-        http_method = "POST",
-        http_path = "/controls",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateControl, input, options)
 end
 
 function Client:deleteAssessment(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAssessment",
-        input_schema = schemas.DeleteAssessmentInput,
-        output_schema = schemas.DeleteAssessmentOutput,
-        http_method = "DELETE",
-        http_path = "/assessments/{assessmentId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAssessment, input, options)
 end
 
 function Client:deleteAssessmentFramework(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAssessmentFramework",
-        input_schema = schemas.DeleteAssessmentFrameworkInput,
-        output_schema = schemas.DeleteAssessmentFrameworkOutput,
-        http_method = "DELETE",
-        http_path = "/assessmentFrameworks/{frameworkId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAssessmentFramework, input, options)
 end
 
 function Client:deleteAssessmentFrameworkShare(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAssessmentFrameworkShare",
-        input_schema = schemas.DeleteAssessmentFrameworkShareInput,
-        output_schema = schemas.DeleteAssessmentFrameworkShareOutput,
-        http_method = "DELETE",
-        http_path = "/assessmentFrameworkShareRequests/{requestId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAssessmentFrameworkShare, input, options)
 end
 
 function Client:deleteAssessmentReport(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAssessmentReport",
-        input_schema = schemas.DeleteAssessmentReportInput,
-        output_schema = schemas.DeleteAssessmentReportOutput,
-        http_method = "DELETE",
-        http_path = "/assessments/{assessmentId}/reports/{assessmentReportId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAssessmentReport, input, options)
 end
 
 function Client:deleteControl(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteControl",
-        input_schema = schemas.DeleteControlInput,
-        output_schema = schemas.DeleteControlOutput,
-        http_method = "DELETE",
-        http_path = "/controls/{controlId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteControl, input, options)
 end
 
 function Client:deregisterAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterAccount",
-        input_schema = schemas.DeregisterAccountInput,
-        output_schema = schemas.DeregisterAccountOutput,
-        http_method = "POST",
-        http_path = "/account/deregisterAccount",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterAccount, input, options)
 end
 
 function Client:deregisterOrganizationAdminAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterOrganizationAdminAccount",
-        input_schema = schemas.DeregisterOrganizationAdminAccountInput,
-        output_schema = schemas.DeregisterOrganizationAdminAccountOutput,
-        http_method = "POST",
-        http_path = "/account/deregisterOrganizationAdminAccount",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterOrganizationAdminAccount, input, options)
 end
 
 function Client:disassociateAssessmentReportEvidenceFolder(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateAssessmentReportEvidenceFolder",
-        input_schema = schemas.DisassociateAssessmentReportEvidenceFolderInput,
-        output_schema = schemas.DisassociateAssessmentReportEvidenceFolderOutput,
-        http_method = "PUT",
-        http_path = "/assessments/{assessmentId}/disassociateFromAssessmentReport",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateAssessmentReportEvidenceFolder, input, options)
 end
 
 function Client:getAccountStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccountStatus",
-        input_schema = schemas.GetAccountStatusInput,
-        output_schema = schemas.GetAccountStatusOutput,
-        http_method = "GET",
-        http_path = "/account/status",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccountStatus, input, options)
 end
 
 function Client:getAssessment(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAssessment",
-        input_schema = schemas.GetAssessmentInput,
-        output_schema = schemas.GetAssessmentOutput,
-        http_method = "GET",
-        http_path = "/assessments/{assessmentId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAssessment, input, options)
 end
 
 function Client:getAssessmentFramework(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAssessmentFramework",
-        input_schema = schemas.GetAssessmentFrameworkInput,
-        output_schema = schemas.GetAssessmentFrameworkOutput,
-        http_method = "GET",
-        http_path = "/assessmentFrameworks/{frameworkId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAssessmentFramework, input, options)
 end
 
 function Client:getAssessmentReportUrl(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAssessmentReportUrl",
-        input_schema = schemas.GetAssessmentReportUrlInput,
-        output_schema = schemas.GetAssessmentReportUrlOutput,
-        http_method = "GET",
-        http_path = "/assessments/{assessmentId}/reports/{assessmentReportId}/url",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAssessmentReportUrl, input, options)
 end
 
 function Client:getChangeLogs(input, options)
-    return self:invokeOperation(input, {
-        name = "GetChangeLogs",
-        input_schema = schemas.GetChangeLogsInput,
-        output_schema = schemas.GetChangeLogsOutput,
-        http_method = "GET",
-        http_path = "/assessments/{assessmentId}/changelogs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetChangeLogs, input, options)
 end
 
 function Client:getControl(input, options)
-    return self:invokeOperation(input, {
-        name = "GetControl",
-        input_schema = schemas.GetControlInput,
-        output_schema = schemas.GetControlOutput,
-        http_method = "GET",
-        http_path = "/controls/{controlId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetControl, input, options)
 end
 
 function Client:getDelegations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDelegations",
-        input_schema = schemas.GetDelegationsInput,
-        output_schema = schemas.GetDelegationsOutput,
-        http_method = "GET",
-        http_path = "/delegations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDelegations, input, options)
 end
 
 function Client:getEvidence(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEvidence",
-        input_schema = schemas.GetEvidenceInput,
-        output_schema = schemas.GetEvidenceOutput,
-        http_method = "GET",
-        http_path = "/assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders/{evidenceFolderId}/evidence/{evidenceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEvidence, input, options)
 end
 
 function Client:getEvidenceByEvidenceFolder(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEvidenceByEvidenceFolder",
-        input_schema = schemas.GetEvidenceByEvidenceFolderInput,
-        output_schema = schemas.GetEvidenceByEvidenceFolderOutput,
-        http_method = "GET",
-        http_path = "/assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders/{evidenceFolderId}/evidence",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEvidenceByEvidenceFolder, input, options)
 end
 
 function Client:getEvidenceFileUploadUrl(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEvidenceFileUploadUrl",
-        input_schema = schemas.GetEvidenceFileUploadUrlInput,
-        output_schema = schemas.GetEvidenceFileUploadUrlOutput,
-        http_method = "GET",
-        http_path = "/evidenceFileUploadUrl",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEvidenceFileUploadUrl, input, options)
 end
 
 function Client:getEvidenceFolder(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEvidenceFolder",
-        input_schema = schemas.GetEvidenceFolderInput,
-        output_schema = schemas.GetEvidenceFolderOutput,
-        http_method = "GET",
-        http_path = "/assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders/{evidenceFolderId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEvidenceFolder, input, options)
 end
 
 function Client:getEvidenceFoldersByAssessment(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEvidenceFoldersByAssessment",
-        input_schema = schemas.GetEvidenceFoldersByAssessmentInput,
-        output_schema = schemas.GetEvidenceFoldersByAssessmentOutput,
-        http_method = "GET",
-        http_path = "/assessments/{assessmentId}/evidenceFolders",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEvidenceFoldersByAssessment, input, options)
 end
 
 function Client:getEvidenceFoldersByAssessmentControl(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEvidenceFoldersByAssessmentControl",
-        input_schema = schemas.GetEvidenceFoldersByAssessmentControlInput,
-        output_schema = schemas.GetEvidenceFoldersByAssessmentControlOutput,
-        http_method = "GET",
-        http_path = "/assessments/{assessmentId}/evidenceFolders-by-assessment-control/{controlSetId}/{controlId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEvidenceFoldersByAssessmentControl, input, options)
 end
 
 function Client:getInsights(input, options)
-    return self:invokeOperation(input, {
-        name = "GetInsights",
-        input_schema = schemas.GetInsightsInput,
-        output_schema = schemas.GetInsightsOutput,
-        http_method = "GET",
-        http_path = "/insights",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetInsights, input, options)
 end
 
 function Client:getInsightsByAssessment(input, options)
-    return self:invokeOperation(input, {
-        name = "GetInsightsByAssessment",
-        input_schema = schemas.GetInsightsByAssessmentInput,
-        output_schema = schemas.GetInsightsByAssessmentOutput,
-        http_method = "GET",
-        http_path = "/insights/assessments/{assessmentId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetInsightsByAssessment, input, options)
 end
 
 function Client:getOrganizationAdminAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "GetOrganizationAdminAccount",
-        input_schema = schemas.GetOrganizationAdminAccountInput,
-        output_schema = schemas.GetOrganizationAdminAccountOutput,
-        http_method = "GET",
-        http_path = "/account/organizationAdminAccount",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetOrganizationAdminAccount, input, options)
 end
 
 function Client:getServicesInScope(input, options)
-    return self:invokeOperation(input, {
-        name = "GetServicesInScope",
-        input_schema = schemas.GetServicesInScopeInput,
-        output_schema = schemas.GetServicesInScopeOutput,
-        http_method = "GET",
-        http_path = "/services",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetServicesInScope, input, options)
 end
 
 function Client:getSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSettings",
-        input_schema = schemas.GetSettingsInput,
-        output_schema = schemas.GetSettingsOutput,
-        http_method = "GET",
-        http_path = "/settings/{attribute}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSettings, input, options)
 end
 
 function Client:listAssessmentControlInsightsByControlDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAssessmentControlInsightsByControlDomain",
-        input_schema = schemas.ListAssessmentControlInsightsByControlDomainInput,
-        output_schema = schemas.ListAssessmentControlInsightsByControlDomainOutput,
-        http_method = "GET",
-        http_path = "/insights/controls-by-assessment",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAssessmentControlInsightsByControlDomain, input, options)
 end
 
 function Client:listAssessmentFrameworks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAssessmentFrameworks",
-        input_schema = schemas.ListAssessmentFrameworksInput,
-        output_schema = schemas.ListAssessmentFrameworksOutput,
-        http_method = "GET",
-        http_path = "/assessmentFrameworks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAssessmentFrameworks, input, options)
 end
 
 function Client:listAssessmentFrameworkShareRequests(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAssessmentFrameworkShareRequests",
-        input_schema = schemas.ListAssessmentFrameworkShareRequestsInput,
-        output_schema = schemas.ListAssessmentFrameworkShareRequestsOutput,
-        http_method = "GET",
-        http_path = "/assessmentFrameworkShareRequests",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAssessmentFrameworkShareRequests, input, options)
 end
 
 function Client:listAssessmentReports(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAssessmentReports",
-        input_schema = schemas.ListAssessmentReportsInput,
-        output_schema = schemas.ListAssessmentReportsOutput,
-        http_method = "GET",
-        http_path = "/assessmentReports",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAssessmentReports, input, options)
 end
 
 function Client:listAssessments(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAssessments",
-        input_schema = schemas.ListAssessmentsInput,
-        output_schema = schemas.ListAssessmentsOutput,
-        http_method = "GET",
-        http_path = "/assessments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAssessments, input, options)
 end
 
 function Client:listControlDomainInsights(input, options)
-    return self:invokeOperation(input, {
-        name = "ListControlDomainInsights",
-        input_schema = schemas.ListControlDomainInsightsInput,
-        output_schema = schemas.ListControlDomainInsightsOutput,
-        http_method = "GET",
-        http_path = "/insights/control-domains",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListControlDomainInsights, input, options)
 end
 
 function Client:listControlDomainInsightsByAssessment(input, options)
-    return self:invokeOperation(input, {
-        name = "ListControlDomainInsightsByAssessment",
-        input_schema = schemas.ListControlDomainInsightsByAssessmentInput,
-        output_schema = schemas.ListControlDomainInsightsByAssessmentOutput,
-        http_method = "GET",
-        http_path = "/insights/control-domains-by-assessment",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListControlDomainInsightsByAssessment, input, options)
 end
 
 function Client:listControlInsightsByControlDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "ListControlInsightsByControlDomain",
-        input_schema = schemas.ListControlInsightsByControlDomainInput,
-        output_schema = schemas.ListControlInsightsByControlDomainOutput,
-        http_method = "GET",
-        http_path = "/insights/controls",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListControlInsightsByControlDomain, input, options)
 end
 
 function Client:listControls(input, options)
-    return self:invokeOperation(input, {
-        name = "ListControls",
-        input_schema = schemas.ListControlsInput,
-        output_schema = schemas.ListControlsOutput,
-        http_method = "GET",
-        http_path = "/controls",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListControls, input, options)
 end
 
 function Client:listKeywordsForDataSource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListKeywordsForDataSource",
-        input_schema = schemas.ListKeywordsForDataSourceInput,
-        output_schema = schemas.ListKeywordsForDataSourceOutput,
-        http_method = "GET",
-        http_path = "/dataSourceKeywords",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListKeywordsForDataSource, input, options)
 end
 
 function Client:listNotifications(input, options)
-    return self:invokeOperation(input, {
-        name = "ListNotifications",
-        input_schema = schemas.ListNotificationsInput,
-        output_schema = schemas.ListNotificationsOutput,
-        http_method = "GET",
-        http_path = "/notifications",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListNotifications, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:registerAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterAccount",
-        input_schema = schemas.RegisterAccountInput,
-        output_schema = schemas.RegisterAccountOutput,
-        http_method = "POST",
-        http_path = "/account/registerAccount",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterAccount, input, options)
 end
 
 function Client:registerOrganizationAdminAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterOrganizationAdminAccount",
-        input_schema = schemas.RegisterOrganizationAdminAccountInput,
-        output_schema = schemas.RegisterOrganizationAdminAccountOutput,
-        http_method = "POST",
-        http_path = "/account/registerOrganizationAdminAccount",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterOrganizationAdminAccount, input, options)
 end
 
 function Client:startAssessmentFrameworkShare(input, options)
-    return self:invokeOperation(input, {
-        name = "StartAssessmentFrameworkShare",
-        input_schema = schemas.StartAssessmentFrameworkShareInput,
-        output_schema = schemas.StartAssessmentFrameworkShareOutput,
-        http_method = "POST",
-        http_path = "/assessmentFrameworks/{frameworkId}/shareRequests",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartAssessmentFrameworkShare, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAssessment(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAssessment",
-        input_schema = schemas.UpdateAssessmentInput,
-        output_schema = schemas.UpdateAssessmentOutput,
-        http_method = "PUT",
-        http_path = "/assessments/{assessmentId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAssessment, input, options)
 end
 
 function Client:updateAssessmentControl(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAssessmentControl",
-        input_schema = schemas.UpdateAssessmentControlInput,
-        output_schema = schemas.UpdateAssessmentControlOutput,
-        http_method = "PUT",
-        http_path = "/assessments/{assessmentId}/controlSets/{controlSetId}/controls/{controlId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAssessmentControl, input, options)
 end
 
 function Client:updateAssessmentControlSetStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAssessmentControlSetStatus",
-        input_schema = schemas.UpdateAssessmentControlSetStatusInput,
-        output_schema = schemas.UpdateAssessmentControlSetStatusOutput,
-        http_method = "PUT",
-        http_path = "/assessments/{assessmentId}/controlSets/{controlSetId}/status",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAssessmentControlSetStatus, input, options)
 end
 
 function Client:updateAssessmentFramework(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAssessmentFramework",
-        input_schema = schemas.UpdateAssessmentFrameworkInput,
-        output_schema = schemas.UpdateAssessmentFrameworkOutput,
-        http_method = "PUT",
-        http_path = "/assessmentFrameworks/{frameworkId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAssessmentFramework, input, options)
 end
 
 function Client:updateAssessmentFrameworkShare(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAssessmentFrameworkShare",
-        input_schema = schemas.UpdateAssessmentFrameworkShareInput,
-        output_schema = schemas.UpdateAssessmentFrameworkShareOutput,
-        http_method = "PUT",
-        http_path = "/assessmentFrameworkShareRequests/{requestId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAssessmentFrameworkShare, input, options)
 end
 
 function Client:updateAssessmentStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAssessmentStatus",
-        input_schema = schemas.UpdateAssessmentStatusInput,
-        output_schema = schemas.UpdateAssessmentStatusOutput,
-        http_method = "PUT",
-        http_path = "/assessments/{assessmentId}/status",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAssessmentStatus, input, options)
 end
 
 function Client:updateControl(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateControl",
-        input_schema = schemas.UpdateControlInput,
-        output_schema = schemas.UpdateControlOutput,
-        http_method = "PUT",
-        http_path = "/controls/{controlId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateControl, input, options)
 end
 
 function Client:updateSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSettings",
-        input_schema = schemas.UpdateSettingsInput,
-        output_schema = schemas.UpdateSettingsOutput,
-        http_method = "PUT",
-        http_path = "/settings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSettings, input, options)
 end
 
 function Client:validateAssessmentReportIntegrity(input, options)
-    return self:invokeOperation(input, {
-        name = "ValidateAssessmentReportIntegrity",
-        input_schema = schemas.ValidateAssessmentReportIntegrityInput,
-        output_schema = schemas.ValidateAssessmentReportIntegrityOutput,
-        http_method = "POST",
-        http_path = "/assessmentReports/integrity",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ValidateAssessmentReportIntegrity, input, options)
 end
 
 return M

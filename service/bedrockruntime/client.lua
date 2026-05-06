@@ -7,6 +7,7 @@ local endpoint_rules = require("bedrockruntime.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("bedrockruntime.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bedrock", signing_region = cfg.region } }
                 else
@@ -49,131 +52,39 @@ function M.new(cfg)
 end
 
 function Client:applyGuardrail(input, options)
-    return self:invokeOperation(input, {
-        name = "ApplyGuardrail",
-        input_schema = schemas.ApplyGuardrailInput,
-        output_schema = schemas.ApplyGuardrailOutput,
-        http_method = "POST",
-        http_path = "/guardrail/{guardrailIdentifier}/version/{guardrailVersion}/apply",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ApplyGuardrail, input, options)
 end
 
 function Client:converse(input, options)
-    return self:invokeOperation(input, {
-        name = "Converse",
-        input_schema = schemas.ConverseInput,
-        output_schema = schemas.ConverseOperationOutput,
-        http_method = "POST",
-        http_path = "/model/{modelId}/converse",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Converse, input, options)
 end
 
 function Client:converseStream(input, options)
-    return self:invokeOperation(input, {
-        name = "ConverseStream",
-        input_schema = schemas.ConverseStreamInput,
-        output_schema = schemas.ConverseStreamOperationOutput,
-        http_method = "POST",
-        http_path = "/model/{modelId}/converse-stream",
-        event_stream = schemas.ConverseStreamOutput,
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ConverseStream, input, options)
 end
 
 function Client:countTokens(input, options)
-    return self:invokeOperation(input, {
-        name = "CountTokens",
-        input_schema = schemas.CountTokensOperationInput,
-        output_schema = schemas.CountTokensOutput,
-        http_method = "POST",
-        http_path = "/model/{modelId}/count-tokens",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CountTokens, input, options)
 end
 
 function Client:getAsyncInvoke(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAsyncInvoke",
-        input_schema = schemas.GetAsyncInvokeInput,
-        output_schema = schemas.GetAsyncInvokeOutput,
-        http_method = "GET",
-        http_path = "/async-invoke/{invocationArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAsyncInvoke, input, options)
 end
 
 function Client:invokeModel(input, options)
-    return self:invokeOperation(input, {
-        name = "InvokeModel",
-        input_schema = schemas.InvokeModelInput,
-        output_schema = schemas.InvokeModelOutput,
-        http_method = "POST",
-        http_path = "/model/{modelId}/invoke",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InvokeModel, input, options)
 end
 
 function Client:invokeModelWithResponseStream(input, options)
-    return self:invokeOperation(input, {
-        name = "InvokeModelWithResponseStream",
-        input_schema = schemas.InvokeModelWithResponseStreamInput,
-        output_schema = schemas.InvokeModelWithResponseStreamOutput,
-        http_method = "POST",
-        http_path = "/model/{modelId}/invoke-with-response-stream",
-        event_stream = schemas.ResponseStream,
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InvokeModelWithResponseStream, input, options)
 end
 
 function Client:listAsyncInvokes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAsyncInvokes",
-        input_schema = schemas.ListAsyncInvokesInput,
-        output_schema = schemas.ListAsyncInvokesOutput,
-        http_method = "GET",
-        http_path = "/async-invoke",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAsyncInvokes, input, options)
 end
 
 function Client:startAsyncInvoke(input, options)
-    return self:invokeOperation(input, {
-        name = "StartAsyncInvoke",
-        input_schema = schemas.StartAsyncInvokeInput,
-        output_schema = schemas.StartAsyncInvokeOutput,
-        http_method = "POST",
-        http_path = "/async-invoke",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartAsyncInvoke, input, options)
 end
 
 return M

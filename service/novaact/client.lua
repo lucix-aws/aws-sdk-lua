@@ -7,6 +7,7 @@ local endpoint_rules = require("novaact.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("novaact.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "nova-act", signing_region = cfg.region } }
                 else
@@ -49,211 +52,67 @@ function M.new(cfg)
 end
 
 function Client:createAct(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAct",
-        input_schema = schemas.CreateActInput,
-        output_schema = schemas.CreateActOutput,
-        http_method = "PUT",
-        http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions/{sessionId}/acts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAct, input, options)
 end
 
 function Client:createSession(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSession",
-        input_schema = schemas.CreateSessionInput,
-        output_schema = schemas.CreateSessionOutput,
-        http_method = "PUT",
-        http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSession, input, options)
 end
 
 function Client:createWorkflowDefinition(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateWorkflowDefinition",
-        input_schema = schemas.CreateWorkflowDefinitionInput,
-        output_schema = schemas.CreateWorkflowDefinitionOutput,
-        http_method = "PUT",
-        http_path = "/workflow-definitions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateWorkflowDefinition, input, options)
 end
 
 function Client:createWorkflowRun(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateWorkflowRun",
-        input_schema = schemas.CreateWorkflowRunInput,
-        output_schema = schemas.CreateWorkflowRunOutput,
-        http_method = "PUT",
-        http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateWorkflowRun, input, options)
 end
 
 function Client:deleteWorkflowDefinition(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWorkflowDefinition",
-        input_schema = schemas.DeleteWorkflowDefinitionInput,
-        output_schema = schemas.DeleteWorkflowDefinitionOutput,
-        http_method = "DELETE",
-        http_path = "/workflow-definitions/{workflowDefinitionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflowDefinition, input, options)
 end
 
 function Client:deleteWorkflowRun(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWorkflowRun",
-        input_schema = schemas.DeleteWorkflowRunInput,
-        output_schema = schemas.DeleteWorkflowRunOutput,
-        http_method = "DELETE",
-        http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflowRun, input, options)
 end
 
 function Client:getWorkflowDefinition(input, options)
-    return self:invokeOperation(input, {
-        name = "GetWorkflowDefinition",
-        input_schema = schemas.GetWorkflowDefinitionInput,
-        output_schema = schemas.GetWorkflowDefinitionOutput,
-        http_method = "GET",
-        http_path = "/workflow-definitions/{workflowDefinitionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetWorkflowDefinition, input, options)
 end
 
 function Client:getWorkflowRun(input, options)
-    return self:invokeOperation(input, {
-        name = "GetWorkflowRun",
-        input_schema = schemas.GetWorkflowRunInput,
-        output_schema = schemas.GetWorkflowRunOutput,
-        http_method = "GET",
-        http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetWorkflowRun, input, options)
 end
 
 function Client:invokeActStep(input, options)
-    return self:invokeOperation(input, {
-        name = "InvokeActStep",
-        input_schema = schemas.InvokeActStepInput,
-        output_schema = schemas.InvokeActStepOutput,
-        http_method = "PUT",
-        http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions/{sessionId}/acts/{actId}/invoke-step/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InvokeActStep, input, options)
 end
 
 function Client:listActs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListActs",
-        input_schema = schemas.ListActsInput,
-        output_schema = schemas.ListActsOutput,
-        http_method = "POST",
-        http_path = "/workflow-definitions/{workflowDefinitionName}/acts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListActs, input, options)
 end
 
 function Client:listModels(input, options)
-    return self:invokeOperation(input, {
-        name = "ListModels",
-        input_schema = schemas.ListModelsInput,
-        output_schema = schemas.ListModelsOutput,
-        http_method = "POST",
-        http_path = "/models",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListModels, input, options)
 end
 
 function Client:listSessions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSessions",
-        input_schema = schemas.ListSessionsInput,
-        output_schema = schemas.ListSessionsOutput,
-        http_method = "POST",
-        http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSessions, input, options)
 end
 
 function Client:listWorkflowDefinitions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkflowDefinitions",
-        input_schema = schemas.ListWorkflowDefinitionsInput,
-        output_schema = schemas.ListWorkflowDefinitionsOutput,
-        http_method = "POST",
-        http_path = "/workflow-definitions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkflowDefinitions, input, options)
 end
 
 function Client:listWorkflowRuns(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkflowRuns",
-        input_schema = schemas.ListWorkflowRunsInput,
-        output_schema = schemas.ListWorkflowRunsOutput,
-        http_method = "POST",
-        http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkflowRuns, input, options)
 end
 
 function Client:updateAct(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAct",
-        input_schema = schemas.UpdateActInput,
-        output_schema = schemas.UpdateActOutput,
-        http_method = "PUT",
-        http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions/{sessionId}/acts/{actId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAct, input, options)
 end
 
 function Client:updateWorkflowRun(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateWorkflowRun",
-        input_schema = schemas.UpdateWorkflowRunInput,
-        output_schema = schemas.UpdateWorkflowRunOutput,
-        http_method = "PUT",
-        http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateWorkflowRun, input, options)
 end
 
 return M

@@ -33053,4 +33053,1298 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.securityhub", "SecurityHubAPIService"),
+    version = "2018-10-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptAdministratorInvitation = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "AcceptAdministratorInvitation"),
+    input = M.AcceptAdministratorInvitationInput,
+    output = M.AcceptAdministratorInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/administrator" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptInvitation = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "AcceptInvitation"),
+    input = M.AcceptInvitationInput,
+    output = M.AcceptInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/master" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteAutomationRules = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "BatchDeleteAutomationRules"),
+    input = M.BatchDeleteAutomationRulesInput,
+    output = M.BatchDeleteAutomationRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/automationrules/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDisableStandards = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "BatchDisableStandards"),
+    input = M.BatchDisableStandardsInput,
+    output = M.BatchDisableStandardsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/standards/deregister" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchEnableStandards = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "BatchEnableStandards"),
+    input = M.BatchEnableStandardsInput,
+    output = M.BatchEnableStandardsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/standards/register" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetAutomationRules = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "BatchGetAutomationRules"),
+    input = M.BatchGetAutomationRulesInput,
+    output = M.BatchGetAutomationRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/automationrules/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetConfigurationPolicyAssociations = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "BatchGetConfigurationPolicyAssociations"),
+    input = M.BatchGetConfigurationPolicyAssociationsInput,
+    output = M.BatchGetConfigurationPolicyAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configurationPolicyAssociation/batchget" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetSecurityControls = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "BatchGetSecurityControls"),
+    input = M.BatchGetSecurityControlsInput,
+    output = M.BatchGetSecurityControlsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/securityControls/batchGet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetStandardsControlAssociations = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "BatchGetStandardsControlAssociations"),
+    input = M.BatchGetStandardsControlAssociationsInput,
+    output = M.BatchGetStandardsControlAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/associations/batchGet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchImportFindings = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "BatchImportFindings"),
+    input = M.BatchImportFindingsInput,
+    output = M.BatchImportFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findings/import" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateAutomationRules = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "BatchUpdateAutomationRules"),
+    input = M.BatchUpdateAutomationRulesInput,
+    output = M.BatchUpdateAutomationRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/automationrules/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateFindings = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "BatchUpdateFindings"),
+    input = M.BatchUpdateFindingsInput,
+    output = M.BatchUpdateFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/findings/batchupdate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateFindingsV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "BatchUpdateFindingsV2"),
+    input = M.BatchUpdateFindingsV2Input,
+    output = M.BatchUpdateFindingsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/findingsv2/batchupdatev2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateStandardsControlAssociations = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "BatchUpdateStandardsControlAssociations"),
+    input = M.BatchUpdateStandardsControlAssociationsInput,
+    output = M.BatchUpdateStandardsControlAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateActionTarget = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "CreateActionTarget"),
+    input = M.CreateActionTargetInput,
+    output = M.CreateActionTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/actionTargets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAggregatorV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "CreateAggregatorV2"),
+    input = M.CreateAggregatorV2Input,
+    output = M.CreateAggregatorV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/aggregatorv2/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAutomationRule = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "CreateAutomationRule"),
+    input = M.CreateAutomationRuleInput,
+    output = M.CreateAutomationRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/automationrules/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAutomationRuleV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "CreateAutomationRuleV2"),
+    input = M.CreateAutomationRuleV2Input,
+    output = M.CreateAutomationRuleV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/automationrulesv2/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfigurationPolicy = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "CreateConfigurationPolicy"),
+    input = M.CreateConfigurationPolicyInput,
+    output = M.CreateConfigurationPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configurationPolicy/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnectorV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "CreateConnectorV2"),
+    input = M.CreateConnectorV2Input,
+    output = M.CreateConnectorV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connectorsv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFindingAggregator = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "CreateFindingAggregator"),
+    input = M.CreateFindingAggregatorInput,
+    output = M.CreateFindingAggregatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findingAggregator/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInsight = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "CreateInsight"),
+    input = M.CreateInsightInput,
+    output = M.CreateInsightOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/insights" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMembers = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "CreateMembers"),
+    input = M.CreateMembersInput,
+    output = M.CreateMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTicketV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "CreateTicketV2"),
+    input = M.CreateTicketV2Input,
+    output = M.CreateTicketV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ticketsv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeclineInvitations = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DeclineInvitations"),
+    input = M.DeclineInvitationsInput,
+    output = M.DeclineInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/invitations/decline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteActionTarget = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DeleteActionTarget"),
+    input = M.DeleteActionTargetInput,
+    output = M.DeleteActionTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/actionTargets/{ActionTargetArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAggregatorV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DeleteAggregatorV2"),
+    input = M.DeleteAggregatorV2Input,
+    output = M.DeleteAggregatorV2Output,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/aggregatorv2/delete/{AggregatorV2Arn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAutomationRuleV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DeleteAutomationRuleV2"),
+    input = M.DeleteAutomationRuleV2Input,
+    output = M.DeleteAutomationRuleV2Output,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/automationrulesv2/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationPolicy = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DeleteConfigurationPolicy"),
+    input = M.DeleteConfigurationPolicyInput,
+    output = M.DeleteConfigurationPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/configurationPolicy/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnectorV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DeleteConnectorV2"),
+    input = M.DeleteConnectorV2Input,
+    output = M.DeleteConnectorV2Output,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/connectorsv2/{ConnectorId+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFindingAggregator = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DeleteFindingAggregator"),
+    input = M.DeleteFindingAggregatorInput,
+    output = M.DeleteFindingAggregatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/findingAggregator/delete/{FindingAggregatorArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInsight = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DeleteInsight"),
+    input = M.DeleteInsightInput,
+    output = M.DeleteInsightOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/insights/{InsightArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInvitations = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DeleteInvitations"),
+    input = M.DeleteInvitationsInput,
+    output = M.DeleteInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/invitations/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMembers = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DeleteMembers"),
+    input = M.DeleteMembersInput,
+    output = M.DeleteMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/members/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeActionTargets = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DescribeActionTargets"),
+    input = M.DescribeActionTargetsInput,
+    output = M.DescribeActionTargetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/actionTargets/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHub = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DescribeHub"),
+    input = M.DescribeHubInput,
+    output = M.DescribeHubOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrganizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DescribeOrganizationConfiguration"),
+    input = M.DescribeOrganizationConfigurationInput,
+    output = M.DescribeOrganizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/organization/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProducts = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DescribeProducts"),
+    input = M.DescribeProductsInput,
+    output = M.DescribeProductsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/products" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProductsV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DescribeProductsV2"),
+    input = M.DescribeProductsV2Input,
+    output = M.DescribeProductsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/productsV2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSecurityHubV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DescribeSecurityHubV2"),
+    input = M.DescribeSecurityHubV2Input,
+    output = M.DescribeSecurityHubV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/hubv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStandards = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DescribeStandards"),
+    input = M.DescribeStandardsInput,
+    output = M.DescribeStandardsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/standards" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStandardsControls = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DescribeStandardsControls"),
+    input = M.DescribeStandardsControlsInput,
+    output = M.DescribeStandardsControlsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/standards/controls/{StandardsSubscriptionArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableImportFindingsForProduct = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DisableImportFindingsForProduct"),
+    input = M.DisableImportFindingsForProductInput,
+    output = M.DisableImportFindingsForProductOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/productSubscriptions/{ProductSubscriptionArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableOrganizationAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DisableOrganizationAdminAccount"),
+    input = M.DisableOrganizationAdminAccountInput,
+    output = M.DisableOrganizationAdminAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/organization/admin/disable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableSecurityHub = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DisableSecurityHub"),
+    input = M.DisableSecurityHubInput,
+    output = M.DisableSecurityHubOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableSecurityHubV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DisableSecurityHubV2"),
+    input = M.DisableSecurityHubV2Input,
+    output = M.DisableSecurityHubV2Output,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/hubv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFromAdministratorAccount = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DisassociateFromAdministratorAccount"),
+    input = M.DisassociateFromAdministratorAccountInput,
+    output = M.DisassociateFromAdministratorAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/administrator/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFromMasterAccount = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DisassociateFromMasterAccount"),
+    input = M.DisassociateFromMasterAccountInput,
+    output = M.DisassociateFromMasterAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/master/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateMembers = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DisassociateMembers"),
+    input = M.DisassociateMembersInput,
+    output = M.DisassociateMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/members/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableImportFindingsForProduct = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "EnableImportFindingsForProduct"),
+    input = M.EnableImportFindingsForProductInput,
+    output = M.EnableImportFindingsForProductOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/productSubscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableOrganizationAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "EnableOrganizationAdminAccount"),
+    input = M.EnableOrganizationAdminAccountInput,
+    output = M.EnableOrganizationAdminAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/organization/admin/enable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableSecurityHub = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "EnableSecurityHub"),
+    input = M.EnableSecurityHubInput,
+    output = M.EnableSecurityHubOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableSecurityHubV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "EnableSecurityHubV2"),
+    input = M.EnableSecurityHubV2Input,
+    output = M.EnableSecurityHubV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/hubv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAdministratorAccount = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetAdministratorAccount"),
+    input = M.GetAdministratorAccountInput,
+    output = M.GetAdministratorAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/administrator" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAggregatorV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetAggregatorV2"),
+    input = M.GetAggregatorV2Input,
+    output = M.GetAggregatorV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/aggregatorv2/get/{AggregatorV2Arn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAutomationRuleV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetAutomationRuleV2"),
+    input = M.GetAutomationRuleV2Input,
+    output = M.GetAutomationRuleV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automationrulesv2/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfigurationPolicy = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetConfigurationPolicy"),
+    input = M.GetConfigurationPolicyInput,
+    output = M.GetConfigurationPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configurationPolicy/get/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfigurationPolicyAssociation = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetConfigurationPolicyAssociation"),
+    input = M.GetConfigurationPolicyAssociationInput,
+    output = M.GetConfigurationPolicyAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configurationPolicyAssociation/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnectorV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetConnectorV2"),
+    input = M.GetConnectorV2Input,
+    output = M.GetConnectorV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connectorsv2/{ConnectorId+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnabledStandards = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetEnabledStandards"),
+    input = M.GetEnabledStandardsInput,
+    output = M.GetEnabledStandardsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/standards/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingAggregator = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetFindingAggregator"),
+    input = M.GetFindingAggregatorInput,
+    output = M.GetFindingAggregatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/findingAggregator/get/{FindingAggregatorArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingHistory = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetFindingHistory"),
+    input = M.GetFindingHistoryInput,
+    output = M.GetFindingHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findingHistory/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindings = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetFindings"),
+    input = M.GetFindingsInput,
+    output = M.GetFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingStatisticsV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetFindingStatisticsV2"),
+    input = M.GetFindingStatisticsV2Input,
+    output = M.GetFindingStatisticsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findingsv2/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingsTrendsV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetFindingsTrendsV2"),
+    input = M.GetFindingsTrendsV2Input,
+    output = M.GetFindingsTrendsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findingsTrendsv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingsV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetFindingsV2"),
+    input = M.GetFindingsV2Input,
+    output = M.GetFindingsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findingsv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInsightResults = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetInsightResults"),
+    input = M.GetInsightResultsInput,
+    output = M.GetInsightResultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/insights/results/{InsightArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInsights = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetInsights"),
+    input = M.GetInsightsInput,
+    output = M.GetInsightsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/insights/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInvitationsCount = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetInvitationsCount"),
+    input = M.GetInvitationsCountInput,
+    output = M.GetInvitationsCountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/invitations/count" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMasterAccount = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetMasterAccount"),
+    input = M.GetMasterAccountInput,
+    output = M.GetMasterAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/master" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMembers = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetMembers"),
+    input = M.GetMembersInput,
+    output = M.GetMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/members/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcesStatisticsV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetResourcesStatisticsV2"),
+    input = M.GetResourcesStatisticsV2Input,
+    output = M.GetResourcesStatisticsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resourcesv2/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcesTrendsV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetResourcesTrendsV2"),
+    input = M.GetResourcesTrendsV2Input,
+    output = M.GetResourcesTrendsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resourcesTrendsv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcesV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetResourcesV2"),
+    input = M.GetResourcesV2Input,
+    output = M.GetResourcesV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resourcesv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSecurityControlDefinition = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetSecurityControlDefinition"),
+    input = M.GetSecurityControlDefinitionInput,
+    output = M.GetSecurityControlDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/securityControl/definition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InviteMembers = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "InviteMembers"),
+    input = M.InviteMembersInput,
+    output = M.InviteMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/members/invite" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAggregatorsV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListAggregatorsV2"),
+    input = M.ListAggregatorsV2Input,
+    output = M.ListAggregatorsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/aggregatorv2/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutomationRules = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListAutomationRules"),
+    input = M.ListAutomationRulesInput,
+    output = M.ListAutomationRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automationrules/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutomationRulesV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListAutomationRulesV2"),
+    input = M.ListAutomationRulesV2Input,
+    output = M.ListAutomationRulesV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automationrulesv2/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationPolicies = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListConfigurationPolicies"),
+    input = M.ListConfigurationPoliciesInput,
+    output = M.ListConfigurationPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configurationPolicy/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationPolicyAssociations = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListConfigurationPolicyAssociations"),
+    input = M.ListConfigurationPolicyAssociationsInput,
+    output = M.ListConfigurationPolicyAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configurationPolicyAssociation/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectorsV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListConnectorsV2"),
+    input = M.ListConnectorsV2Input,
+    output = M.ListConnectorsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connectorsv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnabledProductsForImport = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListEnabledProductsForImport"),
+    input = M.ListEnabledProductsForImportInput,
+    output = M.ListEnabledProductsForImportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/productSubscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFindingAggregators = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListFindingAggregators"),
+    input = M.ListFindingAggregatorsInput,
+    output = M.ListFindingAggregatorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/findingAggregator/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvitations = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListInvitations"),
+    input = M.ListInvitationsInput,
+    output = M.ListInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/invitations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMembers = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListMembers"),
+    input = M.ListMembersInput,
+    output = M.ListMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOrganizationAdminAccounts = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListOrganizationAdminAccounts"),
+    input = M.ListOrganizationAdminAccountsInput,
+    output = M.ListOrganizationAdminAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/organization/admin" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityControlDefinitions = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListSecurityControlDefinitions"),
+    input = M.ListSecurityControlDefinitionsInput,
+    output = M.ListSecurityControlDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/securityControls/definitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStandardsControlAssociations = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListStandardsControlAssociations"),
+    input = M.ListStandardsControlAssociationsInput,
+    output = M.ListStandardsControlAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterConnectorV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "RegisterConnectorV2"),
+    input = M.RegisterConnectorV2Input,
+    output = M.RegisterConnectorV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connectorsv2/register" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartConfigurationPolicyAssociation = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "StartConfigurationPolicyAssociation"),
+    input = M.StartConfigurationPolicyAssociationInput,
+    output = M.StartConfigurationPolicyAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configurationPolicyAssociation/associate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartConfigurationPolicyDisassociation = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "StartConfigurationPolicyDisassociation"),
+    input = M.StartConfigurationPolicyDisassociationInput,
+    output = M.StartConfigurationPolicyDisassociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configurationPolicyAssociation/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateActionTarget = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "UpdateActionTarget"),
+    input = M.UpdateActionTargetInput,
+    output = M.UpdateActionTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/actionTargets/{ActionTargetArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAggregatorV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "UpdateAggregatorV2"),
+    input = M.UpdateAggregatorV2Input,
+    output = M.UpdateAggregatorV2Output,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/aggregatorv2/update/{AggregatorV2Arn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAutomationRuleV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "UpdateAutomationRuleV2"),
+    input = M.UpdateAutomationRuleV2Input,
+    output = M.UpdateAutomationRuleV2Output,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/automationrulesv2/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfigurationPolicy = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "UpdateConfigurationPolicy"),
+    input = M.UpdateConfigurationPolicyInput,
+    output = M.UpdateConfigurationPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/configurationPolicy/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnectorV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "UpdateConnectorV2"),
+    input = M.UpdateConnectorV2Input,
+    output = M.UpdateConnectorV2Output,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/connectorsv2/{ConnectorId+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFindingAggregator = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "UpdateFindingAggregator"),
+    input = M.UpdateFindingAggregatorInput,
+    output = M.UpdateFindingAggregatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/findingAggregator/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFindings = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "UpdateFindings"),
+    input = M.UpdateFindingsInput,
+    output = M.UpdateFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/findings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInsight = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "UpdateInsight"),
+    input = M.UpdateInsightInput,
+    output = M.UpdateInsightOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/insights/{InsightArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOrganizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "UpdateOrganizationConfiguration"),
+    input = M.UpdateOrganizationConfigurationInput,
+    output = M.UpdateOrganizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/organization/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSecurityControl = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "UpdateSecurityControl"),
+    input = M.UpdateSecurityControlInput,
+    output = M.UpdateSecurityControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/securityControl/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSecurityHubConfiguration = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "UpdateSecurityHubConfiguration"),
+    input = M.UpdateSecurityHubConfigurationInput,
+    output = M.UpdateSecurityHubConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStandardsControl = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "UpdateStandardsControl"),
+    input = M.UpdateStandardsControlInput,
+    output = M.UpdateStandardsControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/standards/control/{StandardsControlArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

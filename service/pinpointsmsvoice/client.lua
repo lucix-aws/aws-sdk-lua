@@ -7,6 +7,7 @@ local endpoint_rules = require("pinpointsmsvoice.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("pinpointsmsvoice.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sms-voice", signing_region = cfg.region } }
                 else
@@ -49,107 +52,35 @@ function M.new(cfg)
 end
 
 function Client:createConfigurationSet(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfigurationSet",
-        input_schema = schemas.CreateConfigurationSetInput,
-        output_schema = schemas.CreateConfigurationSetOutput,
-        http_method = "POST",
-        http_path = "/v1/sms-voice/configuration-sets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSet, input, options)
 end
 
 function Client:createConfigurationSetEventDestination(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfigurationSetEventDestination",
-        input_schema = schemas.CreateConfigurationSetEventDestinationInput,
-        output_schema = schemas.CreateConfigurationSetEventDestinationOutput,
-        http_method = "POST",
-        http_path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}/event-destinations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSetEventDestination, input, options)
 end
 
 function Client:deleteConfigurationSet(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfigurationSet",
-        input_schema = schemas.DeleteConfigurationSetInput,
-        output_schema = schemas.DeleteConfigurationSetOutput,
-        http_method = "DELETE",
-        http_path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSet, input, options)
 end
 
 function Client:deleteConfigurationSetEventDestination(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfigurationSetEventDestination",
-        input_schema = schemas.DeleteConfigurationSetEventDestinationInput,
-        output_schema = schemas.DeleteConfigurationSetEventDestinationOutput,
-        http_method = "DELETE",
-        http_path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSetEventDestination, input, options)
 end
 
 function Client:getConfigurationSetEventDestinations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConfigurationSetEventDestinations",
-        input_schema = schemas.GetConfigurationSetEventDestinationsInput,
-        output_schema = schemas.GetConfigurationSetEventDestinationsOutput,
-        http_method = "GET",
-        http_path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}/event-destinations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConfigurationSetEventDestinations, input, options)
 end
 
 function Client:listConfigurationSets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConfigurationSets",
-        input_schema = schemas.ListConfigurationSetsInput,
-        output_schema = schemas.ListConfigurationSetsOutput,
-        http_method = "GET",
-        http_path = "/v1/sms-voice/configuration-sets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConfigurationSets, input, options)
 end
 
 function Client:sendVoiceMessage(input, options)
-    return self:invokeOperation(input, {
-        name = "SendVoiceMessage",
-        input_schema = schemas.SendVoiceMessageInput,
-        output_schema = schemas.SendVoiceMessageOutput,
-        http_method = "POST",
-        http_path = "/v1/sms-voice/voice/message",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SendVoiceMessage, input, options)
 end
 
 function Client:updateConfigurationSetEventDestination(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConfigurationSetEventDestination",
-        input_schema = schemas.UpdateConfigurationSetEventDestinationInput,
-        output_schema = schemas.UpdateConfigurationSetEventDestinationOutput,
-        http_method = "PUT",
-        http_path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationSetEventDestination, input, options)
 end
 
 return M

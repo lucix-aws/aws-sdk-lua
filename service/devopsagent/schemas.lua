@@ -6583,4 +6583,543 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.devopsagent", "DevOpsAgent"),
+    version = "2026-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateService = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "AssociateService"),
+    input = M.AssociateServiceInput,
+    output = M.AssociateServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/agentspaces/{agentSpaceId}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAgentSpace = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "CreateAgentSpace"),
+    input = M.CreateAgentSpaceInput,
+    output = M.CreateAgentSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/agentspaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBacklogTask = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "CreateBacklogTask"),
+    input = M.CreateBacklogTaskInput,
+    output = M.CreateBacklogTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backlog/agent-space/{agentSpaceId}/tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChat = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "CreateChat"),
+    input = M.CreateChatInput,
+    output = M.CreateChatOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agents/agent-space/{agentSpaceId}/chat/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePrivateConnection = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "CreatePrivateConnection"),
+    input = M.CreatePrivateConnectionInput,
+    output = M.CreatePrivateConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/private-connections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAgentSpace = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "DeleteAgentSpace"),
+    input = M.DeleteAgentSpaceInput,
+    output = M.DeleteAgentSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/agentspaces/{agentSpaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePrivateConnection = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "DeletePrivateConnection"),
+    input = M.DeletePrivateConnectionInput,
+    output = M.DeletePrivateConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/private-connections/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterService = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "DeregisterService"),
+    input = M.DeregisterServiceInput,
+    output = M.DeregisterServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/services/{serviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePrivateConnection = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "DescribePrivateConnection"),
+    input = M.DescribePrivateConnectionInput,
+    output = M.DescribePrivateConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/private-connections/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableOperatorApp = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "DisableOperatorApp"),
+    input = M.DisableOperatorAppInput,
+    output = M.DisableOperatorAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/agentspaces/{agentSpaceId}/operator" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateService = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "DisassociateService"),
+    input = M.DisassociateServiceInput,
+    output = M.DisassociateServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/agentspaces/{agentSpaceId}/associations/{associationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableOperatorApp = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "EnableOperatorApp"),
+    input = M.EnableOperatorAppInput,
+    output = M.EnableOperatorAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/agentspaces/{agentSpaceId}/operator" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountUsage = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "GetAccountUsage"),
+    input = M.GetAccountUsageInput,
+    output = M.GetAccountUsageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/usage/account" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentSpace = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "GetAgentSpace"),
+    input = M.GetAgentSpaceInput,
+    output = M.GetAgentSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/agentspaces/{agentSpaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssociation = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "GetAssociation"),
+    input = M.GetAssociationInput,
+    output = M.GetAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/agentspaces/{agentSpaceId}/associations/{associationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBacklogTask = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "GetBacklogTask"),
+    input = M.GetBacklogTaskInput,
+    output = M.GetBacklogTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backlog/agent-space/{agentSpaceId}/tasks/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOperatorApp = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "GetOperatorApp"),
+    input = M.GetOperatorAppInput,
+    output = M.GetOperatorAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/agentspaces/{agentSpaceId}/operator" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommendation = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "GetRecommendation"),
+    input = M.GetRecommendationInput,
+    output = M.GetRecommendationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backlog/agent-space/{agentSpaceId}/recommendations/{recommendationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetService = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "GetService"),
+    input = M.GetServiceInput,
+    output = M.GetServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/services/{serviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentSpaces = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListAgentSpaces"),
+    input = M.ListAgentSpacesInput,
+    output = M.ListAgentSpacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/agentspaces/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociations = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListAssociations"),
+    input = M.ListAssociationsInput,
+    output = M.ListAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/agentspaces/{agentSpaceId}/associations/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBacklogTasks = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListBacklogTasks"),
+    input = M.ListBacklogTasksInput,
+    output = M.ListBacklogTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backlog/agent-space/{agentSpaceId}/tasks/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChats = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListChats"),
+    input = M.ListChatsInput,
+    output = M.ListChatsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/agents/agent-space/{agentSpaceId}/chat/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExecutions = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListExecutions"),
+    input = M.ListExecutionsInput,
+    output = M.ListExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/journal/agent-space/{agentSpaceId}/executions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGoals = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListGoals"),
+    input = M.ListGoalsInput,
+    output = M.ListGoalsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backlog/agent-space/{agentSpaceId}/goals/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJournalRecords = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListJournalRecords"),
+    input = M.ListJournalRecordsInput,
+    output = M.ListJournalRecordsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/journal/agent-space/{agentSpaceId}/journalRecords" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPendingMessages = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListPendingMessages"),
+    input = M.ListPendingMessagesInput,
+    output = M.ListPendingMessagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agents/agent-space/{agentSpaceId}/pendingMessages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPrivateConnections = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListPrivateConnections"),
+    input = M.ListPrivateConnectionsInput,
+    output = M.ListPrivateConnectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/private-connections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommendations = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListRecommendations"),
+    input = M.ListRecommendationsInput,
+    output = M.ListRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backlog/agent-space/{agentSpaceId}/recommendations/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServices = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListServices"),
+    input = M.ListServicesInput,
+    output = M.ListServicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/services/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWebhooks = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListWebhooks"),
+    input = M.ListWebhooksInput,
+    output = M.ListWebhooksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/agentspaces/{agentSpaceId}/associations/{associationId}/webhooks/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterService = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "RegisterService"),
+    input = M.RegisterServiceInput,
+    output = M.RegisterServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/register/{service}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendMessage = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "SendMessage"),
+    input = M.SendMessageInput,
+    output = M.SendMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agents/agent-space/{agentSpaceId}/chat/sendMessage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.SendMessageEvents,
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentSpace = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "UpdateAgentSpace"),
+    input = M.UpdateAgentSpaceInput,
+    output = M.UpdateAgentSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/agentspaces/{agentSpaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssociation = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "UpdateAssociation"),
+    input = M.UpdateAssociationInput,
+    output = M.UpdateAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/agentspaces/{agentSpaceId}/associations/{associationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBacklogTask = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "UpdateBacklogTask"),
+    input = M.UpdateBacklogTaskInput,
+    output = M.UpdateBacklogTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/backlog/agent-space/{agentSpaceId}/tasks/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGoal = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "UpdateGoal"),
+    input = M.UpdateGoalInput,
+    output = M.UpdateGoalOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/backlog/agent-space/{agentSpaceId}/goals/{goalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOperatorAppIdpConfig = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "UpdateOperatorAppIdpConfig"),
+    input = M.UpdateOperatorAppIdpConfigInput,
+    output = M.UpdateOperatorAppIdpConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/agentspaces/{agentSpaceId}/operator/idp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePrivateConnectionCertificate = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "UpdatePrivateConnectionCertificate"),
+    input = M.UpdatePrivateConnectionCertificateInput,
+    output = M.UpdatePrivateConnectionCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/private-connections/{name}/certificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecommendation = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "UpdateRecommendation"),
+    input = M.UpdateRecommendationInput,
+    output = M.UpdateRecommendationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/backlog/agent-space/{agentSpaceId}/recommendations/{recommendationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateAwsAssociations = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ValidateAwsAssociations"),
+    input = M.ValidateAwsAssociationsInput,
+    output = M.ValidateAwsAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/agentspaces/{agentSpaceId}/associations/validate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

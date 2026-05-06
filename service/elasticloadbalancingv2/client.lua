@@ -7,6 +7,7 @@ local endpoint_rules = require("elasticloadbalancingv2.endpoint_rules")
 local query_protocol = require("smithy.protocol.query")
 local schemas = require("elasticloadbalancingv2.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "elasticloadbalancing", signing_region = cfg.region } }
                 else
@@ -49,666 +52,207 @@ function M.new(cfg)
 end
 
 function Client:addListenerCertificates(input, options)
-    return self:invokeOperation(input, {
-        name = "AddListenerCertificates",
-        input_schema = schemas.AddListenerCertificatesInput,
-        output_schema = schemas.AddListenerCertificatesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddListenerCertificates, input, options)
 end
 
 function Client:addTags(input, options)
-    return self:invokeOperation(input, {
-        name = "AddTags",
-        input_schema = schemas.AddTagsInput,
-        output_schema = schemas.AddTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddTags, input, options)
 end
 
 function Client:addTrustStoreRevocations(input, options)
-    return self:invokeOperation(input, {
-        name = "AddTrustStoreRevocations",
-        input_schema = schemas.AddTrustStoreRevocationsInput,
-        output_schema = schemas.AddTrustStoreRevocationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddTrustStoreRevocations, input, options)
 end
 
 function Client:createListener(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateListener",
-        input_schema = schemas.CreateListenerInput,
-        output_schema = schemas.CreateListenerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateListener, input, options)
 end
 
 function Client:createLoadBalancer(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLoadBalancer",
-        input_schema = schemas.CreateLoadBalancerInput,
-        output_schema = schemas.CreateLoadBalancerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLoadBalancer, input, options)
 end
 
 function Client:createRule(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRule",
-        input_schema = schemas.CreateRuleInput,
-        output_schema = schemas.CreateRuleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRule, input, options)
 end
 
 function Client:createTargetGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTargetGroup",
-        input_schema = schemas.CreateTargetGroupInput,
-        output_schema = schemas.CreateTargetGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTargetGroup, input, options)
 end
 
 function Client:createTrustStore(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTrustStore",
-        input_schema = schemas.CreateTrustStoreInput,
-        output_schema = schemas.CreateTrustStoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTrustStore, input, options)
 end
 
 function Client:deleteListener(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteListener",
-        input_schema = schemas.DeleteListenerInput,
-        output_schema = schemas.DeleteListenerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteListener, input, options)
 end
 
 function Client:deleteLoadBalancer(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteLoadBalancer",
-        input_schema = schemas.DeleteLoadBalancerInput,
-        output_schema = schemas.DeleteLoadBalancerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteLoadBalancer, input, options)
 end
 
 function Client:deleteRule(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRule",
-        input_schema = schemas.DeleteRuleInput,
-        output_schema = schemas.DeleteRuleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRule, input, options)
 end
 
 function Client:deleteSharedTrustStoreAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSharedTrustStoreAssociation",
-        input_schema = schemas.DeleteSharedTrustStoreAssociationInput,
-        output_schema = schemas.DeleteSharedTrustStoreAssociationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSharedTrustStoreAssociation, input, options)
 end
 
 function Client:deleteTargetGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTargetGroup",
-        input_schema = schemas.DeleteTargetGroupInput,
-        output_schema = schemas.DeleteTargetGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTargetGroup, input, options)
 end
 
 function Client:deleteTrustStore(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTrustStore",
-        input_schema = schemas.DeleteTrustStoreInput,
-        output_schema = schemas.DeleteTrustStoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTrustStore, input, options)
 end
 
 function Client:deregisterTargets(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterTargets",
-        input_schema = schemas.DeregisterTargetsInput,
-        output_schema = schemas.DeregisterTargetsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterTargets, input, options)
 end
 
 function Client:describeAccountLimits(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAccountLimits",
-        input_schema = schemas.DescribeAccountLimitsInput,
-        output_schema = schemas.DescribeAccountLimitsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAccountLimits, input, options)
 end
 
 function Client:describeCapacityReservation(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCapacityReservation",
-        input_schema = schemas.DescribeCapacityReservationInput,
-        output_schema = schemas.DescribeCapacityReservationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCapacityReservation, input, options)
 end
 
 function Client:describeListenerAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeListenerAttributes",
-        input_schema = schemas.DescribeListenerAttributesInput,
-        output_schema = schemas.DescribeListenerAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeListenerAttributes, input, options)
 end
 
 function Client:describeListenerCertificates(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeListenerCertificates",
-        input_schema = schemas.DescribeListenerCertificatesInput,
-        output_schema = schemas.DescribeListenerCertificatesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeListenerCertificates, input, options)
 end
 
 function Client:describeListeners(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeListeners",
-        input_schema = schemas.DescribeListenersInput,
-        output_schema = schemas.DescribeListenersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeListeners, input, options)
 end
 
 function Client:describeLoadBalancerAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLoadBalancerAttributes",
-        input_schema = schemas.DescribeLoadBalancerAttributesInput,
-        output_schema = schemas.DescribeLoadBalancerAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLoadBalancerAttributes, input, options)
 end
 
 function Client:describeLoadBalancers(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLoadBalancers",
-        input_schema = schemas.DescribeLoadBalancersInput,
-        output_schema = schemas.DescribeLoadBalancersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLoadBalancers, input, options)
 end
 
 function Client:describeRules(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeRules",
-        input_schema = schemas.DescribeRulesInput,
-        output_schema = schemas.DescribeRulesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeRules, input, options)
 end
 
 function Client:describeSSLPolicies(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeSSLPolicies",
-        input_schema = schemas.DescribeSSLPoliciesInput,
-        output_schema = schemas.DescribeSSLPoliciesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeSSLPolicies, input, options)
 end
 
 function Client:describeTags(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTags",
-        input_schema = schemas.DescribeTagsInput,
-        output_schema = schemas.DescribeTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTags, input, options)
 end
 
 function Client:describeTargetGroupAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTargetGroupAttributes",
-        input_schema = schemas.DescribeTargetGroupAttributesInput,
-        output_schema = schemas.DescribeTargetGroupAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTargetGroupAttributes, input, options)
 end
 
 function Client:describeTargetGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTargetGroups",
-        input_schema = schemas.DescribeTargetGroupsInput,
-        output_schema = schemas.DescribeTargetGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTargetGroups, input, options)
 end
 
 function Client:describeTargetHealth(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTargetHealth",
-        input_schema = schemas.DescribeTargetHealthInput,
-        output_schema = schemas.DescribeTargetHealthOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTargetHealth, input, options)
 end
 
 function Client:describeTrustStoreAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTrustStoreAssociations",
-        input_schema = schemas.DescribeTrustStoreAssociationsInput,
-        output_schema = schemas.DescribeTrustStoreAssociationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTrustStoreAssociations, input, options)
 end
 
 function Client:describeTrustStoreRevocations(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTrustStoreRevocations",
-        input_schema = schemas.DescribeTrustStoreRevocationsInput,
-        output_schema = schemas.DescribeTrustStoreRevocationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTrustStoreRevocations, input, options)
 end
 
 function Client:describeTrustStores(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTrustStores",
-        input_schema = schemas.DescribeTrustStoresInput,
-        output_schema = schemas.DescribeTrustStoresOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTrustStores, input, options)
 end
 
 function Client:getResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourcePolicy",
-        input_schema = schemas.GetResourcePolicyInput,
-        output_schema = schemas.GetResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options)
 end
 
 function Client:getTrustStoreCaCertificatesBundle(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTrustStoreCaCertificatesBundle",
-        input_schema = schemas.GetTrustStoreCaCertificatesBundleInput,
-        output_schema = schemas.GetTrustStoreCaCertificatesBundleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTrustStoreCaCertificatesBundle, input, options)
 end
 
 function Client:getTrustStoreRevocationContent(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTrustStoreRevocationContent",
-        input_schema = schemas.GetTrustStoreRevocationContentInput,
-        output_schema = schemas.GetTrustStoreRevocationContentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTrustStoreRevocationContent, input, options)
 end
 
 function Client:modifyCapacityReservation(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyCapacityReservation",
-        input_schema = schemas.ModifyCapacityReservationInput,
-        output_schema = schemas.ModifyCapacityReservationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyCapacityReservation, input, options)
 end
 
 function Client:modifyIpPools(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyIpPools",
-        input_schema = schemas.ModifyIpPoolsInput,
-        output_schema = schemas.ModifyIpPoolsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyIpPools, input, options)
 end
 
 function Client:modifyListener(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyListener",
-        input_schema = schemas.ModifyListenerInput,
-        output_schema = schemas.ModifyListenerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyListener, input, options)
 end
 
 function Client:modifyListenerAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyListenerAttributes",
-        input_schema = schemas.ModifyListenerAttributesInput,
-        output_schema = schemas.ModifyListenerAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyListenerAttributes, input, options)
 end
 
 function Client:modifyLoadBalancerAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyLoadBalancerAttributes",
-        input_schema = schemas.ModifyLoadBalancerAttributesInput,
-        output_schema = schemas.ModifyLoadBalancerAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyLoadBalancerAttributes, input, options)
 end
 
 function Client:modifyRule(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyRule",
-        input_schema = schemas.ModifyRuleInput,
-        output_schema = schemas.ModifyRuleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyRule, input, options)
 end
 
 function Client:modifyTargetGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyTargetGroup",
-        input_schema = schemas.ModifyTargetGroupInput,
-        output_schema = schemas.ModifyTargetGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyTargetGroup, input, options)
 end
 
 function Client:modifyTargetGroupAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyTargetGroupAttributes",
-        input_schema = schemas.ModifyTargetGroupAttributesInput,
-        output_schema = schemas.ModifyTargetGroupAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyTargetGroupAttributes, input, options)
 end
 
 function Client:modifyTrustStore(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyTrustStore",
-        input_schema = schemas.ModifyTrustStoreInput,
-        output_schema = schemas.ModifyTrustStoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyTrustStore, input, options)
 end
 
 function Client:registerTargets(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterTargets",
-        input_schema = schemas.RegisterTargetsInput,
-        output_schema = schemas.RegisterTargetsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterTargets, input, options)
 end
 
 function Client:removeListenerCertificates(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveListenerCertificates",
-        input_schema = schemas.RemoveListenerCertificatesInput,
-        output_schema = schemas.RemoveListenerCertificatesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveListenerCertificates, input, options)
 end
 
 function Client:removeTags(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveTags",
-        input_schema = schemas.RemoveTagsInput,
-        output_schema = schemas.RemoveTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveTags, input, options)
 end
 
 function Client:removeTrustStoreRevocations(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveTrustStoreRevocations",
-        input_schema = schemas.RemoveTrustStoreRevocationsInput,
-        output_schema = schemas.RemoveTrustStoreRevocationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveTrustStoreRevocations, input, options)
 end
 
 function Client:setIpAddressType(input, options)
-    return self:invokeOperation(input, {
-        name = "SetIpAddressType",
-        input_schema = schemas.SetIpAddressTypeInput,
-        output_schema = schemas.SetIpAddressTypeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetIpAddressType, input, options)
 end
 
 function Client:setRulePriorities(input, options)
-    return self:invokeOperation(input, {
-        name = "SetRulePriorities",
-        input_schema = schemas.SetRulePrioritiesInput,
-        output_schema = schemas.SetRulePrioritiesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetRulePriorities, input, options)
 end
 
 function Client:setSecurityGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "SetSecurityGroups",
-        input_schema = schemas.SetSecurityGroupsInput,
-        output_schema = schemas.SetSecurityGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetSecurityGroups, input, options)
 end
 
 function Client:setSubnets(input, options)
-    return self:invokeOperation(input, {
-        name = "SetSubnets",
-        input_schema = schemas.SetSubnetsInput,
-        output_schema = schemas.SetSubnetsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetSubnets, input, options)
 end
 
 return M

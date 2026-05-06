@@ -4167,4 +4167,542 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.workdocs", "AWSGorillaBoyService"),
+    version = "2016-05-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AbortDocumentVersionUpload = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "AbortDocumentVersionUpload"),
+    input = M.AbortDocumentVersionUploadInput,
+    output = M.AbortDocumentVersionUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/documents/{DocumentId}/versions/{VersionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ActivateUser = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "ActivateUser"),
+    input = M.ActivateUserInput,
+    output = M.ActivateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/users/{UserId}/activation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddResourcePermissions = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "AddResourcePermissions"),
+    input = M.AddResourcePermissionsInput,
+    output = M.AddResourcePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/resources/{ResourceId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateComment = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "CreateComment"),
+    input = M.CreateCommentInput,
+    output = M.CreateCommentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/documents/{DocumentId}/versions/{VersionId}/comment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomMetadata = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "CreateCustomMetadata"),
+    input = M.CreateCustomMetadataInput,
+    output = M.CreateCustomMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/api/v1/resources/{ResourceId}/customMetadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFolder = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "CreateFolder"),
+    input = M.CreateFolderInput,
+    output = M.CreateFolderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/folders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLabels = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "CreateLabels"),
+    input = M.CreateLabelsInput,
+    output = M.CreateLabelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/api/v1/resources/{ResourceId}/labels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNotificationSubscription = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "CreateNotificationSubscription"),
+    input = M.CreateNotificationSubscriptionInput,
+    output = M.CreateNotificationSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/organizations/{OrganizationId}/subscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeactivateUser = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DeactivateUser"),
+    input = M.DeactivateUserInput,
+    output = M.DeactivateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/users/{UserId}/activation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteComment = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DeleteComment"),
+    input = M.DeleteCommentInput,
+    output = M.DeleteCommentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/documents/{DocumentId}/versions/{VersionId}/comment/{CommentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomMetadata = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DeleteCustomMetadata"),
+    input = M.DeleteCustomMetadataInput,
+    output = M.DeleteCustomMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/resources/{ResourceId}/customMetadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDocument = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DeleteDocument"),
+    input = M.DeleteDocumentInput,
+    output = M.DeleteDocumentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/documents/{DocumentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDocumentVersion = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DeleteDocumentVersion"),
+    input = M.DeleteDocumentVersionInput,
+    output = M.DeleteDocumentVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/documentVersions/{DocumentId}/versions/{VersionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFolder = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DeleteFolder"),
+    input = M.DeleteFolderInput,
+    output = M.DeleteFolderOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/folders/{FolderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFolderContents = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DeleteFolderContents"),
+    input = M.DeleteFolderContentsInput,
+    output = M.DeleteFolderContentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/folders/{FolderId}/contents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLabels = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DeleteLabels"),
+    input = M.DeleteLabelsInput,
+    output = M.DeleteLabelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/resources/{ResourceId}/labels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNotificationSubscription = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DeleteNotificationSubscription"),
+    input = M.DeleteNotificationSubscriptionInput,
+    output = M.DeleteNotificationSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/organizations/{OrganizationId}/subscriptions/{SubscriptionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/users/{UserId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeActivities = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DescribeActivities"),
+    input = M.DescribeActivitiesInput,
+    output = M.DescribeActivitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/activities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeComments = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DescribeComments"),
+    input = M.DescribeCommentsInput,
+    output = M.DescribeCommentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/documents/{DocumentId}/versions/{VersionId}/comments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDocumentVersions = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DescribeDocumentVersions"),
+    input = M.DescribeDocumentVersionsInput,
+    output = M.DescribeDocumentVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/documents/{DocumentId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFolderContents = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DescribeFolderContents"),
+    input = M.DescribeFolderContentsInput,
+    output = M.DescribeFolderContentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/folders/{FolderId}/contents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGroups = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DescribeGroups"),
+    input = M.DescribeGroupsInput,
+    output = M.DescribeGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNotificationSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DescribeNotificationSubscriptions"),
+    input = M.DescribeNotificationSubscriptionsInput,
+    output = M.DescribeNotificationSubscriptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/organizations/{OrganizationId}/subscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResourcePermissions = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DescribeResourcePermissions"),
+    input = M.DescribeResourcePermissionsInput,
+    output = M.DescribeResourcePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/resources/{ResourceId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRootFolders = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DescribeRootFolders"),
+    input = M.DescribeRootFoldersInput,
+    output = M.DescribeRootFoldersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/me/root" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUsers = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "DescribeUsers"),
+    input = M.DescribeUsersInput,
+    output = M.DescribeUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCurrentUser = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "GetCurrentUser"),
+    input = M.GetCurrentUserInput,
+    output = M.GetCurrentUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/me" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDocument = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "GetDocument"),
+    input = M.GetDocumentInput,
+    output = M.GetDocumentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/documents/{DocumentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDocumentPath = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "GetDocumentPath"),
+    input = M.GetDocumentPathInput,
+    output = M.GetDocumentPathOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/documents/{DocumentId}/path" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDocumentVersion = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "GetDocumentVersion"),
+    input = M.GetDocumentVersionInput,
+    output = M.GetDocumentVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/documents/{DocumentId}/versions/{VersionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFolder = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "GetFolder"),
+    input = M.GetFolderInput,
+    output = M.GetFolderOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/folders/{FolderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFolderPath = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "GetFolderPath"),
+    input = M.GetFolderPathInput,
+    output = M.GetFolderPathOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/folders/{FolderId}/path" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResources = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "GetResources"),
+    input = M.GetResourcesInput,
+    output = M.GetResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InitiateDocumentVersionUpload = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "InitiateDocumentVersionUpload"),
+    input = M.InitiateDocumentVersionUploadInput,
+    output = M.InitiateDocumentVersionUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/documents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveAllResourcePermissions = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "RemoveAllResourcePermissions"),
+    input = M.RemoveAllResourcePermissionsInput,
+    output = M.RemoveAllResourcePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/resources/{ResourceId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveResourcePermission = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "RemoveResourcePermission"),
+    input = M.RemoveResourcePermissionInput,
+    output = M.RemoveResourcePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/resources/{ResourceId}/permissions/{PrincipalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreDocumentVersions = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "RestoreDocumentVersions"),
+    input = M.RestoreDocumentVersionsInput,
+    output = M.RestoreDocumentVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/documentVersions/restore/{DocumentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchResources = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "SearchResources"),
+    input = M.SearchResourcesInput,
+    output = M.SearchResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDocument = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "UpdateDocument"),
+    input = M.UpdateDocumentInput,
+    output = M.UpdateDocumentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/api/v1/documents/{DocumentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDocumentVersion = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "UpdateDocumentVersion"),
+    input = M.UpdateDocumentVersionInput,
+    output = M.UpdateDocumentVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/api/v1/documents/{DocumentId}/versions/{VersionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFolder = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "UpdateFolder"),
+    input = M.UpdateFolderInput,
+    output = M.UpdateFolderOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/api/v1/folders/{FolderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUser = schema.operation({
+    id = id.from("com.amazonaws.workdocs", "UpdateUser"),
+    input = M.UpdateUserInput,
+    output = M.UpdateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/api/v1/users/{UserId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

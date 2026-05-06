@@ -7,6 +7,7 @@ local endpoint_rules = require("applicationsignals.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("applicationsignals.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "application-signals", signing_region = cfg.region } }
                 else
@@ -49,302 +52,95 @@ function M.new(cfg)
 end
 
 function Client:batchGetServiceLevelObjectiveBudgetReport(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetServiceLevelObjectiveBudgetReport",
-        input_schema = schemas.BatchGetServiceLevelObjectiveBudgetReportInput,
-        output_schema = schemas.BatchGetServiceLevelObjectiveBudgetReportOutput,
-        http_method = "POST",
-        http_path = "/budget-report",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetServiceLevelObjectiveBudgetReport, input, options)
 end
 
 function Client:batchUpdateExclusionWindows(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchUpdateExclusionWindows",
-        input_schema = schemas.BatchUpdateExclusionWindowsInput,
-        output_schema = schemas.BatchUpdateExclusionWindowsOutput,
-        http_method = "PATCH",
-        http_path = "/exclusion-windows",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchUpdateExclusionWindows, input, options)
 end
 
 function Client:createServiceLevelObjective(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateServiceLevelObjective",
-        input_schema = schemas.CreateServiceLevelObjectiveInput,
-        output_schema = schemas.CreateServiceLevelObjectiveOutput,
-        http_method = "POST",
-        http_path = "/slo",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateServiceLevelObjective, input, options)
 end
 
 function Client:deleteGroupingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGroupingConfiguration",
-        input_schema = schemas.DeleteGroupingConfigurationInput,
-        output_schema = schemas.DeleteGroupingConfigurationOutput,
-        http_method = "DELETE",
-        http_path = "/grouping-configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGroupingConfiguration, input, options)
 end
 
 function Client:deleteServiceLevelObjective(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteServiceLevelObjective",
-        input_schema = schemas.DeleteServiceLevelObjectiveInput,
-        output_schema = schemas.DeleteServiceLevelObjectiveOutput,
-        http_method = "DELETE",
-        http_path = "/slo/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteServiceLevelObjective, input, options)
 end
 
 function Client:getService(input, options)
-    return self:invokeOperation(input, {
-        name = "GetService",
-        input_schema = schemas.GetServiceInput,
-        output_schema = schemas.GetServiceOutput,
-        http_method = "POST",
-        http_path = "/service",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetService, input, options)
 end
 
 function Client:getServiceLevelObjective(input, options)
-    return self:invokeOperation(input, {
-        name = "GetServiceLevelObjective",
-        input_schema = schemas.GetServiceLevelObjectiveInput,
-        output_schema = schemas.GetServiceLevelObjectiveOutput,
-        http_method = "GET",
-        http_path = "/slo/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetServiceLevelObjective, input, options)
 end
 
 function Client:listAuditFindings(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAuditFindings",
-        input_schema = schemas.ListAuditFindingsInput,
-        output_schema = schemas.ListAuditFindingsOutput,
-        http_method = "POST",
-        http_path = "/auditFindings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAuditFindings, input, options)
 end
 
 function Client:listEntityEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEntityEvents",
-        input_schema = schemas.ListEntityEventsInput,
-        output_schema = schemas.ListEntityEventsOutput,
-        http_method = "POST",
-        http_path = "/events",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEntityEvents, input, options)
 end
 
 function Client:listGroupingAttributeDefinitions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGroupingAttributeDefinitions",
-        input_schema = schemas.ListGroupingAttributeDefinitionsInput,
-        output_schema = schemas.ListGroupingAttributeDefinitionsOutput,
-        http_method = "POST",
-        http_path = "/grouping-attribute-definitions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGroupingAttributeDefinitions, input, options)
 end
 
 function Client:listServiceDependencies(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServiceDependencies",
-        input_schema = schemas.ListServiceDependenciesInput,
-        output_schema = schemas.ListServiceDependenciesOutput,
-        http_method = "POST",
-        http_path = "/service-dependencies",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServiceDependencies, input, options)
 end
 
 function Client:listServiceDependents(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServiceDependents",
-        input_schema = schemas.ListServiceDependentsInput,
-        output_schema = schemas.ListServiceDependentsOutput,
-        http_method = "POST",
-        http_path = "/service-dependents",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServiceDependents, input, options)
 end
 
 function Client:listServiceLevelObjectiveExclusionWindows(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServiceLevelObjectiveExclusionWindows",
-        input_schema = schemas.ListServiceLevelObjectiveExclusionWindowsInput,
-        output_schema = schemas.ListServiceLevelObjectiveExclusionWindowsOutput,
-        http_method = "GET",
-        http_path = "/slo/{Id}/exclusion-windows",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServiceLevelObjectiveExclusionWindows, input, options)
 end
 
 function Client:listServiceLevelObjectives(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServiceLevelObjectives",
-        input_schema = schemas.ListServiceLevelObjectivesInput,
-        output_schema = schemas.ListServiceLevelObjectivesOutput,
-        http_method = "POST",
-        http_path = "/slos",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServiceLevelObjectives, input, options)
 end
 
 function Client:listServiceOperations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServiceOperations",
-        input_schema = schemas.ListServiceOperationsInput,
-        output_schema = schemas.ListServiceOperationsOutput,
-        http_method = "POST",
-        http_path = "/service-operations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServiceOperations, input, options)
 end
 
 function Client:listServices(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServices",
-        input_schema = schemas.ListServicesInput,
-        output_schema = schemas.ListServicesOutput,
-        http_method = "GET",
-        http_path = "/services",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServices, input, options)
 end
 
 function Client:listServiceStates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServiceStates",
-        input_schema = schemas.ListServiceStatesInput,
-        output_schema = schemas.ListServiceStatesOutput,
-        http_method = "POST",
-        http_path = "/service/states",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServiceStates, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putGroupingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutGroupingConfiguration",
-        input_schema = schemas.PutGroupingConfigurationInput,
-        output_schema = schemas.PutGroupingConfigurationOutput,
-        http_method = "PUT",
-        http_path = "/grouping-configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutGroupingConfiguration, input, options)
 end
 
 function Client:startDiscovery(input, options)
-    return self:invokeOperation(input, {
-        name = "StartDiscovery",
-        input_schema = schemas.StartDiscoveryInput,
-        output_schema = schemas.StartDiscoveryOutput,
-        http_method = "POST",
-        http_path = "/start-discovery",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartDiscovery, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tag-resource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/untag-resource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateServiceLevelObjective(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateServiceLevelObjective",
-        input_schema = schemas.UpdateServiceLevelObjectiveInput,
-        output_schema = schemas.UpdateServiceLevelObjectiveOutput,
-        http_method = "PATCH",
-        http_path = "/slo/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateServiceLevelObjective, input, options)
 end
 
 return M

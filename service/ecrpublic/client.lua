@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ecrpublic.endpoint_rules")
 local schemas = require("ecrpublic.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ecr-public", signing_region = cfg.region } }
                 else
@@ -49,302 +52,95 @@ function M.new(cfg)
 end
 
 function Client:batchCheckLayerAvailability(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchCheckLayerAvailability",
-        input_schema = schemas.BatchCheckLayerAvailabilityInput,
-        output_schema = schemas.BatchCheckLayerAvailabilityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchCheckLayerAvailability, input, options)
 end
 
 function Client:batchDeleteImage(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDeleteImage",
-        input_schema = schemas.BatchDeleteImageInput,
-        output_schema = schemas.BatchDeleteImageOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDeleteImage, input, options)
 end
 
 function Client:completeLayerUpload(input, options)
-    return self:invokeOperation(input, {
-        name = "CompleteLayerUpload",
-        input_schema = schemas.CompleteLayerUploadInput,
-        output_schema = schemas.CompleteLayerUploadOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CompleteLayerUpload, input, options)
 end
 
 function Client:createRepository(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRepository",
-        input_schema = schemas.CreateRepositoryInput,
-        output_schema = schemas.CreateRepositoryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRepository, input, options)
 end
 
 function Client:deleteRepository(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRepository",
-        input_schema = schemas.DeleteRepositoryInput,
-        output_schema = schemas.DeleteRepositoryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRepository, input, options)
 end
 
 function Client:deleteRepositoryPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRepositoryPolicy",
-        input_schema = schemas.DeleteRepositoryPolicyInput,
-        output_schema = schemas.DeleteRepositoryPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRepositoryPolicy, input, options)
 end
 
 function Client:describeImages(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeImages",
-        input_schema = schemas.DescribeImagesInput,
-        output_schema = schemas.DescribeImagesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeImages, input, options)
 end
 
 function Client:describeImageTags(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeImageTags",
-        input_schema = schemas.DescribeImageTagsInput,
-        output_schema = schemas.DescribeImageTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeImageTags, input, options)
 end
 
 function Client:describeRegistries(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeRegistries",
-        input_schema = schemas.DescribeRegistriesInput,
-        output_schema = schemas.DescribeRegistriesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeRegistries, input, options)
 end
 
 function Client:describeRepositories(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeRepositories",
-        input_schema = schemas.DescribeRepositoriesInput,
-        output_schema = schemas.DescribeRepositoriesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeRepositories, input, options)
 end
 
 function Client:getAuthorizationToken(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAuthorizationToken",
-        input_schema = schemas.GetAuthorizationTokenInput,
-        output_schema = schemas.GetAuthorizationTokenOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAuthorizationToken, input, options)
 end
 
 function Client:getRegistryCatalogData(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRegistryCatalogData",
-        input_schema = schemas.GetRegistryCatalogDataInput,
-        output_schema = schemas.GetRegistryCatalogDataOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRegistryCatalogData, input, options)
 end
 
 function Client:getRepositoryCatalogData(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRepositoryCatalogData",
-        input_schema = schemas.GetRepositoryCatalogDataInput,
-        output_schema = schemas.GetRepositoryCatalogDataOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRepositoryCatalogData, input, options)
 end
 
 function Client:getRepositoryPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRepositoryPolicy",
-        input_schema = schemas.GetRepositoryPolicyInput,
-        output_schema = schemas.GetRepositoryPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRepositoryPolicy, input, options)
 end
 
 function Client:initiateLayerUpload(input, options)
-    return self:invokeOperation(input, {
-        name = "InitiateLayerUpload",
-        input_schema = schemas.InitiateLayerUploadInput,
-        output_schema = schemas.InitiateLayerUploadOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InitiateLayerUpload, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putImage(input, options)
-    return self:invokeOperation(input, {
-        name = "PutImage",
-        input_schema = schemas.PutImageInput,
-        output_schema = schemas.PutImageOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutImage, input, options)
 end
 
 function Client:putRegistryCatalogData(input, options)
-    return self:invokeOperation(input, {
-        name = "PutRegistryCatalogData",
-        input_schema = schemas.PutRegistryCatalogDataInput,
-        output_schema = schemas.PutRegistryCatalogDataOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutRegistryCatalogData, input, options)
 end
 
 function Client:putRepositoryCatalogData(input, options)
-    return self:invokeOperation(input, {
-        name = "PutRepositoryCatalogData",
-        input_schema = schemas.PutRepositoryCatalogDataInput,
-        output_schema = schemas.PutRepositoryCatalogDataOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutRepositoryCatalogData, input, options)
 end
 
 function Client:setRepositoryPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "SetRepositoryPolicy",
-        input_schema = schemas.SetRepositoryPolicyInput,
-        output_schema = schemas.SetRepositoryPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetRepositoryPolicy, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:uploadLayerPart(input, options)
-    return self:invokeOperation(input, {
-        name = "UploadLayerPart",
-        input_schema = schemas.UploadLayerPartInput,
-        output_schema = schemas.UploadLayerPartOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UploadLayerPart, input, options)
 end
 
 return M

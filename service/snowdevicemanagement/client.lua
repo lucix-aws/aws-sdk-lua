@@ -7,6 +7,7 @@ local endpoint_rules = require("snowdevicemanagement.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("snowdevicemanagement.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "snow-device-management", signing_region = cfg.region } }
                 else
@@ -49,172 +52,55 @@ function M.new(cfg)
 end
 
 function Client:cancelTask(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelTask",
-        input_schema = schemas.CancelTaskInput,
-        output_schema = schemas.CancelTaskOutput,
-        http_method = "POST",
-        http_path = "/task/{taskId}/cancel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelTask, input, options)
 end
 
 function Client:createTask(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTask",
-        input_schema = schemas.CreateTaskInput,
-        output_schema = schemas.CreateTaskOutput,
-        http_method = "POST",
-        http_path = "/task",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTask, input, options)
 end
 
 function Client:describeDevice(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDevice",
-        input_schema = schemas.DescribeDeviceInput,
-        output_schema = schemas.DescribeDeviceOutput,
-        http_method = "POST",
-        http_path = "/managed-device/{managedDeviceId}/describe",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDevice, input, options)
 end
 
 function Client:describeDeviceEc2Instances(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDeviceEc2Instances",
-        input_schema = schemas.DescribeDeviceEc2InstancesInput,
-        output_schema = schemas.DescribeDeviceEc2InstancesOutput,
-        http_method = "POST",
-        http_path = "/managed-device/{managedDeviceId}/resources/ec2/describe",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDeviceEc2Instances, input, options)
 end
 
 function Client:describeExecution(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeExecution",
-        input_schema = schemas.DescribeExecutionInput,
-        output_schema = schemas.DescribeExecutionOutput,
-        http_method = "POST",
-        http_path = "/task/{taskId}/execution/{managedDeviceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeExecution, input, options)
 end
 
 function Client:describeTask(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTask",
-        input_schema = schemas.DescribeTaskInput,
-        output_schema = schemas.DescribeTaskOutput,
-        http_method = "POST",
-        http_path = "/task/{taskId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTask, input, options)
 end
 
 function Client:listDeviceResources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDeviceResources",
-        input_schema = schemas.ListDeviceResourcesInput,
-        output_schema = schemas.ListDeviceResourcesOutput,
-        http_method = "GET",
-        http_path = "/managed-device/{managedDeviceId}/resources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDeviceResources, input, options)
 end
 
 function Client:listDevices(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDevices",
-        input_schema = schemas.ListDevicesInput,
-        output_schema = schemas.ListDevicesOutput,
-        http_method = "GET",
-        http_path = "/managed-devices",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDevices, input, options)
 end
 
 function Client:listExecutions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListExecutions",
-        input_schema = schemas.ListExecutionsInput,
-        output_schema = schemas.ListExecutionsOutput,
-        http_method = "GET",
-        http_path = "/executions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListExecutions, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTasks",
-        input_schema = schemas.ListTasksInput,
-        output_schema = schemas.ListTasksOutput,
-        http_method = "GET",
-        http_path = "/tasks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTasks, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 return M

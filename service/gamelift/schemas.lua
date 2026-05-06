@@ -10234,4 +10234,1334 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.gamelift", "GameLift"),
+    version = "2015-10-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptMatch = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "AcceptMatch"),
+    input = M.AcceptMatchInput,
+    output = M.AcceptMatchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ClaimGameServer = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ClaimGameServer"),
+    input = M.ClaimGameServerInput,
+    output = M.ClaimGameServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAlias = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateAlias"),
+    input = M.CreateAliasInput,
+    output = M.CreateAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBuild = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateBuild"),
+    input = M.CreateBuildInput,
+    output = M.CreateBuildOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContainerFleet = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateContainerFleet"),
+    input = M.CreateContainerFleetInput,
+    output = M.CreateContainerFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContainerGroupDefinition = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateContainerGroupDefinition"),
+    input = M.CreateContainerGroupDefinitionInput,
+    output = M.CreateContainerGroupDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFleet = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateFleet"),
+    input = M.CreateFleetInput,
+    output = M.CreateFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFleetLocations = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateFleetLocations"),
+    input = M.CreateFleetLocationsInput,
+    output = M.CreateFleetLocationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGameServerGroup = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateGameServerGroup"),
+    input = M.CreateGameServerGroupInput,
+    output = M.CreateGameServerGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGameSession = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateGameSession"),
+    input = M.CreateGameSessionInput,
+    output = M.CreateGameSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGameSessionQueue = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateGameSessionQueue"),
+    input = M.CreateGameSessionQueueInput,
+    output = M.CreateGameSessionQueueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLocation = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateLocation"),
+    input = M.CreateLocationInput,
+    output = M.CreateLocationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMatchmakingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateMatchmakingConfiguration"),
+    input = M.CreateMatchmakingConfigurationInput,
+    output = M.CreateMatchmakingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMatchmakingRuleSet = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateMatchmakingRuleSet"),
+    input = M.CreateMatchmakingRuleSetInput,
+    output = M.CreateMatchmakingRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePlayerSession = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreatePlayerSession"),
+    input = M.CreatePlayerSessionInput,
+    output = M.CreatePlayerSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePlayerSessions = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreatePlayerSessions"),
+    input = M.CreatePlayerSessionsInput,
+    output = M.CreatePlayerSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateScript = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateScript"),
+    input = M.CreateScriptInput,
+    output = M.CreateScriptOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVpcPeeringAuthorization = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateVpcPeeringAuthorization"),
+    input = M.CreateVpcPeeringAuthorizationInput,
+    output = M.CreateVpcPeeringAuthorizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVpcPeeringConnection = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "CreateVpcPeeringConnection"),
+    input = M.CreateVpcPeeringConnectionInput,
+    output = M.CreateVpcPeeringConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAlias = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteAlias"),
+    input = M.DeleteAliasInput,
+    output = M.DeleteAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBuild = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteBuild"),
+    input = M.DeleteBuildInput,
+    output = M.DeleteBuildOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContainerFleet = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteContainerFleet"),
+    input = M.DeleteContainerFleetInput,
+    output = M.DeleteContainerFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContainerGroupDefinition = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteContainerGroupDefinition"),
+    input = M.DeleteContainerGroupDefinitionInput,
+    output = M.DeleteContainerGroupDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFleet = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteFleet"),
+    input = M.DeleteFleetInput,
+    output = M.DeleteFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFleetLocations = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteFleetLocations"),
+    input = M.DeleteFleetLocationsInput,
+    output = M.DeleteFleetLocationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGameServerGroup = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteGameServerGroup"),
+    input = M.DeleteGameServerGroupInput,
+    output = M.DeleteGameServerGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGameSessionQueue = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteGameSessionQueue"),
+    input = M.DeleteGameSessionQueueInput,
+    output = M.DeleteGameSessionQueueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLocation = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteLocation"),
+    input = M.DeleteLocationInput,
+    output = M.DeleteLocationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMatchmakingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteMatchmakingConfiguration"),
+    input = M.DeleteMatchmakingConfigurationInput,
+    output = M.DeleteMatchmakingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMatchmakingRuleSet = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteMatchmakingRuleSet"),
+    input = M.DeleteMatchmakingRuleSetInput,
+    output = M.DeleteMatchmakingRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScalingPolicy = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteScalingPolicy"),
+    input = M.DeleteScalingPolicyInput,
+    output = M.DeleteScalingPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScript = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteScript"),
+    input = M.DeleteScriptInput,
+    output = M.DeleteScriptOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVpcPeeringAuthorization = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteVpcPeeringAuthorization"),
+    input = M.DeleteVpcPeeringAuthorizationInput,
+    output = M.DeleteVpcPeeringAuthorizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVpcPeeringConnection = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeleteVpcPeeringConnection"),
+    input = M.DeleteVpcPeeringConnectionInput,
+    output = M.DeleteVpcPeeringConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterCompute = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeregisterCompute"),
+    input = M.DeregisterComputeInput,
+    output = M.DeregisterComputeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterGameServer = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DeregisterGameServer"),
+    input = M.DeregisterGameServerInput,
+    output = M.DeregisterGameServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAlias = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeAlias"),
+    input = M.DescribeAliasInput,
+    output = M.DescribeAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBuild = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeBuild"),
+    input = M.DescribeBuildInput,
+    output = M.DescribeBuildOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCompute = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeCompute"),
+    input = M.DescribeComputeInput,
+    output = M.DescribeComputeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContainerFleet = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeContainerFleet"),
+    input = M.DescribeContainerFleetInput,
+    output = M.DescribeContainerFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContainerGroupDefinition = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeContainerGroupDefinition"),
+    input = M.DescribeContainerGroupDefinitionInput,
+    output = M.DescribeContainerGroupDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContainerGroupPortMappings = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeContainerGroupPortMappings"),
+    input = M.DescribeContainerGroupPortMappingsInput,
+    output = M.DescribeContainerGroupPortMappingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEC2InstanceLimits = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeEC2InstanceLimits"),
+    input = M.DescribeEC2InstanceLimitsInput,
+    output = M.DescribeEC2InstanceLimitsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetAttributes = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeFleetAttributes"),
+    input = M.DescribeFleetAttributesInput,
+    output = M.DescribeFleetAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetCapacity = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeFleetCapacity"),
+    input = M.DescribeFleetCapacityInput,
+    output = M.DescribeFleetCapacityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetDeployment = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeFleetDeployment"),
+    input = M.DescribeFleetDeploymentInput,
+    output = M.DescribeFleetDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetEvents = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeFleetEvents"),
+    input = M.DescribeFleetEventsInput,
+    output = M.DescribeFleetEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetLocationAttributes = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeFleetLocationAttributes"),
+    input = M.DescribeFleetLocationAttributesInput,
+    output = M.DescribeFleetLocationAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetLocationCapacity = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeFleetLocationCapacity"),
+    input = M.DescribeFleetLocationCapacityInput,
+    output = M.DescribeFleetLocationCapacityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetLocationUtilization = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeFleetLocationUtilization"),
+    input = M.DescribeFleetLocationUtilizationInput,
+    output = M.DescribeFleetLocationUtilizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetPortSettings = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeFleetPortSettings"),
+    input = M.DescribeFleetPortSettingsInput,
+    output = M.DescribeFleetPortSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetUtilization = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeFleetUtilization"),
+    input = M.DescribeFleetUtilizationInput,
+    output = M.DescribeFleetUtilizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGameServer = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeGameServer"),
+    input = M.DescribeGameServerInput,
+    output = M.DescribeGameServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGameServerGroup = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeGameServerGroup"),
+    input = M.DescribeGameServerGroupInput,
+    output = M.DescribeGameServerGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGameServerInstances = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeGameServerInstances"),
+    input = M.DescribeGameServerInstancesInput,
+    output = M.DescribeGameServerInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGameSessionDetails = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeGameSessionDetails"),
+    input = M.DescribeGameSessionDetailsInput,
+    output = M.DescribeGameSessionDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGameSessionPlacement = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeGameSessionPlacement"),
+    input = M.DescribeGameSessionPlacementInput,
+    output = M.DescribeGameSessionPlacementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGameSessionQueues = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeGameSessionQueues"),
+    input = M.DescribeGameSessionQueuesInput,
+    output = M.DescribeGameSessionQueuesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGameSessions = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeGameSessions"),
+    input = M.DescribeGameSessionsInput,
+    output = M.DescribeGameSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInstances = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeInstances"),
+    input = M.DescribeInstancesInput,
+    output = M.DescribeInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMatchmaking = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeMatchmaking"),
+    input = M.DescribeMatchmakingInput,
+    output = M.DescribeMatchmakingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMatchmakingConfigurations = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeMatchmakingConfigurations"),
+    input = M.DescribeMatchmakingConfigurationsInput,
+    output = M.DescribeMatchmakingConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMatchmakingRuleSets = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeMatchmakingRuleSets"),
+    input = M.DescribeMatchmakingRuleSetsInput,
+    output = M.DescribeMatchmakingRuleSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePlayerSessions = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribePlayerSessions"),
+    input = M.DescribePlayerSessionsInput,
+    output = M.DescribePlayerSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRuntimeConfiguration = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeRuntimeConfiguration"),
+    input = M.DescribeRuntimeConfigurationInput,
+    output = M.DescribeRuntimeConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScalingPolicies = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeScalingPolicies"),
+    input = M.DescribeScalingPoliciesInput,
+    output = M.DescribeScalingPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScript = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeScript"),
+    input = M.DescribeScriptInput,
+    output = M.DescribeScriptOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVpcPeeringAuthorizations = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeVpcPeeringAuthorizations"),
+    input = M.DescribeVpcPeeringAuthorizationsInput,
+    output = M.DescribeVpcPeeringAuthorizationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVpcPeeringConnections = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "DescribeVpcPeeringConnections"),
+    input = M.DescribeVpcPeeringConnectionsInput,
+    output = M.DescribeVpcPeeringConnectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComputeAccess = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "GetComputeAccess"),
+    input = M.GetComputeAccessInput,
+    output = M.GetComputeAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComputeAuthToken = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "GetComputeAuthToken"),
+    input = M.GetComputeAuthTokenInput,
+    output = M.GetComputeAuthTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGameSessionLogUrl = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "GetGameSessionLogUrl"),
+    input = M.GetGameSessionLogUrlInput,
+    output = M.GetGameSessionLogUrlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstanceAccess = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "GetInstanceAccess"),
+    input = M.GetInstanceAccessInput,
+    output = M.GetInstanceAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPlayerConnectionDetails = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "GetPlayerConnectionDetails"),
+    input = M.GetPlayerConnectionDetailsInput,
+    output = M.GetPlayerConnectionDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAliases = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ListAliases"),
+    input = M.ListAliasesInput,
+    output = M.ListAliasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBuilds = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ListBuilds"),
+    input = M.ListBuildsInput,
+    output = M.ListBuildsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCompute = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ListCompute"),
+    input = M.ListComputeInput,
+    output = M.ListComputeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContainerFleets = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ListContainerFleets"),
+    input = M.ListContainerFleetsInput,
+    output = M.ListContainerFleetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContainerGroupDefinitions = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ListContainerGroupDefinitions"),
+    input = M.ListContainerGroupDefinitionsInput,
+    output = M.ListContainerGroupDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContainerGroupDefinitionVersions = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ListContainerGroupDefinitionVersions"),
+    input = M.ListContainerGroupDefinitionVersionsInput,
+    output = M.ListContainerGroupDefinitionVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFleetDeployments = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ListFleetDeployments"),
+    input = M.ListFleetDeploymentsInput,
+    output = M.ListFleetDeploymentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFleets = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ListFleets"),
+    input = M.ListFleetsInput,
+    output = M.ListFleetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGameServerGroups = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ListGameServerGroups"),
+    input = M.ListGameServerGroupsInput,
+    output = M.ListGameServerGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGameServers = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ListGameServers"),
+    input = M.ListGameServersInput,
+    output = M.ListGameServersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLocations = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ListLocations"),
+    input = M.ListLocationsInput,
+    output = M.ListLocationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScripts = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ListScripts"),
+    input = M.ListScriptsInput,
+    output = M.ListScriptsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutScalingPolicy = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "PutScalingPolicy"),
+    input = M.PutScalingPolicyInput,
+    output = M.PutScalingPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterCompute = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "RegisterCompute"),
+    input = M.RegisterComputeInput,
+    output = M.RegisterComputeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterGameServer = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "RegisterGameServer"),
+    input = M.RegisterGameServerInput,
+    output = M.RegisterGameServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RequestUploadCredentials = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "RequestUploadCredentials"),
+    input = M.RequestUploadCredentialsInput,
+    output = M.RequestUploadCredentialsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResolveAlias = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ResolveAlias"),
+    input = M.ResolveAliasInput,
+    output = M.ResolveAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResumeGameServerGroup = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ResumeGameServerGroup"),
+    input = M.ResumeGameServerGroupInput,
+    output = M.ResumeGameServerGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchGameSessions = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "SearchGameSessions"),
+    input = M.SearchGameSessionsInput,
+    output = M.SearchGameSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFleetActions = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "StartFleetActions"),
+    input = M.StartFleetActionsInput,
+    output = M.StartFleetActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartGameSessionPlacement = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "StartGameSessionPlacement"),
+    input = M.StartGameSessionPlacementInput,
+    output = M.StartGameSessionPlacementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMatchBackfill = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "StartMatchBackfill"),
+    input = M.StartMatchBackfillInput,
+    output = M.StartMatchBackfillOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMatchmaking = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "StartMatchmaking"),
+    input = M.StartMatchmakingInput,
+    output = M.StartMatchmakingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopFleetActions = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "StopFleetActions"),
+    input = M.StopFleetActionsInput,
+    output = M.StopFleetActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopGameSessionPlacement = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "StopGameSessionPlacement"),
+    input = M.StopGameSessionPlacementInput,
+    output = M.StopGameSessionPlacementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopMatchmaking = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "StopMatchmaking"),
+    input = M.StopMatchmakingInput,
+    output = M.StopMatchmakingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SuspendGameServerGroup = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "SuspendGameServerGroup"),
+    input = M.SuspendGameServerGroupInput,
+    output = M.SuspendGameServerGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateGameSession = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "TerminateGameSession"),
+    input = M.TerminateGameSessionInput,
+    output = M.TerminateGameSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAlias = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UpdateAlias"),
+    input = M.UpdateAliasInput,
+    output = M.UpdateAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBuild = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UpdateBuild"),
+    input = M.UpdateBuildInput,
+    output = M.UpdateBuildOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContainerFleet = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UpdateContainerFleet"),
+    input = M.UpdateContainerFleetInput,
+    output = M.UpdateContainerFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContainerGroupDefinition = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UpdateContainerGroupDefinition"),
+    input = M.UpdateContainerGroupDefinitionInput,
+    output = M.UpdateContainerGroupDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFleetAttributes = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UpdateFleetAttributes"),
+    input = M.UpdateFleetAttributesInput,
+    output = M.UpdateFleetAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFleetCapacity = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UpdateFleetCapacity"),
+    input = M.UpdateFleetCapacityInput,
+    output = M.UpdateFleetCapacityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFleetPortSettings = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UpdateFleetPortSettings"),
+    input = M.UpdateFleetPortSettingsInput,
+    output = M.UpdateFleetPortSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGameServer = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UpdateGameServer"),
+    input = M.UpdateGameServerInput,
+    output = M.UpdateGameServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGameServerGroup = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UpdateGameServerGroup"),
+    input = M.UpdateGameServerGroupInput,
+    output = M.UpdateGameServerGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGameSession = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UpdateGameSession"),
+    input = M.UpdateGameSessionInput,
+    output = M.UpdateGameSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGameSessionQueue = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UpdateGameSessionQueue"),
+    input = M.UpdateGameSessionQueueInput,
+    output = M.UpdateGameSessionQueueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMatchmakingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UpdateMatchmakingConfiguration"),
+    input = M.UpdateMatchmakingConfigurationInput,
+    output = M.UpdateMatchmakingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRuntimeConfiguration = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UpdateRuntimeConfiguration"),
+    input = M.UpdateRuntimeConfigurationInput,
+    output = M.UpdateRuntimeConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateScript = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "UpdateScript"),
+    input = M.UpdateScriptInput,
+    output = M.UpdateScriptOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateMatchmakingRuleSet = schema.operation({
+    id = id.from("com.amazonaws.gamelift", "ValidateMatchmakingRuleSet"),
+    input = M.ValidateMatchmakingRuleSetInput,
+    output = M.ValidateMatchmakingRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

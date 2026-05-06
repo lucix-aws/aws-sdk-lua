@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("migrationhubconfig.endpoint_rules")
 local schemas = require("migrationhubconfig.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mgh", signing_region = cfg.region } }
                 else
@@ -49,55 +52,19 @@ function M.new(cfg)
 end
 
 function Client:createHomeRegionControl(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateHomeRegionControl",
-        input_schema = schemas.CreateHomeRegionControlInput,
-        output_schema = schemas.CreateHomeRegionControlOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateHomeRegionControl, input, options)
 end
 
 function Client:deleteHomeRegionControl(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteHomeRegionControl",
-        input_schema = schemas.DeleteHomeRegionControlInput,
-        output_schema = schemas.DeleteHomeRegionControlOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteHomeRegionControl, input, options)
 end
 
 function Client:describeHomeRegionControls(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeHomeRegionControls",
-        input_schema = schemas.DescribeHomeRegionControlsInput,
-        output_schema = schemas.DescribeHomeRegionControlsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeHomeRegionControls, input, options)
 end
 
 function Client:getHomeRegion(input, options)
-    return self:invokeOperation(input, {
-        name = "GetHomeRegion",
-        input_schema = schemas.GetHomeRegionInput,
-        output_schema = schemas.GetHomeRegionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetHomeRegion, input, options)
 end
 
 return M

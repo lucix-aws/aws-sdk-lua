@@ -7,6 +7,7 @@ local endpoint_rules = require("resiliencehub.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("resiliencehub.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "resiliencehub", signing_region = cfg.region } }
                 else
@@ -49,822 +52,255 @@ function M.new(cfg)
 end
 
 function Client:acceptResourceGroupingRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "AcceptResourceGroupingRecommendations",
-        input_schema = schemas.AcceptResourceGroupingRecommendationsInput,
-        output_schema = schemas.AcceptResourceGroupingRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/accept-resource-grouping-recommendations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AcceptResourceGroupingRecommendations, input, options)
 end
 
 function Client:addDraftAppVersionResourceMappings(input, options)
-    return self:invokeOperation(input, {
-        name = "AddDraftAppVersionResourceMappings",
-        input_schema = schemas.AddDraftAppVersionResourceMappingsInput,
-        output_schema = schemas.AddDraftAppVersionResourceMappingsOutput,
-        http_method = "POST",
-        http_path = "/add-draft-app-version-resource-mappings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddDraftAppVersionResourceMappings, input, options)
 end
 
 function Client:batchUpdateRecommendationStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchUpdateRecommendationStatus",
-        input_schema = schemas.BatchUpdateRecommendationStatusInput,
-        output_schema = schemas.BatchUpdateRecommendationStatusOutput,
-        http_method = "POST",
-        http_path = "/batch-update-recommendation-status",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchUpdateRecommendationStatus, input, options)
 end
 
 function Client:createApp(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateApp",
-        input_schema = schemas.CreateAppInput,
-        output_schema = schemas.CreateAppOutput,
-        http_method = "POST",
-        http_path = "/create-app",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateApp, input, options)
 end
 
 function Client:createAppVersionAppComponent(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAppVersionAppComponent",
-        input_schema = schemas.CreateAppVersionAppComponentInput,
-        output_schema = schemas.CreateAppVersionAppComponentOutput,
-        http_method = "POST",
-        http_path = "/create-app-version-app-component",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAppVersionAppComponent, input, options)
 end
 
 function Client:createAppVersionResource(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAppVersionResource",
-        input_schema = schemas.CreateAppVersionResourceInput,
-        output_schema = schemas.CreateAppVersionResourceOutput,
-        http_method = "POST",
-        http_path = "/create-app-version-resource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAppVersionResource, input, options)
 end
 
 function Client:createRecommendationTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRecommendationTemplate",
-        input_schema = schemas.CreateRecommendationTemplateInput,
-        output_schema = schemas.CreateRecommendationTemplateOutput,
-        http_method = "POST",
-        http_path = "/create-recommendation-template",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRecommendationTemplate, input, options)
 end
 
 function Client:createResiliencyPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateResiliencyPolicy",
-        input_schema = schemas.CreateResiliencyPolicyInput,
-        output_schema = schemas.CreateResiliencyPolicyOutput,
-        http_method = "POST",
-        http_path = "/create-resiliency-policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateResiliencyPolicy, input, options)
 end
 
 function Client:deleteApp(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteApp",
-        input_schema = schemas.DeleteAppInput,
-        output_schema = schemas.DeleteAppOutput,
-        http_method = "POST",
-        http_path = "/delete-app",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteApp, input, options)
 end
 
 function Client:deleteAppAssessment(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAppAssessment",
-        input_schema = schemas.DeleteAppAssessmentInput,
-        output_schema = schemas.DeleteAppAssessmentOutput,
-        http_method = "POST",
-        http_path = "/delete-app-assessment",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAppAssessment, input, options)
 end
 
 function Client:deleteAppInputSource(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAppInputSource",
-        input_schema = schemas.DeleteAppInputSourceInput,
-        output_schema = schemas.DeleteAppInputSourceOutput,
-        http_method = "POST",
-        http_path = "/delete-app-input-source",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAppInputSource, input, options)
 end
 
 function Client:deleteAppVersionAppComponent(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAppVersionAppComponent",
-        input_schema = schemas.DeleteAppVersionAppComponentInput,
-        output_schema = schemas.DeleteAppVersionAppComponentOutput,
-        http_method = "POST",
-        http_path = "/delete-app-version-app-component",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAppVersionAppComponent, input, options)
 end
 
 function Client:deleteAppVersionResource(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAppVersionResource",
-        input_schema = schemas.DeleteAppVersionResourceInput,
-        output_schema = schemas.DeleteAppVersionResourceOutput,
-        http_method = "POST",
-        http_path = "/delete-app-version-resource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAppVersionResource, input, options)
 end
 
 function Client:deleteRecommendationTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRecommendationTemplate",
-        input_schema = schemas.DeleteRecommendationTemplateInput,
-        output_schema = schemas.DeleteRecommendationTemplateOutput,
-        http_method = "POST",
-        http_path = "/delete-recommendation-template",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRecommendationTemplate, input, options)
 end
 
 function Client:deleteResiliencyPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResiliencyPolicy",
-        input_schema = schemas.DeleteResiliencyPolicyInput,
-        output_schema = schemas.DeleteResiliencyPolicyOutput,
-        http_method = "POST",
-        http_path = "/delete-resiliency-policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResiliencyPolicy, input, options)
 end
 
 function Client:describeApp(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeApp",
-        input_schema = schemas.DescribeAppInput,
-        output_schema = schemas.DescribeAppOutput,
-        http_method = "POST",
-        http_path = "/describe-app",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeApp, input, options)
 end
 
 function Client:describeAppAssessment(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAppAssessment",
-        input_schema = schemas.DescribeAppAssessmentInput,
-        output_schema = schemas.DescribeAppAssessmentOutput,
-        http_method = "POST",
-        http_path = "/describe-app-assessment",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAppAssessment, input, options)
 end
 
 function Client:describeAppVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAppVersion",
-        input_schema = schemas.DescribeAppVersionInput,
-        output_schema = schemas.DescribeAppVersionOutput,
-        http_method = "POST",
-        http_path = "/describe-app-version",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAppVersion, input, options)
 end
 
 function Client:describeAppVersionAppComponent(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAppVersionAppComponent",
-        input_schema = schemas.DescribeAppVersionAppComponentInput,
-        output_schema = schemas.DescribeAppVersionAppComponentOutput,
-        http_method = "POST",
-        http_path = "/describe-app-version-app-component",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAppVersionAppComponent, input, options)
 end
 
 function Client:describeAppVersionResource(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAppVersionResource",
-        input_schema = schemas.DescribeAppVersionResourceInput,
-        output_schema = schemas.DescribeAppVersionResourceOutput,
-        http_method = "POST",
-        http_path = "/describe-app-version-resource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAppVersionResource, input, options)
 end
 
 function Client:describeAppVersionResourcesResolutionStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAppVersionResourcesResolutionStatus",
-        input_schema = schemas.DescribeAppVersionResourcesResolutionStatusInput,
-        output_schema = schemas.DescribeAppVersionResourcesResolutionStatusOutput,
-        http_method = "POST",
-        http_path = "/describe-app-version-resources-resolution-status",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAppVersionResourcesResolutionStatus, input, options)
 end
 
 function Client:describeAppVersionTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAppVersionTemplate",
-        input_schema = schemas.DescribeAppVersionTemplateInput,
-        output_schema = schemas.DescribeAppVersionTemplateOutput,
-        http_method = "POST",
-        http_path = "/describe-app-version-template",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAppVersionTemplate, input, options)
 end
 
 function Client:describeDraftAppVersionResourcesImportStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDraftAppVersionResourcesImportStatus",
-        input_schema = schemas.DescribeDraftAppVersionResourcesImportStatusInput,
-        output_schema = schemas.DescribeDraftAppVersionResourcesImportStatusOutput,
-        http_method = "POST",
-        http_path = "/describe-draft-app-version-resources-import-status",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDraftAppVersionResourcesImportStatus, input, options)
 end
 
 function Client:describeMetricsExport(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeMetricsExport",
-        input_schema = schemas.DescribeMetricsExportInput,
-        output_schema = schemas.DescribeMetricsExportOutput,
-        http_method = "POST",
-        http_path = "/describe-metrics-export",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeMetricsExport, input, options)
 end
 
 function Client:describeResiliencyPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeResiliencyPolicy",
-        input_schema = schemas.DescribeResiliencyPolicyInput,
-        output_schema = schemas.DescribeResiliencyPolicyOutput,
-        http_method = "POST",
-        http_path = "/describe-resiliency-policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeResiliencyPolicy, input, options)
 end
 
 function Client:describeResourceGroupingRecommendationTask(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeResourceGroupingRecommendationTask",
-        input_schema = schemas.DescribeResourceGroupingRecommendationTaskInput,
-        output_schema = schemas.DescribeResourceGroupingRecommendationTaskOutput,
-        http_method = "POST",
-        http_path = "/describe-resource-grouping-recommendation-task",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeResourceGroupingRecommendationTask, input, options)
 end
 
 function Client:importResourcesToDraftAppVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "ImportResourcesToDraftAppVersion",
-        input_schema = schemas.ImportResourcesToDraftAppVersionInput,
-        output_schema = schemas.ImportResourcesToDraftAppVersionOutput,
-        http_method = "POST",
-        http_path = "/import-resources-to-draft-app-version",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ImportResourcesToDraftAppVersion, input, options)
 end
 
 function Client:listAlarmRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAlarmRecommendations",
-        input_schema = schemas.ListAlarmRecommendationsInput,
-        output_schema = schemas.ListAlarmRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/list-alarm-recommendations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAlarmRecommendations, input, options)
 end
 
 function Client:listAppAssessmentComplianceDrifts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAppAssessmentComplianceDrifts",
-        input_schema = schemas.ListAppAssessmentComplianceDriftsInput,
-        output_schema = schemas.ListAppAssessmentComplianceDriftsOutput,
-        http_method = "POST",
-        http_path = "/list-app-assessment-compliance-drifts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAppAssessmentComplianceDrifts, input, options)
 end
 
 function Client:listAppAssessmentResourceDrifts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAppAssessmentResourceDrifts",
-        input_schema = schemas.ListAppAssessmentResourceDriftsInput,
-        output_schema = schemas.ListAppAssessmentResourceDriftsOutput,
-        http_method = "POST",
-        http_path = "/list-app-assessment-resource-drifts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAppAssessmentResourceDrifts, input, options)
 end
 
 function Client:listAppAssessments(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAppAssessments",
-        input_schema = schemas.ListAppAssessmentsInput,
-        output_schema = schemas.ListAppAssessmentsOutput,
-        http_method = "GET",
-        http_path = "/list-app-assessments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAppAssessments, input, options)
 end
 
 function Client:listAppComponentCompliances(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAppComponentCompliances",
-        input_schema = schemas.ListAppComponentCompliancesInput,
-        output_schema = schemas.ListAppComponentCompliancesOutput,
-        http_method = "POST",
-        http_path = "/list-app-component-compliances",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAppComponentCompliances, input, options)
 end
 
 function Client:listAppComponentRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAppComponentRecommendations",
-        input_schema = schemas.ListAppComponentRecommendationsInput,
-        output_schema = schemas.ListAppComponentRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/list-app-component-recommendations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAppComponentRecommendations, input, options)
 end
 
 function Client:listAppInputSources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAppInputSources",
-        input_schema = schemas.ListAppInputSourcesInput,
-        output_schema = schemas.ListAppInputSourcesOutput,
-        http_method = "POST",
-        http_path = "/list-app-input-sources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAppInputSources, input, options)
 end
 
 function Client:listApps(input, options)
-    return self:invokeOperation(input, {
-        name = "ListApps",
-        input_schema = schemas.ListAppsInput,
-        output_schema = schemas.ListAppsOutput,
-        http_method = "GET",
-        http_path = "/list-apps",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListApps, input, options)
 end
 
 function Client:listAppVersionAppComponents(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAppVersionAppComponents",
-        input_schema = schemas.ListAppVersionAppComponentsInput,
-        output_schema = schemas.ListAppVersionAppComponentsOutput,
-        http_method = "POST",
-        http_path = "/list-app-version-app-components",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAppVersionAppComponents, input, options)
 end
 
 function Client:listAppVersionResourceMappings(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAppVersionResourceMappings",
-        input_schema = schemas.ListAppVersionResourceMappingsInput,
-        output_schema = schemas.ListAppVersionResourceMappingsOutput,
-        http_method = "POST",
-        http_path = "/list-app-version-resource-mappings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAppVersionResourceMappings, input, options)
 end
 
 function Client:listAppVersionResources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAppVersionResources",
-        input_schema = schemas.ListAppVersionResourcesInput,
-        output_schema = schemas.ListAppVersionResourcesOutput,
-        http_method = "POST",
-        http_path = "/list-app-version-resources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAppVersionResources, input, options)
 end
 
 function Client:listAppVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAppVersions",
-        input_schema = schemas.ListAppVersionsInput,
-        output_schema = schemas.ListAppVersionsOutput,
-        http_method = "POST",
-        http_path = "/list-app-versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAppVersions, input, options)
 end
 
 function Client:listMetrics(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMetrics",
-        input_schema = schemas.ListMetricsInput,
-        output_schema = schemas.ListMetricsOutput,
-        http_method = "POST",
-        http_path = "/list-metrics",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMetrics, input, options)
 end
 
 function Client:listRecommendationTemplates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRecommendationTemplates",
-        input_schema = schemas.ListRecommendationTemplatesInput,
-        output_schema = schemas.ListRecommendationTemplatesOutput,
-        http_method = "GET",
-        http_path = "/list-recommendation-templates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRecommendationTemplates, input, options)
 end
 
 function Client:listResiliencyPolicies(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResiliencyPolicies",
-        input_schema = schemas.ListResiliencyPoliciesInput,
-        output_schema = schemas.ListResiliencyPoliciesOutput,
-        http_method = "GET",
-        http_path = "/list-resiliency-policies",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResiliencyPolicies, input, options)
 end
 
 function Client:listResourceGroupingRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResourceGroupingRecommendations",
-        input_schema = schemas.ListResourceGroupingRecommendationsInput,
-        output_schema = schemas.ListResourceGroupingRecommendationsOutput,
-        http_method = "GET",
-        http_path = "/list-resource-grouping-recommendations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResourceGroupingRecommendations, input, options)
 end
 
 function Client:listSopRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSopRecommendations",
-        input_schema = schemas.ListSopRecommendationsInput,
-        output_schema = schemas.ListSopRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/list-sop-recommendations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSopRecommendations, input, options)
 end
 
 function Client:listSuggestedResiliencyPolicies(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSuggestedResiliencyPolicies",
-        input_schema = schemas.ListSuggestedResiliencyPoliciesInput,
-        output_schema = schemas.ListSuggestedResiliencyPoliciesOutput,
-        http_method = "GET",
-        http_path = "/list-suggested-resiliency-policies",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSuggestedResiliencyPolicies, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTestRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTestRecommendations",
-        input_schema = schemas.ListTestRecommendationsInput,
-        output_schema = schemas.ListTestRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/list-test-recommendations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTestRecommendations, input, options)
 end
 
 function Client:listUnsupportedAppVersionResources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListUnsupportedAppVersionResources",
-        input_schema = schemas.ListUnsupportedAppVersionResourcesInput,
-        output_schema = schemas.ListUnsupportedAppVersionResourcesOutput,
-        http_method = "POST",
-        http_path = "/list-unsupported-app-version-resources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListUnsupportedAppVersionResources, input, options)
 end
 
 function Client:publishAppVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "PublishAppVersion",
-        input_schema = schemas.PublishAppVersionInput,
-        output_schema = schemas.PublishAppVersionOutput,
-        http_method = "POST",
-        http_path = "/publish-app-version",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PublishAppVersion, input, options)
 end
 
 function Client:putDraftAppVersionTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "PutDraftAppVersionTemplate",
-        input_schema = schemas.PutDraftAppVersionTemplateInput,
-        output_schema = schemas.PutDraftAppVersionTemplateOutput,
-        http_method = "POST",
-        http_path = "/put-draft-app-version-template",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutDraftAppVersionTemplate, input, options)
 end
 
 function Client:rejectResourceGroupingRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "RejectResourceGroupingRecommendations",
-        input_schema = schemas.RejectResourceGroupingRecommendationsInput,
-        output_schema = schemas.RejectResourceGroupingRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/reject-resource-grouping-recommendations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RejectResourceGroupingRecommendations, input, options)
 end
 
 function Client:removeDraftAppVersionResourceMappings(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveDraftAppVersionResourceMappings",
-        input_schema = schemas.RemoveDraftAppVersionResourceMappingsInput,
-        output_schema = schemas.RemoveDraftAppVersionResourceMappingsOutput,
-        http_method = "POST",
-        http_path = "/remove-draft-app-version-resource-mappings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveDraftAppVersionResourceMappings, input, options)
 end
 
 function Client:resolveAppVersionResources(input, options)
-    return self:invokeOperation(input, {
-        name = "ResolveAppVersionResources",
-        input_schema = schemas.ResolveAppVersionResourcesInput,
-        output_schema = schemas.ResolveAppVersionResourcesOutput,
-        http_method = "POST",
-        http_path = "/resolve-app-version-resources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ResolveAppVersionResources, input, options)
 end
 
 function Client:startAppAssessment(input, options)
-    return self:invokeOperation(input, {
-        name = "StartAppAssessment",
-        input_schema = schemas.StartAppAssessmentInput,
-        output_schema = schemas.StartAppAssessmentOutput,
-        http_method = "POST",
-        http_path = "/start-app-assessment",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartAppAssessment, input, options)
 end
 
 function Client:startMetricsExport(input, options)
-    return self:invokeOperation(input, {
-        name = "StartMetricsExport",
-        input_schema = schemas.StartMetricsExportInput,
-        output_schema = schemas.StartMetricsExportOutput,
-        http_method = "POST",
-        http_path = "/start-metrics-export",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartMetricsExport, input, options)
 end
 
 function Client:startResourceGroupingRecommendationTask(input, options)
-    return self:invokeOperation(input, {
-        name = "StartResourceGroupingRecommendationTask",
-        input_schema = schemas.StartResourceGroupingRecommendationTaskInput,
-        output_schema = schemas.StartResourceGroupingRecommendationTaskOutput,
-        http_method = "POST",
-        http_path = "/start-resource-grouping-recommendation-task",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartResourceGroupingRecommendationTask, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateApp(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateApp",
-        input_schema = schemas.UpdateAppInput,
-        output_schema = schemas.UpdateAppOutput,
-        http_method = "POST",
-        http_path = "/update-app",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateApp, input, options)
 end
 
 function Client:updateAppVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAppVersion",
-        input_schema = schemas.UpdateAppVersionInput,
-        output_schema = schemas.UpdateAppVersionOutput,
-        http_method = "POST",
-        http_path = "/update-app-version",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAppVersion, input, options)
 end
 
 function Client:updateAppVersionAppComponent(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAppVersionAppComponent",
-        input_schema = schemas.UpdateAppVersionAppComponentInput,
-        output_schema = schemas.UpdateAppVersionAppComponentOutput,
-        http_method = "POST",
-        http_path = "/update-app-version-app-component",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAppVersionAppComponent, input, options)
 end
 
 function Client:updateAppVersionResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAppVersionResource",
-        input_schema = schemas.UpdateAppVersionResourceInput,
-        output_schema = schemas.UpdateAppVersionResourceOutput,
-        http_method = "POST",
-        http_path = "/update-app-version-resource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAppVersionResource, input, options)
 end
 
 function Client:updateResiliencyPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateResiliencyPolicy",
-        input_schema = schemas.UpdateResiliencyPolicyInput,
-        output_schema = schemas.UpdateResiliencyPolicyOutput,
-        http_method = "POST",
-        http_path = "/update-resiliency-policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateResiliencyPolicy, input, options)
 end
 
 return M

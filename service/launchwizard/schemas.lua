@@ -1310,4 +1310,194 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.launchwizard", "LaunchWizard"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDeployment = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "CreateDeployment"),
+    input = M.CreateDeploymentInput,
+    output = M.CreateDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/createDeployment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDeployment = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "DeleteDeployment"),
+    input = M.DeleteDeploymentInput,
+    output = M.DeleteDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deleteDeployment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeployment = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "GetDeployment"),
+    input = M.GetDeploymentInput,
+    output = M.GetDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getDeployment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeploymentPatternVersion = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "GetDeploymentPatternVersion"),
+    input = M.GetDeploymentPatternVersionInput,
+    output = M.GetDeploymentPatternVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getDeploymentPatternVersion" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkload = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "GetWorkload"),
+    input = M.GetWorkloadInput,
+    output = M.GetWorkloadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getWorkload" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkloadDeploymentPattern = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "GetWorkloadDeploymentPattern"),
+    input = M.GetWorkloadDeploymentPatternInput,
+    output = M.GetWorkloadDeploymentPatternOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getWorkloadDeploymentPattern" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeploymentEvents = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "ListDeploymentEvents"),
+    input = M.ListDeploymentEventsInput,
+    output = M.ListDeploymentEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listDeploymentEvents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeploymentPatternVersions = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "ListDeploymentPatternVersions"),
+    input = M.ListDeploymentPatternVersionsInput,
+    output = M.ListDeploymentPatternVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listDeploymentPatternVersions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeployments = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "ListDeployments"),
+    input = M.ListDeploymentsInput,
+    output = M.ListDeploymentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listDeployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkloadDeploymentPatterns = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "ListWorkloadDeploymentPatterns"),
+    input = M.ListWorkloadDeploymentPatternsInput,
+    output = M.ListWorkloadDeploymentPatternsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listWorkloadDeploymentPatterns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkloads = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "ListWorkloads"),
+    input = M.ListWorkloadsInput,
+    output = M.ListWorkloadsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listWorkloads" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDeployment = schema.operation({
+    id = id.from("com.amazonaws.launchwizard", "UpdateDeployment"),
+    input = M.UpdateDeploymentInput,
+    output = M.UpdateDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateDeployment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

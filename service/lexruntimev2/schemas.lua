@@ -1982,4 +1982,87 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.lexruntimev2", "AWSDeepSenseRunTimeServiceApi2_0"),
+    version = "2020-08-07",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSession = schema.operation({
+    id = id.from("com.amazonaws.lexruntimev2", "DeleteSession"),
+    input = M.DeleteSessionInput,
+    output = M.DeleteSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSession = schema.operation({
+    id = id.from("com.amazonaws.lexruntimev2", "GetSession"),
+    input = M.GetSessionInput,
+    output = M.GetSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSession = schema.operation({
+    id = id.from("com.amazonaws.lexruntimev2", "PutSession"),
+    input = M.PutSessionInput,
+    output = M.PutSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RecognizeText = schema.operation({
+    id = id.from("com.amazonaws.lexruntimev2", "RecognizeText"),
+    input = M.RecognizeTextInput,
+    output = M.RecognizeTextOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}/text" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RecognizeUtterance = schema.operation({
+    id = id.from("com.amazonaws.lexruntimev2", "RecognizeUtterance"),
+    input = M.RecognizeUtteranceInput,
+    output = M.RecognizeUtteranceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}/utterance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartConversation = schema.operation({
+    id = id.from("com.amazonaws.lexruntimev2", "StartConversation"),
+    input = M.StartConversationInput,
+    output = M.StartConversationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}/conversation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.StartConversationResponseEventStream,
+    },
+})
+
 return M

@@ -693,4 +693,69 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.freetier", "AWSFreeTierService"),
+    version = "2023-09-07",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountActivity = schema.operation({
+    id = id.from("com.amazonaws.freetier", "GetAccountActivity"),
+    input = M.GetAccountActivityInput,
+    output = M.GetAccountActivityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountPlanState = schema.operation({
+    id = id.from("com.amazonaws.freetier", "GetAccountPlanState"),
+    input = M.GetAccountPlanStateInput,
+    output = M.GetAccountPlanStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFreeTierUsage = schema.operation({
+    id = id.from("com.amazonaws.freetier", "GetFreeTierUsage"),
+    input = M.GetFreeTierUsageInput,
+    output = M.GetFreeTierUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccountActivities = schema.operation({
+    id = id.from("com.amazonaws.freetier", "ListAccountActivities"),
+    input = M.ListAccountActivitiesInput,
+    output = M.ListAccountActivitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpgradeAccountPlan = schema.operation({
+    id = id.from("com.amazonaws.freetier", "UpgradeAccountPlan"),
+    input = M.UpgradeAccountPlanInput,
+    output = M.UpgradeAccountPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

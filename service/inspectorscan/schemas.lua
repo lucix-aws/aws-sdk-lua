@@ -204,4 +204,26 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.inspectorscan", "InspectorScan"),
+    version = "2023-08-08",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ScanSbom = schema.operation({
+    id = id.from("com.amazonaws.inspectorscan", "ScanSbom"),
+    input = M.ScanSbomInput,
+    output = M.ScanSbomOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/scan/sbom" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

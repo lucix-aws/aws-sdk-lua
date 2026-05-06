@@ -20097,4 +20097,1394 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "AmazonBedrockAgentCoreControl"),
+    version = "2023-06-05",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAgentRuntime = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateAgentRuntime"),
+    input = M.CreateAgentRuntimeInput,
+    output = M.CreateAgentRuntimeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/runtimes/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAgentRuntimeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateAgentRuntimeEndpoint"),
+    input = M.CreateAgentRuntimeEndpointInput,
+    output = M.CreateAgentRuntimeEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/runtimes/{agentRuntimeId}/runtime-endpoints/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApiKeyCredentialProvider = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateApiKeyCredentialProvider"),
+    input = M.CreateApiKeyCredentialProviderInput,
+    output = M.CreateApiKeyCredentialProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/CreateApiKeyCredentialProvider" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBrowser = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateBrowser"),
+    input = M.CreateBrowserInput,
+    output = M.CreateBrowserOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/browsers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBrowserProfile = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateBrowserProfile"),
+    input = M.CreateBrowserProfileInput,
+    output = M.CreateBrowserProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/browser-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCodeInterpreter = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateCodeInterpreter"),
+    input = M.CreateCodeInterpreterInput,
+    output = M.CreateCodeInterpreterOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/code-interpreters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfigurationBundle = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateConfigurationBundle"),
+    input = M.CreateConfigurationBundleInput,
+    output = M.CreateConfigurationBundleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configuration-bundles/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEvaluator = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateEvaluator"),
+    input = M.CreateEvaluatorInput,
+    output = M.CreateEvaluatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/evaluators/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGateway = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateGateway"),
+    input = M.CreateGatewayInput,
+    output = M.CreateGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/gateways/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGatewayRule = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateGatewayRule"),
+    input = M.CreateGatewayRuleInput,
+    output = M.CreateGatewayRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/gateways/{gatewayIdentifier}/rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGatewayTarget = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateGatewayTarget"),
+    input = M.CreateGatewayTargetInput,
+    output = M.CreateGatewayTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/gateways/{gatewayIdentifier}/targets/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHarness = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateHarness"),
+    input = M.CreateHarnessInput,
+    output = M.CreateHarnessOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/harnesses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMemory = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateMemory"),
+    input = M.CreateMemoryInput,
+    output = M.CreateMemoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memories/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOauth2CredentialProvider = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateOauth2CredentialProvider"),
+    input = M.CreateOauth2CredentialProviderInput,
+    output = M.CreateOauth2CredentialProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/CreateOauth2CredentialProvider" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOnlineEvaluationConfig = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateOnlineEvaluationConfig"),
+    input = M.CreateOnlineEvaluationConfigInput,
+    output = M.CreateOnlineEvaluationConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/online-evaluation-configs/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreatePolicy"),
+    input = M.CreatePolicyInput,
+    output = M.CreatePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policy-engines/{policyEngineId}/policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePolicyEngine = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreatePolicyEngine"),
+    input = M.CreatePolicyEngineInput,
+    output = M.CreatePolicyEngineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policy-engines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRegistry = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateRegistry"),
+    input = M.CreateRegistryInput,
+    output = M.CreateRegistryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/registries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRegistryRecord = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateRegistryRecord"),
+    input = M.CreateRegistryRecordInput,
+    output = M.CreateRegistryRecordOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/registries/{registryId}/records" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkloadIdentity = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateWorkloadIdentity"),
+    input = M.CreateWorkloadIdentityInput,
+    output = M.CreateWorkloadIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/CreateWorkloadIdentity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAgentRuntime = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteAgentRuntime"),
+    input = M.DeleteAgentRuntimeInput,
+    output = M.DeleteAgentRuntimeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/runtimes/{agentRuntimeId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAgentRuntimeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteAgentRuntimeEndpoint"),
+    input = M.DeleteAgentRuntimeEndpointInput,
+    output = M.DeleteAgentRuntimeEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/runtimes/{agentRuntimeId}/runtime-endpoints/{endpointName}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApiKeyCredentialProvider = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteApiKeyCredentialProvider"),
+    input = M.DeleteApiKeyCredentialProviderInput,
+    output = M.DeleteApiKeyCredentialProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/DeleteApiKeyCredentialProvider" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBrowser = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteBrowser"),
+    input = M.DeleteBrowserInput,
+    output = M.DeleteBrowserOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/browsers/{browserId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBrowserProfile = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteBrowserProfile"),
+    input = M.DeleteBrowserProfileInput,
+    output = M.DeleteBrowserProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/browser-profiles/{profileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCodeInterpreter = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteCodeInterpreter"),
+    input = M.DeleteCodeInterpreterInput,
+    output = M.DeleteCodeInterpreterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/code-interpreters/{codeInterpreterId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationBundle = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteConfigurationBundle"),
+    input = M.DeleteConfigurationBundleInput,
+    output = M.DeleteConfigurationBundleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/configuration-bundles/{bundleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEvaluator = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteEvaluator"),
+    input = M.DeleteEvaluatorInput,
+    output = M.DeleteEvaluatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/evaluators/{evaluatorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGateway = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteGateway"),
+    input = M.DeleteGatewayInput,
+    output = M.DeleteGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/gateways/{gatewayIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGatewayRule = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteGatewayRule"),
+    input = M.DeleteGatewayRuleInput,
+    output = M.DeleteGatewayRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/gateways/{gatewayIdentifier}/rules/{ruleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGatewayTarget = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteGatewayTarget"),
+    input = M.DeleteGatewayTargetInput,
+    output = M.DeleteGatewayTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/gateways/{gatewayIdentifier}/targets/{targetId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHarness = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteHarness"),
+    input = M.DeleteHarnessInput,
+    output = M.DeleteHarnessOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/harnesses/{harnessId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMemory = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteMemory"),
+    input = M.DeleteMemoryInput,
+    output = M.DeleteMemoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memories/{memoryId}/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOauth2CredentialProvider = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteOauth2CredentialProvider"),
+    input = M.DeleteOauth2CredentialProviderInput,
+    output = M.DeleteOauth2CredentialProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/DeleteOauth2CredentialProvider" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOnlineEvaluationConfig = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteOnlineEvaluationConfig"),
+    input = M.DeleteOnlineEvaluationConfigInput,
+    output = M.DeleteOnlineEvaluationConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/online-evaluation-configs/{onlineEvaluationConfigId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeletePolicy"),
+    input = M.DeletePolicyInput,
+    output = M.DeletePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/policy-engines/{policyEngineId}/policies/{policyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePolicyEngine = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeletePolicyEngine"),
+    input = M.DeletePolicyEngineInput,
+    output = M.DeletePolicyEngineOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/policy-engines/{policyEngineId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRegistry = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteRegistry"),
+    input = M.DeleteRegistryInput,
+    output = M.DeleteRegistryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/registries/{registryId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRegistryRecord = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteRegistryRecord"),
+    input = M.DeleteRegistryRecordInput,
+    output = M.DeleteRegistryRecordOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/registries/{registryId}/records/{recordId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/resourcepolicy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkloadIdentity = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteWorkloadIdentity"),
+    input = M.DeleteWorkloadIdentityInput,
+    output = M.DeleteWorkloadIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/DeleteWorkloadIdentity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentRuntime = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetAgentRuntime"),
+    input = M.GetAgentRuntimeInput,
+    output = M.GetAgentRuntimeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/runtimes/{agentRuntimeId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentRuntimeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetAgentRuntimeEndpoint"),
+    input = M.GetAgentRuntimeEndpointInput,
+    output = M.GetAgentRuntimeEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/runtimes/{agentRuntimeId}/runtime-endpoints/{endpointName}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApiKeyCredentialProvider = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetApiKeyCredentialProvider"),
+    input = M.GetApiKeyCredentialProviderInput,
+    output = M.GetApiKeyCredentialProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/GetApiKeyCredentialProvider" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBrowser = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetBrowser"),
+    input = M.GetBrowserInput,
+    output = M.GetBrowserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/browsers/{browserId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBrowserProfile = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetBrowserProfile"),
+    input = M.GetBrowserProfileInput,
+    output = M.GetBrowserProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/browser-profiles/{profileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCodeInterpreter = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetCodeInterpreter"),
+    input = M.GetCodeInterpreterInput,
+    output = M.GetCodeInterpreterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/code-interpreters/{codeInterpreterId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfigurationBundle = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetConfigurationBundle"),
+    input = M.GetConfigurationBundleInput,
+    output = M.GetConfigurationBundleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configuration-bundles/{bundleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfigurationBundleVersion = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetConfigurationBundleVersion"),
+    input = M.GetConfigurationBundleVersionInput,
+    output = M.GetConfigurationBundleVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configuration-bundles/{bundleId}/versions/{versionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEvaluator = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetEvaluator"),
+    input = M.GetEvaluatorInput,
+    output = M.GetEvaluatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/evaluators/{evaluatorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGateway = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetGateway"),
+    input = M.GetGatewayInput,
+    output = M.GetGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/gateways/{gatewayIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGatewayRule = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetGatewayRule"),
+    input = M.GetGatewayRuleInput,
+    output = M.GetGatewayRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/gateways/{gatewayIdentifier}/rules/{ruleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGatewayTarget = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetGatewayTarget"),
+    input = M.GetGatewayTargetInput,
+    output = M.GetGatewayTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/gateways/{gatewayIdentifier}/targets/{targetId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHarness = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetHarness"),
+    input = M.GetHarnessInput,
+    output = M.GetHarnessOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/harnesses/{harnessId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMemory = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetMemory"),
+    input = M.GetMemoryInput,
+    output = M.GetMemoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memories/{memoryId}/details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOauth2CredentialProvider = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetOauth2CredentialProvider"),
+    input = M.GetOauth2CredentialProviderInput,
+    output = M.GetOauth2CredentialProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/GetOauth2CredentialProvider" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOnlineEvaluationConfig = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetOnlineEvaluationConfig"),
+    input = M.GetOnlineEvaluationConfigInput,
+    output = M.GetOnlineEvaluationConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/online-evaluation-configs/{onlineEvaluationConfigId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetPolicy"),
+    input = M.GetPolicyInput,
+    output = M.GetPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-engines/{policyEngineId}/policies/{policyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicyEngine = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetPolicyEngine"),
+    input = M.GetPolicyEngineInput,
+    output = M.GetPolicyEngineOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-engines/{policyEngineId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicyGeneration = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetPolicyGeneration"),
+    input = M.GetPolicyGenerationInput,
+    output = M.GetPolicyGenerationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-engines/{policyEngineId}/policy-generations/{policyGenerationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRegistry = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetRegistry"),
+    input = M.GetRegistryInput,
+    output = M.GetRegistryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/registries/{registryId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRegistryRecord = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetRegistryRecord"),
+    input = M.GetRegistryRecordInput,
+    output = M.GetRegistryRecordOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/registries/{registryId}/records/{recordId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resourcepolicy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTokenVault = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetTokenVault"),
+    input = M.GetTokenVaultInput,
+    output = M.GetTokenVaultOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/get-token-vault" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkloadIdentity = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetWorkloadIdentity"),
+    input = M.GetWorkloadIdentityInput,
+    output = M.GetWorkloadIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/GetWorkloadIdentity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentRuntimeEndpoints = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListAgentRuntimeEndpoints"),
+    input = M.ListAgentRuntimeEndpointsInput,
+    output = M.ListAgentRuntimeEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runtimes/{agentRuntimeId}/runtime-endpoints/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentRuntimes = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListAgentRuntimes"),
+    input = M.ListAgentRuntimesInput,
+    output = M.ListAgentRuntimesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runtimes/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentRuntimeVersions = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListAgentRuntimeVersions"),
+    input = M.ListAgentRuntimeVersionsInput,
+    output = M.ListAgentRuntimeVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runtimes/{agentRuntimeId}/versions/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApiKeyCredentialProviders = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListApiKeyCredentialProviders"),
+    input = M.ListApiKeyCredentialProvidersInput,
+    output = M.ListApiKeyCredentialProvidersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/ListApiKeyCredentialProviders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBrowserProfiles = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListBrowserProfiles"),
+    input = M.ListBrowserProfilesInput,
+    output = M.ListBrowserProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/browser-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBrowsers = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListBrowsers"),
+    input = M.ListBrowsersInput,
+    output = M.ListBrowsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/browsers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCodeInterpreters = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListCodeInterpreters"),
+    input = M.ListCodeInterpretersInput,
+    output = M.ListCodeInterpretersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/code-interpreters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationBundles = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListConfigurationBundles"),
+    input = M.ListConfigurationBundlesInput,
+    output = M.ListConfigurationBundlesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configuration-bundles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationBundleVersions = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListConfigurationBundleVersions"),
+    input = M.ListConfigurationBundleVersionsInput,
+    output = M.ListConfigurationBundleVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configuration-bundles/{bundleId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEvaluators = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListEvaluators"),
+    input = M.ListEvaluatorsInput,
+    output = M.ListEvaluatorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/evaluators" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGatewayRules = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListGatewayRules"),
+    input = M.ListGatewayRulesInput,
+    output = M.ListGatewayRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/gateways/{gatewayIdentifier}/rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGateways = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListGateways"),
+    input = M.ListGatewaysInput,
+    output = M.ListGatewaysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/gateways/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGatewayTargets = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListGatewayTargets"),
+    input = M.ListGatewayTargetsInput,
+    output = M.ListGatewayTargetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/gateways/{gatewayIdentifier}/targets/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHarnesses = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListHarnesses"),
+    input = M.ListHarnessesInput,
+    output = M.ListHarnessesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/harnesses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMemories = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListMemories"),
+    input = M.ListMemoriesInput,
+    output = M.ListMemoriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memories/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOauth2CredentialProviders = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListOauth2CredentialProviders"),
+    input = M.ListOauth2CredentialProvidersInput,
+    output = M.ListOauth2CredentialProvidersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/ListOauth2CredentialProviders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOnlineEvaluationConfigs = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListOnlineEvaluationConfigs"),
+    input = M.ListOnlineEvaluationConfigsInput,
+    output = M.ListOnlineEvaluationConfigsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/online-evaluation-configs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicies = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListPolicies"),
+    input = M.ListPoliciesInput,
+    output = M.ListPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-engines/{policyEngineId}/policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyEngines = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListPolicyEngines"),
+    input = M.ListPolicyEnginesInput,
+    output = M.ListPolicyEnginesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-engines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyGenerationAssets = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListPolicyGenerationAssets"),
+    input = M.ListPolicyGenerationAssetsInput,
+    output = M.ListPolicyGenerationAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-engines/{policyEngineId}/policy-generations/{policyGenerationId}/assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyGenerations = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListPolicyGenerations"),
+    input = M.ListPolicyGenerationsInput,
+    output = M.ListPolicyGenerationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-engines/{policyEngineId}/policy-generations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRegistries = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListRegistries"),
+    input = M.ListRegistriesInput,
+    output = M.ListRegistriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/registries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRegistryRecords = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListRegistryRecords"),
+    input = M.ListRegistryRecordsInput,
+    output = M.ListRegistryRecordsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/registries/{registryId}/records" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkloadIdentities = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListWorkloadIdentities"),
+    input = M.ListWorkloadIdentitiesInput,
+    output = M.ListWorkloadIdentitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/ListWorkloadIdentities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/resourcepolicy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetTokenVaultCMK = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "SetTokenVaultCMK"),
+    input = M.SetTokenVaultCMKInput,
+    output = M.SetTokenVaultCMKOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/set-token-vault-cmk" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartPolicyGeneration = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "StartPolicyGeneration"),
+    input = M.StartPolicyGenerationInput,
+    output = M.StartPolicyGenerationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policy-engines/{policyEngineId}/policy-generations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SubmitRegistryRecordForApproval = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "SubmitRegistryRecordForApproval"),
+    input = M.SubmitRegistryRecordForApprovalInput,
+    output = M.SubmitRegistryRecordForApprovalOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/registries/{registryId}/records/{recordId}/submit-for-approval" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SynchronizeGatewayTargets = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "SynchronizeGatewayTargets"),
+    input = M.SynchronizeGatewayTargetsInput,
+    output = M.SynchronizeGatewayTargetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/gateways/{gatewayIdentifier}/synchronizeTargets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentRuntime = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateAgentRuntime"),
+    input = M.UpdateAgentRuntimeInput,
+    output = M.UpdateAgentRuntimeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/runtimes/{agentRuntimeId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentRuntimeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateAgentRuntimeEndpoint"),
+    input = M.UpdateAgentRuntimeEndpointInput,
+    output = M.UpdateAgentRuntimeEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/runtimes/{agentRuntimeId}/runtime-endpoints/{endpointName}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApiKeyCredentialProvider = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateApiKeyCredentialProvider"),
+    input = M.UpdateApiKeyCredentialProviderInput,
+    output = M.UpdateApiKeyCredentialProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/UpdateApiKeyCredentialProvider" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfigurationBundle = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateConfigurationBundle"),
+    input = M.UpdateConfigurationBundleInput,
+    output = M.UpdateConfigurationBundleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/configuration-bundles/{bundleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEvaluator = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateEvaluator"),
+    input = M.UpdateEvaluatorInput,
+    output = M.UpdateEvaluatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/evaluators/{evaluatorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGateway = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateGateway"),
+    input = M.UpdateGatewayInput,
+    output = M.UpdateGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/gateways/{gatewayIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGatewayRule = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateGatewayRule"),
+    input = M.UpdateGatewayRuleInput,
+    output = M.UpdateGatewayRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/gateways/{gatewayIdentifier}/rules/{ruleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGatewayTarget = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateGatewayTarget"),
+    input = M.UpdateGatewayTargetInput,
+    output = M.UpdateGatewayTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/gateways/{gatewayIdentifier}/targets/{targetId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHarness = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateHarness"),
+    input = M.UpdateHarnessInput,
+    output = M.UpdateHarnessOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/harnesses/{harnessId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMemory = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateMemory"),
+    input = M.UpdateMemoryInput,
+    output = M.UpdateMemoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/memories/{memoryId}/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOauth2CredentialProvider = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateOauth2CredentialProvider"),
+    input = M.UpdateOauth2CredentialProviderInput,
+    output = M.UpdateOauth2CredentialProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/UpdateOauth2CredentialProvider" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOnlineEvaluationConfig = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateOnlineEvaluationConfig"),
+    input = M.UpdateOnlineEvaluationConfigInput,
+    output = M.UpdateOnlineEvaluationConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/online-evaluation-configs/{onlineEvaluationConfigId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdatePolicy"),
+    input = M.UpdatePolicyInput,
+    output = M.UpdatePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/policy-engines/{policyEngineId}/policies/{policyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePolicyEngine = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdatePolicyEngine"),
+    input = M.UpdatePolicyEngineInput,
+    output = M.UpdatePolicyEngineOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/policy-engines/{policyEngineId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRegistry = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateRegistry"),
+    input = M.UpdateRegistryInput,
+    output = M.UpdateRegistryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/registries/{registryId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRegistryRecord = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateRegistryRecord"),
+    input = M.UpdateRegistryRecordInput,
+    output = M.UpdateRegistryRecordOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/registries/{registryId}/records/{recordId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRegistryRecordStatus = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateRegistryRecordStatus"),
+    input = M.UpdateRegistryRecordStatusInput,
+    output = M.UpdateRegistryRecordStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/registries/{registryId}/records/{recordId}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkloadIdentity = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateWorkloadIdentity"),
+    input = M.UpdateWorkloadIdentityInput,
+    output = M.UpdateWorkloadIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/UpdateWorkloadIdentity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

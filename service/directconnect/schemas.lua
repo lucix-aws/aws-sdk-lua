@@ -7240,4 +7240,707 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.directconnect", "OvertureService"),
+    version = "2012-10-25",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptDirectConnectGatewayAssociationProposal = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "AcceptDirectConnectGatewayAssociationProposal"),
+    input = M.AcceptDirectConnectGatewayAssociationProposalInput,
+    output = M.AcceptDirectConnectGatewayAssociationProposalOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AllocateConnectionOnInterconnect = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "AllocateConnectionOnInterconnect"),
+    input = M.AllocateConnectionOnInterconnectInput,
+    output = M.AllocateConnectionOnInterconnectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AllocateHostedConnection = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "AllocateHostedConnection"),
+    input = M.AllocateHostedConnectionInput,
+    output = M.AllocateHostedConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AllocatePrivateVirtualInterface = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "AllocatePrivateVirtualInterface"),
+    input = M.AllocatePrivateVirtualInterfaceInput,
+    output = M.AllocatePrivateVirtualInterfaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AllocatePublicVirtualInterface = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "AllocatePublicVirtualInterface"),
+    input = M.AllocatePublicVirtualInterfaceInput,
+    output = M.AllocatePublicVirtualInterfaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AllocateTransitVirtualInterface = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "AllocateTransitVirtualInterface"),
+    input = M.AllocateTransitVirtualInterfaceInput,
+    output = M.AllocateTransitVirtualInterfaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateConnectionWithLag = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "AssociateConnectionWithLag"),
+    input = M.AssociateConnectionWithLagInput,
+    output = M.AssociateConnectionWithLagOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateHostedConnection = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "AssociateHostedConnection"),
+    input = M.AssociateHostedConnectionInput,
+    output = M.AssociateHostedConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateMacSecKey = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "AssociateMacSecKey"),
+    input = M.AssociateMacSecKeyInput,
+    output = M.AssociateMacSecKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateVirtualInterface = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "AssociateVirtualInterface"),
+    input = M.AssociateVirtualInterfaceInput,
+    output = M.AssociateVirtualInterfaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfirmConnection = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "ConfirmConnection"),
+    input = M.ConfirmConnectionInput,
+    output = M.ConfirmConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfirmCustomerAgreement = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "ConfirmCustomerAgreement"),
+    input = M.ConfirmCustomerAgreementInput,
+    output = M.ConfirmCustomerAgreementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfirmPrivateVirtualInterface = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "ConfirmPrivateVirtualInterface"),
+    input = M.ConfirmPrivateVirtualInterfaceInput,
+    output = M.ConfirmPrivateVirtualInterfaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfirmPublicVirtualInterface = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "ConfirmPublicVirtualInterface"),
+    input = M.ConfirmPublicVirtualInterfaceInput,
+    output = M.ConfirmPublicVirtualInterfaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfirmTransitVirtualInterface = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "ConfirmTransitVirtualInterface"),
+    input = M.ConfirmTransitVirtualInterfaceInput,
+    output = M.ConfirmTransitVirtualInterfaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBGPPeer = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "CreateBGPPeer"),
+    input = M.CreateBGPPeerInput,
+    output = M.CreateBGPPeerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnection = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "CreateConnection"),
+    input = M.CreateConnectionInput,
+    output = M.CreateConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDirectConnectGateway = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "CreateDirectConnectGateway"),
+    input = M.CreateDirectConnectGatewayInput,
+    output = M.CreateDirectConnectGatewayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDirectConnectGatewayAssociation = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "CreateDirectConnectGatewayAssociation"),
+    input = M.CreateDirectConnectGatewayAssociationInput,
+    output = M.CreateDirectConnectGatewayAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDirectConnectGatewayAssociationProposal = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "CreateDirectConnectGatewayAssociationProposal"),
+    input = M.CreateDirectConnectGatewayAssociationProposalInput,
+    output = M.CreateDirectConnectGatewayAssociationProposalOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInterconnect = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "CreateInterconnect"),
+    input = M.CreateInterconnectInput,
+    output = M.CreateInterconnectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLag = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "CreateLag"),
+    input = M.CreateLagInput,
+    output = M.CreateLagOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePrivateVirtualInterface = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "CreatePrivateVirtualInterface"),
+    input = M.CreatePrivateVirtualInterfaceInput,
+    output = M.CreatePrivateVirtualInterfaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePublicVirtualInterface = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "CreatePublicVirtualInterface"),
+    input = M.CreatePublicVirtualInterfaceInput,
+    output = M.CreatePublicVirtualInterfaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTransitVirtualInterface = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "CreateTransitVirtualInterface"),
+    input = M.CreateTransitVirtualInterfaceInput,
+    output = M.CreateTransitVirtualInterfaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBGPPeer = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DeleteBGPPeer"),
+    input = M.DeleteBGPPeerInput,
+    output = M.DeleteBGPPeerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnection = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DeleteConnection"),
+    input = M.DeleteConnectionInput,
+    output = M.DeleteConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDirectConnectGateway = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DeleteDirectConnectGateway"),
+    input = M.DeleteDirectConnectGatewayInput,
+    output = M.DeleteDirectConnectGatewayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDirectConnectGatewayAssociation = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DeleteDirectConnectGatewayAssociation"),
+    input = M.DeleteDirectConnectGatewayAssociationInput,
+    output = M.DeleteDirectConnectGatewayAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDirectConnectGatewayAssociationProposal = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DeleteDirectConnectGatewayAssociationProposal"),
+    input = M.DeleteDirectConnectGatewayAssociationProposalInput,
+    output = M.DeleteDirectConnectGatewayAssociationProposalOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInterconnect = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DeleteInterconnect"),
+    input = M.DeleteInterconnectInput,
+    output = M.DeleteInterconnectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLag = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DeleteLag"),
+    input = M.DeleteLagInput,
+    output = M.DeleteLagOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVirtualInterface = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DeleteVirtualInterface"),
+    input = M.DeleteVirtualInterfaceInput,
+    output = M.DeleteVirtualInterfaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnectionLoa = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeConnectionLoa"),
+    input = M.DescribeConnectionLoaInput,
+    output = M.DescribeConnectionLoaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnections = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeConnections"),
+    input = M.DescribeConnectionsInput,
+    output = M.DescribeConnectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnectionsOnInterconnect = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeConnectionsOnInterconnect"),
+    input = M.DescribeConnectionsOnInterconnectInput,
+    output = M.DescribeConnectionsOnInterconnectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCustomerMetadata = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeCustomerMetadata"),
+    input = M.DescribeCustomerMetadataInput,
+    output = M.DescribeCustomerMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDirectConnectGatewayAssociationProposals = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeDirectConnectGatewayAssociationProposals"),
+    input = M.DescribeDirectConnectGatewayAssociationProposalsInput,
+    output = M.DescribeDirectConnectGatewayAssociationProposalsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDirectConnectGatewayAssociations = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeDirectConnectGatewayAssociations"),
+    input = M.DescribeDirectConnectGatewayAssociationsInput,
+    output = M.DescribeDirectConnectGatewayAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDirectConnectGatewayAttachments = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeDirectConnectGatewayAttachments"),
+    input = M.DescribeDirectConnectGatewayAttachmentsInput,
+    output = M.DescribeDirectConnectGatewayAttachmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDirectConnectGateways = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeDirectConnectGateways"),
+    input = M.DescribeDirectConnectGatewaysInput,
+    output = M.DescribeDirectConnectGatewaysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHostedConnections = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeHostedConnections"),
+    input = M.DescribeHostedConnectionsInput,
+    output = M.DescribeHostedConnectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInterconnectLoa = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeInterconnectLoa"),
+    input = M.DescribeInterconnectLoaInput,
+    output = M.DescribeInterconnectLoaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInterconnects = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeInterconnects"),
+    input = M.DescribeInterconnectsInput,
+    output = M.DescribeInterconnectsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLags = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeLags"),
+    input = M.DescribeLagsInput,
+    output = M.DescribeLagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLoa = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeLoa"),
+    input = M.DescribeLoaInput,
+    output = M.DescribeLoaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLocations = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeLocations"),
+    input = M.DescribeLocationsInput,
+    output = M.DescribeLocationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRouterConfiguration = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeRouterConfiguration"),
+    input = M.DescribeRouterConfigurationInput,
+    output = M.DescribeRouterConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTags = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeTags"),
+    input = M.DescribeTagsInput,
+    output = M.DescribeTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVirtualGateways = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeVirtualGateways"),
+    input = M.DescribeVirtualGatewaysInput,
+    output = M.DescribeVirtualGatewaysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVirtualInterfaces = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DescribeVirtualInterfaces"),
+    input = M.DescribeVirtualInterfacesInput,
+    output = M.DescribeVirtualInterfacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateConnectionFromLag = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DisassociateConnectionFromLag"),
+    input = M.DisassociateConnectionFromLagInput,
+    output = M.DisassociateConnectionFromLagOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateMacSecKey = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DisassociateMacSecKey"),
+    input = M.DisassociateMacSecKeyInput,
+    output = M.DisassociateMacSecKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVirtualInterfaceTestHistory = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "ListVirtualInterfaceTestHistory"),
+    input = M.ListVirtualInterfaceTestHistoryInput,
+    output = M.ListVirtualInterfaceTestHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartBgpFailoverTest = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "StartBgpFailoverTest"),
+    input = M.StartBgpFailoverTestInput,
+    output = M.StartBgpFailoverTestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopBgpFailoverTest = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "StopBgpFailoverTest"),
+    input = M.StopBgpFailoverTestInput,
+    output = M.StopBgpFailoverTestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnection = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "UpdateConnection"),
+    input = M.UpdateConnectionInput,
+    output = M.UpdateConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDirectConnectGateway = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "UpdateDirectConnectGateway"),
+    input = M.UpdateDirectConnectGatewayInput,
+    output = M.UpdateDirectConnectGatewayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDirectConnectGatewayAssociation = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "UpdateDirectConnectGatewayAssociation"),
+    input = M.UpdateDirectConnectGatewayAssociationInput,
+    output = M.UpdateDirectConnectGatewayAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLag = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "UpdateLag"),
+    input = M.UpdateLagInput,
+    output = M.UpdateLagOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVirtualInterfaceAttributes = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "UpdateVirtualInterfaceAttributes"),
+    input = M.UpdateVirtualInterfaceAttributesInput,
+    output = M.UpdateVirtualInterfaceAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

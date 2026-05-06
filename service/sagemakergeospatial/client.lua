@@ -7,6 +7,7 @@ local endpoint_rules = require("sagemakergeospatial.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("sagemakergeospatial.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sagemaker-geospatial", signing_region = cfg.region } }
                 else
@@ -49,250 +52,79 @@ function M.new(cfg)
 end
 
 function Client:deleteEarthObservationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEarthObservationJob",
-        input_schema = schemas.DeleteEarthObservationJobInput,
-        output_schema = schemas.DeleteEarthObservationJobOutput,
-        http_method = "DELETE",
-        http_path = "/earth-observation-jobs/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEarthObservationJob, input, options)
 end
 
 function Client:deleteVectorEnrichmentJob(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVectorEnrichmentJob",
-        input_schema = schemas.DeleteVectorEnrichmentJobInput,
-        output_schema = schemas.DeleteVectorEnrichmentJobOutput,
-        http_method = "DELETE",
-        http_path = "/vector-enrichment-jobs/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVectorEnrichmentJob, input, options)
 end
 
 function Client:exportEarthObservationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "ExportEarthObservationJob",
-        input_schema = schemas.ExportEarthObservationJobInput,
-        output_schema = schemas.ExportEarthObservationJobOutput,
-        http_method = "POST",
-        http_path = "/export-earth-observation-job",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExportEarthObservationJob, input, options)
 end
 
 function Client:exportVectorEnrichmentJob(input, options)
-    return self:invokeOperation(input, {
-        name = "ExportVectorEnrichmentJob",
-        input_schema = schemas.ExportVectorEnrichmentJobInput,
-        output_schema = schemas.ExportVectorEnrichmentJobOutput,
-        http_method = "POST",
-        http_path = "/export-vector-enrichment-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExportVectorEnrichmentJob, input, options)
 end
 
 function Client:getEarthObservationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEarthObservationJob",
-        input_schema = schemas.GetEarthObservationJobInput,
-        output_schema = schemas.GetEarthObservationJobOutput,
-        http_method = "GET",
-        http_path = "/earth-observation-jobs/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEarthObservationJob, input, options)
 end
 
 function Client:getRasterDataCollection(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRasterDataCollection",
-        input_schema = schemas.GetRasterDataCollectionInput,
-        output_schema = schemas.GetRasterDataCollectionOutput,
-        http_method = "GET",
-        http_path = "/raster-data-collection/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRasterDataCollection, input, options)
 end
 
 function Client:getTile(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTile",
-        input_schema = schemas.GetTileInput,
-        output_schema = schemas.GetTileOutput,
-        http_method = "GET",
-        http_path = "/tile/{z}/{x}/{y}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTile, input, options)
 end
 
 function Client:getVectorEnrichmentJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetVectorEnrichmentJob",
-        input_schema = schemas.GetVectorEnrichmentJobInput,
-        output_schema = schemas.GetVectorEnrichmentJobOutput,
-        http_method = "GET",
-        http_path = "/vector-enrichment-jobs/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetVectorEnrichmentJob, input, options)
 end
 
 function Client:listEarthObservationJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEarthObservationJobs",
-        input_schema = schemas.ListEarthObservationJobsInput,
-        output_schema = schemas.ListEarthObservationJobsOutput,
-        http_method = "POST",
-        http_path = "/list-earth-observation-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEarthObservationJobs, input, options)
 end
 
 function Client:listRasterDataCollections(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRasterDataCollections",
-        input_schema = schemas.ListRasterDataCollectionsInput,
-        output_schema = schemas.ListRasterDataCollectionsOutput,
-        http_method = "GET",
-        http_path = "/raster-data-collections",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRasterDataCollections, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listVectorEnrichmentJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVectorEnrichmentJobs",
-        input_schema = schemas.ListVectorEnrichmentJobsInput,
-        output_schema = schemas.ListVectorEnrichmentJobsOutput,
-        http_method = "POST",
-        http_path = "/list-vector-enrichment-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVectorEnrichmentJobs, input, options)
 end
 
 function Client:searchRasterDataCollection(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchRasterDataCollection",
-        input_schema = schemas.SearchRasterDataCollectionInput,
-        output_schema = schemas.SearchRasterDataCollectionOutput,
-        http_method = "POST",
-        http_path = "/search-raster-data-collection",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchRasterDataCollection, input, options)
 end
 
 function Client:startEarthObservationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartEarthObservationJob",
-        input_schema = schemas.StartEarthObservationJobInput,
-        output_schema = schemas.StartEarthObservationJobOutput,
-        http_method = "POST",
-        http_path = "/earth-observation-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartEarthObservationJob, input, options)
 end
 
 function Client:startVectorEnrichmentJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartVectorEnrichmentJob",
-        input_schema = schemas.StartVectorEnrichmentJobInput,
-        output_schema = schemas.StartVectorEnrichmentJobOutput,
-        http_method = "POST",
-        http_path = "/vector-enrichment-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartVectorEnrichmentJob, input, options)
 end
 
 function Client:stopEarthObservationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StopEarthObservationJob",
-        input_schema = schemas.StopEarthObservationJobInput,
-        output_schema = schemas.StopEarthObservationJobOutput,
-        http_method = "POST",
-        http_path = "/earth-observation-jobs/stop",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopEarthObservationJob, input, options)
 end
 
 function Client:stopVectorEnrichmentJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StopVectorEnrichmentJob",
-        input_schema = schemas.StopVectorEnrichmentJobInput,
-        output_schema = schemas.StopVectorEnrichmentJobOutput,
-        http_method = "POST",
-        http_path = "/vector-enrichment-jobs/stop",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopVectorEnrichmentJob, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "PUT",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 return M

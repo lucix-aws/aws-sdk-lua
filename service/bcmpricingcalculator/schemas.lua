@@ -4518,4 +4518,410 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "AWSBCMPricingCalculator"),
+    version = "2024-06-19",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateBillScenarioCommitmentModification = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "BatchCreateBillScenarioCommitmentModification"),
+    input = M.BatchCreateBillScenarioCommitmentModificationInput,
+    output = M.BatchCreateBillScenarioCommitmentModificationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateBillScenarioUsageModification = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "BatchCreateBillScenarioUsageModification"),
+    input = M.BatchCreateBillScenarioUsageModificationInput,
+    output = M.BatchCreateBillScenarioUsageModificationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateWorkloadEstimateUsage = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "BatchCreateWorkloadEstimateUsage"),
+    input = M.BatchCreateWorkloadEstimateUsageInput,
+    output = M.BatchCreateWorkloadEstimateUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteBillScenarioCommitmentModification = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "BatchDeleteBillScenarioCommitmentModification"),
+    input = M.BatchDeleteBillScenarioCommitmentModificationInput,
+    output = M.BatchDeleteBillScenarioCommitmentModificationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteBillScenarioUsageModification = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "BatchDeleteBillScenarioUsageModification"),
+    input = M.BatchDeleteBillScenarioUsageModificationInput,
+    output = M.BatchDeleteBillScenarioUsageModificationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteWorkloadEstimateUsage = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "BatchDeleteWorkloadEstimateUsage"),
+    input = M.BatchDeleteWorkloadEstimateUsageInput,
+    output = M.BatchDeleteWorkloadEstimateUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateBillScenarioCommitmentModification = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "BatchUpdateBillScenarioCommitmentModification"),
+    input = M.BatchUpdateBillScenarioCommitmentModificationInput,
+    output = M.BatchUpdateBillScenarioCommitmentModificationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateBillScenarioUsageModification = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "BatchUpdateBillScenarioUsageModification"),
+    input = M.BatchUpdateBillScenarioUsageModificationInput,
+    output = M.BatchUpdateBillScenarioUsageModificationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateWorkloadEstimateUsage = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "BatchUpdateWorkloadEstimateUsage"),
+    input = M.BatchUpdateWorkloadEstimateUsageInput,
+    output = M.BatchUpdateWorkloadEstimateUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBillEstimate = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "CreateBillEstimate"),
+    input = M.CreateBillEstimateInput,
+    output = M.CreateBillEstimateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBillScenario = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "CreateBillScenario"),
+    input = M.CreateBillScenarioInput,
+    output = M.CreateBillScenarioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkloadEstimate = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "CreateWorkloadEstimate"),
+    input = M.CreateWorkloadEstimateInput,
+    output = M.CreateWorkloadEstimateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBillEstimate = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "DeleteBillEstimate"),
+    input = M.DeleteBillEstimateInput,
+    output = M.DeleteBillEstimateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBillScenario = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "DeleteBillScenario"),
+    input = M.DeleteBillScenarioInput,
+    output = M.DeleteBillScenarioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkloadEstimate = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "DeleteWorkloadEstimate"),
+    input = M.DeleteWorkloadEstimateInput,
+    output = M.DeleteWorkloadEstimateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBillEstimate = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "GetBillEstimate"),
+    input = M.GetBillEstimateInput,
+    output = M.GetBillEstimateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBillScenario = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "GetBillScenario"),
+    input = M.GetBillScenarioInput,
+    output = M.GetBillScenarioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPreferences = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "GetPreferences"),
+    input = M.GetPreferencesInput,
+    output = M.GetPreferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkloadEstimate = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "GetWorkloadEstimate"),
+    input = M.GetWorkloadEstimateInput,
+    output = M.GetWorkloadEstimateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBillEstimateCommitments = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "ListBillEstimateCommitments"),
+    input = M.ListBillEstimateCommitmentsInput,
+    output = M.ListBillEstimateCommitmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBillEstimateInputCommitmentModifications = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "ListBillEstimateInputCommitmentModifications"),
+    input = M.ListBillEstimateInputCommitmentModificationsInput,
+    output = M.ListBillEstimateInputCommitmentModificationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBillEstimateInputUsageModifications = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "ListBillEstimateInputUsageModifications"),
+    input = M.ListBillEstimateInputUsageModificationsInput,
+    output = M.ListBillEstimateInputUsageModificationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBillEstimateLineItems = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "ListBillEstimateLineItems"),
+    input = M.ListBillEstimateLineItemsInput,
+    output = M.ListBillEstimateLineItemsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBillEstimates = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "ListBillEstimates"),
+    input = M.ListBillEstimatesInput,
+    output = M.ListBillEstimatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBillScenarioCommitmentModifications = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "ListBillScenarioCommitmentModifications"),
+    input = M.ListBillScenarioCommitmentModificationsInput,
+    output = M.ListBillScenarioCommitmentModificationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBillScenarios = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "ListBillScenarios"),
+    input = M.ListBillScenariosInput,
+    output = M.ListBillScenariosOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBillScenarioUsageModifications = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "ListBillScenarioUsageModifications"),
+    input = M.ListBillScenarioUsageModificationsInput,
+    output = M.ListBillScenarioUsageModificationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkloadEstimates = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "ListWorkloadEstimates"),
+    input = M.ListWorkloadEstimatesInput,
+    output = M.ListWorkloadEstimatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkloadEstimateUsage = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "ListWorkloadEstimateUsage"),
+    input = M.ListWorkloadEstimateUsageInput,
+    output = M.ListWorkloadEstimateUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBillEstimate = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "UpdateBillEstimate"),
+    input = M.UpdateBillEstimateInput,
+    output = M.UpdateBillEstimateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBillScenario = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "UpdateBillScenario"),
+    input = M.UpdateBillScenarioInput,
+    output = M.UpdateBillScenarioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePreferences = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "UpdatePreferences"),
+    input = M.UpdatePreferencesInput,
+    output = M.UpdatePreferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkloadEstimate = schema.operation({
+    id = id.from("com.amazonaws.bcmpricingcalculator", "UpdateWorkloadEstimate"),
+    input = M.UpdateWorkloadEstimateInput,
+    output = M.UpdateWorkloadEstimateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

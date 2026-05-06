@@ -2131,4 +2131,362 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.detective", "AmazonDetective"),
+    version = "2018-10-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptInvitation = schema.operation({
+    id = id.from("com.amazonaws.detective", "AcceptInvitation"),
+    input = M.AcceptInvitationInput,
+    output = M.AcceptInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/invitation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetGraphMemberDatasources = schema.operation({
+    id = id.from("com.amazonaws.detective", "BatchGetGraphMemberDatasources"),
+    input = M.BatchGetGraphMemberDatasourcesInput,
+    output = M.BatchGetGraphMemberDatasourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graph/datasources/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetMembershipDatasources = schema.operation({
+    id = id.from("com.amazonaws.detective", "BatchGetMembershipDatasources"),
+    input = M.BatchGetMembershipDatasourcesInput,
+    output = M.BatchGetMembershipDatasourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/membership/datasources/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGraph = schema.operation({
+    id = id.from("com.amazonaws.detective", "CreateGraph"),
+    input = M.CreateGraphInput,
+    output = M.CreateGraphOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graph" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMembers = schema.operation({
+    id = id.from("com.amazonaws.detective", "CreateMembers"),
+    input = M.CreateMembersInput,
+    output = M.CreateMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graph/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGraph = schema.operation({
+    id = id.from("com.amazonaws.detective", "DeleteGraph"),
+    input = M.DeleteGraphInput,
+    output = M.DeleteGraphOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graph/removal" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMembers = schema.operation({
+    id = id.from("com.amazonaws.detective", "DeleteMembers"),
+    input = M.DeleteMembersInput,
+    output = M.DeleteMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graph/members/removal" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrganizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.detective", "DescribeOrganizationConfiguration"),
+    input = M.DescribeOrganizationConfigurationInput,
+    output = M.DescribeOrganizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/orgs/describeOrganizationConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableOrganizationAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.detective", "DisableOrganizationAdminAccount"),
+    input = M.DisableOrganizationAdminAccountInput,
+    output = M.DisableOrganizationAdminAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/orgs/disableAdminAccount" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateMembership = schema.operation({
+    id = id.from("com.amazonaws.detective", "DisassociateMembership"),
+    input = M.DisassociateMembershipInput,
+    output = M.DisassociateMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/membership/removal" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableOrganizationAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.detective", "EnableOrganizationAdminAccount"),
+    input = M.EnableOrganizationAdminAccountInput,
+    output = M.EnableOrganizationAdminAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/orgs/enableAdminAccount" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInvestigation = schema.operation({
+    id = id.from("com.amazonaws.detective", "GetInvestigation"),
+    input = M.GetInvestigationInput,
+    output = M.GetInvestigationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/investigations/getInvestigation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMembers = schema.operation({
+    id = id.from("com.amazonaws.detective", "GetMembers"),
+    input = M.GetMembersInput,
+    output = M.GetMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graph/members/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasourcePackages = schema.operation({
+    id = id.from("com.amazonaws.detective", "ListDatasourcePackages"),
+    input = M.ListDatasourcePackagesInput,
+    output = M.ListDatasourcePackagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graph/datasources/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGraphs = schema.operation({
+    id = id.from("com.amazonaws.detective", "ListGraphs"),
+    input = M.ListGraphsInput,
+    output = M.ListGraphsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graphs/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIndicators = schema.operation({
+    id = id.from("com.amazonaws.detective", "ListIndicators"),
+    input = M.ListIndicatorsInput,
+    output = M.ListIndicatorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/investigations/listIndicators" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvestigations = schema.operation({
+    id = id.from("com.amazonaws.detective", "ListInvestigations"),
+    input = M.ListInvestigationsInput,
+    output = M.ListInvestigationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/investigations/listInvestigations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvitations = schema.operation({
+    id = id.from("com.amazonaws.detective", "ListInvitations"),
+    input = M.ListInvitationsInput,
+    output = M.ListInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/invitations/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMembers = schema.operation({
+    id = id.from("com.amazonaws.detective", "ListMembers"),
+    input = M.ListMembersInput,
+    output = M.ListMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graph/members/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOrganizationAdminAccounts = schema.operation({
+    id = id.from("com.amazonaws.detective", "ListOrganizationAdminAccounts"),
+    input = M.ListOrganizationAdminAccountsInput,
+    output = M.ListOrganizationAdminAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/orgs/adminAccountslist" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.detective", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectInvitation = schema.operation({
+    id = id.from("com.amazonaws.detective", "RejectInvitation"),
+    input = M.RejectInvitationInput,
+    output = M.RejectInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/invitation/removal" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartInvestigation = schema.operation({
+    id = id.from("com.amazonaws.detective", "StartInvestigation"),
+    input = M.StartInvestigationInput,
+    output = M.StartInvestigationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/investigations/startInvestigation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMonitoringMember = schema.operation({
+    id = id.from("com.amazonaws.detective", "StartMonitoringMember"),
+    input = M.StartMonitoringMemberInput,
+    output = M.StartMonitoringMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graph/member/monitoringstate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.detective", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.detective", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDatasourcePackages = schema.operation({
+    id = id.from("com.amazonaws.detective", "UpdateDatasourcePackages"),
+    input = M.UpdateDatasourcePackagesInput,
+    output = M.UpdateDatasourcePackagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graph/datasources/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInvestigationState = schema.operation({
+    id = id.from("com.amazonaws.detective", "UpdateInvestigationState"),
+    input = M.UpdateInvestigationStateInput,
+    output = M.UpdateInvestigationStateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/investigations/updateInvestigationState" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOrganizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.detective", "UpdateOrganizationConfiguration"),
+    input = M.UpdateOrganizationConfigurationInput,
+    output = M.UpdateOrganizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/orgs/updateOrganizationConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

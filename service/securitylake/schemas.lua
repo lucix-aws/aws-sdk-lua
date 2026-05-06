@@ -2093,4 +2093,386 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.securitylake", "SecurityLake"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAwsLogSource = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "CreateAwsLogSource"),
+    input = M.CreateAwsLogSourceInput,
+    output = M.CreateAwsLogSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/datalake/logsources/aws" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomLogSource = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "CreateCustomLogSource"),
+    input = M.CreateCustomLogSourceInput,
+    output = M.CreateCustomLogSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/datalake/logsources/custom" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataLake = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "CreateDataLake"),
+    input = M.CreateDataLakeInput,
+    output = M.CreateDataLakeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/datalake" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataLakeExceptionSubscription = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "CreateDataLakeExceptionSubscription"),
+    input = M.CreateDataLakeExceptionSubscriptionInput,
+    output = M.CreateDataLakeExceptionSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/datalake/exceptions/subscription" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataLakeOrganizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "CreateDataLakeOrganizationConfiguration"),
+    input = M.CreateDataLakeOrganizationConfigurationInput,
+    output = M.CreateDataLakeOrganizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/datalake/organization/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSubscriber = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "CreateSubscriber"),
+    input = M.CreateSubscriberInput,
+    output = M.CreateSubscriberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/subscribers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSubscriberNotification = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "CreateSubscriberNotification"),
+    input = M.CreateSubscriberNotificationInput,
+    output = M.CreateSubscriberNotificationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/subscribers/{subscriberId}/notification" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAwsLogSource = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "DeleteAwsLogSource"),
+    input = M.DeleteAwsLogSourceInput,
+    output = M.DeleteAwsLogSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/datalake/logsources/aws/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomLogSource = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "DeleteCustomLogSource"),
+    input = M.DeleteCustomLogSourceInput,
+    output = M.DeleteCustomLogSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/datalake/logsources/custom/{sourceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataLake = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "DeleteDataLake"),
+    input = M.DeleteDataLakeInput,
+    output = M.DeleteDataLakeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/datalake/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataLakeExceptionSubscription = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "DeleteDataLakeExceptionSubscription"),
+    input = M.DeleteDataLakeExceptionSubscriptionInput,
+    output = M.DeleteDataLakeExceptionSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/datalake/exceptions/subscription" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataLakeOrganizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "DeleteDataLakeOrganizationConfiguration"),
+    input = M.DeleteDataLakeOrganizationConfigurationInput,
+    output = M.DeleteDataLakeOrganizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/datalake/organization/configuration/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSubscriber = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "DeleteSubscriber"),
+    input = M.DeleteSubscriberInput,
+    output = M.DeleteSubscriberOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/subscribers/{subscriberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSubscriberNotification = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "DeleteSubscriberNotification"),
+    input = M.DeleteSubscriberNotificationInput,
+    output = M.DeleteSubscriberNotificationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/subscribers/{subscriberId}/notification" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterDataLakeDelegatedAdministrator = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "DeregisterDataLakeDelegatedAdministrator"),
+    input = M.DeregisterDataLakeDelegatedAdministratorInput,
+    output = M.DeregisterDataLakeDelegatedAdministratorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/datalake/delegate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataLakeExceptionSubscription = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "GetDataLakeExceptionSubscription"),
+    input = M.GetDataLakeExceptionSubscriptionInput,
+    output = M.GetDataLakeExceptionSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/datalake/exceptions/subscription" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataLakeOrganizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "GetDataLakeOrganizationConfiguration"),
+    input = M.GetDataLakeOrganizationConfigurationInput,
+    output = M.GetDataLakeOrganizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/datalake/organization/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataLakeSources = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "GetDataLakeSources"),
+    input = M.GetDataLakeSourcesInput,
+    output = M.GetDataLakeSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/datalake/sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSubscriber = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "GetSubscriber"),
+    input = M.GetSubscriberInput,
+    output = M.GetSubscriberOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/subscribers/{subscriberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataLakeExceptions = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "ListDataLakeExceptions"),
+    input = M.ListDataLakeExceptionsInput,
+    output = M.ListDataLakeExceptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/datalake/exceptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataLakes = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "ListDataLakes"),
+    input = M.ListDataLakesInput,
+    output = M.ListDataLakesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/datalakes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLogSources = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "ListLogSources"),
+    input = M.ListLogSourcesInput,
+    output = M.ListLogSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/datalake/logsources/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubscribers = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "ListSubscribers"),
+    input = M.ListSubscribersInput,
+    output = M.ListSubscribersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/subscribers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterDataLakeDelegatedAdministrator = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "RegisterDataLakeDelegatedAdministrator"),
+    input = M.RegisterDataLakeDelegatedAdministratorInput,
+    output = M.RegisterDataLakeDelegatedAdministratorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/datalake/delegate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataLake = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "UpdateDataLake"),
+    input = M.UpdateDataLakeInput,
+    output = M.UpdateDataLakeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/datalake" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataLakeExceptionSubscription = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "UpdateDataLakeExceptionSubscription"),
+    input = M.UpdateDataLakeExceptionSubscriptionInput,
+    output = M.UpdateDataLakeExceptionSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/datalake/exceptions/subscription" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSubscriber = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "UpdateSubscriber"),
+    input = M.UpdateSubscriberInput,
+    output = M.UpdateSubscriberOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/subscribers/{subscriberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSubscriberNotification = schema.operation({
+    id = id.from("com.amazonaws.securitylake", "UpdateSubscriberNotification"),
+    input = M.UpdateSubscriberNotificationInput,
+    output = M.UpdateSubscriberNotificationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/subscribers/{subscriberId}/notification" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

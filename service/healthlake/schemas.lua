@@ -1416,4 +1416,157 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.healthlake", "HealthLake"),
+    version = "2017-07-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFHIRDatastore = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "CreateFHIRDatastore"),
+    input = M.CreateFHIRDatastoreInput,
+    output = M.CreateFHIRDatastoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFHIRDatastore = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "DeleteFHIRDatastore"),
+    input = M.DeleteFHIRDatastoreInput,
+    output = M.DeleteFHIRDatastoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFHIRDatastore = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "DescribeFHIRDatastore"),
+    input = M.DescribeFHIRDatastoreInput,
+    output = M.DescribeFHIRDatastoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFHIRExportJob = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "DescribeFHIRExportJob"),
+    input = M.DescribeFHIRExportJobInput,
+    output = M.DescribeFHIRExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFHIRImportJob = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "DescribeFHIRImportJob"),
+    input = M.DescribeFHIRImportJobInput,
+    output = M.DescribeFHIRImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFHIRDatastores = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "ListFHIRDatastores"),
+    input = M.ListFHIRDatastoresInput,
+    output = M.ListFHIRDatastoresOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFHIRExportJobs = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "ListFHIRExportJobs"),
+    input = M.ListFHIRExportJobsInput,
+    output = M.ListFHIRExportJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFHIRImportJobs = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "ListFHIRImportJobs"),
+    input = M.ListFHIRImportJobsInput,
+    output = M.ListFHIRImportJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFHIRExportJob = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "StartFHIRExportJob"),
+    input = M.StartFHIRExportJobInput,
+    output = M.StartFHIRExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFHIRImportJob = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "StartFHIRImportJob"),
+    input = M.StartFHIRImportJobInput,
+    output = M.StartFHIRImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

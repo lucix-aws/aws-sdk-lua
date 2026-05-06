@@ -1071,4 +1071,145 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sts", "AWSSecurityTokenServiceV20110615"),
+    version = "2011-06-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
+        },
+    },
+})
+
+M.AssumeRole = schema.operation({
+    id = id.from("com.amazonaws.sts", "AssumeRole"),
+    input = M.AssumeRoleInput,
+    output = M.AssumeRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
+        },
+    },
+})
+
+M.AssumeRoleWithSAML = schema.operation({
+    id = id.from("com.amazonaws.sts", "AssumeRoleWithSAML"),
+    input = M.AssumeRoleWithSAMLInput,
+    output = M.AssumeRoleWithSAMLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.AssumeRoleWithWebIdentity = schema.operation({
+    id = id.from("com.amazonaws.sts", "AssumeRoleWithWebIdentity"),
+    input = M.AssumeRoleWithWebIdentityInput,
+    output = M.AssumeRoleWithWebIdentityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.AssumeRoot = schema.operation({
+    id = id.from("com.amazonaws.sts", "AssumeRoot"),
+    input = M.AssumeRootInput,
+    output = M.AssumeRootOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
+        },
+    },
+})
+
+M.DecodeAuthorizationMessage = schema.operation({
+    id = id.from("com.amazonaws.sts", "DecodeAuthorizationMessage"),
+    input = M.DecodeAuthorizationMessageInput,
+    output = M.DecodeAuthorizationMessageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
+        },
+    },
+})
+
+M.GetAccessKeyInfo = schema.operation({
+    id = id.from("com.amazonaws.sts", "GetAccessKeyInfo"),
+    input = M.GetAccessKeyInfoInput,
+    output = M.GetAccessKeyInfoOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
+        },
+    },
+})
+
+M.GetCallerIdentity = schema.operation({
+    id = id.from("com.amazonaws.sts", "GetCallerIdentity"),
+    input = M.GetCallerIdentityInput,
+    output = M.GetCallerIdentityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
+        },
+    },
+})
+
+M.GetDelegatedAccessToken = schema.operation({
+    id = id.from("com.amazonaws.sts", "GetDelegatedAccessToken"),
+    input = M.GetDelegatedAccessTokenInput,
+    output = M.GetDelegatedAccessTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
+        },
+    },
+})
+
+M.GetFederationToken = schema.operation({
+    id = id.from("com.amazonaws.sts", "GetFederationToken"),
+    input = M.GetFederationTokenInput,
+    output = M.GetFederationTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
+        },
+    },
+})
+
+M.GetSessionToken = schema.operation({
+    id = id.from("com.amazonaws.sts", "GetSessionToken"),
+    input = M.GetSessionTokenInput,
+    output = M.GetSessionTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
+        },
+    },
+})
+
+M.GetWebIdentityToken = schema.operation({
+    id = id.from("com.amazonaws.sts", "GetWebIdentityToken"),
+    input = M.GetWebIdentityTokenInput,
+    output = M.GetWebIdentityTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
+        },
+    },
+})
+
 return M

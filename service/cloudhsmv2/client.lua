@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cloudhsmv2.endpoint_rules")
 local schemas = require("cloudhsmv2.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cloudhsm", signing_region = cfg.region } }
                 else
@@ -49,237 +52,75 @@ function M.new(cfg)
 end
 
 function Client:copyBackupToRegion(input, options)
-    return self:invokeOperation(input, {
-        name = "CopyBackupToRegion",
-        input_schema = schemas.CopyBackupToRegionInput,
-        output_schema = schemas.CopyBackupToRegionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CopyBackupToRegion, input, options)
 end
 
 function Client:createCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCluster",
-        input_schema = schemas.CreateClusterInput,
-        output_schema = schemas.CreateClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCluster, input, options)
 end
 
 function Client:createHsm(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateHsm",
-        input_schema = schemas.CreateHsmInput,
-        output_schema = schemas.CreateHsmOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateHsm, input, options)
 end
 
 function Client:deleteBackup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteBackup",
-        input_schema = schemas.DeleteBackupInput,
-        output_schema = schemas.DeleteBackupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteBackup, input, options)
 end
 
 function Client:deleteCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCluster",
-        input_schema = schemas.DeleteClusterInput,
-        output_schema = schemas.DeleteClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCluster, input, options)
 end
 
 function Client:deleteHsm(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteHsm",
-        input_schema = schemas.DeleteHsmInput,
-        output_schema = schemas.DeleteHsmOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteHsm, input, options)
 end
 
 function Client:deleteResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResourcePolicy",
-        input_schema = schemas.DeleteResourcePolicyInput,
-        output_schema = schemas.DeleteResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options)
 end
 
 function Client:describeBackups(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeBackups",
-        input_schema = schemas.DescribeBackupsInput,
-        output_schema = schemas.DescribeBackupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeBackups, input, options)
 end
 
 function Client:describeClusters(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeClusters",
-        input_schema = schemas.DescribeClustersInput,
-        output_schema = schemas.DescribeClustersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeClusters, input, options)
 end
 
 function Client:getResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourcePolicy",
-        input_schema = schemas.GetResourcePolicyInput,
-        output_schema = schemas.GetResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options)
 end
 
 function Client:initializeCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "InitializeCluster",
-        input_schema = schemas.InitializeClusterInput,
-        output_schema = schemas.InitializeClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InitializeCluster, input, options)
 end
 
 function Client:listTags(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTags",
-        input_schema = schemas.ListTagsInput,
-        output_schema = schemas.ListTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTags, input, options)
 end
 
 function Client:modifyBackupAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyBackupAttributes",
-        input_schema = schemas.ModifyBackupAttributesInput,
-        output_schema = schemas.ModifyBackupAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyBackupAttributes, input, options)
 end
 
 function Client:modifyCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyCluster",
-        input_schema = schemas.ModifyClusterInput,
-        output_schema = schemas.ModifyClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyCluster, input, options)
 end
 
 function Client:putResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutResourcePolicy",
-        input_schema = schemas.PutResourcePolicyInput,
-        output_schema = schemas.PutResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options)
 end
 
 function Client:restoreBackup(input, options)
-    return self:invokeOperation(input, {
-        name = "RestoreBackup",
-        input_schema = schemas.RestoreBackupInput,
-        output_schema = schemas.RestoreBackupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RestoreBackup, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 return M

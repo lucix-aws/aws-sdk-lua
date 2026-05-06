@@ -15804,4 +15804,1058 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.guardduty", "GuardDutyAPIService"),
+    version = "2017-11-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptAdministratorInvitation = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "AcceptAdministratorInvitation"),
+    input = M.AcceptAdministratorInvitationInput,
+    output = M.AcceptAdministratorInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/administrator" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptInvitation = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "AcceptInvitation"),
+    input = M.AcceptInvitationInput,
+    output = M.AcceptInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/master" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ArchiveFindings = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ArchiveFindings"),
+    input = M.ArchiveFindingsInput,
+    output = M.ArchiveFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/findings/archive" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDetector = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "CreateDetector"),
+    input = M.CreateDetectorInput,
+    output = M.CreateDetectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFilter = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "CreateFilter"),
+    input = M.CreateFilterInput,
+    output = M.CreateFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/filter" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIPSet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "CreateIPSet"),
+    input = M.CreateIPSetInput,
+    output = M.CreateIPSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/ipset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMalwareProtectionPlan = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "CreateMalwareProtectionPlan"),
+    input = M.CreateMalwareProtectionPlanInput,
+    output = M.CreateMalwareProtectionPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/malware-protection-plan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMembers = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "CreateMembers"),
+    input = M.CreateMembersInput,
+    output = M.CreateMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/member" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePublishingDestination = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "CreatePublishingDestination"),
+    input = M.CreatePublishingDestinationInput,
+    output = M.CreatePublishingDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/publishingDestination" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSampleFindings = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "CreateSampleFindings"),
+    input = M.CreateSampleFindingsInput,
+    output = M.CreateSampleFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/findings/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateThreatEntitySet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "CreateThreatEntitySet"),
+    input = M.CreateThreatEntitySetInput,
+    output = M.CreateThreatEntitySetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/threatentityset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateThreatIntelSet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "CreateThreatIntelSet"),
+    input = M.CreateThreatIntelSetInput,
+    output = M.CreateThreatIntelSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/threatintelset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrustedEntitySet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "CreateTrustedEntitySet"),
+    input = M.CreateTrustedEntitySetInput,
+    output = M.CreateTrustedEntitySetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/trustedentityset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeclineInvitations = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DeclineInvitations"),
+    input = M.DeclineInvitationsInput,
+    output = M.DeclineInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/invitation/decline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDetector = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DeleteDetector"),
+    input = M.DeleteDetectorInput,
+    output = M.DeleteDetectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/detector/{DetectorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFilter = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DeleteFilter"),
+    input = M.DeleteFilterInput,
+    output = M.DeleteFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/detector/{DetectorId}/filter/{FilterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInvitations = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DeleteInvitations"),
+    input = M.DeleteInvitationsInput,
+    output = M.DeleteInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/invitation/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIPSet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DeleteIPSet"),
+    input = M.DeleteIPSetInput,
+    output = M.DeleteIPSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/detector/{DetectorId}/ipset/{IpSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMalwareProtectionPlan = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DeleteMalwareProtectionPlan"),
+    input = M.DeleteMalwareProtectionPlanInput,
+    output = M.DeleteMalwareProtectionPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/malware-protection-plan/{MalwareProtectionPlanId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMembers = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DeleteMembers"),
+    input = M.DeleteMembersInput,
+    output = M.DeleteMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/member/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePublishingDestination = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DeletePublishingDestination"),
+    input = M.DeletePublishingDestinationInput,
+    output = M.DeletePublishingDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/detector/{DetectorId}/publishingDestination/{DestinationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteThreatEntitySet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DeleteThreatEntitySet"),
+    input = M.DeleteThreatEntitySetInput,
+    output = M.DeleteThreatEntitySetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/detector/{DetectorId}/threatentityset/{ThreatEntitySetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteThreatIntelSet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DeleteThreatIntelSet"),
+    input = M.DeleteThreatIntelSetInput,
+    output = M.DeleteThreatIntelSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/detector/{DetectorId}/threatintelset/{ThreatIntelSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrustedEntitySet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DeleteTrustedEntitySet"),
+    input = M.DeleteTrustedEntitySetInput,
+    output = M.DeleteTrustedEntitySetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/detector/{DetectorId}/trustedentityset/{TrustedEntitySetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMalwareScans = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DescribeMalwareScans"),
+    input = M.DescribeMalwareScansInput,
+    output = M.DescribeMalwareScansOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/malware-scans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrganizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DescribeOrganizationConfiguration"),
+    input = M.DescribeOrganizationConfigurationInput,
+    output = M.DescribeOrganizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/admin" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePublishingDestination = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DescribePublishingDestination"),
+    input = M.DescribePublishingDestinationInput,
+    output = M.DescribePublishingDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/publishingDestination/{DestinationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableOrganizationAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DisableOrganizationAdminAccount"),
+    input = M.DisableOrganizationAdminAccountInput,
+    output = M.DisableOrganizationAdminAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/admin/disable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFromAdministratorAccount = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DisassociateFromAdministratorAccount"),
+    input = M.DisassociateFromAdministratorAccountInput,
+    output = M.DisassociateFromAdministratorAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/administrator/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFromMasterAccount = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DisassociateFromMasterAccount"),
+    input = M.DisassociateFromMasterAccountInput,
+    output = M.DisassociateFromMasterAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/master/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateMembers = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DisassociateMembers"),
+    input = M.DisassociateMembersInput,
+    output = M.DisassociateMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/member/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableOrganizationAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "EnableOrganizationAdminAccount"),
+    input = M.EnableOrganizationAdminAccountInput,
+    output = M.EnableOrganizationAdminAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/admin/enable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAdministratorAccount = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetAdministratorAccount"),
+    input = M.GetAdministratorAccountInput,
+    output = M.GetAdministratorAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/administrator" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCoverageStatistics = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetCoverageStatistics"),
+    input = M.GetCoverageStatisticsInput,
+    output = M.GetCoverageStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/coverage/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDetector = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetDetector"),
+    input = M.GetDetectorInput,
+    output = M.GetDetectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFilter = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetFilter"),
+    input = M.GetFilterInput,
+    output = M.GetFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/filter/{FilterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindings = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetFindings"),
+    input = M.GetFindingsInput,
+    output = M.GetFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/findings/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingsStatistics = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetFindingsStatistics"),
+    input = M.GetFindingsStatisticsInput,
+    output = M.GetFindingsStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/findings/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInvitationsCount = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetInvitationsCount"),
+    input = M.GetInvitationsCountInput,
+    output = M.GetInvitationsCountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/invitation/count" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIPSet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetIPSet"),
+    input = M.GetIPSetInput,
+    output = M.GetIPSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/ipset/{IpSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMalwareProtectionPlan = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetMalwareProtectionPlan"),
+    input = M.GetMalwareProtectionPlanInput,
+    output = M.GetMalwareProtectionPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/malware-protection-plan/{MalwareProtectionPlanId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMalwareScan = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetMalwareScan"),
+    input = M.GetMalwareScanInput,
+    output = M.GetMalwareScanOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/malware-scan/{ScanId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMalwareScanSettings = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetMalwareScanSettings"),
+    input = M.GetMalwareScanSettingsInput,
+    output = M.GetMalwareScanSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/malware-scan-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMasterAccount = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetMasterAccount"),
+    input = M.GetMasterAccountInput,
+    output = M.GetMasterAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/master" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMemberDetectors = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetMemberDetectors"),
+    input = M.GetMemberDetectorsInput,
+    output = M.GetMemberDetectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/member/detector/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMembers = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetMembers"),
+    input = M.GetMembersInput,
+    output = M.GetMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/member/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOrganizationStatistics = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetOrganizationStatistics"),
+    input = M.GetOrganizationStatisticsInput,
+    output = M.GetOrganizationStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/organization/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRemainingFreeTrialDays = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetRemainingFreeTrialDays"),
+    input = M.GetRemainingFreeTrialDaysInput,
+    output = M.GetRemainingFreeTrialDaysOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/freeTrial/daysRemaining" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetThreatEntitySet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetThreatEntitySet"),
+    input = M.GetThreatEntitySetInput,
+    output = M.GetThreatEntitySetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/threatentityset/{ThreatEntitySetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetThreatIntelSet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetThreatIntelSet"),
+    input = M.GetThreatIntelSetInput,
+    output = M.GetThreatIntelSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/threatintelset/{ThreatIntelSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrustedEntitySet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetTrustedEntitySet"),
+    input = M.GetTrustedEntitySetInput,
+    output = M.GetTrustedEntitySetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/trustedentityset/{TrustedEntitySetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUsageStatistics = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetUsageStatistics"),
+    input = M.GetUsageStatisticsInput,
+    output = M.GetUsageStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/usage/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InviteMembers = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "InviteMembers"),
+    input = M.InviteMembersInput,
+    output = M.InviteMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/member/invite" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCoverage = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListCoverage"),
+    input = M.ListCoverageInput,
+    output = M.ListCoverageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/coverage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDetectors = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListDetectors"),
+    input = M.ListDetectorsInput,
+    output = M.ListDetectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFilters = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListFilters"),
+    input = M.ListFiltersInput,
+    output = M.ListFiltersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/filter" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFindings = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListFindings"),
+    input = M.ListFindingsInput,
+    output = M.ListFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/findings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvitations = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListInvitations"),
+    input = M.ListInvitationsInput,
+    output = M.ListInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/invitation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIPSets = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListIPSets"),
+    input = M.ListIPSetsInput,
+    output = M.ListIPSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/ipset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMalwareProtectionPlans = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListMalwareProtectionPlans"),
+    input = M.ListMalwareProtectionPlansInput,
+    output = M.ListMalwareProtectionPlansOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/malware-protection-plan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMalwareScans = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListMalwareScans"),
+    input = M.ListMalwareScansInput,
+    output = M.ListMalwareScansOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/malware-scan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMembers = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListMembers"),
+    input = M.ListMembersInput,
+    output = M.ListMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/member" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOrganizationAdminAccounts = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListOrganizationAdminAccounts"),
+    input = M.ListOrganizationAdminAccountsInput,
+    output = M.ListOrganizationAdminAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/admin" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPublishingDestinations = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListPublishingDestinations"),
+    input = M.ListPublishingDestinationsInput,
+    output = M.ListPublishingDestinationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/publishingDestination" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThreatEntitySets = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListThreatEntitySets"),
+    input = M.ListThreatEntitySetsInput,
+    output = M.ListThreatEntitySetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/threatentityset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThreatIntelSets = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListThreatIntelSets"),
+    input = M.ListThreatIntelSetsInput,
+    output = M.ListThreatIntelSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/threatintelset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrustedEntitySets = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListTrustedEntitySets"),
+    input = M.ListTrustedEntitySetsInput,
+    output = M.ListTrustedEntitySetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/trustedentityset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendObjectMalwareScan = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "SendObjectMalwareScan"),
+    input = M.SendObjectMalwareScanInput,
+    output = M.SendObjectMalwareScanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/object-malware-scan/send" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMalwareScan = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "StartMalwareScan"),
+    input = M.StartMalwareScanInput,
+    output = M.StartMalwareScanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/malware-scan/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMonitoringMembers = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "StartMonitoringMembers"),
+    input = M.StartMonitoringMembersInput,
+    output = M.StartMonitoringMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/member/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopMonitoringMembers = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "StopMonitoringMembers"),
+    input = M.StopMonitoringMembersInput,
+    output = M.StopMonitoringMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/member/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UnarchiveFindings = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UnarchiveFindings"),
+    input = M.UnarchiveFindingsInput,
+    output = M.UnarchiveFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/findings/unarchive" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDetector = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UpdateDetector"),
+    input = M.UpdateDetectorInput,
+    output = M.UpdateDetectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFilter = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UpdateFilter"),
+    input = M.UpdateFilterInput,
+    output = M.UpdateFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/filter/{FilterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFindingsFeedback = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UpdateFindingsFeedback"),
+    input = M.UpdateFindingsFeedbackInput,
+    output = M.UpdateFindingsFeedbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/findings/feedback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIPSet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UpdateIPSet"),
+    input = M.UpdateIPSetInput,
+    output = M.UpdateIPSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/ipset/{IpSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMalwareProtectionPlan = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UpdateMalwareProtectionPlan"),
+    input = M.UpdateMalwareProtectionPlanInput,
+    output = M.UpdateMalwareProtectionPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/malware-protection-plan/{MalwareProtectionPlanId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMalwareScanSettings = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UpdateMalwareScanSettings"),
+    input = M.UpdateMalwareScanSettingsInput,
+    output = M.UpdateMalwareScanSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/malware-scan-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMemberDetectors = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UpdateMemberDetectors"),
+    input = M.UpdateMemberDetectorsInput,
+    output = M.UpdateMemberDetectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/member/detector/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOrganizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UpdateOrganizationConfiguration"),
+    input = M.UpdateOrganizationConfigurationInput,
+    output = M.UpdateOrganizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/admin" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePublishingDestination = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UpdatePublishingDestination"),
+    input = M.UpdatePublishingDestinationInput,
+    output = M.UpdatePublishingDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/publishingDestination/{DestinationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateThreatEntitySet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UpdateThreatEntitySet"),
+    input = M.UpdateThreatEntitySetInput,
+    output = M.UpdateThreatEntitySetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/threatentityset/{ThreatEntitySetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateThreatIntelSet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UpdateThreatIntelSet"),
+    input = M.UpdateThreatIntelSetInput,
+    output = M.UpdateThreatIntelSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/threatintelset/{ThreatIntelSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrustedEntitySet = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UpdateTrustedEntitySet"),
+    input = M.UpdateTrustedEntitySetInput,
+    output = M.UpdateTrustedEntitySetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/trustedentityset/{TrustedEntitySetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

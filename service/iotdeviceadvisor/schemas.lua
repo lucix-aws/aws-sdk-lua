@@ -1232,4 +1232,182 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "IotSenateService"),
+    version = "2020-09-18",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSuiteDefinition = schema.operation({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "CreateSuiteDefinition"),
+    input = M.CreateSuiteDefinitionInput,
+    output = M.CreateSuiteDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/suiteDefinitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSuiteDefinition = schema.operation({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "DeleteSuiteDefinition"),
+    input = M.DeleteSuiteDefinitionInput,
+    output = M.DeleteSuiteDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/suiteDefinitions/{suiteDefinitionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEndpoint = schema.operation({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "GetEndpoint"),
+    input = M.GetEndpointInput,
+    output = M.GetEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/endpoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSuiteDefinition = schema.operation({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "GetSuiteDefinition"),
+    input = M.GetSuiteDefinitionInput,
+    output = M.GetSuiteDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/suiteDefinitions/{suiteDefinitionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSuiteRun = schema.operation({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "GetSuiteRun"),
+    input = M.GetSuiteRunInput,
+    output = M.GetSuiteRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/suiteDefinitions/{suiteDefinitionId}/suiteRuns/{suiteRunId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSuiteRunReport = schema.operation({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "GetSuiteRunReport"),
+    input = M.GetSuiteRunReportInput,
+    output = M.GetSuiteRunReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/suiteDefinitions/{suiteDefinitionId}/suiteRuns/{suiteRunId}/report" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSuiteDefinitions = schema.operation({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "ListSuiteDefinitions"),
+    input = M.ListSuiteDefinitionsInput,
+    output = M.ListSuiteDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/suiteDefinitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSuiteRuns = schema.operation({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "ListSuiteRuns"),
+    input = M.ListSuiteRunsInput,
+    output = M.ListSuiteRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/suiteRuns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSuiteRun = schema.operation({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "StartSuiteRun"),
+    input = M.StartSuiteRunInput,
+    output = M.StartSuiteRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/suiteDefinitions/{suiteDefinitionId}/suiteRuns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopSuiteRun = schema.operation({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "StopSuiteRun"),
+    input = M.StopSuiteRunInput,
+    output = M.StopSuiteRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/suiteDefinitions/{suiteDefinitionId}/suiteRuns/{suiteRunId}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSuiteDefinition = schema.operation({
+    id = id.from("com.amazonaws.iotdeviceadvisor", "UpdateSuiteDefinition"),
+    input = M.UpdateSuiteDefinitionInput,
+    output = M.UpdateSuiteDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/suiteDefinitions/{suiteDefinitionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

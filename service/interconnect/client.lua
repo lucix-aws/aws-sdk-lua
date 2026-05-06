@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("interconnect.endpoint_rules")
 local schemas = require("interconnect.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "interconnect", signing_region = cfg.region } }
                 else
@@ -49,172 +52,55 @@ function M.new(cfg)
 end
 
 function Client:acceptConnectionProposal(input, options)
-    return self:invokeOperation(input, {
-        name = "AcceptConnectionProposal",
-        input_schema = schemas.AcceptConnectionProposalInput,
-        output_schema = schemas.AcceptConnectionProposalOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AcceptConnectionProposal, input, options)
 end
 
 function Client:createConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConnection",
-        input_schema = schemas.CreateConnectionInput,
-        output_schema = schemas.CreateConnectionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConnection, input, options)
 end
 
 function Client:deleteConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConnection",
-        input_schema = schemas.DeleteConnectionInput,
-        output_schema = schemas.DeleteConnectionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConnection, input, options)
 end
 
 function Client:describeConnectionProposal(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeConnectionProposal",
-        input_schema = schemas.DescribeConnectionProposalInput,
-        output_schema = schemas.DescribeConnectionProposalOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeConnectionProposal, input, options)
 end
 
 function Client:getConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConnection",
-        input_schema = schemas.GetConnectionInput,
-        output_schema = schemas.GetConnectionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConnection, input, options)
 end
 
 function Client:getEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEnvironment",
-        input_schema = schemas.GetEnvironmentInput,
-        output_schema = schemas.GetEnvironmentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEnvironment, input, options)
 end
 
 function Client:listAttachPoints(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAttachPoints",
-        input_schema = schemas.ListAttachPointsInput,
-        output_schema = schemas.ListAttachPointsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAttachPoints, input, options)
 end
 
 function Client:listConnections(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConnections",
-        input_schema = schemas.ListConnectionsInput,
-        output_schema = schemas.ListConnectionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConnections, input, options)
 end
 
 function Client:listEnvironments(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEnvironments",
-        input_schema = schemas.ListEnvironmentsInput,
-        output_schema = schemas.ListEnvironmentsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEnvironments, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConnection",
-        input_schema = schemas.UpdateConnectionInput,
-        output_schema = schemas.UpdateConnectionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConnection, input, options)
 end
 
 return M

@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("costoptimizationhub.endpoint_rules")
 local schemas = require("costoptimizationhub.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cost-optimization-hub", signing_region = cfg.region } }
                 else
@@ -49,107 +52,35 @@ function M.new(cfg)
 end
 
 function Client:getPreferences(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPreferences",
-        input_schema = schemas.GetPreferencesInput,
-        output_schema = schemas.GetPreferencesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPreferences, input, options)
 end
 
 function Client:getRecommendation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRecommendation",
-        input_schema = schemas.GetRecommendationInput,
-        output_schema = schemas.GetRecommendationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRecommendation, input, options)
 end
 
 function Client:listEfficiencyMetrics(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEfficiencyMetrics",
-        input_schema = schemas.ListEfficiencyMetricsInput,
-        output_schema = schemas.ListEfficiencyMetricsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEfficiencyMetrics, input, options)
 end
 
 function Client:listEnrollmentStatuses(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEnrollmentStatuses",
-        input_schema = schemas.ListEnrollmentStatusesInput,
-        output_schema = schemas.ListEnrollmentStatusesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEnrollmentStatuses, input, options)
 end
 
 function Client:listRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRecommendations",
-        input_schema = schemas.ListRecommendationsInput,
-        output_schema = schemas.ListRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRecommendations, input, options)
 end
 
 function Client:listRecommendationSummaries(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRecommendationSummaries",
-        input_schema = schemas.ListRecommendationSummariesInput,
-        output_schema = schemas.ListRecommendationSummariesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRecommendationSummaries, input, options)
 end
 
 function Client:updateEnrollmentStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateEnrollmentStatus",
-        input_schema = schemas.UpdateEnrollmentStatusInput,
-        output_schema = schemas.UpdateEnrollmentStatusOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateEnrollmentStatus, input, options)
 end
 
 function Client:updatePreferences(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePreferences",
-        input_schema = schemas.UpdatePreferencesInput,
-        output_schema = schemas.UpdatePreferencesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePreferences, input, options)
 end
 
 return M

@@ -3271,4 +3271,386 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.efs", "MagnolioAPIService_v20150201"),
+    version = "2015-02-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccessPoint = schema.operation({
+    id = id.from("com.amazonaws.efs", "CreateAccessPoint"),
+    input = M.CreateAccessPointInput,
+    output = M.CreateAccessPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-02-01/access-points" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFileSystem = schema.operation({
+    id = id.from("com.amazonaws.efs", "CreateFileSystem"),
+    input = M.CreateFileSystemInput,
+    output = M.CreateFileSystemOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-02-01/file-systems" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMountTarget = schema.operation({
+    id = id.from("com.amazonaws.efs", "CreateMountTarget"),
+    input = M.CreateMountTargetInput,
+    output = M.CreateMountTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-02-01/mount-targets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReplicationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.efs", "CreateReplicationConfiguration"),
+    input = M.CreateReplicationConfigurationInput,
+    output = M.CreateReplicationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-02-01/file-systems/{SourceFileSystemId}/replication-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTags = schema.operation({
+    id = id.from("com.amazonaws.efs", "CreateTags"),
+    input = M.CreateTagsInput,
+    output = M.CreateTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-02-01/create-tags/{FileSystemId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccessPoint = schema.operation({
+    id = id.from("com.amazonaws.efs", "DeleteAccessPoint"),
+    input = M.DeleteAccessPointInput,
+    output = M.DeleteAccessPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-02-01/access-points/{AccessPointId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFileSystem = schema.operation({
+    id = id.from("com.amazonaws.efs", "DeleteFileSystem"),
+    input = M.DeleteFileSystemInput,
+    output = M.DeleteFileSystemOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-02-01/file-systems/{FileSystemId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFileSystemPolicy = schema.operation({
+    id = id.from("com.amazonaws.efs", "DeleteFileSystemPolicy"),
+    input = M.DeleteFileSystemPolicyInput,
+    output = M.DeleteFileSystemPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-02-01/file-systems/{FileSystemId}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMountTarget = schema.operation({
+    id = id.from("com.amazonaws.efs", "DeleteMountTarget"),
+    input = M.DeleteMountTargetInput,
+    output = M.DeleteMountTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-02-01/mount-targets/{MountTargetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReplicationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.efs", "DeleteReplicationConfiguration"),
+    input = M.DeleteReplicationConfigurationInput,
+    output = M.DeleteReplicationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-02-01/file-systems/{SourceFileSystemId}/replication-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTags = schema.operation({
+    id = id.from("com.amazonaws.efs", "DeleteTags"),
+    input = M.DeleteTagsInput,
+    output = M.DeleteTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-02-01/delete-tags/{FileSystemId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccessPoints = schema.operation({
+    id = id.from("com.amazonaws.efs", "DescribeAccessPoints"),
+    input = M.DescribeAccessPointsInput,
+    output = M.DescribeAccessPointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-02-01/access-points" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountPreferences = schema.operation({
+    id = id.from("com.amazonaws.efs", "DescribeAccountPreferences"),
+    input = M.DescribeAccountPreferencesInput,
+    output = M.DescribeAccountPreferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-02-01/account-preferences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBackupPolicy = schema.operation({
+    id = id.from("com.amazonaws.efs", "DescribeBackupPolicy"),
+    input = M.DescribeBackupPolicyInput,
+    output = M.DescribeBackupPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-02-01/file-systems/{FileSystemId}/backup-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFileSystemPolicy = schema.operation({
+    id = id.from("com.amazonaws.efs", "DescribeFileSystemPolicy"),
+    input = M.DescribeFileSystemPolicyInput,
+    output = M.DescribeFileSystemPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-02-01/file-systems/{FileSystemId}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFileSystems = schema.operation({
+    id = id.from("com.amazonaws.efs", "DescribeFileSystems"),
+    input = M.DescribeFileSystemsInput,
+    output = M.DescribeFileSystemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-02-01/file-systems" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLifecycleConfiguration = schema.operation({
+    id = id.from("com.amazonaws.efs", "DescribeLifecycleConfiguration"),
+    input = M.DescribeLifecycleConfigurationInput,
+    output = M.DescribeLifecycleConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-02-01/file-systems/{FileSystemId}/lifecycle-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMountTargets = schema.operation({
+    id = id.from("com.amazonaws.efs", "DescribeMountTargets"),
+    input = M.DescribeMountTargetsInput,
+    output = M.DescribeMountTargetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-02-01/mount-targets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMountTargetSecurityGroups = schema.operation({
+    id = id.from("com.amazonaws.efs", "DescribeMountTargetSecurityGroups"),
+    input = M.DescribeMountTargetSecurityGroupsInput,
+    output = M.DescribeMountTargetSecurityGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-02-01/mount-targets/{MountTargetId}/security-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplicationConfigurations = schema.operation({
+    id = id.from("com.amazonaws.efs", "DescribeReplicationConfigurations"),
+    input = M.DescribeReplicationConfigurationsInput,
+    output = M.DescribeReplicationConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-02-01/file-systems/replication-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTags = schema.operation({
+    id = id.from("com.amazonaws.efs", "DescribeTags"),
+    input = M.DescribeTagsInput,
+    output = M.DescribeTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-02-01/tags/{FileSystemId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.efs", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-02-01/resource-tags/{ResourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyMountTargetSecurityGroups = schema.operation({
+    id = id.from("com.amazonaws.efs", "ModifyMountTargetSecurityGroups"),
+    input = M.ModifyMountTargetSecurityGroupsInput,
+    output = M.ModifyMountTargetSecurityGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2015-02-01/mount-targets/{MountTargetId}/security-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountPreferences = schema.operation({
+    id = id.from("com.amazonaws.efs", "PutAccountPreferences"),
+    input = M.PutAccountPreferencesInput,
+    output = M.PutAccountPreferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2015-02-01/account-preferences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutBackupPolicy = schema.operation({
+    id = id.from("com.amazonaws.efs", "PutBackupPolicy"),
+    input = M.PutBackupPolicyInput,
+    output = M.PutBackupPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2015-02-01/file-systems/{FileSystemId}/backup-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFileSystemPolicy = schema.operation({
+    id = id.from("com.amazonaws.efs", "PutFileSystemPolicy"),
+    input = M.PutFileSystemPolicyInput,
+    output = M.PutFileSystemPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2015-02-01/file-systems/{FileSystemId}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLifecycleConfiguration = schema.operation({
+    id = id.from("com.amazonaws.efs", "PutLifecycleConfiguration"),
+    input = M.PutLifecycleConfigurationInput,
+    output = M.PutLifecycleConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2015-02-01/file-systems/{FileSystemId}/lifecycle-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.efs", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-02-01/resource-tags/{ResourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.efs", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-02-01/resource-tags/{ResourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFileSystem = schema.operation({
+    id = id.from("com.amazonaws.efs", "UpdateFileSystem"),
+    input = M.UpdateFileSystemInput,
+    output = M.UpdateFileSystemOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2015-02-01/file-systems/{FileSystemId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFileSystemProtection = schema.operation({
+    id = id.from("com.amazonaws.efs", "UpdateFileSystemProtection"),
+    input = M.UpdateFileSystemProtectionInput,
+    output = M.UpdateFileSystemProtectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2015-02-01/file-systems/{FileSystemId}/protection" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

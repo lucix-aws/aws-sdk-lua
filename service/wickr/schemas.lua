@@ -4780,4 +4780,542 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.wickr", "WickrAdminApi"),
+    version = "2024-02-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateUser = schema.operation({
+    id = id.from("com.amazonaws.wickr", "BatchCreateUser"),
+    input = M.BatchCreateUserInput,
+    output = M.BatchCreateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks/{networkId}/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteUser = schema.operation({
+    id = id.from("com.amazonaws.wickr", "BatchDeleteUser"),
+    input = M.BatchDeleteUserInput,
+    output = M.BatchDeleteUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks/{networkId}/users/batch-delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchLookupUserUname = schema.operation({
+    id = id.from("com.amazonaws.wickr", "BatchLookupUserUname"),
+    input = M.BatchLookupUserUnameInput,
+    output = M.BatchLookupUserUnameOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks/{networkId}/users/uname-lookup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchReinviteUser = schema.operation({
+    id = id.from("com.amazonaws.wickr", "BatchReinviteUser"),
+    input = M.BatchReinviteUserInput,
+    output = M.BatchReinviteUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/networks/{networkId}/users/re-invite" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchResetDevicesForUser = schema.operation({
+    id = id.from("com.amazonaws.wickr", "BatchResetDevicesForUser"),
+    input = M.BatchResetDevicesForUserInput,
+    output = M.BatchResetDevicesForUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/networks/{networkId}/users/{userId}/devices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchToggleUserSuspendStatus = schema.operation({
+    id = id.from("com.amazonaws.wickr", "BatchToggleUserSuspendStatus"),
+    input = M.BatchToggleUserSuspendStatusInput,
+    output = M.BatchToggleUserSuspendStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/networks/{networkId}/users/toggleSuspend" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBot = schema.operation({
+    id = id.from("com.amazonaws.wickr", "CreateBot"),
+    input = M.CreateBotInput,
+    output = M.CreateBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks/{networkId}/bots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataRetentionBot = schema.operation({
+    id = id.from("com.amazonaws.wickr", "CreateDataRetentionBot"),
+    input = M.CreateDataRetentionBotInput,
+    output = M.CreateDataRetentionBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks/{networkId}/data-retention-bots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataRetentionBotChallenge = schema.operation({
+    id = id.from("com.amazonaws.wickr", "CreateDataRetentionBotChallenge"),
+    input = M.CreateDataRetentionBotChallengeInput,
+    output = M.CreateDataRetentionBotChallengeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks/{networkId}/data-retention-bots/challenge" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNetwork = schema.operation({
+    id = id.from("com.amazonaws.wickr", "CreateNetwork"),
+    input = M.CreateNetworkInput,
+    output = M.CreateNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSecurityGroup = schema.operation({
+    id = id.from("com.amazonaws.wickr", "CreateSecurityGroup"),
+    input = M.CreateSecurityGroupInput,
+    output = M.CreateSecurityGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks/{networkId}/security-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBot = schema.operation({
+    id = id.from("com.amazonaws.wickr", "DeleteBot"),
+    input = M.DeleteBotInput,
+    output = M.DeleteBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/networks/{networkId}/bots/{botId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataRetentionBot = schema.operation({
+    id = id.from("com.amazonaws.wickr", "DeleteDataRetentionBot"),
+    input = M.DeleteDataRetentionBotInput,
+    output = M.DeleteDataRetentionBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/networks/{networkId}/data-retention-bots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNetwork = schema.operation({
+    id = id.from("com.amazonaws.wickr", "DeleteNetwork"),
+    input = M.DeleteNetworkInput,
+    output = M.DeleteNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/networks/{networkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSecurityGroup = schema.operation({
+    id = id.from("com.amazonaws.wickr", "DeleteSecurityGroup"),
+    input = M.DeleteSecurityGroupInput,
+    output = M.DeleteSecurityGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/networks/{networkId}/security-groups/{groupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBot = schema.operation({
+    id = id.from("com.amazonaws.wickr", "GetBot"),
+    input = M.GetBotInput,
+    output = M.GetBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/bots/{botId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBotsCount = schema.operation({
+    id = id.from("com.amazonaws.wickr", "GetBotsCount"),
+    input = M.GetBotsCountInput,
+    output = M.GetBotsCountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/bots/count" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataRetentionBot = schema.operation({
+    id = id.from("com.amazonaws.wickr", "GetDataRetentionBot"),
+    input = M.GetDataRetentionBotInput,
+    output = M.GetDataRetentionBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/data-retention-bots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGuestUserHistoryCount = schema.operation({
+    id = id.from("com.amazonaws.wickr", "GetGuestUserHistoryCount"),
+    input = M.GetGuestUserHistoryCountInput,
+    output = M.GetGuestUserHistoryCountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/guest-users/count" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNetwork = schema.operation({
+    id = id.from("com.amazonaws.wickr", "GetNetwork"),
+    input = M.GetNetworkInput,
+    output = M.GetNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNetworkSettings = schema.operation({
+    id = id.from("com.amazonaws.wickr", "GetNetworkSettings"),
+    input = M.GetNetworkSettingsInput,
+    output = M.GetNetworkSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOidcInfo = schema.operation({
+    id = id.from("com.amazonaws.wickr", "GetOidcInfo"),
+    input = M.GetOidcInfoInput,
+    output = M.GetOidcInfoOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/oidc" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOpentdfConfig = schema.operation({
+    id = id.from("com.amazonaws.wickr", "GetOpentdfConfig"),
+    input = M.GetOpentdfConfigInput,
+    output = M.GetOpentdfConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/tdf" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSecurityGroup = schema.operation({
+    id = id.from("com.amazonaws.wickr", "GetSecurityGroup"),
+    input = M.GetSecurityGroupInput,
+    output = M.GetSecurityGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/security-groups/{groupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUser = schema.operation({
+    id = id.from("com.amazonaws.wickr", "GetUser"),
+    input = M.GetUserInput,
+    output = M.GetUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/users/{userId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUsersCount = schema.operation({
+    id = id.from("com.amazonaws.wickr", "GetUsersCount"),
+    input = M.GetUsersCountInput,
+    output = M.GetUsersCountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/users/count" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBlockedGuestUsers = schema.operation({
+    id = id.from("com.amazonaws.wickr", "ListBlockedGuestUsers"),
+    input = M.ListBlockedGuestUsersInput,
+    output = M.ListBlockedGuestUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/guest-users/blocklist" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBots = schema.operation({
+    id = id.from("com.amazonaws.wickr", "ListBots"),
+    input = M.ListBotsInput,
+    output = M.ListBotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/bots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDevicesForUser = schema.operation({
+    id = id.from("com.amazonaws.wickr", "ListDevicesForUser"),
+    input = M.ListDevicesForUserInput,
+    output = M.ListDevicesForUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/users/{userId}/devices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGuestUsers = schema.operation({
+    id = id.from("com.amazonaws.wickr", "ListGuestUsers"),
+    input = M.ListGuestUsersInput,
+    output = M.ListGuestUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/guest-users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworks = schema.operation({
+    id = id.from("com.amazonaws.wickr", "ListNetworks"),
+    input = M.ListNetworksInput,
+    output = M.ListNetworksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityGroups = schema.operation({
+    id = id.from("com.amazonaws.wickr", "ListSecurityGroups"),
+    input = M.ListSecurityGroupsInput,
+    output = M.ListSecurityGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/security-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityGroupUsers = schema.operation({
+    id = id.from("com.amazonaws.wickr", "ListSecurityGroupUsers"),
+    input = M.ListSecurityGroupUsersInput,
+    output = M.ListSecurityGroupUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/security-groups/{groupId}/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsers = schema.operation({
+    id = id.from("com.amazonaws.wickr", "ListUsers"),
+    input = M.ListUsersInput,
+    output = M.ListUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{networkId}/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterOidcConfig = schema.operation({
+    id = id.from("com.amazonaws.wickr", "RegisterOidcConfig"),
+    input = M.RegisterOidcConfigInput,
+    output = M.RegisterOidcConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks/{networkId}/oidc/save" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterOidcConfigTest = schema.operation({
+    id = id.from("com.amazonaws.wickr", "RegisterOidcConfigTest"),
+    input = M.RegisterOidcConfigTestInput,
+    output = M.RegisterOidcConfigTestOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks/{networkId}/oidc/test" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterOpentdfConfig = schema.operation({
+    id = id.from("com.amazonaws.wickr", "RegisterOpentdfConfig"),
+    input = M.RegisterOpentdfConfigInput,
+    output = M.RegisterOpentdfConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks/{networkId}/tdf" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBot = schema.operation({
+    id = id.from("com.amazonaws.wickr", "UpdateBot"),
+    input = M.UpdateBotInput,
+    output = M.UpdateBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/networks/{networkId}/bots/{botId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataRetention = schema.operation({
+    id = id.from("com.amazonaws.wickr", "UpdateDataRetention"),
+    input = M.UpdateDataRetentionInput,
+    output = M.UpdateDataRetentionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/networks/{networkId}/data-retention-bots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGuestUser = schema.operation({
+    id = id.from("com.amazonaws.wickr", "UpdateGuestUser"),
+    input = M.UpdateGuestUserInput,
+    output = M.UpdateGuestUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/networks/{networkId}/guest-users/{usernameHash}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNetwork = schema.operation({
+    id = id.from("com.amazonaws.wickr", "UpdateNetwork"),
+    input = M.UpdateNetworkInput,
+    output = M.UpdateNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/networks/{networkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNetworkSettings = schema.operation({
+    id = id.from("com.amazonaws.wickr", "UpdateNetworkSettings"),
+    input = M.UpdateNetworkSettingsInput,
+    output = M.UpdateNetworkSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/networks/{networkId}/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSecurityGroup = schema.operation({
+    id = id.from("com.amazonaws.wickr", "UpdateSecurityGroup"),
+    input = M.UpdateSecurityGroupInput,
+    output = M.UpdateSecurityGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/networks/{networkId}/security-groups/{groupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUser = schema.operation({
+    id = id.from("com.amazonaws.wickr", "UpdateUser"),
+    input = M.UpdateUserInput,
+    output = M.UpdateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/networks/{networkId}/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

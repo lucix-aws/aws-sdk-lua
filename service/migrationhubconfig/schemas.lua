@@ -334,4 +334,58 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.migrationhubconfig", "AWSMigrationHubMultiAccountService"),
+    version = "2019-06-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHomeRegionControl = schema.operation({
+    id = id.from("com.amazonaws.migrationhubconfig", "CreateHomeRegionControl"),
+    input = M.CreateHomeRegionControlInput,
+    output = M.CreateHomeRegionControlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHomeRegionControl = schema.operation({
+    id = id.from("com.amazonaws.migrationhubconfig", "DeleteHomeRegionControl"),
+    input = M.DeleteHomeRegionControlInput,
+    output = M.DeleteHomeRegionControlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHomeRegionControls = schema.operation({
+    id = id.from("com.amazonaws.migrationhubconfig", "DescribeHomeRegionControls"),
+    input = M.DescribeHomeRegionControlsInput,
+    output = M.DescribeHomeRegionControlsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHomeRegion = schema.operation({
+    id = id.from("com.amazonaws.migrationhubconfig", "GetHomeRegion"),
+    input = M.GetHomeRegionInput,
+    output = M.GetHomeRegionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -2335,4 +2335,398 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.kinesisvideo", "KinesisVideo_20170930"),
+    version = "2017-09-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSignalingChannel = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "CreateSignalingChannel"),
+    input = M.CreateSignalingChannelInput,
+    output = M.CreateSignalingChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/createSignalingChannel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStream = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "CreateStream"),
+    input = M.CreateStreamInput,
+    output = M.CreateStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/createStream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEdgeConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "DeleteEdgeConfiguration"),
+    input = M.DeleteEdgeConfigurationInput,
+    output = M.DeleteEdgeConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deleteEdgeConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSignalingChannel = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "DeleteSignalingChannel"),
+    input = M.DeleteSignalingChannelInput,
+    output = M.DeleteSignalingChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deleteSignalingChannel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStream = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "DeleteStream"),
+    input = M.DeleteStreamInput,
+    output = M.DeleteStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deleteStream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEdgeConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "DescribeEdgeConfiguration"),
+    input = M.DescribeEdgeConfigurationInput,
+    output = M.DescribeEdgeConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describeEdgeConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImageGenerationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "DescribeImageGenerationConfiguration"),
+    input = M.DescribeImageGenerationConfigurationInput,
+    output = M.DescribeImageGenerationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describeImageGenerationConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMappedResourceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "DescribeMappedResourceConfiguration"),
+    input = M.DescribeMappedResourceConfigurationInput,
+    output = M.DescribeMappedResourceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describeMappedResourceConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMediaStorageConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "DescribeMediaStorageConfiguration"),
+    input = M.DescribeMediaStorageConfigurationInput,
+    output = M.DescribeMediaStorageConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describeMediaStorageConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNotificationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "DescribeNotificationConfiguration"),
+    input = M.DescribeNotificationConfigurationInput,
+    output = M.DescribeNotificationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describeNotificationConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSignalingChannel = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "DescribeSignalingChannel"),
+    input = M.DescribeSignalingChannelInput,
+    output = M.DescribeSignalingChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describeSignalingChannel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStream = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "DescribeStream"),
+    input = M.DescribeStreamInput,
+    output = M.DescribeStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describeStream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStreamStorageConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "DescribeStreamStorageConfiguration"),
+    input = M.DescribeStreamStorageConfigurationInput,
+    output = M.DescribeStreamStorageConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describeStreamStorageConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataEndpoint = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "GetDataEndpoint"),
+    input = M.GetDataEndpointInput,
+    output = M.GetDataEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getDataEndpoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSignalingChannelEndpoint = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "GetSignalingChannelEndpoint"),
+    input = M.GetSignalingChannelEndpointInput,
+    output = M.GetSignalingChannelEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getSignalingChannelEndpoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEdgeAgentConfigurations = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "ListEdgeAgentConfigurations"),
+    input = M.ListEdgeAgentConfigurationsInput,
+    output = M.ListEdgeAgentConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listEdgeAgentConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSignalingChannels = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "ListSignalingChannels"),
+    input = M.ListSignalingChannelsInput,
+    output = M.ListSignalingChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listSignalingChannels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStreams = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "ListStreams"),
+    input = M.ListStreamsInput,
+    output = M.ListStreamsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listStreams" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForStream = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "ListTagsForStream"),
+    input = M.ListTagsForStreamInput,
+    output = M.ListTagsForStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listTagsForStream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartEdgeConfigurationUpdate = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "StartEdgeConfigurationUpdate"),
+    input = M.StartEdgeConfigurationUpdateInput,
+    output = M.StartEdgeConfigurationUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/startEdgeConfigurationUpdate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagStream = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "TagStream"),
+    input = M.TagStreamInput,
+    output = M.TagStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tagStream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UntagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagStream = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "UntagStream"),
+    input = M.UntagStreamInput,
+    output = M.UntagStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/untagStream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataRetention = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "UpdateDataRetention"),
+    input = M.UpdateDataRetentionInput,
+    output = M.UpdateDataRetentionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateDataRetention" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateImageGenerationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "UpdateImageGenerationConfiguration"),
+    input = M.UpdateImageGenerationConfigurationInput,
+    output = M.UpdateImageGenerationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateImageGenerationConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMediaStorageConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "UpdateMediaStorageConfiguration"),
+    input = M.UpdateMediaStorageConfigurationInput,
+    output = M.UpdateMediaStorageConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateMediaStorageConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNotificationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "UpdateNotificationConfiguration"),
+    input = M.UpdateNotificationConfigurationInput,
+    output = M.UpdateNotificationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateNotificationConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSignalingChannel = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "UpdateSignalingChannel"),
+    input = M.UpdateSignalingChannelInput,
+    output = M.UpdateSignalingChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateSignalingChannel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStream = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "UpdateStream"),
+    input = M.UpdateStreamInput,
+    output = M.UpdateStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateStream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStreamStorageConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideo", "UpdateStreamStorageConfiguration"),
+    input = M.UpdateStreamStorageConfigurationInput,
+    output = M.UpdateStreamStorageConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateStreamStorageConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -2437,4 +2437,201 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.invoicing", "Invoicing"),
+    version = "2024-12-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetInvoiceProfile = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "BatchGetInvoiceProfile"),
+    input = M.BatchGetInvoiceProfileInput,
+    output = M.BatchGetInvoiceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInvoiceUnit = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "CreateInvoiceUnit"),
+    input = M.CreateInvoiceUnitInput,
+    output = M.CreateInvoiceUnitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProcurementPortalPreference = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "CreateProcurementPortalPreference"),
+    input = M.CreateProcurementPortalPreferenceInput,
+    output = M.CreateProcurementPortalPreferenceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInvoiceUnit = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "DeleteInvoiceUnit"),
+    input = M.DeleteInvoiceUnitInput,
+    output = M.DeleteInvoiceUnitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProcurementPortalPreference = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "DeleteProcurementPortalPreference"),
+    input = M.DeleteProcurementPortalPreferenceInput,
+    output = M.DeleteProcurementPortalPreferenceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInvoicePDF = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "GetInvoicePDF"),
+    input = M.GetInvoicePDFInput,
+    output = M.GetInvoicePDFOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInvoiceUnit = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "GetInvoiceUnit"),
+    input = M.GetInvoiceUnitInput,
+    output = M.GetInvoiceUnitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProcurementPortalPreference = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "GetProcurementPortalPreference"),
+    input = M.GetProcurementPortalPreferenceInput,
+    output = M.GetProcurementPortalPreferenceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvoiceSummaries = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "ListInvoiceSummaries"),
+    input = M.ListInvoiceSummariesInput,
+    output = M.ListInvoiceSummariesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvoiceUnits = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "ListInvoiceUnits"),
+    input = M.ListInvoiceUnitsInput,
+    output = M.ListInvoiceUnitsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProcurementPortalPreferences = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "ListProcurementPortalPreferences"),
+    input = M.ListProcurementPortalPreferencesInput,
+    output = M.ListProcurementPortalPreferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutProcurementPortalPreference = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "PutProcurementPortalPreference"),
+    input = M.PutProcurementPortalPreferenceInput,
+    output = M.PutProcurementPortalPreferenceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInvoiceUnit = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "UpdateInvoiceUnit"),
+    input = M.UpdateInvoiceUnitInput,
+    output = M.UpdateInvoiceUnitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProcurementPortalPreferenceStatus = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "UpdateProcurementPortalPreferenceStatus"),
+    input = M.UpdateProcurementPortalPreferenceStatusInput,
+    output = M.UpdateProcurementPortalPreferenceStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

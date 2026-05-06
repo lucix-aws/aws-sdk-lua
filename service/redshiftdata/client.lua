@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("redshiftdata.endpoint_rules")
 local schemas = require("redshiftdata.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "redshift-data", signing_region = cfg.region } }
                 else
@@ -49,146 +52,47 @@ function M.new(cfg)
 end
 
 function Client:batchExecuteStatement(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchExecuteStatement",
-        input_schema = schemas.BatchExecuteStatementInput,
-        output_schema = schemas.BatchExecuteStatementOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchExecuteStatement, input, options)
 end
 
 function Client:cancelStatement(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelStatement",
-        input_schema = schemas.CancelStatementInput,
-        output_schema = schemas.CancelStatementOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelStatement, input, options)
 end
 
 function Client:describeStatement(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeStatement",
-        input_schema = schemas.DescribeStatementInput,
-        output_schema = schemas.DescribeStatementOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeStatement, input, options)
 end
 
 function Client:describeTable(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTable",
-        input_schema = schemas.DescribeTableInput,
-        output_schema = schemas.DescribeTableOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTable, input, options)
 end
 
 function Client:executeStatement(input, options)
-    return self:invokeOperation(input, {
-        name = "ExecuteStatement",
-        input_schema = schemas.ExecuteStatementInput,
-        output_schema = schemas.ExecuteStatementOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExecuteStatement, input, options)
 end
 
 function Client:getStatementResult(input, options)
-    return self:invokeOperation(input, {
-        name = "GetStatementResult",
-        input_schema = schemas.GetStatementResultInput,
-        output_schema = schemas.GetStatementResultOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetStatementResult, input, options)
 end
 
 function Client:getStatementResultV2(input, options)
-    return self:invokeOperation(input, {
-        name = "GetStatementResultV2",
-        input_schema = schemas.GetStatementResultV2Input,
-        output_schema = schemas.GetStatementResultV2Output,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetStatementResultV2, input, options)
 end
 
 function Client:listDatabases(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDatabases",
-        input_schema = schemas.ListDatabasesInput,
-        output_schema = schemas.ListDatabasesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDatabases, input, options)
 end
 
 function Client:listSchemas(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSchemas",
-        input_schema = schemas.ListSchemasInput,
-        output_schema = schemas.ListSchemasOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSchemas, input, options)
 end
 
 function Client:listStatements(input, options)
-    return self:invokeOperation(input, {
-        name = "ListStatements",
-        input_schema = schemas.ListStatementsInput,
-        output_schema = schemas.ListStatementsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListStatements, input, options)
 end
 
 function Client:listTables(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTables",
-        input_schema = schemas.ListTablesInput,
-        output_schema = schemas.ListTablesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTables, input, options)
 end
 
 return M

@@ -7,6 +7,7 @@ local endpoint_rules = require("bedrockagent.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("bedrockagent.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bedrock", signing_region = cfg.region } }
                 else
@@ -49,939 +52,291 @@ function M.new(cfg)
 end
 
 function Client:associateAgentCollaborator(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateAgentCollaborator",
-        input_schema = schemas.AssociateAgentCollaboratorInput,
-        output_schema = schemas.AssociateAgentCollaboratorOutput,
-        http_method = "PUT",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateAgentCollaborator, input, options)
 end
 
 function Client:associateAgentKnowledgeBase(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateAgentKnowledgeBase",
-        input_schema = schemas.AssociateAgentKnowledgeBaseInput,
-        output_schema = schemas.AssociateAgentKnowledgeBaseOutput,
-        http_method = "PUT",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateAgentKnowledgeBase, input, options)
 end
 
 function Client:createAgent(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAgent",
-        input_schema = schemas.CreateAgentInput,
-        output_schema = schemas.CreateAgentOutput,
-        http_method = "PUT",
-        http_path = "/agents/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAgent, input, options)
 end
 
 function Client:createAgentActionGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAgentActionGroup",
-        input_schema = schemas.CreateAgentActionGroupInput,
-        output_schema = schemas.CreateAgentActionGroupOutput,
-        http_method = "PUT",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAgentActionGroup, input, options)
 end
 
 function Client:createAgentAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAgentAlias",
-        input_schema = schemas.CreateAgentAliasInput,
-        output_schema = schemas.CreateAgentAliasOutput,
-        http_method = "PUT",
-        http_path = "/agents/{agentId}/agentaliases/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAgentAlias, input, options)
 end
 
 function Client:createDataSource(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDataSource",
-        input_schema = schemas.CreateDataSourceInput,
-        output_schema = schemas.CreateDataSourceOutput,
-        http_method = "PUT",
-        http_path = "/knowledgebases/{knowledgeBaseId}/datasources/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDataSource, input, options)
 end
 
 function Client:createFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateFlow",
-        input_schema = schemas.CreateFlowInput,
-        output_schema = schemas.CreateFlowOutput,
-        http_method = "POST",
-        http_path = "/flows/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateFlow, input, options)
 end
 
 function Client:createFlowAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateFlowAlias",
-        input_schema = schemas.CreateFlowAliasInput,
-        output_schema = schemas.CreateFlowAliasOutput,
-        http_method = "POST",
-        http_path = "/flows/{flowIdentifier}/aliases",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateFlowAlias, input, options)
 end
 
 function Client:createFlowVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateFlowVersion",
-        input_schema = schemas.CreateFlowVersionInput,
-        output_schema = schemas.CreateFlowVersionOutput,
-        http_method = "POST",
-        http_path = "/flows/{flowIdentifier}/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateFlowVersion, input, options)
 end
 
 function Client:createKnowledgeBase(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateKnowledgeBase",
-        input_schema = schemas.CreateKnowledgeBaseInput,
-        output_schema = schemas.CreateKnowledgeBaseOutput,
-        http_method = "PUT",
-        http_path = "/knowledgebases/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateKnowledgeBase, input, options)
 end
 
 function Client:createPrompt(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePrompt",
-        input_schema = schemas.CreatePromptInput,
-        output_schema = schemas.CreatePromptOutput,
-        http_method = "POST",
-        http_path = "/prompts/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePrompt, input, options)
 end
 
 function Client:createPromptVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePromptVersion",
-        input_schema = schemas.CreatePromptVersionInput,
-        output_schema = schemas.CreatePromptVersionOutput,
-        http_method = "POST",
-        http_path = "/prompts/{promptIdentifier}/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePromptVersion, input, options)
 end
 
 function Client:deleteAgent(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAgent",
-        input_schema = schemas.DeleteAgentInput,
-        output_schema = schemas.DeleteAgentOutput,
-        http_method = "DELETE",
-        http_path = "/agents/{agentId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAgent, input, options)
 end
 
 function Client:deleteAgentActionGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAgentActionGroup",
-        input_schema = schemas.DeleteAgentActionGroupInput,
-        output_schema = schemas.DeleteAgentActionGroupOutput,
-        http_method = "DELETE",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAgentActionGroup, input, options)
 end
 
 function Client:deleteAgentAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAgentAlias",
-        input_schema = schemas.DeleteAgentAliasInput,
-        output_schema = schemas.DeleteAgentAliasOutput,
-        http_method = "DELETE",
-        http_path = "/agents/{agentId}/agentaliases/{agentAliasId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAgentAlias, input, options)
 end
 
 function Client:deleteAgentVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAgentVersion",
-        input_schema = schemas.DeleteAgentVersionInput,
-        output_schema = schemas.DeleteAgentVersionOutput,
-        http_method = "DELETE",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAgentVersion, input, options)
 end
 
 function Client:deleteDataSource(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDataSource",
-        input_schema = schemas.DeleteDataSourceInput,
-        output_schema = schemas.DeleteDataSourceOutput,
-        http_method = "DELETE",
-        http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDataSource, input, options)
 end
 
 function Client:deleteFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFlow",
-        input_schema = schemas.DeleteFlowInput,
-        output_schema = schemas.DeleteFlowOutput,
-        http_method = "DELETE",
-        http_path = "/flows/{flowIdentifier}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFlow, input, options)
 end
 
 function Client:deleteFlowAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFlowAlias",
-        input_schema = schemas.DeleteFlowAliasInput,
-        output_schema = schemas.DeleteFlowAliasOutput,
-        http_method = "DELETE",
-        http_path = "/flows/{flowIdentifier}/aliases/{aliasIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFlowAlias, input, options)
 end
 
 function Client:deleteFlowVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFlowVersion",
-        input_schema = schemas.DeleteFlowVersionInput,
-        output_schema = schemas.DeleteFlowVersionOutput,
-        http_method = "DELETE",
-        http_path = "/flows/{flowIdentifier}/versions/{flowVersion}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFlowVersion, input, options)
 end
 
 function Client:deleteKnowledgeBase(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteKnowledgeBase",
-        input_schema = schemas.DeleteKnowledgeBaseInput,
-        output_schema = schemas.DeleteKnowledgeBaseOutput,
-        http_method = "DELETE",
-        http_path = "/knowledgebases/{knowledgeBaseId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteKnowledgeBase, input, options)
 end
 
 function Client:deleteKnowledgeBaseDocuments(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteKnowledgeBaseDocuments",
-        input_schema = schemas.DeleteKnowledgeBaseDocumentsInput,
-        output_schema = schemas.DeleteKnowledgeBaseDocumentsOutput,
-        http_method = "POST",
-        http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents/deleteDocuments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteKnowledgeBaseDocuments, input, options)
 end
 
 function Client:deletePrompt(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePrompt",
-        input_schema = schemas.DeletePromptInput,
-        output_schema = schemas.DeletePromptOutput,
-        http_method = "DELETE",
-        http_path = "/prompts/{promptIdentifier}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePrompt, input, options)
 end
 
 function Client:disassociateAgentCollaborator(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateAgentCollaborator",
-        input_schema = schemas.DisassociateAgentCollaboratorInput,
-        output_schema = schemas.DisassociateAgentCollaboratorOutput,
-        http_method = "DELETE",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/{collaboratorId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateAgentCollaborator, input, options)
 end
 
 function Client:disassociateAgentKnowledgeBase(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateAgentKnowledgeBase",
-        input_schema = schemas.DisassociateAgentKnowledgeBaseInput,
-        output_schema = schemas.DisassociateAgentKnowledgeBaseOutput,
-        http_method = "DELETE",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateAgentKnowledgeBase, input, options)
 end
 
 function Client:getAgent(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAgent",
-        input_schema = schemas.GetAgentInput,
-        output_schema = schemas.GetAgentOutput,
-        http_method = "GET",
-        http_path = "/agents/{agentId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAgent, input, options)
 end
 
 function Client:getAgentActionGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAgentActionGroup",
-        input_schema = schemas.GetAgentActionGroupInput,
-        output_schema = schemas.GetAgentActionGroupOutput,
-        http_method = "GET",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAgentActionGroup, input, options)
 end
 
 function Client:getAgentAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAgentAlias",
-        input_schema = schemas.GetAgentAliasInput,
-        output_schema = schemas.GetAgentAliasOutput,
-        http_method = "GET",
-        http_path = "/agents/{agentId}/agentaliases/{agentAliasId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAgentAlias, input, options)
 end
 
 function Client:getAgentCollaborator(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAgentCollaborator",
-        input_schema = schemas.GetAgentCollaboratorInput,
-        output_schema = schemas.GetAgentCollaboratorOutput,
-        http_method = "GET",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/{collaboratorId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAgentCollaborator, input, options)
 end
 
 function Client:getAgentKnowledgeBase(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAgentKnowledgeBase",
-        input_schema = schemas.GetAgentKnowledgeBaseInput,
-        output_schema = schemas.GetAgentKnowledgeBaseOutput,
-        http_method = "GET",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAgentKnowledgeBase, input, options)
 end
 
 function Client:getAgentVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAgentVersion",
-        input_schema = schemas.GetAgentVersionInput,
-        output_schema = schemas.GetAgentVersionOutput,
-        http_method = "GET",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAgentVersion, input, options)
 end
 
 function Client:getDataSource(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDataSource",
-        input_schema = schemas.GetDataSourceInput,
-        output_schema = schemas.GetDataSourceOutput,
-        http_method = "GET",
-        http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDataSource, input, options)
 end
 
 function Client:getFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "GetFlow",
-        input_schema = schemas.GetFlowInput,
-        output_schema = schemas.GetFlowOutput,
-        http_method = "GET",
-        http_path = "/flows/{flowIdentifier}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetFlow, input, options)
 end
 
 function Client:getFlowAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "GetFlowAlias",
-        input_schema = schemas.GetFlowAliasInput,
-        output_schema = schemas.GetFlowAliasOutput,
-        http_method = "GET",
-        http_path = "/flows/{flowIdentifier}/aliases/{aliasIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetFlowAlias, input, options)
 end
 
 function Client:getFlowVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "GetFlowVersion",
-        input_schema = schemas.GetFlowVersionInput,
-        output_schema = schemas.GetFlowVersionOutput,
-        http_method = "GET",
-        http_path = "/flows/{flowIdentifier}/versions/{flowVersion}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetFlowVersion, input, options)
 end
 
 function Client:getIngestionJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIngestionJob",
-        input_schema = schemas.GetIngestionJobInput,
-        output_schema = schemas.GetIngestionJobOutput,
-        http_method = "GET",
-        http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/{ingestionJobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIngestionJob, input, options)
 end
 
 function Client:getKnowledgeBase(input, options)
-    return self:invokeOperation(input, {
-        name = "GetKnowledgeBase",
-        input_schema = schemas.GetKnowledgeBaseInput,
-        output_schema = schemas.GetKnowledgeBaseOutput,
-        http_method = "GET",
-        http_path = "/knowledgebases/{knowledgeBaseId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetKnowledgeBase, input, options)
 end
 
 function Client:getKnowledgeBaseDocuments(input, options)
-    return self:invokeOperation(input, {
-        name = "GetKnowledgeBaseDocuments",
-        input_schema = schemas.GetKnowledgeBaseDocumentsInput,
-        output_schema = schemas.GetKnowledgeBaseDocumentsOutput,
-        http_method = "POST",
-        http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents/getDocuments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetKnowledgeBaseDocuments, input, options)
 end
 
 function Client:getPrompt(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPrompt",
-        input_schema = schemas.GetPromptInput,
-        output_schema = schemas.GetPromptOutput,
-        http_method = "GET",
-        http_path = "/prompts/{promptIdentifier}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPrompt, input, options)
 end
 
 function Client:ingestKnowledgeBaseDocuments(input, options)
-    return self:invokeOperation(input, {
-        name = "IngestKnowledgeBaseDocuments",
-        input_schema = schemas.IngestKnowledgeBaseDocumentsInput,
-        output_schema = schemas.IngestKnowledgeBaseDocumentsOutput,
-        http_method = "PUT",
-        http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.IngestKnowledgeBaseDocuments, input, options)
 end
 
 function Client:listAgentActionGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAgentActionGroups",
-        input_schema = schemas.ListAgentActionGroupsInput,
-        output_schema = schemas.ListAgentActionGroupsOutput,
-        http_method = "POST",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAgentActionGroups, input, options)
 end
 
 function Client:listAgentAliases(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAgentAliases",
-        input_schema = schemas.ListAgentAliasesInput,
-        output_schema = schemas.ListAgentAliasesOutput,
-        http_method = "POST",
-        http_path = "/agents/{agentId}/agentaliases/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAgentAliases, input, options)
 end
 
 function Client:listAgentCollaborators(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAgentCollaborators",
-        input_schema = schemas.ListAgentCollaboratorsInput,
-        output_schema = schemas.ListAgentCollaboratorsOutput,
-        http_method = "POST",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAgentCollaborators, input, options)
 end
 
 function Client:listAgentKnowledgeBases(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAgentKnowledgeBases",
-        input_schema = schemas.ListAgentKnowledgeBasesInput,
-        output_schema = schemas.ListAgentKnowledgeBasesOutput,
-        http_method = "POST",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAgentKnowledgeBases, input, options)
 end
 
 function Client:listAgents(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAgents",
-        input_schema = schemas.ListAgentsInput,
-        output_schema = schemas.ListAgentsOutput,
-        http_method = "POST",
-        http_path = "/agents/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAgents, input, options)
 end
 
 function Client:listAgentVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAgentVersions",
-        input_schema = schemas.ListAgentVersionsInput,
-        output_schema = schemas.ListAgentVersionsOutput,
-        http_method = "POST",
-        http_path = "/agents/{agentId}/agentversions/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAgentVersions, input, options)
 end
 
 function Client:listDataSources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDataSources",
-        input_schema = schemas.ListDataSourcesInput,
-        output_schema = schemas.ListDataSourcesOutput,
-        http_method = "POST",
-        http_path = "/knowledgebases/{knowledgeBaseId}/datasources/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDataSources, input, options)
 end
 
 function Client:listFlowAliases(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFlowAliases",
-        input_schema = schemas.ListFlowAliasesInput,
-        output_schema = schemas.ListFlowAliasesOutput,
-        http_method = "GET",
-        http_path = "/flows/{flowIdentifier}/aliases",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFlowAliases, input, options)
 end
 
 function Client:listFlows(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFlows",
-        input_schema = schemas.ListFlowsInput,
-        output_schema = schemas.ListFlowsOutput,
-        http_method = "GET",
-        http_path = "/flows/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFlows, input, options)
 end
 
 function Client:listFlowVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFlowVersions",
-        input_schema = schemas.ListFlowVersionsInput,
-        output_schema = schemas.ListFlowVersionsOutput,
-        http_method = "GET",
-        http_path = "/flows/{flowIdentifier}/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFlowVersions, input, options)
 end
 
 function Client:listIngestionJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIngestionJobs",
-        input_schema = schemas.ListIngestionJobsInput,
-        output_schema = schemas.ListIngestionJobsOutput,
-        http_method = "POST",
-        http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIngestionJobs, input, options)
 end
 
 function Client:listKnowledgeBaseDocuments(input, options)
-    return self:invokeOperation(input, {
-        name = "ListKnowledgeBaseDocuments",
-        input_schema = schemas.ListKnowledgeBaseDocumentsInput,
-        output_schema = schemas.ListKnowledgeBaseDocumentsOutput,
-        http_method = "POST",
-        http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListKnowledgeBaseDocuments, input, options)
 end
 
 function Client:listKnowledgeBases(input, options)
-    return self:invokeOperation(input, {
-        name = "ListKnowledgeBases",
-        input_schema = schemas.ListKnowledgeBasesInput,
-        output_schema = schemas.ListKnowledgeBasesOutput,
-        http_method = "POST",
-        http_path = "/knowledgebases/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListKnowledgeBases, input, options)
 end
 
 function Client:listPrompts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPrompts",
-        input_schema = schemas.ListPromptsInput,
-        output_schema = schemas.ListPromptsOutput,
-        http_method = "GET",
-        http_path = "/prompts/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPrompts, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:prepareAgent(input, options)
-    return self:invokeOperation(input, {
-        name = "PrepareAgent",
-        input_schema = schemas.PrepareAgentInput,
-        output_schema = schemas.PrepareAgentOutput,
-        http_method = "POST",
-        http_path = "/agents/{agentId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PrepareAgent, input, options)
 end
 
 function Client:prepareFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "PrepareFlow",
-        input_schema = schemas.PrepareFlowInput,
-        output_schema = schemas.PrepareFlowOutput,
-        http_method = "POST",
-        http_path = "/flows/{flowIdentifier}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PrepareFlow, input, options)
 end
 
 function Client:startIngestionJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartIngestionJob",
-        input_schema = schemas.StartIngestionJobInput,
-        output_schema = schemas.StartIngestionJobOutput,
-        http_method = "PUT",
-        http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartIngestionJob, input, options)
 end
 
 function Client:stopIngestionJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StopIngestionJob",
-        input_schema = schemas.StopIngestionJobInput,
-        output_schema = schemas.StopIngestionJobOutput,
-        http_method = "POST",
-        http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/{ingestionJobId}/stop",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopIngestionJob, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAgent(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAgent",
-        input_schema = schemas.UpdateAgentInput,
-        output_schema = schemas.UpdateAgentOutput,
-        http_method = "PUT",
-        http_path = "/agents/{agentId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAgent, input, options)
 end
 
 function Client:updateAgentActionGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAgentActionGroup",
-        input_schema = schemas.UpdateAgentActionGroupInput,
-        output_schema = schemas.UpdateAgentActionGroupOutput,
-        http_method = "PUT",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAgentActionGroup, input, options)
 end
 
 function Client:updateAgentAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAgentAlias",
-        input_schema = schemas.UpdateAgentAliasInput,
-        output_schema = schemas.UpdateAgentAliasOutput,
-        http_method = "PUT",
-        http_path = "/agents/{agentId}/agentaliases/{agentAliasId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAgentAlias, input, options)
 end
 
 function Client:updateAgentCollaborator(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAgentCollaborator",
-        input_schema = schemas.UpdateAgentCollaboratorInput,
-        output_schema = schemas.UpdateAgentCollaboratorOutput,
-        http_method = "PUT",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/{collaboratorId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAgentCollaborator, input, options)
 end
 
 function Client:updateAgentKnowledgeBase(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAgentKnowledgeBase",
-        input_schema = schemas.UpdateAgentKnowledgeBaseInput,
-        output_schema = schemas.UpdateAgentKnowledgeBaseOutput,
-        http_method = "PUT",
-        http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAgentKnowledgeBase, input, options)
 end
 
 function Client:updateDataSource(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDataSource",
-        input_schema = schemas.UpdateDataSourceInput,
-        output_schema = schemas.UpdateDataSourceOutput,
-        http_method = "PUT",
-        http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDataSource, input, options)
 end
 
 function Client:updateFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateFlow",
-        input_schema = schemas.UpdateFlowInput,
-        output_schema = schemas.UpdateFlowOutput,
-        http_method = "PUT",
-        http_path = "/flows/{flowIdentifier}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateFlow, input, options)
 end
 
 function Client:updateFlowAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateFlowAlias",
-        input_schema = schemas.UpdateFlowAliasInput,
-        output_schema = schemas.UpdateFlowAliasOutput,
-        http_method = "PUT",
-        http_path = "/flows/{flowIdentifier}/aliases/{aliasIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateFlowAlias, input, options)
 end
 
 function Client:updateKnowledgeBase(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateKnowledgeBase",
-        input_schema = schemas.UpdateKnowledgeBaseInput,
-        output_schema = schemas.UpdateKnowledgeBaseOutput,
-        http_method = "PUT",
-        http_path = "/knowledgebases/{knowledgeBaseId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateKnowledgeBase, input, options)
 end
 
 function Client:updatePrompt(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePrompt",
-        input_schema = schemas.UpdatePromptInput,
-        output_schema = schemas.UpdatePromptOutput,
-        http_method = "PUT",
-        http_path = "/prompts/{promptIdentifier}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePrompt, input, options)
 end
 
 function Client:validateFlowDefinition(input, options)
-    return self:invokeOperation(input, {
-        name = "ValidateFlowDefinition",
-        input_schema = schemas.ValidateFlowDefinitionInput,
-        output_schema = schemas.ValidateFlowDefinitionOutput,
-        http_method = "POST",
-        http_path = "/flows/validate-definition",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ValidateFlowDefinition, input, options)
 end
 
 return M

@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("invoicing.endpoint_rules")
 local schemas = require("invoicing.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "invoicing", signing_region = cfg.region } }
                 else
@@ -49,224 +52,71 @@ function M.new(cfg)
 end
 
 function Client:batchGetInvoiceProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetInvoiceProfile",
-        input_schema = schemas.BatchGetInvoiceProfileInput,
-        output_schema = schemas.BatchGetInvoiceProfileOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetInvoiceProfile, input, options)
 end
 
 function Client:createInvoiceUnit(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateInvoiceUnit",
-        input_schema = schemas.CreateInvoiceUnitInput,
-        output_schema = schemas.CreateInvoiceUnitOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateInvoiceUnit, input, options)
 end
 
 function Client:createProcurementPortalPreference(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateProcurementPortalPreference",
-        input_schema = schemas.CreateProcurementPortalPreferenceInput,
-        output_schema = schemas.CreateProcurementPortalPreferenceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateProcurementPortalPreference, input, options)
 end
 
 function Client:deleteInvoiceUnit(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteInvoiceUnit",
-        input_schema = schemas.DeleteInvoiceUnitInput,
-        output_schema = schemas.DeleteInvoiceUnitOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteInvoiceUnit, input, options)
 end
 
 function Client:deleteProcurementPortalPreference(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteProcurementPortalPreference",
-        input_schema = schemas.DeleteProcurementPortalPreferenceInput,
-        output_schema = schemas.DeleteProcurementPortalPreferenceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteProcurementPortalPreference, input, options)
 end
 
 function Client:getInvoicePDF(input, options)
-    return self:invokeOperation(input, {
-        name = "GetInvoicePDF",
-        input_schema = schemas.GetInvoicePDFInput,
-        output_schema = schemas.GetInvoicePDFOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetInvoicePDF, input, options)
 end
 
 function Client:getInvoiceUnit(input, options)
-    return self:invokeOperation(input, {
-        name = "GetInvoiceUnit",
-        input_schema = schemas.GetInvoiceUnitInput,
-        output_schema = schemas.GetInvoiceUnitOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetInvoiceUnit, input, options)
 end
 
 function Client:getProcurementPortalPreference(input, options)
-    return self:invokeOperation(input, {
-        name = "GetProcurementPortalPreference",
-        input_schema = schemas.GetProcurementPortalPreferenceInput,
-        output_schema = schemas.GetProcurementPortalPreferenceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetProcurementPortalPreference, input, options)
 end
 
 function Client:listInvoiceSummaries(input, options)
-    return self:invokeOperation(input, {
-        name = "ListInvoiceSummaries",
-        input_schema = schemas.ListInvoiceSummariesInput,
-        output_schema = schemas.ListInvoiceSummariesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListInvoiceSummaries, input, options)
 end
 
 function Client:listInvoiceUnits(input, options)
-    return self:invokeOperation(input, {
-        name = "ListInvoiceUnits",
-        input_schema = schemas.ListInvoiceUnitsInput,
-        output_schema = schemas.ListInvoiceUnitsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListInvoiceUnits, input, options)
 end
 
 function Client:listProcurementPortalPreferences(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProcurementPortalPreferences",
-        input_schema = schemas.ListProcurementPortalPreferencesInput,
-        output_schema = schemas.ListProcurementPortalPreferencesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProcurementPortalPreferences, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putProcurementPortalPreference(input, options)
-    return self:invokeOperation(input, {
-        name = "PutProcurementPortalPreference",
-        input_schema = schemas.PutProcurementPortalPreferenceInput,
-        output_schema = schemas.PutProcurementPortalPreferenceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutProcurementPortalPreference, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateInvoiceUnit(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateInvoiceUnit",
-        input_schema = schemas.UpdateInvoiceUnitInput,
-        output_schema = schemas.UpdateInvoiceUnitOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateInvoiceUnit, input, options)
 end
 
 function Client:updateProcurementPortalPreferenceStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateProcurementPortalPreferenceStatus",
-        input_schema = schemas.UpdateProcurementPortalPreferenceStatusInput,
-        output_schema = schemas.UpdateProcurementPortalPreferenceStatusOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateProcurementPortalPreferenceStatus, input, options)
 end
 
 return M

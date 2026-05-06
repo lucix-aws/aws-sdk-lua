@@ -2654,4 +2654,322 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "AWSPoseidonService_V2015_11_01"),
+    version = "2015-11-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateConfigurationItemsToApplication = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "AssociateConfigurationItemsToApplication"),
+    input = M.AssociateConfigurationItemsToApplicationInput,
+    output = M.AssociateConfigurationItemsToApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteAgents = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "BatchDeleteAgents"),
+    input = M.BatchDeleteAgentsInput,
+    output = M.BatchDeleteAgentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteImportData = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "BatchDeleteImportData"),
+    input = M.BatchDeleteImportDataInput,
+    output = M.BatchDeleteImportDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTags = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "CreateTags"),
+    input = M.CreateTagsInput,
+    output = M.CreateTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplications = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "DeleteApplications"),
+    input = M.DeleteApplicationsInput,
+    output = M.DeleteApplicationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTags = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "DeleteTags"),
+    input = M.DeleteTagsInput,
+    output = M.DeleteTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAgents = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "DescribeAgents"),
+    input = M.DescribeAgentsInput,
+    output = M.DescribeAgentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBatchDeleteConfigurationTask = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "DescribeBatchDeleteConfigurationTask"),
+    input = M.DescribeBatchDeleteConfigurationTaskInput,
+    output = M.DescribeBatchDeleteConfigurationTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfigurations = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "DescribeConfigurations"),
+    input = M.DescribeConfigurationsInput,
+    output = M.DescribeConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContinuousExports = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "DescribeContinuousExports"),
+    input = M.DescribeContinuousExportsInput,
+    output = M.DescribeContinuousExportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExportConfigurations = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "DescribeExportConfigurations"),
+    input = M.DescribeExportConfigurationsInput,
+    output = M.DescribeExportConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExportTasks = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "DescribeExportTasks"),
+    input = M.DescribeExportTasksInput,
+    output = M.DescribeExportTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImportTasks = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "DescribeImportTasks"),
+    input = M.DescribeImportTasksInput,
+    output = M.DescribeImportTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTags = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "DescribeTags"),
+    input = M.DescribeTagsInput,
+    output = M.DescribeTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateConfigurationItemsFromApplication = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "DisassociateConfigurationItemsFromApplication"),
+    input = M.DisassociateConfigurationItemsFromApplicationInput,
+    output = M.DisassociateConfigurationItemsFromApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportConfigurations = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "ExportConfigurations"),
+    input = M.ExportConfigurationsInput,
+    output = M.ExportConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDiscoverySummary = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "GetDiscoverySummary"),
+    input = M.GetDiscoverySummaryInput,
+    output = M.GetDiscoverySummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurations = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "ListConfigurations"),
+    input = M.ListConfigurationsInput,
+    output = M.ListConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServerNeighbors = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "ListServerNeighbors"),
+    input = M.ListServerNeighborsInput,
+    output = M.ListServerNeighborsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartBatchDeleteConfigurationTask = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "StartBatchDeleteConfigurationTask"),
+    input = M.StartBatchDeleteConfigurationTaskInput,
+    output = M.StartBatchDeleteConfigurationTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartContinuousExport = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "StartContinuousExport"),
+    input = M.StartContinuousExportInput,
+    output = M.StartContinuousExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDataCollectionByAgentIds = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "StartDataCollectionByAgentIds"),
+    input = M.StartDataCollectionByAgentIdsInput,
+    output = M.StartDataCollectionByAgentIdsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartExportTask = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "StartExportTask"),
+    input = M.StartExportTaskInput,
+    output = M.StartExportTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartImportTask = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "StartImportTask"),
+    input = M.StartImportTaskInput,
+    output = M.StartImportTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopContinuousExport = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "StopContinuousExport"),
+    input = M.StopContinuousExportInput,
+    output = M.StopContinuousExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDataCollectionByAgentIds = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "StopDataCollectionByAgentIds"),
+    input = M.StopDataCollectionByAgentIdsInput,
+    output = M.StopDataCollectionByAgentIdsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.applicationdiscoveryservice", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

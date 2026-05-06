@@ -489,4 +489,91 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.costandusagereportservice", "AWSOrigamiServiceGatewayService"),
+    version = "2017-01-06",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReportDefinition = schema.operation({
+    id = id.from("com.amazonaws.costandusagereportservice", "DeleteReportDefinition"),
+    input = M.DeleteReportDefinitionInput,
+    output = M.DeleteReportDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReportDefinitions = schema.operation({
+    id = id.from("com.amazonaws.costandusagereportservice", "DescribeReportDefinitions"),
+    input = M.DescribeReportDefinitionsInput,
+    output = M.DescribeReportDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.costandusagereportservice", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyReportDefinition = schema.operation({
+    id = id.from("com.amazonaws.costandusagereportservice", "ModifyReportDefinition"),
+    input = M.ModifyReportDefinitionInput,
+    output = M.ModifyReportDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutReportDefinition = schema.operation({
+    id = id.from("com.amazonaws.costandusagereportservice", "PutReportDefinition"),
+    input = M.PutReportDefinitionInput,
+    output = M.PutReportDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.costandusagereportservice", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.costandusagereportservice", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

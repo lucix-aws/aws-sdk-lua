@@ -7,6 +7,7 @@ local endpoint_rules = require("osis.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("osis.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "osis", signing_region = cfg.region } }
                 else
@@ -49,289 +52,91 @@ function M.new(cfg)
 end
 
 function Client:createPipeline(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePipeline",
-        input_schema = schemas.CreatePipelineInput,
-        output_schema = schemas.CreatePipelineOutput,
-        http_method = "POST",
-        http_path = "/2022-01-01/osis/createPipeline",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePipeline, input, options)
 end
 
 function Client:createPipelineEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePipelineEndpoint",
-        input_schema = schemas.CreatePipelineEndpointInput,
-        output_schema = schemas.CreatePipelineEndpointOutput,
-        http_method = "POST",
-        http_path = "/2022-01-01/osis/createPipelineEndpoint",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePipelineEndpoint, input, options)
 end
 
 function Client:deletePipeline(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePipeline",
-        input_schema = schemas.DeletePipelineInput,
-        output_schema = schemas.DeletePipelineOutput,
-        http_method = "DELETE",
-        http_path = "/2022-01-01/osis/deletePipeline/{PipelineName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePipeline, input, options)
 end
 
 function Client:deletePipelineEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePipelineEndpoint",
-        input_schema = schemas.DeletePipelineEndpointInput,
-        output_schema = schemas.DeletePipelineEndpointOutput,
-        http_method = "DELETE",
-        http_path = "/2022-01-01/osis/deletePipelineEndpoint/{EndpointId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePipelineEndpoint, input, options)
 end
 
 function Client:deleteResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResourcePolicy",
-        input_schema = schemas.DeleteResourcePolicyInput,
-        output_schema = schemas.DeleteResourcePolicyOutput,
-        http_method = "DELETE",
-        http_path = "/2022-01-01/osis/resourcePolicy/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options)
 end
 
 function Client:getPipeline(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPipeline",
-        input_schema = schemas.GetPipelineInput,
-        output_schema = schemas.GetPipelineOutput,
-        http_method = "GET",
-        http_path = "/2022-01-01/osis/getPipeline/{PipelineName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPipeline, input, options)
 end
 
 function Client:getPipelineBlueprint(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPipelineBlueprint",
-        input_schema = schemas.GetPipelineBlueprintInput,
-        output_schema = schemas.GetPipelineBlueprintOutput,
-        http_method = "GET",
-        http_path = "/2022-01-01/osis/getPipelineBlueprint/{BlueprintName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPipelineBlueprint, input, options)
 end
 
 function Client:getPipelineChangeProgress(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPipelineChangeProgress",
-        input_schema = schemas.GetPipelineChangeProgressInput,
-        output_schema = schemas.GetPipelineChangeProgressOutput,
-        http_method = "GET",
-        http_path = "/2022-01-01/osis/getPipelineChangeProgress/{PipelineName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPipelineChangeProgress, input, options)
 end
 
 function Client:getResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourcePolicy",
-        input_schema = schemas.GetResourcePolicyInput,
-        output_schema = schemas.GetResourcePolicyOutput,
-        http_method = "GET",
-        http_path = "/2022-01-01/osis/resourcePolicy/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options)
 end
 
 function Client:listPipelineBlueprints(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPipelineBlueprints",
-        input_schema = schemas.ListPipelineBlueprintsInput,
-        output_schema = schemas.ListPipelineBlueprintsOutput,
-        http_method = "POST",
-        http_path = "/2022-01-01/osis/listPipelineBlueprints",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPipelineBlueprints, input, options)
 end
 
 function Client:listPipelineEndpointConnections(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPipelineEndpointConnections",
-        input_schema = schemas.ListPipelineEndpointConnectionsInput,
-        output_schema = schemas.ListPipelineEndpointConnectionsOutput,
-        http_method = "GET",
-        http_path = "/2022-01-01/osis/listPipelineEndpointConnections",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPipelineEndpointConnections, input, options)
 end
 
 function Client:listPipelineEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPipelineEndpoints",
-        input_schema = schemas.ListPipelineEndpointsInput,
-        output_schema = schemas.ListPipelineEndpointsOutput,
-        http_method = "GET",
-        http_path = "/2022-01-01/osis/listPipelineEndpoints",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPipelineEndpoints, input, options)
 end
 
 function Client:listPipelines(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPipelines",
-        input_schema = schemas.ListPipelinesInput,
-        output_schema = schemas.ListPipelinesOutput,
-        http_method = "GET",
-        http_path = "/2022-01-01/osis/listPipelines",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPipelines, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/2022-01-01/osis/listTagsForResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutResourcePolicy",
-        input_schema = schemas.PutResourcePolicyInput,
-        output_schema = schemas.PutResourcePolicyOutput,
-        http_method = "PUT",
-        http_path = "/2022-01-01/osis/resourcePolicy/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options)
 end
 
 function Client:revokePipelineEndpointConnections(input, options)
-    return self:invokeOperation(input, {
-        name = "RevokePipelineEndpointConnections",
-        input_schema = schemas.RevokePipelineEndpointConnectionsInput,
-        output_schema = schemas.RevokePipelineEndpointConnectionsOutput,
-        http_method = "POST",
-        http_path = "/2022-01-01/osis/revokePipelineEndpointConnections",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RevokePipelineEndpointConnections, input, options)
 end
 
 function Client:startPipeline(input, options)
-    return self:invokeOperation(input, {
-        name = "StartPipeline",
-        input_schema = schemas.StartPipelineInput,
-        output_schema = schemas.StartPipelineOutput,
-        http_method = "PUT",
-        http_path = "/2022-01-01/osis/startPipeline/{PipelineName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartPipeline, input, options)
 end
 
 function Client:stopPipeline(input, options)
-    return self:invokeOperation(input, {
-        name = "StopPipeline",
-        input_schema = schemas.StopPipelineInput,
-        output_schema = schemas.StopPipelineOutput,
-        http_method = "PUT",
-        http_path = "/2022-01-01/osis/stopPipeline/{PipelineName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopPipeline, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/2022-01-01/osis/tagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/2022-01-01/osis/untagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updatePipeline(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePipeline",
-        input_schema = schemas.UpdatePipelineInput,
-        output_schema = schemas.UpdatePipelineOutput,
-        http_method = "PUT",
-        http_path = "/2022-01-01/osis/updatePipeline/{PipelineName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePipeline, input, options)
 end
 
 function Client:validatePipeline(input, options)
-    return self:invokeOperation(input, {
-        name = "ValidatePipeline",
-        input_schema = schemas.ValidatePipelineInput,
-        output_schema = schemas.ValidatePipelineOutput,
-        http_method = "POST",
-        http_path = "/2022-01-01/osis/validatePipeline",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ValidatePipeline, input, options)
 end
 
 return M

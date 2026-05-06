@@ -767,4 +767,122 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.resourcegroupstaggingapi", "ResourceGroupsTaggingAPI_20170126"),
+    version = "2017-01-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReportCreation = schema.operation({
+    id = id.from("com.amazonaws.resourcegroupstaggingapi", "DescribeReportCreation"),
+    input = M.DescribeReportCreationInput,
+    output = M.DescribeReportCreationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeReportCreation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComplianceSummary = schema.operation({
+    id = id.from("com.amazonaws.resourcegroupstaggingapi", "GetComplianceSummary"),
+    input = M.GetComplianceSummaryInput,
+    output = M.GetComplianceSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetComplianceSummary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResources = schema.operation({
+    id = id.from("com.amazonaws.resourcegroupstaggingapi", "GetResources"),
+    input = M.GetResourcesInput,
+    output = M.GetResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetResources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTagKeys = schema.operation({
+    id = id.from("com.amazonaws.resourcegroupstaggingapi", "GetTagKeys"),
+    input = M.GetTagKeysInput,
+    output = M.GetTagKeysOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTagKeys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTagValues = schema.operation({
+    id = id.from("com.amazonaws.resourcegroupstaggingapi", "GetTagValues"),
+    input = M.GetTagValuesInput,
+    output = M.GetTagValuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTagValues" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRequiredTags = schema.operation({
+    id = id.from("com.amazonaws.resourcegroupstaggingapi", "ListRequiredTags"),
+    input = M.ListRequiredTagsInput,
+    output = M.ListRequiredTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListRequiredTags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReportCreation = schema.operation({
+    id = id.from("com.amazonaws.resourcegroupstaggingapi", "StartReportCreation"),
+    input = M.StartReportCreationInput,
+    output = M.StartReportCreationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartReportCreation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResources = schema.operation({
+    id = id.from("com.amazonaws.resourcegroupstaggingapi", "TagResources"),
+    input = M.TagResourcesInput,
+    output = M.TagResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TagResources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResources = schema.operation({
+    id = id.from("com.amazonaws.resourcegroupstaggingapi", "UntagResources"),
+    input = M.UntagResourcesInput,
+    output = M.UntagResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UntagResources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

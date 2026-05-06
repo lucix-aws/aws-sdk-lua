@@ -7,6 +7,7 @@ local endpoint_rules = require("appintegrations.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("appintegrations.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "app-integrations", signing_region = cfg.region } }
                 else
@@ -49,302 +52,95 @@ function M.new(cfg)
 end
 
 function Client:createApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateApplication",
-        input_schema = schemas.CreateApplicationInput,
-        output_schema = schemas.CreateApplicationOutput,
-        http_method = "POST",
-        http_path = "/applications",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options)
 end
 
 function Client:createDataIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDataIntegration",
-        input_schema = schemas.CreateDataIntegrationInput,
-        output_schema = schemas.CreateDataIntegrationOutput,
-        http_method = "POST",
-        http_path = "/dataIntegrations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDataIntegration, input, options)
 end
 
 function Client:createDataIntegrationAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDataIntegrationAssociation",
-        input_schema = schemas.CreateDataIntegrationAssociationInput,
-        output_schema = schemas.CreateDataIntegrationAssociationOutput,
-        http_method = "POST",
-        http_path = "/dataIntegrations/{DataIntegrationIdentifier}/associations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDataIntegrationAssociation, input, options)
 end
 
 function Client:createEventIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEventIntegration",
-        input_schema = schemas.CreateEventIntegrationInput,
-        output_schema = schemas.CreateEventIntegrationOutput,
-        http_method = "POST",
-        http_path = "/eventIntegrations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEventIntegration, input, options)
 end
 
 function Client:deleteApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteApplication",
-        input_schema = schemas.DeleteApplicationInput,
-        output_schema = schemas.DeleteApplicationOutput,
-        http_method = "DELETE",
-        http_path = "/applications/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options)
 end
 
 function Client:deleteDataIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDataIntegration",
-        input_schema = schemas.DeleteDataIntegrationInput,
-        output_schema = schemas.DeleteDataIntegrationOutput,
-        http_method = "DELETE",
-        http_path = "/dataIntegrations/{DataIntegrationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDataIntegration, input, options)
 end
 
 function Client:deleteEventIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEventIntegration",
-        input_schema = schemas.DeleteEventIntegrationInput,
-        output_schema = schemas.DeleteEventIntegrationOutput,
-        http_method = "DELETE",
-        http_path = "/eventIntegrations/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEventIntegration, input, options)
 end
 
 function Client:getApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "GetApplication",
-        input_schema = schemas.GetApplicationInput,
-        output_schema = schemas.GetApplicationOutput,
-        http_method = "GET",
-        http_path = "/applications/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetApplication, input, options)
 end
 
 function Client:getDataIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDataIntegration",
-        input_schema = schemas.GetDataIntegrationInput,
-        output_schema = schemas.GetDataIntegrationOutput,
-        http_method = "GET",
-        http_path = "/dataIntegrations/{Identifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDataIntegration, input, options)
 end
 
 function Client:getEventIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEventIntegration",
-        input_schema = schemas.GetEventIntegrationInput,
-        output_schema = schemas.GetEventIntegrationOutput,
-        http_method = "GET",
-        http_path = "/eventIntegrations/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEventIntegration, input, options)
 end
 
 function Client:listApplicationAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListApplicationAssociations",
-        input_schema = schemas.ListApplicationAssociationsInput,
-        output_schema = schemas.ListApplicationAssociationsOutput,
-        http_method = "GET",
-        http_path = "/applications/{ApplicationId}/associations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListApplicationAssociations, input, options)
 end
 
 function Client:listApplications(input, options)
-    return self:invokeOperation(input, {
-        name = "ListApplications",
-        input_schema = schemas.ListApplicationsInput,
-        output_schema = schemas.ListApplicationsOutput,
-        http_method = "GET",
-        http_path = "/applications",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options)
 end
 
 function Client:listDataIntegrationAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDataIntegrationAssociations",
-        input_schema = schemas.ListDataIntegrationAssociationsInput,
-        output_schema = schemas.ListDataIntegrationAssociationsOutput,
-        http_method = "GET",
-        http_path = "/dataIntegrations/{DataIntegrationIdentifier}/associations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDataIntegrationAssociations, input, options)
 end
 
 function Client:listDataIntegrations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDataIntegrations",
-        input_schema = schemas.ListDataIntegrationsInput,
-        output_schema = schemas.ListDataIntegrationsOutput,
-        http_method = "GET",
-        http_path = "/dataIntegrations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDataIntegrations, input, options)
 end
 
 function Client:listEventIntegrationAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEventIntegrationAssociations",
-        input_schema = schemas.ListEventIntegrationAssociationsInput,
-        output_schema = schemas.ListEventIntegrationAssociationsOutput,
-        http_method = "GET",
-        http_path = "/eventIntegrations/{EventIntegrationName}/associations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEventIntegrationAssociations, input, options)
 end
 
 function Client:listEventIntegrations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEventIntegrations",
-        input_schema = schemas.ListEventIntegrationsInput,
-        output_schema = schemas.ListEventIntegrationsOutput,
-        http_method = "GET",
-        http_path = "/eventIntegrations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEventIntegrations, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateApplication",
-        input_schema = schemas.UpdateApplicationInput,
-        output_schema = schemas.UpdateApplicationOutput,
-        http_method = "PATCH",
-        http_path = "/applications/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options)
 end
 
 function Client:updateDataIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDataIntegration",
-        input_schema = schemas.UpdateDataIntegrationInput,
-        output_schema = schemas.UpdateDataIntegrationOutput,
-        http_method = "PATCH",
-        http_path = "/dataIntegrations/{Identifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDataIntegration, input, options)
 end
 
 function Client:updateDataIntegrationAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDataIntegrationAssociation",
-        input_schema = schemas.UpdateDataIntegrationAssociationInput,
-        output_schema = schemas.UpdateDataIntegrationAssociationOutput,
-        http_method = "PATCH",
-        http_path = "/dataIntegrations/{DataIntegrationIdentifier}/associations/{DataIntegrationAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDataIntegrationAssociation, input, options)
 end
 
 function Client:updateEventIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateEventIntegration",
-        input_schema = schemas.UpdateEventIntegrationInput,
-        output_schema = schemas.UpdateEventIntegrationOutput,
-        http_method = "PATCH",
-        http_path = "/eventIntegrations/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateEventIntegration, input, options)
 end
 
 return M

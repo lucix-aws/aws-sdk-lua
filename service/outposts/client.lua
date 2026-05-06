@@ -7,6 +7,7 @@ local endpoint_rules = require("outposts.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("outposts.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "outposts", signing_region = cfg.region } }
                 else
@@ -49,484 +52,151 @@ function M.new(cfg)
 end
 
 function Client:cancelCapacityTask(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelCapacityTask",
-        input_schema = schemas.CancelCapacityTaskInput,
-        output_schema = schemas.CancelCapacityTaskOutput,
-        http_method = "POST",
-        http_path = "/outposts/{OutpostIdentifier}/capacity/{CapacityTaskId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelCapacityTask, input, options)
 end
 
 function Client:cancelOrder(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelOrder",
-        input_schema = schemas.CancelOrderInput,
-        output_schema = schemas.CancelOrderOutput,
-        http_method = "POST",
-        http_path = "/orders/{OrderId}/cancel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelOrder, input, options)
 end
 
 function Client:createOrder(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateOrder",
-        input_schema = schemas.CreateOrderInput,
-        output_schema = schemas.CreateOrderOutput,
-        http_method = "POST",
-        http_path = "/orders",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateOrder, input, options)
 end
 
 function Client:createOutpost(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateOutpost",
-        input_schema = schemas.CreateOutpostInput,
-        output_schema = schemas.CreateOutpostOutput,
-        http_method = "POST",
-        http_path = "/outposts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateOutpost, input, options)
 end
 
 function Client:createRenewal(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRenewal",
-        input_schema = schemas.CreateRenewalInput,
-        output_schema = schemas.CreateRenewalOutput,
-        http_method = "POST",
-        http_path = "/renewals",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRenewal, input, options)
 end
 
 function Client:createSite(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSite",
-        input_schema = schemas.CreateSiteInput,
-        output_schema = schemas.CreateSiteOutput,
-        http_method = "POST",
-        http_path = "/sites",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSite, input, options)
 end
 
 function Client:deleteOutpost(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteOutpost",
-        input_schema = schemas.DeleteOutpostInput,
-        output_schema = schemas.DeleteOutpostOutput,
-        http_method = "DELETE",
-        http_path = "/outposts/{OutpostId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteOutpost, input, options)
 end
 
 function Client:deleteSite(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSite",
-        input_schema = schemas.DeleteSiteInput,
-        output_schema = schemas.DeleteSiteOutput,
-        http_method = "DELETE",
-        http_path = "/sites/{SiteId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSite, input, options)
 end
 
 function Client:getCapacityTask(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCapacityTask",
-        input_schema = schemas.GetCapacityTaskInput,
-        output_schema = schemas.GetCapacityTaskOutput,
-        http_method = "GET",
-        http_path = "/outposts/{OutpostIdentifier}/capacity/{CapacityTaskId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCapacityTask, input, options)
 end
 
 function Client:getCatalogItem(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCatalogItem",
-        input_schema = schemas.GetCatalogItemInput,
-        output_schema = schemas.GetCatalogItemOutput,
-        http_method = "GET",
-        http_path = "/catalog/item/{CatalogItemId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCatalogItem, input, options)
 end
 
 function Client:getConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConnection",
-        input_schema = schemas.GetConnectionInput,
-        output_schema = schemas.GetConnectionOutput,
-        http_method = "GET",
-        http_path = "/connections/{ConnectionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConnection, input, options)
 end
 
 function Client:getOrder(input, options)
-    return self:invokeOperation(input, {
-        name = "GetOrder",
-        input_schema = schemas.GetOrderInput,
-        output_schema = schemas.GetOrderOutput,
-        http_method = "GET",
-        http_path = "/orders/{OrderId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetOrder, input, options)
 end
 
 function Client:getOutpost(input, options)
-    return self:invokeOperation(input, {
-        name = "GetOutpost",
-        input_schema = schemas.GetOutpostInput,
-        output_schema = schemas.GetOutpostOutput,
-        http_method = "GET",
-        http_path = "/outposts/{OutpostId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetOutpost, input, options)
 end
 
 function Client:getOutpostBillingInformation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetOutpostBillingInformation",
-        input_schema = schemas.GetOutpostBillingInformationInput,
-        output_schema = schemas.GetOutpostBillingInformationOutput,
-        http_method = "GET",
-        http_path = "/outpost/{OutpostIdentifier}/billing-information",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetOutpostBillingInformation, input, options)
 end
 
 function Client:getOutpostInstanceTypes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetOutpostInstanceTypes",
-        input_schema = schemas.GetOutpostInstanceTypesInput,
-        output_schema = schemas.GetOutpostInstanceTypesOutput,
-        http_method = "GET",
-        http_path = "/outposts/{OutpostId}/instanceTypes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetOutpostInstanceTypes, input, options)
 end
 
 function Client:getOutpostSupportedInstanceTypes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetOutpostSupportedInstanceTypes",
-        input_schema = schemas.GetOutpostSupportedInstanceTypesInput,
-        output_schema = schemas.GetOutpostSupportedInstanceTypesOutput,
-        http_method = "GET",
-        http_path = "/outposts/{OutpostIdentifier}/supportedInstanceTypes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetOutpostSupportedInstanceTypes, input, options)
 end
 
 function Client:getRenewalPricing(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRenewalPricing",
-        input_schema = schemas.GetRenewalPricingInput,
-        output_schema = schemas.GetRenewalPricingOutput,
-        http_method = "GET",
-        http_path = "/outpost/{OutpostIdentifier}/renewal-pricing",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRenewalPricing, input, options)
 end
 
 function Client:getSite(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSite",
-        input_schema = schemas.GetSiteInput,
-        output_schema = schemas.GetSiteOutput,
-        http_method = "GET",
-        http_path = "/sites/{SiteId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSite, input, options)
 end
 
 function Client:getSiteAddress(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSiteAddress",
-        input_schema = schemas.GetSiteAddressInput,
-        output_schema = schemas.GetSiteAddressOutput,
-        http_method = "GET",
-        http_path = "/sites/{SiteId}/address",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSiteAddress, input, options)
 end
 
 function Client:listAssetInstances(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAssetInstances",
-        input_schema = schemas.ListAssetInstancesInput,
-        output_schema = schemas.ListAssetInstancesOutput,
-        http_method = "GET",
-        http_path = "/outposts/{OutpostIdentifier}/assetInstances",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAssetInstances, input, options)
 end
 
 function Client:listAssets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAssets",
-        input_schema = schemas.ListAssetsInput,
-        output_schema = schemas.ListAssetsOutput,
-        http_method = "GET",
-        http_path = "/outposts/{OutpostIdentifier}/assets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAssets, input, options)
 end
 
 function Client:listBlockingInstancesForCapacityTask(input, options)
-    return self:invokeOperation(input, {
-        name = "ListBlockingInstancesForCapacityTask",
-        input_schema = schemas.ListBlockingInstancesForCapacityTaskInput,
-        output_schema = schemas.ListBlockingInstancesForCapacityTaskOutput,
-        http_method = "GET",
-        http_path = "/outposts/{OutpostIdentifier}/capacity/{CapacityTaskId}/blockingInstances",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListBlockingInstancesForCapacityTask, input, options)
 end
 
 function Client:listCapacityTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCapacityTasks",
-        input_schema = schemas.ListCapacityTasksInput,
-        output_schema = schemas.ListCapacityTasksOutput,
-        http_method = "GET",
-        http_path = "/capacity/tasks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCapacityTasks, input, options)
 end
 
 function Client:listCatalogItems(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCatalogItems",
-        input_schema = schemas.ListCatalogItemsInput,
-        output_schema = schemas.ListCatalogItemsOutput,
-        http_method = "GET",
-        http_path = "/catalog/items",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCatalogItems, input, options)
 end
 
 function Client:listOrders(input, options)
-    return self:invokeOperation(input, {
-        name = "ListOrders",
-        input_schema = schemas.ListOrdersInput,
-        output_schema = schemas.ListOrdersOutput,
-        http_method = "GET",
-        http_path = "/list-orders",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListOrders, input, options)
 end
 
 function Client:listOutposts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListOutposts",
-        input_schema = schemas.ListOutpostsInput,
-        output_schema = schemas.ListOutpostsOutput,
-        http_method = "GET",
-        http_path = "/outposts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListOutposts, input, options)
 end
 
 function Client:listSites(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSites",
-        input_schema = schemas.ListSitesInput,
-        output_schema = schemas.ListSitesOutput,
-        http_method = "GET",
-        http_path = "/sites",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSites, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:startCapacityTask(input, options)
-    return self:invokeOperation(input, {
-        name = "StartCapacityTask",
-        input_schema = schemas.StartCapacityTaskInput,
-        output_schema = schemas.StartCapacityTaskOutput,
-        http_method = "POST",
-        http_path = "/outposts/{OutpostIdentifier}/capacity",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartCapacityTask, input, options)
 end
 
 function Client:startConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "StartConnection",
-        input_schema = schemas.StartConnectionInput,
-        output_schema = schemas.StartConnectionOutput,
-        http_method = "POST",
-        http_path = "/connections",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartConnection, input, options)
 end
 
 function Client:startOutpostDecommission(input, options)
-    return self:invokeOperation(input, {
-        name = "StartOutpostDecommission",
-        input_schema = schemas.StartOutpostDecommissionInput,
-        output_schema = schemas.StartOutpostDecommissionOutput,
-        http_method = "POST",
-        http_path = "/outposts/{OutpostIdentifier}/decommission",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartOutpostDecommission, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateOutpost(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateOutpost",
-        input_schema = schemas.UpdateOutpostInput,
-        output_schema = schemas.UpdateOutpostOutput,
-        http_method = "PATCH",
-        http_path = "/outposts/{OutpostId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateOutpost, input, options)
 end
 
 function Client:updateSite(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSite",
-        input_schema = schemas.UpdateSiteInput,
-        output_schema = schemas.UpdateSiteOutput,
-        http_method = "PATCH",
-        http_path = "/sites/{SiteId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSite, input, options)
 end
 
 function Client:updateSiteAddress(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSiteAddress",
-        input_schema = schemas.UpdateSiteAddressInput,
-        output_schema = schemas.UpdateSiteAddressOutput,
-        http_method = "PUT",
-        http_path = "/sites/{SiteId}/address",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSiteAddress, input, options)
 end
 
 function Client:updateSiteRackPhysicalProperties(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSiteRackPhysicalProperties",
-        input_schema = schemas.UpdateSiteRackPhysicalPropertiesInput,
-        output_schema = schemas.UpdateSiteRackPhysicalPropertiesOutput,
-        http_method = "PATCH",
-        http_path = "/sites/{SiteId}/rackPhysicalProperties",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSiteRackPhysicalProperties, input, options)
 end
 
 return M

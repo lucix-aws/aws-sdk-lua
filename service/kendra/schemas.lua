@@ -10114,4 +10114,740 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.kendra", "AWSKendraFrontendService"),
+    version = "2019-02-03",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateEntitiesToExperience = schema.operation({
+    id = id.from("com.amazonaws.kendra", "AssociateEntitiesToExperience"),
+    input = M.AssociateEntitiesToExperienceInput,
+    output = M.AssociateEntitiesToExperienceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociatePersonasToEntities = schema.operation({
+    id = id.from("com.amazonaws.kendra", "AssociatePersonasToEntities"),
+    input = M.AssociatePersonasToEntitiesInput,
+    output = M.AssociatePersonasToEntitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteDocument = schema.operation({
+    id = id.from("com.amazonaws.kendra", "BatchDeleteDocument"),
+    input = M.BatchDeleteDocumentInput,
+    output = M.BatchDeleteDocumentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteFeaturedResultsSet = schema.operation({
+    id = id.from("com.amazonaws.kendra", "BatchDeleteFeaturedResultsSet"),
+    input = M.BatchDeleteFeaturedResultsSetInput,
+    output = M.BatchDeleteFeaturedResultsSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetDocumentStatus = schema.operation({
+    id = id.from("com.amazonaws.kendra", "BatchGetDocumentStatus"),
+    input = M.BatchGetDocumentStatusInput,
+    output = M.BatchGetDocumentStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchPutDocument = schema.operation({
+    id = id.from("com.amazonaws.kendra", "BatchPutDocument"),
+    input = M.BatchPutDocumentInput,
+    output = M.BatchPutDocumentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ClearQuerySuggestions = schema.operation({
+    id = id.from("com.amazonaws.kendra", "ClearQuerySuggestions"),
+    input = M.ClearQuerySuggestionsInput,
+    output = M.ClearQuerySuggestionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccessControlConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kendra", "CreateAccessControlConfiguration"),
+    input = M.CreateAccessControlConfigurationInput,
+    output = M.CreateAccessControlConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataSource = schema.operation({
+    id = id.from("com.amazonaws.kendra", "CreateDataSource"),
+    input = M.CreateDataSourceInput,
+    output = M.CreateDataSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExperience = schema.operation({
+    id = id.from("com.amazonaws.kendra", "CreateExperience"),
+    input = M.CreateExperienceInput,
+    output = M.CreateExperienceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFaq = schema.operation({
+    id = id.from("com.amazonaws.kendra", "CreateFaq"),
+    input = M.CreateFaqInput,
+    output = M.CreateFaqOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFeaturedResultsSet = schema.operation({
+    id = id.from("com.amazonaws.kendra", "CreateFeaturedResultsSet"),
+    input = M.CreateFeaturedResultsSetInput,
+    output = M.CreateFeaturedResultsSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIndex = schema.operation({
+    id = id.from("com.amazonaws.kendra", "CreateIndex"),
+    input = M.CreateIndexInput,
+    output = M.CreateIndexOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQuerySuggestionsBlockList = schema.operation({
+    id = id.from("com.amazonaws.kendra", "CreateQuerySuggestionsBlockList"),
+    input = M.CreateQuerySuggestionsBlockListInput,
+    output = M.CreateQuerySuggestionsBlockListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateThesaurus = schema.operation({
+    id = id.from("com.amazonaws.kendra", "CreateThesaurus"),
+    input = M.CreateThesaurusInput,
+    output = M.CreateThesaurusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccessControlConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DeleteAccessControlConfiguration"),
+    input = M.DeleteAccessControlConfigurationInput,
+    output = M.DeleteAccessControlConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataSource = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DeleteDataSource"),
+    input = M.DeleteDataSourceInput,
+    output = M.DeleteDataSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteExperience = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DeleteExperience"),
+    input = M.DeleteExperienceInput,
+    output = M.DeleteExperienceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFaq = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DeleteFaq"),
+    input = M.DeleteFaqInput,
+    output = M.DeleteFaqOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIndex = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DeleteIndex"),
+    input = M.DeleteIndexInput,
+    output = M.DeleteIndexOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePrincipalMapping = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DeletePrincipalMapping"),
+    input = M.DeletePrincipalMappingInput,
+    output = M.DeletePrincipalMappingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQuerySuggestionsBlockList = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DeleteQuerySuggestionsBlockList"),
+    input = M.DeleteQuerySuggestionsBlockListInput,
+    output = M.DeleteQuerySuggestionsBlockListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteThesaurus = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DeleteThesaurus"),
+    input = M.DeleteThesaurusInput,
+    output = M.DeleteThesaurusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccessControlConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DescribeAccessControlConfiguration"),
+    input = M.DescribeAccessControlConfigurationInput,
+    output = M.DescribeAccessControlConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataSource = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DescribeDataSource"),
+    input = M.DescribeDataSourceInput,
+    output = M.DescribeDataSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExperience = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DescribeExperience"),
+    input = M.DescribeExperienceInput,
+    output = M.DescribeExperienceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFaq = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DescribeFaq"),
+    input = M.DescribeFaqInput,
+    output = M.DescribeFaqOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFeaturedResultsSet = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DescribeFeaturedResultsSet"),
+    input = M.DescribeFeaturedResultsSetInput,
+    output = M.DescribeFeaturedResultsSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIndex = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DescribeIndex"),
+    input = M.DescribeIndexInput,
+    output = M.DescribeIndexOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePrincipalMapping = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DescribePrincipalMapping"),
+    input = M.DescribePrincipalMappingInput,
+    output = M.DescribePrincipalMappingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeQuerySuggestionsBlockList = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DescribeQuerySuggestionsBlockList"),
+    input = M.DescribeQuerySuggestionsBlockListInput,
+    output = M.DescribeQuerySuggestionsBlockListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeQuerySuggestionsConfig = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DescribeQuerySuggestionsConfig"),
+    input = M.DescribeQuerySuggestionsConfigInput,
+    output = M.DescribeQuerySuggestionsConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeThesaurus = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DescribeThesaurus"),
+    input = M.DescribeThesaurusInput,
+    output = M.DescribeThesaurusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateEntitiesFromExperience = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DisassociateEntitiesFromExperience"),
+    input = M.DisassociateEntitiesFromExperienceInput,
+    output = M.DisassociateEntitiesFromExperienceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociatePersonasFromEntities = schema.operation({
+    id = id.from("com.amazonaws.kendra", "DisassociatePersonasFromEntities"),
+    input = M.DisassociatePersonasFromEntitiesInput,
+    output = M.DisassociatePersonasFromEntitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQuerySuggestions = schema.operation({
+    id = id.from("com.amazonaws.kendra", "GetQuerySuggestions"),
+    input = M.GetQuerySuggestionsInput,
+    output = M.GetQuerySuggestionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSnapshots = schema.operation({
+    id = id.from("com.amazonaws.kendra", "GetSnapshots"),
+    input = M.GetSnapshotsInput,
+    output = M.GetSnapshotsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccessControlConfigurations = schema.operation({
+    id = id.from("com.amazonaws.kendra", "ListAccessControlConfigurations"),
+    input = M.ListAccessControlConfigurationsInput,
+    output = M.ListAccessControlConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSources = schema.operation({
+    id = id.from("com.amazonaws.kendra", "ListDataSources"),
+    input = M.ListDataSourcesInput,
+    output = M.ListDataSourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSourceSyncJobs = schema.operation({
+    id = id.from("com.amazonaws.kendra", "ListDataSourceSyncJobs"),
+    input = M.ListDataSourceSyncJobsInput,
+    output = M.ListDataSourceSyncJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEntityPersonas = schema.operation({
+    id = id.from("com.amazonaws.kendra", "ListEntityPersonas"),
+    input = M.ListEntityPersonasInput,
+    output = M.ListEntityPersonasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExperienceEntities = schema.operation({
+    id = id.from("com.amazonaws.kendra", "ListExperienceEntities"),
+    input = M.ListExperienceEntitiesInput,
+    output = M.ListExperienceEntitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExperiences = schema.operation({
+    id = id.from("com.amazonaws.kendra", "ListExperiences"),
+    input = M.ListExperiencesInput,
+    output = M.ListExperiencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFaqs = schema.operation({
+    id = id.from("com.amazonaws.kendra", "ListFaqs"),
+    input = M.ListFaqsInput,
+    output = M.ListFaqsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFeaturedResultsSets = schema.operation({
+    id = id.from("com.amazonaws.kendra", "ListFeaturedResultsSets"),
+    input = M.ListFeaturedResultsSetsInput,
+    output = M.ListFeaturedResultsSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroupsOlderThanOrderingId = schema.operation({
+    id = id.from("com.amazonaws.kendra", "ListGroupsOlderThanOrderingId"),
+    input = M.ListGroupsOlderThanOrderingIdInput,
+    output = M.ListGroupsOlderThanOrderingIdOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIndices = schema.operation({
+    id = id.from("com.amazonaws.kendra", "ListIndices"),
+    input = M.ListIndicesInput,
+    output = M.ListIndicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQuerySuggestionsBlockLists = schema.operation({
+    id = id.from("com.amazonaws.kendra", "ListQuerySuggestionsBlockLists"),
+    input = M.ListQuerySuggestionsBlockListsInput,
+    output = M.ListQuerySuggestionsBlockListsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.kendra", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThesauri = schema.operation({
+    id = id.from("com.amazonaws.kendra", "ListThesauri"),
+    input = M.ListThesauriInput,
+    output = M.ListThesauriOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPrincipalMapping = schema.operation({
+    id = id.from("com.amazonaws.kendra", "PutPrincipalMapping"),
+    input = M.PutPrincipalMappingInput,
+    output = M.PutPrincipalMappingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Query = schema.operation({
+    id = id.from("com.amazonaws.kendra", "Query"),
+    input = M.QueryInput,
+    output = M.QueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Retrieve = schema.operation({
+    id = id.from("com.amazonaws.kendra", "Retrieve"),
+    input = M.RetrieveInput,
+    output = M.RetrieveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDataSourceSyncJob = schema.operation({
+    id = id.from("com.amazonaws.kendra", "StartDataSourceSyncJob"),
+    input = M.StartDataSourceSyncJobInput,
+    output = M.StartDataSourceSyncJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDataSourceSyncJob = schema.operation({
+    id = id.from("com.amazonaws.kendra", "StopDataSourceSyncJob"),
+    input = M.StopDataSourceSyncJobInput,
+    output = M.StopDataSourceSyncJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SubmitFeedback = schema.operation({
+    id = id.from("com.amazonaws.kendra", "SubmitFeedback"),
+    input = M.SubmitFeedbackInput,
+    output = M.SubmitFeedbackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.kendra", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.kendra", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccessControlConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kendra", "UpdateAccessControlConfiguration"),
+    input = M.UpdateAccessControlConfigurationInput,
+    output = M.UpdateAccessControlConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataSource = schema.operation({
+    id = id.from("com.amazonaws.kendra", "UpdateDataSource"),
+    input = M.UpdateDataSourceInput,
+    output = M.UpdateDataSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateExperience = schema.operation({
+    id = id.from("com.amazonaws.kendra", "UpdateExperience"),
+    input = M.UpdateExperienceInput,
+    output = M.UpdateExperienceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFeaturedResultsSet = schema.operation({
+    id = id.from("com.amazonaws.kendra", "UpdateFeaturedResultsSet"),
+    input = M.UpdateFeaturedResultsSetInput,
+    output = M.UpdateFeaturedResultsSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIndex = schema.operation({
+    id = id.from("com.amazonaws.kendra", "UpdateIndex"),
+    input = M.UpdateIndexInput,
+    output = M.UpdateIndexOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQuerySuggestionsBlockList = schema.operation({
+    id = id.from("com.amazonaws.kendra", "UpdateQuerySuggestionsBlockList"),
+    input = M.UpdateQuerySuggestionsBlockListInput,
+    output = M.UpdateQuerySuggestionsBlockListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQuerySuggestionsConfig = schema.operation({
+    id = id.from("com.amazonaws.kendra", "UpdateQuerySuggestionsConfig"),
+    input = M.UpdateQuerySuggestionsConfigInput,
+    output = M.UpdateQuerySuggestionsConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateThesaurus = schema.operation({
+    id = id.from("com.amazonaws.kendra", "UpdateThesaurus"),
+    input = M.UpdateThesaurusInput,
+    output = M.UpdateThesaurusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

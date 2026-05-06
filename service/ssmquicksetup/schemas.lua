@@ -1101,4 +1101,182 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ssmquicksetup", "QuickSetup"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfigurationManager = schema.operation({
+    id = id.from("com.amazonaws.ssmquicksetup", "CreateConfigurationManager"),
+    input = M.CreateConfigurationManagerInput,
+    output = M.CreateConfigurationManagerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configurationManager" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationManager = schema.operation({
+    id = id.from("com.amazonaws.ssmquicksetup", "DeleteConfigurationManager"),
+    input = M.DeleteConfigurationManagerInput,
+    output = M.DeleteConfigurationManagerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/configurationManager/{ManagerArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ssmquicksetup", "GetConfiguration"),
+    input = M.GetConfigurationInput,
+    output = M.GetConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/getConfiguration/{ConfigurationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfigurationManager = schema.operation({
+    id = id.from("com.amazonaws.ssmquicksetup", "GetConfigurationManager"),
+    input = M.GetConfigurationManagerInput,
+    output = M.GetConfigurationManagerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configurationManager/{ManagerArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceSettings = schema.operation({
+    id = id.from("com.amazonaws.ssmquicksetup", "GetServiceSettings"),
+    input = M.GetServiceSettingsInput,
+    output = M.GetServiceSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/serviceSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationManagers = schema.operation({
+    id = id.from("com.amazonaws.ssmquicksetup", "ListConfigurationManagers"),
+    input = M.ListConfigurationManagersInput,
+    output = M.ListConfigurationManagersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listConfigurationManagers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurations = schema.operation({
+    id = id.from("com.amazonaws.ssmquicksetup", "ListConfigurations"),
+    input = M.ListConfigurationsInput,
+    output = M.ListConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQuickSetupTypes = schema.operation({
+    id = id.from("com.amazonaws.ssmquicksetup", "ListQuickSetupTypes"),
+    input = M.ListQuickSetupTypesInput,
+    output = M.ListQuickSetupTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/listQuickSetupTypes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.ssmquicksetup", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.ssmquicksetup", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.ssmquicksetup", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfigurationDefinition = schema.operation({
+    id = id.from("com.amazonaws.ssmquicksetup", "UpdateConfigurationDefinition"),
+    input = M.UpdateConfigurationDefinitionInput,
+    output = M.UpdateConfigurationDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/configurationDefinition/{ManagerArn}/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfigurationManager = schema.operation({
+    id = id.from("com.amazonaws.ssmquicksetup", "UpdateConfigurationManager"),
+    input = M.UpdateConfigurationManagerInput,
+    output = M.UpdateConfigurationManagerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/configurationManager/{ManagerArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceSettings = schema.operation({
+    id = id.from("com.amazonaws.ssmquicksetup", "UpdateServiceSettings"),
+    input = M.UpdateServiceSettingsInput,
+    output = M.UpdateServiceSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/serviceSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

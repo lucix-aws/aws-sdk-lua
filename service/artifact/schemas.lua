@@ -989,4 +989,110 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.artifact", "Artifact"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.artifact", "GetAccountSettings"),
+    input = M.GetAccountSettingsInput,
+    output = M.GetAccountSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/account-settings/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReport = schema.operation({
+    id = id.from("com.amazonaws.artifact", "GetReport"),
+    input = M.GetReportInput,
+    output = M.GetReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/report/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReportMetadata = schema.operation({
+    id = id.from("com.amazonaws.artifact", "GetReportMetadata"),
+    input = M.GetReportMetadataInput,
+    output = M.GetReportMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/report/getMetadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTermForReport = schema.operation({
+    id = id.from("com.amazonaws.artifact", "GetTermForReport"),
+    input = M.GetTermForReportInput,
+    output = M.GetTermForReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/report/getTermForReport" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomerAgreements = schema.operation({
+    id = id.from("com.amazonaws.artifact", "ListCustomerAgreements"),
+    input = M.ListCustomerAgreementsInput,
+    output = M.ListCustomerAgreementsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/customer-agreement/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReports = schema.operation({
+    id = id.from("com.amazonaws.artifact", "ListReports"),
+    input = M.ListReportsInput,
+    output = M.ListReportsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/report/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReportVersions = schema.operation({
+    id = id.from("com.amazonaws.artifact", "ListReportVersions"),
+    input = M.ListReportVersionsInput,
+    output = M.ListReportVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/report/listVersions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.artifact", "PutAccountSettings"),
+    input = M.PutAccountSettingsInput,
+    output = M.PutAccountSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/account-settings/put" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

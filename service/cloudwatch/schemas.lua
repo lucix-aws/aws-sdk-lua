@@ -4368,4 +4368,520 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cloudwatch", "GraniteServiceVersion20100801"),
+    version = "2010-08-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAlarmMuteRule = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DeleteAlarmMuteRule"),
+    input = M.DeleteAlarmMuteRuleInput,
+    output = M.DeleteAlarmMuteRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAlarms = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DeleteAlarms"),
+    input = M.DeleteAlarmsInput,
+    output = M.DeleteAlarmsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAnomalyDetector = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DeleteAnomalyDetector"),
+    input = M.DeleteAnomalyDetectorInput,
+    output = M.DeleteAnomalyDetectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDashboards = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DeleteDashboards"),
+    input = M.DeleteDashboardsInput,
+    output = M.DeleteDashboardsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInsightRules = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DeleteInsightRules"),
+    input = M.DeleteInsightRulesInput,
+    output = M.DeleteInsightRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMetricStream = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DeleteMetricStream"),
+    input = M.DeleteMetricStreamInput,
+    output = M.DeleteMetricStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAlarmContributors = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DescribeAlarmContributors"),
+    input = M.DescribeAlarmContributorsInput,
+    output = M.DescribeAlarmContributorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAlarmHistory = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DescribeAlarmHistory"),
+    input = M.DescribeAlarmHistoryInput,
+    output = M.DescribeAlarmHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAlarms = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DescribeAlarms"),
+    input = M.DescribeAlarmsInput,
+    output = M.DescribeAlarmsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAlarmsForMetric = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DescribeAlarmsForMetric"),
+    input = M.DescribeAlarmsForMetricInput,
+    output = M.DescribeAlarmsForMetricOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAnomalyDetectors = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DescribeAnomalyDetectors"),
+    input = M.DescribeAnomalyDetectorsInput,
+    output = M.DescribeAnomalyDetectorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInsightRules = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DescribeInsightRules"),
+    input = M.DescribeInsightRulesInput,
+    output = M.DescribeInsightRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableAlarmActions = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DisableAlarmActions"),
+    input = M.DisableAlarmActionsInput,
+    output = M.DisableAlarmActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableInsightRules = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DisableInsightRules"),
+    input = M.DisableInsightRulesInput,
+    output = M.DisableInsightRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableAlarmActions = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "EnableAlarmActions"),
+    input = M.EnableAlarmActionsInput,
+    output = M.EnableAlarmActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableInsightRules = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "EnableInsightRules"),
+    input = M.EnableInsightRulesInput,
+    output = M.EnableInsightRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAlarmMuteRule = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "GetAlarmMuteRule"),
+    input = M.GetAlarmMuteRuleInput,
+    output = M.GetAlarmMuteRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDashboard = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "GetDashboard"),
+    input = M.GetDashboardInput,
+    output = M.GetDashboardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInsightRuleReport = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "GetInsightRuleReport"),
+    input = M.GetInsightRuleReportInput,
+    output = M.GetInsightRuleReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMetricData = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "GetMetricData"),
+    input = M.GetMetricDataInput,
+    output = M.GetMetricDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMetricStatistics = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "GetMetricStatistics"),
+    input = M.GetMetricStatisticsInput,
+    output = M.GetMetricStatisticsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMetricStream = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "GetMetricStream"),
+    input = M.GetMetricStreamInput,
+    output = M.GetMetricStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMetricWidgetImage = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "GetMetricWidgetImage"),
+    input = M.GetMetricWidgetImageInput,
+    output = M.GetMetricWidgetImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOTelEnrichment = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "GetOTelEnrichment"),
+    input = M.GetOTelEnrichmentInput,
+    output = M.GetOTelEnrichmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAlarmMuteRules = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "ListAlarmMuteRules"),
+    input = M.ListAlarmMuteRulesInput,
+    output = M.ListAlarmMuteRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDashboards = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "ListDashboards"),
+    input = M.ListDashboardsInput,
+    output = M.ListDashboardsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedInsightRules = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "ListManagedInsightRules"),
+    input = M.ListManagedInsightRulesInput,
+    output = M.ListManagedInsightRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMetrics = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "ListMetrics"),
+    input = M.ListMetricsInput,
+    output = M.ListMetricsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMetricStreams = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "ListMetricStreams"),
+    input = M.ListMetricStreamsInput,
+    output = M.ListMetricStreamsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAlarmMuteRule = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "PutAlarmMuteRule"),
+    input = M.PutAlarmMuteRuleInput,
+    output = M.PutAlarmMuteRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAnomalyDetector = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "PutAnomalyDetector"),
+    input = M.PutAnomalyDetectorInput,
+    output = M.PutAnomalyDetectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutCompositeAlarm = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "PutCompositeAlarm"),
+    input = M.PutCompositeAlarmInput,
+    output = M.PutCompositeAlarmOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDashboard = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "PutDashboard"),
+    input = M.PutDashboardInput,
+    output = M.PutDashboardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutInsightRule = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "PutInsightRule"),
+    input = M.PutInsightRuleInput,
+    output = M.PutInsightRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutManagedInsightRules = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "PutManagedInsightRules"),
+    input = M.PutManagedInsightRulesInput,
+    output = M.PutManagedInsightRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMetricAlarm = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "PutMetricAlarm"),
+    input = M.PutMetricAlarmInput,
+    output = M.PutMetricAlarmOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMetricData = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "PutMetricData"),
+    input = M.PutMetricDataInput,
+    output = M.PutMetricDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMetricStream = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "PutMetricStream"),
+    input = M.PutMetricStreamInput,
+    output = M.PutMetricStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetAlarmState = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "SetAlarmState"),
+    input = M.SetAlarmStateInput,
+    output = M.SetAlarmStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMetricStreams = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "StartMetricStreams"),
+    input = M.StartMetricStreamsInput,
+    output = M.StartMetricStreamsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartOTelEnrichment = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "StartOTelEnrichment"),
+    input = M.StartOTelEnrichmentInput,
+    output = M.StartOTelEnrichmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopMetricStreams = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "StopMetricStreams"),
+    input = M.StopMetricStreamsInput,
+    output = M.StopMetricStreamsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopOTelEnrichment = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "StopOTelEnrichment"),
+    input = M.StopOTelEnrichmentInput,
+    output = M.StopOTelEnrichmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

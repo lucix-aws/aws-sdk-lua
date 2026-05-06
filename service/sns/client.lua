@@ -7,6 +7,7 @@ local endpoint_rules = require("sns.endpoint_rules")
 local query_protocol = require("smithy.protocol.query")
 local schemas = require("sns.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sns", signing_region = cfg.region } }
                 else
@@ -49,549 +52,171 @@ function M.new(cfg)
 end
 
 function Client:addPermission(input, options)
-    return self:invokeOperation(input, {
-        name = "AddPermission",
-        input_schema = schemas.AddPermissionInput,
-        output_schema = schemas.AddPermissionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddPermission, input, options)
 end
 
 function Client:checkIfPhoneNumberIsOptedOut(input, options)
-    return self:invokeOperation(input, {
-        name = "CheckIfPhoneNumberIsOptedOut",
-        input_schema = schemas.CheckIfPhoneNumberIsOptedOutInput,
-        output_schema = schemas.CheckIfPhoneNumberIsOptedOutOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CheckIfPhoneNumberIsOptedOut, input, options)
 end
 
 function Client:confirmSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "ConfirmSubscription",
-        input_schema = schemas.ConfirmSubscriptionInput,
-        output_schema = schemas.ConfirmSubscriptionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ConfirmSubscription, input, options)
 end
 
 function Client:createPlatformApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePlatformApplication",
-        input_schema = schemas.CreatePlatformApplicationInput,
-        output_schema = schemas.CreatePlatformApplicationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePlatformApplication, input, options)
 end
 
 function Client:createPlatformEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePlatformEndpoint",
-        input_schema = schemas.CreatePlatformEndpointInput,
-        output_schema = schemas.CreatePlatformEndpointOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePlatformEndpoint, input, options)
 end
 
 function Client:createSMSSandboxPhoneNumber(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSMSSandboxPhoneNumber",
-        input_schema = schemas.CreateSMSSandboxPhoneNumberInput,
-        output_schema = schemas.CreateSMSSandboxPhoneNumberOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSMSSandboxPhoneNumber, input, options)
 end
 
 function Client:createTopic(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTopic",
-        input_schema = schemas.CreateTopicInput,
-        output_schema = schemas.CreateTopicOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTopic, input, options)
 end
 
 function Client:deleteEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEndpoint",
-        input_schema = schemas.DeleteEndpointInput,
-        output_schema = schemas.DeleteEndpointOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEndpoint, input, options)
 end
 
 function Client:deletePlatformApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePlatformApplication",
-        input_schema = schemas.DeletePlatformApplicationInput,
-        output_schema = schemas.DeletePlatformApplicationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePlatformApplication, input, options)
 end
 
 function Client:deleteSMSSandboxPhoneNumber(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSMSSandboxPhoneNumber",
-        input_schema = schemas.DeleteSMSSandboxPhoneNumberInput,
-        output_schema = schemas.DeleteSMSSandboxPhoneNumberOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSMSSandboxPhoneNumber, input, options)
 end
 
 function Client:deleteTopic(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTopic",
-        input_schema = schemas.DeleteTopicInput,
-        output_schema = schemas.DeleteTopicOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTopic, input, options)
 end
 
 function Client:getDataProtectionPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDataProtectionPolicy",
-        input_schema = schemas.GetDataProtectionPolicyInput,
-        output_schema = schemas.GetDataProtectionPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDataProtectionPolicy, input, options)
 end
 
 function Client:getEndpointAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEndpointAttributes",
-        input_schema = schemas.GetEndpointAttributesInput,
-        output_schema = schemas.GetEndpointAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEndpointAttributes, input, options)
 end
 
 function Client:getPlatformApplicationAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPlatformApplicationAttributes",
-        input_schema = schemas.GetPlatformApplicationAttributesInput,
-        output_schema = schemas.GetPlatformApplicationAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPlatformApplicationAttributes, input, options)
 end
 
 function Client:getSMSAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSMSAttributes",
-        input_schema = schemas.GetSMSAttributesInput,
-        output_schema = schemas.GetSMSAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSMSAttributes, input, options)
 end
 
 function Client:getSMSSandboxAccountStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSMSSandboxAccountStatus",
-        input_schema = schemas.GetSMSSandboxAccountStatusInput,
-        output_schema = schemas.GetSMSSandboxAccountStatusOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSMSSandboxAccountStatus, input, options)
 end
 
 function Client:getSubscriptionAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSubscriptionAttributes",
-        input_schema = schemas.GetSubscriptionAttributesInput,
-        output_schema = schemas.GetSubscriptionAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSubscriptionAttributes, input, options)
 end
 
 function Client:getTopicAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTopicAttributes",
-        input_schema = schemas.GetTopicAttributesInput,
-        output_schema = schemas.GetTopicAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTopicAttributes, input, options)
 end
 
 function Client:listEndpointsByPlatformApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEndpointsByPlatformApplication",
-        input_schema = schemas.ListEndpointsByPlatformApplicationInput,
-        output_schema = schemas.ListEndpointsByPlatformApplicationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEndpointsByPlatformApplication, input, options)
 end
 
 function Client:listOriginationNumbers(input, options)
-    return self:invokeOperation(input, {
-        name = "ListOriginationNumbers",
-        input_schema = schemas.ListOriginationNumbersInput,
-        output_schema = schemas.ListOriginationNumbersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListOriginationNumbers, input, options)
 end
 
 function Client:listPhoneNumbersOptedOut(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPhoneNumbersOptedOut",
-        input_schema = schemas.ListPhoneNumbersOptedOutInput,
-        output_schema = schemas.ListPhoneNumbersOptedOutOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPhoneNumbersOptedOut, input, options)
 end
 
 function Client:listPlatformApplications(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPlatformApplications",
-        input_schema = schemas.ListPlatformApplicationsInput,
-        output_schema = schemas.ListPlatformApplicationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPlatformApplications, input, options)
 end
 
 function Client:listSMSSandboxPhoneNumbers(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSMSSandboxPhoneNumbers",
-        input_schema = schemas.ListSMSSandboxPhoneNumbersInput,
-        output_schema = schemas.ListSMSSandboxPhoneNumbersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSMSSandboxPhoneNumbers, input, options)
 end
 
 function Client:listSubscriptions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSubscriptions",
-        input_schema = schemas.ListSubscriptionsInput,
-        output_schema = schemas.ListSubscriptionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSubscriptions, input, options)
 end
 
 function Client:listSubscriptionsByTopic(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSubscriptionsByTopic",
-        input_schema = schemas.ListSubscriptionsByTopicInput,
-        output_schema = schemas.ListSubscriptionsByTopicOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSubscriptionsByTopic, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTopics(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTopics",
-        input_schema = schemas.ListTopicsInput,
-        output_schema = schemas.ListTopicsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTopics, input, options)
 end
 
 function Client:optInPhoneNumber(input, options)
-    return self:invokeOperation(input, {
-        name = "OptInPhoneNumber",
-        input_schema = schemas.OptInPhoneNumberInput,
-        output_schema = schemas.OptInPhoneNumberOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.OptInPhoneNumber, input, options)
 end
 
 function Client:publish(input, options)
-    return self:invokeOperation(input, {
-        name = "Publish",
-        input_schema = schemas.PublishInput,
-        output_schema = schemas.PublishOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Publish, input, options)
 end
 
 function Client:publishBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "PublishBatch",
-        input_schema = schemas.PublishBatchInput,
-        output_schema = schemas.PublishBatchOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PublishBatch, input, options)
 end
 
 function Client:putDataProtectionPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutDataProtectionPolicy",
-        input_schema = schemas.PutDataProtectionPolicyInput,
-        output_schema = schemas.PutDataProtectionPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutDataProtectionPolicy, input, options)
 end
 
 function Client:removePermission(input, options)
-    return self:invokeOperation(input, {
-        name = "RemovePermission",
-        input_schema = schemas.RemovePermissionInput,
-        output_schema = schemas.RemovePermissionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemovePermission, input, options)
 end
 
 function Client:setEndpointAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "SetEndpointAttributes",
-        input_schema = schemas.SetEndpointAttributesInput,
-        output_schema = schemas.SetEndpointAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetEndpointAttributes, input, options)
 end
 
 function Client:setPlatformApplicationAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "SetPlatformApplicationAttributes",
-        input_schema = schemas.SetPlatformApplicationAttributesInput,
-        output_schema = schemas.SetPlatformApplicationAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetPlatformApplicationAttributes, input, options)
 end
 
 function Client:setSMSAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "SetSMSAttributes",
-        input_schema = schemas.SetSMSAttributesInput,
-        output_schema = schemas.SetSMSAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetSMSAttributes, input, options)
 end
 
 function Client:setSubscriptionAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "SetSubscriptionAttributes",
-        input_schema = schemas.SetSubscriptionAttributesInput,
-        output_schema = schemas.SetSubscriptionAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetSubscriptionAttributes, input, options)
 end
 
 function Client:setTopicAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "SetTopicAttributes",
-        input_schema = schemas.SetTopicAttributesInput,
-        output_schema = schemas.SetTopicAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetTopicAttributes, input, options)
 end
 
 function Client:subscribe(input, options)
-    return self:invokeOperation(input, {
-        name = "Subscribe",
-        input_schema = schemas.SubscribeInput,
-        output_schema = schemas.SubscribeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Subscribe, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:unsubscribe(input, options)
-    return self:invokeOperation(input, {
-        name = "Unsubscribe",
-        input_schema = schemas.UnsubscribeInput,
-        output_schema = schemas.UnsubscribeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Unsubscribe, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:verifySMSSandboxPhoneNumber(input, options)
-    return self:invokeOperation(input, {
-        name = "VerifySMSSandboxPhoneNumber",
-        input_schema = schemas.VerifySMSSandboxPhoneNumberInput,
-        output_schema = schemas.VerifySMSSandboxPhoneNumberOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.VerifySMSSandboxPhoneNumber, input, options)
 end
 
 return M

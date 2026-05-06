@@ -3669,4 +3669,98 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.geoplaces", "PlacesService"),
+    version = "2020-11-19",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Autocomplete = schema.operation({
+    id = id.from("com.amazonaws.geoplaces", "Autocomplete"),
+    input = M.AutocompleteInput,
+    output = M.AutocompleteOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/autocomplete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Geocode = schema.operation({
+    id = id.from("com.amazonaws.geoplaces", "Geocode"),
+    input = M.GeocodeInput,
+    output = M.GeocodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/geocode" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPlace = schema.operation({
+    id = id.from("com.amazonaws.geoplaces", "GetPlace"),
+    input = M.GetPlaceInput,
+    output = M.GetPlaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/place/{PlaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReverseGeocode = schema.operation({
+    id = id.from("com.amazonaws.geoplaces", "ReverseGeocode"),
+    input = M.ReverseGeocodeInput,
+    output = M.ReverseGeocodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/reverse-geocode" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchNearby = schema.operation({
+    id = id.from("com.amazonaws.geoplaces", "SearchNearby"),
+    input = M.SearchNearbyInput,
+    output = M.SearchNearbyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/search-nearby" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchText = schema.operation({
+    id = id.from("com.amazonaws.geoplaces", "SearchText"),
+    input = M.SearchTextInput,
+    output = M.SearchTextOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/search-text" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Suggest = schema.operation({
+    id = id.from("com.amazonaws.geoplaces", "Suggest"),
+    input = M.SuggestInput,
+    output = M.SuggestOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/suggest" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

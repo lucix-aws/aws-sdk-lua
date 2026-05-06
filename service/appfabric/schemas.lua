@@ -2386,4 +2386,326 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.appfabric", "FabricFrontEndService"),
+    version = "2023-05-19",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetUserAccessTasks = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "BatchGetUserAccessTasks"),
+    input = M.BatchGetUserAccessTasksInput,
+    output = M.BatchGetUserAccessTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/useraccess/batchget" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConnectAppAuthorization = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "ConnectAppAuthorization"),
+    input = M.ConnectAppAuthorizationInput,
+    output = M.ConnectAppAuthorizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/appbundles/{appBundleIdentifier}/appauthorizations/{appAuthorizationIdentifier}/connect" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAppAuthorization = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "CreateAppAuthorization"),
+    input = M.CreateAppAuthorizationInput,
+    output = M.CreateAppAuthorizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/appbundles/{appBundleIdentifier}/appauthorizations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAppBundle = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "CreateAppBundle"),
+    input = M.CreateAppBundleInput,
+    output = M.CreateAppBundleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/appbundles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIngestion = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "CreateIngestion"),
+    input = M.CreateIngestionInput,
+    output = M.CreateIngestionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/appbundles/{appBundleIdentifier}/ingestions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIngestionDestination = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "CreateIngestionDestination"),
+    input = M.CreateIngestionDestinationInput,
+    output = M.CreateIngestionDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppAuthorization = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "DeleteAppAuthorization"),
+    input = M.DeleteAppAuthorizationInput,
+    output = M.DeleteAppAuthorizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/appbundles/{appBundleIdentifier}/appauthorizations/{appAuthorizationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppBundle = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "DeleteAppBundle"),
+    input = M.DeleteAppBundleInput,
+    output = M.DeleteAppBundleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/appbundles/{appBundleIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIngestion = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "DeleteIngestion"),
+    input = M.DeleteIngestionInput,
+    output = M.DeleteIngestionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIngestionDestination = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "DeleteIngestionDestination"),
+    input = M.DeleteIngestionDestinationInput,
+    output = M.DeleteIngestionDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations/{ingestionDestinationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAppAuthorization = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "GetAppAuthorization"),
+    input = M.GetAppAuthorizationInput,
+    output = M.GetAppAuthorizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/appbundles/{appBundleIdentifier}/appauthorizations/{appAuthorizationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAppBundle = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "GetAppBundle"),
+    input = M.GetAppBundleInput,
+    output = M.GetAppBundleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/appbundles/{appBundleIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIngestion = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "GetIngestion"),
+    input = M.GetIngestionInput,
+    output = M.GetIngestionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIngestionDestination = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "GetIngestionDestination"),
+    input = M.GetIngestionDestinationInput,
+    output = M.GetIngestionDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations/{ingestionDestinationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppAuthorizations = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "ListAppAuthorizations"),
+    input = M.ListAppAuthorizationsInput,
+    output = M.ListAppAuthorizationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/appbundles/{appBundleIdentifier}/appauthorizations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppBundles = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "ListAppBundles"),
+    input = M.ListAppBundlesInput,
+    output = M.ListAppBundlesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/appbundles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIngestionDestinations = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "ListIngestionDestinations"),
+    input = M.ListIngestionDestinationsInput,
+    output = M.ListIngestionDestinationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIngestions = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "ListIngestions"),
+    input = M.ListIngestionsInput,
+    output = M.ListIngestionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/appbundles/{appBundleIdentifier}/ingestions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartIngestion = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "StartIngestion"),
+    input = M.StartIngestionInput,
+    output = M.StartIngestionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartUserAccessTasks = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "StartUserAccessTasks"),
+    input = M.StartUserAccessTasksInput,
+    output = M.StartUserAccessTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/useraccess/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopIngestion = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "StopIngestion"),
+    input = M.StopIngestionInput,
+    output = M.StopIngestionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAppAuthorization = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "UpdateAppAuthorization"),
+    input = M.UpdateAppAuthorizationInput,
+    output = M.UpdateAppAuthorizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/appbundles/{appBundleIdentifier}/appauthorizations/{appAuthorizationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIngestionDestination = schema.operation({
+    id = id.from("com.amazonaws.appfabric", "UpdateIngestionDestination"),
+    input = M.UpdateIngestionDestinationInput,
+    output = M.UpdateIngestionDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations/{ingestionDestinationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

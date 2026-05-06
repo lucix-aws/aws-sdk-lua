@@ -2007,4 +2007,223 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.timestreamwrite", "Timestream_20181101"),
+    version = "2018-11-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBatchLoadTask = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "CreateBatchLoadTask"),
+    input = M.CreateBatchLoadTaskInput,
+    output = M.CreateBatchLoadTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDatabase = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "CreateDatabase"),
+    input = M.CreateDatabaseInput,
+    output = M.CreateDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTable = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "CreateTable"),
+    input = M.CreateTableInput,
+    output = M.CreateTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDatabase = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "DeleteDatabase"),
+    input = M.DeleteDatabaseInput,
+    output = M.DeleteDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTable = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "DeleteTable"),
+    input = M.DeleteTableInput,
+    output = M.DeleteTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBatchLoadTask = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "DescribeBatchLoadTask"),
+    input = M.DescribeBatchLoadTaskInput,
+    output = M.DescribeBatchLoadTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDatabase = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "DescribeDatabase"),
+    input = M.DescribeDatabaseInput,
+    output = M.DescribeDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEndpoints = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "DescribeEndpoints"),
+    input = M.DescribeEndpointsInput,
+    output = M.DescribeEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTable = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "DescribeTable"),
+    input = M.DescribeTableInput,
+    output = M.DescribeTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBatchLoadTasks = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "ListBatchLoadTasks"),
+    input = M.ListBatchLoadTasksInput,
+    output = M.ListBatchLoadTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatabases = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "ListDatabases"),
+    input = M.ListDatabasesInput,
+    output = M.ListDatabasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTables = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "ListTables"),
+    input = M.ListTablesInput,
+    output = M.ListTablesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResumeBatchLoadTask = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "ResumeBatchLoadTask"),
+    input = M.ResumeBatchLoadTaskInput,
+    output = M.ResumeBatchLoadTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDatabase = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "UpdateDatabase"),
+    input = M.UpdateDatabaseInput,
+    output = M.UpdateDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTable = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "UpdateTable"),
+    input = M.UpdateTableInput,
+    output = M.UpdateTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.WriteRecords = schema.operation({
+    id = id.from("com.amazonaws.timestreamwrite", "WriteRecords"),
+    input = M.WriteRecordsInput,
+    output = M.WriteRecordsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

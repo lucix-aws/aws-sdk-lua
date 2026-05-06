@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("servicediscovery.endpoint_rules")
 local schemas = require("servicediscovery.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "servicediscovery", signing_region = cfg.region } }
                 else
@@ -49,393 +52,123 @@ function M.new(cfg)
 end
 
 function Client:createHttpNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateHttpNamespace",
-        input_schema = schemas.CreateHttpNamespaceInput,
-        output_schema = schemas.CreateHttpNamespaceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateHttpNamespace, input, options)
 end
 
 function Client:createPrivateDnsNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePrivateDnsNamespace",
-        input_schema = schemas.CreatePrivateDnsNamespaceInput,
-        output_schema = schemas.CreatePrivateDnsNamespaceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePrivateDnsNamespace, input, options)
 end
 
 function Client:createPublicDnsNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePublicDnsNamespace",
-        input_schema = schemas.CreatePublicDnsNamespaceInput,
-        output_schema = schemas.CreatePublicDnsNamespaceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePublicDnsNamespace, input, options)
 end
 
 function Client:createService(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateService",
-        input_schema = schemas.CreateServiceInput,
-        output_schema = schemas.CreateServiceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateService, input, options)
 end
 
 function Client:deleteNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteNamespace",
-        input_schema = schemas.DeleteNamespaceInput,
-        output_schema = schemas.DeleteNamespaceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteNamespace, input, options)
 end
 
 function Client:deleteService(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteService",
-        input_schema = schemas.DeleteServiceInput,
-        output_schema = schemas.DeleteServiceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteService, input, options)
 end
 
 function Client:deleteServiceAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteServiceAttributes",
-        input_schema = schemas.DeleteServiceAttributesInput,
-        output_schema = schemas.DeleteServiceAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteServiceAttributes, input, options)
 end
 
 function Client:deregisterInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterInstance",
-        input_schema = schemas.DeregisterInstanceInput,
-        output_schema = schemas.DeregisterInstanceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterInstance, input, options)
 end
 
 function Client:discoverInstances(input, options)
-    return self:invokeOperation(input, {
-        name = "DiscoverInstances",
-        input_schema = schemas.DiscoverInstancesInput,
-        output_schema = schemas.DiscoverInstancesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DiscoverInstances, input, options)
 end
 
 function Client:discoverInstancesRevision(input, options)
-    return self:invokeOperation(input, {
-        name = "DiscoverInstancesRevision",
-        input_schema = schemas.DiscoverInstancesRevisionInput,
-        output_schema = schemas.DiscoverInstancesRevisionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DiscoverInstancesRevision, input, options)
 end
 
 function Client:getInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "GetInstance",
-        input_schema = schemas.GetInstanceInput,
-        output_schema = schemas.GetInstanceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetInstance, input, options)
 end
 
 function Client:getInstancesHealthStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetInstancesHealthStatus",
-        input_schema = schemas.GetInstancesHealthStatusInput,
-        output_schema = schemas.GetInstancesHealthStatusOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetInstancesHealthStatus, input, options)
 end
 
 function Client:getNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "GetNamespace",
-        input_schema = schemas.GetNamespaceInput,
-        output_schema = schemas.GetNamespaceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetNamespace, input, options)
 end
 
 function Client:getOperation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetOperation",
-        input_schema = schemas.GetOperationInput,
-        output_schema = schemas.GetOperationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetOperation, input, options)
 end
 
 function Client:getService(input, options)
-    return self:invokeOperation(input, {
-        name = "GetService",
-        input_schema = schemas.GetServiceInput,
-        output_schema = schemas.GetServiceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetService, input, options)
 end
 
 function Client:getServiceAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetServiceAttributes",
-        input_schema = schemas.GetServiceAttributesInput,
-        output_schema = schemas.GetServiceAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetServiceAttributes, input, options)
 end
 
 function Client:listInstances(input, options)
-    return self:invokeOperation(input, {
-        name = "ListInstances",
-        input_schema = schemas.ListInstancesInput,
-        output_schema = schemas.ListInstancesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListInstances, input, options)
 end
 
 function Client:listNamespaces(input, options)
-    return self:invokeOperation(input, {
-        name = "ListNamespaces",
-        input_schema = schemas.ListNamespacesInput,
-        output_schema = schemas.ListNamespacesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListNamespaces, input, options)
 end
 
 function Client:listOperations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListOperations",
-        input_schema = schemas.ListOperationsInput,
-        output_schema = schemas.ListOperationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListOperations, input, options)
 end
 
 function Client:listServices(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServices",
-        input_schema = schemas.ListServicesInput,
-        output_schema = schemas.ListServicesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServices, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:registerInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterInstance",
-        input_schema = schemas.RegisterInstanceInput,
-        output_schema = schemas.RegisterInstanceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterInstance, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateHttpNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateHttpNamespace",
-        input_schema = schemas.UpdateHttpNamespaceInput,
-        output_schema = schemas.UpdateHttpNamespaceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateHttpNamespace, input, options)
 end
 
 function Client:updateInstanceCustomHealthStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateInstanceCustomHealthStatus",
-        input_schema = schemas.UpdateInstanceCustomHealthStatusInput,
-        output_schema = schemas.UpdateInstanceCustomHealthStatusOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateInstanceCustomHealthStatus, input, options)
 end
 
 function Client:updatePrivateDnsNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePrivateDnsNamespace",
-        input_schema = schemas.UpdatePrivateDnsNamespaceInput,
-        output_schema = schemas.UpdatePrivateDnsNamespaceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePrivateDnsNamespace, input, options)
 end
 
 function Client:updatePublicDnsNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePublicDnsNamespace",
-        input_schema = schemas.UpdatePublicDnsNamespaceInput,
-        output_schema = schemas.UpdatePublicDnsNamespaceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePublicDnsNamespace, input, options)
 end
 
 function Client:updateService(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateService",
-        input_schema = schemas.UpdateServiceInput,
-        output_schema = schemas.UpdateServiceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateService, input, options)
 end
 
 function Client:updateServiceAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateServiceAttributes",
-        input_schema = schemas.UpdateServiceAttributesInput,
-        output_schema = schemas.UpdateServiceAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateServiceAttributes, input, options)
 end
 
 return M

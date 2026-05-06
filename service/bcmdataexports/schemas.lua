@@ -1226,4 +1226,146 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.bcmdataexports", "AWSBillingAndCostManagementDataExports"),
+    version = "2023-11-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExport = schema.operation({
+    id = id.from("com.amazonaws.bcmdataexports", "CreateExport"),
+    input = M.CreateExportInput,
+    output = M.CreateExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteExport = schema.operation({
+    id = id.from("com.amazonaws.bcmdataexports", "DeleteExport"),
+    input = M.DeleteExportInput,
+    output = M.DeleteExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExecution = schema.operation({
+    id = id.from("com.amazonaws.bcmdataexports", "GetExecution"),
+    input = M.GetExecutionInput,
+    output = M.GetExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExport = schema.operation({
+    id = id.from("com.amazonaws.bcmdataexports", "GetExport"),
+    input = M.GetExportInput,
+    output = M.GetExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTable = schema.operation({
+    id = id.from("com.amazonaws.bcmdataexports", "GetTable"),
+    input = M.GetTableInput,
+    output = M.GetTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExecutions = schema.operation({
+    id = id.from("com.amazonaws.bcmdataexports", "ListExecutions"),
+    input = M.ListExecutionsInput,
+    output = M.ListExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExports = schema.operation({
+    id = id.from("com.amazonaws.bcmdataexports", "ListExports"),
+    input = M.ListExportsInput,
+    output = M.ListExportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTables = schema.operation({
+    id = id.from("com.amazonaws.bcmdataexports", "ListTables"),
+    input = M.ListTablesInput,
+    output = M.ListTablesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.bcmdataexports", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.bcmdataexports", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.bcmdataexports", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateExport = schema.operation({
+    id = id.from("com.amazonaws.bcmdataexports", "UpdateExport"),
+    input = M.UpdateExportInput,
+    output = M.UpdateExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

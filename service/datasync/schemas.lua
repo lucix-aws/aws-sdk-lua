@@ -4970,4 +4970,597 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.datasync", "FmrsService"),
+    version = "2018-11-09",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelTaskExecution = schema.operation({
+    id = id.from("com.amazonaws.datasync", "CancelTaskExecution"),
+    input = M.CancelTaskExecutionInput,
+    output = M.CancelTaskExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAgent = schema.operation({
+    id = id.from("com.amazonaws.datasync", "CreateAgent"),
+    input = M.CreateAgentInput,
+    output = M.CreateAgentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLocationAzureBlob = schema.operation({
+    id = id.from("com.amazonaws.datasync", "CreateLocationAzureBlob"),
+    input = M.CreateLocationAzureBlobInput,
+    output = M.CreateLocationAzureBlobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLocationEfs = schema.operation({
+    id = id.from("com.amazonaws.datasync", "CreateLocationEfs"),
+    input = M.CreateLocationEfsInput,
+    output = M.CreateLocationEfsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLocationFsxLustre = schema.operation({
+    id = id.from("com.amazonaws.datasync", "CreateLocationFsxLustre"),
+    input = M.CreateLocationFsxLustreInput,
+    output = M.CreateLocationFsxLustreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLocationFsxOntap = schema.operation({
+    id = id.from("com.amazonaws.datasync", "CreateLocationFsxOntap"),
+    input = M.CreateLocationFsxOntapInput,
+    output = M.CreateLocationFsxOntapOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLocationFsxOpenZfs = schema.operation({
+    id = id.from("com.amazonaws.datasync", "CreateLocationFsxOpenZfs"),
+    input = M.CreateLocationFsxOpenZfsInput,
+    output = M.CreateLocationFsxOpenZfsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLocationFsxWindows = schema.operation({
+    id = id.from("com.amazonaws.datasync", "CreateLocationFsxWindows"),
+    input = M.CreateLocationFsxWindowsInput,
+    output = M.CreateLocationFsxWindowsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLocationHdfs = schema.operation({
+    id = id.from("com.amazonaws.datasync", "CreateLocationHdfs"),
+    input = M.CreateLocationHdfsInput,
+    output = M.CreateLocationHdfsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLocationNfs = schema.operation({
+    id = id.from("com.amazonaws.datasync", "CreateLocationNfs"),
+    input = M.CreateLocationNfsInput,
+    output = M.CreateLocationNfsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLocationObjectStorage = schema.operation({
+    id = id.from("com.amazonaws.datasync", "CreateLocationObjectStorage"),
+    input = M.CreateLocationObjectStorageInput,
+    output = M.CreateLocationObjectStorageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLocationS3 = schema.operation({
+    id = id.from("com.amazonaws.datasync", "CreateLocationS3"),
+    input = M.CreateLocationS3Input,
+    output = M.CreateLocationS3Output,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLocationSmb = schema.operation({
+    id = id.from("com.amazonaws.datasync", "CreateLocationSmb"),
+    input = M.CreateLocationSmbInput,
+    output = M.CreateLocationSmbOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTask = schema.operation({
+    id = id.from("com.amazonaws.datasync", "CreateTask"),
+    input = M.CreateTaskInput,
+    output = M.CreateTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAgent = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DeleteAgent"),
+    input = M.DeleteAgentInput,
+    output = M.DeleteAgentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLocation = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DeleteLocation"),
+    input = M.DeleteLocationInput,
+    output = M.DeleteLocationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTask = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DeleteTask"),
+    input = M.DeleteTaskInput,
+    output = M.DeleteTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAgent = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DescribeAgent"),
+    input = M.DescribeAgentInput,
+    output = M.DescribeAgentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLocationAzureBlob = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DescribeLocationAzureBlob"),
+    input = M.DescribeLocationAzureBlobInput,
+    output = M.DescribeLocationAzureBlobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLocationEfs = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DescribeLocationEfs"),
+    input = M.DescribeLocationEfsInput,
+    output = M.DescribeLocationEfsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLocationFsxLustre = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DescribeLocationFsxLustre"),
+    input = M.DescribeLocationFsxLustreInput,
+    output = M.DescribeLocationFsxLustreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLocationFsxOntap = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DescribeLocationFsxOntap"),
+    input = M.DescribeLocationFsxOntapInput,
+    output = M.DescribeLocationFsxOntapOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLocationFsxOpenZfs = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DescribeLocationFsxOpenZfs"),
+    input = M.DescribeLocationFsxOpenZfsInput,
+    output = M.DescribeLocationFsxOpenZfsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLocationFsxWindows = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DescribeLocationFsxWindows"),
+    input = M.DescribeLocationFsxWindowsInput,
+    output = M.DescribeLocationFsxWindowsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLocationHdfs = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DescribeLocationHdfs"),
+    input = M.DescribeLocationHdfsInput,
+    output = M.DescribeLocationHdfsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLocationNfs = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DescribeLocationNfs"),
+    input = M.DescribeLocationNfsInput,
+    output = M.DescribeLocationNfsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLocationObjectStorage = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DescribeLocationObjectStorage"),
+    input = M.DescribeLocationObjectStorageInput,
+    output = M.DescribeLocationObjectStorageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLocationS3 = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DescribeLocationS3"),
+    input = M.DescribeLocationS3Input,
+    output = M.DescribeLocationS3Output,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLocationSmb = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DescribeLocationSmb"),
+    input = M.DescribeLocationSmbInput,
+    output = M.DescribeLocationSmbOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTask = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DescribeTask"),
+    input = M.DescribeTaskInput,
+    output = M.DescribeTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTaskExecution = schema.operation({
+    id = id.from("com.amazonaws.datasync", "DescribeTaskExecution"),
+    input = M.DescribeTaskExecutionInput,
+    output = M.DescribeTaskExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgents = schema.operation({
+    id = id.from("com.amazonaws.datasync", "ListAgents"),
+    input = M.ListAgentsInput,
+    output = M.ListAgentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLocations = schema.operation({
+    id = id.from("com.amazonaws.datasync", "ListLocations"),
+    input = M.ListLocationsInput,
+    output = M.ListLocationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.datasync", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTaskExecutions = schema.operation({
+    id = id.from("com.amazonaws.datasync", "ListTaskExecutions"),
+    input = M.ListTaskExecutionsInput,
+    output = M.ListTaskExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTasks = schema.operation({
+    id = id.from("com.amazonaws.datasync", "ListTasks"),
+    input = M.ListTasksInput,
+    output = M.ListTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTaskExecution = schema.operation({
+    id = id.from("com.amazonaws.datasync", "StartTaskExecution"),
+    input = M.StartTaskExecutionInput,
+    output = M.StartTaskExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.datasync", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgent = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UpdateAgent"),
+    input = M.UpdateAgentInput,
+    output = M.UpdateAgentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLocationAzureBlob = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UpdateLocationAzureBlob"),
+    input = M.UpdateLocationAzureBlobInput,
+    output = M.UpdateLocationAzureBlobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLocationEfs = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UpdateLocationEfs"),
+    input = M.UpdateLocationEfsInput,
+    output = M.UpdateLocationEfsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLocationFsxLustre = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UpdateLocationFsxLustre"),
+    input = M.UpdateLocationFsxLustreInput,
+    output = M.UpdateLocationFsxLustreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLocationFsxOntap = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UpdateLocationFsxOntap"),
+    input = M.UpdateLocationFsxOntapInput,
+    output = M.UpdateLocationFsxOntapOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLocationFsxOpenZfs = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UpdateLocationFsxOpenZfs"),
+    input = M.UpdateLocationFsxOpenZfsInput,
+    output = M.UpdateLocationFsxOpenZfsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLocationFsxWindows = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UpdateLocationFsxWindows"),
+    input = M.UpdateLocationFsxWindowsInput,
+    output = M.UpdateLocationFsxWindowsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLocationHdfs = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UpdateLocationHdfs"),
+    input = M.UpdateLocationHdfsInput,
+    output = M.UpdateLocationHdfsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLocationNfs = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UpdateLocationNfs"),
+    input = M.UpdateLocationNfsInput,
+    output = M.UpdateLocationNfsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLocationObjectStorage = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UpdateLocationObjectStorage"),
+    input = M.UpdateLocationObjectStorageInput,
+    output = M.UpdateLocationObjectStorageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLocationS3 = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UpdateLocationS3"),
+    input = M.UpdateLocationS3Input,
+    output = M.UpdateLocationS3Output,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLocationSmb = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UpdateLocationSmb"),
+    input = M.UpdateLocationSmbInput,
+    output = M.UpdateLocationSmbOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTask = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UpdateTask"),
+    input = M.UpdateTaskInput,
+    output = M.UpdateTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTaskExecution = schema.operation({
+    id = id.from("com.amazonaws.datasync", "UpdateTaskExecution"),
+    input = M.UpdateTaskExecutionInput,
+    output = M.UpdateTaskExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

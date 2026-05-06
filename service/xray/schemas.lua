@@ -4345,4 +4345,470 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.xray", "AWSXRay"),
+    version = "2016-04-12",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetTraces = schema.operation({
+    id = id.from("com.amazonaws.xray", "BatchGetTraces"),
+    input = M.BatchGetTracesInput,
+    output = M.BatchGetTracesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Traces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelTraceRetrieval = schema.operation({
+    id = id.from("com.amazonaws.xray", "CancelTraceRetrieval"),
+    input = M.CancelTraceRetrievalInput,
+    output = M.CancelTraceRetrievalOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CancelTraceRetrieval" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGroup = schema.operation({
+    id = id.from("com.amazonaws.xray", "CreateGroup"),
+    input = M.CreateGroupInput,
+    output = M.CreateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSamplingRule = schema.operation({
+    id = id.from("com.amazonaws.xray", "CreateSamplingRule"),
+    input = M.CreateSamplingRuleInput,
+    output = M.CreateSamplingRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateSamplingRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGroup = schema.operation({
+    id = id.from("com.amazonaws.xray", "DeleteGroup"),
+    input = M.DeleteGroupInput,
+    output = M.DeleteGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.xray", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteResourcePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSamplingRule = schema.operation({
+    id = id.from("com.amazonaws.xray", "DeleteSamplingRule"),
+    input = M.DeleteSamplingRuleInput,
+    output = M.DeleteSamplingRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteSamplingRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEncryptionConfig = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetEncryptionConfig"),
+    input = M.GetEncryptionConfigInput,
+    output = M.GetEncryptionConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/EncryptionConfig" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGroup = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetGroup"),
+    input = M.GetGroupInput,
+    output = M.GetGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGroups = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetGroups"),
+    input = M.GetGroupsInput,
+    output = M.GetGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIndexingRules = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetIndexingRules"),
+    input = M.GetIndexingRulesInput,
+    output = M.GetIndexingRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetIndexingRules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInsight = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetInsight"),
+    input = M.GetInsightInput,
+    output = M.GetInsightOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Insight" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInsightEvents = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetInsightEvents"),
+    input = M.GetInsightEventsInput,
+    output = M.GetInsightEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/InsightEvents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInsightImpactGraph = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetInsightImpactGraph"),
+    input = M.GetInsightImpactGraphInput,
+    output = M.GetInsightImpactGraphOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/InsightImpactGraph" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInsightSummaries = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetInsightSummaries"),
+    input = M.GetInsightSummariesInput,
+    output = M.GetInsightSummariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/InsightSummaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRetrievedTracesGraph = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetRetrievedTracesGraph"),
+    input = M.GetRetrievedTracesGraphInput,
+    output = M.GetRetrievedTracesGraphOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetRetrievedTracesGraph" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSamplingRules = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetSamplingRules"),
+    input = M.GetSamplingRulesInput,
+    output = M.GetSamplingRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetSamplingRules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSamplingStatisticSummaries = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetSamplingStatisticSummaries"),
+    input = M.GetSamplingStatisticSummariesInput,
+    output = M.GetSamplingStatisticSummariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/SamplingStatisticSummaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSamplingTargets = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetSamplingTargets"),
+    input = M.GetSamplingTargetsInput,
+    output = M.GetSamplingTargetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/SamplingTargets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceGraph = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetServiceGraph"),
+    input = M.GetServiceGraphInput,
+    output = M.GetServiceGraphOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ServiceGraph" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTimeSeriesServiceStatistics = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetTimeSeriesServiceStatistics"),
+    input = M.GetTimeSeriesServiceStatisticsInput,
+    output = M.GetTimeSeriesServiceStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TimeSeriesServiceStatistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTraceGraph = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetTraceGraph"),
+    input = M.GetTraceGraphInput,
+    output = M.GetTraceGraphOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TraceGraph" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTraceSegmentDestination = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetTraceSegmentDestination"),
+    input = M.GetTraceSegmentDestinationInput,
+    output = M.GetTraceSegmentDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTraceSegmentDestination" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTraceSummaries = schema.operation({
+    id = id.from("com.amazonaws.xray", "GetTraceSummaries"),
+    input = M.GetTraceSummariesInput,
+    output = M.GetTraceSummariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TraceSummaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourcePolicies = schema.operation({
+    id = id.from("com.amazonaws.xray", "ListResourcePolicies"),
+    input = M.ListResourcePoliciesInput,
+    output = M.ListResourcePoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListResourcePolicies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRetrievedTraces = schema.operation({
+    id = id.from("com.amazonaws.xray", "ListRetrievedTraces"),
+    input = M.ListRetrievedTracesInput,
+    output = M.ListRetrievedTracesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListRetrievedTraces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.xray", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEncryptionConfig = schema.operation({
+    id = id.from("com.amazonaws.xray", "PutEncryptionConfig"),
+    input = M.PutEncryptionConfigInput,
+    output = M.PutEncryptionConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutEncryptionConfig" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.xray", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutResourcePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTelemetryRecords = schema.operation({
+    id = id.from("com.amazonaws.xray", "PutTelemetryRecords"),
+    input = M.PutTelemetryRecordsInput,
+    output = M.PutTelemetryRecordsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TelemetryRecords" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTraceSegments = schema.operation({
+    id = id.from("com.amazonaws.xray", "PutTraceSegments"),
+    input = M.PutTraceSegmentsInput,
+    output = M.PutTraceSegmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TraceSegments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTraceRetrieval = schema.operation({
+    id = id.from("com.amazonaws.xray", "StartTraceRetrieval"),
+    input = M.StartTraceRetrievalInput,
+    output = M.StartTraceRetrievalOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartTraceRetrieval" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.xray", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.xray", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UntagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGroup = schema.operation({
+    id = id.from("com.amazonaws.xray", "UpdateGroup"),
+    input = M.UpdateGroupInput,
+    output = M.UpdateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIndexingRule = schema.operation({
+    id = id.from("com.amazonaws.xray", "UpdateIndexingRule"),
+    input = M.UpdateIndexingRuleInput,
+    output = M.UpdateIndexingRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateIndexingRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSamplingRule = schema.operation({
+    id = id.from("com.amazonaws.xray", "UpdateSamplingRule"),
+    input = M.UpdateSamplingRuleInput,
+    output = M.UpdateSamplingRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateSamplingRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTraceSegmentDestination = schema.operation({
+    id = id.from("com.amazonaws.xray", "UpdateTraceSegmentDestination"),
+    input = M.UpdateTraceSegmentDestinationInput,
+    output = M.UpdateTraceSegmentDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateTraceSegmentDestination" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

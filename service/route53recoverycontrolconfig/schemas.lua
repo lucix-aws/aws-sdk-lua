@@ -1729,4 +1729,314 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "Route53RecoveryControlConfig"),
+    version = "2020-11-02",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCluster = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "CreateCluster"),
+    input = M.CreateClusterInput,
+    output = M.CreateClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cluster" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateControlPanel = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "CreateControlPanel"),
+    input = M.CreateControlPanelInput,
+    output = M.CreateControlPanelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/controlpanel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRoutingControl = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "CreateRoutingControl"),
+    input = M.CreateRoutingControlInput,
+    output = M.CreateRoutingControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/routingcontrol" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSafetyRule = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "CreateSafetyRule"),
+    input = M.CreateSafetyRuleInput,
+    output = M.CreateSafetyRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/safetyrule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCluster = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "DeleteCluster"),
+    input = M.DeleteClusterInput,
+    output = M.DeleteClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/cluster/{ClusterArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteControlPanel = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "DeleteControlPanel"),
+    input = M.DeleteControlPanelInput,
+    output = M.DeleteControlPanelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/controlpanel/{ControlPanelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRoutingControl = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "DeleteRoutingControl"),
+    input = M.DeleteRoutingControlInput,
+    output = M.DeleteRoutingControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/routingcontrol/{RoutingControlArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSafetyRule = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "DeleteSafetyRule"),
+    input = M.DeleteSafetyRuleInput,
+    output = M.DeleteSafetyRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/safetyrule/{SafetyRuleArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCluster = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "DescribeCluster"),
+    input = M.DescribeClusterInput,
+    output = M.DescribeClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cluster/{ClusterArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeControlPanel = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "DescribeControlPanel"),
+    input = M.DescribeControlPanelInput,
+    output = M.DescribeControlPanelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/controlpanel/{ControlPanelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRoutingControl = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "DescribeRoutingControl"),
+    input = M.DescribeRoutingControlInput,
+    output = M.DescribeRoutingControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/routingcontrol/{RoutingControlArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSafetyRule = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "DescribeSafetyRule"),
+    input = M.DescribeSafetyRuleInput,
+    output = M.DescribeSafetyRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/safetyrule/{SafetyRuleArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resourcePolicy/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociatedRoute53HealthChecks = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "ListAssociatedRoute53HealthChecks"),
+    input = M.ListAssociatedRoute53HealthChecksInput,
+    output = M.ListAssociatedRoute53HealthChecksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/routingcontrol/{RoutingControlArn}/associatedRoute53HealthChecks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusters = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "ListClusters"),
+    input = M.ListClustersInput,
+    output = M.ListClustersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cluster" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListControlPanels = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "ListControlPanels"),
+    input = M.ListControlPanelsInput,
+    output = M.ListControlPanelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/controlpanels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRoutingControls = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "ListRoutingControls"),
+    input = M.ListRoutingControlsInput,
+    output = M.ListRoutingControlsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/controlpanel/{ControlPanelArn}/routingcontrols" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSafetyRules = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "ListSafetyRules"),
+    input = M.ListSafetyRulesInput,
+    output = M.ListSafetyRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/controlpanel/{ControlPanelArn}/safetyrules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCluster = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "UpdateCluster"),
+    input = M.UpdateClusterInput,
+    output = M.UpdateClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/cluster" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateControlPanel = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "UpdateControlPanel"),
+    input = M.UpdateControlPanelInput,
+    output = M.UpdateControlPanelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/controlpanel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoutingControl = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "UpdateRoutingControl"),
+    input = M.UpdateRoutingControlInput,
+    output = M.UpdateRoutingControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/routingcontrol" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSafetyRule = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycontrolconfig", "UpdateSafetyRule"),
+    input = M.UpdateSafetyRuleInput,
+    output = M.UpdateSafetyRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/safetyrule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

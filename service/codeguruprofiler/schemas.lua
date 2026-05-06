@@ -2214,4 +2214,290 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.codeguruprofiler", "CodeGuruProfiler"),
+    version = "2019-07-18",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddNotificationChannels = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "AddNotificationChannels"),
+    input = M.AddNotificationChannelsInput,
+    output = M.AddNotificationChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profilingGroups/{profilingGroupName}/notificationConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetFrameMetricData = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "BatchGetFrameMetricData"),
+    input = M.BatchGetFrameMetricDataInput,
+    output = M.BatchGetFrameMetricDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profilingGroups/{profilingGroupName}/frames/-/metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfigureAgent = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "ConfigureAgent"),
+    input = M.ConfigureAgentInput,
+    output = M.ConfigureAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profilingGroups/{profilingGroupName}/configureAgent" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProfilingGroup = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "CreateProfilingGroup"),
+    input = M.CreateProfilingGroupInput,
+    output = M.CreateProfilingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profilingGroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProfilingGroup = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "DeleteProfilingGroup"),
+    input = M.DeleteProfilingGroupInput,
+    output = M.DeleteProfilingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/profilingGroups/{profilingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProfilingGroup = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "DescribeProfilingGroup"),
+    input = M.DescribeProfilingGroupInput,
+    output = M.DescribeProfilingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profilingGroups/{profilingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingsReportAccountSummary = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "GetFindingsReportAccountSummary"),
+    input = M.GetFindingsReportAccountSummaryInput,
+    output = M.GetFindingsReportAccountSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/internal/findingsReports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNotificationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "GetNotificationConfiguration"),
+    input = M.GetNotificationConfigurationInput,
+    output = M.GetNotificationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profilingGroups/{profilingGroupName}/notificationConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicy = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "GetPolicy"),
+    input = M.GetPolicyInput,
+    output = M.GetPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profilingGroups/{profilingGroupName}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfile = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "GetProfile"),
+    input = M.GetProfileInput,
+    output = M.GetProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profilingGroups/{profilingGroupName}/profile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommendations = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "GetRecommendations"),
+    input = M.GetRecommendationsInput,
+    output = M.GetRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/internal/profilingGroups/{profilingGroupName}/recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFindingsReports = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "ListFindingsReports"),
+    input = M.ListFindingsReportsInput,
+    output = M.ListFindingsReportsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/internal/profilingGroups/{profilingGroupName}/findingsReports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfileTimes = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "ListProfileTimes"),
+    input = M.ListProfileTimesInput,
+    output = M.ListProfileTimesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profilingGroups/{profilingGroupName}/profileTimes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfilingGroups = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "ListProfilingGroups"),
+    input = M.ListProfilingGroupsInput,
+    output = M.ListProfilingGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profilingGroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PostAgentProfile = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "PostAgentProfile"),
+    input = M.PostAgentProfileInput,
+    output = M.PostAgentProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profilingGroups/{profilingGroupName}/agentProfile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPermission = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "PutPermission"),
+    input = M.PutPermissionInput,
+    output = M.PutPermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/profilingGroups/{profilingGroupName}/policy/{actionGroup}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveNotificationChannel = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "RemoveNotificationChannel"),
+    input = M.RemoveNotificationChannelInput,
+    output = M.RemoveNotificationChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/profilingGroups/{profilingGroupName}/notificationConfiguration/{channelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemovePermission = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "RemovePermission"),
+    input = M.RemovePermissionInput,
+    output = M.RemovePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/profilingGroups/{profilingGroupName}/policy/{actionGroup}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SubmitFeedback = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "SubmitFeedback"),
+    input = M.SubmitFeedbackInput,
+    output = M.SubmitFeedbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/internal/profilingGroups/{profilingGroupName}/anomalies/{anomalyInstanceId}/feedback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProfilingGroup = schema.operation({
+    id = id.from("com.amazonaws.codeguruprofiler", "UpdateProfilingGroup"),
+    input = M.UpdateProfilingGroupInput,
+    output = M.UpdateProfilingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/profilingGroups/{profilingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

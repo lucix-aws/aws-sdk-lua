@@ -5705,4 +5705,914 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.workspacesweb", "AWSErmineControlPlaneService"),
+    version = "2020-07-08",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateBrowserSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "AssociateBrowserSettings"),
+    input = M.AssociateBrowserSettingsInput,
+    output = M.AssociateBrowserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/portals/{portalArn+}/browserSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateDataProtectionSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "AssociateDataProtectionSettings"),
+    input = M.AssociateDataProtectionSettingsInput,
+    output = M.AssociateDataProtectionSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/portals/{portalArn+}/dataProtectionSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateIpAccessSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "AssociateIpAccessSettings"),
+    input = M.AssociateIpAccessSettingsInput,
+    output = M.AssociateIpAccessSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/portals/{portalArn+}/ipAccessSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateNetworkSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "AssociateNetworkSettings"),
+    input = M.AssociateNetworkSettingsInput,
+    output = M.AssociateNetworkSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/portals/{portalArn+}/networkSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateSessionLogger = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "AssociateSessionLogger"),
+    input = M.AssociateSessionLoggerInput,
+    output = M.AssociateSessionLoggerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/portals/{portalArn+}/sessionLogger" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateTrustStore = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "AssociateTrustStore"),
+    input = M.AssociateTrustStoreInput,
+    output = M.AssociateTrustStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/portals/{portalArn+}/trustStores" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateUserAccessLoggingSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "AssociateUserAccessLoggingSettings"),
+    input = M.AssociateUserAccessLoggingSettingsInput,
+    output = M.AssociateUserAccessLoggingSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/portals/{portalArn+}/userAccessLoggingSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateUserSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "AssociateUserSettings"),
+    input = M.AssociateUserSettingsInput,
+    output = M.AssociateUserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/portals/{portalArn+}/userSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBrowserSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "CreateBrowserSettings"),
+    input = M.CreateBrowserSettingsInput,
+    output = M.CreateBrowserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/browserSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataProtectionSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "CreateDataProtectionSettings"),
+    input = M.CreateDataProtectionSettingsInput,
+    output = M.CreateDataProtectionSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/dataProtectionSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIdentityProvider = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "CreateIdentityProvider"),
+    input = M.CreateIdentityProviderInput,
+    output = M.CreateIdentityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identityProviders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIpAccessSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "CreateIpAccessSettings"),
+    input = M.CreateIpAccessSettingsInput,
+    output = M.CreateIpAccessSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ipAccessSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNetworkSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "CreateNetworkSettings"),
+    input = M.CreateNetworkSettingsInput,
+    output = M.CreateNetworkSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networkSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePortal = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "CreatePortal"),
+    input = M.CreatePortalInput,
+    output = M.CreatePortalOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/portals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSessionLogger = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "CreateSessionLogger"),
+    input = M.CreateSessionLoggerInput,
+    output = M.CreateSessionLoggerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sessionLoggers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrustStore = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "CreateTrustStore"),
+    input = M.CreateTrustStoreInput,
+    output = M.CreateTrustStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/trustStores" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUserAccessLoggingSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "CreateUserAccessLoggingSettings"),
+    input = M.CreateUserAccessLoggingSettingsInput,
+    output = M.CreateUserAccessLoggingSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/userAccessLoggingSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUserSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "CreateUserSettings"),
+    input = M.CreateUserSettingsInput,
+    output = M.CreateUserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/userSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBrowserSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DeleteBrowserSettings"),
+    input = M.DeleteBrowserSettingsInput,
+    output = M.DeleteBrowserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/browserSettings/{browserSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataProtectionSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DeleteDataProtectionSettings"),
+    input = M.DeleteDataProtectionSettingsInput,
+    output = M.DeleteDataProtectionSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/dataProtectionSettings/{dataProtectionSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdentityProvider = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DeleteIdentityProvider"),
+    input = M.DeleteIdentityProviderInput,
+    output = M.DeleteIdentityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/identityProviders/{identityProviderArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIpAccessSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DeleteIpAccessSettings"),
+    input = M.DeleteIpAccessSettingsInput,
+    output = M.DeleteIpAccessSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/ipAccessSettings/{ipAccessSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNetworkSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DeleteNetworkSettings"),
+    input = M.DeleteNetworkSettingsInput,
+    output = M.DeleteNetworkSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/networkSettings/{networkSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePortal = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DeletePortal"),
+    input = M.DeletePortalInput,
+    output = M.DeletePortalOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/portals/{portalArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSessionLogger = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DeleteSessionLogger"),
+    input = M.DeleteSessionLoggerInput,
+    output = M.DeleteSessionLoggerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sessionLoggers/{sessionLoggerArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrustStore = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DeleteTrustStore"),
+    input = M.DeleteTrustStoreInput,
+    output = M.DeleteTrustStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/trustStores/{trustStoreArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserAccessLoggingSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DeleteUserAccessLoggingSettings"),
+    input = M.DeleteUserAccessLoggingSettingsInput,
+    output = M.DeleteUserAccessLoggingSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/userAccessLoggingSettings/{userAccessLoggingSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DeleteUserSettings"),
+    input = M.DeleteUserSettingsInput,
+    output = M.DeleteUserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/userSettings/{userSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateBrowserSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DisassociateBrowserSettings"),
+    input = M.DisassociateBrowserSettingsInput,
+    output = M.DisassociateBrowserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/portals/{portalArn+}/browserSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateDataProtectionSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DisassociateDataProtectionSettings"),
+    input = M.DisassociateDataProtectionSettingsInput,
+    output = M.DisassociateDataProtectionSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/portals/{portalArn+}/dataProtectionSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateIpAccessSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DisassociateIpAccessSettings"),
+    input = M.DisassociateIpAccessSettingsInput,
+    output = M.DisassociateIpAccessSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/portals/{portalArn+}/ipAccessSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateNetworkSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DisassociateNetworkSettings"),
+    input = M.DisassociateNetworkSettingsInput,
+    output = M.DisassociateNetworkSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/portals/{portalArn+}/networkSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateSessionLogger = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DisassociateSessionLogger"),
+    input = M.DisassociateSessionLoggerInput,
+    output = M.DisassociateSessionLoggerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/portals/{portalArn+}/sessionLogger" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateTrustStore = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DisassociateTrustStore"),
+    input = M.DisassociateTrustStoreInput,
+    output = M.DisassociateTrustStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/portals/{portalArn+}/trustStores" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateUserAccessLoggingSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DisassociateUserAccessLoggingSettings"),
+    input = M.DisassociateUserAccessLoggingSettingsInput,
+    output = M.DisassociateUserAccessLoggingSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/portals/{portalArn+}/userAccessLoggingSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateUserSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "DisassociateUserSettings"),
+    input = M.DisassociateUserSettingsInput,
+    output = M.DisassociateUserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/portals/{portalArn+}/userSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExpireSession = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "ExpireSession"),
+    input = M.ExpireSessionInput,
+    output = M.ExpireSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/portals/{portalId}/sessions/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBrowserSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "GetBrowserSettings"),
+    input = M.GetBrowserSettingsInput,
+    output = M.GetBrowserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/browserSettings/{browserSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataProtectionSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "GetDataProtectionSettings"),
+    input = M.GetDataProtectionSettingsInput,
+    output = M.GetDataProtectionSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/dataProtectionSettings/{dataProtectionSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdentityProvider = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "GetIdentityProvider"),
+    input = M.GetIdentityProviderInput,
+    output = M.GetIdentityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/identityProviders/{identityProviderArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIpAccessSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "GetIpAccessSettings"),
+    input = M.GetIpAccessSettingsInput,
+    output = M.GetIpAccessSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ipAccessSettings/{ipAccessSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNetworkSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "GetNetworkSettings"),
+    input = M.GetNetworkSettingsInput,
+    output = M.GetNetworkSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networkSettings/{networkSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPortal = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "GetPortal"),
+    input = M.GetPortalInput,
+    output = M.GetPortalOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/portals/{portalArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPortalServiceProviderMetadata = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "GetPortalServiceProviderMetadata"),
+    input = M.GetPortalServiceProviderMetadataInput,
+    output = M.GetPortalServiceProviderMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/portalIdp/{portalArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSession = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "GetSession"),
+    input = M.GetSessionInput,
+    output = M.GetSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/portals/{portalId}/sessions/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSessionLogger = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "GetSessionLogger"),
+    input = M.GetSessionLoggerInput,
+    output = M.GetSessionLoggerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sessionLoggers/{sessionLoggerArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrustStore = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "GetTrustStore"),
+    input = M.GetTrustStoreInput,
+    output = M.GetTrustStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/trustStores/{trustStoreArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrustStoreCertificate = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "GetTrustStoreCertificate"),
+    input = M.GetTrustStoreCertificateInput,
+    output = M.GetTrustStoreCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/trustStores/{trustStoreArn+}/certificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUserAccessLoggingSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "GetUserAccessLoggingSettings"),
+    input = M.GetUserAccessLoggingSettingsInput,
+    output = M.GetUserAccessLoggingSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/userAccessLoggingSettings/{userAccessLoggingSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUserSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "GetUserSettings"),
+    input = M.GetUserSettingsInput,
+    output = M.GetUserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/userSettings/{userSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBrowserSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "ListBrowserSettings"),
+    input = M.ListBrowserSettingsInput,
+    output = M.ListBrowserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/browserSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataProtectionSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "ListDataProtectionSettings"),
+    input = M.ListDataProtectionSettingsInput,
+    output = M.ListDataProtectionSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/dataProtectionSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdentityProviders = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "ListIdentityProviders"),
+    input = M.ListIdentityProvidersInput,
+    output = M.ListIdentityProvidersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/portals/{portalArn+}/identityProviders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIpAccessSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "ListIpAccessSettings"),
+    input = M.ListIpAccessSettingsInput,
+    output = M.ListIpAccessSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ipAccessSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "ListNetworkSettings"),
+    input = M.ListNetworkSettingsInput,
+    output = M.ListNetworkSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networkSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPortals = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "ListPortals"),
+    input = M.ListPortalsInput,
+    output = M.ListPortalsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/portals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessionLoggers = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "ListSessionLoggers"),
+    input = M.ListSessionLoggersInput,
+    output = M.ListSessionLoggersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sessionLoggers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessions = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "ListSessions"),
+    input = M.ListSessionsInput,
+    output = M.ListSessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/portals/{portalId}/sessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrustStoreCertificates = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "ListTrustStoreCertificates"),
+    input = M.ListTrustStoreCertificatesInput,
+    output = M.ListTrustStoreCertificatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/trustStores/{trustStoreArn+}/certificates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrustStores = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "ListTrustStores"),
+    input = M.ListTrustStoresInput,
+    output = M.ListTrustStoresOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/trustStores" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUserAccessLoggingSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "ListUserAccessLoggingSettings"),
+    input = M.ListUserAccessLoggingSettingsInput,
+    output = M.ListUserAccessLoggingSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/userAccessLoggingSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUserSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "ListUserSettings"),
+    input = M.ListUserSettingsInput,
+    output = M.ListUserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/userSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBrowserSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "UpdateBrowserSettings"),
+    input = M.UpdateBrowserSettingsInput,
+    output = M.UpdateBrowserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/browserSettings/{browserSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataProtectionSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "UpdateDataProtectionSettings"),
+    input = M.UpdateDataProtectionSettingsInput,
+    output = M.UpdateDataProtectionSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/dataProtectionSettings/{dataProtectionSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIdentityProvider = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "UpdateIdentityProvider"),
+    input = M.UpdateIdentityProviderInput,
+    output = M.UpdateIdentityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/identityProviders/{identityProviderArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIpAccessSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "UpdateIpAccessSettings"),
+    input = M.UpdateIpAccessSettingsInput,
+    output = M.UpdateIpAccessSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/ipAccessSettings/{ipAccessSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNetworkSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "UpdateNetworkSettings"),
+    input = M.UpdateNetworkSettingsInput,
+    output = M.UpdateNetworkSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/networkSettings/{networkSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePortal = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "UpdatePortal"),
+    input = M.UpdatePortalInput,
+    output = M.UpdatePortalOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/portals/{portalArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSessionLogger = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "UpdateSessionLogger"),
+    input = M.UpdateSessionLoggerInput,
+    output = M.UpdateSessionLoggerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sessionLoggers/{sessionLoggerArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrustStore = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "UpdateTrustStore"),
+    input = M.UpdateTrustStoreInput,
+    output = M.UpdateTrustStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/trustStores/{trustStoreArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserAccessLoggingSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "UpdateUserAccessLoggingSettings"),
+    input = M.UpdateUserAccessLoggingSettingsInput,
+    output = M.UpdateUserAccessLoggingSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/userAccessLoggingSettings/{userAccessLoggingSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserSettings = schema.operation({
+    id = id.from("com.amazonaws.workspacesweb", "UpdateUserSettings"),
+    input = M.UpdateUserSettingsInput,
+    output = M.UpdateUserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/userSettings/{userSettingsArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

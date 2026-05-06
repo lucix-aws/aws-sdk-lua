@@ -1679,4 +1679,206 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.chimesdkmeetings", "ChimeMeetingsSDKService"),
+    version = "2021-07-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateAttendee = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "BatchCreateAttendee"),
+    input = M.BatchCreateAttendeeInput,
+    output = M.BatchCreateAttendeeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/meetings/{MeetingId}/attendees?operation=batch-create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateAttendeeCapabilitiesExcept = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "BatchUpdateAttendeeCapabilitiesExcept"),
+    input = M.BatchUpdateAttendeeCapabilitiesExceptInput,
+    output = M.BatchUpdateAttendeeCapabilitiesExceptOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/meetings/{MeetingId}/attendees/capabilities?operation=batch-update-except" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAttendee = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "CreateAttendee"),
+    input = M.CreateAttendeeInput,
+    output = M.CreateAttendeeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/meetings/{MeetingId}/attendees" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMeeting = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "CreateMeeting"),
+    input = M.CreateMeetingInput,
+    output = M.CreateMeetingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/meetings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMeetingWithAttendees = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "CreateMeetingWithAttendees"),
+    input = M.CreateMeetingWithAttendeesInput,
+    output = M.CreateMeetingWithAttendeesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/meetings?operation=create-attendees" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAttendee = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "DeleteAttendee"),
+    input = M.DeleteAttendeeInput,
+    output = M.DeleteAttendeeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/meetings/{MeetingId}/attendees/{AttendeeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMeeting = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "DeleteMeeting"),
+    input = M.DeleteMeetingInput,
+    output = M.DeleteMeetingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/meetings/{MeetingId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAttendee = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "GetAttendee"),
+    input = M.GetAttendeeInput,
+    output = M.GetAttendeeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/meetings/{MeetingId}/attendees/{AttendeeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMeeting = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "GetMeeting"),
+    input = M.GetMeetingInput,
+    output = M.GetMeetingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/meetings/{MeetingId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttendees = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "ListAttendees"),
+    input = M.ListAttendeesInput,
+    output = M.ListAttendeesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/meetings/{MeetingId}/attendees" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMeetingTranscription = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "StartMeetingTranscription"),
+    input = M.StartMeetingTranscriptionInput,
+    output = M.StartMeetingTranscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/meetings/{MeetingId}/transcription?operation=start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopMeetingTranscription = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "StopMeetingTranscription"),
+    input = M.StopMeetingTranscriptionInput,
+    output = M.StopMeetingTranscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/meetings/{MeetingId}/transcription?operation=stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags?operation=tag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags?operation=untag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAttendeeCapabilities = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmeetings", "UpdateAttendeeCapabilities"),
+    input = M.UpdateAttendeeCapabilitiesInput,
+    output = M.UpdateAttendeeCapabilitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/meetings/{MeetingId}/attendees/{AttendeeId}/capabilities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

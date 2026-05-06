@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("pricing.endpoint_rules")
 local schemas = require("pricing.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "pricing", signing_region = cfg.region } }
                 else
@@ -49,68 +52,23 @@ function M.new(cfg)
 end
 
 function Client:describeServices(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeServices",
-        input_schema = schemas.DescribeServicesInput,
-        output_schema = schemas.DescribeServicesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeServices, input, options)
 end
 
 function Client:getAttributeValues(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAttributeValues",
-        input_schema = schemas.GetAttributeValuesInput,
-        output_schema = schemas.GetAttributeValuesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAttributeValues, input, options)
 end
 
 function Client:getPriceListFileUrl(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPriceListFileUrl",
-        input_schema = schemas.GetPriceListFileUrlInput,
-        output_schema = schemas.GetPriceListFileUrlOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPriceListFileUrl, input, options)
 end
 
 function Client:getProducts(input, options)
-    return self:invokeOperation(input, {
-        name = "GetProducts",
-        input_schema = schemas.GetProductsInput,
-        output_schema = schemas.GetProductsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetProducts, input, options)
 end
 
 function Client:listPriceLists(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPriceLists",
-        input_schema = schemas.ListPriceListsInput,
-        output_schema = schemas.ListPriceListsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPriceLists, input, options)
 end
 
 return M

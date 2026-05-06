@@ -411,4 +411,50 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.personalizeruntime", "AmazonPersonalizeRuntime"),
+    version = "2018-05-22",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetActionRecommendations = schema.operation({
+    id = id.from("com.amazonaws.personalizeruntime", "GetActionRecommendations"),
+    input = M.GetActionRecommendationsInput,
+    output = M.GetActionRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/action-recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPersonalizedRanking = schema.operation({
+    id = id.from("com.amazonaws.personalizeruntime", "GetPersonalizedRanking"),
+    input = M.GetPersonalizedRankingInput,
+    output = M.GetPersonalizedRankingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/personalize-ranking" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommendations = schema.operation({
+    id = id.from("com.amazonaws.personalizeruntime", "GetRecommendations"),
+    input = M.GetRecommendationsInput,
+    output = M.GetRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -7,6 +7,7 @@ local endpoint_rules = require("location.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("location.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "geo", signing_region = cfg.region } }
                 else
@@ -49,835 +52,259 @@ function M.new(cfg)
 end
 
 function Client:associateTrackerConsumer(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateTrackerConsumer",
-        input_schema = schemas.AssociateTrackerConsumerInput,
-        output_schema = schemas.AssociateTrackerConsumerOutput,
-        http_method = "POST",
-        http_path = "/tracking/v0/trackers/{TrackerName}/consumers",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateTrackerConsumer, input, options)
 end
 
 function Client:batchDeleteDevicePositionHistory(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDeleteDevicePositionHistory",
-        input_schema = schemas.BatchDeleteDevicePositionHistoryInput,
-        output_schema = schemas.BatchDeleteDevicePositionHistoryOutput,
-        http_method = "POST",
-        http_path = "/tracking/v0/trackers/{TrackerName}/delete-positions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDeleteDevicePositionHistory, input, options)
 end
 
 function Client:batchDeleteGeofence(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDeleteGeofence",
-        input_schema = schemas.BatchDeleteGeofenceInput,
-        output_schema = schemas.BatchDeleteGeofenceOutput,
-        http_method = "POST",
-        http_path = "/geofencing/v0/collections/{CollectionName}/delete-geofences",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDeleteGeofence, input, options)
 end
 
 function Client:batchEvaluateGeofences(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchEvaluateGeofences",
-        input_schema = schemas.BatchEvaluateGeofencesInput,
-        output_schema = schemas.BatchEvaluateGeofencesOutput,
-        http_method = "POST",
-        http_path = "/geofencing/v0/collections/{CollectionName}/positions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchEvaluateGeofences, input, options)
 end
 
 function Client:batchGetDevicePosition(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetDevicePosition",
-        input_schema = schemas.BatchGetDevicePositionInput,
-        output_schema = schemas.BatchGetDevicePositionOutput,
-        http_method = "POST",
-        http_path = "/tracking/v0/trackers/{TrackerName}/get-positions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetDevicePosition, input, options)
 end
 
 function Client:batchPutGeofence(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchPutGeofence",
-        input_schema = schemas.BatchPutGeofenceInput,
-        output_schema = schemas.BatchPutGeofenceOutput,
-        http_method = "POST",
-        http_path = "/geofencing/v0/collections/{CollectionName}/put-geofences",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchPutGeofence, input, options)
 end
 
 function Client:batchUpdateDevicePosition(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchUpdateDevicePosition",
-        input_schema = schemas.BatchUpdateDevicePositionInput,
-        output_schema = schemas.BatchUpdateDevicePositionOutput,
-        http_method = "POST",
-        http_path = "/tracking/v0/trackers/{TrackerName}/positions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchUpdateDevicePosition, input, options)
 end
 
 function Client:calculateRoute(input, options)
-    return self:invokeOperation(input, {
-        name = "CalculateRoute",
-        input_schema = schemas.CalculateRouteInput,
-        output_schema = schemas.CalculateRouteOutput,
-        http_method = "POST",
-        http_path = "/routes/v0/calculators/{CalculatorName}/calculate/route",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CalculateRoute, input, options)
 end
 
 function Client:calculateRouteMatrix(input, options)
-    return self:invokeOperation(input, {
-        name = "CalculateRouteMatrix",
-        input_schema = schemas.CalculateRouteMatrixInput,
-        output_schema = schemas.CalculateRouteMatrixOutput,
-        http_method = "POST",
-        http_path = "/routes/v0/calculators/{CalculatorName}/calculate/route-matrix",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CalculateRouteMatrix, input, options)
 end
 
 function Client:cancelJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelJob",
-        input_schema = schemas.CancelJobInput,
-        output_schema = schemas.CancelJobOutput,
-        http_method = "POST",
-        http_path = "/metadata/v0/jobs/cancel-job",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelJob, input, options)
 end
 
 function Client:createGeofenceCollection(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGeofenceCollection",
-        input_schema = schemas.CreateGeofenceCollectionInput,
-        output_schema = schemas.CreateGeofenceCollectionOutput,
-        http_method = "POST",
-        http_path = "/geofencing/v0/collections",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGeofenceCollection, input, options)
 end
 
 function Client:createKey(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateKey",
-        input_schema = schemas.CreateKeyInput,
-        output_schema = schemas.CreateKeyOutput,
-        http_method = "POST",
-        http_path = "/metadata/v0/keys",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateKey, input, options)
 end
 
 function Client:createMap(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateMap",
-        input_schema = schemas.CreateMapInput,
-        output_schema = schemas.CreateMapOutput,
-        http_method = "POST",
-        http_path = "/maps/v0/maps",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateMap, input, options)
 end
 
 function Client:createPlaceIndex(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePlaceIndex",
-        input_schema = schemas.CreatePlaceIndexInput,
-        output_schema = schemas.CreatePlaceIndexOutput,
-        http_method = "POST",
-        http_path = "/places/v0/indexes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePlaceIndex, input, options)
 end
 
 function Client:createRouteCalculator(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRouteCalculator",
-        input_schema = schemas.CreateRouteCalculatorInput,
-        output_schema = schemas.CreateRouteCalculatorOutput,
-        http_method = "POST",
-        http_path = "/routes/v0/calculators",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRouteCalculator, input, options)
 end
 
 function Client:createTracker(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTracker",
-        input_schema = schemas.CreateTrackerInput,
-        output_schema = schemas.CreateTrackerOutput,
-        http_method = "POST",
-        http_path = "/tracking/v0/trackers",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTracker, input, options)
 end
 
 function Client:deleteGeofenceCollection(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGeofenceCollection",
-        input_schema = schemas.DeleteGeofenceCollectionInput,
-        output_schema = schemas.DeleteGeofenceCollectionOutput,
-        http_method = "DELETE",
-        http_path = "/geofencing/v0/collections/{CollectionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGeofenceCollection, input, options)
 end
 
 function Client:deleteKey(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteKey",
-        input_schema = schemas.DeleteKeyInput,
-        output_schema = schemas.DeleteKeyOutput,
-        http_method = "DELETE",
-        http_path = "/metadata/v0/keys/{KeyName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteKey, input, options)
 end
 
 function Client:deleteMap(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMap",
-        input_schema = schemas.DeleteMapInput,
-        output_schema = schemas.DeleteMapOutput,
-        http_method = "DELETE",
-        http_path = "/maps/v0/maps/{MapName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMap, input, options)
 end
 
 function Client:deletePlaceIndex(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePlaceIndex",
-        input_schema = schemas.DeletePlaceIndexInput,
-        output_schema = schemas.DeletePlaceIndexOutput,
-        http_method = "DELETE",
-        http_path = "/places/v0/indexes/{IndexName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePlaceIndex, input, options)
 end
 
 function Client:deleteRouteCalculator(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRouteCalculator",
-        input_schema = schemas.DeleteRouteCalculatorInput,
-        output_schema = schemas.DeleteRouteCalculatorOutput,
-        http_method = "DELETE",
-        http_path = "/routes/v0/calculators/{CalculatorName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRouteCalculator, input, options)
 end
 
 function Client:deleteTracker(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTracker",
-        input_schema = schemas.DeleteTrackerInput,
-        output_schema = schemas.DeleteTrackerOutput,
-        http_method = "DELETE",
-        http_path = "/tracking/v0/trackers/{TrackerName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTracker, input, options)
 end
 
 function Client:describeGeofenceCollection(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeGeofenceCollection",
-        input_schema = schemas.DescribeGeofenceCollectionInput,
-        output_schema = schemas.DescribeGeofenceCollectionOutput,
-        http_method = "GET",
-        http_path = "/geofencing/v0/collections/{CollectionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeGeofenceCollection, input, options)
 end
 
 function Client:describeKey(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeKey",
-        input_schema = schemas.DescribeKeyInput,
-        output_schema = schemas.DescribeKeyOutput,
-        http_method = "GET",
-        http_path = "/metadata/v0/keys/{KeyName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeKey, input, options)
 end
 
 function Client:describeMap(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeMap",
-        input_schema = schemas.DescribeMapInput,
-        output_schema = schemas.DescribeMapOutput,
-        http_method = "GET",
-        http_path = "/maps/v0/maps/{MapName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeMap, input, options)
 end
 
 function Client:describePlaceIndex(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribePlaceIndex",
-        input_schema = schemas.DescribePlaceIndexInput,
-        output_schema = schemas.DescribePlaceIndexOutput,
-        http_method = "GET",
-        http_path = "/places/v0/indexes/{IndexName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribePlaceIndex, input, options)
 end
 
 function Client:describeRouteCalculator(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeRouteCalculator",
-        input_schema = schemas.DescribeRouteCalculatorInput,
-        output_schema = schemas.DescribeRouteCalculatorOutput,
-        http_method = "GET",
-        http_path = "/routes/v0/calculators/{CalculatorName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeRouteCalculator, input, options)
 end
 
 function Client:describeTracker(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTracker",
-        input_schema = schemas.DescribeTrackerInput,
-        output_schema = schemas.DescribeTrackerOutput,
-        http_method = "GET",
-        http_path = "/tracking/v0/trackers/{TrackerName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTracker, input, options)
 end
 
 function Client:disassociateTrackerConsumer(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateTrackerConsumer",
-        input_schema = schemas.DisassociateTrackerConsumerInput,
-        output_schema = schemas.DisassociateTrackerConsumerOutput,
-        http_method = "DELETE",
-        http_path = "/tracking/v0/trackers/{TrackerName}/consumers/{ConsumerArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateTrackerConsumer, input, options)
 end
 
 function Client:forecastGeofenceEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "ForecastGeofenceEvents",
-        input_schema = schemas.ForecastGeofenceEventsInput,
-        output_schema = schemas.ForecastGeofenceEventsOutput,
-        http_method = "POST",
-        http_path = "/geofencing/v0/collections/{CollectionName}/forecast-geofence-events",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ForecastGeofenceEvents, input, options)
 end
 
 function Client:getDevicePosition(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDevicePosition",
-        input_schema = schemas.GetDevicePositionInput,
-        output_schema = schemas.GetDevicePositionOutput,
-        http_method = "GET",
-        http_path = "/tracking/v0/trackers/{TrackerName}/devices/{DeviceId}/positions/latest",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDevicePosition, input, options)
 end
 
 function Client:getDevicePositionHistory(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDevicePositionHistory",
-        input_schema = schemas.GetDevicePositionHistoryInput,
-        output_schema = schemas.GetDevicePositionHistoryOutput,
-        http_method = "POST",
-        http_path = "/tracking/v0/trackers/{TrackerName}/devices/{DeviceId}/list-positions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDevicePositionHistory, input, options)
 end
 
 function Client:getGeofence(input, options)
-    return self:invokeOperation(input, {
-        name = "GetGeofence",
-        input_schema = schemas.GetGeofenceInput,
-        output_schema = schemas.GetGeofenceOutput,
-        http_method = "GET",
-        http_path = "/geofencing/v0/collections/{CollectionName}/geofences/{GeofenceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetGeofence, input, options)
 end
 
 function Client:getJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetJob",
-        input_schema = schemas.GetJobInput,
-        output_schema = schemas.GetJobOutput,
-        http_method = "GET",
-        http_path = "/metadata/v0/jobs/{JobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetJob, input, options)
 end
 
 function Client:getMapGlyphs(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMapGlyphs",
-        input_schema = schemas.GetMapGlyphsInput,
-        output_schema = schemas.GetMapGlyphsOutput,
-        http_method = "GET",
-        http_path = "/maps/v0/maps/{MapName}/glyphs/{FontStack}/{FontUnicodeRange}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMapGlyphs, input, options)
 end
 
 function Client:getMapSprites(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMapSprites",
-        input_schema = schemas.GetMapSpritesInput,
-        output_schema = schemas.GetMapSpritesOutput,
-        http_method = "GET",
-        http_path = "/maps/v0/maps/{MapName}/sprites/{FileName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMapSprites, input, options)
 end
 
 function Client:getMapStyleDescriptor(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMapStyleDescriptor",
-        input_schema = schemas.GetMapStyleDescriptorInput,
-        output_schema = schemas.GetMapStyleDescriptorOutput,
-        http_method = "GET",
-        http_path = "/maps/v0/maps/{MapName}/style-descriptor",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMapStyleDescriptor, input, options)
 end
 
 function Client:getMapTile(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMapTile",
-        input_schema = schemas.GetMapTileInput,
-        output_schema = schemas.GetMapTileOutput,
-        http_method = "GET",
-        http_path = "/maps/v0/maps/{MapName}/tiles/{Z}/{X}/{Y}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMapTile, input, options)
 end
 
 function Client:getPlace(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPlace",
-        input_schema = schemas.GetPlaceInput,
-        output_schema = schemas.GetPlaceOutput,
-        http_method = "GET",
-        http_path = "/places/v0/indexes/{IndexName}/places/{PlaceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPlace, input, options)
 end
 
 function Client:listDevicePositions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDevicePositions",
-        input_schema = schemas.ListDevicePositionsInput,
-        output_schema = schemas.ListDevicePositionsOutput,
-        http_method = "POST",
-        http_path = "/tracking/v0/trackers/{TrackerName}/list-positions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDevicePositions, input, options)
 end
 
 function Client:listGeofenceCollections(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGeofenceCollections",
-        input_schema = schemas.ListGeofenceCollectionsInput,
-        output_schema = schemas.ListGeofenceCollectionsOutput,
-        http_method = "POST",
-        http_path = "/geofencing/v0/list-collections",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGeofenceCollections, input, options)
 end
 
 function Client:listGeofences(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGeofences",
-        input_schema = schemas.ListGeofencesInput,
-        output_schema = schemas.ListGeofencesOutput,
-        http_method = "POST",
-        http_path = "/geofencing/v0/collections/{CollectionName}/list-geofences",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGeofences, input, options)
 end
 
 function Client:listJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListJobs",
-        input_schema = schemas.ListJobsInput,
-        output_schema = schemas.ListJobsOutput,
-        http_method = "POST",
-        http_path = "/metadata/v0/jobs/list-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListJobs, input, options)
 end
 
 function Client:listKeys(input, options)
-    return self:invokeOperation(input, {
-        name = "ListKeys",
-        input_schema = schemas.ListKeysInput,
-        output_schema = schemas.ListKeysOutput,
-        http_method = "POST",
-        http_path = "/metadata/v0/list-keys",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListKeys, input, options)
 end
 
 function Client:listMaps(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMaps",
-        input_schema = schemas.ListMapsInput,
-        output_schema = schemas.ListMapsOutput,
-        http_method = "POST",
-        http_path = "/maps/v0/list-maps",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMaps, input, options)
 end
 
 function Client:listPlaceIndexes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPlaceIndexes",
-        input_schema = schemas.ListPlaceIndexesInput,
-        output_schema = schemas.ListPlaceIndexesOutput,
-        http_method = "POST",
-        http_path = "/places/v0/list-indexes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPlaceIndexes, input, options)
 end
 
 function Client:listRouteCalculators(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRouteCalculators",
-        input_schema = schemas.ListRouteCalculatorsInput,
-        output_schema = schemas.ListRouteCalculatorsOutput,
-        http_method = "POST",
-        http_path = "/routes/v0/list-calculators",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRouteCalculators, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTrackerConsumers(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTrackerConsumers",
-        input_schema = schemas.ListTrackerConsumersInput,
-        output_schema = schemas.ListTrackerConsumersOutput,
-        http_method = "POST",
-        http_path = "/tracking/v0/trackers/{TrackerName}/list-consumers",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTrackerConsumers, input, options)
 end
 
 function Client:listTrackers(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTrackers",
-        input_schema = schemas.ListTrackersInput,
-        output_schema = schemas.ListTrackersOutput,
-        http_method = "POST",
-        http_path = "/tracking/v0/list-trackers",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTrackers, input, options)
 end
 
 function Client:putGeofence(input, options)
-    return self:invokeOperation(input, {
-        name = "PutGeofence",
-        input_schema = schemas.PutGeofenceInput,
-        output_schema = schemas.PutGeofenceOutput,
-        http_method = "PUT",
-        http_path = "/geofencing/v0/collections/{CollectionName}/geofences/{GeofenceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutGeofence, input, options)
 end
 
 function Client:searchPlaceIndexForPosition(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchPlaceIndexForPosition",
-        input_schema = schemas.SearchPlaceIndexForPositionInput,
-        output_schema = schemas.SearchPlaceIndexForPositionOutput,
-        http_method = "POST",
-        http_path = "/places/v0/indexes/{IndexName}/search/position",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchPlaceIndexForPosition, input, options)
 end
 
 function Client:searchPlaceIndexForSuggestions(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchPlaceIndexForSuggestions",
-        input_schema = schemas.SearchPlaceIndexForSuggestionsInput,
-        output_schema = schemas.SearchPlaceIndexForSuggestionsOutput,
-        http_method = "POST",
-        http_path = "/places/v0/indexes/{IndexName}/search/suggestions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchPlaceIndexForSuggestions, input, options)
 end
 
 function Client:searchPlaceIndexForText(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchPlaceIndexForText",
-        input_schema = schemas.SearchPlaceIndexForTextInput,
-        output_schema = schemas.SearchPlaceIndexForTextOutput,
-        http_method = "POST",
-        http_path = "/places/v0/indexes/{IndexName}/search/text",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchPlaceIndexForText, input, options)
 end
 
 function Client:startJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartJob",
-        input_schema = schemas.StartJobInput,
-        output_schema = schemas.StartJobOutput,
-        http_method = "POST",
-        http_path = "/metadata/v0/jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartJob, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateGeofenceCollection(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateGeofenceCollection",
-        input_schema = schemas.UpdateGeofenceCollectionInput,
-        output_schema = schemas.UpdateGeofenceCollectionOutput,
-        http_method = "PATCH",
-        http_path = "/geofencing/v0/collections/{CollectionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateGeofenceCollection, input, options)
 end
 
 function Client:updateKey(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateKey",
-        input_schema = schemas.UpdateKeyInput,
-        output_schema = schemas.UpdateKeyOutput,
-        http_method = "PATCH",
-        http_path = "/metadata/v0/keys/{KeyName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateKey, input, options)
 end
 
 function Client:updateMap(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateMap",
-        input_schema = schemas.UpdateMapInput,
-        output_schema = schemas.UpdateMapOutput,
-        http_method = "PATCH",
-        http_path = "/maps/v0/maps/{MapName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateMap, input, options)
 end
 
 function Client:updatePlaceIndex(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePlaceIndex",
-        input_schema = schemas.UpdatePlaceIndexInput,
-        output_schema = schemas.UpdatePlaceIndexOutput,
-        http_method = "PATCH",
-        http_path = "/places/v0/indexes/{IndexName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePlaceIndex, input, options)
 end
 
 function Client:updateRouteCalculator(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRouteCalculator",
-        input_schema = schemas.UpdateRouteCalculatorInput,
-        output_schema = schemas.UpdateRouteCalculatorOutput,
-        http_method = "PATCH",
-        http_path = "/routes/v0/calculators/{CalculatorName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRouteCalculator, input, options)
 end
 
 function Client:updateTracker(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTracker",
-        input_schema = schemas.UpdateTrackerInput,
-        output_schema = schemas.UpdateTrackerOutput,
-        http_method = "PATCH",
-        http_path = "/tracking/v0/trackers/{TrackerName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTracker, input, options)
 end
 
 function Client:verifyDevicePosition(input, options)
-    return self:invokeOperation(input, {
-        name = "VerifyDevicePosition",
-        input_schema = schemas.VerifyDevicePositionInput,
-        output_schema = schemas.VerifyDevicePositionOutput,
-        http_method = "POST",
-        http_path = "/tracking/v0/trackers/{TrackerName}/positions/verify",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.VerifyDevicePosition, input, options)
 end
 
 return M

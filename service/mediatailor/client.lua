@@ -7,6 +7,7 @@ local endpoint_rules = require("mediatailor.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("mediatailor.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mediatailor", signing_region = cfg.region } }
                 else
@@ -49,627 +52,195 @@ function M.new(cfg)
 end
 
 function Client:configureLogsForChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "ConfigureLogsForChannel",
-        input_schema = schemas.ConfigureLogsForChannelInput,
-        output_schema = schemas.ConfigureLogsForChannelOutput,
-        http_method = "PUT",
-        http_path = "/configureLogs/channel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ConfigureLogsForChannel, input, options)
 end
 
 function Client:configureLogsForPlaybackConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "ConfigureLogsForPlaybackConfiguration",
-        input_schema = schemas.ConfigureLogsForPlaybackConfigurationInput,
-        output_schema = schemas.ConfigureLogsForPlaybackConfigurationOutput,
-        http_method = "PUT",
-        http_path = "/configureLogs/playbackConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ConfigureLogsForPlaybackConfiguration, input, options)
 end
 
 function Client:createChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateChannel",
-        input_schema = schemas.CreateChannelInput,
-        output_schema = schemas.CreateChannelOutput,
-        http_method = "POST",
-        http_path = "/channel/{ChannelName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateChannel, input, options)
 end
 
 function Client:createLiveSource(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLiveSource",
-        input_schema = schemas.CreateLiveSourceInput,
-        output_schema = schemas.CreateLiveSourceOutput,
-        http_method = "POST",
-        http_path = "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLiveSource, input, options)
 end
 
 function Client:createPrefetchSchedule(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePrefetchSchedule",
-        input_schema = schemas.CreatePrefetchScheduleInput,
-        output_schema = schemas.CreatePrefetchScheduleOutput,
-        http_method = "POST",
-        http_path = "/prefetchSchedule/{PlaybackConfigurationName}/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePrefetchSchedule, input, options)
 end
 
 function Client:createProgram(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateProgram",
-        input_schema = schemas.CreateProgramInput,
-        output_schema = schemas.CreateProgramOutput,
-        http_method = "POST",
-        http_path = "/channel/{ChannelName}/program/{ProgramName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateProgram, input, options)
 end
 
 function Client:createSourceLocation(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSourceLocation",
-        input_schema = schemas.CreateSourceLocationInput,
-        output_schema = schemas.CreateSourceLocationOutput,
-        http_method = "POST",
-        http_path = "/sourceLocation/{SourceLocationName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSourceLocation, input, options)
 end
 
 function Client:createVodSource(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateVodSource",
-        input_schema = schemas.CreateVodSourceInput,
-        output_schema = schemas.CreateVodSourceOutput,
-        http_method = "POST",
-        http_path = "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateVodSource, input, options)
 end
 
 function Client:deleteChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteChannel",
-        input_schema = schemas.DeleteChannelInput,
-        output_schema = schemas.DeleteChannelOutput,
-        http_method = "DELETE",
-        http_path = "/channel/{ChannelName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteChannel, input, options)
 end
 
 function Client:deleteChannelPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteChannelPolicy",
-        input_schema = schemas.DeleteChannelPolicyInput,
-        output_schema = schemas.DeleteChannelPolicyOutput,
-        http_method = "DELETE",
-        http_path = "/channel/{ChannelName}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteChannelPolicy, input, options)
 end
 
 function Client:deleteFunction(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFunction",
-        input_schema = schemas.DeleteFunctionInput,
-        output_schema = schemas.DeleteFunctionOutput,
-        http_method = "DELETE",
-        http_path = "/function/{FunctionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFunction, input, options)
 end
 
 function Client:deleteLiveSource(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteLiveSource",
-        input_schema = schemas.DeleteLiveSourceInput,
-        output_schema = schemas.DeleteLiveSourceOutput,
-        http_method = "DELETE",
-        http_path = "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteLiveSource, input, options)
 end
 
 function Client:deletePlaybackConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePlaybackConfiguration",
-        input_schema = schemas.DeletePlaybackConfigurationInput,
-        output_schema = schemas.DeletePlaybackConfigurationOutput,
-        http_method = "DELETE",
-        http_path = "/playbackConfiguration/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePlaybackConfiguration, input, options)
 end
 
 function Client:deletePrefetchSchedule(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePrefetchSchedule",
-        input_schema = schemas.DeletePrefetchScheduleInput,
-        output_schema = schemas.DeletePrefetchScheduleOutput,
-        http_method = "DELETE",
-        http_path = "/prefetchSchedule/{PlaybackConfigurationName}/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePrefetchSchedule, input, options)
 end
 
 function Client:deleteProgram(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteProgram",
-        input_schema = schemas.DeleteProgramInput,
-        output_schema = schemas.DeleteProgramOutput,
-        http_method = "DELETE",
-        http_path = "/channel/{ChannelName}/program/{ProgramName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteProgram, input, options)
 end
 
 function Client:deleteSourceLocation(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSourceLocation",
-        input_schema = schemas.DeleteSourceLocationInput,
-        output_schema = schemas.DeleteSourceLocationOutput,
-        http_method = "DELETE",
-        http_path = "/sourceLocation/{SourceLocationName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSourceLocation, input, options)
 end
 
 function Client:deleteVodSource(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVodSource",
-        input_schema = schemas.DeleteVodSourceInput,
-        output_schema = schemas.DeleteVodSourceOutput,
-        http_method = "DELETE",
-        http_path = "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVodSource, input, options)
 end
 
 function Client:describeChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeChannel",
-        input_schema = schemas.DescribeChannelInput,
-        output_schema = schemas.DescribeChannelOutput,
-        http_method = "GET",
-        http_path = "/channel/{ChannelName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeChannel, input, options)
 end
 
 function Client:describeLiveSource(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLiveSource",
-        input_schema = schemas.DescribeLiveSourceInput,
-        output_schema = schemas.DescribeLiveSourceOutput,
-        http_method = "GET",
-        http_path = "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLiveSource, input, options)
 end
 
 function Client:describeProgram(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeProgram",
-        input_schema = schemas.DescribeProgramInput,
-        output_schema = schemas.DescribeProgramOutput,
-        http_method = "GET",
-        http_path = "/channel/{ChannelName}/program/{ProgramName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeProgram, input, options)
 end
 
 function Client:describeSourceLocation(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeSourceLocation",
-        input_schema = schemas.DescribeSourceLocationInput,
-        output_schema = schemas.DescribeSourceLocationOutput,
-        http_method = "GET",
-        http_path = "/sourceLocation/{SourceLocationName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeSourceLocation, input, options)
 end
 
 function Client:describeVodSource(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeVodSource",
-        input_schema = schemas.DescribeVodSourceInput,
-        output_schema = schemas.DescribeVodSourceOutput,
-        http_method = "GET",
-        http_path = "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeVodSource, input, options)
 end
 
 function Client:getChannelPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetChannelPolicy",
-        input_schema = schemas.GetChannelPolicyInput,
-        output_schema = schemas.GetChannelPolicyOutput,
-        http_method = "GET",
-        http_path = "/channel/{ChannelName}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetChannelPolicy, input, options)
 end
 
 function Client:getChannelSchedule(input, options)
-    return self:invokeOperation(input, {
-        name = "GetChannelSchedule",
-        input_schema = schemas.GetChannelScheduleInput,
-        output_schema = schemas.GetChannelScheduleOutput,
-        http_method = "GET",
-        http_path = "/channel/{ChannelName}/schedule",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetChannelSchedule, input, options)
 end
 
 function Client:getFunction(input, options)
-    return self:invokeOperation(input, {
-        name = "GetFunction",
-        input_schema = schemas.GetFunctionInput,
-        output_schema = schemas.GetFunctionOutput,
-        http_method = "GET",
-        http_path = "/function/{FunctionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetFunction, input, options)
 end
 
 function Client:getPlaybackConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPlaybackConfiguration",
-        input_schema = schemas.GetPlaybackConfigurationInput,
-        output_schema = schemas.GetPlaybackConfigurationOutput,
-        http_method = "GET",
-        http_path = "/playbackConfiguration/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPlaybackConfiguration, input, options)
 end
 
 function Client:getPrefetchSchedule(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPrefetchSchedule",
-        input_schema = schemas.GetPrefetchScheduleInput,
-        output_schema = schemas.GetPrefetchScheduleOutput,
-        http_method = "GET",
-        http_path = "/prefetchSchedule/{PlaybackConfigurationName}/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPrefetchSchedule, input, options)
 end
 
 function Client:listAlerts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAlerts",
-        input_schema = schemas.ListAlertsInput,
-        output_schema = schemas.ListAlertsOutput,
-        http_method = "GET",
-        http_path = "/alerts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAlerts, input, options)
 end
 
 function Client:listChannels(input, options)
-    return self:invokeOperation(input, {
-        name = "ListChannels",
-        input_schema = schemas.ListChannelsInput,
-        output_schema = schemas.ListChannelsOutput,
-        http_method = "GET",
-        http_path = "/channels",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListChannels, input, options)
 end
 
 function Client:listFunctions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFunctions",
-        input_schema = schemas.ListFunctionsInput,
-        output_schema = schemas.ListFunctionsOutput,
-        http_method = "GET",
-        http_path = "/functions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFunctions, input, options)
 end
 
 function Client:listLiveSources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListLiveSources",
-        input_schema = schemas.ListLiveSourcesInput,
-        output_schema = schemas.ListLiveSourcesOutput,
-        http_method = "GET",
-        http_path = "/sourceLocation/{SourceLocationName}/liveSources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListLiveSources, input, options)
 end
 
 function Client:listPlaybackConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPlaybackConfigurations",
-        input_schema = schemas.ListPlaybackConfigurationsInput,
-        output_schema = schemas.ListPlaybackConfigurationsOutput,
-        http_method = "GET",
-        http_path = "/playbackConfigurations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPlaybackConfigurations, input, options)
 end
 
 function Client:listPrefetchSchedules(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPrefetchSchedules",
-        input_schema = schemas.ListPrefetchSchedulesInput,
-        output_schema = schemas.ListPrefetchSchedulesOutput,
-        http_method = "POST",
-        http_path = "/prefetchSchedule/{PlaybackConfigurationName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPrefetchSchedules, input, options)
 end
 
 function Client:listSourceLocations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSourceLocations",
-        input_schema = schemas.ListSourceLocationsInput,
-        output_schema = schemas.ListSourceLocationsOutput,
-        http_method = "GET",
-        http_path = "/sourceLocations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSourceLocations, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listVodSources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVodSources",
-        input_schema = schemas.ListVodSourcesInput,
-        output_schema = schemas.ListVodSourcesOutput,
-        http_method = "GET",
-        http_path = "/sourceLocation/{SourceLocationName}/vodSources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVodSources, input, options)
 end
 
 function Client:putChannelPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutChannelPolicy",
-        input_schema = schemas.PutChannelPolicyInput,
-        output_schema = schemas.PutChannelPolicyOutput,
-        http_method = "PUT",
-        http_path = "/channel/{ChannelName}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutChannelPolicy, input, options)
 end
 
 function Client:putFunction(input, options)
-    return self:invokeOperation(input, {
-        name = "PutFunction",
-        input_schema = schemas.PutFunctionInput,
-        output_schema = schemas.PutFunctionOutput,
-        http_method = "PUT",
-        http_path = "/function/{FunctionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutFunction, input, options)
 end
 
 function Client:putPlaybackConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutPlaybackConfiguration",
-        input_schema = schemas.PutPlaybackConfigurationInput,
-        output_schema = schemas.PutPlaybackConfigurationOutput,
-        http_method = "PUT",
-        http_path = "/playbackConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutPlaybackConfiguration, input, options)
 end
 
 function Client:startChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "StartChannel",
-        input_schema = schemas.StartChannelInput,
-        output_schema = schemas.StartChannelOutput,
-        http_method = "PUT",
-        http_path = "/channel/{ChannelName}/start",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartChannel, input, options)
 end
 
 function Client:stopChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "StopChannel",
-        input_schema = schemas.StopChannelInput,
-        output_schema = schemas.StopChannelOutput,
-        http_method = "PUT",
-        http_path = "/channel/{ChannelName}/stop",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopChannel, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateChannel",
-        input_schema = schemas.UpdateChannelInput,
-        output_schema = schemas.UpdateChannelOutput,
-        http_method = "PUT",
-        http_path = "/channel/{ChannelName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateChannel, input, options)
 end
 
 function Client:updateLiveSource(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateLiveSource",
-        input_schema = schemas.UpdateLiveSourceInput,
-        output_schema = schemas.UpdateLiveSourceOutput,
-        http_method = "PUT",
-        http_path = "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateLiveSource, input, options)
 end
 
 function Client:updateProgram(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateProgram",
-        input_schema = schemas.UpdateProgramInput,
-        output_schema = schemas.UpdateProgramOutput,
-        http_method = "PUT",
-        http_path = "/channel/{ChannelName}/program/{ProgramName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateProgram, input, options)
 end
 
 function Client:updateSourceLocation(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSourceLocation",
-        input_schema = schemas.UpdateSourceLocationInput,
-        output_schema = schemas.UpdateSourceLocationOutput,
-        http_method = "PUT",
-        http_path = "/sourceLocation/{SourceLocationName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSourceLocation, input, options)
 end
 
 function Client:updateVodSource(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateVodSource",
-        input_schema = schemas.UpdateVodSourceInput,
-        output_schema = schemas.UpdateVodSourceOutput,
-        http_method = "PUT",
-        http_path = "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateVodSource, input, options)
 end
 
 return M

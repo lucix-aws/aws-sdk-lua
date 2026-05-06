@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("snowball.endpoint_rules")
 local schemas = require("snowball.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "snowball", signing_region = cfg.region } }
                 else
@@ -49,354 +52,111 @@ function M.new(cfg)
 end
 
 function Client:cancelCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelCluster",
-        input_schema = schemas.CancelClusterInput,
-        output_schema = schemas.CancelClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelCluster, input, options)
 end
 
 function Client:cancelJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelJob",
-        input_schema = schemas.CancelJobInput,
-        output_schema = schemas.CancelJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelJob, input, options)
 end
 
 function Client:createAddress(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAddress",
-        input_schema = schemas.CreateAddressInput,
-        output_schema = schemas.CreateAddressOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAddress, input, options)
 end
 
 function Client:createCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCluster",
-        input_schema = schemas.CreateClusterInput,
-        output_schema = schemas.CreateClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCluster, input, options)
 end
 
 function Client:createJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateJob",
-        input_schema = schemas.CreateJobInput,
-        output_schema = schemas.CreateJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateJob, input, options)
 end
 
 function Client:createLongTermPricing(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLongTermPricing",
-        input_schema = schemas.CreateLongTermPricingInput,
-        output_schema = schemas.CreateLongTermPricingOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLongTermPricing, input, options)
 end
 
 function Client:createReturnShippingLabel(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateReturnShippingLabel",
-        input_schema = schemas.CreateReturnShippingLabelInput,
-        output_schema = schemas.CreateReturnShippingLabelOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateReturnShippingLabel, input, options)
 end
 
 function Client:describeAddress(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAddress",
-        input_schema = schemas.DescribeAddressInput,
-        output_schema = schemas.DescribeAddressOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAddress, input, options)
 end
 
 function Client:describeAddresses(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAddresses",
-        input_schema = schemas.DescribeAddressesInput,
-        output_schema = schemas.DescribeAddressesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAddresses, input, options)
 end
 
 function Client:describeCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCluster",
-        input_schema = schemas.DescribeClusterInput,
-        output_schema = schemas.DescribeClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCluster, input, options)
 end
 
 function Client:describeJob(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeJob",
-        input_schema = schemas.DescribeJobInput,
-        output_schema = schemas.DescribeJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeJob, input, options)
 end
 
 function Client:describeReturnShippingLabel(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeReturnShippingLabel",
-        input_schema = schemas.DescribeReturnShippingLabelInput,
-        output_schema = schemas.DescribeReturnShippingLabelOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeReturnShippingLabel, input, options)
 end
 
 function Client:getJobManifest(input, options)
-    return self:invokeOperation(input, {
-        name = "GetJobManifest",
-        input_schema = schemas.GetJobManifestInput,
-        output_schema = schemas.GetJobManifestOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetJobManifest, input, options)
 end
 
 function Client:getJobUnlockCode(input, options)
-    return self:invokeOperation(input, {
-        name = "GetJobUnlockCode",
-        input_schema = schemas.GetJobUnlockCodeInput,
-        output_schema = schemas.GetJobUnlockCodeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetJobUnlockCode, input, options)
 end
 
 function Client:getSnowballUsage(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSnowballUsage",
-        input_schema = schemas.GetSnowballUsageInput,
-        output_schema = schemas.GetSnowballUsageOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSnowballUsage, input, options)
 end
 
 function Client:getSoftwareUpdates(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSoftwareUpdates",
-        input_schema = schemas.GetSoftwareUpdatesInput,
-        output_schema = schemas.GetSoftwareUpdatesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSoftwareUpdates, input, options)
 end
 
 function Client:listClusterJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListClusterJobs",
-        input_schema = schemas.ListClusterJobsInput,
-        output_schema = schemas.ListClusterJobsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListClusterJobs, input, options)
 end
 
 function Client:listClusters(input, options)
-    return self:invokeOperation(input, {
-        name = "ListClusters",
-        input_schema = schemas.ListClustersInput,
-        output_schema = schemas.ListClustersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListClusters, input, options)
 end
 
 function Client:listCompatibleImages(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCompatibleImages",
-        input_schema = schemas.ListCompatibleImagesInput,
-        output_schema = schemas.ListCompatibleImagesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCompatibleImages, input, options)
 end
 
 function Client:listJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListJobs",
-        input_schema = schemas.ListJobsInput,
-        output_schema = schemas.ListJobsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListJobs, input, options)
 end
 
 function Client:listLongTermPricing(input, options)
-    return self:invokeOperation(input, {
-        name = "ListLongTermPricing",
-        input_schema = schemas.ListLongTermPricingInput,
-        output_schema = schemas.ListLongTermPricingOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListLongTermPricing, input, options)
 end
 
 function Client:listPickupLocations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPickupLocations",
-        input_schema = schemas.ListPickupLocationsInput,
-        output_schema = schemas.ListPickupLocationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPickupLocations, input, options)
 end
 
 function Client:listServiceVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServiceVersions",
-        input_schema = schemas.ListServiceVersionsInput,
-        output_schema = schemas.ListServiceVersionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServiceVersions, input, options)
 end
 
 function Client:updateCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCluster",
-        input_schema = schemas.UpdateClusterInput,
-        output_schema = schemas.UpdateClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCluster, input, options)
 end
 
 function Client:updateJob(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateJob",
-        input_schema = schemas.UpdateJobInput,
-        output_schema = schemas.UpdateJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateJob, input, options)
 end
 
 function Client:updateJobShipmentState(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateJobShipmentState",
-        input_schema = schemas.UpdateJobShipmentStateInput,
-        output_schema = schemas.UpdateJobShipmentStateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateJobShipmentState, input, options)
 end
 
 function Client:updateLongTermPricing(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateLongTermPricing",
-        input_schema = schemas.UpdateLongTermPricingInput,
-        output_schema = schemas.UpdateLongTermPricingOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateLongTermPricing, input, options)
 end
 
 return M

@@ -2676,4 +2676,290 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.emrcontainers", "AwsChicagoWebService"),
+    version = "2020-10-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelJobRun = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "CancelJobRun"),
+    input = M.CancelJobRunInput,
+    output = M.CancelJobRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/virtualclusters/{virtualClusterId}/jobruns/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateJobTemplate = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "CreateJobTemplate"),
+    input = M.CreateJobTemplateInput,
+    output = M.CreateJobTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/jobtemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateManagedEndpoint = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "CreateManagedEndpoint"),
+    input = M.CreateManagedEndpointInput,
+    output = M.CreateManagedEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/virtualclusters/{virtualClusterId}/endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSecurityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "CreateSecurityConfiguration"),
+    input = M.CreateSecurityConfigurationInput,
+    output = M.CreateSecurityConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/securityconfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVirtualCluster = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "CreateVirtualCluster"),
+    input = M.CreateVirtualClusterInput,
+    output = M.CreateVirtualClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/virtualclusters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteJobTemplate = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "DeleteJobTemplate"),
+    input = M.DeleteJobTemplateInput,
+    output = M.DeleteJobTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/jobtemplates/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteManagedEndpoint = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "DeleteManagedEndpoint"),
+    input = M.DeleteManagedEndpointInput,
+    output = M.DeleteManagedEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/virtualclusters/{virtualClusterId}/endpoints/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVirtualCluster = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "DeleteVirtualCluster"),
+    input = M.DeleteVirtualClusterInput,
+    output = M.DeleteVirtualClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/virtualclusters/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobRun = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "DescribeJobRun"),
+    input = M.DescribeJobRunInput,
+    output = M.DescribeJobRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/virtualclusters/{virtualClusterId}/jobruns/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobTemplate = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "DescribeJobTemplate"),
+    input = M.DescribeJobTemplateInput,
+    output = M.DescribeJobTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobtemplates/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeManagedEndpoint = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "DescribeManagedEndpoint"),
+    input = M.DescribeManagedEndpointInput,
+    output = M.DescribeManagedEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/virtualclusters/{virtualClusterId}/endpoints/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSecurityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "DescribeSecurityConfiguration"),
+    input = M.DescribeSecurityConfigurationInput,
+    output = M.DescribeSecurityConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/securityconfigurations/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVirtualCluster = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "DescribeVirtualCluster"),
+    input = M.DescribeVirtualClusterInput,
+    output = M.DescribeVirtualClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/virtualclusters/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetManagedEndpointSessionCredentials = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "GetManagedEndpointSessionCredentials"),
+    input = M.GetManagedEndpointSessionCredentialsInput,
+    output = M.GetManagedEndpointSessionCredentialsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/virtualclusters/{virtualClusterIdentifier}/endpoints/{endpointIdentifier}/credentials" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobRuns = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "ListJobRuns"),
+    input = M.ListJobRunsInput,
+    output = M.ListJobRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/virtualclusters/{virtualClusterId}/jobruns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobTemplates = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "ListJobTemplates"),
+    input = M.ListJobTemplatesInput,
+    output = M.ListJobTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobtemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedEndpoints = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "ListManagedEndpoints"),
+    input = M.ListManagedEndpointsInput,
+    output = M.ListManagedEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/virtualclusters/{virtualClusterId}/endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityConfigurations = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "ListSecurityConfigurations"),
+    input = M.ListSecurityConfigurationsInput,
+    output = M.ListSecurityConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/securityconfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVirtualClusters = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "ListVirtualClusters"),
+    input = M.ListVirtualClustersInput,
+    output = M.ListVirtualClustersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/virtualclusters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartJobRun = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "StartJobRun"),
+    input = M.StartJobRunInput,
+    output = M.StartJobRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/virtualclusters/{virtualClusterId}/jobruns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

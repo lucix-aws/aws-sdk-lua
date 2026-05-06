@@ -756,4 +756,146 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.aiops", "AIOps"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInvestigationGroup = schema.operation({
+    id = id.from("com.amazonaws.aiops", "CreateInvestigationGroup"),
+    input = M.CreateInvestigationGroupInput,
+    output = M.CreateInvestigationGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/investigationGroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInvestigationGroup = schema.operation({
+    id = id.from("com.amazonaws.aiops", "DeleteInvestigationGroup"),
+    input = M.DeleteInvestigationGroupInput,
+    output = M.DeleteInvestigationGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/investigationGroups/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInvestigationGroupPolicy = schema.operation({
+    id = id.from("com.amazonaws.aiops", "DeleteInvestigationGroupPolicy"),
+    input = M.DeleteInvestigationGroupPolicyInput,
+    output = M.DeleteInvestigationGroupPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/investigationGroups/{identifier}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInvestigationGroup = schema.operation({
+    id = id.from("com.amazonaws.aiops", "GetInvestigationGroup"),
+    input = M.GetInvestigationGroupInput,
+    output = M.GetInvestigationGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/investigationGroups/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInvestigationGroupPolicy = schema.operation({
+    id = id.from("com.amazonaws.aiops", "GetInvestigationGroupPolicy"),
+    input = M.GetInvestigationGroupPolicyInput,
+    output = M.GetInvestigationGroupPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/investigationGroups/{identifier}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvestigationGroups = schema.operation({
+    id = id.from("com.amazonaws.aiops", "ListInvestigationGroups"),
+    input = M.ListInvestigationGroupsInput,
+    output = M.ListInvestigationGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/investigationGroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.aiops", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutInvestigationGroupPolicy = schema.operation({
+    id = id.from("com.amazonaws.aiops", "PutInvestigationGroupPolicy"),
+    input = M.PutInvestigationGroupPolicyInput,
+    output = M.PutInvestigationGroupPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/investigationGroups/{identifier}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.aiops", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.aiops", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInvestigationGroup = schema.operation({
+    id = id.from("com.amazonaws.aiops", "UpdateInvestigationGroup"),
+    input = M.UpdateInvestigationGroupInput,
+    output = M.UpdateInvestigationGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/investigationGroups/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

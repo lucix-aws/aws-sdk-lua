@@ -7,6 +7,7 @@ local endpoint_rules = require("personalizeevents.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("personalizeevents.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "personalize", signing_region = cfg.region } }
                 else
@@ -49,68 +52,23 @@ function M.new(cfg)
 end
 
 function Client:putActionInteractions(input, options)
-    return self:invokeOperation(input, {
-        name = "PutActionInteractions",
-        input_schema = schemas.PutActionInteractionsInput,
-        output_schema = schemas.PutActionInteractionsOutput,
-        http_method = "POST",
-        http_path = "/action-interactions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutActionInteractions, input, options)
 end
 
 function Client:putActions(input, options)
-    return self:invokeOperation(input, {
-        name = "PutActions",
-        input_schema = schemas.PutActionsInput,
-        output_schema = schemas.PutActionsOutput,
-        http_method = "POST",
-        http_path = "/actions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutActions, input, options)
 end
 
 function Client:putEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "PutEvents",
-        input_schema = schemas.PutEventsInput,
-        output_schema = schemas.PutEventsOutput,
-        http_method = "POST",
-        http_path = "/events",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutEvents, input, options)
 end
 
 function Client:putItems(input, options)
-    return self:invokeOperation(input, {
-        name = "PutItems",
-        input_schema = schemas.PutItemsInput,
-        output_schema = schemas.PutItemsOutput,
-        http_method = "POST",
-        http_path = "/items",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutItems, input, options)
 end
 
 function Client:putUsers(input, options)
-    return self:invokeOperation(input, {
-        name = "PutUsers",
-        input_schema = schemas.PutUsersInput,
-        output_schema = schemas.PutUsersOutput,
-        http_method = "POST",
-        http_path = "/users",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutUsers, input, options)
 end
 
 return M

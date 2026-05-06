@@ -10987,4 +10987,914 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.inspector2", "Inspector2"),
+    version = "2020-06-08",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateMember = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "AssociateMember"),
+    input = M.AssociateMemberInput,
+    output = M.AssociateMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/members/associate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAssociateCodeSecurityScanConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "BatchAssociateCodeSecurityScanConfiguration"),
+    input = M.BatchAssociateCodeSecurityScanConfigurationInput,
+    output = M.BatchAssociateCodeSecurityScanConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/scan-configuration/batch/associate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDisassociateCodeSecurityScanConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "BatchDisassociateCodeSecurityScanConfiguration"),
+    input = M.BatchDisassociateCodeSecurityScanConfigurationInput,
+    output = M.BatchDisassociateCodeSecurityScanConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/scan-configuration/batch/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetAccountStatus = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "BatchGetAccountStatus"),
+    input = M.BatchGetAccountStatusInput,
+    output = M.BatchGetAccountStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/status/batch/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetCodeSnippet = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "BatchGetCodeSnippet"),
+    input = M.BatchGetCodeSnippetInput,
+    output = M.BatchGetCodeSnippetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesnippet/batchget" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetFindingDetails = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "BatchGetFindingDetails"),
+    input = M.BatchGetFindingDetailsInput,
+    output = M.BatchGetFindingDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findings/details/batch/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetFreeTrialInfo = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "BatchGetFreeTrialInfo"),
+    input = M.BatchGetFreeTrialInfoInput,
+    output = M.BatchGetFreeTrialInfoOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/freetrialinfo/batchget" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetMemberEc2DeepInspectionStatus = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "BatchGetMemberEc2DeepInspectionStatus"),
+    input = M.BatchGetMemberEc2DeepInspectionStatusInput,
+    output = M.BatchGetMemberEc2DeepInspectionStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ec2deepinspectionstatus/member/batch/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateMemberEc2DeepInspectionStatus = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "BatchUpdateMemberEc2DeepInspectionStatus"),
+    input = M.BatchUpdateMemberEc2DeepInspectionStatusInput,
+    output = M.BatchUpdateMemberEc2DeepInspectionStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ec2deepinspectionstatus/member/batch/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelFindingsReport = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "CancelFindingsReport"),
+    input = M.CancelFindingsReportInput,
+    output = M.CancelFindingsReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/reporting/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelSbomExport = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "CancelSbomExport"),
+    input = M.CancelSbomExportInput,
+    output = M.CancelSbomExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sbomexport/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCisScanConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "CreateCisScanConfiguration"),
+    input = M.CreateCisScanConfigurationInput,
+    output = M.CreateCisScanConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cis/scan-configuration/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCodeSecurityIntegration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "CreateCodeSecurityIntegration"),
+    input = M.CreateCodeSecurityIntegrationInput,
+    output = M.CreateCodeSecurityIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/integration/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCodeSecurityScanConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "CreateCodeSecurityScanConfiguration"),
+    input = M.CreateCodeSecurityScanConfigurationInput,
+    output = M.CreateCodeSecurityScanConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/scan-configuration/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFilter = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "CreateFilter"),
+    input = M.CreateFilterInput,
+    output = M.CreateFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/filters/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFindingsReport = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "CreateFindingsReport"),
+    input = M.CreateFindingsReportInput,
+    output = M.CreateFindingsReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/reporting/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSbomExport = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "CreateSbomExport"),
+    input = M.CreateSbomExportInput,
+    output = M.CreateSbomExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sbomexport/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCisScanConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "DeleteCisScanConfiguration"),
+    input = M.DeleteCisScanConfigurationInput,
+    output = M.DeleteCisScanConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cis/scan-configuration/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCodeSecurityIntegration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "DeleteCodeSecurityIntegration"),
+    input = M.DeleteCodeSecurityIntegrationInput,
+    output = M.DeleteCodeSecurityIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/integration/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCodeSecurityScanConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "DeleteCodeSecurityScanConfiguration"),
+    input = M.DeleteCodeSecurityScanConfigurationInput,
+    output = M.DeleteCodeSecurityScanConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/scan-configuration/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFilter = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "DeleteFilter"),
+    input = M.DeleteFilterInput,
+    output = M.DeleteFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/filters/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrganizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "DescribeOrganizationConfiguration"),
+    input = M.DescribeOrganizationConfigurationInput,
+    output = M.DescribeOrganizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/organizationconfiguration/describe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Disable = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "Disable"),
+    input = M.DisableInput,
+    output = M.DisableOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/disable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableDelegatedAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "DisableDelegatedAdminAccount"),
+    input = M.DisableDelegatedAdminAccountInput,
+    output = M.DisableDelegatedAdminAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delegatedadminaccounts/disable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateMember = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "DisassociateMember"),
+    input = M.DisassociateMemberInput,
+    output = M.DisassociateMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/members/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Enable = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "Enable"),
+    input = M.EnableInput,
+    output = M.EnableOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/enable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableDelegatedAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "EnableDelegatedAdminAccount"),
+    input = M.EnableDelegatedAdminAccountInput,
+    output = M.EnableDelegatedAdminAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delegatedadminaccounts/enable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCisScanReport = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "GetCisScanReport"),
+    input = M.GetCisScanReportInput,
+    output = M.GetCisScanReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cis/scan/report/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCisScanResultDetails = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "GetCisScanResultDetails"),
+    input = M.GetCisScanResultDetailsInput,
+    output = M.GetCisScanResultDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cis/scan-result/details/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetClustersForImage = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "GetClustersForImage"),
+    input = M.GetClustersForImageInput,
+    output = M.GetClustersForImageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cluster/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCodeSecurityIntegration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "GetCodeSecurityIntegration"),
+    input = M.GetCodeSecurityIntegrationInput,
+    output = M.GetCodeSecurityIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/integration/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCodeSecurityScan = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "GetCodeSecurityScan"),
+    input = M.GetCodeSecurityScanInput,
+    output = M.GetCodeSecurityScanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/scan/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCodeSecurityScanConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "GetCodeSecurityScanConfiguration"),
+    input = M.GetCodeSecurityScanConfigurationInput,
+    output = M.GetCodeSecurityScanConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/scan-configuration/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "GetConfiguration"),
+    input = M.GetConfigurationInput,
+    output = M.GetConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configuration/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDelegatedAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "GetDelegatedAdminAccount"),
+    input = M.GetDelegatedAdminAccountInput,
+    output = M.GetDelegatedAdminAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delegatedadminaccounts/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEc2DeepInspectionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "GetEc2DeepInspectionConfiguration"),
+    input = M.GetEc2DeepInspectionConfigurationInput,
+    output = M.GetEc2DeepInspectionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ec2deepinspectionconfiguration/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEncryptionKey = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "GetEncryptionKey"),
+    input = M.GetEncryptionKeyInput,
+    output = M.GetEncryptionKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/encryptionkey/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingsReportStatus = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "GetFindingsReportStatus"),
+    input = M.GetFindingsReportStatusInput,
+    output = M.GetFindingsReportStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/reporting/status/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMember = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "GetMember"),
+    input = M.GetMemberInput,
+    output = M.GetMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/members/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSbomExport = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "GetSbomExport"),
+    input = M.GetSbomExportInput,
+    output = M.GetSbomExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sbomexport/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccountPermissions = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListAccountPermissions"),
+    input = M.ListAccountPermissionsInput,
+    output = M.ListAccountPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accountpermissions/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCisScanConfigurations = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListCisScanConfigurations"),
+    input = M.ListCisScanConfigurationsInput,
+    output = M.ListCisScanConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cis/scan-configuration/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCisScanResultsAggregatedByChecks = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListCisScanResultsAggregatedByChecks"),
+    input = M.ListCisScanResultsAggregatedByChecksInput,
+    output = M.ListCisScanResultsAggregatedByChecksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cis/scan-result/check/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCisScanResultsAggregatedByTargetResource = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListCisScanResultsAggregatedByTargetResource"),
+    input = M.ListCisScanResultsAggregatedByTargetResourceInput,
+    output = M.ListCisScanResultsAggregatedByTargetResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cis/scan-result/resource/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCisScans = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListCisScans"),
+    input = M.ListCisScansInput,
+    output = M.ListCisScansOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cis/scan/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCodeSecurityIntegrations = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListCodeSecurityIntegrations"),
+    input = M.ListCodeSecurityIntegrationsInput,
+    output = M.ListCodeSecurityIntegrationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/integration/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCodeSecurityScanConfigurationAssociations = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListCodeSecurityScanConfigurationAssociations"),
+    input = M.ListCodeSecurityScanConfigurationAssociationsInput,
+    output = M.ListCodeSecurityScanConfigurationAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/scan-configuration/associations/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCodeSecurityScanConfigurations = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListCodeSecurityScanConfigurations"),
+    input = M.ListCodeSecurityScanConfigurationsInput,
+    output = M.ListCodeSecurityScanConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/scan-configuration/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCoverage = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListCoverage"),
+    input = M.ListCoverageInput,
+    output = M.ListCoverageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/coverage/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCoverageStatistics = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListCoverageStatistics"),
+    input = M.ListCoverageStatisticsInput,
+    output = M.ListCoverageStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/coverage/statistics/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDelegatedAdminAccounts = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListDelegatedAdminAccounts"),
+    input = M.ListDelegatedAdminAccountsInput,
+    output = M.ListDelegatedAdminAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delegatedadminaccounts/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFilters = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListFilters"),
+    input = M.ListFiltersInput,
+    output = M.ListFiltersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/filters/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFindingAggregations = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListFindingAggregations"),
+    input = M.ListFindingAggregationsInput,
+    output = M.ListFindingAggregationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findings/aggregation/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFindings = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListFindings"),
+    input = M.ListFindingsInput,
+    output = M.ListFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findings/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMembers = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListMembers"),
+    input = M.ListMembersInput,
+    output = M.ListMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/members/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsageTotals = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListUsageTotals"),
+    input = M.ListUsageTotalsInput,
+    output = M.ListUsageTotalsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/usage/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetEncryptionKey = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ResetEncryptionKey"),
+    input = M.ResetEncryptionKeyInput,
+    output = M.ResetEncryptionKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/encryptionkey/reset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchVulnerabilities = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "SearchVulnerabilities"),
+    input = M.SearchVulnerabilitiesInput,
+    output = M.SearchVulnerabilitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/vulnerabilities/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendCisSessionHealth = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "SendCisSessionHealth"),
+    input = M.SendCisSessionHealthInput,
+    output = M.SendCisSessionHealthOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/cissession/health/send" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendCisSessionTelemetry = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "SendCisSessionTelemetry"),
+    input = M.SendCisSessionTelemetryInput,
+    output = M.SendCisSessionTelemetryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/cissession/telemetry/send" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCisSession = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "StartCisSession"),
+    input = M.StartCisSessionInput,
+    output = M.StartCisSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/cissession/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCodeSecurityScan = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "StartCodeSecurityScan"),
+    input = M.StartCodeSecurityScanInput,
+    output = M.StartCodeSecurityScanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/scan/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopCisSession = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "StopCisSession"),
+    input = M.StopCisSessionInput,
+    output = M.StopCisSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/cissession/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCisScanConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "UpdateCisScanConfiguration"),
+    input = M.UpdateCisScanConfigurationInput,
+    output = M.UpdateCisScanConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cis/scan-configuration/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCodeSecurityIntegration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "UpdateCodeSecurityIntegration"),
+    input = M.UpdateCodeSecurityIntegrationInput,
+    output = M.UpdateCodeSecurityIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/integration/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCodeSecurityScanConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "UpdateCodeSecurityScanConfiguration"),
+    input = M.UpdateCodeSecurityScanConfigurationInput,
+    output = M.UpdateCodeSecurityScanConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codesecurity/scan-configuration/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "UpdateConfiguration"),
+    input = M.UpdateConfigurationInput,
+    output = M.UpdateConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configuration/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEc2DeepInspectionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "UpdateEc2DeepInspectionConfiguration"),
+    input = M.UpdateEc2DeepInspectionConfigurationInput,
+    output = M.UpdateEc2DeepInspectionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ec2deepinspectionconfiguration/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEncryptionKey = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "UpdateEncryptionKey"),
+    input = M.UpdateEncryptionKeyInput,
+    output = M.UpdateEncryptionKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/encryptionkey/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFilter = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "UpdateFilter"),
+    input = M.UpdateFilterInput,
+    output = M.UpdateFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/filters/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOrganizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "UpdateOrganizationConfiguration"),
+    input = M.UpdateOrganizationConfigurationInput,
+    output = M.UpdateOrganizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/organizationconfiguration/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOrgEc2DeepInspectionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "UpdateOrgEc2DeepInspectionConfiguration"),
+    input = M.UpdateOrgEc2DeepInspectionConfigurationInput,
+    output = M.UpdateOrgEc2DeepInspectionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ec2deepinspectionconfiguration/org/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

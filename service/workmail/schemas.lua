@@ -6517,4 +6517,1026 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.workmail", "WorkMailService"),
+    version = "2017-10-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateDelegateToResource = schema.operation({
+    id = id.from("com.amazonaws.workmail", "AssociateDelegateToResource"),
+    input = M.AssociateDelegateToResourceInput,
+    output = M.AssociateDelegateToResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateMemberToGroup = schema.operation({
+    id = id.from("com.amazonaws.workmail", "AssociateMemberToGroup"),
+    input = M.AssociateMemberToGroupInput,
+    output = M.AssociateMemberToGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssumeImpersonationRole = schema.operation({
+    id = id.from("com.amazonaws.workmail", "AssumeImpersonationRole"),
+    input = M.AssumeImpersonationRoleInput,
+    output = M.AssumeImpersonationRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelMailboxExportJob = schema.operation({
+    id = id.from("com.amazonaws.workmail", "CancelMailboxExportJob"),
+    input = M.CancelMailboxExportJobInput,
+    output = M.CancelMailboxExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAlias = schema.operation({
+    id = id.from("com.amazonaws.workmail", "CreateAlias"),
+    input = M.CreateAliasInput,
+    output = M.CreateAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAvailabilityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.workmail", "CreateAvailabilityConfiguration"),
+    input = M.CreateAvailabilityConfigurationInput,
+    output = M.CreateAvailabilityConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGroup = schema.operation({
+    id = id.from("com.amazonaws.workmail", "CreateGroup"),
+    input = M.CreateGroupInput,
+    output = M.CreateGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIdentityCenterApplication = schema.operation({
+    id = id.from("com.amazonaws.workmail", "CreateIdentityCenterApplication"),
+    input = M.CreateIdentityCenterApplicationInput,
+    output = M.CreateIdentityCenterApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateImpersonationRole = schema.operation({
+    id = id.from("com.amazonaws.workmail", "CreateImpersonationRole"),
+    input = M.CreateImpersonationRoleInput,
+    output = M.CreateImpersonationRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMobileDeviceAccessRule = schema.operation({
+    id = id.from("com.amazonaws.workmail", "CreateMobileDeviceAccessRule"),
+    input = M.CreateMobileDeviceAccessRuleInput,
+    output = M.CreateMobileDeviceAccessRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOrganization = schema.operation({
+    id = id.from("com.amazonaws.workmail", "CreateOrganization"),
+    input = M.CreateOrganizationInput,
+    output = M.CreateOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResource = schema.operation({
+    id = id.from("com.amazonaws.workmail", "CreateResource"),
+    input = M.CreateResourceInput,
+    output = M.CreateResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.workmail", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccessControlRule = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteAccessControlRule"),
+    input = M.DeleteAccessControlRuleInput,
+    output = M.DeleteAccessControlRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAlias = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteAlias"),
+    input = M.DeleteAliasInput,
+    output = M.DeleteAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAvailabilityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteAvailabilityConfiguration"),
+    input = M.DeleteAvailabilityConfigurationInput,
+    output = M.DeleteAvailabilityConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEmailMonitoringConfiguration = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteEmailMonitoringConfiguration"),
+    input = M.DeleteEmailMonitoringConfigurationInput,
+    output = M.DeleteEmailMonitoringConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGroup = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteGroup"),
+    input = M.DeleteGroupInput,
+    output = M.DeleteGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdentityCenterApplication = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteIdentityCenterApplication"),
+    input = M.DeleteIdentityCenterApplicationInput,
+    output = M.DeleteIdentityCenterApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdentityProviderConfiguration = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteIdentityProviderConfiguration"),
+    input = M.DeleteIdentityProviderConfigurationInput,
+    output = M.DeleteIdentityProviderConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteImpersonationRole = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteImpersonationRole"),
+    input = M.DeleteImpersonationRoleInput,
+    output = M.DeleteImpersonationRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMailboxPermissions = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteMailboxPermissions"),
+    input = M.DeleteMailboxPermissionsInput,
+    output = M.DeleteMailboxPermissionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMobileDeviceAccessOverride = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteMobileDeviceAccessOverride"),
+    input = M.DeleteMobileDeviceAccessOverrideInput,
+    output = M.DeleteMobileDeviceAccessOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMobileDeviceAccessRule = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteMobileDeviceAccessRule"),
+    input = M.DeleteMobileDeviceAccessRuleInput,
+    output = M.DeleteMobileDeviceAccessRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOrganization = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteOrganization"),
+    input = M.DeleteOrganizationInput,
+    output = M.DeleteOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePersonalAccessToken = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeletePersonalAccessToken"),
+    input = M.DeletePersonalAccessTokenInput,
+    output = M.DeletePersonalAccessTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResource = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteResource"),
+    input = M.DeleteResourceInput,
+    output = M.DeleteResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRetentionPolicy = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteRetentionPolicy"),
+    input = M.DeleteRetentionPolicyInput,
+    output = M.DeleteRetentionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterFromWorkMail = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeregisterFromWorkMail"),
+    input = M.DeregisterFromWorkMailInput,
+    output = M.DeregisterFromWorkMailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterMailDomain = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DeregisterMailDomain"),
+    input = M.DeregisterMailDomainInput,
+    output = M.DeregisterMailDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEmailMonitoringConfiguration = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DescribeEmailMonitoringConfiguration"),
+    input = M.DescribeEmailMonitoringConfigurationInput,
+    output = M.DescribeEmailMonitoringConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEntity = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DescribeEntity"),
+    input = M.DescribeEntityInput,
+    output = M.DescribeEntityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGroup = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DescribeGroup"),
+    input = M.DescribeGroupInput,
+    output = M.DescribeGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIdentityProviderConfiguration = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DescribeIdentityProviderConfiguration"),
+    input = M.DescribeIdentityProviderConfigurationInput,
+    output = M.DescribeIdentityProviderConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInboundDmarcSettings = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DescribeInboundDmarcSettings"),
+    input = M.DescribeInboundDmarcSettingsInput,
+    output = M.DescribeInboundDmarcSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMailboxExportJob = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DescribeMailboxExportJob"),
+    input = M.DescribeMailboxExportJobInput,
+    output = M.DescribeMailboxExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrganization = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DescribeOrganization"),
+    input = M.DescribeOrganizationInput,
+    output = M.DescribeOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResource = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DescribeResource"),
+    input = M.DescribeResourceInput,
+    output = M.DescribeResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUser = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DescribeUser"),
+    input = M.DescribeUserInput,
+    output = M.DescribeUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateDelegateFromResource = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DisassociateDelegateFromResource"),
+    input = M.DisassociateDelegateFromResourceInput,
+    output = M.DisassociateDelegateFromResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateMemberFromGroup = schema.operation({
+    id = id.from("com.amazonaws.workmail", "DisassociateMemberFromGroup"),
+    input = M.DisassociateMemberFromGroupInput,
+    output = M.DisassociateMemberFromGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccessControlEffect = schema.operation({
+    id = id.from("com.amazonaws.workmail", "GetAccessControlEffect"),
+    input = M.GetAccessControlEffectInput,
+    output = M.GetAccessControlEffectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDefaultRetentionPolicy = schema.operation({
+    id = id.from("com.amazonaws.workmail", "GetDefaultRetentionPolicy"),
+    input = M.GetDefaultRetentionPolicyInput,
+    output = M.GetDefaultRetentionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImpersonationRole = schema.operation({
+    id = id.from("com.amazonaws.workmail", "GetImpersonationRole"),
+    input = M.GetImpersonationRoleInput,
+    output = M.GetImpersonationRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImpersonationRoleEffect = schema.operation({
+    id = id.from("com.amazonaws.workmail", "GetImpersonationRoleEffect"),
+    input = M.GetImpersonationRoleEffectInput,
+    output = M.GetImpersonationRoleEffectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMailboxDetails = schema.operation({
+    id = id.from("com.amazonaws.workmail", "GetMailboxDetails"),
+    input = M.GetMailboxDetailsInput,
+    output = M.GetMailboxDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMailDomain = schema.operation({
+    id = id.from("com.amazonaws.workmail", "GetMailDomain"),
+    input = M.GetMailDomainInput,
+    output = M.GetMailDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMobileDeviceAccessEffect = schema.operation({
+    id = id.from("com.amazonaws.workmail", "GetMobileDeviceAccessEffect"),
+    input = M.GetMobileDeviceAccessEffectInput,
+    output = M.GetMobileDeviceAccessEffectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMobileDeviceAccessOverride = schema.operation({
+    id = id.from("com.amazonaws.workmail", "GetMobileDeviceAccessOverride"),
+    input = M.GetMobileDeviceAccessOverrideInput,
+    output = M.GetMobileDeviceAccessOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPersonalAccessTokenMetadata = schema.operation({
+    id = id.from("com.amazonaws.workmail", "GetPersonalAccessTokenMetadata"),
+    input = M.GetPersonalAccessTokenMetadataInput,
+    output = M.GetPersonalAccessTokenMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccessControlRules = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListAccessControlRules"),
+    input = M.ListAccessControlRulesInput,
+    output = M.ListAccessControlRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAliases = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListAliases"),
+    input = M.ListAliasesInput,
+    output = M.ListAliasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAvailabilityConfigurations = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListAvailabilityConfigurations"),
+    input = M.ListAvailabilityConfigurationsInput,
+    output = M.ListAvailabilityConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroupMembers = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListGroupMembers"),
+    input = M.ListGroupMembersInput,
+    output = M.ListGroupMembersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroups = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListGroups"),
+    input = M.ListGroupsInput,
+    output = M.ListGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroupsForEntity = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListGroupsForEntity"),
+    input = M.ListGroupsForEntityInput,
+    output = M.ListGroupsForEntityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImpersonationRoles = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListImpersonationRoles"),
+    input = M.ListImpersonationRolesInput,
+    output = M.ListImpersonationRolesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMailboxExportJobs = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListMailboxExportJobs"),
+    input = M.ListMailboxExportJobsInput,
+    output = M.ListMailboxExportJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMailboxPermissions = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListMailboxPermissions"),
+    input = M.ListMailboxPermissionsInput,
+    output = M.ListMailboxPermissionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMailDomains = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListMailDomains"),
+    input = M.ListMailDomainsInput,
+    output = M.ListMailDomainsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMobileDeviceAccessOverrides = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListMobileDeviceAccessOverrides"),
+    input = M.ListMobileDeviceAccessOverridesInput,
+    output = M.ListMobileDeviceAccessOverridesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMobileDeviceAccessRules = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListMobileDeviceAccessRules"),
+    input = M.ListMobileDeviceAccessRulesInput,
+    output = M.ListMobileDeviceAccessRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOrganizations = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListOrganizations"),
+    input = M.ListOrganizationsInput,
+    output = M.ListOrganizationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPersonalAccessTokens = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListPersonalAccessTokens"),
+    input = M.ListPersonalAccessTokensInput,
+    output = M.ListPersonalAccessTokensOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceDelegates = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListResourceDelegates"),
+    input = M.ListResourceDelegatesInput,
+    output = M.ListResourceDelegatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResources = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListResources"),
+    input = M.ListResourcesInput,
+    output = M.ListResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsers = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ListUsers"),
+    input = M.ListUsersInput,
+    output = M.ListUsersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccessControlRule = schema.operation({
+    id = id.from("com.amazonaws.workmail", "PutAccessControlRule"),
+    input = M.PutAccessControlRuleInput,
+    output = M.PutAccessControlRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEmailMonitoringConfiguration = schema.operation({
+    id = id.from("com.amazonaws.workmail", "PutEmailMonitoringConfiguration"),
+    input = M.PutEmailMonitoringConfigurationInput,
+    output = M.PutEmailMonitoringConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutIdentityProviderConfiguration = schema.operation({
+    id = id.from("com.amazonaws.workmail", "PutIdentityProviderConfiguration"),
+    input = M.PutIdentityProviderConfigurationInput,
+    output = M.PutIdentityProviderConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutInboundDmarcSettings = schema.operation({
+    id = id.from("com.amazonaws.workmail", "PutInboundDmarcSettings"),
+    input = M.PutInboundDmarcSettingsInput,
+    output = M.PutInboundDmarcSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMailboxPermissions = schema.operation({
+    id = id.from("com.amazonaws.workmail", "PutMailboxPermissions"),
+    input = M.PutMailboxPermissionsInput,
+    output = M.PutMailboxPermissionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMobileDeviceAccessOverride = schema.operation({
+    id = id.from("com.amazonaws.workmail", "PutMobileDeviceAccessOverride"),
+    input = M.PutMobileDeviceAccessOverrideInput,
+    output = M.PutMobileDeviceAccessOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRetentionPolicy = schema.operation({
+    id = id.from("com.amazonaws.workmail", "PutRetentionPolicy"),
+    input = M.PutRetentionPolicyInput,
+    output = M.PutRetentionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterMailDomain = schema.operation({
+    id = id.from("com.amazonaws.workmail", "RegisterMailDomain"),
+    input = M.RegisterMailDomainInput,
+    output = M.RegisterMailDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterToWorkMail = schema.operation({
+    id = id.from("com.amazonaws.workmail", "RegisterToWorkMail"),
+    input = M.RegisterToWorkMailInput,
+    output = M.RegisterToWorkMailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetPassword = schema.operation({
+    id = id.from("com.amazonaws.workmail", "ResetPassword"),
+    input = M.ResetPasswordInput,
+    output = M.ResetPasswordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMailboxExportJob = schema.operation({
+    id = id.from("com.amazonaws.workmail", "StartMailboxExportJob"),
+    input = M.StartMailboxExportJobInput,
+    output = M.StartMailboxExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.workmail", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestAvailabilityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.workmail", "TestAvailabilityConfiguration"),
+    input = M.TestAvailabilityConfigurationInput,
+    output = M.TestAvailabilityConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.workmail", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAvailabilityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.workmail", "UpdateAvailabilityConfiguration"),
+    input = M.UpdateAvailabilityConfigurationInput,
+    output = M.UpdateAvailabilityConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDefaultMailDomain = schema.operation({
+    id = id.from("com.amazonaws.workmail", "UpdateDefaultMailDomain"),
+    input = M.UpdateDefaultMailDomainInput,
+    output = M.UpdateDefaultMailDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGroup = schema.operation({
+    id = id.from("com.amazonaws.workmail", "UpdateGroup"),
+    input = M.UpdateGroupInput,
+    output = M.UpdateGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateImpersonationRole = schema.operation({
+    id = id.from("com.amazonaws.workmail", "UpdateImpersonationRole"),
+    input = M.UpdateImpersonationRoleInput,
+    output = M.UpdateImpersonationRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMailboxQuota = schema.operation({
+    id = id.from("com.amazonaws.workmail", "UpdateMailboxQuota"),
+    input = M.UpdateMailboxQuotaInput,
+    output = M.UpdateMailboxQuotaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMobileDeviceAccessRule = schema.operation({
+    id = id.from("com.amazonaws.workmail", "UpdateMobileDeviceAccessRule"),
+    input = M.UpdateMobileDeviceAccessRuleInput,
+    output = M.UpdateMobileDeviceAccessRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePrimaryEmailAddress = schema.operation({
+    id = id.from("com.amazonaws.workmail", "UpdatePrimaryEmailAddress"),
+    input = M.UpdatePrimaryEmailAddressInput,
+    output = M.UpdatePrimaryEmailAddressOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResource = schema.operation({
+    id = id.from("com.amazonaws.workmail", "UpdateResource"),
+    input = M.UpdateResourceInput,
+    output = M.UpdateResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUser = schema.operation({
+    id = id.from("com.amazonaws.workmail", "UpdateUser"),
+    input = M.UpdateUserInput,
+    output = M.UpdateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

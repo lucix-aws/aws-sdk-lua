@@ -333,4 +333,36 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ec2instanceconnect", "AWSEC2InstanceConnectService"),
+    version = "2018-04-02",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendSerialConsoleSSHPublicKey = schema.operation({
+    id = id.from("com.amazonaws.ec2instanceconnect", "SendSerialConsoleSSHPublicKey"),
+    input = M.SendSerialConsoleSSHPublicKeyInput,
+    output = M.SendSerialConsoleSSHPublicKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendSSHPublicKey = schema.operation({
+    id = id.from("com.amazonaws.ec2instanceconnect", "SendSSHPublicKey"),
+    input = M.SendSSHPublicKeyInput,
+    output = M.SendSSHPublicKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

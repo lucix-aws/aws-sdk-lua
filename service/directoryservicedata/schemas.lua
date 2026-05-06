@@ -1676,4 +1676,218 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.directoryservicedata", "DirectoryServiceData"),
+    version = "2023-05-31",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddGroupMember = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "AddGroupMember"),
+    input = M.AddGroupMemberInput,
+    output = M.AddGroupMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GroupMemberships/AddGroupMember" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGroup = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "CreateGroup"),
+    input = M.CreateGroupInput,
+    output = M.CreateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Groups/CreateGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Users/CreateUser" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGroup = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "DeleteGroup"),
+    input = M.DeleteGroupInput,
+    output = M.DeleteGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Groups/DeleteGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Users/DeleteUser" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGroup = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "DescribeGroup"),
+    input = M.DescribeGroupInput,
+    output = M.DescribeGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Groups/DescribeGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUser = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "DescribeUser"),
+    input = M.DescribeUserInput,
+    output = M.DescribeUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Users/DescribeUser" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableUser = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "DisableUser"),
+    input = M.DisableUserInput,
+    output = M.DisableUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Users/DisableUser" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroupMembers = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "ListGroupMembers"),
+    input = M.ListGroupMembersInput,
+    output = M.ListGroupMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GroupMemberships/ListGroupMembers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroups = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "ListGroups"),
+    input = M.ListGroupsInput,
+    output = M.ListGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Groups/ListGroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroupsForMember = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "ListGroupsForMember"),
+    input = M.ListGroupsForMemberInput,
+    output = M.ListGroupsForMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GroupMemberships/ListGroupsForMember" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsers = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "ListUsers"),
+    input = M.ListUsersInput,
+    output = M.ListUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Users/ListUsers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveGroupMember = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "RemoveGroupMember"),
+    input = M.RemoveGroupMemberInput,
+    output = M.RemoveGroupMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GroupMemberships/RemoveGroupMember" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchGroups = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "SearchGroups"),
+    input = M.SearchGroupsInput,
+    output = M.SearchGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Groups/SearchGroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchUsers = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "SearchUsers"),
+    input = M.SearchUsersInput,
+    output = M.SearchUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Users/SearchUsers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGroup = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "UpdateGroup"),
+    input = M.UpdateGroupInput,
+    output = M.UpdateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Groups/UpdateGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUser = schema.operation({
+    id = id.from("com.amazonaws.directoryservicedata", "UpdateUser"),
+    input = M.UpdateUserInput,
+    output = M.UpdateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Users/UpdateUser" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

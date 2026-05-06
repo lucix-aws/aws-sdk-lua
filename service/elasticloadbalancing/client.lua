@@ -7,6 +7,7 @@ local endpoint_rules = require("elasticloadbalancing.endpoint_rules")
 local query_protocol = require("smithy.protocol.query")
 local schemas = require("elasticloadbalancing.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "elasticloadbalancing", signing_region = cfg.region } }
                 else
@@ -49,380 +52,119 @@ function M.new(cfg)
 end
 
 function Client:addTags(input, options)
-    return self:invokeOperation(input, {
-        name = "AddTags",
-        input_schema = schemas.AddTagsInput,
-        output_schema = schemas.AddTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddTags, input, options)
 end
 
 function Client:applySecurityGroupsToLoadBalancer(input, options)
-    return self:invokeOperation(input, {
-        name = "ApplySecurityGroupsToLoadBalancer",
-        input_schema = schemas.ApplySecurityGroupsToLoadBalancerInput,
-        output_schema = schemas.ApplySecurityGroupsToLoadBalancerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ApplySecurityGroupsToLoadBalancer, input, options)
 end
 
 function Client:attachLoadBalancerToSubnets(input, options)
-    return self:invokeOperation(input, {
-        name = "AttachLoadBalancerToSubnets",
-        input_schema = schemas.AttachLoadBalancerToSubnetsInput,
-        output_schema = schemas.AttachLoadBalancerToSubnetsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AttachLoadBalancerToSubnets, input, options)
 end
 
 function Client:configureHealthCheck(input, options)
-    return self:invokeOperation(input, {
-        name = "ConfigureHealthCheck",
-        input_schema = schemas.ConfigureHealthCheckInput,
-        output_schema = schemas.ConfigureHealthCheckOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ConfigureHealthCheck, input, options)
 end
 
 function Client:createAppCookieStickinessPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAppCookieStickinessPolicy",
-        input_schema = schemas.CreateAppCookieStickinessPolicyInput,
-        output_schema = schemas.CreateAppCookieStickinessPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAppCookieStickinessPolicy, input, options)
 end
 
 function Client:createLBCookieStickinessPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLBCookieStickinessPolicy",
-        input_schema = schemas.CreateLBCookieStickinessPolicyInput,
-        output_schema = schemas.CreateLBCookieStickinessPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLBCookieStickinessPolicy, input, options)
 end
 
 function Client:createLoadBalancer(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLoadBalancer",
-        input_schema = schemas.CreateLoadBalancerInput,
-        output_schema = schemas.CreateLoadBalancerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLoadBalancer, input, options)
 end
 
 function Client:createLoadBalancerListeners(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLoadBalancerListeners",
-        input_schema = schemas.CreateLoadBalancerListenersInput,
-        output_schema = schemas.CreateLoadBalancerListenersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLoadBalancerListeners, input, options)
 end
 
 function Client:createLoadBalancerPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLoadBalancerPolicy",
-        input_schema = schemas.CreateLoadBalancerPolicyInput,
-        output_schema = schemas.CreateLoadBalancerPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLoadBalancerPolicy, input, options)
 end
 
 function Client:deleteLoadBalancer(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteLoadBalancer",
-        input_schema = schemas.DeleteLoadBalancerInput,
-        output_schema = schemas.DeleteLoadBalancerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteLoadBalancer, input, options)
 end
 
 function Client:deleteLoadBalancerListeners(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteLoadBalancerListeners",
-        input_schema = schemas.DeleteLoadBalancerListenersInput,
-        output_schema = schemas.DeleteLoadBalancerListenersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteLoadBalancerListeners, input, options)
 end
 
 function Client:deleteLoadBalancerPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteLoadBalancerPolicy",
-        input_schema = schemas.DeleteLoadBalancerPolicyInput,
-        output_schema = schemas.DeleteLoadBalancerPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteLoadBalancerPolicy, input, options)
 end
 
 function Client:deregisterInstancesFromLoadBalancer(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterInstancesFromLoadBalancer",
-        input_schema = schemas.DeregisterInstancesFromLoadBalancerInput,
-        output_schema = schemas.DeregisterInstancesFromLoadBalancerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterInstancesFromLoadBalancer, input, options)
 end
 
 function Client:describeAccountLimits(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAccountLimits",
-        input_schema = schemas.DescribeAccountLimitsInput,
-        output_schema = schemas.DescribeAccountLimitsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAccountLimits, input, options)
 end
 
 function Client:describeInstanceHealth(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeInstanceHealth",
-        input_schema = schemas.DescribeInstanceHealthInput,
-        output_schema = schemas.DescribeInstanceHealthOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceHealth, input, options)
 end
 
 function Client:describeLoadBalancerAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLoadBalancerAttributes",
-        input_schema = schemas.DescribeLoadBalancerAttributesInput,
-        output_schema = schemas.DescribeLoadBalancerAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLoadBalancerAttributes, input, options)
 end
 
 function Client:describeLoadBalancerPolicies(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLoadBalancerPolicies",
-        input_schema = schemas.DescribeLoadBalancerPoliciesInput,
-        output_schema = schemas.DescribeLoadBalancerPoliciesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLoadBalancerPolicies, input, options)
 end
 
 function Client:describeLoadBalancerPolicyTypes(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLoadBalancerPolicyTypes",
-        input_schema = schemas.DescribeLoadBalancerPolicyTypesInput,
-        output_schema = schemas.DescribeLoadBalancerPolicyTypesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLoadBalancerPolicyTypes, input, options)
 end
 
 function Client:describeLoadBalancers(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLoadBalancers",
-        input_schema = schemas.DescribeLoadBalancersInput,
-        output_schema = schemas.DescribeLoadBalancersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLoadBalancers, input, options)
 end
 
 function Client:describeTags(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTags",
-        input_schema = schemas.DescribeTagsInput,
-        output_schema = schemas.DescribeTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTags, input, options)
 end
 
 function Client:detachLoadBalancerFromSubnets(input, options)
-    return self:invokeOperation(input, {
-        name = "DetachLoadBalancerFromSubnets",
-        input_schema = schemas.DetachLoadBalancerFromSubnetsInput,
-        output_schema = schemas.DetachLoadBalancerFromSubnetsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DetachLoadBalancerFromSubnets, input, options)
 end
 
 function Client:disableAvailabilityZonesForLoadBalancer(input, options)
-    return self:invokeOperation(input, {
-        name = "DisableAvailabilityZonesForLoadBalancer",
-        input_schema = schemas.DisableAvailabilityZonesForLoadBalancerInput,
-        output_schema = schemas.DisableAvailabilityZonesForLoadBalancerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisableAvailabilityZonesForLoadBalancer, input, options)
 end
 
 function Client:enableAvailabilityZonesForLoadBalancer(input, options)
-    return self:invokeOperation(input, {
-        name = "EnableAvailabilityZonesForLoadBalancer",
-        input_schema = schemas.EnableAvailabilityZonesForLoadBalancerInput,
-        output_schema = schemas.EnableAvailabilityZonesForLoadBalancerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.EnableAvailabilityZonesForLoadBalancer, input, options)
 end
 
 function Client:modifyLoadBalancerAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyLoadBalancerAttributes",
-        input_schema = schemas.ModifyLoadBalancerAttributesInput,
-        output_schema = schemas.ModifyLoadBalancerAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyLoadBalancerAttributes, input, options)
 end
 
 function Client:registerInstancesWithLoadBalancer(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterInstancesWithLoadBalancer",
-        input_schema = schemas.RegisterInstancesWithLoadBalancerInput,
-        output_schema = schemas.RegisterInstancesWithLoadBalancerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterInstancesWithLoadBalancer, input, options)
 end
 
 function Client:removeTags(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveTags",
-        input_schema = schemas.RemoveTagsInput,
-        output_schema = schemas.RemoveTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveTags, input, options)
 end
 
 function Client:setLoadBalancerListenerSSLCertificate(input, options)
-    return self:invokeOperation(input, {
-        name = "SetLoadBalancerListenerSSLCertificate",
-        input_schema = schemas.SetLoadBalancerListenerSSLCertificateInput,
-        output_schema = schemas.SetLoadBalancerListenerSSLCertificateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetLoadBalancerListenerSSLCertificate, input, options)
 end
 
 function Client:setLoadBalancerPoliciesForBackendServer(input, options)
-    return self:invokeOperation(input, {
-        name = "SetLoadBalancerPoliciesForBackendServer",
-        input_schema = schemas.SetLoadBalancerPoliciesForBackendServerInput,
-        output_schema = schemas.SetLoadBalancerPoliciesForBackendServerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetLoadBalancerPoliciesForBackendServer, input, options)
 end
 
 function Client:setLoadBalancerPoliciesOfListener(input, options)
-    return self:invokeOperation(input, {
-        name = "SetLoadBalancerPoliciesOfListener",
-        input_schema = schemas.SetLoadBalancerPoliciesOfListenerInput,
-        output_schema = schemas.SetLoadBalancerPoliciesOfListenerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetLoadBalancerPoliciesOfListener, input, options)
 end
 
 return M

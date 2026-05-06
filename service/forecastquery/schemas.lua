@@ -261,4 +261,36 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.forecastquery", "AmazonForecastRuntime"),
+    version = "2018-06-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.QueryForecast = schema.operation({
+    id = id.from("com.amazonaws.forecastquery", "QueryForecast"),
+    input = M.QueryForecastInput,
+    output = M.QueryForecastOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.QueryWhatIfForecast = schema.operation({
+    id = id.from("com.amazonaws.forecastquery", "QueryWhatIfForecast"),
+    input = M.QueryWhatIfForecastInput,
+    output = M.QueryWhatIfForecastOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

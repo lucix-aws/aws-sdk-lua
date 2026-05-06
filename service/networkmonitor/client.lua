@@ -7,6 +7,7 @@ local endpoint_rules = require("networkmonitor.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("networkmonitor.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "networkmonitor", signing_region = cfg.region } }
                 else
@@ -49,159 +52,51 @@ function M.new(cfg)
 end
 
 function Client:createMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateMonitor",
-        input_schema = schemas.CreateMonitorInput,
-        output_schema = schemas.CreateMonitorOutput,
-        http_method = "POST",
-        http_path = "/monitors",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateMonitor, input, options)
 end
 
 function Client:createProbe(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateProbe",
-        input_schema = schemas.CreateProbeInput,
-        output_schema = schemas.CreateProbeOutput,
-        http_method = "POST",
-        http_path = "/monitors/{monitorName}/probes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateProbe, input, options)
 end
 
 function Client:deleteMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMonitor",
-        input_schema = schemas.DeleteMonitorInput,
-        output_schema = schemas.DeleteMonitorOutput,
-        http_method = "DELETE",
-        http_path = "/monitors/{monitorName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMonitor, input, options)
 end
 
 function Client:deleteProbe(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteProbe",
-        input_schema = schemas.DeleteProbeInput,
-        output_schema = schemas.DeleteProbeOutput,
-        http_method = "DELETE",
-        http_path = "/monitors/{monitorName}/probes/{probeId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteProbe, input, options)
 end
 
 function Client:getMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMonitor",
-        input_schema = schemas.GetMonitorInput,
-        output_schema = schemas.GetMonitorOutput,
-        http_method = "GET",
-        http_path = "/monitors/{monitorName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMonitor, input, options)
 end
 
 function Client:getProbe(input, options)
-    return self:invokeOperation(input, {
-        name = "GetProbe",
-        input_schema = schemas.GetProbeInput,
-        output_schema = schemas.GetProbeOutput,
-        http_method = "GET",
-        http_path = "/monitors/{monitorName}/probes/{probeId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetProbe, input, options)
 end
 
 function Client:listMonitors(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMonitors",
-        input_schema = schemas.ListMonitorsInput,
-        output_schema = schemas.ListMonitorsOutput,
-        http_method = "GET",
-        http_path = "/monitors",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMonitors, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateMonitor",
-        input_schema = schemas.UpdateMonitorInput,
-        output_schema = schemas.UpdateMonitorOutput,
-        http_method = "PATCH",
-        http_path = "/monitors/{monitorName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateMonitor, input, options)
 end
 
 function Client:updateProbe(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateProbe",
-        input_schema = schemas.UpdateProbeInput,
-        output_schema = schemas.UpdateProbeOutput,
-        http_method = "PATCH",
-        http_path = "/monitors/{monitorName}/probes/{probeId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateProbe, input, options)
 end
 
 return M

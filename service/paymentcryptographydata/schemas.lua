@@ -3630,4 +3630,182 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.paymentcryptographydata", "PaymentCryptographyDataPlane"),
+    version = "2022-02-03",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DecryptData = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "DecryptData"),
+    input = M.DecryptDataInput,
+    output = M.DecryptDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/keys/{KeyIdentifier}/decrypt" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EncryptData = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "EncryptData"),
+    input = M.EncryptDataInput,
+    output = M.EncryptDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/keys/{KeyIdentifier}/encrypt" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateAs2805KekValidation = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "GenerateAs2805KekValidation"),
+    input = M.GenerateAs2805KekValidationInput,
+    output = M.GenerateAs2805KekValidationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/as2805kekvalidation/generate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateCardValidationData = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "GenerateCardValidationData"),
+    input = M.GenerateCardValidationDataInput,
+    output = M.GenerateCardValidationDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cardvalidationdata/generate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateMac = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "GenerateMac"),
+    input = M.GenerateMacInput,
+    output = M.GenerateMacOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/mac/generate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateMacEmvPinChange = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "GenerateMacEmvPinChange"),
+    input = M.GenerateMacEmvPinChangeInput,
+    output = M.GenerateMacEmvPinChangeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/macemvpinchange/generate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GeneratePinData = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "GeneratePinData"),
+    input = M.GeneratePinDataInput,
+    output = M.GeneratePinDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/pindata/generate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReEncryptData = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "ReEncryptData"),
+    input = M.ReEncryptDataInput,
+    output = M.ReEncryptDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/keys/{IncomingKeyIdentifier}/reencrypt" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TranslateKeyMaterial = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "TranslateKeyMaterial"),
+    input = M.TranslateKeyMaterialInput,
+    output = M.TranslateKeyMaterialOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/keymaterial/translate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TranslatePinData = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "TranslatePinData"),
+    input = M.TranslatePinDataInput,
+    output = M.TranslatePinDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/pindata/translate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyAuthRequestCryptogram = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "VerifyAuthRequestCryptogram"),
+    input = M.VerifyAuthRequestCryptogramInput,
+    output = M.VerifyAuthRequestCryptogramOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cryptogram/verify" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyCardValidationData = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "VerifyCardValidationData"),
+    input = M.VerifyCardValidationDataInput,
+    output = M.VerifyCardValidationDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cardvalidationdata/verify" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyMac = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "VerifyMac"),
+    input = M.VerifyMacInput,
+    output = M.VerifyMacOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/mac/verify" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyPinData = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "VerifyPinData"),
+    input = M.VerifyPinDataInput,
+    output = M.VerifyPinDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/pindata/verify" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

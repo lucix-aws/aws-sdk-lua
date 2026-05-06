@@ -968,4 +968,170 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.codestarnotifications", "CodeStarNotifications_20191015"),
+    version = "2019-10-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNotificationRule = schema.operation({
+    id = id.from("com.amazonaws.codestarnotifications", "CreateNotificationRule"),
+    input = M.CreateNotificationRuleInput,
+    output = M.CreateNotificationRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/createNotificationRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNotificationRule = schema.operation({
+    id = id.from("com.amazonaws.codestarnotifications", "DeleteNotificationRule"),
+    input = M.DeleteNotificationRuleInput,
+    output = M.DeleteNotificationRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deleteNotificationRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTarget = schema.operation({
+    id = id.from("com.amazonaws.codestarnotifications", "DeleteTarget"),
+    input = M.DeleteTargetInput,
+    output = M.DeleteTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deleteTarget" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNotificationRule = schema.operation({
+    id = id.from("com.amazonaws.codestarnotifications", "DescribeNotificationRule"),
+    input = M.DescribeNotificationRuleInput,
+    output = M.DescribeNotificationRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describeNotificationRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventTypes = schema.operation({
+    id = id.from("com.amazonaws.codestarnotifications", "ListEventTypes"),
+    input = M.ListEventTypesInput,
+    output = M.ListEventTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listEventTypes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotificationRules = schema.operation({
+    id = id.from("com.amazonaws.codestarnotifications", "ListNotificationRules"),
+    input = M.ListNotificationRulesInput,
+    output = M.ListNotificationRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listNotificationRules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.codestarnotifications", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTargets = schema.operation({
+    id = id.from("com.amazonaws.codestarnotifications", "ListTargets"),
+    input = M.ListTargetsInput,
+    output = M.ListTargetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listTargets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Subscribe = schema.operation({
+    id = id.from("com.amazonaws.codestarnotifications", "Subscribe"),
+    input = M.SubscribeInput,
+    output = M.SubscribeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/subscribe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.codestarnotifications", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Unsubscribe = schema.operation({
+    id = id.from("com.amazonaws.codestarnotifications", "Unsubscribe"),
+    input = M.UnsubscribeInput,
+    output = M.UnsubscribeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/unsubscribe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.codestarnotifications", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/untagResource/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNotificationRule = schema.operation({
+    id = id.from("com.amazonaws.codestarnotifications", "UpdateNotificationRule"),
+    input = M.UpdateNotificationRuleInput,
+    output = M.UpdateNotificationRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateNotificationRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

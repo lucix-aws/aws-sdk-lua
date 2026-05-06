@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("iotfleetwise.endpoint_rules")
 local schemas = require("iotfleetwise.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iotfleetwise", signing_region = cfg.region } }
                 else
@@ -49,744 +52,231 @@ function M.new(cfg)
 end
 
 function Client:associateVehicleFleet(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateVehicleFleet",
-        input_schema = schemas.AssociateVehicleFleetInput,
-        output_schema = schemas.AssociateVehicleFleetOutput,
-        http_method = "PUT",
-        http_path = "/vehicles/{vehicleName}/associate",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateVehicleFleet, input, options)
 end
 
 function Client:batchCreateVehicle(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchCreateVehicle",
-        input_schema = schemas.BatchCreateVehicleInput,
-        output_schema = schemas.BatchCreateVehicleOutput,
-        http_method = "POST",
-        http_path = "/vehicles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchCreateVehicle, input, options)
 end
 
 function Client:batchUpdateVehicle(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchUpdateVehicle",
-        input_schema = schemas.BatchUpdateVehicleInput,
-        output_schema = schemas.BatchUpdateVehicleOutput,
-        http_method = "PUT",
-        http_path = "/vehicles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchUpdateVehicle, input, options)
 end
 
 function Client:createCampaign(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCampaign",
-        input_schema = schemas.CreateCampaignInput,
-        output_schema = schemas.CreateCampaignOutput,
-        http_method = "POST",
-        http_path = "/campaigns/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCampaign, input, options)
 end
 
 function Client:createDecoderManifest(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDecoderManifest",
-        input_schema = schemas.CreateDecoderManifestInput,
-        output_schema = schemas.CreateDecoderManifestOutput,
-        http_method = "POST",
-        http_path = "/decoder-manifests/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDecoderManifest, input, options)
 end
 
 function Client:createFleet(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateFleet",
-        input_schema = schemas.CreateFleetInput,
-        output_schema = schemas.CreateFleetOutput,
-        http_method = "POST",
-        http_path = "/fleets/{fleetId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateFleet, input, options)
 end
 
 function Client:createModelManifest(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateModelManifest",
-        input_schema = schemas.CreateModelManifestInput,
-        output_schema = schemas.CreateModelManifestOutput,
-        http_method = "POST",
-        http_path = "/model-manifests/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateModelManifest, input, options)
 end
 
 function Client:createSignalCatalog(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSignalCatalog",
-        input_schema = schemas.CreateSignalCatalogInput,
-        output_schema = schemas.CreateSignalCatalogOutput,
-        http_method = "POST",
-        http_path = "/signal-catalogs/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSignalCatalog, input, options)
 end
 
 function Client:createStateTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateStateTemplate",
-        input_schema = schemas.CreateStateTemplateInput,
-        output_schema = schemas.CreateStateTemplateOutput,
-        http_method = "POST",
-        http_path = "/state-templates/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateStateTemplate, input, options)
 end
 
 function Client:createVehicle(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateVehicle",
-        input_schema = schemas.CreateVehicleInput,
-        output_schema = schemas.CreateVehicleOutput,
-        http_method = "POST",
-        http_path = "/vehicles/{vehicleName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateVehicle, input, options)
 end
 
 function Client:deleteCampaign(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCampaign",
-        input_schema = schemas.DeleteCampaignInput,
-        output_schema = schemas.DeleteCampaignOutput,
-        http_method = "DELETE",
-        http_path = "/campaigns/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCampaign, input, options)
 end
 
 function Client:deleteDecoderManifest(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDecoderManifest",
-        input_schema = schemas.DeleteDecoderManifestInput,
-        output_schema = schemas.DeleteDecoderManifestOutput,
-        http_method = "DELETE",
-        http_path = "/decoder-manifests/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDecoderManifest, input, options)
 end
 
 function Client:deleteFleet(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFleet",
-        input_schema = schemas.DeleteFleetInput,
-        output_schema = schemas.DeleteFleetOutput,
-        http_method = "DELETE",
-        http_path = "/fleets/{fleetId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFleet, input, options)
 end
 
 function Client:deleteModelManifest(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteModelManifest",
-        input_schema = schemas.DeleteModelManifestInput,
-        output_schema = schemas.DeleteModelManifestOutput,
-        http_method = "DELETE",
-        http_path = "/model-manifests/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteModelManifest, input, options)
 end
 
 function Client:deleteSignalCatalog(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSignalCatalog",
-        input_schema = schemas.DeleteSignalCatalogInput,
-        output_schema = schemas.DeleteSignalCatalogOutput,
-        http_method = "DELETE",
-        http_path = "/signal-catalogs/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSignalCatalog, input, options)
 end
 
 function Client:deleteStateTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteStateTemplate",
-        input_schema = schemas.DeleteStateTemplateInput,
-        output_schema = schemas.DeleteStateTemplateOutput,
-        http_method = "DELETE",
-        http_path = "/state-templates/{identifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteStateTemplate, input, options)
 end
 
 function Client:deleteVehicle(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVehicle",
-        input_schema = schemas.DeleteVehicleInput,
-        output_schema = schemas.DeleteVehicleOutput,
-        http_method = "DELETE",
-        http_path = "/vehicles/{vehicleName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVehicle, input, options)
 end
 
 function Client:disassociateVehicleFleet(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateVehicleFleet",
-        input_schema = schemas.DisassociateVehicleFleetInput,
-        output_schema = schemas.DisassociateVehicleFleetOutput,
-        http_method = "PUT",
-        http_path = "/vehicles/{vehicleName}/disassociate",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateVehicleFleet, input, options)
 end
 
 function Client:getCampaign(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCampaign",
-        input_schema = schemas.GetCampaignInput,
-        output_schema = schemas.GetCampaignOutput,
-        http_method = "GET",
-        http_path = "/campaigns/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCampaign, input, options)
 end
 
 function Client:getDecoderManifest(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDecoderManifest",
-        input_schema = schemas.GetDecoderManifestInput,
-        output_schema = schemas.GetDecoderManifestOutput,
-        http_method = "GET",
-        http_path = "/decoder-manifests/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDecoderManifest, input, options)
 end
 
 function Client:getEncryptionConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEncryptionConfiguration",
-        input_schema = schemas.GetEncryptionConfigurationInput,
-        output_schema = schemas.GetEncryptionConfigurationOutput,
-        http_method = "GET",
-        http_path = "/encryptionConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEncryptionConfiguration, input, options)
 end
 
 function Client:getFleet(input, options)
-    return self:invokeOperation(input, {
-        name = "GetFleet",
-        input_schema = schemas.GetFleetInput,
-        output_schema = schemas.GetFleetOutput,
-        http_method = "GET",
-        http_path = "/fleets/{fleetId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetFleet, input, options)
 end
 
 function Client:getLoggingOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "GetLoggingOptions",
-        input_schema = schemas.GetLoggingOptionsInput,
-        output_schema = schemas.GetLoggingOptionsOutput,
-        http_method = "GET",
-        http_path = "/loggingOptions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetLoggingOptions, input, options)
 end
 
 function Client:getModelManifest(input, options)
-    return self:invokeOperation(input, {
-        name = "GetModelManifest",
-        input_schema = schemas.GetModelManifestInput,
-        output_schema = schemas.GetModelManifestOutput,
-        http_method = "GET",
-        http_path = "/model-manifests/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetModelManifest, input, options)
 end
 
 function Client:getRegisterAccountStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRegisterAccountStatus",
-        input_schema = schemas.GetRegisterAccountStatusInput,
-        output_schema = schemas.GetRegisterAccountStatusOutput,
-        http_method = "GET",
-        http_path = "/account/registration_status",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRegisterAccountStatus, input, options)
 end
 
 function Client:getSignalCatalog(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSignalCatalog",
-        input_schema = schemas.GetSignalCatalogInput,
-        output_schema = schemas.GetSignalCatalogOutput,
-        http_method = "GET",
-        http_path = "/signal-catalogs/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSignalCatalog, input, options)
 end
 
 function Client:getStateTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "GetStateTemplate",
-        input_schema = schemas.GetStateTemplateInput,
-        output_schema = schemas.GetStateTemplateOutput,
-        http_method = "GET",
-        http_path = "/state-templates/{identifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetStateTemplate, input, options)
 end
 
 function Client:getVehicle(input, options)
-    return self:invokeOperation(input, {
-        name = "GetVehicle",
-        input_schema = schemas.GetVehicleInput,
-        output_schema = schemas.GetVehicleOutput,
-        http_method = "GET",
-        http_path = "/vehicles/{vehicleName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetVehicle, input, options)
 end
 
 function Client:getVehicleStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetVehicleStatus",
-        input_schema = schemas.GetVehicleStatusInput,
-        output_schema = schemas.GetVehicleStatusOutput,
-        http_method = "GET",
-        http_path = "/vehicles/{vehicleName}/status",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetVehicleStatus, input, options)
 end
 
 function Client:importDecoderManifest(input, options)
-    return self:invokeOperation(input, {
-        name = "ImportDecoderManifest",
-        input_schema = schemas.ImportDecoderManifestInput,
-        output_schema = schemas.ImportDecoderManifestOutput,
-        http_method = "PUT",
-        http_path = "/decoder-manifests/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ImportDecoderManifest, input, options)
 end
 
 function Client:importSignalCatalog(input, options)
-    return self:invokeOperation(input, {
-        name = "ImportSignalCatalog",
-        input_schema = schemas.ImportSignalCatalogInput,
-        output_schema = schemas.ImportSignalCatalogOutput,
-        http_method = "PUT",
-        http_path = "/signal-catalogs/{name}/nodes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ImportSignalCatalog, input, options)
 end
 
 function Client:listCampaigns(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCampaigns",
-        input_schema = schemas.ListCampaignsInput,
-        output_schema = schemas.ListCampaignsOutput,
-        http_method = "GET",
-        http_path = "/campaigns",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCampaigns, input, options)
 end
 
 function Client:listDecoderManifestNetworkInterfaces(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDecoderManifestNetworkInterfaces",
-        input_schema = schemas.ListDecoderManifestNetworkInterfacesInput,
-        output_schema = schemas.ListDecoderManifestNetworkInterfacesOutput,
-        http_method = "GET",
-        http_path = "/decoder-manifests/{name}/network-interfaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDecoderManifestNetworkInterfaces, input, options)
 end
 
 function Client:listDecoderManifests(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDecoderManifests",
-        input_schema = schemas.ListDecoderManifestsInput,
-        output_schema = schemas.ListDecoderManifestsOutput,
-        http_method = "GET",
-        http_path = "/decoder-manifests",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDecoderManifests, input, options)
 end
 
 function Client:listDecoderManifestSignals(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDecoderManifestSignals",
-        input_schema = schemas.ListDecoderManifestSignalsInput,
-        output_schema = schemas.ListDecoderManifestSignalsOutput,
-        http_method = "GET",
-        http_path = "/decoder-manifests/{name}/signals",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDecoderManifestSignals, input, options)
 end
 
 function Client:listFleets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFleets",
-        input_schema = schemas.ListFleetsInput,
-        output_schema = schemas.ListFleetsOutput,
-        http_method = "GET",
-        http_path = "/fleets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFleets, input, options)
 end
 
 function Client:listFleetsForVehicle(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFleetsForVehicle",
-        input_schema = schemas.ListFleetsForVehicleInput,
-        output_schema = schemas.ListFleetsForVehicleOutput,
-        http_method = "GET",
-        http_path = "/vehicles/{vehicleName}/fleets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFleetsForVehicle, input, options)
 end
 
 function Client:listModelManifestNodes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListModelManifestNodes",
-        input_schema = schemas.ListModelManifestNodesInput,
-        output_schema = schemas.ListModelManifestNodesOutput,
-        http_method = "GET",
-        http_path = "/model-manifests/{name}/nodes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListModelManifestNodes, input, options)
 end
 
 function Client:listModelManifests(input, options)
-    return self:invokeOperation(input, {
-        name = "ListModelManifests",
-        input_schema = schemas.ListModelManifestsInput,
-        output_schema = schemas.ListModelManifestsOutput,
-        http_method = "GET",
-        http_path = "/model-manifests",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListModelManifests, input, options)
 end
 
 function Client:listSignalCatalogNodes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSignalCatalogNodes",
-        input_schema = schemas.ListSignalCatalogNodesInput,
-        output_schema = schemas.ListSignalCatalogNodesOutput,
-        http_method = "GET",
-        http_path = "/signal-catalogs/{name}/nodes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSignalCatalogNodes, input, options)
 end
 
 function Client:listSignalCatalogs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSignalCatalogs",
-        input_schema = schemas.ListSignalCatalogsInput,
-        output_schema = schemas.ListSignalCatalogsOutput,
-        http_method = "GET",
-        http_path = "/signal-catalogs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSignalCatalogs, input, options)
 end
 
 function Client:listStateTemplates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListStateTemplates",
-        input_schema = schemas.ListStateTemplatesInput,
-        output_schema = schemas.ListStateTemplatesOutput,
-        http_method = "GET",
-        http_path = "/state-templates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListStateTemplates, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listVehicles(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVehicles",
-        input_schema = schemas.ListVehiclesInput,
-        output_schema = schemas.ListVehiclesOutput,
-        http_method = "GET",
-        http_path = "/vehicles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVehicles, input, options)
 end
 
 function Client:listVehiclesInFleet(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVehiclesInFleet",
-        input_schema = schemas.ListVehiclesInFleetInput,
-        output_schema = schemas.ListVehiclesInFleetOutput,
-        http_method = "GET",
-        http_path = "/fleets/{fleetId}/vehicles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVehiclesInFleet, input, options)
 end
 
 function Client:putEncryptionConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutEncryptionConfiguration",
-        input_schema = schemas.PutEncryptionConfigurationInput,
-        output_schema = schemas.PutEncryptionConfigurationOutput,
-        http_method = "POST",
-        http_path = "/encryptionConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutEncryptionConfiguration, input, options)
 end
 
 function Client:putLoggingOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "PutLoggingOptions",
-        input_schema = schemas.PutLoggingOptionsInput,
-        output_schema = schemas.PutLoggingOptionsOutput,
-        http_method = "PUT",
-        http_path = "/loggingOptions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutLoggingOptions, input, options)
 end
 
 function Client:registerAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterAccount",
-        input_schema = schemas.RegisterAccountInput,
-        output_schema = schemas.RegisterAccountOutput,
-        http_method = "POST",
-        http_path = "/account/registration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterAccount, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateCampaign(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCampaign",
-        input_schema = schemas.UpdateCampaignInput,
-        output_schema = schemas.UpdateCampaignOutput,
-        http_method = "PUT",
-        http_path = "/campaigns/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCampaign, input, options)
 end
 
 function Client:updateDecoderManifest(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDecoderManifest",
-        input_schema = schemas.UpdateDecoderManifestInput,
-        output_schema = schemas.UpdateDecoderManifestOutput,
-        http_method = "PATCH",
-        http_path = "/decoder-manifests/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDecoderManifest, input, options)
 end
 
 function Client:updateFleet(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateFleet",
-        input_schema = schemas.UpdateFleetInput,
-        output_schema = schemas.UpdateFleetOutput,
-        http_method = "PATCH",
-        http_path = "/fleets/{fleetId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateFleet, input, options)
 end
 
 function Client:updateModelManifest(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateModelManifest",
-        input_schema = schemas.UpdateModelManifestInput,
-        output_schema = schemas.UpdateModelManifestOutput,
-        http_method = "PATCH",
-        http_path = "/model-manifests/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateModelManifest, input, options)
 end
 
 function Client:updateSignalCatalog(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSignalCatalog",
-        input_schema = schemas.UpdateSignalCatalogInput,
-        output_schema = schemas.UpdateSignalCatalogOutput,
-        http_method = "PATCH",
-        http_path = "/signal-catalogs/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSignalCatalog, input, options)
 end
 
 function Client:updateStateTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateStateTemplate",
-        input_schema = schemas.UpdateStateTemplateInput,
-        output_schema = schemas.UpdateStateTemplateOutput,
-        http_method = "PATCH",
-        http_path = "/state-templates/{identifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateStateTemplate, input, options)
 end
 
 function Client:updateVehicle(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateVehicle",
-        input_schema = schemas.UpdateVehicleInput,
-        output_schema = schemas.UpdateVehicleOutput,
-        http_method = "PATCH",
-        http_path = "/vehicles/{vehicleName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateVehicle, input, options)
 end
 
 return M

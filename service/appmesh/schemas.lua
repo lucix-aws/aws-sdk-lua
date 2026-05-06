@@ -6789,4 +6789,470 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.appmesh", "AppMesh"),
+    version = "2019-01-25",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGatewayRoute = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "CreateGatewayRoute"),
+    input = M.CreateGatewayRouteInput,
+    output = M.CreateGatewayRouteOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMesh = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "CreateMesh"),
+    input = M.CreateMeshInput,
+    output = M.CreateMeshOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/meshes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRoute = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "CreateRoute"),
+    input = M.CreateRouteInput,
+    output = M.CreateRouteOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVirtualGateway = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "CreateVirtualGateway"),
+    input = M.CreateVirtualGatewayInput,
+    output = M.CreateVirtualGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/meshes/{meshName}/virtualGateways" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVirtualNode = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "CreateVirtualNode"),
+    input = M.CreateVirtualNodeInput,
+    output = M.CreateVirtualNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/meshes/{meshName}/virtualNodes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVirtualRouter = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "CreateVirtualRouter"),
+    input = M.CreateVirtualRouterInput,
+    output = M.CreateVirtualRouterOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/meshes/{meshName}/virtualRouters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVirtualService = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "CreateVirtualService"),
+    input = M.CreateVirtualServiceInput,
+    output = M.CreateVirtualServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/meshes/{meshName}/virtualServices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGatewayRoute = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "DeleteGatewayRoute"),
+    input = M.DeleteGatewayRouteInput,
+    output = M.DeleteGatewayRouteOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMesh = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "DeleteMesh"),
+    input = M.DeleteMeshInput,
+    output = M.DeleteMeshOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20190125/meshes/{meshName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRoute = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "DeleteRoute"),
+    input = M.DeleteRouteInput,
+    output = M.DeleteRouteOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes/{routeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVirtualGateway = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "DeleteVirtualGateway"),
+    input = M.DeleteVirtualGatewayInput,
+    output = M.DeleteVirtualGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVirtualNode = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "DeleteVirtualNode"),
+    input = M.DeleteVirtualNodeInput,
+    output = M.DeleteVirtualNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20190125/meshes/{meshName}/virtualNodes/{virtualNodeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVirtualRouter = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "DeleteVirtualRouter"),
+    input = M.DeleteVirtualRouterInput,
+    output = M.DeleteVirtualRouterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20190125/meshes/{meshName}/virtualRouters/{virtualRouterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVirtualService = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "DeleteVirtualService"),
+    input = M.DeleteVirtualServiceInput,
+    output = M.DeleteVirtualServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20190125/meshes/{meshName}/virtualServices/{virtualServiceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGatewayRoute = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "DescribeGatewayRoute"),
+    input = M.DescribeGatewayRouteInput,
+    output = M.DescribeGatewayRouteOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMesh = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "DescribeMesh"),
+    input = M.DescribeMeshInput,
+    output = M.DescribeMeshOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/meshes/{meshName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRoute = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "DescribeRoute"),
+    input = M.DescribeRouteInput,
+    output = M.DescribeRouteOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes/{routeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVirtualGateway = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "DescribeVirtualGateway"),
+    input = M.DescribeVirtualGatewayInput,
+    output = M.DescribeVirtualGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVirtualNode = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "DescribeVirtualNode"),
+    input = M.DescribeVirtualNodeInput,
+    output = M.DescribeVirtualNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/meshes/{meshName}/virtualNodes/{virtualNodeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVirtualRouter = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "DescribeVirtualRouter"),
+    input = M.DescribeVirtualRouterInput,
+    output = M.DescribeVirtualRouterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/meshes/{meshName}/virtualRouters/{virtualRouterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVirtualService = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "DescribeVirtualService"),
+    input = M.DescribeVirtualServiceInput,
+    output = M.DescribeVirtualServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/meshes/{meshName}/virtualServices/{virtualServiceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGatewayRoutes = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "ListGatewayRoutes"),
+    input = M.ListGatewayRoutesInput,
+    output = M.ListGatewayRoutesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMeshes = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "ListMeshes"),
+    input = M.ListMeshesInput,
+    output = M.ListMeshesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/meshes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRoutes = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "ListRoutes"),
+    input = M.ListRoutesInput,
+    output = M.ListRoutesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVirtualGateways = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "ListVirtualGateways"),
+    input = M.ListVirtualGatewaysInput,
+    output = M.ListVirtualGatewaysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/meshes/{meshName}/virtualGateways" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVirtualNodes = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "ListVirtualNodes"),
+    input = M.ListVirtualNodesInput,
+    output = M.ListVirtualNodesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/meshes/{meshName}/virtualNodes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVirtualRouters = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "ListVirtualRouters"),
+    input = M.ListVirtualRoutersInput,
+    output = M.ListVirtualRoutersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/meshes/{meshName}/virtualRouters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVirtualServices = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "ListVirtualServices"),
+    input = M.ListVirtualServicesInput,
+    output = M.ListVirtualServicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20190125/meshes/{meshName}/virtualServices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/tag" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/untag" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGatewayRoute = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "UpdateGatewayRoute"),
+    input = M.UpdateGatewayRouteInput,
+    output = M.UpdateGatewayRouteOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMesh = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "UpdateMesh"),
+    input = M.UpdateMeshInput,
+    output = M.UpdateMeshOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/meshes/{meshName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoute = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "UpdateRoute"),
+    input = M.UpdateRouteInput,
+    output = M.UpdateRouteOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes/{routeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVirtualGateway = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "UpdateVirtualGateway"),
+    input = M.UpdateVirtualGatewayInput,
+    output = M.UpdateVirtualGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVirtualNode = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "UpdateVirtualNode"),
+    input = M.UpdateVirtualNodeInput,
+    output = M.UpdateVirtualNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/meshes/{meshName}/virtualNodes/{virtualNodeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVirtualRouter = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "UpdateVirtualRouter"),
+    input = M.UpdateVirtualRouterInput,
+    output = M.UpdateVirtualRouterOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/meshes/{meshName}/virtualRouters/{virtualRouterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVirtualService = schema.operation({
+    id = id.from("com.amazonaws.appmesh", "UpdateVirtualService"),
+    input = M.UpdateVirtualServiceInput,
+    output = M.UpdateVirtualServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20190125/meshes/{meshName}/virtualServices/{virtualServiceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

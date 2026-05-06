@@ -1153,4 +1153,86 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.rdsdata", "RdsDataService"),
+    version = "2018-08-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchExecuteStatement = schema.operation({
+    id = id.from("com.amazonaws.rdsdata", "BatchExecuteStatement"),
+    input = M.BatchExecuteStatementInput,
+    output = M.BatchExecuteStatementOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchExecute" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BeginTransaction = schema.operation({
+    id = id.from("com.amazonaws.rdsdata", "BeginTransaction"),
+    input = M.BeginTransactionInput,
+    output = M.BeginTransactionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BeginTransaction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CommitTransaction = schema.operation({
+    id = id.from("com.amazonaws.rdsdata", "CommitTransaction"),
+    input = M.CommitTransactionInput,
+    output = M.CommitTransactionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CommitTransaction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteSql = schema.operation({
+    id = id.from("com.amazonaws.rdsdata", "ExecuteSql"),
+    input = M.ExecuteSqlInput,
+    output = M.ExecuteSqlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ExecuteSql" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteStatement = schema.operation({
+    id = id.from("com.amazonaws.rdsdata", "ExecuteStatement"),
+    input = M.ExecuteStatementInput,
+    output = M.ExecuteStatementOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Execute" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RollbackTransaction = schema.operation({
+    id = id.from("com.amazonaws.rdsdata", "RollbackTransaction"),
+    input = M.RollbackTransactionInput,
+    output = M.RollbackTransactionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/RollbackTransaction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

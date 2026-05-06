@@ -7,6 +7,7 @@ local endpoint_rules = require("internetmonitor.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("internetmonitor.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "internetmonitor", signing_region = cfg.region } }
                 else
@@ -49,211 +52,67 @@ function M.new(cfg)
 end
 
 function Client:createMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateMonitor",
-        input_schema = schemas.CreateMonitorInput,
-        output_schema = schemas.CreateMonitorOutput,
-        http_method = "POST",
-        http_path = "/v20210603/Monitors",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateMonitor, input, options)
 end
 
 function Client:deleteMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMonitor",
-        input_schema = schemas.DeleteMonitorInput,
-        output_schema = schemas.DeleteMonitorOutput,
-        http_method = "DELETE",
-        http_path = "/v20210603/Monitors/{MonitorName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMonitor, input, options)
 end
 
 function Client:getHealthEvent(input, options)
-    return self:invokeOperation(input, {
-        name = "GetHealthEvent",
-        input_schema = schemas.GetHealthEventInput,
-        output_schema = schemas.GetHealthEventOutput,
-        http_method = "GET",
-        http_path = "/v20210603/Monitors/{MonitorName}/HealthEvents/{EventId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetHealthEvent, input, options)
 end
 
 function Client:getInternetEvent(input, options)
-    return self:invokeOperation(input, {
-        name = "GetInternetEvent",
-        input_schema = schemas.GetInternetEventInput,
-        output_schema = schemas.GetInternetEventOutput,
-        http_method = "GET",
-        http_path = "/v20210603/InternetEvents/{EventId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetInternetEvent, input, options)
 end
 
 function Client:getMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMonitor",
-        input_schema = schemas.GetMonitorInput,
-        output_schema = schemas.GetMonitorOutput,
-        http_method = "GET",
-        http_path = "/v20210603/Monitors/{MonitorName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMonitor, input, options)
 end
 
 function Client:getQueryResults(input, options)
-    return self:invokeOperation(input, {
-        name = "GetQueryResults",
-        input_schema = schemas.GetQueryResultsInput,
-        output_schema = schemas.GetQueryResultsOutput,
-        http_method = "GET",
-        http_path = "/v20210603/Monitors/{MonitorName}/Queries/{QueryId}/Results",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetQueryResults, input, options)
 end
 
 function Client:getQueryStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetQueryStatus",
-        input_schema = schemas.GetQueryStatusInput,
-        output_schema = schemas.GetQueryStatusOutput,
-        http_method = "GET",
-        http_path = "/v20210603/Monitors/{MonitorName}/Queries/{QueryId}/Status",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetQueryStatus, input, options)
 end
 
 function Client:listHealthEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "ListHealthEvents",
-        input_schema = schemas.ListHealthEventsInput,
-        output_schema = schemas.ListHealthEventsOutput,
-        http_method = "GET",
-        http_path = "/v20210603/Monitors/{MonitorName}/HealthEvents",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListHealthEvents, input, options)
 end
 
 function Client:listInternetEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "ListInternetEvents",
-        input_schema = schemas.ListInternetEventsInput,
-        output_schema = schemas.ListInternetEventsOutput,
-        http_method = "GET",
-        http_path = "/v20210603/InternetEvents",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListInternetEvents, input, options)
 end
 
 function Client:listMonitors(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMonitors",
-        input_schema = schemas.ListMonitorsInput,
-        output_schema = schemas.ListMonitorsOutput,
-        http_method = "GET",
-        http_path = "/v20210603/Monitors",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMonitors, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:startQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "StartQuery",
-        input_schema = schemas.StartQueryInput,
-        output_schema = schemas.StartQueryOutput,
-        http_method = "POST",
-        http_path = "/v20210603/Monitors/{MonitorName}/Queries",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartQuery, input, options)
 end
 
 function Client:stopQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "StopQuery",
-        input_schema = schemas.StopQueryInput,
-        output_schema = schemas.StopQueryOutput,
-        http_method = "DELETE",
-        http_path = "/v20210603/Monitors/{MonitorName}/Queries/{QueryId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopQuery, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateMonitor",
-        input_schema = schemas.UpdateMonitorInput,
-        output_schema = schemas.UpdateMonitorOutput,
-        http_method = "PATCH",
-        http_path = "/v20210603/Monitors/{MonitorName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateMonitor, input, options)
 end
 
 return M

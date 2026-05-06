@@ -7832,4 +7832,74 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.georoutes", "RoutesService"),
+    version = "2020-11-19",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CalculateIsolines = schema.operation({
+    id = id.from("com.amazonaws.georoutes", "CalculateIsolines"),
+    input = M.CalculateIsolinesInput,
+    output = M.CalculateIsolinesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/isolines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CalculateRouteMatrix = schema.operation({
+    id = id.from("com.amazonaws.georoutes", "CalculateRouteMatrix"),
+    input = M.CalculateRouteMatrixInput,
+    output = M.CalculateRouteMatrixOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/route-matrix" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CalculateRoutes = schema.operation({
+    id = id.from("com.amazonaws.georoutes", "CalculateRoutes"),
+    input = M.CalculateRoutesInput,
+    output = M.CalculateRoutesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/routes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.OptimizeWaypoints = schema.operation({
+    id = id.from("com.amazonaws.georoutes", "OptimizeWaypoints"),
+    input = M.OptimizeWaypointsInput,
+    output = M.OptimizeWaypointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/optimize-waypoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SnapToRoads = schema.operation({
+    id = id.from("com.amazonaws.georoutes", "SnapToRoads"),
+    input = M.SnapToRoadsInput,
+    output = M.SnapToRoadsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/snap-to-roads" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

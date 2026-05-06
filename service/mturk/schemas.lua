@@ -2748,4 +2748,443 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.mturk", "MTurkRequesterServiceV20170117"),
+    version = "2017-01-17",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptQualificationRequest = schema.operation({
+    id = id.from("com.amazonaws.mturk", "AcceptQualificationRequest"),
+    input = M.AcceptQualificationRequestInput,
+    output = M.AcceptQualificationRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ApproveAssignment = schema.operation({
+    id = id.from("com.amazonaws.mturk", "ApproveAssignment"),
+    input = M.ApproveAssignmentInput,
+    output = M.ApproveAssignmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateQualificationWithWorker = schema.operation({
+    id = id.from("com.amazonaws.mturk", "AssociateQualificationWithWorker"),
+    input = M.AssociateQualificationWithWorkerInput,
+    output = M.AssociateQualificationWithWorkerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAdditionalAssignmentsForHIT = schema.operation({
+    id = id.from("com.amazonaws.mturk", "CreateAdditionalAssignmentsForHIT"),
+    input = M.CreateAdditionalAssignmentsForHITInput,
+    output = M.CreateAdditionalAssignmentsForHITOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHIT = schema.operation({
+    id = id.from("com.amazonaws.mturk", "CreateHIT"),
+    input = M.CreateHITInput,
+    output = M.CreateHITOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHITType = schema.operation({
+    id = id.from("com.amazonaws.mturk", "CreateHITType"),
+    input = M.CreateHITTypeInput,
+    output = M.CreateHITTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHITWithHITType = schema.operation({
+    id = id.from("com.amazonaws.mturk", "CreateHITWithHITType"),
+    input = M.CreateHITWithHITTypeInput,
+    output = M.CreateHITWithHITTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQualificationType = schema.operation({
+    id = id.from("com.amazonaws.mturk", "CreateQualificationType"),
+    input = M.CreateQualificationTypeInput,
+    output = M.CreateQualificationTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkerBlock = schema.operation({
+    id = id.from("com.amazonaws.mturk", "CreateWorkerBlock"),
+    input = M.CreateWorkerBlockInput,
+    output = M.CreateWorkerBlockOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHIT = schema.operation({
+    id = id.from("com.amazonaws.mturk", "DeleteHIT"),
+    input = M.DeleteHITInput,
+    output = M.DeleteHITOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQualificationType = schema.operation({
+    id = id.from("com.amazonaws.mturk", "DeleteQualificationType"),
+    input = M.DeleteQualificationTypeInput,
+    output = M.DeleteQualificationTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkerBlock = schema.operation({
+    id = id.from("com.amazonaws.mturk", "DeleteWorkerBlock"),
+    input = M.DeleteWorkerBlockInput,
+    output = M.DeleteWorkerBlockOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateQualificationFromWorker = schema.operation({
+    id = id.from("com.amazonaws.mturk", "DisassociateQualificationFromWorker"),
+    input = M.DisassociateQualificationFromWorkerInput,
+    output = M.DisassociateQualificationFromWorkerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountBalance = schema.operation({
+    id = id.from("com.amazonaws.mturk", "GetAccountBalance"),
+    input = M.GetAccountBalanceInput,
+    output = M.GetAccountBalanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssignment = schema.operation({
+    id = id.from("com.amazonaws.mturk", "GetAssignment"),
+    input = M.GetAssignmentInput,
+    output = M.GetAssignmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFileUploadURL = schema.operation({
+    id = id.from("com.amazonaws.mturk", "GetFileUploadURL"),
+    input = M.GetFileUploadURLInput,
+    output = M.GetFileUploadURLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHIT = schema.operation({
+    id = id.from("com.amazonaws.mturk", "GetHIT"),
+    input = M.GetHITInput,
+    output = M.GetHITOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQualificationScore = schema.operation({
+    id = id.from("com.amazonaws.mturk", "GetQualificationScore"),
+    input = M.GetQualificationScoreInput,
+    output = M.GetQualificationScoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQualificationType = schema.operation({
+    id = id.from("com.amazonaws.mturk", "GetQualificationType"),
+    input = M.GetQualificationTypeInput,
+    output = M.GetQualificationTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssignmentsForHIT = schema.operation({
+    id = id.from("com.amazonaws.mturk", "ListAssignmentsForHIT"),
+    input = M.ListAssignmentsForHITInput,
+    output = M.ListAssignmentsForHITOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBonusPayments = schema.operation({
+    id = id.from("com.amazonaws.mturk", "ListBonusPayments"),
+    input = M.ListBonusPaymentsInput,
+    output = M.ListBonusPaymentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHITs = schema.operation({
+    id = id.from("com.amazonaws.mturk", "ListHITs"),
+    input = M.ListHITsInput,
+    output = M.ListHITsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHITsForQualificationType = schema.operation({
+    id = id.from("com.amazonaws.mturk", "ListHITsForQualificationType"),
+    input = M.ListHITsForQualificationTypeInput,
+    output = M.ListHITsForQualificationTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQualificationRequests = schema.operation({
+    id = id.from("com.amazonaws.mturk", "ListQualificationRequests"),
+    input = M.ListQualificationRequestsInput,
+    output = M.ListQualificationRequestsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQualificationTypes = schema.operation({
+    id = id.from("com.amazonaws.mturk", "ListQualificationTypes"),
+    input = M.ListQualificationTypesInput,
+    output = M.ListQualificationTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReviewableHITs = schema.operation({
+    id = id.from("com.amazonaws.mturk", "ListReviewableHITs"),
+    input = M.ListReviewableHITsInput,
+    output = M.ListReviewableHITsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReviewPolicyResultsForHIT = schema.operation({
+    id = id.from("com.amazonaws.mturk", "ListReviewPolicyResultsForHIT"),
+    input = M.ListReviewPolicyResultsForHITInput,
+    output = M.ListReviewPolicyResultsForHITOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkerBlocks = schema.operation({
+    id = id.from("com.amazonaws.mturk", "ListWorkerBlocks"),
+    input = M.ListWorkerBlocksInput,
+    output = M.ListWorkerBlocksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkersWithQualificationType = schema.operation({
+    id = id.from("com.amazonaws.mturk", "ListWorkersWithQualificationType"),
+    input = M.ListWorkersWithQualificationTypeInput,
+    output = M.ListWorkersWithQualificationTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.NotifyWorkers = schema.operation({
+    id = id.from("com.amazonaws.mturk", "NotifyWorkers"),
+    input = M.NotifyWorkersInput,
+    output = M.NotifyWorkersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectAssignment = schema.operation({
+    id = id.from("com.amazonaws.mturk", "RejectAssignment"),
+    input = M.RejectAssignmentInput,
+    output = M.RejectAssignmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectQualificationRequest = schema.operation({
+    id = id.from("com.amazonaws.mturk", "RejectQualificationRequest"),
+    input = M.RejectQualificationRequestInput,
+    output = M.RejectQualificationRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendBonus = schema.operation({
+    id = id.from("com.amazonaws.mturk", "SendBonus"),
+    input = M.SendBonusInput,
+    output = M.SendBonusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendTestEventNotification = schema.operation({
+    id = id.from("com.amazonaws.mturk", "SendTestEventNotification"),
+    input = M.SendTestEventNotificationInput,
+    output = M.SendTestEventNotificationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateExpirationForHIT = schema.operation({
+    id = id.from("com.amazonaws.mturk", "UpdateExpirationForHIT"),
+    input = M.UpdateExpirationForHITInput,
+    output = M.UpdateExpirationForHITOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHITReviewStatus = schema.operation({
+    id = id.from("com.amazonaws.mturk", "UpdateHITReviewStatus"),
+    input = M.UpdateHITReviewStatusInput,
+    output = M.UpdateHITReviewStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHITTypeOfHIT = schema.operation({
+    id = id.from("com.amazonaws.mturk", "UpdateHITTypeOfHIT"),
+    input = M.UpdateHITTypeOfHITInput,
+    output = M.UpdateHITTypeOfHITOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNotificationSettings = schema.operation({
+    id = id.from("com.amazonaws.mturk", "UpdateNotificationSettings"),
+    input = M.UpdateNotificationSettingsInput,
+    output = M.UpdateNotificationSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQualificationType = schema.operation({
+    id = id.from("com.amazonaws.mturk", "UpdateQualificationType"),
+    input = M.UpdateQualificationTypeInput,
+    output = M.UpdateQualificationTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

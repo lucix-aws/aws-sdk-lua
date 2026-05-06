@@ -3717,4 +3717,338 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.bedrockdataautomation", "AmazonBedrockKeystoneBuildTimeService"),
+    version = "2023-07-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyBlueprintStage = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "CopyBlueprintStage"),
+    input = M.CopyBlueprintStageInput,
+    output = M.CopyBlueprintStageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/blueprints/{blueprintArn}/copy-stage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBlueprint = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "CreateBlueprint"),
+    input = M.CreateBlueprintInput,
+    output = M.CreateBlueprintOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/blueprints/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBlueprintVersion = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "CreateBlueprintVersion"),
+    input = M.CreateBlueprintVersionInput,
+    output = M.CreateBlueprintVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/blueprints/{blueprintArn}/versions/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataAutomationLibrary = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "CreateDataAutomationLibrary"),
+    input = M.CreateDataAutomationLibraryInput,
+    output = M.CreateDataAutomationLibraryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/data-automation-libraries/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataAutomationProject = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "CreateDataAutomationProject"),
+    input = M.CreateDataAutomationProjectInput,
+    output = M.CreateDataAutomationProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/data-automation-projects/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBlueprint = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "DeleteBlueprint"),
+    input = M.DeleteBlueprintInput,
+    output = M.DeleteBlueprintOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/blueprints/{blueprintArn}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataAutomationLibrary = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "DeleteDataAutomationLibrary"),
+    input = M.DeleteDataAutomationLibraryInput,
+    output = M.DeleteDataAutomationLibraryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/data-automation-libraries/{libraryArn}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataAutomationProject = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "DeleteDataAutomationProject"),
+    input = M.DeleteDataAutomationProjectInput,
+    output = M.DeleteDataAutomationProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/data-automation-projects/{projectArn}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBlueprint = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "GetBlueprint"),
+    input = M.GetBlueprintInput,
+    output = M.GetBlueprintOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/blueprints/{blueprintArn}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBlueprintOptimizationStatus = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "GetBlueprintOptimizationStatus"),
+    input = M.GetBlueprintOptimizationStatusInput,
+    output = M.GetBlueprintOptimizationStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getBlueprintOptimizationStatus/{invocationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataAutomationLibrary = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "GetDataAutomationLibrary"),
+    input = M.GetDataAutomationLibraryInput,
+    output = M.GetDataAutomationLibraryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-automation-libraries/{libraryArn}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataAutomationLibraryEntity = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "GetDataAutomationLibraryEntity"),
+    input = M.GetDataAutomationLibraryEntityInput,
+    output = M.GetDataAutomationLibraryEntityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-automation-libraries/{libraryArn}/entityType/{entityType}/entities/{entityId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataAutomationLibraryIngestionJob = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "GetDataAutomationLibraryIngestionJob"),
+    input = M.GetDataAutomationLibraryIngestionJobInput,
+    output = M.GetDataAutomationLibraryIngestionJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-automation-libraries/{libraryArn}/library-ingestion-jobs/{jobArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataAutomationProject = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "GetDataAutomationProject"),
+    input = M.GetDataAutomationProjectInput,
+    output = M.GetDataAutomationProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-automation-projects/{projectArn}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InvokeBlueprintOptimizationAsync = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "InvokeBlueprintOptimizationAsync"),
+    input = M.InvokeBlueprintOptimizationAsyncInput,
+    output = M.InvokeBlueprintOptimizationAsyncOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/invokeBlueprintOptimizationAsync" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InvokeDataAutomationLibraryIngestionJob = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "InvokeDataAutomationLibraryIngestionJob"),
+    input = M.InvokeDataAutomationLibraryIngestionJobInput,
+    output = M.InvokeDataAutomationLibraryIngestionJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/data-automation-libraries/{libraryArn}/library-ingestion-jobs/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBlueprints = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "ListBlueprints"),
+    input = M.ListBlueprintsInput,
+    output = M.ListBlueprintsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/blueprints/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataAutomationLibraries = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "ListDataAutomationLibraries"),
+    input = M.ListDataAutomationLibrariesInput,
+    output = M.ListDataAutomationLibrariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-automation-libraries/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataAutomationLibraryEntities = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "ListDataAutomationLibraryEntities"),
+    input = M.ListDataAutomationLibraryEntitiesInput,
+    output = M.ListDataAutomationLibraryEntitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-automation-libraries/{libraryArn}/entityType/{entityType}/entities/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataAutomationLibraryIngestionJobs = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "ListDataAutomationLibraryIngestionJobs"),
+    input = M.ListDataAutomationLibraryIngestionJobsInput,
+    output = M.ListDataAutomationLibraryIngestionJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-automation-libraries/{libraryArn}/library-ingestion-jobs/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataAutomationProjects = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "ListDataAutomationProjects"),
+    input = M.ListDataAutomationProjectsInput,
+    output = M.ListDataAutomationProjectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-automation-projects/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/untagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBlueprint = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "UpdateBlueprint"),
+    input = M.UpdateBlueprintInput,
+    output = M.UpdateBlueprintOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/blueprints/{blueprintArn}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataAutomationLibrary = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "UpdateDataAutomationLibrary"),
+    input = M.UpdateDataAutomationLibraryInput,
+    output = M.UpdateDataAutomationLibraryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/data-automation-libraries/{libraryArn}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataAutomationProject = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomation", "UpdateDataAutomationProject"),
+    input = M.UpdateDataAutomationProjectInput,
+    output = M.UpdateDataAutomationProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/data-automation-projects/{projectArn}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

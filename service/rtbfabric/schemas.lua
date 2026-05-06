@@ -3242,4 +3242,338 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.rtbfabric", "RTBFabric"),
+    version = "2023-05-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptLink = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "AcceptLink"),
+    input = M.AcceptLinkInput,
+    output = M.AcceptLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/gateway/{gatewayId}/link/{linkId}/accept" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInboundExternalLink = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "CreateInboundExternalLink"),
+    input = M.CreateInboundExternalLinkInput,
+    output = M.CreateInboundExternalLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/responder-gateway/{gatewayId}/inbound-external-link" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLink = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "CreateLink"),
+    input = M.CreateLinkInput,
+    output = M.CreateLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/gateway/{gatewayId}/create-link" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOutboundExternalLink = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "CreateOutboundExternalLink"),
+    input = M.CreateOutboundExternalLinkInput,
+    output = M.CreateOutboundExternalLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/requester-gateway/{gatewayId}/outbound-external-link" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRequesterGateway = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "CreateRequesterGateway"),
+    input = M.CreateRequesterGatewayInput,
+    output = M.CreateRequesterGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/requester-gateway" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResponderGateway = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "CreateResponderGateway"),
+    input = M.CreateResponderGatewayInput,
+    output = M.CreateResponderGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/responder-gateway" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInboundExternalLink = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "DeleteInboundExternalLink"),
+    input = M.DeleteInboundExternalLinkInput,
+    output = M.DeleteInboundExternalLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/responder-gateway/{gatewayId}/inbound-external-link/{linkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLink = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "DeleteLink"),
+    input = M.DeleteLinkInput,
+    output = M.DeleteLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/gateway/{gatewayId}/link/{linkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOutboundExternalLink = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "DeleteOutboundExternalLink"),
+    input = M.DeleteOutboundExternalLinkInput,
+    output = M.DeleteOutboundExternalLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/requester-gateway/{gatewayId}/outbound-external-link/{linkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRequesterGateway = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "DeleteRequesterGateway"),
+    input = M.DeleteRequesterGatewayInput,
+    output = M.DeleteRequesterGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/requester-gateway/{gatewayId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResponderGateway = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "DeleteResponderGateway"),
+    input = M.DeleteResponderGatewayInput,
+    output = M.DeleteResponderGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/responder-gateway/{gatewayId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInboundExternalLink = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "GetInboundExternalLink"),
+    input = M.GetInboundExternalLinkInput,
+    output = M.GetInboundExternalLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/responder-gateway/{gatewayId}/inbound-external-link/{linkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLink = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "GetLink"),
+    input = M.GetLinkInput,
+    output = M.GetLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/gateway/{gatewayId}/link/{linkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOutboundExternalLink = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "GetOutboundExternalLink"),
+    input = M.GetOutboundExternalLinkInput,
+    output = M.GetOutboundExternalLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/requester-gateway/{gatewayId}/outbound-external-link/{linkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRequesterGateway = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "GetRequesterGateway"),
+    input = M.GetRequesterGatewayInput,
+    output = M.GetRequesterGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/requester-gateway/{gatewayId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResponderGateway = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "GetResponderGateway"),
+    input = M.GetResponderGatewayInput,
+    output = M.GetResponderGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/responder-gateway/{gatewayId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLinks = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "ListLinks"),
+    input = M.ListLinksInput,
+    output = M.ListLinksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/gateway/{gatewayId}/links/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRequesterGateways = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "ListRequesterGateways"),
+    input = M.ListRequesterGatewaysInput,
+    output = M.ListRequesterGatewaysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/requester-gateways" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResponderGateways = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "ListResponderGateways"),
+    input = M.ListResponderGatewaysInput,
+    output = M.ListResponderGatewaysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/responder-gateways" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectLink = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "RejectLink"),
+    input = M.RejectLinkInput,
+    output = M.RejectLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/gateway/{gatewayId}/link/{linkId}/reject" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLink = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "UpdateLink"),
+    input = M.UpdateLinkInput,
+    output = M.UpdateLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/gateway/{gatewayId}/link/{linkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLinkModuleFlow = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "UpdateLinkModuleFlow"),
+    input = M.UpdateLinkModuleFlowInput,
+    output = M.UpdateLinkModuleFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/gateway/{gatewayId}/link/{linkId}/module-flow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRequesterGateway = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "UpdateRequesterGateway"),
+    input = M.UpdateRequesterGatewayInput,
+    output = M.UpdateRequesterGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/requester-gateway/{gatewayId}/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResponderGateway = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "UpdateResponderGateway"),
+    input = M.UpdateResponderGatewayInput,
+    output = M.UpdateResponderGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/responder-gateway/{gatewayId}/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

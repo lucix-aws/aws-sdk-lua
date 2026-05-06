@@ -7,6 +7,7 @@ local endpoint_rules = require("codegurusecurity.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("codegurusecurity.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codeguru-security", signing_region = cfg.region } }
                 else
@@ -49,172 +52,55 @@ function M.new(cfg)
 end
 
 function Client:batchGetFindings(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetFindings",
-        input_schema = schemas.BatchGetFindingsInput,
-        output_schema = schemas.BatchGetFindingsOutput,
-        http_method = "POST",
-        http_path = "/batchGetFindings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetFindings, input, options)
 end
 
 function Client:createScan(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateScan",
-        input_schema = schemas.CreateScanInput,
-        output_schema = schemas.CreateScanOutput,
-        http_method = "POST",
-        http_path = "/scans",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateScan, input, options)
 end
 
 function Client:createUploadUrl(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateUploadUrl",
-        input_schema = schemas.CreateUploadUrlInput,
-        output_schema = schemas.CreateUploadUrlOutput,
-        http_method = "POST",
-        http_path = "/uploadUrl",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateUploadUrl, input, options)
 end
 
 function Client:getAccountConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccountConfiguration",
-        input_schema = schemas.GetAccountConfigurationInput,
-        output_schema = schemas.GetAccountConfigurationOutput,
-        http_method = "GET",
-        http_path = "/accountConfiguration/get",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccountConfiguration, input, options)
 end
 
 function Client:getFindings(input, options)
-    return self:invokeOperation(input, {
-        name = "GetFindings",
-        input_schema = schemas.GetFindingsInput,
-        output_schema = schemas.GetFindingsOutput,
-        http_method = "GET",
-        http_path = "/findings/{scanName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetFindings, input, options)
 end
 
 function Client:getMetricsSummary(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMetricsSummary",
-        input_schema = schemas.GetMetricsSummaryInput,
-        output_schema = schemas.GetMetricsSummaryOutput,
-        http_method = "GET",
-        http_path = "/metrics/summary",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMetricsSummary, input, options)
 end
 
 function Client:getScan(input, options)
-    return self:invokeOperation(input, {
-        name = "GetScan",
-        input_schema = schemas.GetScanInput,
-        output_schema = schemas.GetScanOutput,
-        http_method = "GET",
-        http_path = "/scans/{scanName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetScan, input, options)
 end
 
 function Client:listFindingsMetrics(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFindingsMetrics",
-        input_schema = schemas.ListFindingsMetricsInput,
-        output_schema = schemas.ListFindingsMetricsOutput,
-        http_method = "GET",
-        http_path = "/metrics/findings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFindingsMetrics, input, options)
 end
 
 function Client:listScans(input, options)
-    return self:invokeOperation(input, {
-        name = "ListScans",
-        input_schema = schemas.ListScansInput,
-        output_schema = schemas.ListScansOutput,
-        http_method = "GET",
-        http_path = "/scans",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListScans, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAccountConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAccountConfiguration",
-        input_schema = schemas.UpdateAccountConfigurationInput,
-        output_schema = schemas.UpdateAccountConfigurationOutput,
-        http_method = "PUT",
-        http_path = "/updateAccountConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAccountConfiguration, input, options)
 end
 
 return M

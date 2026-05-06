@@ -269,4 +269,38 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.appconfigdata", "AppConfigData"),
+    version = "2021-11-11",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLatestConfiguration = schema.operation({
+    id = id.from("com.amazonaws.appconfigdata", "GetLatestConfiguration"),
+    input = M.GetLatestConfigurationInput,
+    output = M.GetLatestConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartConfigurationSession = schema.operation({
+    id = id.from("com.amazonaws.appconfigdata", "StartConfigurationSession"),
+    input = M.StartConfigurationSessionInput,
+    output = M.StartConfigurationSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configurationsessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

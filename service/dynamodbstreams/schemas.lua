@@ -687,4 +687,58 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.dynamodbstreams", "DynamoDBStreams_20120810"),
+    version = "2012-08-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStream = schema.operation({
+    id = id.from("com.amazonaws.dynamodbstreams", "DescribeStream"),
+    input = M.DescribeStreamInput,
+    output = M.DescribeStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecords = schema.operation({
+    id = id.from("com.amazonaws.dynamodbstreams", "GetRecords"),
+    input = M.GetRecordsInput,
+    output = M.GetRecordsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetShardIterator = schema.operation({
+    id = id.from("com.amazonaws.dynamodbstreams", "GetShardIterator"),
+    input = M.GetShardIteratorInput,
+    output = M.GetShardIteratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStreams = schema.operation({
+    id = id.from("com.amazonaws.dynamodbstreams", "ListStreams"),
+    input = M.ListStreamsInput,
+    output = M.ListStreamsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

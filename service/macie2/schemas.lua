@@ -10170,4 +10170,986 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.macie2", "Macie2"),
+    version = "2020-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptInvitation = schema.operation({
+    id = id.from("com.amazonaws.macie2", "AcceptInvitation"),
+    input = M.AcceptInvitationInput,
+    output = M.AcceptInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/invitations/accept" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetCustomDataIdentifiers = schema.operation({
+    id = id.from("com.amazonaws.macie2", "BatchGetCustomDataIdentifiers"),
+    input = M.BatchGetCustomDataIdentifiersInput,
+    output = M.BatchGetCustomDataIdentifiersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/custom-data-identifiers/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateAutomatedDiscoveryAccounts = schema.operation({
+    id = id.from("com.amazonaws.macie2", "BatchUpdateAutomatedDiscoveryAccounts"),
+    input = M.BatchUpdateAutomatedDiscoveryAccountsInput,
+    output = M.BatchUpdateAutomatedDiscoveryAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/automated-discovery/accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAllowList = schema.operation({
+    id = id.from("com.amazonaws.macie2", "CreateAllowList"),
+    input = M.CreateAllowListInput,
+    output = M.CreateAllowListOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/allow-lists" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateClassificationJob = schema.operation({
+    id = id.from("com.amazonaws.macie2", "CreateClassificationJob"),
+    input = M.CreateClassificationJobInput,
+    output = M.CreateClassificationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomDataIdentifier = schema.operation({
+    id = id.from("com.amazonaws.macie2", "CreateCustomDataIdentifier"),
+    input = M.CreateCustomDataIdentifierInput,
+    output = M.CreateCustomDataIdentifierOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/custom-data-identifiers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFindingsFilter = schema.operation({
+    id = id.from("com.amazonaws.macie2", "CreateFindingsFilter"),
+    input = M.CreateFindingsFilterInput,
+    output = M.CreateFindingsFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findingsfilters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInvitations = schema.operation({
+    id = id.from("com.amazonaws.macie2", "CreateInvitations"),
+    input = M.CreateInvitationsInput,
+    output = M.CreateInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/invitations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMember = schema.operation({
+    id = id.from("com.amazonaws.macie2", "CreateMember"),
+    input = M.CreateMemberInput,
+    output = M.CreateMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSampleFindings = schema.operation({
+    id = id.from("com.amazonaws.macie2", "CreateSampleFindings"),
+    input = M.CreateSampleFindingsInput,
+    output = M.CreateSampleFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findings/sample" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeclineInvitations = schema.operation({
+    id = id.from("com.amazonaws.macie2", "DeclineInvitations"),
+    input = M.DeclineInvitationsInput,
+    output = M.DeclineInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/invitations/decline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAllowList = schema.operation({
+    id = id.from("com.amazonaws.macie2", "DeleteAllowList"),
+    input = M.DeleteAllowListInput,
+    output = M.DeleteAllowListOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/allow-lists/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomDataIdentifier = schema.operation({
+    id = id.from("com.amazonaws.macie2", "DeleteCustomDataIdentifier"),
+    input = M.DeleteCustomDataIdentifierInput,
+    output = M.DeleteCustomDataIdentifierOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/custom-data-identifiers/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFindingsFilter = schema.operation({
+    id = id.from("com.amazonaws.macie2", "DeleteFindingsFilter"),
+    input = M.DeleteFindingsFilterInput,
+    output = M.DeleteFindingsFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/findingsfilters/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInvitations = schema.operation({
+    id = id.from("com.amazonaws.macie2", "DeleteInvitations"),
+    input = M.DeleteInvitationsInput,
+    output = M.DeleteInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/invitations/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMember = schema.operation({
+    id = id.from("com.amazonaws.macie2", "DeleteMember"),
+    input = M.DeleteMemberInput,
+    output = M.DeleteMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/members/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBuckets = schema.operation({
+    id = id.from("com.amazonaws.macie2", "DescribeBuckets"),
+    input = M.DescribeBucketsInput,
+    output = M.DescribeBucketsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datasources/s3" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClassificationJob = schema.operation({
+    id = id.from("com.amazonaws.macie2", "DescribeClassificationJob"),
+    input = M.DescribeClassificationJobInput,
+    output = M.DescribeClassificationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrganizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.macie2", "DescribeOrganizationConfiguration"),
+    input = M.DescribeOrganizationConfigurationInput,
+    output = M.DescribeOrganizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/admin/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableMacie = schema.operation({
+    id = id.from("com.amazonaws.macie2", "DisableMacie"),
+    input = M.DisableMacieInput,
+    output = M.DisableMacieOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/macie" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableOrganizationAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.macie2", "DisableOrganizationAdminAccount"),
+    input = M.DisableOrganizationAdminAccountInput,
+    output = M.DisableOrganizationAdminAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/admin" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFromAdministratorAccount = schema.operation({
+    id = id.from("com.amazonaws.macie2", "DisassociateFromAdministratorAccount"),
+    input = M.DisassociateFromAdministratorAccountInput,
+    output = M.DisassociateFromAdministratorAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/administrator/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFromMasterAccount = schema.operation({
+    id = id.from("com.amazonaws.macie2", "DisassociateFromMasterAccount"),
+    input = M.DisassociateFromMasterAccountInput,
+    output = M.DisassociateFromMasterAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/master/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateMember = schema.operation({
+    id = id.from("com.amazonaws.macie2", "DisassociateMember"),
+    input = M.DisassociateMemberInput,
+    output = M.DisassociateMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/members/disassociate/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableMacie = schema.operation({
+    id = id.from("com.amazonaws.macie2", "EnableMacie"),
+    input = M.EnableMacieInput,
+    output = M.EnableMacieOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/macie" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableOrganizationAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.macie2", "EnableOrganizationAdminAccount"),
+    input = M.EnableOrganizationAdminAccountInput,
+    output = M.EnableOrganizationAdminAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/admin" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAdministratorAccount = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetAdministratorAccount"),
+    input = M.GetAdministratorAccountInput,
+    output = M.GetAdministratorAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/administrator" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAllowList = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetAllowList"),
+    input = M.GetAllowListInput,
+    output = M.GetAllowListOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/allow-lists/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAutomatedDiscoveryConfiguration = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetAutomatedDiscoveryConfiguration"),
+    input = M.GetAutomatedDiscoveryConfigurationInput,
+    output = M.GetAutomatedDiscoveryConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automated-discovery/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBucketStatistics = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetBucketStatistics"),
+    input = M.GetBucketStatisticsInput,
+    output = M.GetBucketStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datasources/s3/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetClassificationExportConfiguration = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetClassificationExportConfiguration"),
+    input = M.GetClassificationExportConfigurationInput,
+    output = M.GetClassificationExportConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/classification-export-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetClassificationScope = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetClassificationScope"),
+    input = M.GetClassificationScopeInput,
+    output = M.GetClassificationScopeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/classification-scopes/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCustomDataIdentifier = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetCustomDataIdentifier"),
+    input = M.GetCustomDataIdentifierInput,
+    output = M.GetCustomDataIdentifierOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/custom-data-identifiers/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindings = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetFindings"),
+    input = M.GetFindingsInput,
+    output = M.GetFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findings/describe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingsFilter = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetFindingsFilter"),
+    input = M.GetFindingsFilterInput,
+    output = M.GetFindingsFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/findingsfilters/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingsPublicationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetFindingsPublicationConfiguration"),
+    input = M.GetFindingsPublicationConfigurationInput,
+    output = M.GetFindingsPublicationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/findings-publication-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingStatistics = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetFindingStatistics"),
+    input = M.GetFindingStatisticsInput,
+    output = M.GetFindingStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findings/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInvitationsCount = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetInvitationsCount"),
+    input = M.GetInvitationsCountInput,
+    output = M.GetInvitationsCountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/invitations/count" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMacieSession = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetMacieSession"),
+    input = M.GetMacieSessionInput,
+    output = M.GetMacieSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/macie" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMasterAccount = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetMasterAccount"),
+    input = M.GetMasterAccountInput,
+    output = M.GetMasterAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/master" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMember = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetMember"),
+    input = M.GetMemberInput,
+    output = M.GetMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/members/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceProfile = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetResourceProfile"),
+    input = M.GetResourceProfileInput,
+    output = M.GetResourceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resource-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRevealConfiguration = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetRevealConfiguration"),
+    input = M.GetRevealConfigurationInput,
+    output = M.GetRevealConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/reveal-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSensitiveDataOccurrences = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetSensitiveDataOccurrences"),
+    input = M.GetSensitiveDataOccurrencesInput,
+    output = M.GetSensitiveDataOccurrencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/findings/{findingId}/reveal" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSensitiveDataOccurrencesAvailability = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetSensitiveDataOccurrencesAvailability"),
+    input = M.GetSensitiveDataOccurrencesAvailabilityInput,
+    output = M.GetSensitiveDataOccurrencesAvailabilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/findings/{findingId}/reveal/availability" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSensitivityInspectionTemplate = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetSensitivityInspectionTemplate"),
+    input = M.GetSensitivityInspectionTemplateInput,
+    output = M.GetSensitivityInspectionTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/templates/sensitivity-inspections/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUsageStatistics = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetUsageStatistics"),
+    input = M.GetUsageStatisticsInput,
+    output = M.GetUsageStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/usage/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUsageTotals = schema.operation({
+    id = id.from("com.amazonaws.macie2", "GetUsageTotals"),
+    input = M.GetUsageTotalsInput,
+    output = M.GetUsageTotalsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/usage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAllowLists = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListAllowLists"),
+    input = M.ListAllowListsInput,
+    output = M.ListAllowListsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/allow-lists" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutomatedDiscoveryAccounts = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListAutomatedDiscoveryAccounts"),
+    input = M.ListAutomatedDiscoveryAccountsInput,
+    output = M.ListAutomatedDiscoveryAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automated-discovery/accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClassificationJobs = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListClassificationJobs"),
+    input = M.ListClassificationJobsInput,
+    output = M.ListClassificationJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/jobs/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClassificationScopes = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListClassificationScopes"),
+    input = M.ListClassificationScopesInput,
+    output = M.ListClassificationScopesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/classification-scopes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomDataIdentifiers = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListCustomDataIdentifiers"),
+    input = M.ListCustomDataIdentifiersInput,
+    output = M.ListCustomDataIdentifiersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/custom-data-identifiers/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFindings = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListFindings"),
+    input = M.ListFindingsInput,
+    output = M.ListFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFindingsFilters = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListFindingsFilters"),
+    input = M.ListFindingsFiltersInput,
+    output = M.ListFindingsFiltersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/findingsfilters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvitations = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListInvitations"),
+    input = M.ListInvitationsInput,
+    output = M.ListInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/invitations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedDataIdentifiers = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListManagedDataIdentifiers"),
+    input = M.ListManagedDataIdentifiersInput,
+    output = M.ListManagedDataIdentifiersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/managed-data-identifiers/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMembers = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListMembers"),
+    input = M.ListMembersInput,
+    output = M.ListMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOrganizationAdminAccounts = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListOrganizationAdminAccounts"),
+    input = M.ListOrganizationAdminAccountsInput,
+    output = M.ListOrganizationAdminAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/admin" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceProfileArtifacts = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListResourceProfileArtifacts"),
+    input = M.ListResourceProfileArtifactsInput,
+    output = M.ListResourceProfileArtifactsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resource-profiles/artifacts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceProfileDetections = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListResourceProfileDetections"),
+    input = M.ListResourceProfileDetectionsInput,
+    output = M.ListResourceProfileDetectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resource-profiles/detections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSensitivityInspectionTemplates = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListSensitivityInspectionTemplates"),
+    input = M.ListSensitivityInspectionTemplatesInput,
+    output = M.ListSensitivityInspectionTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/templates/sensitivity-inspections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.macie2", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutClassificationExportConfiguration = schema.operation({
+    id = id.from("com.amazonaws.macie2", "PutClassificationExportConfiguration"),
+    input = M.PutClassificationExportConfigurationInput,
+    output = M.PutClassificationExportConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/classification-export-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFindingsPublicationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.macie2", "PutFindingsPublicationConfiguration"),
+    input = M.PutFindingsPublicationConfigurationInput,
+    output = M.PutFindingsPublicationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/findings-publication-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchResources = schema.operation({
+    id = id.from("com.amazonaws.macie2", "SearchResources"),
+    input = M.SearchResourcesInput,
+    output = M.SearchResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datasources/search-resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.macie2", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestCustomDataIdentifier = schema.operation({
+    id = id.from("com.amazonaws.macie2", "TestCustomDataIdentifier"),
+    input = M.TestCustomDataIdentifierInput,
+    output = M.TestCustomDataIdentifierOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/custom-data-identifiers/test" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.macie2", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAllowList = schema.operation({
+    id = id.from("com.amazonaws.macie2", "UpdateAllowList"),
+    input = M.UpdateAllowListInput,
+    output = M.UpdateAllowListOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/allow-lists/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAutomatedDiscoveryConfiguration = schema.operation({
+    id = id.from("com.amazonaws.macie2", "UpdateAutomatedDiscoveryConfiguration"),
+    input = M.UpdateAutomatedDiscoveryConfigurationInput,
+    output = M.UpdateAutomatedDiscoveryConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/automated-discovery/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateClassificationJob = schema.operation({
+    id = id.from("com.amazonaws.macie2", "UpdateClassificationJob"),
+    input = M.UpdateClassificationJobInput,
+    output = M.UpdateClassificationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateClassificationScope = schema.operation({
+    id = id.from("com.amazonaws.macie2", "UpdateClassificationScope"),
+    input = M.UpdateClassificationScopeInput,
+    output = M.UpdateClassificationScopeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/classification-scopes/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFindingsFilter = schema.operation({
+    id = id.from("com.amazonaws.macie2", "UpdateFindingsFilter"),
+    input = M.UpdateFindingsFilterInput,
+    output = M.UpdateFindingsFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/findingsfilters/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMacieSession = schema.operation({
+    id = id.from("com.amazonaws.macie2", "UpdateMacieSession"),
+    input = M.UpdateMacieSessionInput,
+    output = M.UpdateMacieSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/macie" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMemberSession = schema.operation({
+    id = id.from("com.amazonaws.macie2", "UpdateMemberSession"),
+    input = M.UpdateMemberSessionInput,
+    output = M.UpdateMemberSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/macie/members/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOrganizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.macie2", "UpdateOrganizationConfiguration"),
+    input = M.UpdateOrganizationConfigurationInput,
+    output = M.UpdateOrganizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/admin/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResourceProfile = schema.operation({
+    id = id.from("com.amazonaws.macie2", "UpdateResourceProfile"),
+    input = M.UpdateResourceProfileInput,
+    output = M.UpdateResourceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/resource-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResourceProfileDetections = schema.operation({
+    id = id.from("com.amazonaws.macie2", "UpdateResourceProfileDetections"),
+    input = M.UpdateResourceProfileDetectionsInput,
+    output = M.UpdateResourceProfileDetectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/resource-profiles/detections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRevealConfiguration = schema.operation({
+    id = id.from("com.amazonaws.macie2", "UpdateRevealConfiguration"),
+    input = M.UpdateRevealConfigurationInput,
+    output = M.UpdateRevealConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/reveal-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSensitivityInspectionTemplate = schema.operation({
+    id = id.from("com.amazonaws.macie2", "UpdateSensitivityInspectionTemplate"),
+    input = M.UpdateSensitivityInspectionTemplateInput,
+    output = M.UpdateSensitivityInspectionTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/templates/sensitivity-inspections/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

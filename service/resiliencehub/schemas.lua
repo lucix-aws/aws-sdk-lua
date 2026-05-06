@@ -6942,4 +6942,770 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.resiliencehub", "AwsResilienceHub"),
+    version = "2020-04-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptResourceGroupingRecommendations = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "AcceptResourceGroupingRecommendations"),
+    input = M.AcceptResourceGroupingRecommendationsInput,
+    output = M.AcceptResourceGroupingRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accept-resource-grouping-recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddDraftAppVersionResourceMappings = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "AddDraftAppVersionResourceMappings"),
+    input = M.AddDraftAppVersionResourceMappingsInput,
+    output = M.AddDraftAppVersionResourceMappingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/add-draft-app-version-resource-mappings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateRecommendationStatus = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "BatchUpdateRecommendationStatus"),
+    input = M.BatchUpdateRecommendationStatusInput,
+    output = M.BatchUpdateRecommendationStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/batch-update-recommendation-status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApp = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "CreateApp"),
+    input = M.CreateAppInput,
+    output = M.CreateAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-app" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAppVersionAppComponent = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "CreateAppVersionAppComponent"),
+    input = M.CreateAppVersionAppComponentInput,
+    output = M.CreateAppVersionAppComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-app-version-app-component" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAppVersionResource = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "CreateAppVersionResource"),
+    input = M.CreateAppVersionResourceInput,
+    output = M.CreateAppVersionResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-app-version-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRecommendationTemplate = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "CreateRecommendationTemplate"),
+    input = M.CreateRecommendationTemplateInput,
+    output = M.CreateRecommendationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-recommendation-template" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResiliencyPolicy = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "CreateResiliencyPolicy"),
+    input = M.CreateResiliencyPolicyInput,
+    output = M.CreateResiliencyPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-resiliency-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApp = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DeleteApp"),
+    input = M.DeleteAppInput,
+    output = M.DeleteAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-app" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppAssessment = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DeleteAppAssessment"),
+    input = M.DeleteAppAssessmentInput,
+    output = M.DeleteAppAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-app-assessment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppInputSource = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DeleteAppInputSource"),
+    input = M.DeleteAppInputSourceInput,
+    output = M.DeleteAppInputSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-app-input-source" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppVersionAppComponent = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DeleteAppVersionAppComponent"),
+    input = M.DeleteAppVersionAppComponentInput,
+    output = M.DeleteAppVersionAppComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-app-version-app-component" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppVersionResource = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DeleteAppVersionResource"),
+    input = M.DeleteAppVersionResourceInput,
+    output = M.DeleteAppVersionResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-app-version-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecommendationTemplate = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DeleteRecommendationTemplate"),
+    input = M.DeleteRecommendationTemplateInput,
+    output = M.DeleteRecommendationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-recommendation-template" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResiliencyPolicy = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DeleteResiliencyPolicy"),
+    input = M.DeleteResiliencyPolicyInput,
+    output = M.DeleteResiliencyPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-resiliency-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApp = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DescribeApp"),
+    input = M.DescribeAppInput,
+    output = M.DescribeAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-app" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppAssessment = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DescribeAppAssessment"),
+    input = M.DescribeAppAssessmentInput,
+    output = M.DescribeAppAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-app-assessment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppVersion = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DescribeAppVersion"),
+    input = M.DescribeAppVersionInput,
+    output = M.DescribeAppVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-app-version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppVersionAppComponent = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DescribeAppVersionAppComponent"),
+    input = M.DescribeAppVersionAppComponentInput,
+    output = M.DescribeAppVersionAppComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-app-version-app-component" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppVersionResource = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DescribeAppVersionResource"),
+    input = M.DescribeAppVersionResourceInput,
+    output = M.DescribeAppVersionResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-app-version-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppVersionResourcesResolutionStatus = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DescribeAppVersionResourcesResolutionStatus"),
+    input = M.DescribeAppVersionResourcesResolutionStatusInput,
+    output = M.DescribeAppVersionResourcesResolutionStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-app-version-resources-resolution-status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppVersionTemplate = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DescribeAppVersionTemplate"),
+    input = M.DescribeAppVersionTemplateInput,
+    output = M.DescribeAppVersionTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-app-version-template" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDraftAppVersionResourcesImportStatus = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DescribeDraftAppVersionResourcesImportStatus"),
+    input = M.DescribeDraftAppVersionResourcesImportStatusInput,
+    output = M.DescribeDraftAppVersionResourcesImportStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-draft-app-version-resources-import-status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMetricsExport = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DescribeMetricsExport"),
+    input = M.DescribeMetricsExportInput,
+    output = M.DescribeMetricsExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-metrics-export" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResiliencyPolicy = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DescribeResiliencyPolicy"),
+    input = M.DescribeResiliencyPolicyInput,
+    output = M.DescribeResiliencyPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-resiliency-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResourceGroupingRecommendationTask = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "DescribeResourceGroupingRecommendationTask"),
+    input = M.DescribeResourceGroupingRecommendationTaskInput,
+    output = M.DescribeResourceGroupingRecommendationTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-resource-grouping-recommendation-task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportResourcesToDraftAppVersion = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ImportResourcesToDraftAppVersion"),
+    input = M.ImportResourcesToDraftAppVersionInput,
+    output = M.ImportResourcesToDraftAppVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/import-resources-to-draft-app-version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAlarmRecommendations = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListAlarmRecommendations"),
+    input = M.ListAlarmRecommendationsInput,
+    output = M.ListAlarmRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-alarm-recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppAssessmentComplianceDrifts = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListAppAssessmentComplianceDrifts"),
+    input = M.ListAppAssessmentComplianceDriftsInput,
+    output = M.ListAppAssessmentComplianceDriftsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-app-assessment-compliance-drifts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppAssessmentResourceDrifts = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListAppAssessmentResourceDrifts"),
+    input = M.ListAppAssessmentResourceDriftsInput,
+    output = M.ListAppAssessmentResourceDriftsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-app-assessment-resource-drifts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppAssessments = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListAppAssessments"),
+    input = M.ListAppAssessmentsInput,
+    output = M.ListAppAssessmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/list-app-assessments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppComponentCompliances = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListAppComponentCompliances"),
+    input = M.ListAppComponentCompliancesInput,
+    output = M.ListAppComponentCompliancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-app-component-compliances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppComponentRecommendations = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListAppComponentRecommendations"),
+    input = M.ListAppComponentRecommendationsInput,
+    output = M.ListAppComponentRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-app-component-recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppInputSources = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListAppInputSources"),
+    input = M.ListAppInputSourcesInput,
+    output = M.ListAppInputSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-app-input-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApps = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListApps"),
+    input = M.ListAppsInput,
+    output = M.ListAppsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/list-apps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppVersionAppComponents = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListAppVersionAppComponents"),
+    input = M.ListAppVersionAppComponentsInput,
+    output = M.ListAppVersionAppComponentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-app-version-app-components" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppVersionResourceMappings = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListAppVersionResourceMappings"),
+    input = M.ListAppVersionResourceMappingsInput,
+    output = M.ListAppVersionResourceMappingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-app-version-resource-mappings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppVersionResources = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListAppVersionResources"),
+    input = M.ListAppVersionResourcesInput,
+    output = M.ListAppVersionResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-app-version-resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppVersions = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListAppVersions"),
+    input = M.ListAppVersionsInput,
+    output = M.ListAppVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-app-versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMetrics = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListMetrics"),
+    input = M.ListMetricsInput,
+    output = M.ListMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommendationTemplates = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListRecommendationTemplates"),
+    input = M.ListRecommendationTemplatesInput,
+    output = M.ListRecommendationTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/list-recommendation-templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResiliencyPolicies = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListResiliencyPolicies"),
+    input = M.ListResiliencyPoliciesInput,
+    output = M.ListResiliencyPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/list-resiliency-policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceGroupingRecommendations = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListResourceGroupingRecommendations"),
+    input = M.ListResourceGroupingRecommendationsInput,
+    output = M.ListResourceGroupingRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/list-resource-grouping-recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSopRecommendations = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListSopRecommendations"),
+    input = M.ListSopRecommendationsInput,
+    output = M.ListSopRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-sop-recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSuggestedResiliencyPolicies = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListSuggestedResiliencyPolicies"),
+    input = M.ListSuggestedResiliencyPoliciesInput,
+    output = M.ListSuggestedResiliencyPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/list-suggested-resiliency-policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestRecommendations = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListTestRecommendations"),
+    input = M.ListTestRecommendationsInput,
+    output = M.ListTestRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-test-recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUnsupportedAppVersionResources = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ListUnsupportedAppVersionResources"),
+    input = M.ListUnsupportedAppVersionResourcesInput,
+    output = M.ListUnsupportedAppVersionResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-unsupported-app-version-resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PublishAppVersion = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "PublishAppVersion"),
+    input = M.PublishAppVersionInput,
+    output = M.PublishAppVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/publish-app-version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDraftAppVersionTemplate = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "PutDraftAppVersionTemplate"),
+    input = M.PutDraftAppVersionTemplateInput,
+    output = M.PutDraftAppVersionTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/put-draft-app-version-template" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectResourceGroupingRecommendations = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "RejectResourceGroupingRecommendations"),
+    input = M.RejectResourceGroupingRecommendationsInput,
+    output = M.RejectResourceGroupingRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/reject-resource-grouping-recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveDraftAppVersionResourceMappings = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "RemoveDraftAppVersionResourceMappings"),
+    input = M.RemoveDraftAppVersionResourceMappingsInput,
+    output = M.RemoveDraftAppVersionResourceMappingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/remove-draft-app-version-resource-mappings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResolveAppVersionResources = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "ResolveAppVersionResources"),
+    input = M.ResolveAppVersionResourcesInput,
+    output = M.ResolveAppVersionResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resolve-app-version-resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAppAssessment = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "StartAppAssessment"),
+    input = M.StartAppAssessmentInput,
+    output = M.StartAppAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/start-app-assessment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMetricsExport = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "StartMetricsExport"),
+    input = M.StartMetricsExportInput,
+    output = M.StartMetricsExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/start-metrics-export" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartResourceGroupingRecommendationTask = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "StartResourceGroupingRecommendationTask"),
+    input = M.StartResourceGroupingRecommendationTaskInput,
+    output = M.StartResourceGroupingRecommendationTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/start-resource-grouping-recommendation-task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApp = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "UpdateApp"),
+    input = M.UpdateAppInput,
+    output = M.UpdateAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-app" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAppVersion = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "UpdateAppVersion"),
+    input = M.UpdateAppVersionInput,
+    output = M.UpdateAppVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-app-version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAppVersionAppComponent = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "UpdateAppVersionAppComponent"),
+    input = M.UpdateAppVersionAppComponentInput,
+    output = M.UpdateAppVersionAppComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-app-version-app-component" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAppVersionResource = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "UpdateAppVersionResource"),
+    input = M.UpdateAppVersionResourceInput,
+    output = M.UpdateAppVersionResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-app-version-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResiliencyPolicy = schema.operation({
+    id = id.from("com.amazonaws.resiliencehub", "UpdateResiliencyPolicy"),
+    input = M.UpdateResiliencyPolicyInput,
+    output = M.UpdateResiliencyPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-resiliency-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

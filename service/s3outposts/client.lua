@@ -7,6 +7,7 @@ local endpoint_rules = require("s3outposts.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("s3outposts.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "s3-outposts", signing_region = cfg.region } }
                 else
@@ -49,68 +52,23 @@ function M.new(cfg)
 end
 
 function Client:createEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEndpoint",
-        input_schema = schemas.CreateEndpointInput,
-        output_schema = schemas.CreateEndpointOutput,
-        http_method = "POST",
-        http_path = "/S3Outposts/CreateEndpoint",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEndpoint, input, options)
 end
 
 function Client:deleteEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEndpoint",
-        input_schema = schemas.DeleteEndpointInput,
-        output_schema = schemas.DeleteEndpointOutput,
-        http_method = "DELETE",
-        http_path = "/S3Outposts/DeleteEndpoint",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEndpoint, input, options)
 end
 
 function Client:listEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEndpoints",
-        input_schema = schemas.ListEndpointsInput,
-        output_schema = schemas.ListEndpointsOutput,
-        http_method = "GET",
-        http_path = "/S3Outposts/ListEndpoints",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEndpoints, input, options)
 end
 
 function Client:listOutpostsWithS3(input, options)
-    return self:invokeOperation(input, {
-        name = "ListOutpostsWithS3",
-        input_schema = schemas.ListOutpostsWithS3Input,
-        output_schema = schemas.ListOutpostsWithS3Output,
-        http_method = "GET",
-        http_path = "/S3Outposts/ListOutpostsWithS3",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListOutpostsWithS3, input, options)
 end
 
 function Client:listSharedEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSharedEndpoints",
-        input_schema = schemas.ListSharedEndpointsInput,
-        output_schema = schemas.ListSharedEndpointsOutput,
-        http_method = "GET",
-        http_path = "/S3Outposts/ListSharedEndpoints",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSharedEndpoints, input, options)
 end
 
 return M

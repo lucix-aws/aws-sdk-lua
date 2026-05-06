@@ -132,4 +132,38 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.kinesisvideowebrtcstorage", "AWSAcuityRoutingServiceLambda"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.JoinStorageSession = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideowebrtcstorage", "JoinStorageSession"),
+    input = M.JoinStorageSessionInput,
+    output = M.JoinStorageSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/joinStorageSession" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.JoinStorageSessionAsViewer = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideowebrtcstorage", "JoinStorageSessionAsViewer"),
+    input = M.JoinStorageSessionAsViewerInput,
+    output = M.JoinStorageSessionAsViewerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/joinStorageSessionAsViewer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

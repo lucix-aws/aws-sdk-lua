@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("kendraranking.endpoint_rules")
 local schemas = require("kendraranking.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kendra-ranking", signing_region = cfg.region } }
                 else
@@ -49,120 +52,39 @@ function M.new(cfg)
 end
 
 function Client:createRescoreExecutionPlan(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRescoreExecutionPlan",
-        input_schema = schemas.CreateRescoreExecutionPlanInput,
-        output_schema = schemas.CreateRescoreExecutionPlanOutput,
-        http_method = "POST",
-        http_path = "/rescore-execution-plans",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRescoreExecutionPlan, input, options)
 end
 
 function Client:deleteRescoreExecutionPlan(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRescoreExecutionPlan",
-        input_schema = schemas.DeleteRescoreExecutionPlanInput,
-        output_schema = schemas.DeleteRescoreExecutionPlanOutput,
-        http_method = "DELETE",
-        http_path = "/rescore-execution-plans/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRescoreExecutionPlan, input, options)
 end
 
 function Client:describeRescoreExecutionPlan(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeRescoreExecutionPlan",
-        input_schema = schemas.DescribeRescoreExecutionPlanInput,
-        output_schema = schemas.DescribeRescoreExecutionPlanOutput,
-        http_method = "GET",
-        http_path = "/rescore-execution-plans/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeRescoreExecutionPlan, input, options)
 end
 
 function Client:listRescoreExecutionPlans(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRescoreExecutionPlans",
-        input_schema = schemas.ListRescoreExecutionPlansInput,
-        output_schema = schemas.ListRescoreExecutionPlansOutput,
-        http_method = "GET",
-        http_path = "/rescore-execution-plans",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRescoreExecutionPlans, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:rescore(input, options)
-    return self:invokeOperation(input, {
-        name = "Rescore",
-        input_schema = schemas.RescoreInput,
-        output_schema = schemas.RescoreOutput,
-        http_method = "POST",
-        http_path = "/rescore-execution-plans/{RescoreExecutionPlanId}/rescore",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Rescore, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateRescoreExecutionPlan(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRescoreExecutionPlan",
-        input_schema = schemas.UpdateRescoreExecutionPlanInput,
-        output_schema = schemas.UpdateRescoreExecutionPlanOutput,
-        http_method = "PUT",
-        http_path = "/rescore-execution-plans/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRescoreExecutionPlan, input, options)
 end
 
 return M

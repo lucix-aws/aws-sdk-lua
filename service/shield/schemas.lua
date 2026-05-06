@@ -2219,4 +2219,410 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.shield", "AWSShield_20160616"),
+    version = "2016-06-02",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateDRTLogBucket = schema.operation({
+    id = id.from("com.amazonaws.shield", "AssociateDRTLogBucket"),
+    input = M.AssociateDRTLogBucketInput,
+    output = M.AssociateDRTLogBucketOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateDRTRole = schema.operation({
+    id = id.from("com.amazonaws.shield", "AssociateDRTRole"),
+    input = M.AssociateDRTRoleInput,
+    output = M.AssociateDRTRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateHealthCheck = schema.operation({
+    id = id.from("com.amazonaws.shield", "AssociateHealthCheck"),
+    input = M.AssociateHealthCheckInput,
+    output = M.AssociateHealthCheckOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateProactiveEngagementDetails = schema.operation({
+    id = id.from("com.amazonaws.shield", "AssociateProactiveEngagementDetails"),
+    input = M.AssociateProactiveEngagementDetailsInput,
+    output = M.AssociateProactiveEngagementDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProtection = schema.operation({
+    id = id.from("com.amazonaws.shield", "CreateProtection"),
+    input = M.CreateProtectionInput,
+    output = M.CreateProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProtectionGroup = schema.operation({
+    id = id.from("com.amazonaws.shield", "CreateProtectionGroup"),
+    input = M.CreateProtectionGroupInput,
+    output = M.CreateProtectionGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSubscription = schema.operation({
+    id = id.from("com.amazonaws.shield", "CreateSubscription"),
+    input = M.CreateSubscriptionInput,
+    output = M.CreateSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProtection = schema.operation({
+    id = id.from("com.amazonaws.shield", "DeleteProtection"),
+    input = M.DeleteProtectionInput,
+    output = M.DeleteProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProtectionGroup = schema.operation({
+    id = id.from("com.amazonaws.shield", "DeleteProtectionGroup"),
+    input = M.DeleteProtectionGroupInput,
+    output = M.DeleteProtectionGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSubscription = schema.operation({
+    id = id.from("com.amazonaws.shield", "DeleteSubscription"),
+    input = M.DeleteSubscriptionInput,
+    output = M.DeleteSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAttack = schema.operation({
+    id = id.from("com.amazonaws.shield", "DescribeAttack"),
+    input = M.DescribeAttackInput,
+    output = M.DescribeAttackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAttackStatistics = schema.operation({
+    id = id.from("com.amazonaws.shield", "DescribeAttackStatistics"),
+    input = M.DescribeAttackStatisticsInput,
+    output = M.DescribeAttackStatisticsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDRTAccess = schema.operation({
+    id = id.from("com.amazonaws.shield", "DescribeDRTAccess"),
+    input = M.DescribeDRTAccessInput,
+    output = M.DescribeDRTAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEmergencyContactSettings = schema.operation({
+    id = id.from("com.amazonaws.shield", "DescribeEmergencyContactSettings"),
+    input = M.DescribeEmergencyContactSettingsInput,
+    output = M.DescribeEmergencyContactSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProtection = schema.operation({
+    id = id.from("com.amazonaws.shield", "DescribeProtection"),
+    input = M.DescribeProtectionInput,
+    output = M.DescribeProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProtectionGroup = schema.operation({
+    id = id.from("com.amazonaws.shield", "DescribeProtectionGroup"),
+    input = M.DescribeProtectionGroupInput,
+    output = M.DescribeProtectionGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSubscription = schema.operation({
+    id = id.from("com.amazonaws.shield", "DescribeSubscription"),
+    input = M.DescribeSubscriptionInput,
+    output = M.DescribeSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableApplicationLayerAutomaticResponse = schema.operation({
+    id = id.from("com.amazonaws.shield", "DisableApplicationLayerAutomaticResponse"),
+    input = M.DisableApplicationLayerAutomaticResponseInput,
+    output = M.DisableApplicationLayerAutomaticResponseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableProactiveEngagement = schema.operation({
+    id = id.from("com.amazonaws.shield", "DisableProactiveEngagement"),
+    input = M.DisableProactiveEngagementInput,
+    output = M.DisableProactiveEngagementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateDRTLogBucket = schema.operation({
+    id = id.from("com.amazonaws.shield", "DisassociateDRTLogBucket"),
+    input = M.DisassociateDRTLogBucketInput,
+    output = M.DisassociateDRTLogBucketOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateDRTRole = schema.operation({
+    id = id.from("com.amazonaws.shield", "DisassociateDRTRole"),
+    input = M.DisassociateDRTRoleInput,
+    output = M.DisassociateDRTRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateHealthCheck = schema.operation({
+    id = id.from("com.amazonaws.shield", "DisassociateHealthCheck"),
+    input = M.DisassociateHealthCheckInput,
+    output = M.DisassociateHealthCheckOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableApplicationLayerAutomaticResponse = schema.operation({
+    id = id.from("com.amazonaws.shield", "EnableApplicationLayerAutomaticResponse"),
+    input = M.EnableApplicationLayerAutomaticResponseInput,
+    output = M.EnableApplicationLayerAutomaticResponseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableProactiveEngagement = schema.operation({
+    id = id.from("com.amazonaws.shield", "EnableProactiveEngagement"),
+    input = M.EnableProactiveEngagementInput,
+    output = M.EnableProactiveEngagementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSubscriptionState = schema.operation({
+    id = id.from("com.amazonaws.shield", "GetSubscriptionState"),
+    input = M.GetSubscriptionStateInput,
+    output = M.GetSubscriptionStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttacks = schema.operation({
+    id = id.from("com.amazonaws.shield", "ListAttacks"),
+    input = M.ListAttacksInput,
+    output = M.ListAttacksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProtectionGroups = schema.operation({
+    id = id.from("com.amazonaws.shield", "ListProtectionGroups"),
+    input = M.ListProtectionGroupsInput,
+    output = M.ListProtectionGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProtections = schema.operation({
+    id = id.from("com.amazonaws.shield", "ListProtections"),
+    input = M.ListProtectionsInput,
+    output = M.ListProtectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourcesInProtectionGroup = schema.operation({
+    id = id.from("com.amazonaws.shield", "ListResourcesInProtectionGroup"),
+    input = M.ListResourcesInProtectionGroupInput,
+    output = M.ListResourcesInProtectionGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.shield", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.shield", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.shield", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplicationLayerAutomaticResponse = schema.operation({
+    id = id.from("com.amazonaws.shield", "UpdateApplicationLayerAutomaticResponse"),
+    input = M.UpdateApplicationLayerAutomaticResponseInput,
+    output = M.UpdateApplicationLayerAutomaticResponseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEmergencyContactSettings = schema.operation({
+    id = id.from("com.amazonaws.shield", "UpdateEmergencyContactSettings"),
+    input = M.UpdateEmergencyContactSettingsInput,
+    output = M.UpdateEmergencyContactSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProtectionGroup = schema.operation({
+    id = id.from("com.amazonaws.shield", "UpdateProtectionGroup"),
+    input = M.UpdateProtectionGroupInput,
+    output = M.UpdateProtectionGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSubscription = schema.operation({
+    id = id.from("com.amazonaws.shield", "UpdateSubscription"),
+    input = M.UpdateSubscriptionInput,
+    output = M.UpdateSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

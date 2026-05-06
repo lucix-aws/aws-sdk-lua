@@ -5062,4 +5062,388 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.verifiedpermissions", "VerifiedPermissions"),
+    version = "2021-12-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetPolicy = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "BatchGetPolicy"),
+    input = M.BatchGetPolicyInput,
+    output = M.BatchGetPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchIsAuthorized = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "BatchIsAuthorized"),
+    input = M.BatchIsAuthorizedInput,
+    output = M.BatchIsAuthorizedOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchIsAuthorizedWithToken = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "BatchIsAuthorizedWithToken"),
+    input = M.BatchIsAuthorizedWithTokenInput,
+    output = M.BatchIsAuthorizedWithTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIdentitySource = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "CreateIdentitySource"),
+    input = M.CreateIdentitySourceInput,
+    output = M.CreateIdentitySourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePolicy = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "CreatePolicy"),
+    input = M.CreatePolicyInput,
+    output = M.CreatePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePolicyStore = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "CreatePolicyStore"),
+    input = M.CreatePolicyStoreInput,
+    output = M.CreatePolicyStoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePolicyStoreAlias = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "CreatePolicyStoreAlias"),
+    input = M.CreatePolicyStoreAliasInput,
+    output = M.CreatePolicyStoreAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePolicyTemplate = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "CreatePolicyTemplate"),
+    input = M.CreatePolicyTemplateInput,
+    output = M.CreatePolicyTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdentitySource = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "DeleteIdentitySource"),
+    input = M.DeleteIdentitySourceInput,
+    output = M.DeleteIdentitySourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePolicy = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "DeletePolicy"),
+    input = M.DeletePolicyInput,
+    output = M.DeletePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePolicyStore = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "DeletePolicyStore"),
+    input = M.DeletePolicyStoreInput,
+    output = M.DeletePolicyStoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePolicyStoreAlias = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "DeletePolicyStoreAlias"),
+    input = M.DeletePolicyStoreAliasInput,
+    output = M.DeletePolicyStoreAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePolicyTemplate = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "DeletePolicyTemplate"),
+    input = M.DeletePolicyTemplateInput,
+    output = M.DeletePolicyTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdentitySource = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "GetIdentitySource"),
+    input = M.GetIdentitySourceInput,
+    output = M.GetIdentitySourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicy = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "GetPolicy"),
+    input = M.GetPolicyInput,
+    output = M.GetPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicyStore = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "GetPolicyStore"),
+    input = M.GetPolicyStoreInput,
+    output = M.GetPolicyStoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicyStoreAlias = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "GetPolicyStoreAlias"),
+    input = M.GetPolicyStoreAliasInput,
+    output = M.GetPolicyStoreAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicyTemplate = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "GetPolicyTemplate"),
+    input = M.GetPolicyTemplateInput,
+    output = M.GetPolicyTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSchema = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "GetSchema"),
+    input = M.GetSchemaInput,
+    output = M.GetSchemaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.IsAuthorized = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "IsAuthorized"),
+    input = M.IsAuthorizedInput,
+    output = M.IsAuthorizedOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.IsAuthorizedWithToken = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "IsAuthorizedWithToken"),
+    input = M.IsAuthorizedWithTokenInput,
+    output = M.IsAuthorizedWithTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdentitySources = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "ListIdentitySources"),
+    input = M.ListIdentitySourcesInput,
+    output = M.ListIdentitySourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicies = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "ListPolicies"),
+    input = M.ListPoliciesInput,
+    output = M.ListPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyStoreAliases = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "ListPolicyStoreAliases"),
+    input = M.ListPolicyStoreAliasesInput,
+    output = M.ListPolicyStoreAliasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyStores = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "ListPolicyStores"),
+    input = M.ListPolicyStoresInput,
+    output = M.ListPolicyStoresOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyTemplates = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "ListPolicyTemplates"),
+    input = M.ListPolicyTemplatesInput,
+    output = M.ListPolicyTemplatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSchema = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "PutSchema"),
+    input = M.PutSchemaInput,
+    output = M.PutSchemaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIdentitySource = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "UpdateIdentitySource"),
+    input = M.UpdateIdentitySourceInput,
+    output = M.UpdateIdentitySourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePolicy = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "UpdatePolicy"),
+    input = M.UpdatePolicyInput,
+    output = M.UpdatePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePolicyStore = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "UpdatePolicyStore"),
+    input = M.UpdatePolicyStoreInput,
+    output = M.UpdatePolicyStoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePolicyTemplate = schema.operation({
+    id = id.from("com.amazonaws.verifiedpermissions", "UpdatePolicyTemplate"),
+    input = M.UpdatePolicyTemplateInput,
+    output = M.UpdatePolicyTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

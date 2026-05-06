@@ -3635,4 +3635,602 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.s3tables", "S3TableBuckets"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNamespace = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "CreateNamespace"),
+    input = M.CreateNamespaceInput,
+    output = M.CreateNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/namespaces/{tableBucketARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTable = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "CreateTable"),
+    input = M.CreateTableInput,
+    output = M.CreateTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tables/{tableBucketARN}/{namespace}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTableBucket = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "CreateTableBucket"),
+    input = M.CreateTableBucketInput,
+    output = M.CreateTableBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/buckets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNamespace = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "DeleteNamespace"),
+    input = M.DeleteNamespaceInput,
+    output = M.DeleteNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/namespaces/{tableBucketARN}/{namespace}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTable = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "DeleteTable"),
+    input = M.DeleteTableInput,
+    output = M.DeleteTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tables/{tableBucketARN}/{namespace}/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTableBucket = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "DeleteTableBucket"),
+    input = M.DeleteTableBucketInput,
+    output = M.DeleteTableBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/buckets/{tableBucketARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTableBucketEncryption = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "DeleteTableBucketEncryption"),
+    input = M.DeleteTableBucketEncryptionInput,
+    output = M.DeleteTableBucketEncryptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/buckets/{tableBucketARN}/encryption" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTableBucketMetricsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "DeleteTableBucketMetricsConfiguration"),
+    input = M.DeleteTableBucketMetricsConfigurationInput,
+    output = M.DeleteTableBucketMetricsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/buckets/{tableBucketARN}/metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTableBucketPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "DeleteTableBucketPolicy"),
+    input = M.DeleteTableBucketPolicyInput,
+    output = M.DeleteTableBucketPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/buckets/{tableBucketARN}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTableBucketReplication = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "DeleteTableBucketReplication"),
+    input = M.DeleteTableBucketReplicationInput,
+    output = M.DeleteTableBucketReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/table-bucket-replication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTablePolicy = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "DeleteTablePolicy"),
+    input = M.DeleteTablePolicyInput,
+    output = M.DeleteTablePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tables/{tableBucketARN}/{namespace}/{name}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTableReplication = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "DeleteTableReplication"),
+    input = M.DeleteTableReplicationInput,
+    output = M.DeleteTableReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/table-replication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNamespace = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetNamespace"),
+    input = M.GetNamespaceInput,
+    output = M.GetNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/namespaces/{tableBucketARN}/{namespace}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTable = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTable"),
+    input = M.GetTableInput,
+    output = M.GetTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/get-table" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableBucket = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableBucket"),
+    input = M.GetTableBucketInput,
+    output = M.GetTableBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/buckets/{tableBucketARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableBucketEncryption = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableBucketEncryption"),
+    input = M.GetTableBucketEncryptionInput,
+    output = M.GetTableBucketEncryptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/buckets/{tableBucketARN}/encryption" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableBucketMaintenanceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableBucketMaintenanceConfiguration"),
+    input = M.GetTableBucketMaintenanceConfigurationInput,
+    output = M.GetTableBucketMaintenanceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/buckets/{tableBucketARN}/maintenance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableBucketMetricsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableBucketMetricsConfiguration"),
+    input = M.GetTableBucketMetricsConfigurationInput,
+    output = M.GetTableBucketMetricsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/buckets/{tableBucketARN}/metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableBucketPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableBucketPolicy"),
+    input = M.GetTableBucketPolicyInput,
+    output = M.GetTableBucketPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/buckets/{tableBucketARN}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableBucketReplication = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableBucketReplication"),
+    input = M.GetTableBucketReplicationInput,
+    output = M.GetTableBucketReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/table-bucket-replication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableBucketStorageClass = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableBucketStorageClass"),
+    input = M.GetTableBucketStorageClassInput,
+    output = M.GetTableBucketStorageClassOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/buckets/{tableBucketARN}/storage-class" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableEncryption = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableEncryption"),
+    input = M.GetTableEncryptionInput,
+    output = M.GetTableEncryptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tables/{tableBucketARN}/{namespace}/{name}/encryption" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableMaintenanceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableMaintenanceConfiguration"),
+    input = M.GetTableMaintenanceConfigurationInput,
+    output = M.GetTableMaintenanceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tables/{tableBucketARN}/{namespace}/{name}/maintenance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableMaintenanceJobStatus = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableMaintenanceJobStatus"),
+    input = M.GetTableMaintenanceJobStatusInput,
+    output = M.GetTableMaintenanceJobStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tables/{tableBucketARN}/{namespace}/{name}/maintenance-job-status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableMetadataLocation = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableMetadataLocation"),
+    input = M.GetTableMetadataLocationInput,
+    output = M.GetTableMetadataLocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tables/{tableBucketARN}/{namespace}/{name}/metadata-location" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTablePolicy = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTablePolicy"),
+    input = M.GetTablePolicyInput,
+    output = M.GetTablePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tables/{tableBucketARN}/{namespace}/{name}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableRecordExpirationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableRecordExpirationConfiguration"),
+    input = M.GetTableRecordExpirationConfigurationInput,
+    output = M.GetTableRecordExpirationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/table-record-expiration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableRecordExpirationJobStatus = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableRecordExpirationJobStatus"),
+    input = M.GetTableRecordExpirationJobStatusInput,
+    output = M.GetTableRecordExpirationJobStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/table-record-expiration-job-status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableReplication = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableReplication"),
+    input = M.GetTableReplicationInput,
+    output = M.GetTableReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/table-replication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableReplicationStatus = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableReplicationStatus"),
+    input = M.GetTableReplicationStatusInput,
+    output = M.GetTableReplicationStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/replication-status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableStorageClass = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableStorageClass"),
+    input = M.GetTableStorageClassInput,
+    output = M.GetTableStorageClassOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tables/{tableBucketARN}/{namespace}/{name}/storage-class" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNamespaces = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "ListNamespaces"),
+    input = M.ListNamespacesInput,
+    output = M.ListNamespacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/namespaces/{tableBucketARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTableBuckets = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "ListTableBuckets"),
+    input = M.ListTableBucketsInput,
+    output = M.ListTableBucketsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/buckets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTables = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "ListTables"),
+    input = M.ListTablesInput,
+    output = M.ListTablesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tables/{tableBucketARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tag/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTableBucketEncryption = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "PutTableBucketEncryption"),
+    input = M.PutTableBucketEncryptionInput,
+    output = M.PutTableBucketEncryptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/buckets/{tableBucketARN}/encryption" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTableBucketMaintenanceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "PutTableBucketMaintenanceConfiguration"),
+    input = M.PutTableBucketMaintenanceConfigurationInput,
+    output = M.PutTableBucketMaintenanceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/buckets/{tableBucketARN}/maintenance/{type}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTableBucketMetricsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "PutTableBucketMetricsConfiguration"),
+    input = M.PutTableBucketMetricsConfigurationInput,
+    output = M.PutTableBucketMetricsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/buckets/{tableBucketARN}/metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTableBucketPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "PutTableBucketPolicy"),
+    input = M.PutTableBucketPolicyInput,
+    output = M.PutTableBucketPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/buckets/{tableBucketARN}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTableBucketReplication = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "PutTableBucketReplication"),
+    input = M.PutTableBucketReplicationInput,
+    output = M.PutTableBucketReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/table-bucket-replication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTableBucketStorageClass = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "PutTableBucketStorageClass"),
+    input = M.PutTableBucketStorageClassInput,
+    output = M.PutTableBucketStorageClassOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/buckets/{tableBucketARN}/storage-class" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTableMaintenanceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "PutTableMaintenanceConfiguration"),
+    input = M.PutTableMaintenanceConfigurationInput,
+    output = M.PutTableMaintenanceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tables/{tableBucketARN}/{namespace}/{name}/maintenance/{type}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTablePolicy = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "PutTablePolicy"),
+    input = M.PutTablePolicyInput,
+    output = M.PutTablePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tables/{tableBucketARN}/{namespace}/{name}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTableRecordExpirationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "PutTableRecordExpirationConfiguration"),
+    input = M.PutTableRecordExpirationConfigurationInput,
+    output = M.PutTableRecordExpirationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/table-record-expiration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTableReplication = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "PutTableReplication"),
+    input = M.PutTableReplicationInput,
+    output = M.PutTableReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/table-replication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RenameTable = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "RenameTable"),
+    input = M.RenameTableInput,
+    output = M.RenameTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tables/{tableBucketARN}/{namespace}/{name}/rename" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tag/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tag/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTableMetadataLocation = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "UpdateTableMetadataLocation"),
+    input = M.UpdateTableMetadataLocationInput,
+    output = M.UpdateTableMetadataLocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tables/{tableBucketARN}/{namespace}/{name}/metadata-location" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

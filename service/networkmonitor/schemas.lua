@@ -1283,4 +1283,158 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.networkmonitor", "NetworkMonitor"),
+    version = "2023-08-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkmonitor", "CreateMonitor"),
+    input = M.CreateMonitorInput,
+    output = M.CreateMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/monitors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProbe = schema.operation({
+    id = id.from("com.amazonaws.networkmonitor", "CreateProbe"),
+    input = M.CreateProbeInput,
+    output = M.CreateProbeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/monitors/{monitorName}/probes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkmonitor", "DeleteMonitor"),
+    input = M.DeleteMonitorInput,
+    output = M.DeleteMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/monitors/{monitorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProbe = schema.operation({
+    id = id.from("com.amazonaws.networkmonitor", "DeleteProbe"),
+    input = M.DeleteProbeInput,
+    output = M.DeleteProbeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/monitors/{monitorName}/probes/{probeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkmonitor", "GetMonitor"),
+    input = M.GetMonitorInput,
+    output = M.GetMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/monitors/{monitorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProbe = schema.operation({
+    id = id.from("com.amazonaws.networkmonitor", "GetProbe"),
+    input = M.GetProbeInput,
+    output = M.GetProbeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/monitors/{monitorName}/probes/{probeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMonitors = schema.operation({
+    id = id.from("com.amazonaws.networkmonitor", "ListMonitors"),
+    input = M.ListMonitorsInput,
+    output = M.ListMonitorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/monitors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.networkmonitor", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.networkmonitor", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.networkmonitor", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkmonitor", "UpdateMonitor"),
+    input = M.UpdateMonitorInput,
+    output = M.UpdateMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/monitors/{monitorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProbe = schema.operation({
+    id = id.from("com.amazonaws.networkmonitor", "UpdateProbe"),
+    input = M.UpdateProbeInput,
+    output = M.UpdateProbeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/monitors/{monitorName}/probes/{probeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

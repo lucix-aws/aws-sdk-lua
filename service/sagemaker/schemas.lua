@@ -56033,4 +56033,4370 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sagemaker", "SageMaker"),
+    version = "2017-07-24",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddAssociation = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "AddAssociation"),
+    input = M.AddAssociationInput,
+    output = M.AddAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTags = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "AddTags"),
+    input = M.AddTagsInput,
+    output = M.AddTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateTrialComponent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "AssociateTrialComponent"),
+    input = M.AssociateTrialComponentInput,
+    output = M.AssociateTrialComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachClusterNodeVolume = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "AttachClusterNodeVolume"),
+    input = M.AttachClusterNodeVolumeInput,
+    output = M.AttachClusterNodeVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAddClusterNodes = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "BatchAddClusterNodes"),
+    input = M.BatchAddClusterNodesInput,
+    output = M.BatchAddClusterNodesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteClusterNodes = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "BatchDeleteClusterNodes"),
+    input = M.BatchDeleteClusterNodesInput,
+    output = M.BatchDeleteClusterNodesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDescribeModelPackage = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "BatchDescribeModelPackage"),
+    input = M.BatchDescribeModelPackageInput,
+    output = M.BatchDescribeModelPackageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchRebootClusterNodes = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "BatchRebootClusterNodes"),
+    input = M.BatchRebootClusterNodesInput,
+    output = M.BatchRebootClusterNodesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchReplaceClusterNodes = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "BatchReplaceClusterNodes"),
+    input = M.BatchReplaceClusterNodesInput,
+    output = M.BatchReplaceClusterNodesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAction = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateAction"),
+    input = M.CreateActionInput,
+    output = M.CreateActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAIBenchmarkJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateAIBenchmarkJob"),
+    input = M.CreateAIBenchmarkJobInput,
+    output = M.CreateAIBenchmarkJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAIRecommendationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateAIRecommendationJob"),
+    input = M.CreateAIRecommendationJobInput,
+    output = M.CreateAIRecommendationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAIWorkloadConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateAIWorkloadConfig"),
+    input = M.CreateAIWorkloadConfigInput,
+    output = M.CreateAIWorkloadConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAlgorithm = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateAlgorithm"),
+    input = M.CreateAlgorithmInput,
+    output = M.CreateAlgorithmOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApp = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateApp"),
+    input = M.CreateAppInput,
+    output = M.CreateAppOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAppImageConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateAppImageConfig"),
+    input = M.CreateAppImageConfigInput,
+    output = M.CreateAppImageConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateArtifact = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateArtifact"),
+    input = M.CreateArtifactInput,
+    output = M.CreateArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAutoMLJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateAutoMLJob"),
+    input = M.CreateAutoMLJobInput,
+    output = M.CreateAutoMLJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAutoMLJobV2 = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateAutoMLJobV2"),
+    input = M.CreateAutoMLJobV2Input,
+    output = M.CreateAutoMLJobV2Output,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCluster = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateCluster"),
+    input = M.CreateClusterInput,
+    output = M.CreateClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateClusterSchedulerConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateClusterSchedulerConfig"),
+    input = M.CreateClusterSchedulerConfigInput,
+    output = M.CreateClusterSchedulerConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCodeRepository = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateCodeRepository"),
+    input = M.CreateCodeRepositoryInput,
+    output = M.CreateCodeRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCompilationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateCompilationJob"),
+    input = M.CreateCompilationJobInput,
+    output = M.CreateCompilationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateComputeQuota = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateComputeQuota"),
+    input = M.CreateComputeQuotaInput,
+    output = M.CreateComputeQuotaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContext = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateContext"),
+    input = M.CreateContextInput,
+    output = M.CreateContextOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataQualityJobDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateDataQualityJobDefinition"),
+    input = M.CreateDataQualityJobDefinitionInput,
+    output = M.CreateDataQualityJobDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDeviceFleet = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateDeviceFleet"),
+    input = M.CreateDeviceFleetInput,
+    output = M.CreateDeviceFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomain = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateDomain"),
+    input = M.CreateDomainInput,
+    output = M.CreateDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEdgeDeploymentPlan = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateEdgeDeploymentPlan"),
+    input = M.CreateEdgeDeploymentPlanInput,
+    output = M.CreateEdgeDeploymentPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEdgeDeploymentStage = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateEdgeDeploymentStage"),
+    input = M.CreateEdgeDeploymentStageInput,
+    output = M.CreateEdgeDeploymentStageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEdgePackagingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateEdgePackagingJob"),
+    input = M.CreateEdgePackagingJobInput,
+    output = M.CreateEdgePackagingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEndpoint = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateEndpoint"),
+    input = M.CreateEndpointInput,
+    output = M.CreateEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEndpointConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateEndpointConfig"),
+    input = M.CreateEndpointConfigInput,
+    output = M.CreateEndpointConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExperiment = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateExperiment"),
+    input = M.CreateExperimentInput,
+    output = M.CreateExperimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFeatureGroup = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateFeatureGroup"),
+    input = M.CreateFeatureGroupInput,
+    output = M.CreateFeatureGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFlowDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateFlowDefinition"),
+    input = M.CreateFlowDefinitionInput,
+    output = M.CreateFlowDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHub = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateHub"),
+    input = M.CreateHubInput,
+    output = M.CreateHubOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHubContentPresignedUrls = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateHubContentPresignedUrls"),
+    input = M.CreateHubContentPresignedUrlsInput,
+    output = M.CreateHubContentPresignedUrlsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHubContentReference = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateHubContentReference"),
+    input = M.CreateHubContentReferenceInput,
+    output = M.CreateHubContentReferenceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHumanTaskUi = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateHumanTaskUi"),
+    input = M.CreateHumanTaskUiInput,
+    output = M.CreateHumanTaskUiOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHyperParameterTuningJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateHyperParameterTuningJob"),
+    input = M.CreateHyperParameterTuningJobInput,
+    output = M.CreateHyperParameterTuningJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateImage = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateImage"),
+    input = M.CreateImageInput,
+    output = M.CreateImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateImageVersion = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateImageVersion"),
+    input = M.CreateImageVersionInput,
+    output = M.CreateImageVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInferenceComponent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateInferenceComponent"),
+    input = M.CreateInferenceComponentInput,
+    output = M.CreateInferenceComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInferenceExperiment = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateInferenceExperiment"),
+    input = M.CreateInferenceExperimentInput,
+    output = M.CreateInferenceExperimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInferenceRecommendationsJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateInferenceRecommendationsJob"),
+    input = M.CreateInferenceRecommendationsJobInput,
+    output = M.CreateInferenceRecommendationsJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLabelingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateLabelingJob"),
+    input = M.CreateLabelingJobInput,
+    output = M.CreateLabelingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMlflowApp = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateMlflowApp"),
+    input = M.CreateMlflowAppInput,
+    output = M.CreateMlflowAppOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMlflowTrackingServer = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateMlflowTrackingServer"),
+    input = M.CreateMlflowTrackingServerInput,
+    output = M.CreateMlflowTrackingServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateModel = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateModel"),
+    input = M.CreateModelInput,
+    output = M.CreateModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateModelBiasJobDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateModelBiasJobDefinition"),
+    input = M.CreateModelBiasJobDefinitionInput,
+    output = M.CreateModelBiasJobDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateModelCard = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateModelCard"),
+    input = M.CreateModelCardInput,
+    output = M.CreateModelCardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateModelCardExportJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateModelCardExportJob"),
+    input = M.CreateModelCardExportJobInput,
+    output = M.CreateModelCardExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateModelExplainabilityJobDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateModelExplainabilityJobDefinition"),
+    input = M.CreateModelExplainabilityJobDefinitionInput,
+    output = M.CreateModelExplainabilityJobDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateModelPackage = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateModelPackage"),
+    input = M.CreateModelPackageInput,
+    output = M.CreateModelPackageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateModelPackageGroup = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateModelPackageGroup"),
+    input = M.CreateModelPackageGroupInput,
+    output = M.CreateModelPackageGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateModelQualityJobDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateModelQualityJobDefinition"),
+    input = M.CreateModelQualityJobDefinitionInput,
+    output = M.CreateModelQualityJobDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMonitoringSchedule = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateMonitoringSchedule"),
+    input = M.CreateMonitoringScheduleInput,
+    output = M.CreateMonitoringScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNotebookInstance = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateNotebookInstance"),
+    input = M.CreateNotebookInstanceInput,
+    output = M.CreateNotebookInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNotebookInstanceLifecycleConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateNotebookInstanceLifecycleConfig"),
+    input = M.CreateNotebookInstanceLifecycleConfigInput,
+    output = M.CreateNotebookInstanceLifecycleConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOptimizationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateOptimizationJob"),
+    input = M.CreateOptimizationJobInput,
+    output = M.CreateOptimizationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePartnerApp = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreatePartnerApp"),
+    input = M.CreatePartnerAppInput,
+    output = M.CreatePartnerAppOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePartnerAppPresignedUrl = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreatePartnerAppPresignedUrl"),
+    input = M.CreatePartnerAppPresignedUrlInput,
+    output = M.CreatePartnerAppPresignedUrlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePipeline = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreatePipeline"),
+    input = M.CreatePipelineInput,
+    output = M.CreatePipelineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePresignedDomainUrl = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreatePresignedDomainUrl"),
+    input = M.CreatePresignedDomainUrlInput,
+    output = M.CreatePresignedDomainUrlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePresignedMlflowAppUrl = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreatePresignedMlflowAppUrl"),
+    input = M.CreatePresignedMlflowAppUrlInput,
+    output = M.CreatePresignedMlflowAppUrlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePresignedMlflowTrackingServerUrl = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreatePresignedMlflowTrackingServerUrl"),
+    input = M.CreatePresignedMlflowTrackingServerUrlInput,
+    output = M.CreatePresignedMlflowTrackingServerUrlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePresignedNotebookInstanceUrl = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreatePresignedNotebookInstanceUrl"),
+    input = M.CreatePresignedNotebookInstanceUrlInput,
+    output = M.CreatePresignedNotebookInstanceUrlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProcessingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateProcessingJob"),
+    input = M.CreateProcessingJobInput,
+    output = M.CreateProcessingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProject = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateProject"),
+    input = M.CreateProjectInput,
+    output = M.CreateProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSpace = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateSpace"),
+    input = M.CreateSpaceInput,
+    output = M.CreateSpaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStudioLifecycleConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateStudioLifecycleConfig"),
+    input = M.CreateStudioLifecycleConfigInput,
+    output = M.CreateStudioLifecycleConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrainingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateTrainingJob"),
+    input = M.CreateTrainingJobInput,
+    output = M.CreateTrainingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrainingPlan = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateTrainingPlan"),
+    input = M.CreateTrainingPlanInput,
+    output = M.CreateTrainingPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTransformJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateTransformJob"),
+    input = M.CreateTransformJobInput,
+    output = M.CreateTransformJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrial = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateTrial"),
+    input = M.CreateTrialInput,
+    output = M.CreateTrialOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrialComponent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateTrialComponent"),
+    input = M.CreateTrialComponentInput,
+    output = M.CreateTrialComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUserProfile = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateUserProfile"),
+    input = M.CreateUserProfileInput,
+    output = M.CreateUserProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkforce = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateWorkforce"),
+    input = M.CreateWorkforceInput,
+    output = M.CreateWorkforceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkteam = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateWorkteam"),
+    input = M.CreateWorkteamInput,
+    output = M.CreateWorkteamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAction = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteAction"),
+    input = M.DeleteActionInput,
+    output = M.DeleteActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAIBenchmarkJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteAIBenchmarkJob"),
+    input = M.DeleteAIBenchmarkJobInput,
+    output = M.DeleteAIBenchmarkJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAIRecommendationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteAIRecommendationJob"),
+    input = M.DeleteAIRecommendationJobInput,
+    output = M.DeleteAIRecommendationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAIWorkloadConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteAIWorkloadConfig"),
+    input = M.DeleteAIWorkloadConfigInput,
+    output = M.DeleteAIWorkloadConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAlgorithm = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteAlgorithm"),
+    input = M.DeleteAlgorithmInput,
+    output = M.DeleteAlgorithmOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApp = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteApp"),
+    input = M.DeleteAppInput,
+    output = M.DeleteAppOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppImageConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteAppImageConfig"),
+    input = M.DeleteAppImageConfigInput,
+    output = M.DeleteAppImageConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteArtifact = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteArtifact"),
+    input = M.DeleteArtifactInput,
+    output = M.DeleteArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssociation = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteAssociation"),
+    input = M.DeleteAssociationInput,
+    output = M.DeleteAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCluster = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteCluster"),
+    input = M.DeleteClusterInput,
+    output = M.DeleteClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteClusterSchedulerConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteClusterSchedulerConfig"),
+    input = M.DeleteClusterSchedulerConfigInput,
+    output = M.DeleteClusterSchedulerConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCodeRepository = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteCodeRepository"),
+    input = M.DeleteCodeRepositoryInput,
+    output = M.DeleteCodeRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCompilationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteCompilationJob"),
+    input = M.DeleteCompilationJobInput,
+    output = M.DeleteCompilationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteComputeQuota = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteComputeQuota"),
+    input = M.DeleteComputeQuotaInput,
+    output = M.DeleteComputeQuotaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContext = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteContext"),
+    input = M.DeleteContextInput,
+    output = M.DeleteContextOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataQualityJobDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteDataQualityJobDefinition"),
+    input = M.DeleteDataQualityJobDefinitionInput,
+    output = M.DeleteDataQualityJobDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDeviceFleet = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteDeviceFleet"),
+    input = M.DeleteDeviceFleetInput,
+    output = M.DeleteDeviceFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomain = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteDomain"),
+    input = M.DeleteDomainInput,
+    output = M.DeleteDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEdgeDeploymentPlan = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteEdgeDeploymentPlan"),
+    input = M.DeleteEdgeDeploymentPlanInput,
+    output = M.DeleteEdgeDeploymentPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEdgeDeploymentStage = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteEdgeDeploymentStage"),
+    input = M.DeleteEdgeDeploymentStageInput,
+    output = M.DeleteEdgeDeploymentStageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEndpoint = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteEndpoint"),
+    input = M.DeleteEndpointInput,
+    output = M.DeleteEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEndpointConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteEndpointConfig"),
+    input = M.DeleteEndpointConfigInput,
+    output = M.DeleteEndpointConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteExperiment = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteExperiment"),
+    input = M.DeleteExperimentInput,
+    output = M.DeleteExperimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFeatureGroup = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteFeatureGroup"),
+    input = M.DeleteFeatureGroupInput,
+    output = M.DeleteFeatureGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFlowDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteFlowDefinition"),
+    input = M.DeleteFlowDefinitionInput,
+    output = M.DeleteFlowDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHub = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteHub"),
+    input = M.DeleteHubInput,
+    output = M.DeleteHubOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHubContent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteHubContent"),
+    input = M.DeleteHubContentInput,
+    output = M.DeleteHubContentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHubContentReference = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteHubContentReference"),
+    input = M.DeleteHubContentReferenceInput,
+    output = M.DeleteHubContentReferenceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHumanTaskUi = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteHumanTaskUi"),
+    input = M.DeleteHumanTaskUiInput,
+    output = M.DeleteHumanTaskUiOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHyperParameterTuningJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteHyperParameterTuningJob"),
+    input = M.DeleteHyperParameterTuningJobInput,
+    output = M.DeleteHyperParameterTuningJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteImage = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteImage"),
+    input = M.DeleteImageInput,
+    output = M.DeleteImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteImageVersion = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteImageVersion"),
+    input = M.DeleteImageVersionInput,
+    output = M.DeleteImageVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInferenceComponent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteInferenceComponent"),
+    input = M.DeleteInferenceComponentInput,
+    output = M.DeleteInferenceComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInferenceExperiment = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteInferenceExperiment"),
+    input = M.DeleteInferenceExperimentInput,
+    output = M.DeleteInferenceExperimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMlflowApp = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteMlflowApp"),
+    input = M.DeleteMlflowAppInput,
+    output = M.DeleteMlflowAppOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMlflowTrackingServer = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteMlflowTrackingServer"),
+    input = M.DeleteMlflowTrackingServerInput,
+    output = M.DeleteMlflowTrackingServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteModel = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteModel"),
+    input = M.DeleteModelInput,
+    output = M.DeleteModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteModelBiasJobDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteModelBiasJobDefinition"),
+    input = M.DeleteModelBiasJobDefinitionInput,
+    output = M.DeleteModelBiasJobDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteModelCard = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteModelCard"),
+    input = M.DeleteModelCardInput,
+    output = M.DeleteModelCardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteModelExplainabilityJobDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteModelExplainabilityJobDefinition"),
+    input = M.DeleteModelExplainabilityJobDefinitionInput,
+    output = M.DeleteModelExplainabilityJobDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteModelPackage = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteModelPackage"),
+    input = M.DeleteModelPackageInput,
+    output = M.DeleteModelPackageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteModelPackageGroup = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteModelPackageGroup"),
+    input = M.DeleteModelPackageGroupInput,
+    output = M.DeleteModelPackageGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteModelPackageGroupPolicy = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteModelPackageGroupPolicy"),
+    input = M.DeleteModelPackageGroupPolicyInput,
+    output = M.DeleteModelPackageGroupPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteModelQualityJobDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteModelQualityJobDefinition"),
+    input = M.DeleteModelQualityJobDefinitionInput,
+    output = M.DeleteModelQualityJobDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMonitoringSchedule = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteMonitoringSchedule"),
+    input = M.DeleteMonitoringScheduleInput,
+    output = M.DeleteMonitoringScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNotebookInstance = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteNotebookInstance"),
+    input = M.DeleteNotebookInstanceInput,
+    output = M.DeleteNotebookInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNotebookInstanceLifecycleConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteNotebookInstanceLifecycleConfig"),
+    input = M.DeleteNotebookInstanceLifecycleConfigInput,
+    output = M.DeleteNotebookInstanceLifecycleConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOptimizationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteOptimizationJob"),
+    input = M.DeleteOptimizationJobInput,
+    output = M.DeleteOptimizationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePartnerApp = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeletePartnerApp"),
+    input = M.DeletePartnerAppInput,
+    output = M.DeletePartnerAppOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePipeline = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeletePipeline"),
+    input = M.DeletePipelineInput,
+    output = M.DeletePipelineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProcessingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteProcessingJob"),
+    input = M.DeleteProcessingJobInput,
+    output = M.DeleteProcessingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProject = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteProject"),
+    input = M.DeleteProjectInput,
+    output = M.DeleteProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSpace = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteSpace"),
+    input = M.DeleteSpaceInput,
+    output = M.DeleteSpaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStudioLifecycleConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteStudioLifecycleConfig"),
+    input = M.DeleteStudioLifecycleConfigInput,
+    output = M.DeleteStudioLifecycleConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTags = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteTags"),
+    input = M.DeleteTagsInput,
+    output = M.DeleteTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrainingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteTrainingJob"),
+    input = M.DeleteTrainingJobInput,
+    output = M.DeleteTrainingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrial = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteTrial"),
+    input = M.DeleteTrialInput,
+    output = M.DeleteTrialOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrialComponent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteTrialComponent"),
+    input = M.DeleteTrialComponentInput,
+    output = M.DeleteTrialComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserProfile = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteUserProfile"),
+    input = M.DeleteUserProfileInput,
+    output = M.DeleteUserProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkforce = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteWorkforce"),
+    input = M.DeleteWorkforceInput,
+    output = M.DeleteWorkforceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkteam = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteWorkteam"),
+    input = M.DeleteWorkteamInput,
+    output = M.DeleteWorkteamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterDevices = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeregisterDevices"),
+    input = M.DeregisterDevicesInput,
+    output = M.DeregisterDevicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAction = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeAction"),
+    input = M.DescribeActionInput,
+    output = M.DescribeActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAIBenchmarkJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeAIBenchmarkJob"),
+    input = M.DescribeAIBenchmarkJobInput,
+    output = M.DescribeAIBenchmarkJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAIRecommendationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeAIRecommendationJob"),
+    input = M.DescribeAIRecommendationJobInput,
+    output = M.DescribeAIRecommendationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAIWorkloadConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeAIWorkloadConfig"),
+    input = M.DescribeAIWorkloadConfigInput,
+    output = M.DescribeAIWorkloadConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAlgorithm = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeAlgorithm"),
+    input = M.DescribeAlgorithmInput,
+    output = M.DescribeAlgorithmOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApp = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeApp"),
+    input = M.DescribeAppInput,
+    output = M.DescribeAppOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppImageConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeAppImageConfig"),
+    input = M.DescribeAppImageConfigInput,
+    output = M.DescribeAppImageConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeArtifact = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeArtifact"),
+    input = M.DescribeArtifactInput,
+    output = M.DescribeArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAutoMLJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeAutoMLJob"),
+    input = M.DescribeAutoMLJobInput,
+    output = M.DescribeAutoMLJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAutoMLJobV2 = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeAutoMLJobV2"),
+    input = M.DescribeAutoMLJobV2Input,
+    output = M.DescribeAutoMLJobV2Output,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCluster = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeCluster"),
+    input = M.DescribeClusterInput,
+    output = M.DescribeClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClusterEvent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeClusterEvent"),
+    input = M.DescribeClusterEventInput,
+    output = M.DescribeClusterEventOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClusterNode = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeClusterNode"),
+    input = M.DescribeClusterNodeInput,
+    output = M.DescribeClusterNodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClusterSchedulerConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeClusterSchedulerConfig"),
+    input = M.DescribeClusterSchedulerConfigInput,
+    output = M.DescribeClusterSchedulerConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCodeRepository = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeCodeRepository"),
+    input = M.DescribeCodeRepositoryInput,
+    output = M.DescribeCodeRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCompilationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeCompilationJob"),
+    input = M.DescribeCompilationJobInput,
+    output = M.DescribeCompilationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeComputeQuota = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeComputeQuota"),
+    input = M.DescribeComputeQuotaInput,
+    output = M.DescribeComputeQuotaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContext = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeContext"),
+    input = M.DescribeContextInput,
+    output = M.DescribeContextOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataQualityJobDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeDataQualityJobDefinition"),
+    input = M.DescribeDataQualityJobDefinitionInput,
+    output = M.DescribeDataQualityJobDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDevice = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeDevice"),
+    input = M.DescribeDeviceInput,
+    output = M.DescribeDeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDeviceFleet = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeDeviceFleet"),
+    input = M.DescribeDeviceFleetInput,
+    output = M.DescribeDeviceFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomain = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeDomain"),
+    input = M.DescribeDomainInput,
+    output = M.DescribeDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEdgeDeploymentPlan = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeEdgeDeploymentPlan"),
+    input = M.DescribeEdgeDeploymentPlanInput,
+    output = M.DescribeEdgeDeploymentPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEdgePackagingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeEdgePackagingJob"),
+    input = M.DescribeEdgePackagingJobInput,
+    output = M.DescribeEdgePackagingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeEndpoint"),
+    input = M.DescribeEndpointInput,
+    output = M.DescribeEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEndpointConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeEndpointConfig"),
+    input = M.DescribeEndpointConfigInput,
+    output = M.DescribeEndpointConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExperiment = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeExperiment"),
+    input = M.DescribeExperimentInput,
+    output = M.DescribeExperimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFeatureGroup = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeFeatureGroup"),
+    input = M.DescribeFeatureGroupInput,
+    output = M.DescribeFeatureGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFeatureMetadata = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeFeatureMetadata"),
+    input = M.DescribeFeatureMetadataInput,
+    output = M.DescribeFeatureMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFlowDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeFlowDefinition"),
+    input = M.DescribeFlowDefinitionInput,
+    output = M.DescribeFlowDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHub = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeHub"),
+    input = M.DescribeHubInput,
+    output = M.DescribeHubOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHubContent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeHubContent"),
+    input = M.DescribeHubContentInput,
+    output = M.DescribeHubContentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHumanTaskUi = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeHumanTaskUi"),
+    input = M.DescribeHumanTaskUiInput,
+    output = M.DescribeHumanTaskUiOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHyperParameterTuningJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeHyperParameterTuningJob"),
+    input = M.DescribeHyperParameterTuningJobInput,
+    output = M.DescribeHyperParameterTuningJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImage = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeImage"),
+    input = M.DescribeImageInput,
+    output = M.DescribeImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImageVersion = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeImageVersion"),
+    input = M.DescribeImageVersionInput,
+    output = M.DescribeImageVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInferenceComponent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeInferenceComponent"),
+    input = M.DescribeInferenceComponentInput,
+    output = M.DescribeInferenceComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInferenceExperiment = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeInferenceExperiment"),
+    input = M.DescribeInferenceExperimentInput,
+    output = M.DescribeInferenceExperimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInferenceRecommendationsJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeInferenceRecommendationsJob"),
+    input = M.DescribeInferenceRecommendationsJobInput,
+    output = M.DescribeInferenceRecommendationsJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLabelingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeLabelingJob"),
+    input = M.DescribeLabelingJobInput,
+    output = M.DescribeLabelingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLineageGroup = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeLineageGroup"),
+    input = M.DescribeLineageGroupInput,
+    output = M.DescribeLineageGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMlflowApp = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeMlflowApp"),
+    input = M.DescribeMlflowAppInput,
+    output = M.DescribeMlflowAppOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMlflowTrackingServer = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeMlflowTrackingServer"),
+    input = M.DescribeMlflowTrackingServerInput,
+    output = M.DescribeMlflowTrackingServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeModel = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeModel"),
+    input = M.DescribeModelInput,
+    output = M.DescribeModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeModelBiasJobDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeModelBiasJobDefinition"),
+    input = M.DescribeModelBiasJobDefinitionInput,
+    output = M.DescribeModelBiasJobDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeModelCard = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeModelCard"),
+    input = M.DescribeModelCardInput,
+    output = M.DescribeModelCardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeModelCardExportJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeModelCardExportJob"),
+    input = M.DescribeModelCardExportJobInput,
+    output = M.DescribeModelCardExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeModelExplainabilityJobDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeModelExplainabilityJobDefinition"),
+    input = M.DescribeModelExplainabilityJobDefinitionInput,
+    output = M.DescribeModelExplainabilityJobDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeModelPackage = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeModelPackage"),
+    input = M.DescribeModelPackageInput,
+    output = M.DescribeModelPackageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeModelPackageGroup = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeModelPackageGroup"),
+    input = M.DescribeModelPackageGroupInput,
+    output = M.DescribeModelPackageGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeModelQualityJobDefinition = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeModelQualityJobDefinition"),
+    input = M.DescribeModelQualityJobDefinitionInput,
+    output = M.DescribeModelQualityJobDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMonitoringSchedule = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeMonitoringSchedule"),
+    input = M.DescribeMonitoringScheduleInput,
+    output = M.DescribeMonitoringScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNotebookInstance = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeNotebookInstance"),
+    input = M.DescribeNotebookInstanceInput,
+    output = M.DescribeNotebookInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNotebookInstanceLifecycleConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeNotebookInstanceLifecycleConfig"),
+    input = M.DescribeNotebookInstanceLifecycleConfigInput,
+    output = M.DescribeNotebookInstanceLifecycleConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOptimizationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeOptimizationJob"),
+    input = M.DescribeOptimizationJobInput,
+    output = M.DescribeOptimizationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePartnerApp = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribePartnerApp"),
+    input = M.DescribePartnerAppInput,
+    output = M.DescribePartnerAppOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePipeline = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribePipeline"),
+    input = M.DescribePipelineInput,
+    output = M.DescribePipelineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePipelineDefinitionForExecution = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribePipelineDefinitionForExecution"),
+    input = M.DescribePipelineDefinitionForExecutionInput,
+    output = M.DescribePipelineDefinitionForExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePipelineExecution = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribePipelineExecution"),
+    input = M.DescribePipelineExecutionInput,
+    output = M.DescribePipelineExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProcessingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeProcessingJob"),
+    input = M.DescribeProcessingJobInput,
+    output = M.DescribeProcessingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProject = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeProject"),
+    input = M.DescribeProjectInput,
+    output = M.DescribeProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReservedCapacity = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeReservedCapacity"),
+    input = M.DescribeReservedCapacityInput,
+    output = M.DescribeReservedCapacityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSpace = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeSpace"),
+    input = M.DescribeSpaceInput,
+    output = M.DescribeSpaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStudioLifecycleConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeStudioLifecycleConfig"),
+    input = M.DescribeStudioLifecycleConfigInput,
+    output = M.DescribeStudioLifecycleConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSubscribedWorkteam = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeSubscribedWorkteam"),
+    input = M.DescribeSubscribedWorkteamInput,
+    output = M.DescribeSubscribedWorkteamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrainingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeTrainingJob"),
+    input = M.DescribeTrainingJobInput,
+    output = M.DescribeTrainingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrainingPlan = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeTrainingPlan"),
+    input = M.DescribeTrainingPlanInput,
+    output = M.DescribeTrainingPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrainingPlanExtensionHistory = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeTrainingPlanExtensionHistory"),
+    input = M.DescribeTrainingPlanExtensionHistoryInput,
+    output = M.DescribeTrainingPlanExtensionHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTransformJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeTransformJob"),
+    input = M.DescribeTransformJobInput,
+    output = M.DescribeTransformJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrial = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeTrial"),
+    input = M.DescribeTrialInput,
+    output = M.DescribeTrialOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrialComponent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeTrialComponent"),
+    input = M.DescribeTrialComponentInput,
+    output = M.DescribeTrialComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUserProfile = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeUserProfile"),
+    input = M.DescribeUserProfileInput,
+    output = M.DescribeUserProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkforce = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeWorkforce"),
+    input = M.DescribeWorkforceInput,
+    output = M.DescribeWorkforceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkteam = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeWorkteam"),
+    input = M.DescribeWorkteamInput,
+    output = M.DescribeWorkteamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachClusterNodeVolume = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DetachClusterNodeVolume"),
+    input = M.DetachClusterNodeVolumeInput,
+    output = M.DetachClusterNodeVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableSagemakerServicecatalogPortfolio = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DisableSagemakerServicecatalogPortfolio"),
+    input = M.DisableSagemakerServicecatalogPortfolioInput,
+    output = M.DisableSagemakerServicecatalogPortfolioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateTrialComponent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DisassociateTrialComponent"),
+    input = M.DisassociateTrialComponentInput,
+    output = M.DisassociateTrialComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableSagemakerServicecatalogPortfolio = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "EnableSagemakerServicecatalogPortfolio"),
+    input = M.EnableSagemakerServicecatalogPortfolioInput,
+    output = M.EnableSagemakerServicecatalogPortfolioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExtendTrainingPlan = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ExtendTrainingPlan"),
+    input = M.ExtendTrainingPlanInput,
+    output = M.ExtendTrainingPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeviceFleetReport = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "GetDeviceFleetReport"),
+    input = M.GetDeviceFleetReportInput,
+    output = M.GetDeviceFleetReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLineageGroupPolicy = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "GetLineageGroupPolicy"),
+    input = M.GetLineageGroupPolicyInput,
+    output = M.GetLineageGroupPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetModelPackageGroupPolicy = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "GetModelPackageGroupPolicy"),
+    input = M.GetModelPackageGroupPolicyInput,
+    output = M.GetModelPackageGroupPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSagemakerServicecatalogPortfolioStatus = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "GetSagemakerServicecatalogPortfolioStatus"),
+    input = M.GetSagemakerServicecatalogPortfolioStatusInput,
+    output = M.GetSagemakerServicecatalogPortfolioStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetScalingConfigurationRecommendation = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "GetScalingConfigurationRecommendation"),
+    input = M.GetScalingConfigurationRecommendationInput,
+    output = M.GetScalingConfigurationRecommendationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSearchSuggestions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "GetSearchSuggestions"),
+    input = M.GetSearchSuggestionsInput,
+    output = M.GetSearchSuggestionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportHubContent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ImportHubContent"),
+    input = M.ImportHubContentInput,
+    output = M.ImportHubContentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListActions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListActions"),
+    input = M.ListActionsInput,
+    output = M.ListActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAIBenchmarkJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListAIBenchmarkJobs"),
+    input = M.ListAIBenchmarkJobsInput,
+    output = M.ListAIBenchmarkJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAIRecommendationJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListAIRecommendationJobs"),
+    input = M.ListAIRecommendationJobsInput,
+    output = M.ListAIRecommendationJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAIWorkloadConfigs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListAIWorkloadConfigs"),
+    input = M.ListAIWorkloadConfigsInput,
+    output = M.ListAIWorkloadConfigsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAlgorithms = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListAlgorithms"),
+    input = M.ListAlgorithmsInput,
+    output = M.ListAlgorithmsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAliases = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListAliases"),
+    input = M.ListAliasesInput,
+    output = M.ListAliasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppImageConfigs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListAppImageConfigs"),
+    input = M.ListAppImageConfigsInput,
+    output = M.ListAppImageConfigsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApps = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListApps"),
+    input = M.ListAppsInput,
+    output = M.ListAppsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListArtifacts = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListArtifacts"),
+    input = M.ListArtifactsInput,
+    output = M.ListArtifactsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociations = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListAssociations"),
+    input = M.ListAssociationsInput,
+    output = M.ListAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutoMLJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListAutoMLJobs"),
+    input = M.ListAutoMLJobsInput,
+    output = M.ListAutoMLJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCandidatesForAutoMLJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListCandidatesForAutoMLJob"),
+    input = M.ListCandidatesForAutoMLJobInput,
+    output = M.ListCandidatesForAutoMLJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusterEvents = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListClusterEvents"),
+    input = M.ListClusterEventsInput,
+    output = M.ListClusterEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusterNodes = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListClusterNodes"),
+    input = M.ListClusterNodesInput,
+    output = M.ListClusterNodesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusters = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListClusters"),
+    input = M.ListClustersInput,
+    output = M.ListClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusterSchedulerConfigs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListClusterSchedulerConfigs"),
+    input = M.ListClusterSchedulerConfigsInput,
+    output = M.ListClusterSchedulerConfigsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCodeRepositories = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListCodeRepositories"),
+    input = M.ListCodeRepositoriesInput,
+    output = M.ListCodeRepositoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCompilationJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListCompilationJobs"),
+    input = M.ListCompilationJobsInput,
+    output = M.ListCompilationJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComputeQuotas = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListComputeQuotas"),
+    input = M.ListComputeQuotasInput,
+    output = M.ListComputeQuotasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContexts = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListContexts"),
+    input = M.ListContextsInput,
+    output = M.ListContextsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataQualityJobDefinitions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListDataQualityJobDefinitions"),
+    input = M.ListDataQualityJobDefinitionsInput,
+    output = M.ListDataQualityJobDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeviceFleets = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListDeviceFleets"),
+    input = M.ListDeviceFleetsInput,
+    output = M.ListDeviceFleetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDevices = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListDevices"),
+    input = M.ListDevicesInput,
+    output = M.ListDevicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomains = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListDomains"),
+    input = M.ListDomainsInput,
+    output = M.ListDomainsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEdgeDeploymentPlans = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListEdgeDeploymentPlans"),
+    input = M.ListEdgeDeploymentPlansInput,
+    output = M.ListEdgeDeploymentPlansOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEdgePackagingJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListEdgePackagingJobs"),
+    input = M.ListEdgePackagingJobsInput,
+    output = M.ListEdgePackagingJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEndpointConfigs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListEndpointConfigs"),
+    input = M.ListEndpointConfigsInput,
+    output = M.ListEndpointConfigsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEndpoints = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListEndpoints"),
+    input = M.ListEndpointsInput,
+    output = M.ListEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExperiments = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListExperiments"),
+    input = M.ListExperimentsInput,
+    output = M.ListExperimentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFeatureGroups = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListFeatureGroups"),
+    input = M.ListFeatureGroupsInput,
+    output = M.ListFeatureGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlowDefinitions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListFlowDefinitions"),
+    input = M.ListFlowDefinitionsInput,
+    output = M.ListFlowDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHubContents = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListHubContents"),
+    input = M.ListHubContentsInput,
+    output = M.ListHubContentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHubContentVersions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListHubContentVersions"),
+    input = M.ListHubContentVersionsInput,
+    output = M.ListHubContentVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHubs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListHubs"),
+    input = M.ListHubsInput,
+    output = M.ListHubsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHumanTaskUis = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListHumanTaskUis"),
+    input = M.ListHumanTaskUisInput,
+    output = M.ListHumanTaskUisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHyperParameterTuningJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListHyperParameterTuningJobs"),
+    input = M.ListHyperParameterTuningJobsInput,
+    output = M.ListHyperParameterTuningJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImages = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListImages"),
+    input = M.ListImagesInput,
+    output = M.ListImagesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImageVersions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListImageVersions"),
+    input = M.ListImageVersionsInput,
+    output = M.ListImageVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInferenceComponents = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListInferenceComponents"),
+    input = M.ListInferenceComponentsInput,
+    output = M.ListInferenceComponentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInferenceExperiments = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListInferenceExperiments"),
+    input = M.ListInferenceExperimentsInput,
+    output = M.ListInferenceExperimentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInferenceRecommendationsJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListInferenceRecommendationsJobs"),
+    input = M.ListInferenceRecommendationsJobsInput,
+    output = M.ListInferenceRecommendationsJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInferenceRecommendationsJobSteps = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListInferenceRecommendationsJobSteps"),
+    input = M.ListInferenceRecommendationsJobStepsInput,
+    output = M.ListInferenceRecommendationsJobStepsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLabelingJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListLabelingJobs"),
+    input = M.ListLabelingJobsInput,
+    output = M.ListLabelingJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLabelingJobsForWorkteam = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListLabelingJobsForWorkteam"),
+    input = M.ListLabelingJobsForWorkteamInput,
+    output = M.ListLabelingJobsForWorkteamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLineageGroups = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListLineageGroups"),
+    input = M.ListLineageGroupsInput,
+    output = M.ListLineageGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMlflowApps = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListMlflowApps"),
+    input = M.ListMlflowAppsInput,
+    output = M.ListMlflowAppsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMlflowTrackingServers = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListMlflowTrackingServers"),
+    input = M.ListMlflowTrackingServersInput,
+    output = M.ListMlflowTrackingServersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModelBiasJobDefinitions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListModelBiasJobDefinitions"),
+    input = M.ListModelBiasJobDefinitionsInput,
+    output = M.ListModelBiasJobDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModelCardExportJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListModelCardExportJobs"),
+    input = M.ListModelCardExportJobsInput,
+    output = M.ListModelCardExportJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModelCards = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListModelCards"),
+    input = M.ListModelCardsInput,
+    output = M.ListModelCardsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModelCardVersions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListModelCardVersions"),
+    input = M.ListModelCardVersionsInput,
+    output = M.ListModelCardVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModelExplainabilityJobDefinitions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListModelExplainabilityJobDefinitions"),
+    input = M.ListModelExplainabilityJobDefinitionsInput,
+    output = M.ListModelExplainabilityJobDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModelMetadata = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListModelMetadata"),
+    input = M.ListModelMetadataInput,
+    output = M.ListModelMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModelPackageGroups = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListModelPackageGroups"),
+    input = M.ListModelPackageGroupsInput,
+    output = M.ListModelPackageGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModelPackages = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListModelPackages"),
+    input = M.ListModelPackagesInput,
+    output = M.ListModelPackagesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModelQualityJobDefinitions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListModelQualityJobDefinitions"),
+    input = M.ListModelQualityJobDefinitionsInput,
+    output = M.ListModelQualityJobDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModels = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListModels"),
+    input = M.ListModelsInput,
+    output = M.ListModelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMonitoringAlertHistory = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListMonitoringAlertHistory"),
+    input = M.ListMonitoringAlertHistoryInput,
+    output = M.ListMonitoringAlertHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMonitoringAlerts = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListMonitoringAlerts"),
+    input = M.ListMonitoringAlertsInput,
+    output = M.ListMonitoringAlertsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMonitoringExecutions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListMonitoringExecutions"),
+    input = M.ListMonitoringExecutionsInput,
+    output = M.ListMonitoringExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMonitoringSchedules = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListMonitoringSchedules"),
+    input = M.ListMonitoringSchedulesInput,
+    output = M.ListMonitoringSchedulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotebookInstanceLifecycleConfigs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListNotebookInstanceLifecycleConfigs"),
+    input = M.ListNotebookInstanceLifecycleConfigsInput,
+    output = M.ListNotebookInstanceLifecycleConfigsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotebookInstances = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListNotebookInstances"),
+    input = M.ListNotebookInstancesInput,
+    output = M.ListNotebookInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOptimizationJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListOptimizationJobs"),
+    input = M.ListOptimizationJobsInput,
+    output = M.ListOptimizationJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPartnerApps = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListPartnerApps"),
+    input = M.ListPartnerAppsInput,
+    output = M.ListPartnerAppsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPipelineExecutions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListPipelineExecutions"),
+    input = M.ListPipelineExecutionsInput,
+    output = M.ListPipelineExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPipelineExecutionSteps = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListPipelineExecutionSteps"),
+    input = M.ListPipelineExecutionStepsInput,
+    output = M.ListPipelineExecutionStepsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPipelineParametersForExecution = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListPipelineParametersForExecution"),
+    input = M.ListPipelineParametersForExecutionInput,
+    output = M.ListPipelineParametersForExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPipelines = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListPipelines"),
+    input = M.ListPipelinesInput,
+    output = M.ListPipelinesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPipelineVersions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListPipelineVersions"),
+    input = M.ListPipelineVersionsInput,
+    output = M.ListPipelineVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProcessingJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListProcessingJobs"),
+    input = M.ListProcessingJobsInput,
+    output = M.ListProcessingJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProjects = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListProjects"),
+    input = M.ListProjectsInput,
+    output = M.ListProjectsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceCatalogs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListResourceCatalogs"),
+    input = M.ListResourceCatalogsInput,
+    output = M.ListResourceCatalogsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSpaces = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListSpaces"),
+    input = M.ListSpacesInput,
+    output = M.ListSpacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStageDevices = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListStageDevices"),
+    input = M.ListStageDevicesInput,
+    output = M.ListStageDevicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStudioLifecycleConfigs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListStudioLifecycleConfigs"),
+    input = M.ListStudioLifecycleConfigsInput,
+    output = M.ListStudioLifecycleConfigsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubscribedWorkteams = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListSubscribedWorkteams"),
+    input = M.ListSubscribedWorkteamsInput,
+    output = M.ListSubscribedWorkteamsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTags = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListTags"),
+    input = M.ListTagsInput,
+    output = M.ListTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrainingJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListTrainingJobs"),
+    input = M.ListTrainingJobsInput,
+    output = M.ListTrainingJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrainingJobsForHyperParameterTuningJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListTrainingJobsForHyperParameterTuningJob"),
+    input = M.ListTrainingJobsForHyperParameterTuningJobInput,
+    output = M.ListTrainingJobsForHyperParameterTuningJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrainingPlans = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListTrainingPlans"),
+    input = M.ListTrainingPlansInput,
+    output = M.ListTrainingPlansOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTransformJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListTransformJobs"),
+    input = M.ListTransformJobsInput,
+    output = M.ListTransformJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrialComponents = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListTrialComponents"),
+    input = M.ListTrialComponentsInput,
+    output = M.ListTrialComponentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrials = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListTrials"),
+    input = M.ListTrialsInput,
+    output = M.ListTrialsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUltraServersByReservedCapacity = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListUltraServersByReservedCapacity"),
+    input = M.ListUltraServersByReservedCapacityInput,
+    output = M.ListUltraServersByReservedCapacityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUserProfiles = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListUserProfiles"),
+    input = M.ListUserProfilesInput,
+    output = M.ListUserProfilesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkforces = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListWorkforces"),
+    input = M.ListWorkforcesInput,
+    output = M.ListWorkforcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkteams = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListWorkteams"),
+    input = M.ListWorkteamsInput,
+    output = M.ListWorkteamsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutModelPackageGroupPolicy = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "PutModelPackageGroupPolicy"),
+    input = M.PutModelPackageGroupPolicyInput,
+    output = M.PutModelPackageGroupPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.QueryLineage = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "QueryLineage"),
+    input = M.QueryLineageInput,
+    output = M.QueryLineageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterDevices = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "RegisterDevices"),
+    input = M.RegisterDevicesInput,
+    output = M.RegisterDevicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RenderUiTemplate = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "RenderUiTemplate"),
+    input = M.RenderUiTemplateInput,
+    output = M.RenderUiTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetryPipelineExecution = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "RetryPipelineExecution"),
+    input = M.RetryPipelineExecutionInput,
+    output = M.RetryPipelineExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Search = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "Search"),
+    input = M.SearchInput,
+    output = M.SearchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchTrainingPlanOfferings = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "SearchTrainingPlanOfferings"),
+    input = M.SearchTrainingPlanOfferingsInput,
+    output = M.SearchTrainingPlanOfferingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendPipelineExecutionStepFailure = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "SendPipelineExecutionStepFailure"),
+    input = M.SendPipelineExecutionStepFailureInput,
+    output = M.SendPipelineExecutionStepFailureOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendPipelineExecutionStepSuccess = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "SendPipelineExecutionStepSuccess"),
+    input = M.SendPipelineExecutionStepSuccessInput,
+    output = M.SendPipelineExecutionStepSuccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartClusterHealthCheck = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StartClusterHealthCheck"),
+    input = M.StartClusterHealthCheckInput,
+    output = M.StartClusterHealthCheckOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartEdgeDeploymentStage = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StartEdgeDeploymentStage"),
+    input = M.StartEdgeDeploymentStageInput,
+    output = M.StartEdgeDeploymentStageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartInferenceExperiment = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StartInferenceExperiment"),
+    input = M.StartInferenceExperimentInput,
+    output = M.StartInferenceExperimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMlflowTrackingServer = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StartMlflowTrackingServer"),
+    input = M.StartMlflowTrackingServerInput,
+    output = M.StartMlflowTrackingServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMonitoringSchedule = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StartMonitoringSchedule"),
+    input = M.StartMonitoringScheduleInput,
+    output = M.StartMonitoringScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartNotebookInstance = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StartNotebookInstance"),
+    input = M.StartNotebookInstanceInput,
+    output = M.StartNotebookInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartPipelineExecution = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StartPipelineExecution"),
+    input = M.StartPipelineExecutionInput,
+    output = M.StartPipelineExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSession = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StartSession"),
+    input = M.StartSessionInput,
+    output = M.StartSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopAIBenchmarkJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopAIBenchmarkJob"),
+    input = M.StopAIBenchmarkJobInput,
+    output = M.StopAIBenchmarkJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopAIRecommendationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopAIRecommendationJob"),
+    input = M.StopAIRecommendationJobInput,
+    output = M.StopAIRecommendationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopAutoMLJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopAutoMLJob"),
+    input = M.StopAutoMLJobInput,
+    output = M.StopAutoMLJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopCompilationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopCompilationJob"),
+    input = M.StopCompilationJobInput,
+    output = M.StopCompilationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopEdgeDeploymentStage = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopEdgeDeploymentStage"),
+    input = M.StopEdgeDeploymentStageInput,
+    output = M.StopEdgeDeploymentStageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopEdgePackagingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopEdgePackagingJob"),
+    input = M.StopEdgePackagingJobInput,
+    output = M.StopEdgePackagingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopHyperParameterTuningJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopHyperParameterTuningJob"),
+    input = M.StopHyperParameterTuningJobInput,
+    output = M.StopHyperParameterTuningJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopInferenceExperiment = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopInferenceExperiment"),
+    input = M.StopInferenceExperimentInput,
+    output = M.StopInferenceExperimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopInferenceRecommendationsJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopInferenceRecommendationsJob"),
+    input = M.StopInferenceRecommendationsJobInput,
+    output = M.StopInferenceRecommendationsJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopLabelingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopLabelingJob"),
+    input = M.StopLabelingJobInput,
+    output = M.StopLabelingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopMlflowTrackingServer = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopMlflowTrackingServer"),
+    input = M.StopMlflowTrackingServerInput,
+    output = M.StopMlflowTrackingServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopMonitoringSchedule = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopMonitoringSchedule"),
+    input = M.StopMonitoringScheduleInput,
+    output = M.StopMonitoringScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopNotebookInstance = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopNotebookInstance"),
+    input = M.StopNotebookInstanceInput,
+    output = M.StopNotebookInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopOptimizationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopOptimizationJob"),
+    input = M.StopOptimizationJobInput,
+    output = M.StopOptimizationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopPipelineExecution = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopPipelineExecution"),
+    input = M.StopPipelineExecutionInput,
+    output = M.StopPipelineExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopProcessingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopProcessingJob"),
+    input = M.StopProcessingJobInput,
+    output = M.StopProcessingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopTrainingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopTrainingJob"),
+    input = M.StopTrainingJobInput,
+    output = M.StopTrainingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopTransformJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopTransformJob"),
+    input = M.StopTransformJobInput,
+    output = M.StopTransformJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAction = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateAction"),
+    input = M.UpdateActionInput,
+    output = M.UpdateActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAppImageConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateAppImageConfig"),
+    input = M.UpdateAppImageConfigInput,
+    output = M.UpdateAppImageConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateArtifact = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateArtifact"),
+    input = M.UpdateArtifactInput,
+    output = M.UpdateArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCluster = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateCluster"),
+    input = M.UpdateClusterInput,
+    output = M.UpdateClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateClusterSchedulerConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateClusterSchedulerConfig"),
+    input = M.UpdateClusterSchedulerConfigInput,
+    output = M.UpdateClusterSchedulerConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateClusterSoftware = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateClusterSoftware"),
+    input = M.UpdateClusterSoftwareInput,
+    output = M.UpdateClusterSoftwareOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCodeRepository = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateCodeRepository"),
+    input = M.UpdateCodeRepositoryInput,
+    output = M.UpdateCodeRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateComputeQuota = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateComputeQuota"),
+    input = M.UpdateComputeQuotaInput,
+    output = M.UpdateComputeQuotaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContext = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateContext"),
+    input = M.UpdateContextInput,
+    output = M.UpdateContextOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDeviceFleet = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateDeviceFleet"),
+    input = M.UpdateDeviceFleetInput,
+    output = M.UpdateDeviceFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDevices = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateDevices"),
+    input = M.UpdateDevicesInput,
+    output = M.UpdateDevicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomain = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateDomain"),
+    input = M.UpdateDomainInput,
+    output = M.UpdateDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEndpoint = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateEndpoint"),
+    input = M.UpdateEndpointInput,
+    output = M.UpdateEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEndpointWeightsAndCapacities = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateEndpointWeightsAndCapacities"),
+    input = M.UpdateEndpointWeightsAndCapacitiesInput,
+    output = M.UpdateEndpointWeightsAndCapacitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateExperiment = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateExperiment"),
+    input = M.UpdateExperimentInput,
+    output = M.UpdateExperimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFeatureGroup = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateFeatureGroup"),
+    input = M.UpdateFeatureGroupInput,
+    output = M.UpdateFeatureGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFeatureMetadata = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateFeatureMetadata"),
+    input = M.UpdateFeatureMetadataInput,
+    output = M.UpdateFeatureMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHub = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateHub"),
+    input = M.UpdateHubInput,
+    output = M.UpdateHubOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHubContent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateHubContent"),
+    input = M.UpdateHubContentInput,
+    output = M.UpdateHubContentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHubContentReference = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateHubContentReference"),
+    input = M.UpdateHubContentReferenceInput,
+    output = M.UpdateHubContentReferenceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateImage = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateImage"),
+    input = M.UpdateImageInput,
+    output = M.UpdateImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateImageVersion = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateImageVersion"),
+    input = M.UpdateImageVersionInput,
+    output = M.UpdateImageVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInferenceComponent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateInferenceComponent"),
+    input = M.UpdateInferenceComponentInput,
+    output = M.UpdateInferenceComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInferenceComponentRuntimeConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateInferenceComponentRuntimeConfig"),
+    input = M.UpdateInferenceComponentRuntimeConfigInput,
+    output = M.UpdateInferenceComponentRuntimeConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInferenceExperiment = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateInferenceExperiment"),
+    input = M.UpdateInferenceExperimentInput,
+    output = M.UpdateInferenceExperimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMlflowApp = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateMlflowApp"),
+    input = M.UpdateMlflowAppInput,
+    output = M.UpdateMlflowAppOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMlflowTrackingServer = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateMlflowTrackingServer"),
+    input = M.UpdateMlflowTrackingServerInput,
+    output = M.UpdateMlflowTrackingServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateModelCard = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateModelCard"),
+    input = M.UpdateModelCardInput,
+    output = M.UpdateModelCardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateModelPackage = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateModelPackage"),
+    input = M.UpdateModelPackageInput,
+    output = M.UpdateModelPackageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMonitoringAlert = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateMonitoringAlert"),
+    input = M.UpdateMonitoringAlertInput,
+    output = M.UpdateMonitoringAlertOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMonitoringSchedule = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateMonitoringSchedule"),
+    input = M.UpdateMonitoringScheduleInput,
+    output = M.UpdateMonitoringScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNotebookInstance = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateNotebookInstance"),
+    input = M.UpdateNotebookInstanceInput,
+    output = M.UpdateNotebookInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNotebookInstanceLifecycleConfig = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateNotebookInstanceLifecycleConfig"),
+    input = M.UpdateNotebookInstanceLifecycleConfigInput,
+    output = M.UpdateNotebookInstanceLifecycleConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePartnerApp = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdatePartnerApp"),
+    input = M.UpdatePartnerAppInput,
+    output = M.UpdatePartnerAppOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePipeline = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdatePipeline"),
+    input = M.UpdatePipelineInput,
+    output = M.UpdatePipelineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePipelineExecution = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdatePipelineExecution"),
+    input = M.UpdatePipelineExecutionInput,
+    output = M.UpdatePipelineExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePipelineVersion = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdatePipelineVersion"),
+    input = M.UpdatePipelineVersionInput,
+    output = M.UpdatePipelineVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProject = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateProject"),
+    input = M.UpdateProjectInput,
+    output = M.UpdateProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSpace = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateSpace"),
+    input = M.UpdateSpaceInput,
+    output = M.UpdateSpaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrainingJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateTrainingJob"),
+    input = M.UpdateTrainingJobInput,
+    output = M.UpdateTrainingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrial = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateTrial"),
+    input = M.UpdateTrialInput,
+    output = M.UpdateTrialOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrialComponent = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateTrialComponent"),
+    input = M.UpdateTrialComponentInput,
+    output = M.UpdateTrialComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserProfile = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateUserProfile"),
+    input = M.UpdateUserProfileInput,
+    output = M.UpdateUserProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkforce = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateWorkforce"),
+    input = M.UpdateWorkforceInput,
+    output = M.UpdateWorkforceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkteam = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateWorkteam"),
+    input = M.UpdateWorkteamInput,
+    output = M.UpdateWorkteamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

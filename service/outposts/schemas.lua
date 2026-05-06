@@ -3453,4 +3453,458 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.outposts", "OutpostsOlafService"),
+    version = "2019-12-03",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelCapacityTask = schema.operation({
+    id = id.from("com.amazonaws.outposts", "CancelCapacityTask"),
+    input = M.CancelCapacityTaskInput,
+    output = M.CancelCapacityTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/outposts/{OutpostIdentifier}/capacity/{CapacityTaskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelOrder = schema.operation({
+    id = id.from("com.amazonaws.outposts", "CancelOrder"),
+    input = M.CancelOrderInput,
+    output = M.CancelOrderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/orders/{OrderId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOrder = schema.operation({
+    id = id.from("com.amazonaws.outposts", "CreateOrder"),
+    input = M.CreateOrderInput,
+    output = M.CreateOrderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/orders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOutpost = schema.operation({
+    id = id.from("com.amazonaws.outposts", "CreateOutpost"),
+    input = M.CreateOutpostInput,
+    output = M.CreateOutpostOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/outposts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRenewal = schema.operation({
+    id = id.from("com.amazonaws.outposts", "CreateRenewal"),
+    input = M.CreateRenewalInput,
+    output = M.CreateRenewalOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/renewals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSite = schema.operation({
+    id = id.from("com.amazonaws.outposts", "CreateSite"),
+    input = M.CreateSiteInput,
+    output = M.CreateSiteOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sites" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOutpost = schema.operation({
+    id = id.from("com.amazonaws.outposts", "DeleteOutpost"),
+    input = M.DeleteOutpostInput,
+    output = M.DeleteOutpostOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/outposts/{OutpostId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSite = schema.operation({
+    id = id.from("com.amazonaws.outposts", "DeleteSite"),
+    input = M.DeleteSiteInput,
+    output = M.DeleteSiteOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sites/{SiteId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCapacityTask = schema.operation({
+    id = id.from("com.amazonaws.outposts", "GetCapacityTask"),
+    input = M.GetCapacityTaskInput,
+    output = M.GetCapacityTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/outposts/{OutpostIdentifier}/capacity/{CapacityTaskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCatalogItem = schema.operation({
+    id = id.from("com.amazonaws.outposts", "GetCatalogItem"),
+    input = M.GetCatalogItemInput,
+    output = M.GetCatalogItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/catalog/item/{CatalogItemId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnection = schema.operation({
+    id = id.from("com.amazonaws.outposts", "GetConnection"),
+    input = M.GetConnectionInput,
+    output = M.GetConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connections/{ConnectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOrder = schema.operation({
+    id = id.from("com.amazonaws.outposts", "GetOrder"),
+    input = M.GetOrderInput,
+    output = M.GetOrderOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/orders/{OrderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOutpost = schema.operation({
+    id = id.from("com.amazonaws.outposts", "GetOutpost"),
+    input = M.GetOutpostInput,
+    output = M.GetOutpostOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/outposts/{OutpostId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOutpostBillingInformation = schema.operation({
+    id = id.from("com.amazonaws.outposts", "GetOutpostBillingInformation"),
+    input = M.GetOutpostBillingInformationInput,
+    output = M.GetOutpostBillingInformationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/outpost/{OutpostIdentifier}/billing-information" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOutpostInstanceTypes = schema.operation({
+    id = id.from("com.amazonaws.outposts", "GetOutpostInstanceTypes"),
+    input = M.GetOutpostInstanceTypesInput,
+    output = M.GetOutpostInstanceTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/outposts/{OutpostId}/instanceTypes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOutpostSupportedInstanceTypes = schema.operation({
+    id = id.from("com.amazonaws.outposts", "GetOutpostSupportedInstanceTypes"),
+    input = M.GetOutpostSupportedInstanceTypesInput,
+    output = M.GetOutpostSupportedInstanceTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/outposts/{OutpostIdentifier}/supportedInstanceTypes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRenewalPricing = schema.operation({
+    id = id.from("com.amazonaws.outposts", "GetRenewalPricing"),
+    input = M.GetRenewalPricingInput,
+    output = M.GetRenewalPricingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/outpost/{OutpostIdentifier}/renewal-pricing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSite = schema.operation({
+    id = id.from("com.amazonaws.outposts", "GetSite"),
+    input = M.GetSiteInput,
+    output = M.GetSiteOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sites/{SiteId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSiteAddress = schema.operation({
+    id = id.from("com.amazonaws.outposts", "GetSiteAddress"),
+    input = M.GetSiteAddressInput,
+    output = M.GetSiteAddressOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sites/{SiteId}/address" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetInstances = schema.operation({
+    id = id.from("com.amazonaws.outposts", "ListAssetInstances"),
+    input = M.ListAssetInstancesInput,
+    output = M.ListAssetInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/outposts/{OutpostIdentifier}/assetInstances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssets = schema.operation({
+    id = id.from("com.amazonaws.outposts", "ListAssets"),
+    input = M.ListAssetsInput,
+    output = M.ListAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/outposts/{OutpostIdentifier}/assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBlockingInstancesForCapacityTask = schema.operation({
+    id = id.from("com.amazonaws.outposts", "ListBlockingInstancesForCapacityTask"),
+    input = M.ListBlockingInstancesForCapacityTaskInput,
+    output = M.ListBlockingInstancesForCapacityTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/outposts/{OutpostIdentifier}/capacity/{CapacityTaskId}/blockingInstances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCapacityTasks = schema.operation({
+    id = id.from("com.amazonaws.outposts", "ListCapacityTasks"),
+    input = M.ListCapacityTasksInput,
+    output = M.ListCapacityTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/capacity/tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCatalogItems = schema.operation({
+    id = id.from("com.amazonaws.outposts", "ListCatalogItems"),
+    input = M.ListCatalogItemsInput,
+    output = M.ListCatalogItemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/catalog/items" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOrders = schema.operation({
+    id = id.from("com.amazonaws.outposts", "ListOrders"),
+    input = M.ListOrdersInput,
+    output = M.ListOrdersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/list-orders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOutposts = schema.operation({
+    id = id.from("com.amazonaws.outposts", "ListOutposts"),
+    input = M.ListOutpostsInput,
+    output = M.ListOutpostsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/outposts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSites = schema.operation({
+    id = id.from("com.amazonaws.outposts", "ListSites"),
+    input = M.ListSitesInput,
+    output = M.ListSitesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sites" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.outposts", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCapacityTask = schema.operation({
+    id = id.from("com.amazonaws.outposts", "StartCapacityTask"),
+    input = M.StartCapacityTaskInput,
+    output = M.StartCapacityTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/outposts/{OutpostIdentifier}/capacity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartConnection = schema.operation({
+    id = id.from("com.amazonaws.outposts", "StartConnection"),
+    input = M.StartConnectionInput,
+    output = M.StartConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartOutpostDecommission = schema.operation({
+    id = id.from("com.amazonaws.outposts", "StartOutpostDecommission"),
+    input = M.StartOutpostDecommissionInput,
+    output = M.StartOutpostDecommissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/outposts/{OutpostIdentifier}/decommission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.outposts", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.outposts", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOutpost = schema.operation({
+    id = id.from("com.amazonaws.outposts", "UpdateOutpost"),
+    input = M.UpdateOutpostInput,
+    output = M.UpdateOutpostOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/outposts/{OutpostId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSite = schema.operation({
+    id = id.from("com.amazonaws.outposts", "UpdateSite"),
+    input = M.UpdateSiteInput,
+    output = M.UpdateSiteOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/sites/{SiteId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSiteAddress = schema.operation({
+    id = id.from("com.amazonaws.outposts", "UpdateSiteAddress"),
+    input = M.UpdateSiteAddressInput,
+    output = M.UpdateSiteAddressOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sites/{SiteId}/address" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSiteRackPhysicalProperties = schema.operation({
+    id = id.from("com.amazonaws.outposts", "UpdateSiteRackPhysicalProperties"),
+    input = M.UpdateSiteRackPhysicalPropertiesInput,
+    output = M.UpdateSiteRackPhysicalPropertiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/sites/{SiteId}/rackPhysicalProperties" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

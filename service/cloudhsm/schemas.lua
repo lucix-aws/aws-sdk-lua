@@ -1151,4 +1151,234 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cloudhsm", "CloudHsmFrontendService"),
+    version = "2014-05-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTagsToResource = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "AddTagsToResource"),
+    input = M.AddTagsToResourceInput,
+    output = M.AddTagsToResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHapg = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "CreateHapg"),
+    input = M.CreateHapgInput,
+    output = M.CreateHapgOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHsm = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "CreateHsm"),
+    input = M.CreateHsmInput,
+    output = M.CreateHsmOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLunaClient = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "CreateLunaClient"),
+    input = M.CreateLunaClientInput,
+    output = M.CreateLunaClientOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHapg = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "DeleteHapg"),
+    input = M.DeleteHapgInput,
+    output = M.DeleteHapgOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHsm = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "DeleteHsm"),
+    input = M.DeleteHsmInput,
+    output = M.DeleteHsmOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLunaClient = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "DeleteLunaClient"),
+    input = M.DeleteLunaClientInput,
+    output = M.DeleteLunaClientOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHapg = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "DescribeHapg"),
+    input = M.DescribeHapgInput,
+    output = M.DescribeHapgOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHsm = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "DescribeHsm"),
+    input = M.DescribeHsmInput,
+    output = M.DescribeHsmOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLunaClient = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "DescribeLunaClient"),
+    input = M.DescribeLunaClientInput,
+    output = M.DescribeLunaClientOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "GetConfig"),
+    input = M.GetConfigInput,
+    output = M.GetConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAvailableZones = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "ListAvailableZones"),
+    input = M.ListAvailableZonesInput,
+    output = M.ListAvailableZonesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHapgs = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "ListHapgs"),
+    input = M.ListHapgsInput,
+    output = M.ListHapgsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHsms = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "ListHsms"),
+    input = M.ListHsmsInput,
+    output = M.ListHsmsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLunaClients = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "ListLunaClients"),
+    input = M.ListLunaClientsInput,
+    output = M.ListLunaClientsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyHapg = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "ModifyHapg"),
+    input = M.ModifyHapgInput,
+    output = M.ModifyHapgOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyHsm = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "ModifyHsm"),
+    input = M.ModifyHsmInput,
+    output = M.ModifyHsmOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyLunaClient = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "ModifyLunaClient"),
+    input = M.ModifyLunaClientInput,
+    output = M.ModifyLunaClientOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTagsFromResource = schema.operation({
+    id = id.from("com.amazonaws.cloudhsm", "RemoveTagsFromResource"),
+    input = M.RemoveTagsFromResourceInput,
+    output = M.RemoveTagsFromResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -18501,4 +18501,2018 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cloudfront", "Cloudfront2020_05_31"),
+    version = "2020-05-31",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAlias = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "AssociateAlias"),
+    input = M.AssociateAliasInput,
+    output = M.AssociateAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/distribution/{TargetDistributionId}/associate-alias" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateDistributionTenantWebACL = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "AssociateDistributionTenantWebACL"),
+    input = M.AssociateDistributionTenantWebACLInput,
+    output = M.AssociateDistributionTenantWebACLOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/distribution-tenant/{Id}/associate-web-acl" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateDistributionWebACL = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "AssociateDistributionWebACL"),
+    input = M.AssociateDistributionWebACLInput,
+    output = M.AssociateDistributionWebACLOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/distribution/{Id}/associate-web-acl" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyDistribution = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CopyDistribution"),
+    input = M.CopyDistributionInput,
+    output = M.CopyDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/distribution/{PrimaryDistributionId}/copy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAnycastIpList = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateAnycastIpList"),
+    input = M.CreateAnycastIpListInput,
+    output = M.CreateAnycastIpListOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/anycast-ip-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCachePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateCachePolicy"),
+    input = M.CreateCachePolicyInput,
+    output = M.CreateCachePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/cache-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCloudFrontOriginAccessIdentity = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateCloudFrontOriginAccessIdentity"),
+    input = M.CreateCloudFrontOriginAccessIdentityInput,
+    output = M.CreateCloudFrontOriginAccessIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/origin-access-identity/cloudfront" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnectionFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateConnectionFunction"),
+    input = M.CreateConnectionFunctionInput,
+    output = M.CreateConnectionFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/connection-function" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnectionGroup = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateConnectionGroup"),
+    input = M.CreateConnectionGroupInput,
+    output = M.CreateConnectionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/connection-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContinuousDeploymentPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateContinuousDeploymentPolicy"),
+    input = M.CreateContinuousDeploymentPolicyInput,
+    output = M.CreateContinuousDeploymentPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/continuous-deployment-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDistribution = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateDistribution"),
+    input = M.CreateDistributionInput,
+    output = M.CreateDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/distribution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDistributionTenant = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateDistributionTenant"),
+    input = M.CreateDistributionTenantInput,
+    output = M.CreateDistributionTenantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/distribution-tenant" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDistributionWithTags = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateDistributionWithTags"),
+    input = M.CreateDistributionWithTagsInput,
+    output = M.CreateDistributionWithTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/distribution?WithTags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFieldLevelEncryptionConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateFieldLevelEncryptionConfig"),
+    input = M.CreateFieldLevelEncryptionConfigInput,
+    output = M.CreateFieldLevelEncryptionConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/field-level-encryption" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFieldLevelEncryptionProfile = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateFieldLevelEncryptionProfile"),
+    input = M.CreateFieldLevelEncryptionProfileInput,
+    output = M.CreateFieldLevelEncryptionProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/field-level-encryption-profile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateFunction"),
+    input = M.CreateFunctionInput,
+    output = M.CreateFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/function" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInvalidation = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateInvalidation"),
+    input = M.CreateInvalidationInput,
+    output = M.CreateInvalidationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/distribution/{DistributionId}/invalidation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInvalidationForDistributionTenant = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateInvalidationForDistributionTenant"),
+    input = M.CreateInvalidationForDistributionTenantInput,
+    output = M.CreateInvalidationForDistributionTenantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/distribution-tenant/{Id}/invalidation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKeyGroup = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateKeyGroup"),
+    input = M.CreateKeyGroupInput,
+    output = M.CreateKeyGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/key-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKeyValueStore = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateKeyValueStore"),
+    input = M.CreateKeyValueStoreInput,
+    output = M.CreateKeyValueStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/key-value-store" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMonitoringSubscription = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateMonitoringSubscription"),
+    input = M.CreateMonitoringSubscriptionInput,
+    output = M.CreateMonitoringSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/distributions/{DistributionId}/monitoring-subscription" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOriginAccessControl = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateOriginAccessControl"),
+    input = M.CreateOriginAccessControlInput,
+    output = M.CreateOriginAccessControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/origin-access-control" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOriginRequestPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateOriginRequestPolicy"),
+    input = M.CreateOriginRequestPolicyInput,
+    output = M.CreateOriginRequestPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/origin-request-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePublicKey = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreatePublicKey"),
+    input = M.CreatePublicKeyInput,
+    output = M.CreatePublicKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/public-key" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRealtimeLogConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateRealtimeLogConfig"),
+    input = M.CreateRealtimeLogConfigInput,
+    output = M.CreateRealtimeLogConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/realtime-log-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResponseHeadersPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateResponseHeadersPolicy"),
+    input = M.CreateResponseHeadersPolicyInput,
+    output = M.CreateResponseHeadersPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/response-headers-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStreamingDistribution = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateStreamingDistribution"),
+    input = M.CreateStreamingDistributionInput,
+    output = M.CreateStreamingDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/streaming-distribution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStreamingDistributionWithTags = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateStreamingDistributionWithTags"),
+    input = M.CreateStreamingDistributionWithTagsInput,
+    output = M.CreateStreamingDistributionWithTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/streaming-distribution?WithTags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrustStore = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateTrustStore"),
+    input = M.CreateTrustStoreInput,
+    output = M.CreateTrustStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/trust-store" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVpcOrigin = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "CreateVpcOrigin"),
+    input = M.CreateVpcOriginInput,
+    output = M.CreateVpcOriginOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/vpc-origin" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAnycastIpList = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteAnycastIpList"),
+    input = M.DeleteAnycastIpListInput,
+    output = M.DeleteAnycastIpListOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/anycast-ip-list/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCachePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteCachePolicy"),
+    input = M.DeleteCachePolicyInput,
+    output = M.DeleteCachePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/cache-policy/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCloudFrontOriginAccessIdentity = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteCloudFrontOriginAccessIdentity"),
+    input = M.DeleteCloudFrontOriginAccessIdentityInput,
+    output = M.DeleteCloudFrontOriginAccessIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/origin-access-identity/cloudfront/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnectionFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteConnectionFunction"),
+    input = M.DeleteConnectionFunctionInput,
+    output = M.DeleteConnectionFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/connection-function/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnectionGroup = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteConnectionGroup"),
+    input = M.DeleteConnectionGroupInput,
+    output = M.DeleteConnectionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/connection-group/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContinuousDeploymentPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteContinuousDeploymentPolicy"),
+    input = M.DeleteContinuousDeploymentPolicyInput,
+    output = M.DeleteContinuousDeploymentPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/continuous-deployment-policy/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDistribution = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteDistribution"),
+    input = M.DeleteDistributionInput,
+    output = M.DeleteDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/distribution/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDistributionTenant = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteDistributionTenant"),
+    input = M.DeleteDistributionTenantInput,
+    output = M.DeleteDistributionTenantOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/distribution-tenant/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFieldLevelEncryptionConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteFieldLevelEncryptionConfig"),
+    input = M.DeleteFieldLevelEncryptionConfigInput,
+    output = M.DeleteFieldLevelEncryptionConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/field-level-encryption/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFieldLevelEncryptionProfile = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteFieldLevelEncryptionProfile"),
+    input = M.DeleteFieldLevelEncryptionProfileInput,
+    output = M.DeleteFieldLevelEncryptionProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/field-level-encryption-profile/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteFunction"),
+    input = M.DeleteFunctionInput,
+    output = M.DeleteFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/function/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKeyGroup = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteKeyGroup"),
+    input = M.DeleteKeyGroupInput,
+    output = M.DeleteKeyGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/key-group/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKeyValueStore = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteKeyValueStore"),
+    input = M.DeleteKeyValueStoreInput,
+    output = M.DeleteKeyValueStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/key-value-store/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMonitoringSubscription = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteMonitoringSubscription"),
+    input = M.DeleteMonitoringSubscriptionInput,
+    output = M.DeleteMonitoringSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/distributions/{DistributionId}/monitoring-subscription" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOriginAccessControl = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteOriginAccessControl"),
+    input = M.DeleteOriginAccessControlInput,
+    output = M.DeleteOriginAccessControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/origin-access-control/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOriginRequestPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteOriginRequestPolicy"),
+    input = M.DeleteOriginRequestPolicyInput,
+    output = M.DeleteOriginRequestPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/origin-request-policy/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePublicKey = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeletePublicKey"),
+    input = M.DeletePublicKeyInput,
+    output = M.DeletePublicKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/public-key/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRealtimeLogConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteRealtimeLogConfig"),
+    input = M.DeleteRealtimeLogConfigInput,
+    output = M.DeleteRealtimeLogConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/delete-realtime-log-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/delete-resource-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResponseHeadersPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteResponseHeadersPolicy"),
+    input = M.DeleteResponseHeadersPolicyInput,
+    output = M.DeleteResponseHeadersPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/response-headers-policy/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStreamingDistribution = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteStreamingDistribution"),
+    input = M.DeleteStreamingDistributionInput,
+    output = M.DeleteStreamingDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/streaming-distribution/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrustStore = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteTrustStore"),
+    input = M.DeleteTrustStoreInput,
+    output = M.DeleteTrustStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/trust-store/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVpcOrigin = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DeleteVpcOrigin"),
+    input = M.DeleteVpcOriginInput,
+    output = M.DeleteVpcOriginOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-05-31/vpc-origin/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnectionFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DescribeConnectionFunction"),
+    input = M.DescribeConnectionFunctionInput,
+    output = M.DescribeConnectionFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/connection-function/{Identifier}/describe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DescribeFunction"),
+    input = M.DescribeFunctionInput,
+    output = M.DescribeFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/function/{Name}/describe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeKeyValueStore = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DescribeKeyValueStore"),
+    input = M.DescribeKeyValueStoreInput,
+    output = M.DescribeKeyValueStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/key-value-store/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateDistributionTenantWebACL = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DisassociateDistributionTenantWebACL"),
+    input = M.DisassociateDistributionTenantWebACLInput,
+    output = M.DisassociateDistributionTenantWebACLOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/distribution-tenant/{Id}/disassociate-web-acl" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateDistributionWebACL = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "DisassociateDistributionWebACL"),
+    input = M.DisassociateDistributionWebACLInput,
+    output = M.DisassociateDistributionWebACLOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/distribution/{Id}/disassociate-web-acl" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAnycastIpList = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetAnycastIpList"),
+    input = M.GetAnycastIpListInput,
+    output = M.GetAnycastIpListOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/anycast-ip-list/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCachePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetCachePolicy"),
+    input = M.GetCachePolicyInput,
+    output = M.GetCachePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/cache-policy/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCachePolicyConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetCachePolicyConfig"),
+    input = M.GetCachePolicyConfigInput,
+    output = M.GetCachePolicyConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/cache-policy/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCloudFrontOriginAccessIdentity = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetCloudFrontOriginAccessIdentity"),
+    input = M.GetCloudFrontOriginAccessIdentityInput,
+    output = M.GetCloudFrontOriginAccessIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/origin-access-identity/cloudfront/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCloudFrontOriginAccessIdentityConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetCloudFrontOriginAccessIdentityConfig"),
+    input = M.GetCloudFrontOriginAccessIdentityConfigInput,
+    output = M.GetCloudFrontOriginAccessIdentityConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/origin-access-identity/cloudfront/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnectionFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetConnectionFunction"),
+    input = M.GetConnectionFunctionInput,
+    output = M.GetConnectionFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/connection-function/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnectionGroup = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetConnectionGroup"),
+    input = M.GetConnectionGroupInput,
+    output = M.GetConnectionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/connection-group/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnectionGroupByRoutingEndpoint = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetConnectionGroupByRoutingEndpoint"),
+    input = M.GetConnectionGroupByRoutingEndpointInput,
+    output = M.GetConnectionGroupByRoutingEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/connection-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContinuousDeploymentPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetContinuousDeploymentPolicy"),
+    input = M.GetContinuousDeploymentPolicyInput,
+    output = M.GetContinuousDeploymentPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/continuous-deployment-policy/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContinuousDeploymentPolicyConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetContinuousDeploymentPolicyConfig"),
+    input = M.GetContinuousDeploymentPolicyConfigInput,
+    output = M.GetContinuousDeploymentPolicyConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/continuous-deployment-policy/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDistribution = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetDistribution"),
+    input = M.GetDistributionInput,
+    output = M.GetDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distribution/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDistributionConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetDistributionConfig"),
+    input = M.GetDistributionConfigInput,
+    output = M.GetDistributionConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distribution/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDistributionTenant = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetDistributionTenant"),
+    input = M.GetDistributionTenantInput,
+    output = M.GetDistributionTenantOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distribution-tenant/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDistributionTenantByDomain = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetDistributionTenantByDomain"),
+    input = M.GetDistributionTenantByDomainInput,
+    output = M.GetDistributionTenantByDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distribution-tenant" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFieldLevelEncryption = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetFieldLevelEncryption"),
+    input = M.GetFieldLevelEncryptionInput,
+    output = M.GetFieldLevelEncryptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/field-level-encryption/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFieldLevelEncryptionConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetFieldLevelEncryptionConfig"),
+    input = M.GetFieldLevelEncryptionConfigInput,
+    output = M.GetFieldLevelEncryptionConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/field-level-encryption/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFieldLevelEncryptionProfile = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetFieldLevelEncryptionProfile"),
+    input = M.GetFieldLevelEncryptionProfileInput,
+    output = M.GetFieldLevelEncryptionProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/field-level-encryption-profile/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFieldLevelEncryptionProfileConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetFieldLevelEncryptionProfileConfig"),
+    input = M.GetFieldLevelEncryptionProfileConfigInput,
+    output = M.GetFieldLevelEncryptionProfileConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/field-level-encryption-profile/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetFunction"),
+    input = M.GetFunctionInput,
+    output = M.GetFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/function/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInvalidation = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetInvalidation"),
+    input = M.GetInvalidationInput,
+    output = M.GetInvalidationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distribution/{DistributionId}/invalidation/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInvalidationForDistributionTenant = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetInvalidationForDistributionTenant"),
+    input = M.GetInvalidationForDistributionTenantInput,
+    output = M.GetInvalidationForDistributionTenantOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distribution-tenant/{DistributionTenantId}/invalidation/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKeyGroup = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetKeyGroup"),
+    input = M.GetKeyGroupInput,
+    output = M.GetKeyGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/key-group/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKeyGroupConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetKeyGroupConfig"),
+    input = M.GetKeyGroupConfigInput,
+    output = M.GetKeyGroupConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/key-group/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetManagedCertificateDetails = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetManagedCertificateDetails"),
+    input = M.GetManagedCertificateDetailsInput,
+    output = M.GetManagedCertificateDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/managed-certificate/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMonitoringSubscription = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetMonitoringSubscription"),
+    input = M.GetMonitoringSubscriptionInput,
+    output = M.GetMonitoringSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distributions/{DistributionId}/monitoring-subscription" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOriginAccessControl = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetOriginAccessControl"),
+    input = M.GetOriginAccessControlInput,
+    output = M.GetOriginAccessControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/origin-access-control/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOriginAccessControlConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetOriginAccessControlConfig"),
+    input = M.GetOriginAccessControlConfigInput,
+    output = M.GetOriginAccessControlConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/origin-access-control/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOriginRequestPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetOriginRequestPolicy"),
+    input = M.GetOriginRequestPolicyInput,
+    output = M.GetOriginRequestPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/origin-request-policy/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOriginRequestPolicyConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetOriginRequestPolicyConfig"),
+    input = M.GetOriginRequestPolicyConfigInput,
+    output = M.GetOriginRequestPolicyConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/origin-request-policy/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPublicKey = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetPublicKey"),
+    input = M.GetPublicKeyInput,
+    output = M.GetPublicKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/public-key/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPublicKeyConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetPublicKeyConfig"),
+    input = M.GetPublicKeyConfigInput,
+    output = M.GetPublicKeyConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/public-key/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRealtimeLogConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetRealtimeLogConfig"),
+    input = M.GetRealtimeLogConfigInput,
+    output = M.GetRealtimeLogConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/get-realtime-log-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/get-resource-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResponseHeadersPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetResponseHeadersPolicy"),
+    input = M.GetResponseHeadersPolicyInput,
+    output = M.GetResponseHeadersPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/response-headers-policy/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResponseHeadersPolicyConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetResponseHeadersPolicyConfig"),
+    input = M.GetResponseHeadersPolicyConfigInput,
+    output = M.GetResponseHeadersPolicyConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/response-headers-policy/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStreamingDistribution = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetStreamingDistribution"),
+    input = M.GetStreamingDistributionInput,
+    output = M.GetStreamingDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/streaming-distribution/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStreamingDistributionConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetStreamingDistributionConfig"),
+    input = M.GetStreamingDistributionConfigInput,
+    output = M.GetStreamingDistributionConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/streaming-distribution/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrustStore = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetTrustStore"),
+    input = M.GetTrustStoreInput,
+    output = M.GetTrustStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/trust-store/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVpcOrigin = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "GetVpcOrigin"),
+    input = M.GetVpcOriginInput,
+    output = M.GetVpcOriginOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/vpc-origin/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnycastIpLists = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListAnycastIpLists"),
+    input = M.ListAnycastIpListsInput,
+    output = M.ListAnycastIpListsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/anycast-ip-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCachePolicies = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListCachePolicies"),
+    input = M.ListCachePoliciesInput,
+    output = M.ListCachePoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/cache-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCloudFrontOriginAccessIdentities = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListCloudFrontOriginAccessIdentities"),
+    input = M.ListCloudFrontOriginAccessIdentitiesInput,
+    output = M.ListCloudFrontOriginAccessIdentitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/origin-access-identity/cloudfront" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConflictingAliases = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListConflictingAliases"),
+    input = M.ListConflictingAliasesInput,
+    output = M.ListConflictingAliasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/conflicting-alias" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectionFunctions = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListConnectionFunctions"),
+    input = M.ListConnectionFunctionsInput,
+    output = M.ListConnectionFunctionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/connection-functions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectionGroups = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListConnectionGroups"),
+    input = M.ListConnectionGroupsInput,
+    output = M.ListConnectionGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/connection-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContinuousDeploymentPolicies = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListContinuousDeploymentPolicies"),
+    input = M.ListContinuousDeploymentPoliciesInput,
+    output = M.ListContinuousDeploymentPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/continuous-deployment-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributions = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributions"),
+    input = M.ListDistributionsInput,
+    output = M.ListDistributionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distribution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionsByAnycastIpListId = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributionsByAnycastIpListId"),
+    input = M.ListDistributionsByAnycastIpListIdInput,
+    output = M.ListDistributionsByAnycastIpListIdOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distributionsByAnycastIpListId/{AnycastIpListId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionsByCachePolicyId = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributionsByCachePolicyId"),
+    input = M.ListDistributionsByCachePolicyIdInput,
+    output = M.ListDistributionsByCachePolicyIdOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distributionsByCachePolicyId/{CachePolicyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionsByConnectionFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributionsByConnectionFunction"),
+    input = M.ListDistributionsByConnectionFunctionInput,
+    output = M.ListDistributionsByConnectionFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distributionsByConnectionFunction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionsByConnectionMode = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributionsByConnectionMode"),
+    input = M.ListDistributionsByConnectionModeInput,
+    output = M.ListDistributionsByConnectionModeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distributionsByConnectionMode/{ConnectionMode}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionsByKeyGroup = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributionsByKeyGroup"),
+    input = M.ListDistributionsByKeyGroupInput,
+    output = M.ListDistributionsByKeyGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distributionsByKeyGroupId/{KeyGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionsByOriginRequestPolicyId = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributionsByOriginRequestPolicyId"),
+    input = M.ListDistributionsByOriginRequestPolicyIdInput,
+    output = M.ListDistributionsByOriginRequestPolicyIdOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distributionsByOriginRequestPolicyId/{OriginRequestPolicyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionsByOwnedResource = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributionsByOwnedResource"),
+    input = M.ListDistributionsByOwnedResourceInput,
+    output = M.ListDistributionsByOwnedResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distributionsByOwnedResource/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionsByRealtimeLogConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributionsByRealtimeLogConfig"),
+    input = M.ListDistributionsByRealtimeLogConfigInput,
+    output = M.ListDistributionsByRealtimeLogConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/distributionsByRealtimeLogConfig" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionsByResponseHeadersPolicyId = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributionsByResponseHeadersPolicyId"),
+    input = M.ListDistributionsByResponseHeadersPolicyIdInput,
+    output = M.ListDistributionsByResponseHeadersPolicyIdOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distributionsByResponseHeadersPolicyId/{ResponseHeadersPolicyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionsByTrustStore = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributionsByTrustStore"),
+    input = M.ListDistributionsByTrustStoreInput,
+    output = M.ListDistributionsByTrustStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distributionsByTrustStore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionsByVpcOriginId = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributionsByVpcOriginId"),
+    input = M.ListDistributionsByVpcOriginIdInput,
+    output = M.ListDistributionsByVpcOriginIdOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distributionsByVpcOriginId/{VpcOriginId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionsByWebACLId = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributionsByWebACLId"),
+    input = M.ListDistributionsByWebACLIdInput,
+    output = M.ListDistributionsByWebACLIdOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distributionsByWebACLId/{WebACLId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionTenants = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributionTenants"),
+    input = M.ListDistributionTenantsInput,
+    output = M.ListDistributionTenantsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/distribution-tenants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionTenantsByCustomization = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDistributionTenantsByCustomization"),
+    input = M.ListDistributionTenantsByCustomizationInput,
+    output = M.ListDistributionTenantsByCustomizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/distribution-tenants-by-customization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainConflicts = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListDomainConflicts"),
+    input = M.ListDomainConflictsInput,
+    output = M.ListDomainConflictsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/domain-conflicts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFieldLevelEncryptionConfigs = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListFieldLevelEncryptionConfigs"),
+    input = M.ListFieldLevelEncryptionConfigsInput,
+    output = M.ListFieldLevelEncryptionConfigsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/field-level-encryption" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFieldLevelEncryptionProfiles = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListFieldLevelEncryptionProfiles"),
+    input = M.ListFieldLevelEncryptionProfilesInput,
+    output = M.ListFieldLevelEncryptionProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/field-level-encryption-profile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFunctions = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListFunctions"),
+    input = M.ListFunctionsInput,
+    output = M.ListFunctionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/function" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvalidations = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListInvalidations"),
+    input = M.ListInvalidationsInput,
+    output = M.ListInvalidationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distribution/{DistributionId}/invalidation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvalidationsForDistributionTenant = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListInvalidationsForDistributionTenant"),
+    input = M.ListInvalidationsForDistributionTenantInput,
+    output = M.ListInvalidationsForDistributionTenantOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/distribution-tenant/{Id}/invalidation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKeyGroups = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListKeyGroups"),
+    input = M.ListKeyGroupsInput,
+    output = M.ListKeyGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/key-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKeyValueStores = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListKeyValueStores"),
+    input = M.ListKeyValueStoresInput,
+    output = M.ListKeyValueStoresOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/key-value-store" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOriginAccessControls = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListOriginAccessControls"),
+    input = M.ListOriginAccessControlsInput,
+    output = M.ListOriginAccessControlsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/origin-access-control" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOriginRequestPolicies = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListOriginRequestPolicies"),
+    input = M.ListOriginRequestPoliciesInput,
+    output = M.ListOriginRequestPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/origin-request-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPublicKeys = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListPublicKeys"),
+    input = M.ListPublicKeysInput,
+    output = M.ListPublicKeysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/public-key" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRealtimeLogConfigs = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListRealtimeLogConfigs"),
+    input = M.ListRealtimeLogConfigsInput,
+    output = M.ListRealtimeLogConfigsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/realtime-log-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResponseHeadersPolicies = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListResponseHeadersPolicies"),
+    input = M.ListResponseHeadersPoliciesInput,
+    output = M.ListResponseHeadersPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/response-headers-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStreamingDistributions = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListStreamingDistributions"),
+    input = M.ListStreamingDistributionsInput,
+    output = M.ListStreamingDistributionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/streaming-distribution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrustStores = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListTrustStores"),
+    input = M.ListTrustStoresInput,
+    output = M.ListTrustStoresOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/trust-stores" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVpcOrigins = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "ListVpcOrigins"),
+    input = M.ListVpcOriginsInput,
+    output = M.ListVpcOriginsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-05-31/vpc-origin" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PublishConnectionFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "PublishConnectionFunction"),
+    input = M.PublishConnectionFunctionInput,
+    output = M.PublishConnectionFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/connection-function/{Id}/publish" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PublishFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "PublishFunction"),
+    input = M.PublishFunctionInput,
+    output = M.PublishFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/function/{Name}/publish" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/put-resource-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/tagging?Operation=Tag" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestConnectionFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "TestConnectionFunction"),
+    input = M.TestConnectionFunctionInput,
+    output = M.TestConnectionFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/connection-function/{Id}/test" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "TestFunction"),
+    input = M.TestFunctionInput,
+    output = M.TestFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/function/{Name}/test" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/tagging?Operation=Untag" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAnycastIpList = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateAnycastIpList"),
+    input = M.UpdateAnycastIpListInput,
+    output = M.UpdateAnycastIpListOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/anycast-ip-list/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCachePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateCachePolicy"),
+    input = M.UpdateCachePolicyInput,
+    output = M.UpdateCachePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/cache-policy/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCloudFrontOriginAccessIdentity = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateCloudFrontOriginAccessIdentity"),
+    input = M.UpdateCloudFrontOriginAccessIdentityInput,
+    output = M.UpdateCloudFrontOriginAccessIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/origin-access-identity/cloudfront/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnectionFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateConnectionFunction"),
+    input = M.UpdateConnectionFunctionInput,
+    output = M.UpdateConnectionFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/connection-function/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnectionGroup = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateConnectionGroup"),
+    input = M.UpdateConnectionGroupInput,
+    output = M.UpdateConnectionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/connection-group/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContinuousDeploymentPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateContinuousDeploymentPolicy"),
+    input = M.UpdateContinuousDeploymentPolicyInput,
+    output = M.UpdateContinuousDeploymentPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/continuous-deployment-policy/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDistribution = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateDistribution"),
+    input = M.UpdateDistributionInput,
+    output = M.UpdateDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/distribution/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDistributionTenant = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateDistributionTenant"),
+    input = M.UpdateDistributionTenantInput,
+    output = M.UpdateDistributionTenantOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/distribution-tenant/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDistributionWithStagingConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateDistributionWithStagingConfig"),
+    input = M.UpdateDistributionWithStagingConfigInput,
+    output = M.UpdateDistributionWithStagingConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/distribution/{Id}/promote-staging-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomainAssociation = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateDomainAssociation"),
+    input = M.UpdateDomainAssociationInput,
+    output = M.UpdateDomainAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/domain-association" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFieldLevelEncryptionConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateFieldLevelEncryptionConfig"),
+    input = M.UpdateFieldLevelEncryptionConfigInput,
+    output = M.UpdateFieldLevelEncryptionConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/field-level-encryption/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFieldLevelEncryptionProfile = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateFieldLevelEncryptionProfile"),
+    input = M.UpdateFieldLevelEncryptionProfileInput,
+    output = M.UpdateFieldLevelEncryptionProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/field-level-encryption-profile/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFunction = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateFunction"),
+    input = M.UpdateFunctionInput,
+    output = M.UpdateFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/function/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKeyGroup = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateKeyGroup"),
+    input = M.UpdateKeyGroupInput,
+    output = M.UpdateKeyGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/key-group/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKeyValueStore = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateKeyValueStore"),
+    input = M.UpdateKeyValueStoreInput,
+    output = M.UpdateKeyValueStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/key-value-store/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOriginAccessControl = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateOriginAccessControl"),
+    input = M.UpdateOriginAccessControlInput,
+    output = M.UpdateOriginAccessControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/origin-access-control/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOriginRequestPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateOriginRequestPolicy"),
+    input = M.UpdateOriginRequestPolicyInput,
+    output = M.UpdateOriginRequestPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/origin-request-policy/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePublicKey = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdatePublicKey"),
+    input = M.UpdatePublicKeyInput,
+    output = M.UpdatePublicKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/public-key/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRealtimeLogConfig = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateRealtimeLogConfig"),
+    input = M.UpdateRealtimeLogConfigInput,
+    output = M.UpdateRealtimeLogConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/realtime-log-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResponseHeadersPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateResponseHeadersPolicy"),
+    input = M.UpdateResponseHeadersPolicyInput,
+    output = M.UpdateResponseHeadersPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/response-headers-policy/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStreamingDistribution = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateStreamingDistribution"),
+    input = M.UpdateStreamingDistributionInput,
+    output = M.UpdateStreamingDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/streaming-distribution/{Id}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrustStore = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateTrustStore"),
+    input = M.UpdateTrustStoreInput,
+    output = M.UpdateTrustStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/trust-store/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVpcOrigin = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "UpdateVpcOrigin"),
+    input = M.UpdateVpcOriginInput,
+    output = M.UpdateVpcOriginOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-05-31/vpc-origin/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyDnsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cloudfront", "VerifyDnsConfiguration"),
+    input = M.VerifyDnsConfigurationInput,
+    output = M.VerifyDnsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-05-31/verify-dns-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

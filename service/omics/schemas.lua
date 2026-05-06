@@ -12940,4 +12940,1298 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.omics", "Omics"),
+    version = "2022-11-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AbortMultipartReadSetUpload = schema.operation({
+    id = id.from("com.amazonaws.omics", "AbortMultipartReadSetUpload"),
+    input = M.AbortMultipartReadSetUploadInput,
+    output = M.AbortMultipartReadSetUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sequencestore/{sequenceStoreId}/upload/{uploadId}/abort" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptShare = schema.operation({
+    id = id.from("com.amazonaws.omics", "AcceptShare"),
+    input = M.AcceptShareInput,
+    output = M.AcceptShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/share/{shareId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteReadSet = schema.operation({
+    id = id.from("com.amazonaws.omics", "BatchDeleteReadSet"),
+    input = M.BatchDeleteReadSetInput,
+    output = M.BatchDeleteReadSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sequencestore/{sequenceStoreId}/readset/batch/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelAnnotationImportJob = schema.operation({
+    id = id.from("com.amazonaws.omics", "CancelAnnotationImportJob"),
+    input = M.CancelAnnotationImportJobInput,
+    output = M.CancelAnnotationImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/import/annotation/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelRun = schema.operation({
+    id = id.from("com.amazonaws.omics", "CancelRun"),
+    input = M.CancelRunInput,
+    output = M.CancelRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/run/{id}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelRunBatch = schema.operation({
+    id = id.from("com.amazonaws.omics", "CancelRunBatch"),
+    input = M.CancelRunBatchInput,
+    output = M.CancelRunBatchOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runBatch/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelVariantImportJob = schema.operation({
+    id = id.from("com.amazonaws.omics", "CancelVariantImportJob"),
+    input = M.CancelVariantImportJobInput,
+    output = M.CancelVariantImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/import/variant/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CompleteMultipartReadSetUpload = schema.operation({
+    id = id.from("com.amazonaws.omics", "CompleteMultipartReadSetUpload"),
+    input = M.CompleteMultipartReadSetUploadInput,
+    output = M.CompleteMultipartReadSetUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sequencestore/{sequenceStoreId}/upload/{uploadId}/complete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAnnotationStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "CreateAnnotationStore"),
+    input = M.CreateAnnotationStoreInput,
+    output = M.CreateAnnotationStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/annotationStore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAnnotationStoreVersion = schema.operation({
+    id = id.from("com.amazonaws.omics", "CreateAnnotationStoreVersion"),
+    input = M.CreateAnnotationStoreVersionInput,
+    output = M.CreateAnnotationStoreVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/annotationStore/{name}/version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfiguration = schema.operation({
+    id = id.from("com.amazonaws.omics", "CreateConfiguration"),
+    input = M.CreateConfigurationInput,
+    output = M.CreateConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMultipartReadSetUpload = schema.operation({
+    id = id.from("com.amazonaws.omics", "CreateMultipartReadSetUpload"),
+    input = M.CreateMultipartReadSetUploadInput,
+    output = M.CreateMultipartReadSetUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sequencestore/{sequenceStoreId}/upload" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReferenceStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "CreateReferenceStore"),
+    input = M.CreateReferenceStoreInput,
+    output = M.CreateReferenceStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/referencestore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRunCache = schema.operation({
+    id = id.from("com.amazonaws.omics", "CreateRunCache"),
+    input = M.CreateRunCacheInput,
+    output = M.CreateRunCacheOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runCache" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRunGroup = schema.operation({
+    id = id.from("com.amazonaws.omics", "CreateRunGroup"),
+    input = M.CreateRunGroupInput,
+    output = M.CreateRunGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSequenceStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "CreateSequenceStore"),
+    input = M.CreateSequenceStoreInput,
+    output = M.CreateSequenceStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sequencestore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateShare = schema.operation({
+    id = id.from("com.amazonaws.omics", "CreateShare"),
+    input = M.CreateShareInput,
+    output = M.CreateShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/share" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVariantStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "CreateVariantStore"),
+    input = M.CreateVariantStoreInput,
+    output = M.CreateVariantStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/variantStore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkflow = schema.operation({
+    id = id.from("com.amazonaws.omics", "CreateWorkflow"),
+    input = M.CreateWorkflowInput,
+    output = M.CreateWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workflow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkflowVersion = schema.operation({
+    id = id.from("com.amazonaws.omics", "CreateWorkflowVersion"),
+    input = M.CreateWorkflowVersionInput,
+    output = M.CreateWorkflowVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workflow/{workflowId}/version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAnnotationStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteAnnotationStore"),
+    input = M.DeleteAnnotationStoreInput,
+    output = M.DeleteAnnotationStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/annotationStore/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAnnotationStoreVersions = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteAnnotationStoreVersions"),
+    input = M.DeleteAnnotationStoreVersionsInput,
+    output = M.DeleteAnnotationStoreVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/annotationStore/{name}/versions/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBatch = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteBatch"),
+    input = M.DeleteBatchInput,
+    output = M.DeleteBatchOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/runBatch/{batchId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfiguration = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteConfiguration"),
+    input = M.DeleteConfigurationInput,
+    output = M.DeleteConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/configuration/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReference = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteReference"),
+    input = M.DeleteReferenceInput,
+    output = M.DeleteReferenceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/referencestore/{referenceStoreId}/reference/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReferenceStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteReferenceStore"),
+    input = M.DeleteReferenceStoreInput,
+    output = M.DeleteReferenceStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/referencestore/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRun = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteRun"),
+    input = M.DeleteRunInput,
+    output = M.DeleteRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/run/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRunBatch = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteRunBatch"),
+    input = M.DeleteRunBatchInput,
+    output = M.DeleteRunBatchOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runBatch/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRunCache = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteRunCache"),
+    input = M.DeleteRunCacheInput,
+    output = M.DeleteRunCacheOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/runCache/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRunGroup = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteRunGroup"),
+    input = M.DeleteRunGroupInput,
+    output = M.DeleteRunGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/runGroup/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteS3AccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteS3AccessPolicy"),
+    input = M.DeleteS3AccessPolicyInput,
+    output = M.DeleteS3AccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/s3accesspolicy/{s3AccessPointArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSequenceStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteSequenceStore"),
+    input = M.DeleteSequenceStoreInput,
+    output = M.DeleteSequenceStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sequencestore/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteShare = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteShare"),
+    input = M.DeleteShareInput,
+    output = M.DeleteShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/share/{shareId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVariantStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteVariantStore"),
+    input = M.DeleteVariantStoreInput,
+    output = M.DeleteVariantStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/variantStore/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkflow = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteWorkflow"),
+    input = M.DeleteWorkflowInput,
+    output = M.DeleteWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workflow/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkflowVersion = schema.operation({
+    id = id.from("com.amazonaws.omics", "DeleteWorkflowVersion"),
+    input = M.DeleteWorkflowVersionInput,
+    output = M.DeleteWorkflowVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workflow/{workflowId}/version/{versionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAnnotationImportJob = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetAnnotationImportJob"),
+    input = M.GetAnnotationImportJobInput,
+    output = M.GetAnnotationImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/import/annotation/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAnnotationStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetAnnotationStore"),
+    input = M.GetAnnotationStoreInput,
+    output = M.GetAnnotationStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/annotationStore/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAnnotationStoreVersion = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetAnnotationStoreVersion"),
+    input = M.GetAnnotationStoreVersionInput,
+    output = M.GetAnnotationStoreVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/annotationStore/{name}/version/{versionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBatch = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetBatch"),
+    input = M.GetBatchInput,
+    output = M.GetBatchOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/runBatch/{batchId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfiguration = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetConfiguration"),
+    input = M.GetConfigurationInput,
+    output = M.GetConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configuration/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReadSet = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetReadSet"),
+    input = M.GetReadSetInput,
+    output = M.GetReadSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sequencestore/{sequenceStoreId}/readset/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReadSetActivationJob = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetReadSetActivationJob"),
+    input = M.GetReadSetActivationJobInput,
+    output = M.GetReadSetActivationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sequencestore/{sequenceStoreId}/activationjob/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReadSetExportJob = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetReadSetExportJob"),
+    input = M.GetReadSetExportJobInput,
+    output = M.GetReadSetExportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sequencestore/{sequenceStoreId}/exportjob/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReadSetImportJob = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetReadSetImportJob"),
+    input = M.GetReadSetImportJobInput,
+    output = M.GetReadSetImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sequencestore/{sequenceStoreId}/importjob/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReadSetMetadata = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetReadSetMetadata"),
+    input = M.GetReadSetMetadataInput,
+    output = M.GetReadSetMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sequencestore/{sequenceStoreId}/readset/{id}/metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReference = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetReference"),
+    input = M.GetReferenceInput,
+    output = M.GetReferenceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/referencestore/{referenceStoreId}/reference/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReferenceImportJob = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetReferenceImportJob"),
+    input = M.GetReferenceImportJobInput,
+    output = M.GetReferenceImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/referencestore/{referenceStoreId}/importjob/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReferenceMetadata = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetReferenceMetadata"),
+    input = M.GetReferenceMetadataInput,
+    output = M.GetReferenceMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/referencestore/{referenceStoreId}/reference/{id}/metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReferenceStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetReferenceStore"),
+    input = M.GetReferenceStoreInput,
+    output = M.GetReferenceStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/referencestore/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRun = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetRun"),
+    input = M.GetRunInput,
+    output = M.GetRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/run/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRunCache = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetRunCache"),
+    input = M.GetRunCacheInput,
+    output = M.GetRunCacheOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/runCache/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRunGroup = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetRunGroup"),
+    input = M.GetRunGroupInput,
+    output = M.GetRunGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/runGroup/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRunTask = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetRunTask"),
+    input = M.GetRunTaskInput,
+    output = M.GetRunTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/run/{id}/task/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetS3AccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetS3AccessPolicy"),
+    input = M.GetS3AccessPolicyInput,
+    output = M.GetS3AccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/s3accesspolicy/{s3AccessPointArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSequenceStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetSequenceStore"),
+    input = M.GetSequenceStoreInput,
+    output = M.GetSequenceStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sequencestore/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetShare = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetShare"),
+    input = M.GetShareInput,
+    output = M.GetShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/share/{shareId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVariantImportJob = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetVariantImportJob"),
+    input = M.GetVariantImportJobInput,
+    output = M.GetVariantImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/import/variant/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVariantStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetVariantStore"),
+    input = M.GetVariantStoreInput,
+    output = M.GetVariantStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/variantStore/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflow = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetWorkflow"),
+    input = M.GetWorkflowInput,
+    output = M.GetWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflow/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflowVersion = schema.operation({
+    id = id.from("com.amazonaws.omics", "GetWorkflowVersion"),
+    input = M.GetWorkflowVersionInput,
+    output = M.GetWorkflowVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflow/{workflowId}/version/{versionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnnotationImportJobs = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListAnnotationImportJobs"),
+    input = M.ListAnnotationImportJobsInput,
+    output = M.ListAnnotationImportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/import/annotations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnnotationStores = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListAnnotationStores"),
+    input = M.ListAnnotationStoresInput,
+    output = M.ListAnnotationStoresOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/annotationStores" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnnotationStoreVersions = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListAnnotationStoreVersions"),
+    input = M.ListAnnotationStoreVersionsInput,
+    output = M.ListAnnotationStoreVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/annotationStore/{name}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBatch = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListBatch"),
+    input = M.ListBatchInput,
+    output = M.ListBatchOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/runBatch" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurations = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListConfigurations"),
+    input = M.ListConfigurationsInput,
+    output = M.ListConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMultipartReadSetUploads = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListMultipartReadSetUploads"),
+    input = M.ListMultipartReadSetUploadsInput,
+    output = M.ListMultipartReadSetUploadsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sequencestore/{sequenceStoreId}/uploads" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReadSetActivationJobs = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListReadSetActivationJobs"),
+    input = M.ListReadSetActivationJobsInput,
+    output = M.ListReadSetActivationJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sequencestore/{sequenceStoreId}/activationjobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReadSetExportJobs = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListReadSetExportJobs"),
+    input = M.ListReadSetExportJobsInput,
+    output = M.ListReadSetExportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sequencestore/{sequenceStoreId}/exportjobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReadSetImportJobs = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListReadSetImportJobs"),
+    input = M.ListReadSetImportJobsInput,
+    output = M.ListReadSetImportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sequencestore/{sequenceStoreId}/importjobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReadSets = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListReadSets"),
+    input = M.ListReadSetsInput,
+    output = M.ListReadSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sequencestore/{sequenceStoreId}/readsets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReadSetUploadParts = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListReadSetUploadParts"),
+    input = M.ListReadSetUploadPartsInput,
+    output = M.ListReadSetUploadPartsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sequencestore/{sequenceStoreId}/upload/{uploadId}/parts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReferenceImportJobs = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListReferenceImportJobs"),
+    input = M.ListReferenceImportJobsInput,
+    output = M.ListReferenceImportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/referencestore/{referenceStoreId}/importjobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReferences = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListReferences"),
+    input = M.ListReferencesInput,
+    output = M.ListReferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/referencestore/{referenceStoreId}/references" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReferenceStores = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListReferenceStores"),
+    input = M.ListReferenceStoresInput,
+    output = M.ListReferenceStoresOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/referencestores" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRunCaches = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListRunCaches"),
+    input = M.ListRunCachesInput,
+    output = M.ListRunCachesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/runCache" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRunGroups = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListRunGroups"),
+    input = M.ListRunGroupsInput,
+    output = M.ListRunGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/runGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRuns = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListRuns"),
+    input = M.ListRunsInput,
+    output = M.ListRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/run" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRunsInBatch = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListRunsInBatch"),
+    input = M.ListRunsInBatchInput,
+    output = M.ListRunsInBatchOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/runBatch/{batchId}/run" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRunTasks = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListRunTasks"),
+    input = M.ListRunTasksInput,
+    output = M.ListRunTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/run/{id}/task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSequenceStores = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListSequenceStores"),
+    input = M.ListSequenceStoresInput,
+    output = M.ListSequenceStoresOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sequencestores" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListShares = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListShares"),
+    input = M.ListSharesInput,
+    output = M.ListSharesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/shares" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVariantImportJobs = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListVariantImportJobs"),
+    input = M.ListVariantImportJobsInput,
+    output = M.ListVariantImportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/import/variants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVariantStores = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListVariantStores"),
+    input = M.ListVariantStoresInput,
+    output = M.ListVariantStoresOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/variantStores" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflows = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListWorkflows"),
+    input = M.ListWorkflowsInput,
+    output = M.ListWorkflowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflowVersions = schema.operation({
+    id = id.from("com.amazonaws.omics", "ListWorkflowVersions"),
+    input = M.ListWorkflowVersionsInput,
+    output = M.ListWorkflowVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflow/{workflowId}/version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutS3AccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.omics", "PutS3AccessPolicy"),
+    input = M.PutS3AccessPolicyInput,
+    output = M.PutS3AccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/s3accesspolicy/{s3AccessPointArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAnnotationImportJob = schema.operation({
+    id = id.from("com.amazonaws.omics", "StartAnnotationImportJob"),
+    input = M.StartAnnotationImportJobInput,
+    output = M.StartAnnotationImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/import/annotation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReadSetActivationJob = schema.operation({
+    id = id.from("com.amazonaws.omics", "StartReadSetActivationJob"),
+    input = M.StartReadSetActivationJobInput,
+    output = M.StartReadSetActivationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sequencestore/{sequenceStoreId}/activationjob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReadSetExportJob = schema.operation({
+    id = id.from("com.amazonaws.omics", "StartReadSetExportJob"),
+    input = M.StartReadSetExportJobInput,
+    output = M.StartReadSetExportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sequencestore/{sequenceStoreId}/exportjob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReadSetImportJob = schema.operation({
+    id = id.from("com.amazonaws.omics", "StartReadSetImportJob"),
+    input = M.StartReadSetImportJobInput,
+    output = M.StartReadSetImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sequencestore/{sequenceStoreId}/importjob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReferenceImportJob = schema.operation({
+    id = id.from("com.amazonaws.omics", "StartReferenceImportJob"),
+    input = M.StartReferenceImportJobInput,
+    output = M.StartReferenceImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/referencestore/{referenceStoreId}/importjob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRun = schema.operation({
+    id = id.from("com.amazonaws.omics", "StartRun"),
+    input = M.StartRunInput,
+    output = M.StartRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/run" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRunBatch = schema.operation({
+    id = id.from("com.amazonaws.omics", "StartRunBatch"),
+    input = M.StartRunBatchInput,
+    output = M.StartRunBatchOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runBatch" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartVariantImportJob = schema.operation({
+    id = id.from("com.amazonaws.omics", "StartVariantImportJob"),
+    input = M.StartVariantImportJobInput,
+    output = M.StartVariantImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/import/variant" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.omics", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.omics", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAnnotationStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "UpdateAnnotationStore"),
+    input = M.UpdateAnnotationStoreInput,
+    output = M.UpdateAnnotationStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/annotationStore/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAnnotationStoreVersion = schema.operation({
+    id = id.from("com.amazonaws.omics", "UpdateAnnotationStoreVersion"),
+    input = M.UpdateAnnotationStoreVersionInput,
+    output = M.UpdateAnnotationStoreVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/annotationStore/{name}/version/{versionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRunCache = schema.operation({
+    id = id.from("com.amazonaws.omics", "UpdateRunCache"),
+    input = M.UpdateRunCacheInput,
+    output = M.UpdateRunCacheOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runCache/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRunGroup = schema.operation({
+    id = id.from("com.amazonaws.omics", "UpdateRunGroup"),
+    input = M.UpdateRunGroupInput,
+    output = M.UpdateRunGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runGroup/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSequenceStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "UpdateSequenceStore"),
+    input = M.UpdateSequenceStoreInput,
+    output = M.UpdateSequenceStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/sequencestore/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVariantStore = schema.operation({
+    id = id.from("com.amazonaws.omics", "UpdateVariantStore"),
+    input = M.UpdateVariantStoreInput,
+    output = M.UpdateVariantStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/variantStore/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkflow = schema.operation({
+    id = id.from("com.amazonaws.omics", "UpdateWorkflow"),
+    input = M.UpdateWorkflowInput,
+    output = M.UpdateWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workflow/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkflowVersion = schema.operation({
+    id = id.from("com.amazonaws.omics", "UpdateWorkflowVersion"),
+    input = M.UpdateWorkflowVersionInput,
+    output = M.UpdateWorkflowVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workflow/{workflowId}/version/{versionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UploadReadSetPart = schema.operation({
+    id = id.from("com.amazonaws.omics", "UploadReadSetPart"),
+    input = M.UploadReadSetPartInput,
+    output = M.UploadReadSetPartOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sequencestore/{sequenceStoreId}/upload/{uploadId}/part" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

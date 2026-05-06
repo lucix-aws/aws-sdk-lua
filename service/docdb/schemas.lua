@@ -5848,4 +5848,619 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.docdb", "AmazonRDSv19"),
+    version = "2014-10-31",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddSourceIdentifierToSubscription = schema.operation({
+    id = id.from("com.amazonaws.docdb", "AddSourceIdentifierToSubscription"),
+    input = M.AddSourceIdentifierToSubscriptionInput,
+    output = M.AddSourceIdentifierToSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTagsToResource = schema.operation({
+    id = id.from("com.amazonaws.docdb", "AddTagsToResource"),
+    input = M.AddTagsToResourceInput,
+    output = M.AddTagsToResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ApplyPendingMaintenanceAction = schema.operation({
+    id = id.from("com.amazonaws.docdb", "ApplyPendingMaintenanceAction"),
+    input = M.ApplyPendingMaintenanceActionInput,
+    output = M.ApplyPendingMaintenanceActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.docdb", "CopyDBClusterParameterGroup"),
+    input = M.CopyDBClusterParameterGroupInput,
+    output = M.CopyDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyDBClusterSnapshot = schema.operation({
+    id = id.from("com.amazonaws.docdb", "CopyDBClusterSnapshot"),
+    input = M.CopyDBClusterSnapshotInput,
+    output = M.CopyDBClusterSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBCluster = schema.operation({
+    id = id.from("com.amazonaws.docdb", "CreateDBCluster"),
+    input = M.CreateDBClusterInput,
+    output = M.CreateDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.docdb", "CreateDBClusterParameterGroup"),
+    input = M.CreateDBClusterParameterGroupInput,
+    output = M.CreateDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBClusterSnapshot = schema.operation({
+    id = id.from("com.amazonaws.docdb", "CreateDBClusterSnapshot"),
+    input = M.CreateDBClusterSnapshotInput,
+    output = M.CreateDBClusterSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBInstance = schema.operation({
+    id = id.from("com.amazonaws.docdb", "CreateDBInstance"),
+    input = M.CreateDBInstanceInput,
+    output = M.CreateDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.docdb", "CreateDBSubnetGroup"),
+    input = M.CreateDBSubnetGroupInput,
+    output = M.CreateDBSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventSubscription = schema.operation({
+    id = id.from("com.amazonaws.docdb", "CreateEventSubscription"),
+    input = M.CreateEventSubscriptionInput,
+    output = M.CreateEventSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.docdb", "CreateGlobalCluster"),
+    input = M.CreateGlobalClusterInput,
+    output = M.CreateGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBCluster = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DeleteDBCluster"),
+    input = M.DeleteDBClusterInput,
+    output = M.DeleteDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DeleteDBClusterParameterGroup"),
+    input = M.DeleteDBClusterParameterGroupInput,
+    output = M.DeleteDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBClusterSnapshot = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DeleteDBClusterSnapshot"),
+    input = M.DeleteDBClusterSnapshotInput,
+    output = M.DeleteDBClusterSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBInstance = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DeleteDBInstance"),
+    input = M.DeleteDBInstanceInput,
+    output = M.DeleteDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DeleteDBSubnetGroup"),
+    input = M.DeleteDBSubnetGroupInput,
+    output = M.DeleteDBSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventSubscription = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DeleteEventSubscription"),
+    input = M.DeleteEventSubscriptionInput,
+    output = M.DeleteEventSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DeleteGlobalCluster"),
+    input = M.DeleteGlobalClusterInput,
+    output = M.DeleteGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCertificates = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeCertificates"),
+    input = M.DescribeCertificatesInput,
+    output = M.DescribeCertificatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterParameterGroups = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeDBClusterParameterGroups"),
+    input = M.DescribeDBClusterParameterGroupsInput,
+    output = M.DescribeDBClusterParameterGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterParameters = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeDBClusterParameters"),
+    input = M.DescribeDBClusterParametersInput,
+    output = M.DescribeDBClusterParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusters = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeDBClusters"),
+    input = M.DescribeDBClustersInput,
+    output = M.DescribeDBClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterSnapshotAttributes = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeDBClusterSnapshotAttributes"),
+    input = M.DescribeDBClusterSnapshotAttributesInput,
+    output = M.DescribeDBClusterSnapshotAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterSnapshots = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeDBClusterSnapshots"),
+    input = M.DescribeDBClusterSnapshotsInput,
+    output = M.DescribeDBClusterSnapshotsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBEngineVersions = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeDBEngineVersions"),
+    input = M.DescribeDBEngineVersionsInput,
+    output = M.DescribeDBEngineVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBInstances = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeDBInstances"),
+    input = M.DescribeDBInstancesInput,
+    output = M.DescribeDBInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBSubnetGroups = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeDBSubnetGroups"),
+    input = M.DescribeDBSubnetGroupsInput,
+    output = M.DescribeDBSubnetGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEngineDefaultClusterParameters = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeEngineDefaultClusterParameters"),
+    input = M.DescribeEngineDefaultClusterParametersInput,
+    output = M.DescribeEngineDefaultClusterParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventCategories = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeEventCategories"),
+    input = M.DescribeEventCategoriesInput,
+    output = M.DescribeEventCategoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEvents = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeEvents"),
+    input = M.DescribeEventsInput,
+    output = M.DescribeEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeEventSubscriptions"),
+    input = M.DescribeEventSubscriptionsInput,
+    output = M.DescribeEventSubscriptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGlobalClusters = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeGlobalClusters"),
+    input = M.DescribeGlobalClustersInput,
+    output = M.DescribeGlobalClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrderableDBInstanceOptions = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeOrderableDBInstanceOptions"),
+    input = M.DescribeOrderableDBInstanceOptionsInput,
+    output = M.DescribeOrderableDBInstanceOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePendingMaintenanceActions = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribePendingMaintenanceActions"),
+    input = M.DescribePendingMaintenanceActionsInput,
+    output = M.DescribePendingMaintenanceActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FailoverDBCluster = schema.operation({
+    id = id.from("com.amazonaws.docdb", "FailoverDBCluster"),
+    input = M.FailoverDBClusterInput,
+    output = M.FailoverDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FailoverGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.docdb", "FailoverGlobalCluster"),
+    input = M.FailoverGlobalClusterInput,
+    output = M.FailoverGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.docdb", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBCluster = schema.operation({
+    id = id.from("com.amazonaws.docdb", "ModifyDBCluster"),
+    input = M.ModifyDBClusterInput,
+    output = M.ModifyDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.docdb", "ModifyDBClusterParameterGroup"),
+    input = M.ModifyDBClusterParameterGroupInput,
+    output = M.ModifyDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBClusterSnapshotAttribute = schema.operation({
+    id = id.from("com.amazonaws.docdb", "ModifyDBClusterSnapshotAttribute"),
+    input = M.ModifyDBClusterSnapshotAttributeInput,
+    output = M.ModifyDBClusterSnapshotAttributeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBInstance = schema.operation({
+    id = id.from("com.amazonaws.docdb", "ModifyDBInstance"),
+    input = M.ModifyDBInstanceInput,
+    output = M.ModifyDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.docdb", "ModifyDBSubnetGroup"),
+    input = M.ModifyDBSubnetGroupInput,
+    output = M.ModifyDBSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyEventSubscription = schema.operation({
+    id = id.from("com.amazonaws.docdb", "ModifyEventSubscription"),
+    input = M.ModifyEventSubscriptionInput,
+    output = M.ModifyEventSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.docdb", "ModifyGlobalCluster"),
+    input = M.ModifyGlobalClusterInput,
+    output = M.ModifyGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootDBInstance = schema.operation({
+    id = id.from("com.amazonaws.docdb", "RebootDBInstance"),
+    input = M.RebootDBInstanceInput,
+    output = M.RebootDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveFromGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.docdb", "RemoveFromGlobalCluster"),
+    input = M.RemoveFromGlobalClusterInput,
+    output = M.RemoveFromGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveSourceIdentifierFromSubscription = schema.operation({
+    id = id.from("com.amazonaws.docdb", "RemoveSourceIdentifierFromSubscription"),
+    input = M.RemoveSourceIdentifierFromSubscriptionInput,
+    output = M.RemoveSourceIdentifierFromSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTagsFromResource = schema.operation({
+    id = id.from("com.amazonaws.docdb", "RemoveTagsFromResource"),
+    input = M.RemoveTagsFromResourceInput,
+    output = M.RemoveTagsFromResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.docdb", "ResetDBClusterParameterGroup"),
+    input = M.ResetDBClusterParameterGroupInput,
+    output = M.ResetDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreDBClusterFromSnapshot = schema.operation({
+    id = id.from("com.amazonaws.docdb", "RestoreDBClusterFromSnapshot"),
+    input = M.RestoreDBClusterFromSnapshotInput,
+    output = M.RestoreDBClusterFromSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreDBClusterToPointInTime = schema.operation({
+    id = id.from("com.amazonaws.docdb", "RestoreDBClusterToPointInTime"),
+    input = M.RestoreDBClusterToPointInTimeInput,
+    output = M.RestoreDBClusterToPointInTimeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDBCluster = schema.operation({
+    id = id.from("com.amazonaws.docdb", "StartDBCluster"),
+    input = M.StartDBClusterInput,
+    output = M.StartDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDBCluster = schema.operation({
+    id = id.from("com.amazonaws.docdb", "StopDBCluster"),
+    input = M.StopDBClusterInput,
+    output = M.StopDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SwitchoverGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.docdb", "SwitchoverGlobalCluster"),
+    input = M.SwitchoverGlobalClusterInput,
+    output = M.SwitchoverGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

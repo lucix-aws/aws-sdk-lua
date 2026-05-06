@@ -821,4 +821,86 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ebs", "Ebs"),
+    version = "2019-11-02",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CompleteSnapshot = schema.operation({
+    id = id.from("com.amazonaws.ebs", "CompleteSnapshot"),
+    input = M.CompleteSnapshotInput,
+    output = M.CompleteSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/snapshots/completion/{SnapshotId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSnapshotBlock = schema.operation({
+    id = id.from("com.amazonaws.ebs", "GetSnapshotBlock"),
+    input = M.GetSnapshotBlockInput,
+    output = M.GetSnapshotBlockOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/snapshots/{SnapshotId}/blocks/{BlockIndex}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChangedBlocks = schema.operation({
+    id = id.from("com.amazonaws.ebs", "ListChangedBlocks"),
+    input = M.ListChangedBlocksInput,
+    output = M.ListChangedBlocksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/snapshots/{SecondSnapshotId}/changedblocks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSnapshotBlocks = schema.operation({
+    id = id.from("com.amazonaws.ebs", "ListSnapshotBlocks"),
+    input = M.ListSnapshotBlocksInput,
+    output = M.ListSnapshotBlocksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/snapshots/{SnapshotId}/blocks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSnapshotBlock = schema.operation({
+    id = id.from("com.amazonaws.ebs", "PutSnapshotBlock"),
+    input = M.PutSnapshotBlockInput,
+    output = M.PutSnapshotBlockOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/snapshots/{SnapshotId}/blocks/{BlockIndex}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSnapshot = schema.operation({
+    id = id.from("com.amazonaws.ebs", "StartSnapshot"),
+    input = M.StartSnapshotInput,
+    output = M.StartSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/snapshots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

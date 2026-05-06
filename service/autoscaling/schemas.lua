@@ -6747,4 +6747,740 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.autoscaling", "AutoScaling_2011_01_01"),
+    version = "2011-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachInstances = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "AttachInstances"),
+    input = M.AttachInstancesInput,
+    output = M.AttachInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachLoadBalancers = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "AttachLoadBalancers"),
+    input = M.AttachLoadBalancersInput,
+    output = M.AttachLoadBalancersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachLoadBalancerTargetGroups = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "AttachLoadBalancerTargetGroups"),
+    input = M.AttachLoadBalancerTargetGroupsInput,
+    output = M.AttachLoadBalancerTargetGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachTrafficSources = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "AttachTrafficSources"),
+    input = M.AttachTrafficSourcesInput,
+    output = M.AttachTrafficSourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteScheduledAction = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "BatchDeleteScheduledAction"),
+    input = M.BatchDeleteScheduledActionInput,
+    output = M.BatchDeleteScheduledActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchPutScheduledUpdateGroupAction = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "BatchPutScheduledUpdateGroupAction"),
+    input = M.BatchPutScheduledUpdateGroupActionInput,
+    output = M.BatchPutScheduledUpdateGroupActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelInstanceRefresh = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "CancelInstanceRefresh"),
+    input = M.CancelInstanceRefreshInput,
+    output = M.CancelInstanceRefreshOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CompleteLifecycleAction = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "CompleteLifecycleAction"),
+    input = M.CompleteLifecycleActionInput,
+    output = M.CompleteLifecycleActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAutoScalingGroup = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "CreateAutoScalingGroup"),
+    input = M.CreateAutoScalingGroupInput,
+    output = M.CreateAutoScalingGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLaunchConfiguration = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "CreateLaunchConfiguration"),
+    input = M.CreateLaunchConfigurationInput,
+    output = M.CreateLaunchConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOrUpdateTags = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "CreateOrUpdateTags"),
+    input = M.CreateOrUpdateTagsInput,
+    output = M.CreateOrUpdateTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAutoScalingGroup = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DeleteAutoScalingGroup"),
+    input = M.DeleteAutoScalingGroupInput,
+    output = M.DeleteAutoScalingGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLaunchConfiguration = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DeleteLaunchConfiguration"),
+    input = M.DeleteLaunchConfigurationInput,
+    output = M.DeleteLaunchConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLifecycleHook = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DeleteLifecycleHook"),
+    input = M.DeleteLifecycleHookInput,
+    output = M.DeleteLifecycleHookOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNotificationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DeleteNotificationConfiguration"),
+    input = M.DeleteNotificationConfigurationInput,
+    output = M.DeleteNotificationConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePolicy = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DeletePolicy"),
+    input = M.DeletePolicyInput,
+    output = M.DeletePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScheduledAction = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DeleteScheduledAction"),
+    input = M.DeleteScheduledActionInput,
+    output = M.DeleteScheduledActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTags = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DeleteTags"),
+    input = M.DeleteTagsInput,
+    output = M.DeleteTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWarmPool = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DeleteWarmPool"),
+    input = M.DeleteWarmPoolInput,
+    output = M.DeleteWarmPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountLimits = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeAccountLimits"),
+    input = M.DescribeAccountLimitsInput,
+    output = M.DescribeAccountLimitsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAdjustmentTypes = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeAdjustmentTypes"),
+    input = M.DescribeAdjustmentTypesInput,
+    output = M.DescribeAdjustmentTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAutoScalingGroups = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeAutoScalingGroups"),
+    input = M.DescribeAutoScalingGroupsInput,
+    output = M.DescribeAutoScalingGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAutoScalingInstances = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeAutoScalingInstances"),
+    input = M.DescribeAutoScalingInstancesInput,
+    output = M.DescribeAutoScalingInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAutoScalingNotificationTypes = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeAutoScalingNotificationTypes"),
+    input = M.DescribeAutoScalingNotificationTypesInput,
+    output = M.DescribeAutoScalingNotificationTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInstanceRefreshes = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeInstanceRefreshes"),
+    input = M.DescribeInstanceRefreshesInput,
+    output = M.DescribeInstanceRefreshesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLaunchConfigurations = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeLaunchConfigurations"),
+    input = M.DescribeLaunchConfigurationsInput,
+    output = M.DescribeLaunchConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLifecycleHooks = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeLifecycleHooks"),
+    input = M.DescribeLifecycleHooksInput,
+    output = M.DescribeLifecycleHooksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLifecycleHookTypes = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeLifecycleHookTypes"),
+    input = M.DescribeLifecycleHookTypesInput,
+    output = M.DescribeLifecycleHookTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLoadBalancers = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeLoadBalancers"),
+    input = M.DescribeLoadBalancersInput,
+    output = M.DescribeLoadBalancersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLoadBalancerTargetGroups = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeLoadBalancerTargetGroups"),
+    input = M.DescribeLoadBalancerTargetGroupsInput,
+    output = M.DescribeLoadBalancerTargetGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMetricCollectionTypes = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeMetricCollectionTypes"),
+    input = M.DescribeMetricCollectionTypesInput,
+    output = M.DescribeMetricCollectionTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNotificationConfigurations = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeNotificationConfigurations"),
+    input = M.DescribeNotificationConfigurationsInput,
+    output = M.DescribeNotificationConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePolicies = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribePolicies"),
+    input = M.DescribePoliciesInput,
+    output = M.DescribePoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScalingActivities = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeScalingActivities"),
+    input = M.DescribeScalingActivitiesInput,
+    output = M.DescribeScalingActivitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScalingProcessTypes = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeScalingProcessTypes"),
+    input = M.DescribeScalingProcessTypesInput,
+    output = M.DescribeScalingProcessTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScheduledActions = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeScheduledActions"),
+    input = M.DescribeScheduledActionsInput,
+    output = M.DescribeScheduledActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTags = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeTags"),
+    input = M.DescribeTagsInput,
+    output = M.DescribeTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTerminationPolicyTypes = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeTerminationPolicyTypes"),
+    input = M.DescribeTerminationPolicyTypesInput,
+    output = M.DescribeTerminationPolicyTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrafficSources = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeTrafficSources"),
+    input = M.DescribeTrafficSourcesInput,
+    output = M.DescribeTrafficSourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWarmPool = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeWarmPool"),
+    input = M.DescribeWarmPoolInput,
+    output = M.DescribeWarmPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachInstances = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DetachInstances"),
+    input = M.DetachInstancesInput,
+    output = M.DetachInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachLoadBalancers = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DetachLoadBalancers"),
+    input = M.DetachLoadBalancersInput,
+    output = M.DetachLoadBalancersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachLoadBalancerTargetGroups = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DetachLoadBalancerTargetGroups"),
+    input = M.DetachLoadBalancerTargetGroupsInput,
+    output = M.DetachLoadBalancerTargetGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachTrafficSources = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DetachTrafficSources"),
+    input = M.DetachTrafficSourcesInput,
+    output = M.DetachTrafficSourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableMetricsCollection = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DisableMetricsCollection"),
+    input = M.DisableMetricsCollectionInput,
+    output = M.DisableMetricsCollectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableMetricsCollection = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "EnableMetricsCollection"),
+    input = M.EnableMetricsCollectionInput,
+    output = M.EnableMetricsCollectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnterStandby = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "EnterStandby"),
+    input = M.EnterStandbyInput,
+    output = M.EnterStandbyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecutePolicy = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "ExecutePolicy"),
+    input = M.ExecutePolicyInput,
+    output = M.ExecutePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExitStandby = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "ExitStandby"),
+    input = M.ExitStandbyInput,
+    output = M.ExitStandbyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPredictiveScalingForecast = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "GetPredictiveScalingForecast"),
+    input = M.GetPredictiveScalingForecastInput,
+    output = M.GetPredictiveScalingForecastOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.LaunchInstances = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "LaunchInstances"),
+    input = M.LaunchInstancesInput,
+    output = M.LaunchInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLifecycleHook = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "PutLifecycleHook"),
+    input = M.PutLifecycleHookInput,
+    output = M.PutLifecycleHookOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutNotificationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "PutNotificationConfiguration"),
+    input = M.PutNotificationConfigurationInput,
+    output = M.PutNotificationConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutScalingPolicy = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "PutScalingPolicy"),
+    input = M.PutScalingPolicyInput,
+    output = M.PutScalingPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutScheduledUpdateGroupAction = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "PutScheduledUpdateGroupAction"),
+    input = M.PutScheduledUpdateGroupActionInput,
+    output = M.PutScheduledUpdateGroupActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutWarmPool = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "PutWarmPool"),
+    input = M.PutWarmPoolInput,
+    output = M.PutWarmPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RecordLifecycleActionHeartbeat = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "RecordLifecycleActionHeartbeat"),
+    input = M.RecordLifecycleActionHeartbeatInput,
+    output = M.RecordLifecycleActionHeartbeatOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResumeProcesses = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "ResumeProcesses"),
+    input = M.ResumeProcessesInput,
+    output = M.ResumeProcessesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RollbackInstanceRefresh = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "RollbackInstanceRefresh"),
+    input = M.RollbackInstanceRefreshInput,
+    output = M.RollbackInstanceRefreshOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetDesiredCapacity = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "SetDesiredCapacity"),
+    input = M.SetDesiredCapacityInput,
+    output = M.SetDesiredCapacityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetInstanceHealth = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "SetInstanceHealth"),
+    input = M.SetInstanceHealthInput,
+    output = M.SetInstanceHealthOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetInstanceProtection = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "SetInstanceProtection"),
+    input = M.SetInstanceProtectionInput,
+    output = M.SetInstanceProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartInstanceRefresh = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "StartInstanceRefresh"),
+    input = M.StartInstanceRefreshInput,
+    output = M.StartInstanceRefreshOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SuspendProcesses = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "SuspendProcesses"),
+    input = M.SuspendProcessesInput,
+    output = M.SuspendProcessesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateInstanceInAutoScalingGroup = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "TerminateInstanceInAutoScalingGroup"),
+    input = M.TerminateInstanceInAutoScalingGroupInput,
+    output = M.TerminateInstanceInAutoScalingGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAutoScalingGroup = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "UpdateAutoScalingGroup"),
+    input = M.UpdateAutoScalingGroupInput,
+    output = M.UpdateAutoScalingGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

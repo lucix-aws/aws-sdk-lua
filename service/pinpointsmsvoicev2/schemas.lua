@@ -11329,4 +11329,1180 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "PinpointSMSVoiceV2"),
+    version = "2022-03-31",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateOriginationIdentity = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "AssociateOriginationIdentity"),
+    input = M.AssociateOriginationIdentityInput,
+    output = M.AssociateOriginationIdentityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateProtectConfiguration = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "AssociateProtectConfiguration"),
+    input = M.AssociateProtectConfigurationInput,
+    output = M.AssociateProtectConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CarrierLookup = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "CarrierLookup"),
+    input = M.CarrierLookupInput,
+    output = M.CarrierLookupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfigurationSet = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "CreateConfigurationSet"),
+    input = M.CreateConfigurationSetInput,
+    output = M.CreateConfigurationSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventDestination = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "CreateEventDestination"),
+    input = M.CreateEventDestinationInput,
+    output = M.CreateEventDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNotifyConfiguration = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "CreateNotifyConfiguration"),
+    input = M.CreateNotifyConfigurationInput,
+    output = M.CreateNotifyConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOptOutList = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "CreateOptOutList"),
+    input = M.CreateOptOutListInput,
+    output = M.CreateOptOutListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePool = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "CreatePool"),
+    input = M.CreatePoolInput,
+    output = M.CreatePoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProtectConfiguration = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "CreateProtectConfiguration"),
+    input = M.CreateProtectConfigurationInput,
+    output = M.CreateProtectConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRcsAgent = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "CreateRcsAgent"),
+    input = M.CreateRcsAgentInput,
+    output = M.CreateRcsAgentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRegistration = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "CreateRegistration"),
+    input = M.CreateRegistrationInput,
+    output = M.CreateRegistrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRegistrationAssociation = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "CreateRegistrationAssociation"),
+    input = M.CreateRegistrationAssociationInput,
+    output = M.CreateRegistrationAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRegistrationAttachment = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "CreateRegistrationAttachment"),
+    input = M.CreateRegistrationAttachmentInput,
+    output = M.CreateRegistrationAttachmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRegistrationVersion = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "CreateRegistrationVersion"),
+    input = M.CreateRegistrationVersionInput,
+    output = M.CreateRegistrationVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVerifiedDestinationNumber = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "CreateVerifiedDestinationNumber"),
+    input = M.CreateVerifiedDestinationNumberInput,
+    output = M.CreateVerifiedDestinationNumberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccountDefaultProtectConfiguration = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteAccountDefaultProtectConfiguration"),
+    input = M.DeleteAccountDefaultProtectConfigurationInput,
+    output = M.DeleteAccountDefaultProtectConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationSet = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteConfigurationSet"),
+    input = M.DeleteConfigurationSetInput,
+    output = M.DeleteConfigurationSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDefaultMessageType = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteDefaultMessageType"),
+    input = M.DeleteDefaultMessageTypeInput,
+    output = M.DeleteDefaultMessageTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDefaultSenderId = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteDefaultSenderId"),
+    input = M.DeleteDefaultSenderIdInput,
+    output = M.DeleteDefaultSenderIdOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventDestination = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteEventDestination"),
+    input = M.DeleteEventDestinationInput,
+    output = M.DeleteEventDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKeyword = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteKeyword"),
+    input = M.DeleteKeywordInput,
+    output = M.DeleteKeywordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMediaMessageSpendLimitOverride = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteMediaMessageSpendLimitOverride"),
+    input = M.DeleteMediaMessageSpendLimitOverrideInput,
+    output = M.DeleteMediaMessageSpendLimitOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNotifyConfiguration = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteNotifyConfiguration"),
+    input = M.DeleteNotifyConfigurationInput,
+    output = M.DeleteNotifyConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNotifyMessageSpendLimitOverride = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteNotifyMessageSpendLimitOverride"),
+    input = M.DeleteNotifyMessageSpendLimitOverrideInput,
+    output = M.DeleteNotifyMessageSpendLimitOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOptedOutNumber = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteOptedOutNumber"),
+    input = M.DeleteOptedOutNumberInput,
+    output = M.DeleteOptedOutNumberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOptOutList = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteOptOutList"),
+    input = M.DeleteOptOutListInput,
+    output = M.DeleteOptOutListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePool = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeletePool"),
+    input = M.DeletePoolInput,
+    output = M.DeletePoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProtectConfiguration = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteProtectConfiguration"),
+    input = M.DeleteProtectConfigurationInput,
+    output = M.DeleteProtectConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProtectConfigurationRuleSetNumberOverride = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteProtectConfigurationRuleSetNumberOverride"),
+    input = M.DeleteProtectConfigurationRuleSetNumberOverrideInput,
+    output = M.DeleteProtectConfigurationRuleSetNumberOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRcsAgent = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteRcsAgent"),
+    input = M.DeleteRcsAgentInput,
+    output = M.DeleteRcsAgentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRegistration = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteRegistration"),
+    input = M.DeleteRegistrationInput,
+    output = M.DeleteRegistrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRegistrationAttachment = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteRegistrationAttachment"),
+    input = M.DeleteRegistrationAttachmentInput,
+    output = M.DeleteRegistrationAttachmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRegistrationFieldValue = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteRegistrationFieldValue"),
+    input = M.DeleteRegistrationFieldValueInput,
+    output = M.DeleteRegistrationFieldValueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTextMessageSpendLimitOverride = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteTextMessageSpendLimitOverride"),
+    input = M.DeleteTextMessageSpendLimitOverrideInput,
+    output = M.DeleteTextMessageSpendLimitOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVerifiedDestinationNumber = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteVerifiedDestinationNumber"),
+    input = M.DeleteVerifiedDestinationNumberInput,
+    output = M.DeleteVerifiedDestinationNumberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVoiceMessageSpendLimitOverride = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteVoiceMessageSpendLimitOverride"),
+    input = M.DeleteVoiceMessageSpendLimitOverrideInput,
+    output = M.DeleteVoiceMessageSpendLimitOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountAttributes = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeAccountAttributes"),
+    input = M.DescribeAccountAttributesInput,
+    output = M.DescribeAccountAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountLimits = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeAccountLimits"),
+    input = M.DescribeAccountLimitsInput,
+    output = M.DescribeAccountLimitsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfigurationSets = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeConfigurationSets"),
+    input = M.DescribeConfigurationSetsInput,
+    output = M.DescribeConfigurationSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeKeywords = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeKeywords"),
+    input = M.DescribeKeywordsInput,
+    output = M.DescribeKeywordsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNotifyConfigurations = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeNotifyConfigurations"),
+    input = M.DescribeNotifyConfigurationsInput,
+    output = M.DescribeNotifyConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNotifyTemplates = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeNotifyTemplates"),
+    input = M.DescribeNotifyTemplatesInput,
+    output = M.DescribeNotifyTemplatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOptedOutNumbers = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeOptedOutNumbers"),
+    input = M.DescribeOptedOutNumbersInput,
+    output = M.DescribeOptedOutNumbersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOptOutLists = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeOptOutLists"),
+    input = M.DescribeOptOutListsInput,
+    output = M.DescribeOptOutListsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePhoneNumbers = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribePhoneNumbers"),
+    input = M.DescribePhoneNumbersInput,
+    output = M.DescribePhoneNumbersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePools = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribePools"),
+    input = M.DescribePoolsInput,
+    output = M.DescribePoolsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProtectConfigurations = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeProtectConfigurations"),
+    input = M.DescribeProtectConfigurationsInput,
+    output = M.DescribeProtectConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRcsAgentCountryLaunchStatus = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeRcsAgentCountryLaunchStatus"),
+    input = M.DescribeRcsAgentCountryLaunchStatusInput,
+    output = M.DescribeRcsAgentCountryLaunchStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRcsAgents = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeRcsAgents"),
+    input = M.DescribeRcsAgentsInput,
+    output = M.DescribeRcsAgentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRegistrationAttachments = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeRegistrationAttachments"),
+    input = M.DescribeRegistrationAttachmentsInput,
+    output = M.DescribeRegistrationAttachmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRegistrationFieldDefinitions = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeRegistrationFieldDefinitions"),
+    input = M.DescribeRegistrationFieldDefinitionsInput,
+    output = M.DescribeRegistrationFieldDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRegistrationFieldValues = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeRegistrationFieldValues"),
+    input = M.DescribeRegistrationFieldValuesInput,
+    output = M.DescribeRegistrationFieldValuesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRegistrations = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeRegistrations"),
+    input = M.DescribeRegistrationsInput,
+    output = M.DescribeRegistrationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRegistrationSectionDefinitions = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeRegistrationSectionDefinitions"),
+    input = M.DescribeRegistrationSectionDefinitionsInput,
+    output = M.DescribeRegistrationSectionDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRegistrationTypeDefinitions = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeRegistrationTypeDefinitions"),
+    input = M.DescribeRegistrationTypeDefinitionsInput,
+    output = M.DescribeRegistrationTypeDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRegistrationVersions = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeRegistrationVersions"),
+    input = M.DescribeRegistrationVersionsInput,
+    output = M.DescribeRegistrationVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSenderIds = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeSenderIds"),
+    input = M.DescribeSenderIdsInput,
+    output = M.DescribeSenderIdsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSpendLimits = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeSpendLimits"),
+    input = M.DescribeSpendLimitsInput,
+    output = M.DescribeSpendLimitsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVerifiedDestinationNumbers = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DescribeVerifiedDestinationNumbers"),
+    input = M.DescribeVerifiedDestinationNumbersInput,
+    output = M.DescribeVerifiedDestinationNumbersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateOriginationIdentity = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DisassociateOriginationIdentity"),
+    input = M.DisassociateOriginationIdentityInput,
+    output = M.DisassociateOriginationIdentityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateProtectConfiguration = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DisassociateProtectConfiguration"),
+    input = M.DisassociateProtectConfigurationInput,
+    output = M.DisassociateProtectConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DiscardRegistrationVersion = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DiscardRegistrationVersion"),
+    input = M.DiscardRegistrationVersionInput,
+    output = M.DiscardRegistrationVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProtectConfigurationCountryRuleSet = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "GetProtectConfigurationCountryRuleSet"),
+    input = M.GetProtectConfigurationCountryRuleSetInput,
+    output = M.GetProtectConfigurationCountryRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotifyCountries = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "ListNotifyCountries"),
+    input = M.ListNotifyCountriesInput,
+    output = M.ListNotifyCountriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPoolOriginationIdentities = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "ListPoolOriginationIdentities"),
+    input = M.ListPoolOriginationIdentitiesInput,
+    output = M.ListPoolOriginationIdentitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProtectConfigurationRuleSetNumberOverrides = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "ListProtectConfigurationRuleSetNumberOverrides"),
+    input = M.ListProtectConfigurationRuleSetNumberOverridesInput,
+    output = M.ListProtectConfigurationRuleSetNumberOverridesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRegistrationAssociations = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "ListRegistrationAssociations"),
+    input = M.ListRegistrationAssociationsInput,
+    output = M.ListRegistrationAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutKeyword = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "PutKeyword"),
+    input = M.PutKeywordInput,
+    output = M.PutKeywordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMessageFeedback = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "PutMessageFeedback"),
+    input = M.PutMessageFeedbackInput,
+    output = M.PutMessageFeedbackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutOptedOutNumber = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "PutOptedOutNumber"),
+    input = M.PutOptedOutNumberInput,
+    output = M.PutOptedOutNumberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutProtectConfigurationRuleSetNumberOverride = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "PutProtectConfigurationRuleSetNumberOverride"),
+    input = M.PutProtectConfigurationRuleSetNumberOverrideInput,
+    output = M.PutProtectConfigurationRuleSetNumberOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRegistrationFieldValue = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "PutRegistrationFieldValue"),
+    input = M.PutRegistrationFieldValueInput,
+    output = M.PutRegistrationFieldValueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReleasePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "ReleasePhoneNumber"),
+    input = M.ReleasePhoneNumberInput,
+    output = M.ReleasePhoneNumberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReleaseSenderId = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "ReleaseSenderId"),
+    input = M.ReleaseSenderIdInput,
+    output = M.ReleaseSenderIdOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RequestPhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "RequestPhoneNumber"),
+    input = M.RequestPhoneNumberInput,
+    output = M.RequestPhoneNumberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RequestSenderId = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "RequestSenderId"),
+    input = M.RequestSenderIdInput,
+    output = M.RequestSenderIdOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendDestinationNumberVerificationCode = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SendDestinationNumberVerificationCode"),
+    input = M.SendDestinationNumberVerificationCodeInput,
+    output = M.SendDestinationNumberVerificationCodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendMediaMessage = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SendMediaMessage"),
+    input = M.SendMediaMessageInput,
+    output = M.SendMediaMessageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendNotifyTextMessage = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SendNotifyTextMessage"),
+    input = M.SendNotifyTextMessageInput,
+    output = M.SendNotifyTextMessageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendNotifyVoiceMessage = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SendNotifyVoiceMessage"),
+    input = M.SendNotifyVoiceMessageInput,
+    output = M.SendNotifyVoiceMessageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendTextMessage = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SendTextMessage"),
+    input = M.SendTextMessageInput,
+    output = M.SendTextMessageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendVoiceMessage = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SendVoiceMessage"),
+    input = M.SendVoiceMessageInput,
+    output = M.SendVoiceMessageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetAccountDefaultProtectConfiguration = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SetAccountDefaultProtectConfiguration"),
+    input = M.SetAccountDefaultProtectConfigurationInput,
+    output = M.SetAccountDefaultProtectConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetDefaultMessageFeedbackEnabled = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SetDefaultMessageFeedbackEnabled"),
+    input = M.SetDefaultMessageFeedbackEnabledInput,
+    output = M.SetDefaultMessageFeedbackEnabledOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetDefaultMessageType = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SetDefaultMessageType"),
+    input = M.SetDefaultMessageTypeInput,
+    output = M.SetDefaultMessageTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetDefaultSenderId = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SetDefaultSenderId"),
+    input = M.SetDefaultSenderIdInput,
+    output = M.SetDefaultSenderIdOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetMediaMessageSpendLimitOverride = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SetMediaMessageSpendLimitOverride"),
+    input = M.SetMediaMessageSpendLimitOverrideInput,
+    output = M.SetMediaMessageSpendLimitOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetNotifyMessageSpendLimitOverride = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SetNotifyMessageSpendLimitOverride"),
+    input = M.SetNotifyMessageSpendLimitOverrideInput,
+    output = M.SetNotifyMessageSpendLimitOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetTextMessageSpendLimitOverride = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SetTextMessageSpendLimitOverride"),
+    input = M.SetTextMessageSpendLimitOverrideInput,
+    output = M.SetTextMessageSpendLimitOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetVoiceMessageSpendLimitOverride = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SetVoiceMessageSpendLimitOverride"),
+    input = M.SetVoiceMessageSpendLimitOverrideInput,
+    output = M.SetVoiceMessageSpendLimitOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SubmitRegistrationVersion = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SubmitRegistrationVersion"),
+    input = M.SubmitRegistrationVersionInput,
+    output = M.SubmitRegistrationVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEventDestination = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "UpdateEventDestination"),
+    input = M.UpdateEventDestinationInput,
+    output = M.UpdateEventDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNotifyConfiguration = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "UpdateNotifyConfiguration"),
+    input = M.UpdateNotifyConfigurationInput,
+    output = M.UpdateNotifyConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "UpdatePhoneNumber"),
+    input = M.UpdatePhoneNumberInput,
+    output = M.UpdatePhoneNumberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePool = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "UpdatePool"),
+    input = M.UpdatePoolInput,
+    output = M.UpdatePoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProtectConfiguration = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "UpdateProtectConfiguration"),
+    input = M.UpdateProtectConfigurationInput,
+    output = M.UpdateProtectConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProtectConfigurationCountryRuleSet = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "UpdateProtectConfigurationCountryRuleSet"),
+    input = M.UpdateProtectConfigurationCountryRuleSetInput,
+    output = M.UpdateProtectConfigurationCountryRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRcsAgent = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "UpdateRcsAgent"),
+    input = M.UpdateRcsAgentInput,
+    output = M.UpdateRcsAgentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSenderId = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "UpdateSenderId"),
+    input = M.UpdateSenderIdInput,
+    output = M.UpdateSenderIdOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyDestinationNumber = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "VerifyDestinationNumber"),
+    input = M.VerifyDestinationNumberInput,
+    output = M.VerifyDestinationNumberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

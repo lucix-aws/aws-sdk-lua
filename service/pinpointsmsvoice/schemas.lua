@@ -628,4 +628,110 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.pinpointsmsvoice", "PinpointSMSVoice"),
+    version = "2018-09-05",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfigurationSet = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoice", "CreateConfigurationSet"),
+    input = M.CreateConfigurationSetInput,
+    output = M.CreateConfigurationSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/sms-voice/configuration-sets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfigurationSetEventDestination = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoice", "CreateConfigurationSetEventDestination"),
+    input = M.CreateConfigurationSetEventDestinationInput,
+    output = M.CreateConfigurationSetEventDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}/event-destinations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationSet = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoice", "DeleteConfigurationSet"),
+    input = M.DeleteConfigurationSetInput,
+    output = M.DeleteConfigurationSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationSetEventDestination = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoice", "DeleteConfigurationSetEventDestination"),
+    input = M.DeleteConfigurationSetEventDestinationInput,
+    output = M.DeleteConfigurationSetEventDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfigurationSetEventDestinations = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoice", "GetConfigurationSetEventDestinations"),
+    input = M.GetConfigurationSetEventDestinationsInput,
+    output = M.GetConfigurationSetEventDestinationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}/event-destinations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationSets = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoice", "ListConfigurationSets"),
+    input = M.ListConfigurationSetsInput,
+    output = M.ListConfigurationSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/sms-voice/configuration-sets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendVoiceMessage = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoice", "SendVoiceMessage"),
+    input = M.SendVoiceMessageInput,
+    output = M.SendVoiceMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/sms-voice/voice/message" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfigurationSetEventDestination = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoice", "UpdateConfigurationSetEventDestination"),
+    input = M.UpdateConfigurationSetEventDestinationInput,
+    output = M.UpdateConfigurationSetEventDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

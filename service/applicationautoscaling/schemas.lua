@@ -2233,4 +2233,168 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.applicationautoscaling", "AnyScaleFrontendService"),
+    version = "2016-02-06",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScalingPolicy = schema.operation({
+    id = id.from("com.amazonaws.applicationautoscaling", "DeleteScalingPolicy"),
+    input = M.DeleteScalingPolicyInput,
+    output = M.DeleteScalingPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScheduledAction = schema.operation({
+    id = id.from("com.amazonaws.applicationautoscaling", "DeleteScheduledAction"),
+    input = M.DeleteScheduledActionInput,
+    output = M.DeleteScheduledActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterScalableTarget = schema.operation({
+    id = id.from("com.amazonaws.applicationautoscaling", "DeregisterScalableTarget"),
+    input = M.DeregisterScalableTargetInput,
+    output = M.DeregisterScalableTargetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScalableTargets = schema.operation({
+    id = id.from("com.amazonaws.applicationautoscaling", "DescribeScalableTargets"),
+    input = M.DescribeScalableTargetsInput,
+    output = M.DescribeScalableTargetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScalingActivities = schema.operation({
+    id = id.from("com.amazonaws.applicationautoscaling", "DescribeScalingActivities"),
+    input = M.DescribeScalingActivitiesInput,
+    output = M.DescribeScalingActivitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScalingPolicies = schema.operation({
+    id = id.from("com.amazonaws.applicationautoscaling", "DescribeScalingPolicies"),
+    input = M.DescribeScalingPoliciesInput,
+    output = M.DescribeScalingPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScheduledActions = schema.operation({
+    id = id.from("com.amazonaws.applicationautoscaling", "DescribeScheduledActions"),
+    input = M.DescribeScheduledActionsInput,
+    output = M.DescribeScheduledActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPredictiveScalingForecast = schema.operation({
+    id = id.from("com.amazonaws.applicationautoscaling", "GetPredictiveScalingForecast"),
+    input = M.GetPredictiveScalingForecastInput,
+    output = M.GetPredictiveScalingForecastOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.applicationautoscaling", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutScalingPolicy = schema.operation({
+    id = id.from("com.amazonaws.applicationautoscaling", "PutScalingPolicy"),
+    input = M.PutScalingPolicyInput,
+    output = M.PutScalingPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutScheduledAction = schema.operation({
+    id = id.from("com.amazonaws.applicationautoscaling", "PutScheduledAction"),
+    input = M.PutScheduledActionInput,
+    output = M.PutScheduledActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterScalableTarget = schema.operation({
+    id = id.from("com.amazonaws.applicationautoscaling", "RegisterScalableTarget"),
+    input = M.RegisterScalableTargetInput,
+    output = M.RegisterScalableTargetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.applicationautoscaling", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.applicationautoscaling", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

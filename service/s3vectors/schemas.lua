@@ -1617,4 +1617,242 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.s3vectors", "S3Vectors"),
+    version = "2025-07-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIndex = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "CreateIndex"),
+    input = M.CreateIndexInput,
+    output = M.CreateIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateIndex" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVectorBucket = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "CreateVectorBucket"),
+    input = M.CreateVectorBucketInput,
+    output = M.CreateVectorBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateVectorBucket" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIndex = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "DeleteIndex"),
+    input = M.DeleteIndexInput,
+    output = M.DeleteIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteIndex" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVectorBucket = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "DeleteVectorBucket"),
+    input = M.DeleteVectorBucketInput,
+    output = M.DeleteVectorBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteVectorBucket" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVectorBucketPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "DeleteVectorBucketPolicy"),
+    input = M.DeleteVectorBucketPolicyInput,
+    output = M.DeleteVectorBucketPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteVectorBucketPolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVectors = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "DeleteVectors"),
+    input = M.DeleteVectorsInput,
+    output = M.DeleteVectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteVectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIndex = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "GetIndex"),
+    input = M.GetIndexInput,
+    output = M.GetIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetIndex" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVectorBucket = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "GetVectorBucket"),
+    input = M.GetVectorBucketInput,
+    output = M.GetVectorBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetVectorBucket" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVectorBucketPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "GetVectorBucketPolicy"),
+    input = M.GetVectorBucketPolicyInput,
+    output = M.GetVectorBucketPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetVectorBucketPolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVectors = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "GetVectors"),
+    input = M.GetVectorsInput,
+    output = M.GetVectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetVectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIndexes = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "ListIndexes"),
+    input = M.ListIndexesInput,
+    output = M.ListIndexesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListIndexes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVectorBuckets = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "ListVectorBuckets"),
+    input = M.ListVectorBucketsInput,
+    output = M.ListVectorBucketsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListVectorBuckets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVectors = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "ListVectors"),
+    input = M.ListVectorsInput,
+    output = M.ListVectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListVectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutVectorBucketPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "PutVectorBucketPolicy"),
+    input = M.PutVectorBucketPolicyInput,
+    output = M.PutVectorBucketPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutVectorBucketPolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutVectors = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "PutVectors"),
+    input = M.PutVectorsInput,
+    output = M.PutVectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutVectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.QueryVectors = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "QueryVectors"),
+    input = M.QueryVectorsInput,
+    output = M.QueryVectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/QueryVectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

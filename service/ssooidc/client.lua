@@ -7,6 +7,7 @@ local endpoint_rules = require("ssooidc.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("ssooidc.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sso-oauth", signing_region = cfg.region } }
                 else
@@ -49,55 +52,19 @@ function M.new(cfg)
 end
 
 function Client:createToken(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateToken",
-        input_schema = schemas.CreateTokenInput,
-        output_schema = schemas.CreateTokenOutput,
-        http_method = "POST",
-        http_path = "/token",
-        effective_auth_schemes = {
-            "smithy.api#noAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateToken, input, options)
 end
 
 function Client:createTokenWithIAM(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTokenWithIAM",
-        input_schema = schemas.CreateTokenWithIAMInput,
-        output_schema = schemas.CreateTokenWithIAMOutput,
-        http_method = "POST",
-        http_path = "/token?aws_iam=t",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTokenWithIAM, input, options)
 end
 
 function Client:registerClient(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterClient",
-        input_schema = schemas.RegisterClientInput,
-        output_schema = schemas.RegisterClientOutput,
-        http_method = "POST",
-        http_path = "/client/register",
-        effective_auth_schemes = {
-            "smithy.api#noAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterClient, input, options)
 end
 
 function Client:startDeviceAuthorization(input, options)
-    return self:invokeOperation(input, {
-        name = "StartDeviceAuthorization",
-        input_schema = schemas.StartDeviceAuthorizationInput,
-        output_schema = schemas.StartDeviceAuthorizationOutput,
-        http_method = "POST",
-        http_path = "/device_authorization",
-        effective_auth_schemes = {
-            "smithy.api#noAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartDeviceAuthorization, input, options)
 end
 
 return M

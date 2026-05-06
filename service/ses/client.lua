@@ -7,6 +7,7 @@ local endpoint_rules = require("ses.endpoint_rules")
 local query_protocol = require("smithy.protocol.query")
 local schemas = require("ses.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ses", signing_region = cfg.region } }
                 else
@@ -49,926 +52,287 @@ function M.new(cfg)
 end
 
 function Client:cloneReceiptRuleSet(input, options)
-    return self:invokeOperation(input, {
-        name = "CloneReceiptRuleSet",
-        input_schema = schemas.CloneReceiptRuleSetInput,
-        output_schema = schemas.CloneReceiptRuleSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CloneReceiptRuleSet, input, options)
 end
 
 function Client:createConfigurationSet(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfigurationSet",
-        input_schema = schemas.CreateConfigurationSetInput,
-        output_schema = schemas.CreateConfigurationSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSet, input, options)
 end
 
 function Client:createConfigurationSetEventDestination(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfigurationSetEventDestination",
-        input_schema = schemas.CreateConfigurationSetEventDestinationInput,
-        output_schema = schemas.CreateConfigurationSetEventDestinationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSetEventDestination, input, options)
 end
 
 function Client:createConfigurationSetTrackingOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfigurationSetTrackingOptions",
-        input_schema = schemas.CreateConfigurationSetTrackingOptionsInput,
-        output_schema = schemas.CreateConfigurationSetTrackingOptionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSetTrackingOptions, input, options)
 end
 
 function Client:createCustomVerificationEmailTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCustomVerificationEmailTemplate",
-        input_schema = schemas.CreateCustomVerificationEmailTemplateInput,
-        output_schema = schemas.CreateCustomVerificationEmailTemplateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCustomVerificationEmailTemplate, input, options)
 end
 
 function Client:createReceiptFilter(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateReceiptFilter",
-        input_schema = schemas.CreateReceiptFilterInput,
-        output_schema = schemas.CreateReceiptFilterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateReceiptFilter, input, options)
 end
 
 function Client:createReceiptRule(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateReceiptRule",
-        input_schema = schemas.CreateReceiptRuleInput,
-        output_schema = schemas.CreateReceiptRuleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateReceiptRule, input, options)
 end
 
 function Client:createReceiptRuleSet(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateReceiptRuleSet",
-        input_schema = schemas.CreateReceiptRuleSetInput,
-        output_schema = schemas.CreateReceiptRuleSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateReceiptRuleSet, input, options)
 end
 
 function Client:createTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTemplate",
-        input_schema = schemas.CreateTemplateInput,
-        output_schema = schemas.CreateTemplateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTemplate, input, options)
 end
 
 function Client:deleteConfigurationSet(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfigurationSet",
-        input_schema = schemas.DeleteConfigurationSetInput,
-        output_schema = schemas.DeleteConfigurationSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSet, input, options)
 end
 
 function Client:deleteConfigurationSetEventDestination(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfigurationSetEventDestination",
-        input_schema = schemas.DeleteConfigurationSetEventDestinationInput,
-        output_schema = schemas.DeleteConfigurationSetEventDestinationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSetEventDestination, input, options)
 end
 
 function Client:deleteConfigurationSetTrackingOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfigurationSetTrackingOptions",
-        input_schema = schemas.DeleteConfigurationSetTrackingOptionsInput,
-        output_schema = schemas.DeleteConfigurationSetTrackingOptionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSetTrackingOptions, input, options)
 end
 
 function Client:deleteCustomVerificationEmailTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCustomVerificationEmailTemplate",
-        input_schema = schemas.DeleteCustomVerificationEmailTemplateInput,
-        output_schema = schemas.DeleteCustomVerificationEmailTemplateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCustomVerificationEmailTemplate, input, options)
 end
 
 function Client:deleteIdentity(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIdentity",
-        input_schema = schemas.DeleteIdentityInput,
-        output_schema = schemas.DeleteIdentityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIdentity, input, options)
 end
 
 function Client:deleteIdentityPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIdentityPolicy",
-        input_schema = schemas.DeleteIdentityPolicyInput,
-        output_schema = schemas.DeleteIdentityPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIdentityPolicy, input, options)
 end
 
 function Client:deleteReceiptFilter(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteReceiptFilter",
-        input_schema = schemas.DeleteReceiptFilterInput,
-        output_schema = schemas.DeleteReceiptFilterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteReceiptFilter, input, options)
 end
 
 function Client:deleteReceiptRule(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteReceiptRule",
-        input_schema = schemas.DeleteReceiptRuleInput,
-        output_schema = schemas.DeleteReceiptRuleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteReceiptRule, input, options)
 end
 
 function Client:deleteReceiptRuleSet(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteReceiptRuleSet",
-        input_schema = schemas.DeleteReceiptRuleSetInput,
-        output_schema = schemas.DeleteReceiptRuleSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteReceiptRuleSet, input, options)
 end
 
 function Client:deleteTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTemplate",
-        input_schema = schemas.DeleteTemplateInput,
-        output_schema = schemas.DeleteTemplateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTemplate, input, options)
 end
 
 function Client:deleteVerifiedEmailAddress(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVerifiedEmailAddress",
-        input_schema = schemas.DeleteVerifiedEmailAddressInput,
-        output_schema = schemas.DeleteVerifiedEmailAddressOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVerifiedEmailAddress, input, options)
 end
 
 function Client:describeActiveReceiptRuleSet(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeActiveReceiptRuleSet",
-        input_schema = schemas.DescribeActiveReceiptRuleSetInput,
-        output_schema = schemas.DescribeActiveReceiptRuleSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeActiveReceiptRuleSet, input, options)
 end
 
 function Client:describeConfigurationSet(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeConfigurationSet",
-        input_schema = schemas.DescribeConfigurationSetInput,
-        output_schema = schemas.DescribeConfigurationSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeConfigurationSet, input, options)
 end
 
 function Client:describeReceiptRule(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeReceiptRule",
-        input_schema = schemas.DescribeReceiptRuleInput,
-        output_schema = schemas.DescribeReceiptRuleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeReceiptRule, input, options)
 end
 
 function Client:describeReceiptRuleSet(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeReceiptRuleSet",
-        input_schema = schemas.DescribeReceiptRuleSetInput,
-        output_schema = schemas.DescribeReceiptRuleSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeReceiptRuleSet, input, options)
 end
 
 function Client:getAccountSendingEnabled(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccountSendingEnabled",
-        input_schema = schemas.GetAccountSendingEnabledInput,
-        output_schema = schemas.GetAccountSendingEnabledOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccountSendingEnabled, input, options)
 end
 
 function Client:getCustomVerificationEmailTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCustomVerificationEmailTemplate",
-        input_schema = schemas.GetCustomVerificationEmailTemplateInput,
-        output_schema = schemas.GetCustomVerificationEmailTemplateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCustomVerificationEmailTemplate, input, options)
 end
 
 function Client:getIdentityDkimAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdentityDkimAttributes",
-        input_schema = schemas.GetIdentityDkimAttributesInput,
-        output_schema = schemas.GetIdentityDkimAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdentityDkimAttributes, input, options)
 end
 
 function Client:getIdentityMailFromDomainAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdentityMailFromDomainAttributes",
-        input_schema = schemas.GetIdentityMailFromDomainAttributesInput,
-        output_schema = schemas.GetIdentityMailFromDomainAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdentityMailFromDomainAttributes, input, options)
 end
 
 function Client:getIdentityNotificationAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdentityNotificationAttributes",
-        input_schema = schemas.GetIdentityNotificationAttributesInput,
-        output_schema = schemas.GetIdentityNotificationAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdentityNotificationAttributes, input, options)
 end
 
 function Client:getIdentityPolicies(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdentityPolicies",
-        input_schema = schemas.GetIdentityPoliciesInput,
-        output_schema = schemas.GetIdentityPoliciesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdentityPolicies, input, options)
 end
 
 function Client:getIdentityVerificationAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdentityVerificationAttributes",
-        input_schema = schemas.GetIdentityVerificationAttributesInput,
-        output_schema = schemas.GetIdentityVerificationAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdentityVerificationAttributes, input, options)
 end
 
 function Client:getSendQuota(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSendQuota",
-        input_schema = schemas.GetSendQuotaInput,
-        output_schema = schemas.GetSendQuotaOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSendQuota, input, options)
 end
 
 function Client:getSendStatistics(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSendStatistics",
-        input_schema = schemas.GetSendStatisticsInput,
-        output_schema = schemas.GetSendStatisticsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSendStatistics, input, options)
 end
 
 function Client:getTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTemplate",
-        input_schema = schemas.GetTemplateInput,
-        output_schema = schemas.GetTemplateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTemplate, input, options)
 end
 
 function Client:listConfigurationSets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConfigurationSets",
-        input_schema = schemas.ListConfigurationSetsInput,
-        output_schema = schemas.ListConfigurationSetsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConfigurationSets, input, options)
 end
 
 function Client:listCustomVerificationEmailTemplates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCustomVerificationEmailTemplates",
-        input_schema = schemas.ListCustomVerificationEmailTemplatesInput,
-        output_schema = schemas.ListCustomVerificationEmailTemplatesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCustomVerificationEmailTemplates, input, options)
 end
 
 function Client:listIdentities(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIdentities",
-        input_schema = schemas.ListIdentitiesInput,
-        output_schema = schemas.ListIdentitiesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIdentities, input, options)
 end
 
 function Client:listIdentityPolicies(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIdentityPolicies",
-        input_schema = schemas.ListIdentityPoliciesInput,
-        output_schema = schemas.ListIdentityPoliciesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIdentityPolicies, input, options)
 end
 
 function Client:listReceiptFilters(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReceiptFilters",
-        input_schema = schemas.ListReceiptFiltersInput,
-        output_schema = schemas.ListReceiptFiltersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReceiptFilters, input, options)
 end
 
 function Client:listReceiptRuleSets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReceiptRuleSets",
-        input_schema = schemas.ListReceiptRuleSetsInput,
-        output_schema = schemas.ListReceiptRuleSetsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReceiptRuleSets, input, options)
 end
 
 function Client:listTemplates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTemplates",
-        input_schema = schemas.ListTemplatesInput,
-        output_schema = schemas.ListTemplatesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTemplates, input, options)
 end
 
 function Client:listVerifiedEmailAddresses(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVerifiedEmailAddresses",
-        input_schema = schemas.ListVerifiedEmailAddressesInput,
-        output_schema = schemas.ListVerifiedEmailAddressesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVerifiedEmailAddresses, input, options)
 end
 
 function Client:putConfigurationSetDeliveryOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "PutConfigurationSetDeliveryOptions",
-        input_schema = schemas.PutConfigurationSetDeliveryOptionsInput,
-        output_schema = schemas.PutConfigurationSetDeliveryOptionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutConfigurationSetDeliveryOptions, input, options)
 end
 
 function Client:putIdentityPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutIdentityPolicy",
-        input_schema = schemas.PutIdentityPolicyInput,
-        output_schema = schemas.PutIdentityPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutIdentityPolicy, input, options)
 end
 
 function Client:reorderReceiptRuleSet(input, options)
-    return self:invokeOperation(input, {
-        name = "ReorderReceiptRuleSet",
-        input_schema = schemas.ReorderReceiptRuleSetInput,
-        output_schema = schemas.ReorderReceiptRuleSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ReorderReceiptRuleSet, input, options)
 end
 
 function Client:sendBounce(input, options)
-    return self:invokeOperation(input, {
-        name = "SendBounce",
-        input_schema = schemas.SendBounceInput,
-        output_schema = schemas.SendBounceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SendBounce, input, options)
 end
 
 function Client:sendBulkTemplatedEmail(input, options)
-    return self:invokeOperation(input, {
-        name = "SendBulkTemplatedEmail",
-        input_schema = schemas.SendBulkTemplatedEmailInput,
-        output_schema = schemas.SendBulkTemplatedEmailOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SendBulkTemplatedEmail, input, options)
 end
 
 function Client:sendCustomVerificationEmail(input, options)
-    return self:invokeOperation(input, {
-        name = "SendCustomVerificationEmail",
-        input_schema = schemas.SendCustomVerificationEmailInput,
-        output_schema = schemas.SendCustomVerificationEmailOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SendCustomVerificationEmail, input, options)
 end
 
 function Client:sendEmail(input, options)
-    return self:invokeOperation(input, {
-        name = "SendEmail",
-        input_schema = schemas.SendEmailInput,
-        output_schema = schemas.SendEmailOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SendEmail, input, options)
 end
 
 function Client:sendRawEmail(input, options)
-    return self:invokeOperation(input, {
-        name = "SendRawEmail",
-        input_schema = schemas.SendRawEmailInput,
-        output_schema = schemas.SendRawEmailOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SendRawEmail, input, options)
 end
 
 function Client:sendTemplatedEmail(input, options)
-    return self:invokeOperation(input, {
-        name = "SendTemplatedEmail",
-        input_schema = schemas.SendTemplatedEmailInput,
-        output_schema = schemas.SendTemplatedEmailOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SendTemplatedEmail, input, options)
 end
 
 function Client:setActiveReceiptRuleSet(input, options)
-    return self:invokeOperation(input, {
-        name = "SetActiveReceiptRuleSet",
-        input_schema = schemas.SetActiveReceiptRuleSetInput,
-        output_schema = schemas.SetActiveReceiptRuleSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetActiveReceiptRuleSet, input, options)
 end
 
 function Client:setIdentityDkimEnabled(input, options)
-    return self:invokeOperation(input, {
-        name = "SetIdentityDkimEnabled",
-        input_schema = schemas.SetIdentityDkimEnabledInput,
-        output_schema = schemas.SetIdentityDkimEnabledOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetIdentityDkimEnabled, input, options)
 end
 
 function Client:setIdentityFeedbackForwardingEnabled(input, options)
-    return self:invokeOperation(input, {
-        name = "SetIdentityFeedbackForwardingEnabled",
-        input_schema = schemas.SetIdentityFeedbackForwardingEnabledInput,
-        output_schema = schemas.SetIdentityFeedbackForwardingEnabledOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetIdentityFeedbackForwardingEnabled, input, options)
 end
 
 function Client:setIdentityHeadersInNotificationsEnabled(input, options)
-    return self:invokeOperation(input, {
-        name = "SetIdentityHeadersInNotificationsEnabled",
-        input_schema = schemas.SetIdentityHeadersInNotificationsEnabledInput,
-        output_schema = schemas.SetIdentityHeadersInNotificationsEnabledOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetIdentityHeadersInNotificationsEnabled, input, options)
 end
 
 function Client:setIdentityMailFromDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "SetIdentityMailFromDomain",
-        input_schema = schemas.SetIdentityMailFromDomainInput,
-        output_schema = schemas.SetIdentityMailFromDomainOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetIdentityMailFromDomain, input, options)
 end
 
 function Client:setIdentityNotificationTopic(input, options)
-    return self:invokeOperation(input, {
-        name = "SetIdentityNotificationTopic",
-        input_schema = schemas.SetIdentityNotificationTopicInput,
-        output_schema = schemas.SetIdentityNotificationTopicOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetIdentityNotificationTopic, input, options)
 end
 
 function Client:setReceiptRulePosition(input, options)
-    return self:invokeOperation(input, {
-        name = "SetReceiptRulePosition",
-        input_schema = schemas.SetReceiptRulePositionInput,
-        output_schema = schemas.SetReceiptRulePositionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetReceiptRulePosition, input, options)
 end
 
 function Client:testRenderTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "TestRenderTemplate",
-        input_schema = schemas.TestRenderTemplateInput,
-        output_schema = schemas.TestRenderTemplateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TestRenderTemplate, input, options)
 end
 
 function Client:updateAccountSendingEnabled(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAccountSendingEnabled",
-        input_schema = schemas.UpdateAccountSendingEnabledInput,
-        output_schema = schemas.UpdateAccountSendingEnabledOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAccountSendingEnabled, input, options)
 end
 
 function Client:updateConfigurationSetEventDestination(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConfigurationSetEventDestination",
-        input_schema = schemas.UpdateConfigurationSetEventDestinationInput,
-        output_schema = schemas.UpdateConfigurationSetEventDestinationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationSetEventDestination, input, options)
 end
 
 function Client:updateConfigurationSetReputationMetricsEnabled(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConfigurationSetReputationMetricsEnabled",
-        input_schema = schemas.UpdateConfigurationSetReputationMetricsEnabledInput,
-        output_schema = schemas.UpdateConfigurationSetReputationMetricsEnabledOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationSetReputationMetricsEnabled, input, options)
 end
 
 function Client:updateConfigurationSetSendingEnabled(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConfigurationSetSendingEnabled",
-        input_schema = schemas.UpdateConfigurationSetSendingEnabledInput,
-        output_schema = schemas.UpdateConfigurationSetSendingEnabledOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationSetSendingEnabled, input, options)
 end
 
 function Client:updateConfigurationSetTrackingOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConfigurationSetTrackingOptions",
-        input_schema = schemas.UpdateConfigurationSetTrackingOptionsInput,
-        output_schema = schemas.UpdateConfigurationSetTrackingOptionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationSetTrackingOptions, input, options)
 end
 
 function Client:updateCustomVerificationEmailTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCustomVerificationEmailTemplate",
-        input_schema = schemas.UpdateCustomVerificationEmailTemplateInput,
-        output_schema = schemas.UpdateCustomVerificationEmailTemplateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCustomVerificationEmailTemplate, input, options)
 end
 
 function Client:updateReceiptRule(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateReceiptRule",
-        input_schema = schemas.UpdateReceiptRuleInput,
-        output_schema = schemas.UpdateReceiptRuleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateReceiptRule, input, options)
 end
 
 function Client:updateTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTemplate",
-        input_schema = schemas.UpdateTemplateInput,
-        output_schema = schemas.UpdateTemplateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTemplate, input, options)
 end
 
 function Client:verifyDomainDkim(input, options)
-    return self:invokeOperation(input, {
-        name = "VerifyDomainDkim",
-        input_schema = schemas.VerifyDomainDkimInput,
-        output_schema = schemas.VerifyDomainDkimOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.VerifyDomainDkim, input, options)
 end
 
 function Client:verifyDomainIdentity(input, options)
-    return self:invokeOperation(input, {
-        name = "VerifyDomainIdentity",
-        input_schema = schemas.VerifyDomainIdentityInput,
-        output_schema = schemas.VerifyDomainIdentityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.VerifyDomainIdentity, input, options)
 end
 
 function Client:verifyEmailAddress(input, options)
-    return self:invokeOperation(input, {
-        name = "VerifyEmailAddress",
-        input_schema = schemas.VerifyEmailAddressInput,
-        output_schema = schemas.VerifyEmailAddressOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.VerifyEmailAddress, input, options)
 end
 
 function Client:verifyEmailIdentity(input, options)
-    return self:invokeOperation(input, {
-        name = "VerifyEmailIdentity",
-        input_schema = schemas.VerifyEmailIdentityInput,
-        output_schema = schemas.VerifyEmailIdentityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.VerifyEmailIdentity, input, options)
 end
 
 return M

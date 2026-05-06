@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("healthlake.endpoint_rules")
 local schemas = require("healthlake.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "healthlake", signing_region = cfg.region } }
                 else
@@ -49,172 +52,55 @@ function M.new(cfg)
 end
 
 function Client:createFHIRDatastore(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateFHIRDatastore",
-        input_schema = schemas.CreateFHIRDatastoreInput,
-        output_schema = schemas.CreateFHIRDatastoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateFHIRDatastore, input, options)
 end
 
 function Client:deleteFHIRDatastore(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFHIRDatastore",
-        input_schema = schemas.DeleteFHIRDatastoreInput,
-        output_schema = schemas.DeleteFHIRDatastoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFHIRDatastore, input, options)
 end
 
 function Client:describeFHIRDatastore(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeFHIRDatastore",
-        input_schema = schemas.DescribeFHIRDatastoreInput,
-        output_schema = schemas.DescribeFHIRDatastoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeFHIRDatastore, input, options)
 end
 
 function Client:describeFHIRExportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeFHIRExportJob",
-        input_schema = schemas.DescribeFHIRExportJobInput,
-        output_schema = schemas.DescribeFHIRExportJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeFHIRExportJob, input, options)
 end
 
 function Client:describeFHIRImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeFHIRImportJob",
-        input_schema = schemas.DescribeFHIRImportJobInput,
-        output_schema = schemas.DescribeFHIRImportJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeFHIRImportJob, input, options)
 end
 
 function Client:listFHIRDatastores(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFHIRDatastores",
-        input_schema = schemas.ListFHIRDatastoresInput,
-        output_schema = schemas.ListFHIRDatastoresOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFHIRDatastores, input, options)
 end
 
 function Client:listFHIRExportJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFHIRExportJobs",
-        input_schema = schemas.ListFHIRExportJobsInput,
-        output_schema = schemas.ListFHIRExportJobsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFHIRExportJobs, input, options)
 end
 
 function Client:listFHIRImportJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFHIRImportJobs",
-        input_schema = schemas.ListFHIRImportJobsInput,
-        output_schema = schemas.ListFHIRImportJobsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFHIRImportJobs, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:startFHIRExportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartFHIRExportJob",
-        input_schema = schemas.StartFHIRExportJobInput,
-        output_schema = schemas.StartFHIRExportJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartFHIRExportJob, input, options)
 end
 
 function Client:startFHIRImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartFHIRImportJob",
-        input_schema = schemas.StartFHIRImportJobInput,
-        output_schema = schemas.StartFHIRImportJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartFHIRImportJob, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 return M

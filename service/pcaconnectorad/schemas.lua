@@ -3009,4 +3009,314 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.pcaconnectorad", "PcaConnectorAd"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnector = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "CreateConnector"),
+    input = M.CreateConnectorInput,
+    output = M.CreateConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDirectoryRegistration = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "CreateDirectoryRegistration"),
+    input = M.CreateDirectoryRegistrationInput,
+    output = M.CreateDirectoryRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/directoryRegistrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServicePrincipalName = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "CreateServicePrincipalName"),
+    input = M.CreateServicePrincipalNameInput,
+    output = M.CreateServicePrincipalNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/directoryRegistrations/{DirectoryRegistrationArn}/servicePrincipalNames/{ConnectorArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTemplate = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "CreateTemplate"),
+    input = M.CreateTemplateInput,
+    output = M.CreateTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTemplateGroupAccessControlEntry = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "CreateTemplateGroupAccessControlEntry"),
+    input = M.CreateTemplateGroupAccessControlEntryInput,
+    output = M.CreateTemplateGroupAccessControlEntryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/templates/{TemplateArn}/accessControlEntries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnector = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "DeleteConnector"),
+    input = M.DeleteConnectorInput,
+    output = M.DeleteConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/connectors/{ConnectorArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDirectoryRegistration = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "DeleteDirectoryRegistration"),
+    input = M.DeleteDirectoryRegistrationInput,
+    output = M.DeleteDirectoryRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/directoryRegistrations/{DirectoryRegistrationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServicePrincipalName = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "DeleteServicePrincipalName"),
+    input = M.DeleteServicePrincipalNameInput,
+    output = M.DeleteServicePrincipalNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/directoryRegistrations/{DirectoryRegistrationArn}/servicePrincipalNames/{ConnectorArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTemplate = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "DeleteTemplate"),
+    input = M.DeleteTemplateInput,
+    output = M.DeleteTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/templates/{TemplateArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTemplateGroupAccessControlEntry = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "DeleteTemplateGroupAccessControlEntry"),
+    input = M.DeleteTemplateGroupAccessControlEntryInput,
+    output = M.DeleteTemplateGroupAccessControlEntryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/templates/{TemplateArn}/accessControlEntries/{GroupSecurityIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnector = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "GetConnector"),
+    input = M.GetConnectorInput,
+    output = M.GetConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connectors/{ConnectorArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDirectoryRegistration = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "GetDirectoryRegistration"),
+    input = M.GetDirectoryRegistrationInput,
+    output = M.GetDirectoryRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/directoryRegistrations/{DirectoryRegistrationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServicePrincipalName = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "GetServicePrincipalName"),
+    input = M.GetServicePrincipalNameInput,
+    output = M.GetServicePrincipalNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/directoryRegistrations/{DirectoryRegistrationArn}/servicePrincipalNames/{ConnectorArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemplate = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "GetTemplate"),
+    input = M.GetTemplateInput,
+    output = M.GetTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/templates/{TemplateArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemplateGroupAccessControlEntry = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "GetTemplateGroupAccessControlEntry"),
+    input = M.GetTemplateGroupAccessControlEntryInput,
+    output = M.GetTemplateGroupAccessControlEntryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/templates/{TemplateArn}/accessControlEntries/{GroupSecurityIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectors = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "ListConnectors"),
+    input = M.ListConnectorsInput,
+    output = M.ListConnectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDirectoryRegistrations = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "ListDirectoryRegistrations"),
+    input = M.ListDirectoryRegistrationsInput,
+    output = M.ListDirectoryRegistrationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/directoryRegistrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServicePrincipalNames = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "ListServicePrincipalNames"),
+    input = M.ListServicePrincipalNamesInput,
+    output = M.ListServicePrincipalNamesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/directoryRegistrations/{DirectoryRegistrationArn}/servicePrincipalNames" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTemplateGroupAccessControlEntries = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "ListTemplateGroupAccessControlEntries"),
+    input = M.ListTemplateGroupAccessControlEntriesInput,
+    output = M.ListTemplateGroupAccessControlEntriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/templates/{TemplateArn}/accessControlEntries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTemplates = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "ListTemplates"),
+    input = M.ListTemplatesInput,
+    output = M.ListTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTemplate = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "UpdateTemplate"),
+    input = M.UpdateTemplateInput,
+    output = M.UpdateTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/templates/{TemplateArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTemplateGroupAccessControlEntry = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorad", "UpdateTemplateGroupAccessControlEntry"),
+    input = M.UpdateTemplateGroupAccessControlEntryInput,
+    output = M.UpdateTemplateGroupAccessControlEntryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/templates/{TemplateArn}/accessControlEntries/{GroupSecurityIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

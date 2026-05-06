@@ -7,6 +7,7 @@ local endpoint_rules = require("glacier.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("glacier.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "glacier", signing_region = cfg.region } }
                 else
@@ -49,432 +52,135 @@ function M.new(cfg)
 end
 
 function Client:abortMultipartUpload(input, options)
-    return self:invokeOperation(input, {
-        name = "AbortMultipartUpload",
-        input_schema = schemas.AbortMultipartUploadInput,
-        output_schema = schemas.AbortMultipartUploadOutput,
-        http_method = "DELETE",
-        http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AbortMultipartUpload, input, options)
 end
 
 function Client:abortVaultLock(input, options)
-    return self:invokeOperation(input, {
-        name = "AbortVaultLock",
-        input_schema = schemas.AbortVaultLockInput,
-        output_schema = schemas.AbortVaultLockOutput,
-        http_method = "DELETE",
-        http_path = "/{accountId}/vaults/{vaultName}/lock-policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AbortVaultLock, input, options)
 end
 
 function Client:addTagsToVault(input, options)
-    return self:invokeOperation(input, {
-        name = "AddTagsToVault",
-        input_schema = schemas.AddTagsToVaultInput,
-        output_schema = schemas.AddTagsToVaultOutput,
-        http_method = "POST",
-        http_path = "/{accountId}/vaults/{vaultName}/tags?operation=add",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddTagsToVault, input, options)
 end
 
 function Client:completeMultipartUpload(input, options)
-    return self:invokeOperation(input, {
-        name = "CompleteMultipartUpload",
-        input_schema = schemas.CompleteMultipartUploadInput,
-        output_schema = schemas.CompleteMultipartUploadOutput,
-        http_method = "POST",
-        http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CompleteMultipartUpload, input, options)
 end
 
 function Client:completeVaultLock(input, options)
-    return self:invokeOperation(input, {
-        name = "CompleteVaultLock",
-        input_schema = schemas.CompleteVaultLockInput,
-        output_schema = schemas.CompleteVaultLockOutput,
-        http_method = "POST",
-        http_path = "/{accountId}/vaults/{vaultName}/lock-policy/{lockId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CompleteVaultLock, input, options)
 end
 
 function Client:createVault(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateVault",
-        input_schema = schemas.CreateVaultInput,
-        output_schema = schemas.CreateVaultOutput,
-        http_method = "PUT",
-        http_path = "/{accountId}/vaults/{vaultName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateVault, input, options)
 end
 
 function Client:deleteArchive(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteArchive",
-        input_schema = schemas.DeleteArchiveInput,
-        output_schema = schemas.DeleteArchiveOutput,
-        http_method = "DELETE",
-        http_path = "/{accountId}/vaults/{vaultName}/archives/{archiveId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteArchive, input, options)
 end
 
 function Client:deleteVault(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVault",
-        input_schema = schemas.DeleteVaultInput,
-        output_schema = schemas.DeleteVaultOutput,
-        http_method = "DELETE",
-        http_path = "/{accountId}/vaults/{vaultName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVault, input, options)
 end
 
 function Client:deleteVaultAccessPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVaultAccessPolicy",
-        input_schema = schemas.DeleteVaultAccessPolicyInput,
-        output_schema = schemas.DeleteVaultAccessPolicyOutput,
-        http_method = "DELETE",
-        http_path = "/{accountId}/vaults/{vaultName}/access-policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVaultAccessPolicy, input, options)
 end
 
 function Client:deleteVaultNotifications(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVaultNotifications",
-        input_schema = schemas.DeleteVaultNotificationsInput,
-        output_schema = schemas.DeleteVaultNotificationsOutput,
-        http_method = "DELETE",
-        http_path = "/{accountId}/vaults/{vaultName}/notification-configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVaultNotifications, input, options)
 end
 
 function Client:describeJob(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeJob",
-        input_schema = schemas.DescribeJobInput,
-        output_schema = schemas.DescribeJobOutput,
-        http_method = "GET",
-        http_path = "/{accountId}/vaults/{vaultName}/jobs/{jobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeJob, input, options)
 end
 
 function Client:describeVault(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeVault",
-        input_schema = schemas.DescribeVaultInput,
-        output_schema = schemas.DescribeVaultOperationOutput,
-        http_method = "GET",
-        http_path = "/{accountId}/vaults/{vaultName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeVault, input, options)
 end
 
 function Client:getDataRetrievalPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDataRetrievalPolicy",
-        input_schema = schemas.GetDataRetrievalPolicyInput,
-        output_schema = schemas.GetDataRetrievalPolicyOutput,
-        http_method = "GET",
-        http_path = "/{accountId}/policies/data-retrieval",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDataRetrievalPolicy, input, options)
 end
 
 function Client:getJobOutput(input, options)
-    return self:invokeOperation(input, {
-        name = "GetJobOutput",
-        input_schema = schemas.GetJobOutputInput,
-        output_schema = schemas.GetJobOutputOutput,
-        http_method = "GET",
-        http_path = "/{accountId}/vaults/{vaultName}/jobs/{jobId}/output",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetJobOutput, input, options)
 end
 
 function Client:getVaultAccessPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetVaultAccessPolicy",
-        input_schema = schemas.GetVaultAccessPolicyInput,
-        output_schema = schemas.GetVaultAccessPolicyOutput,
-        http_method = "GET",
-        http_path = "/{accountId}/vaults/{vaultName}/access-policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetVaultAccessPolicy, input, options)
 end
 
 function Client:getVaultLock(input, options)
-    return self:invokeOperation(input, {
-        name = "GetVaultLock",
-        input_schema = schemas.GetVaultLockInput,
-        output_schema = schemas.GetVaultLockOutput,
-        http_method = "GET",
-        http_path = "/{accountId}/vaults/{vaultName}/lock-policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetVaultLock, input, options)
 end
 
 function Client:getVaultNotifications(input, options)
-    return self:invokeOperation(input, {
-        name = "GetVaultNotifications",
-        input_schema = schemas.GetVaultNotificationsInput,
-        output_schema = schemas.GetVaultNotificationsOutput,
-        http_method = "GET",
-        http_path = "/{accountId}/vaults/{vaultName}/notification-configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetVaultNotifications, input, options)
 end
 
 function Client:initiateJob(input, options)
-    return self:invokeOperation(input, {
-        name = "InitiateJob",
-        input_schema = schemas.InitiateJobInput,
-        output_schema = schemas.InitiateJobOutput,
-        http_method = "POST",
-        http_path = "/{accountId}/vaults/{vaultName}/jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InitiateJob, input, options)
 end
 
 function Client:initiateMultipartUpload(input, options)
-    return self:invokeOperation(input, {
-        name = "InitiateMultipartUpload",
-        input_schema = schemas.InitiateMultipartUploadInput,
-        output_schema = schemas.InitiateMultipartUploadOutput,
-        http_method = "POST",
-        http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InitiateMultipartUpload, input, options)
 end
 
 function Client:initiateVaultLock(input, options)
-    return self:invokeOperation(input, {
-        name = "InitiateVaultLock",
-        input_schema = schemas.InitiateVaultLockInput,
-        output_schema = schemas.InitiateVaultLockOutput,
-        http_method = "POST",
-        http_path = "/{accountId}/vaults/{vaultName}/lock-policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InitiateVaultLock, input, options)
 end
 
 function Client:listJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListJobs",
-        input_schema = schemas.ListJobsInput,
-        output_schema = schemas.ListJobsOutput,
-        http_method = "GET",
-        http_path = "/{accountId}/vaults/{vaultName}/jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListJobs, input, options)
 end
 
 function Client:listMultipartUploads(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMultipartUploads",
-        input_schema = schemas.ListMultipartUploadsInput,
-        output_schema = schemas.ListMultipartUploadsOutput,
-        http_method = "GET",
-        http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMultipartUploads, input, options)
 end
 
 function Client:listParts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListParts",
-        input_schema = schemas.ListPartsInput,
-        output_schema = schemas.ListPartsOutput,
-        http_method = "GET",
-        http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListParts, input, options)
 end
 
 function Client:listProvisionedCapacity(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProvisionedCapacity",
-        input_schema = schemas.ListProvisionedCapacityInput,
-        output_schema = schemas.ListProvisionedCapacityOutput,
-        http_method = "GET",
-        http_path = "/{accountId}/provisioned-capacity",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProvisionedCapacity, input, options)
 end
 
 function Client:listTagsForVault(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForVault",
-        input_schema = schemas.ListTagsForVaultInput,
-        output_schema = schemas.ListTagsForVaultOutput,
-        http_method = "GET",
-        http_path = "/{accountId}/vaults/{vaultName}/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForVault, input, options)
 end
 
 function Client:listVaults(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVaults",
-        input_schema = schemas.ListVaultsInput,
-        output_schema = schemas.ListVaultsOutput,
-        http_method = "GET",
-        http_path = "/{accountId}/vaults",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVaults, input, options)
 end
 
 function Client:purchaseProvisionedCapacity(input, options)
-    return self:invokeOperation(input, {
-        name = "PurchaseProvisionedCapacity",
-        input_schema = schemas.PurchaseProvisionedCapacityInput,
-        output_schema = schemas.PurchaseProvisionedCapacityOutput,
-        http_method = "POST",
-        http_path = "/{accountId}/provisioned-capacity",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PurchaseProvisionedCapacity, input, options)
 end
 
 function Client:removeTagsFromVault(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveTagsFromVault",
-        input_schema = schemas.RemoveTagsFromVaultInput,
-        output_schema = schemas.RemoveTagsFromVaultOutput,
-        http_method = "POST",
-        http_path = "/{accountId}/vaults/{vaultName}/tags?operation=remove",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveTagsFromVault, input, options)
 end
 
 function Client:setDataRetrievalPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "SetDataRetrievalPolicy",
-        input_schema = schemas.SetDataRetrievalPolicyInput,
-        output_schema = schemas.SetDataRetrievalPolicyOutput,
-        http_method = "PUT",
-        http_path = "/{accountId}/policies/data-retrieval",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetDataRetrievalPolicy, input, options)
 end
 
 function Client:setVaultAccessPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "SetVaultAccessPolicy",
-        input_schema = schemas.SetVaultAccessPolicyInput,
-        output_schema = schemas.SetVaultAccessPolicyOutput,
-        http_method = "PUT",
-        http_path = "/{accountId}/vaults/{vaultName}/access-policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetVaultAccessPolicy, input, options)
 end
 
 function Client:setVaultNotifications(input, options)
-    return self:invokeOperation(input, {
-        name = "SetVaultNotifications",
-        input_schema = schemas.SetVaultNotificationsInput,
-        output_schema = schemas.SetVaultNotificationsOutput,
-        http_method = "PUT",
-        http_path = "/{accountId}/vaults/{vaultName}/notification-configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetVaultNotifications, input, options)
 end
 
 function Client:uploadArchive(input, options)
-    return self:invokeOperation(input, {
-        name = "UploadArchive",
-        input_schema = schemas.UploadArchiveInput,
-        output_schema = schemas.UploadArchiveOutput,
-        http_method = "POST",
-        http_path = "/{accountId}/vaults/{vaultName}/archives",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UploadArchive, input, options)
 end
 
 function Client:uploadMultipartPart(input, options)
-    return self:invokeOperation(input, {
-        name = "UploadMultipartPart",
-        input_schema = schemas.UploadMultipartPartInput,
-        output_schema = schemas.UploadMultipartPartOutput,
-        http_method = "PUT",
-        http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UploadMultipartPart, input, options)
 end
 
 return M

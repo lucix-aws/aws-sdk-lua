@@ -8109,4 +8109,883 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.networkfirewall", "NetworkFirewall_20201112"),
+    version = "2020-11-12",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptNetworkFirewallTransitGatewayAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "AcceptNetworkFirewallTransitGatewayAttachment"),
+    input = M.AcceptNetworkFirewallTransitGatewayAttachmentInput,
+    output = M.AcceptNetworkFirewallTransitGatewayAttachmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAvailabilityZones = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "AssociateAvailabilityZones"),
+    input = M.AssociateAvailabilityZonesInput,
+    output = M.AssociateAvailabilityZonesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateFirewallPolicy = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "AssociateFirewallPolicy"),
+    input = M.AssociateFirewallPolicyInput,
+    output = M.AssociateFirewallPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateSubnets = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "AssociateSubnets"),
+    input = M.AssociateSubnetsInput,
+    output = M.AssociateSubnetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachRuleGroupsToProxyConfiguration = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "AttachRuleGroupsToProxyConfiguration"),
+    input = M.AttachRuleGroupsToProxyConfigurationInput,
+    output = M.AttachRuleGroupsToProxyConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFirewall = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "CreateFirewall"),
+    input = M.CreateFirewallInput,
+    output = M.CreateFirewallOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFirewallPolicy = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "CreateFirewallPolicy"),
+    input = M.CreateFirewallPolicyInput,
+    output = M.CreateFirewallPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProxy = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "CreateProxy"),
+    input = M.CreateProxyInput,
+    output = M.CreateProxyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProxyConfiguration = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "CreateProxyConfiguration"),
+    input = M.CreateProxyConfigurationInput,
+    output = M.CreateProxyConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProxyRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "CreateProxyRuleGroup"),
+    input = M.CreateProxyRuleGroupInput,
+    output = M.CreateProxyRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProxyRules = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "CreateProxyRules"),
+    input = M.CreateProxyRulesInput,
+    output = M.CreateProxyRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "CreateRuleGroup"),
+    input = M.CreateRuleGroupInput,
+    output = M.CreateRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTLSInspectionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "CreateTLSInspectionConfiguration"),
+    input = M.CreateTLSInspectionConfigurationInput,
+    output = M.CreateTLSInspectionConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVpcEndpointAssociation = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "CreateVpcEndpointAssociation"),
+    input = M.CreateVpcEndpointAssociationInput,
+    output = M.CreateVpcEndpointAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFirewall = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DeleteFirewall"),
+    input = M.DeleteFirewallInput,
+    output = M.DeleteFirewallOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFirewallPolicy = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DeleteFirewallPolicy"),
+    input = M.DeleteFirewallPolicyInput,
+    output = M.DeleteFirewallPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNetworkFirewallTransitGatewayAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DeleteNetworkFirewallTransitGatewayAttachment"),
+    input = M.DeleteNetworkFirewallTransitGatewayAttachmentInput,
+    output = M.DeleteNetworkFirewallTransitGatewayAttachmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProxy = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DeleteProxy"),
+    input = M.DeleteProxyInput,
+    output = M.DeleteProxyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProxyConfiguration = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DeleteProxyConfiguration"),
+    input = M.DeleteProxyConfigurationInput,
+    output = M.DeleteProxyConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProxyRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DeleteProxyRuleGroup"),
+    input = M.DeleteProxyRuleGroupInput,
+    output = M.DeleteProxyRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProxyRules = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DeleteProxyRules"),
+    input = M.DeleteProxyRulesInput,
+    output = M.DeleteProxyRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DeleteRuleGroup"),
+    input = M.DeleteRuleGroupInput,
+    output = M.DeleteRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTLSInspectionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DeleteTLSInspectionConfiguration"),
+    input = M.DeleteTLSInspectionConfigurationInput,
+    output = M.DeleteTLSInspectionConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVpcEndpointAssociation = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DeleteVpcEndpointAssociation"),
+    input = M.DeleteVpcEndpointAssociationInput,
+    output = M.DeleteVpcEndpointAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFirewall = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeFirewall"),
+    input = M.DescribeFirewallInput,
+    output = M.DescribeFirewallOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFirewallMetadata = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeFirewallMetadata"),
+    input = M.DescribeFirewallMetadataInput,
+    output = M.DescribeFirewallMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFirewallPolicy = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeFirewallPolicy"),
+    input = M.DescribeFirewallPolicyInput,
+    output = M.DescribeFirewallPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFlowOperation = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeFlowOperation"),
+    input = M.DescribeFlowOperationInput,
+    output = M.DescribeFlowOperationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeLoggingConfiguration"),
+    input = M.DescribeLoggingConfigurationInput,
+    output = M.DescribeLoggingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProxy = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeProxy"),
+    input = M.DescribeProxyInput,
+    output = M.DescribeProxyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProxyConfiguration = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeProxyConfiguration"),
+    input = M.DescribeProxyConfigurationInput,
+    output = M.DescribeProxyConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProxyRule = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeProxyRule"),
+    input = M.DescribeProxyRuleInput,
+    output = M.DescribeProxyRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProxyRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeProxyRuleGroup"),
+    input = M.DescribeProxyRuleGroupInput,
+    output = M.DescribeProxyRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeResourcePolicy"),
+    input = M.DescribeResourcePolicyInput,
+    output = M.DescribeResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeRuleGroup"),
+    input = M.DescribeRuleGroupInput,
+    output = M.DescribeRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRuleGroupMetadata = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeRuleGroupMetadata"),
+    input = M.DescribeRuleGroupMetadataInput,
+    output = M.DescribeRuleGroupMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRuleGroupSummary = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeRuleGroupSummary"),
+    input = M.DescribeRuleGroupSummaryInput,
+    output = M.DescribeRuleGroupSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTLSInspectionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeTLSInspectionConfiguration"),
+    input = M.DescribeTLSInspectionConfigurationInput,
+    output = M.DescribeTLSInspectionConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVpcEndpointAssociation = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeVpcEndpointAssociation"),
+    input = M.DescribeVpcEndpointAssociationInput,
+    output = M.DescribeVpcEndpointAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachRuleGroupsFromProxyConfiguration = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DetachRuleGroupsFromProxyConfiguration"),
+    input = M.DetachRuleGroupsFromProxyConfigurationInput,
+    output = M.DetachRuleGroupsFromProxyConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateAvailabilityZones = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DisassociateAvailabilityZones"),
+    input = M.DisassociateAvailabilityZonesInput,
+    output = M.DisassociateAvailabilityZonesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateSubnets = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DisassociateSubnets"),
+    input = M.DisassociateSubnetsInput,
+    output = M.DisassociateSubnetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAnalysisReportResults = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "GetAnalysisReportResults"),
+    input = M.GetAnalysisReportResultsInput,
+    output = M.GetAnalysisReportResultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnalysisReports = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListAnalysisReports"),
+    input = M.ListAnalysisReportsInput,
+    output = M.ListAnalysisReportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFirewallPolicies = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListFirewallPolicies"),
+    input = M.ListFirewallPoliciesInput,
+    output = M.ListFirewallPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFirewalls = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListFirewalls"),
+    input = M.ListFirewallsInput,
+    output = M.ListFirewallsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlowOperationResults = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListFlowOperationResults"),
+    input = M.ListFlowOperationResultsInput,
+    output = M.ListFlowOperationResultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlowOperations = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListFlowOperations"),
+    input = M.ListFlowOperationsInput,
+    output = M.ListFlowOperationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProxies = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListProxies"),
+    input = M.ListProxiesInput,
+    output = M.ListProxiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProxyConfigurations = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListProxyConfigurations"),
+    input = M.ListProxyConfigurationsInput,
+    output = M.ListProxyConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProxyRuleGroups = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListProxyRuleGroups"),
+    input = M.ListProxyRuleGroupsInput,
+    output = M.ListProxyRuleGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRuleGroups = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListRuleGroups"),
+    input = M.ListRuleGroupsInput,
+    output = M.ListRuleGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTLSInspectionConfigurations = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListTLSInspectionConfigurations"),
+    input = M.ListTLSInspectionConfigurationsInput,
+    output = M.ListTLSInspectionConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVpcEndpointAssociations = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListVpcEndpointAssociations"),
+    input = M.ListVpcEndpointAssociationsInput,
+    output = M.ListVpcEndpointAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectNetworkFirewallTransitGatewayAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "RejectNetworkFirewallTransitGatewayAttachment"),
+    input = M.RejectNetworkFirewallTransitGatewayAttachmentInput,
+    output = M.RejectNetworkFirewallTransitGatewayAttachmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAnalysisReport = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "StartAnalysisReport"),
+    input = M.StartAnalysisReportInput,
+    output = M.StartAnalysisReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFlowCapture = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "StartFlowCapture"),
+    input = M.StartFlowCaptureInput,
+    output = M.StartFlowCaptureOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFlowFlush = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "StartFlowFlush"),
+    input = M.StartFlowFlushInput,
+    output = M.StartFlowFlushOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAvailabilityZoneChangeProtection = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateAvailabilityZoneChangeProtection"),
+    input = M.UpdateAvailabilityZoneChangeProtectionInput,
+    output = M.UpdateAvailabilityZoneChangeProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFirewallAnalysisSettings = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateFirewallAnalysisSettings"),
+    input = M.UpdateFirewallAnalysisSettingsInput,
+    output = M.UpdateFirewallAnalysisSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFirewallDeleteProtection = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateFirewallDeleteProtection"),
+    input = M.UpdateFirewallDeleteProtectionInput,
+    output = M.UpdateFirewallDeleteProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFirewallDescription = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateFirewallDescription"),
+    input = M.UpdateFirewallDescriptionInput,
+    output = M.UpdateFirewallDescriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFirewallEncryptionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateFirewallEncryptionConfiguration"),
+    input = M.UpdateFirewallEncryptionConfigurationInput,
+    output = M.UpdateFirewallEncryptionConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFirewallPolicy = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateFirewallPolicy"),
+    input = M.UpdateFirewallPolicyInput,
+    output = M.UpdateFirewallPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFirewallPolicyChangeProtection = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateFirewallPolicyChangeProtection"),
+    input = M.UpdateFirewallPolicyChangeProtectionInput,
+    output = M.UpdateFirewallPolicyChangeProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateLoggingConfiguration"),
+    input = M.UpdateLoggingConfigurationInput,
+    output = M.UpdateLoggingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProxy = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateProxy"),
+    input = M.UpdateProxyInput,
+    output = M.UpdateProxyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProxyConfiguration = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateProxyConfiguration"),
+    input = M.UpdateProxyConfigurationInput,
+    output = M.UpdateProxyConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProxyRule = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateProxyRule"),
+    input = M.UpdateProxyRuleInput,
+    output = M.UpdateProxyRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProxyRuleGroupPriorities = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateProxyRuleGroupPriorities"),
+    input = M.UpdateProxyRuleGroupPrioritiesInput,
+    output = M.UpdateProxyRuleGroupPrioritiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProxyRulePriorities = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateProxyRulePriorities"),
+    input = M.UpdateProxyRulePrioritiesInput,
+    output = M.UpdateProxyRulePrioritiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateRuleGroup"),
+    input = M.UpdateRuleGroupInput,
+    output = M.UpdateRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSubnetChangeProtection = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateSubnetChangeProtection"),
+    input = M.UpdateSubnetChangeProtectionInput,
+    output = M.UpdateSubnetChangeProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTLSInspectionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateTLSInspectionConfiguration"),
+    input = M.UpdateTLSInspectionConfigurationInput,
+    output = M.UpdateTLSInspectionConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -1631,4 +1631,194 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.arczonalshift", "PercDataPlane"),
+    version = "2022-10-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelPracticeRun = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "CancelPracticeRun"),
+    input = M.CancelPracticeRunInput,
+    output = M.CancelPracticeRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/practiceruns/{zonalShiftId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelZonalShift = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "CancelZonalShift"),
+    input = M.CancelZonalShiftInput,
+    output = M.CancelZonalShiftOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/zonalshifts/{zonalShiftId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePracticeRunConfiguration = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "CreatePracticeRunConfiguration"),
+    input = M.CreatePracticeRunConfigurationInput,
+    output = M.CreatePracticeRunConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePracticeRunConfiguration = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "DeletePracticeRunConfiguration"),
+    input = M.DeletePracticeRunConfigurationInput,
+    output = M.DeletePracticeRunConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/configuration/{resourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAutoshiftObserverNotificationStatus = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "GetAutoshiftObserverNotificationStatus"),
+    input = M.GetAutoshiftObserverNotificationStatusInput,
+    output = M.GetAutoshiftObserverNotificationStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/autoshift-observer-notification" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetManagedResource = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "GetManagedResource"),
+    input = M.GetManagedResourceInput,
+    output = M.GetManagedResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/managedresources/{resourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutoshifts = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "ListAutoshifts"),
+    input = M.ListAutoshiftsInput,
+    output = M.ListAutoshiftsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/autoshifts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedResources = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "ListManagedResources"),
+    input = M.ListManagedResourcesInput,
+    output = M.ListManagedResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/managedresources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListZonalShifts = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "ListZonalShifts"),
+    input = M.ListZonalShiftsInput,
+    output = M.ListZonalShiftsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/zonalshifts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartPracticeRun = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "StartPracticeRun"),
+    input = M.StartPracticeRunInput,
+    output = M.StartPracticeRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/practiceruns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartZonalShift = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "StartZonalShift"),
+    input = M.StartZonalShiftInput,
+    output = M.StartZonalShiftOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/zonalshifts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAutoshiftObserverNotificationStatus = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "UpdateAutoshiftObserverNotificationStatus"),
+    input = M.UpdateAutoshiftObserverNotificationStatusInput,
+    output = M.UpdateAutoshiftObserverNotificationStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/autoshift-observer-notification" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePracticeRunConfiguration = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "UpdatePracticeRunConfiguration"),
+    input = M.UpdatePracticeRunConfigurationInput,
+    output = M.UpdatePracticeRunConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/configuration/{resourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateZonalAutoshiftConfiguration = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "UpdateZonalAutoshiftConfiguration"),
+    input = M.UpdateZonalAutoshiftConfigurationInput,
+    output = M.UpdateZonalAutoshiftConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/managedresources/{resourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateZonalShift = schema.operation({
+    id = id.from("com.amazonaws.arczonalshift", "UpdateZonalShift"),
+    input = M.UpdateZonalShiftInput,
+    output = M.UpdateZonalShiftOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/zonalshifts/{zonalShiftId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

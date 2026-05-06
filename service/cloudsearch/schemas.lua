@@ -2361,4 +2361,300 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cloudsearch", "A9SearchCloudConfigService2013"),
+    version = "2013-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BuildSuggesters = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "BuildSuggesters"),
+    input = M.BuildSuggestersInput,
+    output = M.BuildSuggestersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomain = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "CreateDomain"),
+    input = M.CreateDomainInput,
+    output = M.CreateDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DefineAnalysisScheme = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DefineAnalysisScheme"),
+    input = M.DefineAnalysisSchemeInput,
+    output = M.DefineAnalysisSchemeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DefineExpression = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DefineExpression"),
+    input = M.DefineExpressionInput,
+    output = M.DefineExpressionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DefineIndexField = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DefineIndexField"),
+    input = M.DefineIndexFieldInput,
+    output = M.DefineIndexFieldOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DefineSuggester = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DefineSuggester"),
+    input = M.DefineSuggesterInput,
+    output = M.DefineSuggesterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAnalysisScheme = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DeleteAnalysisScheme"),
+    input = M.DeleteAnalysisSchemeInput,
+    output = M.DeleteAnalysisSchemeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomain = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DeleteDomain"),
+    input = M.DeleteDomainInput,
+    output = M.DeleteDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteExpression = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DeleteExpression"),
+    input = M.DeleteExpressionInput,
+    output = M.DeleteExpressionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIndexField = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DeleteIndexField"),
+    input = M.DeleteIndexFieldInput,
+    output = M.DeleteIndexFieldOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSuggester = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DeleteSuggester"),
+    input = M.DeleteSuggesterInput,
+    output = M.DeleteSuggesterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAnalysisSchemes = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DescribeAnalysisSchemes"),
+    input = M.DescribeAnalysisSchemesInput,
+    output = M.DescribeAnalysisSchemesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAvailabilityOptions = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DescribeAvailabilityOptions"),
+    input = M.DescribeAvailabilityOptionsInput,
+    output = M.DescribeAvailabilityOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomainEndpointOptions = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DescribeDomainEndpointOptions"),
+    input = M.DescribeDomainEndpointOptionsInput,
+    output = M.DescribeDomainEndpointOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomains = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DescribeDomains"),
+    input = M.DescribeDomainsInput,
+    output = M.DescribeDomainsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExpressions = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DescribeExpressions"),
+    input = M.DescribeExpressionsInput,
+    output = M.DescribeExpressionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIndexFields = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DescribeIndexFields"),
+    input = M.DescribeIndexFieldsInput,
+    output = M.DescribeIndexFieldsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScalingParameters = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DescribeScalingParameters"),
+    input = M.DescribeScalingParametersInput,
+    output = M.DescribeScalingParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServiceAccessPolicies = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DescribeServiceAccessPolicies"),
+    input = M.DescribeServiceAccessPoliciesInput,
+    output = M.DescribeServiceAccessPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSuggesters = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "DescribeSuggesters"),
+    input = M.DescribeSuggestersInput,
+    output = M.DescribeSuggestersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.IndexDocuments = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "IndexDocuments"),
+    input = M.IndexDocumentsInput,
+    output = M.IndexDocumentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainNames = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "ListDomainNames"),
+    input = M.ListDomainNamesInput,
+    output = M.ListDomainNamesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAvailabilityOptions = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "UpdateAvailabilityOptions"),
+    input = M.UpdateAvailabilityOptionsInput,
+    output = M.UpdateAvailabilityOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomainEndpointOptions = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "UpdateDomainEndpointOptions"),
+    input = M.UpdateDomainEndpointOptionsInput,
+    output = M.UpdateDomainEndpointOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateScalingParameters = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "UpdateScalingParameters"),
+    input = M.UpdateScalingParametersInput,
+    output = M.UpdateScalingParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceAccessPolicies = schema.operation({
+    id = id.from("com.amazonaws.cloudsearch", "UpdateServiceAccessPolicies"),
+    input = M.UpdateServiceAccessPoliciesInput,
+    output = M.UpdateServiceAccessPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

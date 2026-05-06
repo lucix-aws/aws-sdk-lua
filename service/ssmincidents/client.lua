@@ -7,6 +7,7 @@ local endpoint_rules = require("ssmincidents.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("ssmincidents.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ssm-incidents", signing_region = cfg.region } }
                 else
@@ -49,406 +52,127 @@ function M.new(cfg)
 end
 
 function Client:batchGetIncidentFindings(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetIncidentFindings",
-        input_schema = schemas.BatchGetIncidentFindingsInput,
-        output_schema = schemas.BatchGetIncidentFindingsOutput,
-        http_method = "POST",
-        http_path = "/batchGetIncidentFindings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetIncidentFindings, input, options)
 end
 
 function Client:createReplicationSet(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateReplicationSet",
-        input_schema = schemas.CreateReplicationSetInput,
-        output_schema = schemas.CreateReplicationSetOutput,
-        http_method = "POST",
-        http_path = "/createReplicationSet",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateReplicationSet, input, options)
 end
 
 function Client:createResponsePlan(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateResponsePlan",
-        input_schema = schemas.CreateResponsePlanInput,
-        output_schema = schemas.CreateResponsePlanOutput,
-        http_method = "POST",
-        http_path = "/createResponsePlan",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateResponsePlan, input, options)
 end
 
 function Client:createTimelineEvent(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTimelineEvent",
-        input_schema = schemas.CreateTimelineEventInput,
-        output_schema = schemas.CreateTimelineEventOutput,
-        http_method = "POST",
-        http_path = "/createTimelineEvent",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTimelineEvent, input, options)
 end
 
 function Client:deleteIncidentRecord(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIncidentRecord",
-        input_schema = schemas.DeleteIncidentRecordInput,
-        output_schema = schemas.DeleteIncidentRecordOutput,
-        http_method = "POST",
-        http_path = "/deleteIncidentRecord",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIncidentRecord, input, options)
 end
 
 function Client:deleteReplicationSet(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteReplicationSet",
-        input_schema = schemas.DeleteReplicationSetInput,
-        output_schema = schemas.DeleteReplicationSetOutput,
-        http_method = "POST",
-        http_path = "/deleteReplicationSet",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteReplicationSet, input, options)
 end
 
 function Client:deleteResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResourcePolicy",
-        input_schema = schemas.DeleteResourcePolicyInput,
-        output_schema = schemas.DeleteResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/deleteResourcePolicy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options)
 end
 
 function Client:deleteResponsePlan(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResponsePlan",
-        input_schema = schemas.DeleteResponsePlanInput,
-        output_schema = schemas.DeleteResponsePlanOutput,
-        http_method = "POST",
-        http_path = "/deleteResponsePlan",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResponsePlan, input, options)
 end
 
 function Client:deleteTimelineEvent(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTimelineEvent",
-        input_schema = schemas.DeleteTimelineEventInput,
-        output_schema = schemas.DeleteTimelineEventOutput,
-        http_method = "POST",
-        http_path = "/deleteTimelineEvent",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTimelineEvent, input, options)
 end
 
 function Client:getIncidentRecord(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIncidentRecord",
-        input_schema = schemas.GetIncidentRecordInput,
-        output_schema = schemas.GetIncidentRecordOutput,
-        http_method = "GET",
-        http_path = "/getIncidentRecord",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIncidentRecord, input, options)
 end
 
 function Client:getReplicationSet(input, options)
-    return self:invokeOperation(input, {
-        name = "GetReplicationSet",
-        input_schema = schemas.GetReplicationSetInput,
-        output_schema = schemas.GetReplicationSetOutput,
-        http_method = "GET",
-        http_path = "/getReplicationSet",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetReplicationSet, input, options)
 end
 
 function Client:getResourcePolicies(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourcePolicies",
-        input_schema = schemas.GetResourcePoliciesInput,
-        output_schema = schemas.GetResourcePoliciesOutput,
-        http_method = "POST",
-        http_path = "/getResourcePolicies",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicies, input, options)
 end
 
 function Client:getResponsePlan(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResponsePlan",
-        input_schema = schemas.GetResponsePlanInput,
-        output_schema = schemas.GetResponsePlanOutput,
-        http_method = "GET",
-        http_path = "/getResponsePlan",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResponsePlan, input, options)
 end
 
 function Client:getTimelineEvent(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTimelineEvent",
-        input_schema = schemas.GetTimelineEventInput,
-        output_schema = schemas.GetTimelineEventOutput,
-        http_method = "GET",
-        http_path = "/getTimelineEvent",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTimelineEvent, input, options)
 end
 
 function Client:listIncidentFindings(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIncidentFindings",
-        input_schema = schemas.ListIncidentFindingsInput,
-        output_schema = schemas.ListIncidentFindingsOutput,
-        http_method = "POST",
-        http_path = "/listIncidentFindings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIncidentFindings, input, options)
 end
 
 function Client:listIncidentRecords(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIncidentRecords",
-        input_schema = schemas.ListIncidentRecordsInput,
-        output_schema = schemas.ListIncidentRecordsOutput,
-        http_method = "POST",
-        http_path = "/listIncidentRecords",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIncidentRecords, input, options)
 end
 
 function Client:listRelatedItems(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRelatedItems",
-        input_schema = schemas.ListRelatedItemsInput,
-        output_schema = schemas.ListRelatedItemsOutput,
-        http_method = "POST",
-        http_path = "/listRelatedItems",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRelatedItems, input, options)
 end
 
 function Client:listReplicationSets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReplicationSets",
-        input_schema = schemas.ListReplicationSetsInput,
-        output_schema = schemas.ListReplicationSetsOutput,
-        http_method = "POST",
-        http_path = "/listReplicationSets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReplicationSets, input, options)
 end
 
 function Client:listResponsePlans(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResponsePlans",
-        input_schema = schemas.ListResponsePlansInput,
-        output_schema = schemas.ListResponsePlansOutput,
-        http_method = "POST",
-        http_path = "/listResponsePlans",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResponsePlans, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTimelineEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTimelineEvents",
-        input_schema = schemas.ListTimelineEventsInput,
-        output_schema = schemas.ListTimelineEventsOutput,
-        http_method = "POST",
-        http_path = "/listTimelineEvents",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTimelineEvents, input, options)
 end
 
 function Client:putResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutResourcePolicy",
-        input_schema = schemas.PutResourcePolicyInput,
-        output_schema = schemas.PutResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/putResourcePolicy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options)
 end
 
 function Client:startIncident(input, options)
-    return self:invokeOperation(input, {
-        name = "StartIncident",
-        input_schema = schemas.StartIncidentInput,
-        output_schema = schemas.StartIncidentOutput,
-        http_method = "POST",
-        http_path = "/startIncident",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartIncident, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateDeletionProtection(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDeletionProtection",
-        input_schema = schemas.UpdateDeletionProtectionInput,
-        output_schema = schemas.UpdateDeletionProtectionOutput,
-        http_method = "POST",
-        http_path = "/updateDeletionProtection",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDeletionProtection, input, options)
 end
 
 function Client:updateIncidentRecord(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateIncidentRecord",
-        input_schema = schemas.UpdateIncidentRecordInput,
-        output_schema = schemas.UpdateIncidentRecordOutput,
-        http_method = "POST",
-        http_path = "/updateIncidentRecord",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateIncidentRecord, input, options)
 end
 
 function Client:updateRelatedItems(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRelatedItems",
-        input_schema = schemas.UpdateRelatedItemsInput,
-        output_schema = schemas.UpdateRelatedItemsOutput,
-        http_method = "POST",
-        http_path = "/updateRelatedItems",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRelatedItems, input, options)
 end
 
 function Client:updateReplicationSet(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateReplicationSet",
-        input_schema = schemas.UpdateReplicationSetInput,
-        output_schema = schemas.UpdateReplicationSetOutput,
-        http_method = "POST",
-        http_path = "/updateReplicationSet",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateReplicationSet, input, options)
 end
 
 function Client:updateResponsePlan(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateResponsePlan",
-        input_schema = schemas.UpdateResponsePlanInput,
-        output_schema = schemas.UpdateResponsePlanOutput,
-        http_method = "POST",
-        http_path = "/updateResponsePlan",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateResponsePlan, input, options)
 end
 
 function Client:updateTimelineEvent(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTimelineEvent",
-        input_schema = schemas.UpdateTimelineEventInput,
-        output_schema = schemas.UpdateTimelineEventOutput,
-        http_method = "POST",
-        http_path = "/updateTimelineEvent",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTimelineEvent, input, options)
 end
 
 return M

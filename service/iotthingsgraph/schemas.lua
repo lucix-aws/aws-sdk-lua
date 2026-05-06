@@ -2142,4 +2142,399 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.iotthingsgraph", "IotThingsGraphFrontEndService"),
+    version = "2018-09-06",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateEntityToThing = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "AssociateEntityToThing"),
+    input = M.AssociateEntityToThingInput,
+    output = M.AssociateEntityToThingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFlowTemplate = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "CreateFlowTemplate"),
+    input = M.CreateFlowTemplateInput,
+    output = M.CreateFlowTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSystemInstance = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "CreateSystemInstance"),
+    input = M.CreateSystemInstanceInput,
+    output = M.CreateSystemInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSystemTemplate = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "CreateSystemTemplate"),
+    input = M.CreateSystemTemplateInput,
+    output = M.CreateSystemTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFlowTemplate = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "DeleteFlowTemplate"),
+    input = M.DeleteFlowTemplateInput,
+    output = M.DeleteFlowTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNamespace = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "DeleteNamespace"),
+    input = M.DeleteNamespaceInput,
+    output = M.DeleteNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSystemInstance = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "DeleteSystemInstance"),
+    input = M.DeleteSystemInstanceInput,
+    output = M.DeleteSystemInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSystemTemplate = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "DeleteSystemTemplate"),
+    input = M.DeleteSystemTemplateInput,
+    output = M.DeleteSystemTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeploySystemInstance = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "DeploySystemInstance"),
+    input = M.DeploySystemInstanceInput,
+    output = M.DeploySystemInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeprecateFlowTemplate = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "DeprecateFlowTemplate"),
+    input = M.DeprecateFlowTemplateInput,
+    output = M.DeprecateFlowTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeprecateSystemTemplate = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "DeprecateSystemTemplate"),
+    input = M.DeprecateSystemTemplateInput,
+    output = M.DeprecateSystemTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNamespace = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "DescribeNamespace"),
+    input = M.DescribeNamespaceInput,
+    output = M.DescribeNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DissociateEntityFromThing = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "DissociateEntityFromThing"),
+    input = M.DissociateEntityFromThingInput,
+    output = M.DissociateEntityFromThingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEntities = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "GetEntities"),
+    input = M.GetEntitiesInput,
+    output = M.GetEntitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFlowTemplate = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "GetFlowTemplate"),
+    input = M.GetFlowTemplateInput,
+    output = M.GetFlowTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFlowTemplateRevisions = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "GetFlowTemplateRevisions"),
+    input = M.GetFlowTemplateRevisionsInput,
+    output = M.GetFlowTemplateRevisionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNamespaceDeletionStatus = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "GetNamespaceDeletionStatus"),
+    input = M.GetNamespaceDeletionStatusInput,
+    output = M.GetNamespaceDeletionStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSystemInstance = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "GetSystemInstance"),
+    input = M.GetSystemInstanceInput,
+    output = M.GetSystemInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSystemTemplate = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "GetSystemTemplate"),
+    input = M.GetSystemTemplateInput,
+    output = M.GetSystemTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSystemTemplateRevisions = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "GetSystemTemplateRevisions"),
+    input = M.GetSystemTemplateRevisionsInput,
+    output = M.GetSystemTemplateRevisionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUploadStatus = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "GetUploadStatus"),
+    input = M.GetUploadStatusInput,
+    output = M.GetUploadStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlowExecutionMessages = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "ListFlowExecutionMessages"),
+    input = M.ListFlowExecutionMessagesInput,
+    output = M.ListFlowExecutionMessagesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchEntities = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "SearchEntities"),
+    input = M.SearchEntitiesInput,
+    output = M.SearchEntitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchFlowExecutions = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "SearchFlowExecutions"),
+    input = M.SearchFlowExecutionsInput,
+    output = M.SearchFlowExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchFlowTemplates = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "SearchFlowTemplates"),
+    input = M.SearchFlowTemplatesInput,
+    output = M.SearchFlowTemplatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchSystemInstances = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "SearchSystemInstances"),
+    input = M.SearchSystemInstancesInput,
+    output = M.SearchSystemInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchSystemTemplates = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "SearchSystemTemplates"),
+    input = M.SearchSystemTemplatesInput,
+    output = M.SearchSystemTemplatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchThings = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "SearchThings"),
+    input = M.SearchThingsInput,
+    output = M.SearchThingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UndeploySystemInstance = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "UndeploySystemInstance"),
+    input = M.UndeploySystemInstanceInput,
+    output = M.UndeploySystemInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFlowTemplate = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "UpdateFlowTemplate"),
+    input = M.UpdateFlowTemplateInput,
+    output = M.UpdateFlowTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSystemTemplate = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "UpdateSystemTemplate"),
+    input = M.UpdateSystemTemplateInput,
+    output = M.UpdateSystemTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UploadEntityDefinitions = schema.operation({
+    id = id.from("com.amazonaws.iotthingsgraph", "UploadEntityDefinitions"),
+    input = M.UploadEntityDefinitionsInput,
+    output = M.UploadEntityDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

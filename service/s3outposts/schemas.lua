@@ -530,4 +530,74 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.s3outposts", "S3Outposts"),
+    version = "2017-07-25",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEndpoint = schema.operation({
+    id = id.from("com.amazonaws.s3outposts", "CreateEndpoint"),
+    input = M.CreateEndpointInput,
+    output = M.CreateEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/S3Outposts/CreateEndpoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEndpoint = schema.operation({
+    id = id.from("com.amazonaws.s3outposts", "DeleteEndpoint"),
+    input = M.DeleteEndpointInput,
+    output = M.DeleteEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/S3Outposts/DeleteEndpoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEndpoints = schema.operation({
+    id = id.from("com.amazonaws.s3outposts", "ListEndpoints"),
+    input = M.ListEndpointsInput,
+    output = M.ListEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/S3Outposts/ListEndpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOutpostsWithS3 = schema.operation({
+    id = id.from("com.amazonaws.s3outposts", "ListOutpostsWithS3"),
+    input = M.ListOutpostsWithS3Input,
+    output = M.ListOutpostsWithS3Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/S3Outposts/ListOutpostsWithS3" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSharedEndpoints = schema.operation({
+    id = id.from("com.amazonaws.s3outposts", "ListSharedEndpoints"),
+    input = M.ListSharedEndpointsInput,
+    output = M.ListSharedEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/S3Outposts/ListSharedEndpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

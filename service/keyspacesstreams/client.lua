@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("keyspacesstreams.endpoint_rules")
 local schemas = require("keyspacesstreams.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cassandra", signing_region = cfg.region } }
                 else
@@ -49,55 +52,19 @@ function M.new(cfg)
 end
 
 function Client:getRecords(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRecords",
-        input_schema = schemas.GetRecordsInput,
-        output_schema = schemas.GetRecordsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRecords, input, options)
 end
 
 function Client:getShardIterator(input, options)
-    return self:invokeOperation(input, {
-        name = "GetShardIterator",
-        input_schema = schemas.GetShardIteratorInput,
-        output_schema = schemas.GetShardIteratorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetShardIterator, input, options)
 end
 
 function Client:getStream(input, options)
-    return self:invokeOperation(input, {
-        name = "GetStream",
-        input_schema = schemas.GetStreamInput,
-        output_schema = schemas.GetStreamOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetStream, input, options)
 end
 
 function Client:listStreams(input, options)
-    return self:invokeOperation(input, {
-        name = "ListStreams",
-        input_schema = schemas.ListStreamsInput,
-        output_schema = schemas.ListStreamsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListStreams, input, options)
 end
 
 return M

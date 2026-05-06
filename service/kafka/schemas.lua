@@ -8673,4 +8673,722 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.kafka", "Kafka"),
+    version = "2018-11-14",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAssociateScramSecret = schema.operation({
+    id = id.from("com.amazonaws.kafka", "BatchAssociateScramSecret"),
+    input = M.BatchAssociateScramSecretInput,
+    output = M.BatchAssociateScramSecretOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/clusters/{ClusterArn}/scram-secrets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDisassociateScramSecret = schema.operation({
+    id = id.from("com.amazonaws.kafka", "BatchDisassociateScramSecret"),
+    input = M.BatchDisassociateScramSecretInput,
+    output = M.BatchDisassociateScramSecretOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/clusters/{ClusterArn}/scram-secrets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCluster = schema.operation({
+    id = id.from("com.amazonaws.kafka", "CreateCluster"),
+    input = M.CreateClusterInput,
+    output = M.CreateClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/clusters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateClusterV2 = schema.operation({
+    id = id.from("com.amazonaws.kafka", "CreateClusterV2"),
+    input = M.CreateClusterV2Input,
+    output = M.CreateClusterV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v2/clusters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kafka", "CreateConfiguration"),
+    input = M.CreateConfigurationInput,
+    output = M.CreateConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReplicator = schema.operation({
+    id = id.from("com.amazonaws.kafka", "CreateReplicator"),
+    input = M.CreateReplicatorInput,
+    output = M.CreateReplicatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/replication/v1/replicators" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTopic = schema.operation({
+    id = id.from("com.amazonaws.kafka", "CreateTopic"),
+    input = M.CreateTopicInput,
+    output = M.CreateTopicOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/clusters/{ClusterArn}/topics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVpcConnection = schema.operation({
+    id = id.from("com.amazonaws.kafka", "CreateVpcConnection"),
+    input = M.CreateVpcConnectionInput,
+    output = M.CreateVpcConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/vpc-connection" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCluster = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DeleteCluster"),
+    input = M.DeleteClusterInput,
+    output = M.DeleteClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/clusters/{ClusterArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteClusterPolicy = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DeleteClusterPolicy"),
+    input = M.DeleteClusterPolicyInput,
+    output = M.DeleteClusterPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/clusters/{ClusterArn}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DeleteConfiguration"),
+    input = M.DeleteConfigurationInput,
+    output = M.DeleteConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/configurations/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReplicator = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DeleteReplicator"),
+    input = M.DeleteReplicatorInput,
+    output = M.DeleteReplicatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/replication/v1/replicators/{ReplicatorArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTopic = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DeleteTopic"),
+    input = M.DeleteTopicInput,
+    output = M.DeleteTopicOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/clusters/{ClusterArn}/topics/{TopicName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVpcConnection = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DeleteVpcConnection"),
+    input = M.DeleteVpcConnectionInput,
+    output = M.DeleteVpcConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/vpc-connection/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCluster = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DescribeCluster"),
+    input = M.DescribeClusterInput,
+    output = M.DescribeClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/clusters/{ClusterArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClusterOperation = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DescribeClusterOperation"),
+    input = M.DescribeClusterOperationInput,
+    output = M.DescribeClusterOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/operations/{ClusterOperationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClusterOperationV2 = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DescribeClusterOperationV2"),
+    input = M.DescribeClusterOperationV2Input,
+    output = M.DescribeClusterOperationV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v2/operations/{ClusterOperationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClusterV2 = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DescribeClusterV2"),
+    input = M.DescribeClusterV2Input,
+    output = M.DescribeClusterV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v2/clusters/{ClusterArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DescribeConfiguration"),
+    input = M.DescribeConfigurationInput,
+    output = M.DescribeConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/configurations/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfigurationRevision = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DescribeConfigurationRevision"),
+    input = M.DescribeConfigurationRevisionInput,
+    output = M.DescribeConfigurationRevisionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/configurations/{Arn}/revisions/{Revision}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplicator = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DescribeReplicator"),
+    input = M.DescribeReplicatorInput,
+    output = M.DescribeReplicatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/replication/v1/replicators/{ReplicatorArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTopic = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DescribeTopic"),
+    input = M.DescribeTopicInput,
+    output = M.DescribeTopicOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/clusters/{ClusterArn}/topics/{TopicName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTopicPartitions = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DescribeTopicPartitions"),
+    input = M.DescribeTopicPartitionsInput,
+    output = M.DescribeTopicPartitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/clusters/{ClusterArn}/topics/{TopicName}/partitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVpcConnection = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DescribeVpcConnection"),
+    input = M.DescribeVpcConnectionInput,
+    output = M.DescribeVpcConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/vpc-connection/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBootstrapBrokers = schema.operation({
+    id = id.from("com.amazonaws.kafka", "GetBootstrapBrokers"),
+    input = M.GetBootstrapBrokersInput,
+    output = M.GetBootstrapBrokersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/clusters/{ClusterArn}/bootstrap-brokers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetClusterPolicy = schema.operation({
+    id = id.from("com.amazonaws.kafka", "GetClusterPolicy"),
+    input = M.GetClusterPolicyInput,
+    output = M.GetClusterPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/clusters/{ClusterArn}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCompatibleKafkaVersions = schema.operation({
+    id = id.from("com.amazonaws.kafka", "GetCompatibleKafkaVersions"),
+    input = M.GetCompatibleKafkaVersionsInput,
+    output = M.GetCompatibleKafkaVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/compatible-kafka-versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClientVpcConnections = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListClientVpcConnections"),
+    input = M.ListClientVpcConnectionsInput,
+    output = M.ListClientVpcConnectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/clusters/{ClusterArn}/client-vpc-connections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusterOperations = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListClusterOperations"),
+    input = M.ListClusterOperationsInput,
+    output = M.ListClusterOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/clusters/{ClusterArn}/operations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusterOperationsV2 = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListClusterOperationsV2"),
+    input = M.ListClusterOperationsV2Input,
+    output = M.ListClusterOperationsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v2/clusters/{ClusterArn}/operations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusters = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListClusters"),
+    input = M.ListClustersInput,
+    output = M.ListClustersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/clusters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClustersV2 = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListClustersV2"),
+    input = M.ListClustersV2Input,
+    output = M.ListClustersV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v2/clusters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationRevisions = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListConfigurationRevisions"),
+    input = M.ListConfigurationRevisionsInput,
+    output = M.ListConfigurationRevisionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/configurations/{Arn}/revisions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurations = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListConfigurations"),
+    input = M.ListConfigurationsInput,
+    output = M.ListConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKafkaVersions = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListKafkaVersions"),
+    input = M.ListKafkaVersionsInput,
+    output = M.ListKafkaVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/kafka-versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNodes = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListNodes"),
+    input = M.ListNodesInput,
+    output = M.ListNodesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/clusters/{ClusterArn}/nodes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReplicators = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListReplicators"),
+    input = M.ListReplicatorsInput,
+    output = M.ListReplicatorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/replication/v1/replicators" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScramSecrets = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListScramSecrets"),
+    input = M.ListScramSecretsInput,
+    output = M.ListScramSecretsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/clusters/{ClusterArn}/scram-secrets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTopics = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListTopics"),
+    input = M.ListTopicsInput,
+    output = M.ListTopicsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/clusters/{ClusterArn}/topics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVpcConnections = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListVpcConnections"),
+    input = M.ListVpcConnectionsInput,
+    output = M.ListVpcConnectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/vpc-connections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutClusterPolicy = schema.operation({
+    id = id.from("com.amazonaws.kafka", "PutClusterPolicy"),
+    input = M.PutClusterPolicyInput,
+    output = M.PutClusterPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootBroker = schema.operation({
+    id = id.from("com.amazonaws.kafka", "RebootBroker"),
+    input = M.RebootBrokerInput,
+    output = M.RebootBrokerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/reboot-broker" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectClientVpcConnection = schema.operation({
+    id = id.from("com.amazonaws.kafka", "RejectClientVpcConnection"),
+    input = M.RejectClientVpcConnectionInput,
+    output = M.RejectClientVpcConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/client-vpc-connection" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.kafka", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBrokerCount = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UpdateBrokerCount"),
+    input = M.UpdateBrokerCountInput,
+    output = M.UpdateBrokerCountOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/nodes/count" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBrokerStorage = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UpdateBrokerStorage"),
+    input = M.UpdateBrokerStorageInput,
+    output = M.UpdateBrokerStorageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/nodes/storage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBrokerType = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UpdateBrokerType"),
+    input = M.UpdateBrokerTypeInput,
+    output = M.UpdateBrokerTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/nodes/type" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateClusterConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UpdateClusterConfiguration"),
+    input = M.UpdateClusterConfigurationInput,
+    output = M.UpdateClusterConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateClusterKafkaVersion = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UpdateClusterKafkaVersion"),
+    input = M.UpdateClusterKafkaVersionInput,
+    output = M.UpdateClusterKafkaVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UpdateConfiguration"),
+    input = M.UpdateConfigurationInput,
+    output = M.UpdateConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/configurations/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnectivity = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UpdateConnectivity"),
+    input = M.UpdateConnectivityInput,
+    output = M.UpdateConnectivityOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/connectivity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMonitoring = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UpdateMonitoring"),
+    input = M.UpdateMonitoringInput,
+    output = M.UpdateMonitoringOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/monitoring" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRebalancing = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UpdateRebalancing"),
+    input = M.UpdateRebalancingInput,
+    output = M.UpdateRebalancingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/rebalancing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReplicationInfo = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UpdateReplicationInfo"),
+    input = M.UpdateReplicationInfoInput,
+    output = M.UpdateReplicationInfoOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/replication/v1/replicators/{ReplicatorArn}/replication-info" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSecurity = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UpdateSecurity"),
+    input = M.UpdateSecurityInput,
+    output = M.UpdateSecurityOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/clusters/{ClusterArn}/security" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStorage = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UpdateStorage"),
+    input = M.UpdateStorageInput,
+    output = M.UpdateStorageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/storage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTopic = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UpdateTopic"),
+    input = M.UpdateTopicInput,
+    output = M.UpdateTopicOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/topics/{TopicName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

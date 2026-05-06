@@ -7,6 +7,7 @@ local endpoint_rules = require("ebs.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("ebs.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ebs", signing_region = cfg.region } }
                 else
@@ -49,81 +52,27 @@ function M.new(cfg)
 end
 
 function Client:completeSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "CompleteSnapshot",
-        input_schema = schemas.CompleteSnapshotInput,
-        output_schema = schemas.CompleteSnapshotOutput,
-        http_method = "POST",
-        http_path = "/snapshots/completion/{SnapshotId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CompleteSnapshot, input, options)
 end
 
 function Client:getSnapshotBlock(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSnapshotBlock",
-        input_schema = schemas.GetSnapshotBlockInput,
-        output_schema = schemas.GetSnapshotBlockOutput,
-        http_method = "GET",
-        http_path = "/snapshots/{SnapshotId}/blocks/{BlockIndex}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSnapshotBlock, input, options)
 end
 
 function Client:listChangedBlocks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListChangedBlocks",
-        input_schema = schemas.ListChangedBlocksInput,
-        output_schema = schemas.ListChangedBlocksOutput,
-        http_method = "GET",
-        http_path = "/snapshots/{SecondSnapshotId}/changedblocks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListChangedBlocks, input, options)
 end
 
 function Client:listSnapshotBlocks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSnapshotBlocks",
-        input_schema = schemas.ListSnapshotBlocksInput,
-        output_schema = schemas.ListSnapshotBlocksOutput,
-        http_method = "GET",
-        http_path = "/snapshots/{SnapshotId}/blocks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSnapshotBlocks, input, options)
 end
 
 function Client:putSnapshotBlock(input, options)
-    return self:invokeOperation(input, {
-        name = "PutSnapshotBlock",
-        input_schema = schemas.PutSnapshotBlockInput,
-        output_schema = schemas.PutSnapshotBlockOutput,
-        http_method = "PUT",
-        http_path = "/snapshots/{SnapshotId}/blocks/{BlockIndex}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutSnapshotBlock, input, options)
 end
 
 function Client:startSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "StartSnapshot",
-        input_schema = schemas.StartSnapshotInput,
-        output_schema = schemas.StartSnapshotOutput,
-        http_method = "POST",
-        http_path = "/snapshots",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartSnapshot, input, options)
 end
 
 return M

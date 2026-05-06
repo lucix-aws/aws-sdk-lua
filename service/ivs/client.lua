@@ -7,6 +7,7 @@ local endpoint_rules = require("ivs.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("ivs.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ivs", signing_region = cfg.region } }
                 else
@@ -49,523 +52,163 @@ function M.new(cfg)
 end
 
 function Client:batchGetChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetChannel",
-        input_schema = schemas.BatchGetChannelInput,
-        output_schema = schemas.BatchGetChannelOutput,
-        http_method = "POST",
-        http_path = "/BatchGetChannel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetChannel, input, options)
 end
 
 function Client:batchGetStreamKey(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetStreamKey",
-        input_schema = schemas.BatchGetStreamKeyInput,
-        output_schema = schemas.BatchGetStreamKeyOutput,
-        http_method = "POST",
-        http_path = "/BatchGetStreamKey",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetStreamKey, input, options)
 end
 
 function Client:batchStartViewerSessionRevocation(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchStartViewerSessionRevocation",
-        input_schema = schemas.BatchStartViewerSessionRevocationInput,
-        output_schema = schemas.BatchStartViewerSessionRevocationOutput,
-        http_method = "POST",
-        http_path = "/BatchStartViewerSessionRevocation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchStartViewerSessionRevocation, input, options)
 end
 
 function Client:createAdConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAdConfiguration",
-        input_schema = schemas.CreateAdConfigurationInput,
-        output_schema = schemas.CreateAdConfigurationOutput,
-        http_method = "POST",
-        http_path = "/CreateAdConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAdConfiguration, input, options)
 end
 
 function Client:createChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateChannel",
-        input_schema = schemas.CreateChannelInput,
-        output_schema = schemas.CreateChannelOutput,
-        http_method = "POST",
-        http_path = "/CreateChannel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateChannel, input, options)
 end
 
 function Client:createPlaybackRestrictionPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePlaybackRestrictionPolicy",
-        input_schema = schemas.CreatePlaybackRestrictionPolicyInput,
-        output_schema = schemas.CreatePlaybackRestrictionPolicyOutput,
-        http_method = "POST",
-        http_path = "/CreatePlaybackRestrictionPolicy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePlaybackRestrictionPolicy, input, options)
 end
 
 function Client:createRecordingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRecordingConfiguration",
-        input_schema = schemas.CreateRecordingConfigurationInput,
-        output_schema = schemas.CreateRecordingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/CreateRecordingConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRecordingConfiguration, input, options)
 end
 
 function Client:createStreamKey(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateStreamKey",
-        input_schema = schemas.CreateStreamKeyInput,
-        output_schema = schemas.CreateStreamKeyOutput,
-        http_method = "POST",
-        http_path = "/CreateStreamKey",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateStreamKey, input, options)
 end
 
 function Client:deleteAdConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAdConfiguration",
-        input_schema = schemas.DeleteAdConfigurationInput,
-        output_schema = schemas.DeleteAdConfigurationOutput,
-        http_method = "POST",
-        http_path = "/DeleteAdConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAdConfiguration, input, options)
 end
 
 function Client:deleteChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteChannel",
-        input_schema = schemas.DeleteChannelInput,
-        output_schema = schemas.DeleteChannelOutput,
-        http_method = "POST",
-        http_path = "/DeleteChannel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteChannel, input, options)
 end
 
 function Client:deletePlaybackKeyPair(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePlaybackKeyPair",
-        input_schema = schemas.DeletePlaybackKeyPairInput,
-        output_schema = schemas.DeletePlaybackKeyPairOutput,
-        http_method = "POST",
-        http_path = "/DeletePlaybackKeyPair",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePlaybackKeyPair, input, options)
 end
 
 function Client:deletePlaybackRestrictionPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePlaybackRestrictionPolicy",
-        input_schema = schemas.DeletePlaybackRestrictionPolicyInput,
-        output_schema = schemas.DeletePlaybackRestrictionPolicyOutput,
-        http_method = "POST",
-        http_path = "/DeletePlaybackRestrictionPolicy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePlaybackRestrictionPolicy, input, options)
 end
 
 function Client:deleteRecordingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRecordingConfiguration",
-        input_schema = schemas.DeleteRecordingConfigurationInput,
-        output_schema = schemas.DeleteRecordingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/DeleteRecordingConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRecordingConfiguration, input, options)
 end
 
 function Client:deleteStreamKey(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteStreamKey",
-        input_schema = schemas.DeleteStreamKeyInput,
-        output_schema = schemas.DeleteStreamKeyOutput,
-        http_method = "POST",
-        http_path = "/DeleteStreamKey",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteStreamKey, input, options)
 end
 
 function Client:getAdConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAdConfiguration",
-        input_schema = schemas.GetAdConfigurationInput,
-        output_schema = schemas.GetAdConfigurationOutput,
-        http_method = "POST",
-        http_path = "/GetAdConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAdConfiguration, input, options)
 end
 
 function Client:getChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "GetChannel",
-        input_schema = schemas.GetChannelInput,
-        output_schema = schemas.GetChannelOutput,
-        http_method = "POST",
-        http_path = "/GetChannel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetChannel, input, options)
 end
 
 function Client:getPlaybackKeyPair(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPlaybackKeyPair",
-        input_schema = schemas.GetPlaybackKeyPairInput,
-        output_schema = schemas.GetPlaybackKeyPairOutput,
-        http_method = "POST",
-        http_path = "/GetPlaybackKeyPair",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPlaybackKeyPair, input, options)
 end
 
 function Client:getPlaybackRestrictionPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPlaybackRestrictionPolicy",
-        input_schema = schemas.GetPlaybackRestrictionPolicyInput,
-        output_schema = schemas.GetPlaybackRestrictionPolicyOutput,
-        http_method = "POST",
-        http_path = "/GetPlaybackRestrictionPolicy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPlaybackRestrictionPolicy, input, options)
 end
 
 function Client:getRecordingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRecordingConfiguration",
-        input_schema = schemas.GetRecordingConfigurationInput,
-        output_schema = schemas.GetRecordingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/GetRecordingConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRecordingConfiguration, input, options)
 end
 
 function Client:getStream(input, options)
-    return self:invokeOperation(input, {
-        name = "GetStream",
-        input_schema = schemas.GetStreamInput,
-        output_schema = schemas.GetStreamOutput,
-        http_method = "POST",
-        http_path = "/GetStream",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetStream, input, options)
 end
 
 function Client:getStreamKey(input, options)
-    return self:invokeOperation(input, {
-        name = "GetStreamKey",
-        input_schema = schemas.GetStreamKeyInput,
-        output_schema = schemas.GetStreamKeyOutput,
-        http_method = "POST",
-        http_path = "/GetStreamKey",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetStreamKey, input, options)
 end
 
 function Client:getStreamSession(input, options)
-    return self:invokeOperation(input, {
-        name = "GetStreamSession",
-        input_schema = schemas.GetStreamSessionInput,
-        output_schema = schemas.GetStreamSessionOutput,
-        http_method = "POST",
-        http_path = "/GetStreamSession",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetStreamSession, input, options)
 end
 
 function Client:importPlaybackKeyPair(input, options)
-    return self:invokeOperation(input, {
-        name = "ImportPlaybackKeyPair",
-        input_schema = schemas.ImportPlaybackKeyPairInput,
-        output_schema = schemas.ImportPlaybackKeyPairOutput,
-        http_method = "POST",
-        http_path = "/ImportPlaybackKeyPair",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ImportPlaybackKeyPair, input, options)
 end
 
 function Client:insertAdBreak(input, options)
-    return self:invokeOperation(input, {
-        name = "InsertAdBreak",
-        input_schema = schemas.InsertAdBreakInput,
-        output_schema = schemas.InsertAdBreakOutput,
-        http_method = "POST",
-        http_path = "/InsertAdBreak",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InsertAdBreak, input, options)
 end
 
 function Client:listAdConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAdConfigurations",
-        input_schema = schemas.ListAdConfigurationsInput,
-        output_schema = schemas.ListAdConfigurationsOutput,
-        http_method = "POST",
-        http_path = "/ListAdConfigurations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAdConfigurations, input, options)
 end
 
 function Client:listChannels(input, options)
-    return self:invokeOperation(input, {
-        name = "ListChannels",
-        input_schema = schemas.ListChannelsInput,
-        output_schema = schemas.ListChannelsOutput,
-        http_method = "POST",
-        http_path = "/ListChannels",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListChannels, input, options)
 end
 
 function Client:listPlaybackKeyPairs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPlaybackKeyPairs",
-        input_schema = schemas.ListPlaybackKeyPairsInput,
-        output_schema = schemas.ListPlaybackKeyPairsOutput,
-        http_method = "POST",
-        http_path = "/ListPlaybackKeyPairs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPlaybackKeyPairs, input, options)
 end
 
 function Client:listPlaybackRestrictionPolicies(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPlaybackRestrictionPolicies",
-        input_schema = schemas.ListPlaybackRestrictionPoliciesInput,
-        output_schema = schemas.ListPlaybackRestrictionPoliciesOutput,
-        http_method = "POST",
-        http_path = "/ListPlaybackRestrictionPolicies",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPlaybackRestrictionPolicies, input, options)
 end
 
 function Client:listRecordingConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRecordingConfigurations",
-        input_schema = schemas.ListRecordingConfigurationsInput,
-        output_schema = schemas.ListRecordingConfigurationsOutput,
-        http_method = "POST",
-        http_path = "/ListRecordingConfigurations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRecordingConfigurations, input, options)
 end
 
 function Client:listStreamKeys(input, options)
-    return self:invokeOperation(input, {
-        name = "ListStreamKeys",
-        input_schema = schemas.ListStreamKeysInput,
-        output_schema = schemas.ListStreamKeysOutput,
-        http_method = "POST",
-        http_path = "/ListStreamKeys",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListStreamKeys, input, options)
 end
 
 function Client:listStreams(input, options)
-    return self:invokeOperation(input, {
-        name = "ListStreams",
-        input_schema = schemas.ListStreamsInput,
-        output_schema = schemas.ListStreamsOutput,
-        http_method = "POST",
-        http_path = "/ListStreams",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListStreams, input, options)
 end
 
 function Client:listStreamSessions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListStreamSessions",
-        input_schema = schemas.ListStreamSessionsInput,
-        output_schema = schemas.ListStreamSessionsOutput,
-        http_method = "POST",
-        http_path = "/ListStreamSessions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListStreamSessions, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putMetadata(input, options)
-    return self:invokeOperation(input, {
-        name = "PutMetadata",
-        input_schema = schemas.PutMetadataInput,
-        output_schema = schemas.PutMetadataOutput,
-        http_method = "POST",
-        http_path = "/PutMetadata",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutMetadata, input, options)
 end
 
 function Client:startViewerSessionRevocation(input, options)
-    return self:invokeOperation(input, {
-        name = "StartViewerSessionRevocation",
-        input_schema = schemas.StartViewerSessionRevocationInput,
-        output_schema = schemas.StartViewerSessionRevocationOutput,
-        http_method = "POST",
-        http_path = "/StartViewerSessionRevocation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartViewerSessionRevocation, input, options)
 end
 
 function Client:stopStream(input, options)
-    return self:invokeOperation(input, {
-        name = "StopStream",
-        input_schema = schemas.StopStreamInput,
-        output_schema = schemas.StopStreamOutput,
-        http_method = "POST",
-        http_path = "/StopStream",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopStream, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateChannel",
-        input_schema = schemas.UpdateChannelInput,
-        output_schema = schemas.UpdateChannelOutput,
-        http_method = "POST",
-        http_path = "/UpdateChannel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateChannel, input, options)
 end
 
 function Client:updatePlaybackRestrictionPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePlaybackRestrictionPolicy",
-        input_schema = schemas.UpdatePlaybackRestrictionPolicyInput,
-        output_schema = schemas.UpdatePlaybackRestrictionPolicyOutput,
-        http_method = "POST",
-        http_path = "/UpdatePlaybackRestrictionPolicy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePlaybackRestrictionPolicy, input, options)
 end
 
 return M

@@ -7,6 +7,7 @@ local endpoint_rules = require("observabilityadmin.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("observabilityadmin.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "observabilityadmin", signing_region = cfg.region } }
                 else
@@ -49,523 +52,163 @@ function M.new(cfg)
 end
 
 function Client:createCentralizationRuleForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCentralizationRuleForOrganization",
-        input_schema = schemas.CreateCentralizationRuleForOrganizationInput,
-        output_schema = schemas.CreateCentralizationRuleForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/CreateCentralizationRuleForOrganization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCentralizationRuleForOrganization, input, options)
 end
 
 function Client:createS3TableIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateS3TableIntegration",
-        input_schema = schemas.CreateS3TableIntegrationInput,
-        output_schema = schemas.CreateS3TableIntegrationOutput,
-        http_method = "POST",
-        http_path = "/CreateS3TableIntegration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateS3TableIntegration, input, options)
 end
 
 function Client:createTelemetryPipeline(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTelemetryPipeline",
-        input_schema = schemas.CreateTelemetryPipelineInput,
-        output_schema = schemas.CreateTelemetryPipelineOutput,
-        http_method = "POST",
-        http_path = "/CreateTelemetryPipeline",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTelemetryPipeline, input, options)
 end
 
 function Client:createTelemetryRule(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTelemetryRule",
-        input_schema = schemas.CreateTelemetryRuleInput,
-        output_schema = schemas.CreateTelemetryRuleOutput,
-        http_method = "POST",
-        http_path = "/CreateTelemetryRule",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTelemetryRule, input, options)
 end
 
 function Client:createTelemetryRuleForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTelemetryRuleForOrganization",
-        input_schema = schemas.CreateTelemetryRuleForOrganizationInput,
-        output_schema = schemas.CreateTelemetryRuleForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/CreateTelemetryRuleForOrganization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTelemetryRuleForOrganization, input, options)
 end
 
 function Client:deleteCentralizationRuleForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCentralizationRuleForOrganization",
-        input_schema = schemas.DeleteCentralizationRuleForOrganizationInput,
-        output_schema = schemas.DeleteCentralizationRuleForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/DeleteCentralizationRuleForOrganization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCentralizationRuleForOrganization, input, options)
 end
 
 function Client:deleteS3TableIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteS3TableIntegration",
-        input_schema = schemas.DeleteS3TableIntegrationInput,
-        output_schema = schemas.DeleteS3TableIntegrationOutput,
-        http_method = "POST",
-        http_path = "/DeleteS3TableIntegration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteS3TableIntegration, input, options)
 end
 
 function Client:deleteTelemetryPipeline(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTelemetryPipeline",
-        input_schema = schemas.DeleteTelemetryPipelineInput,
-        output_schema = schemas.DeleteTelemetryPipelineOutput,
-        http_method = "POST",
-        http_path = "/DeleteTelemetryPipeline",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTelemetryPipeline, input, options)
 end
 
 function Client:deleteTelemetryRule(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTelemetryRule",
-        input_schema = schemas.DeleteTelemetryRuleInput,
-        output_schema = schemas.DeleteTelemetryRuleOutput,
-        http_method = "POST",
-        http_path = "/DeleteTelemetryRule",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTelemetryRule, input, options)
 end
 
 function Client:deleteTelemetryRuleForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTelemetryRuleForOrganization",
-        input_schema = schemas.DeleteTelemetryRuleForOrganizationInput,
-        output_schema = schemas.DeleteTelemetryRuleForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/DeleteTelemetryRuleForOrganization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTelemetryRuleForOrganization, input, options)
 end
 
 function Client:getCentralizationRuleForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCentralizationRuleForOrganization",
-        input_schema = schemas.GetCentralizationRuleForOrganizationInput,
-        output_schema = schemas.GetCentralizationRuleForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/GetCentralizationRuleForOrganization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCentralizationRuleForOrganization, input, options)
 end
 
 function Client:getS3TableIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetS3TableIntegration",
-        input_schema = schemas.GetS3TableIntegrationInput,
-        output_schema = schemas.GetS3TableIntegrationOutput,
-        http_method = "POST",
-        http_path = "/GetS3TableIntegration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetS3TableIntegration, input, options)
 end
 
 function Client:getTelemetryEnrichmentStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTelemetryEnrichmentStatus",
-        input_schema = schemas.GetTelemetryEnrichmentStatusInput,
-        output_schema = schemas.GetTelemetryEnrichmentStatusOutput,
-        http_method = "POST",
-        http_path = "/GetTelemetryEnrichmentStatus",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTelemetryEnrichmentStatus, input, options)
 end
 
 function Client:getTelemetryEvaluationStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTelemetryEvaluationStatus",
-        input_schema = schemas.GetTelemetryEvaluationStatusInput,
-        output_schema = schemas.GetTelemetryEvaluationStatusOutput,
-        http_method = "POST",
-        http_path = "/GetTelemetryEvaluationStatus",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTelemetryEvaluationStatus, input, options)
 end
 
 function Client:getTelemetryEvaluationStatusForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTelemetryEvaluationStatusForOrganization",
-        input_schema = schemas.GetTelemetryEvaluationStatusForOrganizationInput,
-        output_schema = schemas.GetTelemetryEvaluationStatusForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/GetTelemetryEvaluationStatusForOrganization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTelemetryEvaluationStatusForOrganization, input, options)
 end
 
 function Client:getTelemetryPipeline(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTelemetryPipeline",
-        input_schema = schemas.GetTelemetryPipelineInput,
-        output_schema = schemas.GetTelemetryPipelineOutput,
-        http_method = "POST",
-        http_path = "/GetTelemetryPipeline",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTelemetryPipeline, input, options)
 end
 
 function Client:getTelemetryRule(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTelemetryRule",
-        input_schema = schemas.GetTelemetryRuleInput,
-        output_schema = schemas.GetTelemetryRuleOutput,
-        http_method = "POST",
-        http_path = "/GetTelemetryRule",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTelemetryRule, input, options)
 end
 
 function Client:getTelemetryRuleForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTelemetryRuleForOrganization",
-        input_schema = schemas.GetTelemetryRuleForOrganizationInput,
-        output_schema = schemas.GetTelemetryRuleForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/GetTelemetryRuleForOrganization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTelemetryRuleForOrganization, input, options)
 end
 
 function Client:listCentralizationRulesForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCentralizationRulesForOrganization",
-        input_schema = schemas.ListCentralizationRulesForOrganizationInput,
-        output_schema = schemas.ListCentralizationRulesForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/ListCentralizationRulesForOrganization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCentralizationRulesForOrganization, input, options)
 end
 
 function Client:listResourceTelemetry(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResourceTelemetry",
-        input_schema = schemas.ListResourceTelemetryInput,
-        output_schema = schemas.ListResourceTelemetryOutput,
-        http_method = "POST",
-        http_path = "/ListResourceTelemetry",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResourceTelemetry, input, options)
 end
 
 function Client:listResourceTelemetryForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResourceTelemetryForOrganization",
-        input_schema = schemas.ListResourceTelemetryForOrganizationInput,
-        output_schema = schemas.ListResourceTelemetryForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/ListResourceTelemetryForOrganization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResourceTelemetryForOrganization, input, options)
 end
 
 function Client:listS3TableIntegrations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListS3TableIntegrations",
-        input_schema = schemas.ListS3TableIntegrationsInput,
-        output_schema = schemas.ListS3TableIntegrationsOutput,
-        http_method = "POST",
-        http_path = "/ListS3TableIntegrations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListS3TableIntegrations, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/ListTagsForResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTelemetryPipelines(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTelemetryPipelines",
-        input_schema = schemas.ListTelemetryPipelinesInput,
-        output_schema = schemas.ListTelemetryPipelinesOutput,
-        http_method = "POST",
-        http_path = "/ListTelemetryPipelines",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTelemetryPipelines, input, options)
 end
 
 function Client:listTelemetryRules(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTelemetryRules",
-        input_schema = schemas.ListTelemetryRulesInput,
-        output_schema = schemas.ListTelemetryRulesOutput,
-        http_method = "POST",
-        http_path = "/ListTelemetryRules",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTelemetryRules, input, options)
 end
 
 function Client:listTelemetryRulesForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTelemetryRulesForOrganization",
-        input_schema = schemas.ListTelemetryRulesForOrganizationInput,
-        output_schema = schemas.ListTelemetryRulesForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/ListTelemetryRulesForOrganization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTelemetryRulesForOrganization, input, options)
 end
 
 function Client:startTelemetryEnrichment(input, options)
-    return self:invokeOperation(input, {
-        name = "StartTelemetryEnrichment",
-        input_schema = schemas.StartTelemetryEnrichmentInput,
-        output_schema = schemas.StartTelemetryEnrichmentOutput,
-        http_method = "POST",
-        http_path = "/StartTelemetryEnrichment",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartTelemetryEnrichment, input, options)
 end
 
 function Client:startTelemetryEvaluation(input, options)
-    return self:invokeOperation(input, {
-        name = "StartTelemetryEvaluation",
-        input_schema = schemas.StartTelemetryEvaluationInput,
-        output_schema = schemas.StartTelemetryEvaluationOutput,
-        http_method = "POST",
-        http_path = "/StartTelemetryEvaluation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartTelemetryEvaluation, input, options)
 end
 
 function Client:startTelemetryEvaluationForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "StartTelemetryEvaluationForOrganization",
-        input_schema = schemas.StartTelemetryEvaluationForOrganizationInput,
-        output_schema = schemas.StartTelemetryEvaluationForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/StartTelemetryEvaluationForOrganization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartTelemetryEvaluationForOrganization, input, options)
 end
 
 function Client:stopTelemetryEnrichment(input, options)
-    return self:invokeOperation(input, {
-        name = "StopTelemetryEnrichment",
-        input_schema = schemas.StopTelemetryEnrichmentInput,
-        output_schema = schemas.StopTelemetryEnrichmentOutput,
-        http_method = "POST",
-        http_path = "/StopTelemetryEnrichment",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopTelemetryEnrichment, input, options)
 end
 
 function Client:stopTelemetryEvaluation(input, options)
-    return self:invokeOperation(input, {
-        name = "StopTelemetryEvaluation",
-        input_schema = schemas.StopTelemetryEvaluationInput,
-        output_schema = schemas.StopTelemetryEvaluationOutput,
-        http_method = "POST",
-        http_path = "/StopTelemetryEvaluation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopTelemetryEvaluation, input, options)
 end
 
 function Client:stopTelemetryEvaluationForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "StopTelemetryEvaluationForOrganization",
-        input_schema = schemas.StopTelemetryEvaluationForOrganizationInput,
-        output_schema = schemas.StopTelemetryEvaluationForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/StopTelemetryEvaluationForOrganization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopTelemetryEvaluationForOrganization, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/TagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:testTelemetryPipeline(input, options)
-    return self:invokeOperation(input, {
-        name = "TestTelemetryPipeline",
-        input_schema = schemas.TestTelemetryPipelineInput,
-        output_schema = schemas.TestTelemetryPipelineOutput,
-        http_method = "POST",
-        http_path = "/TestTelemetryPipeline",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TestTelemetryPipeline, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/UntagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateCentralizationRuleForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCentralizationRuleForOrganization",
-        input_schema = schemas.UpdateCentralizationRuleForOrganizationInput,
-        output_schema = schemas.UpdateCentralizationRuleForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/UpdateCentralizationRuleForOrganization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCentralizationRuleForOrganization, input, options)
 end
 
 function Client:updateTelemetryPipeline(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTelemetryPipeline",
-        input_schema = schemas.UpdateTelemetryPipelineInput,
-        output_schema = schemas.UpdateTelemetryPipelineOutput,
-        http_method = "POST",
-        http_path = "/UpdateTelemetryPipeline",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTelemetryPipeline, input, options)
 end
 
 function Client:updateTelemetryRule(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTelemetryRule",
-        input_schema = schemas.UpdateTelemetryRuleInput,
-        output_schema = schemas.UpdateTelemetryRuleOutput,
-        http_method = "POST",
-        http_path = "/UpdateTelemetryRule",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTelemetryRule, input, options)
 end
 
 function Client:updateTelemetryRuleForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTelemetryRuleForOrganization",
-        input_schema = schemas.UpdateTelemetryRuleForOrganizationInput,
-        output_schema = schemas.UpdateTelemetryRuleForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/UpdateTelemetryRuleForOrganization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTelemetryRuleForOrganization, input, options)
 end
 
 function Client:validateTelemetryPipelineConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "ValidateTelemetryPipelineConfiguration",
-        input_schema = schemas.ValidateTelemetryPipelineConfigurationInput,
-        output_schema = schemas.ValidateTelemetryPipelineConfigurationOutput,
-        http_method = "POST",
-        http_path = "/ValidateTelemetryPipelineConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ValidateTelemetryPipelineConfiguration, input, options)
 end
 
 return M

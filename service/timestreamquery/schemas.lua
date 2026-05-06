@@ -2208,4 +2208,179 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.timestreamquery", "Timestream_20181101"),
+    version = "2018-11-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelQuery = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "CancelQuery"),
+    input = M.CancelQueryInput,
+    output = M.CancelQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateScheduledQuery = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "CreateScheduledQuery"),
+    input = M.CreateScheduledQueryInput,
+    output = M.CreateScheduledQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScheduledQuery = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "DeleteScheduledQuery"),
+    input = M.DeleteScheduledQueryInput,
+    output = M.DeleteScheduledQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "DescribeAccountSettings"),
+    input = M.DescribeAccountSettingsInput,
+    output = M.DescribeAccountSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEndpoints = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "DescribeEndpoints"),
+    input = M.DescribeEndpointsInput,
+    output = M.DescribeEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScheduledQuery = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "DescribeScheduledQuery"),
+    input = M.DescribeScheduledQueryInput,
+    output = M.DescribeScheduledQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteScheduledQuery = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "ExecuteScheduledQuery"),
+    input = M.ExecuteScheduledQueryInput,
+    output = M.ExecuteScheduledQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScheduledQueries = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "ListScheduledQueries"),
+    input = M.ListScheduledQueriesInput,
+    output = M.ListScheduledQueriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PrepareQuery = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "PrepareQuery"),
+    input = M.PrepareQueryInput,
+    output = M.PrepareQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Query = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "Query"),
+    input = M.QueryInput,
+    output = M.QueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "UpdateAccountSettings"),
+    input = M.UpdateAccountSettingsInput,
+    output = M.UpdateAccountSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateScheduledQuery = schema.operation({
+    id = id.from("com.amazonaws.timestreamquery", "UpdateScheduledQuery"),
+    input = M.UpdateScheduledQueryInput,
+    output = M.UpdateScheduledQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

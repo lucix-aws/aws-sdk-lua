@@ -2456,4 +2456,278 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.mpa", "AWSFluffyCoreService"),
+    version = "2022-07-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelSession = schema.operation({
+    id = id.from("com.amazonaws.mpa", "CancelSession"),
+    input = M.CancelSessionInput,
+    output = M.CancelSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sessions/{SessionArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApprovalTeam = schema.operation({
+    id = id.from("com.amazonaws.mpa", "CreateApprovalTeam"),
+    input = M.CreateApprovalTeamInput,
+    output = M.CreateApprovalTeamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/approval-teams" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIdentitySource = schema.operation({
+    id = id.from("com.amazonaws.mpa", "CreateIdentitySource"),
+    input = M.CreateIdentitySourceInput,
+    output = M.CreateIdentitySourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identity-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdentitySource = schema.operation({
+    id = id.from("com.amazonaws.mpa", "DeleteIdentitySource"),
+    input = M.DeleteIdentitySourceInput,
+    output = M.DeleteIdentitySourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/identity-sources/{IdentitySourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInactiveApprovalTeamVersion = schema.operation({
+    id = id.from("com.amazonaws.mpa", "DeleteInactiveApprovalTeamVersion"),
+    input = M.DeleteInactiveApprovalTeamVersionInput,
+    output = M.DeleteInactiveApprovalTeamVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/approval-teams/{Arn}/{VersionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApprovalTeam = schema.operation({
+    id = id.from("com.amazonaws.mpa", "GetApprovalTeam"),
+    input = M.GetApprovalTeamInput,
+    output = M.GetApprovalTeamOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/approval-teams/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdentitySource = schema.operation({
+    id = id.from("com.amazonaws.mpa", "GetIdentitySource"),
+    input = M.GetIdentitySourceInput,
+    output = M.GetIdentitySourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/identity-sources/{IdentitySourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicyVersion = schema.operation({
+    id = id.from("com.amazonaws.mpa", "GetPolicyVersion"),
+    input = M.GetPolicyVersionInput,
+    output = M.GetPolicyVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-versions/{PolicyVersionArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.mpa", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetResourcePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSession = schema.operation({
+    id = id.from("com.amazonaws.mpa", "GetSession"),
+    input = M.GetSessionInput,
+    output = M.GetSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sessions/{SessionArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApprovalTeams = schema.operation({
+    id = id.from("com.amazonaws.mpa", "ListApprovalTeams"),
+    input = M.ListApprovalTeamsInput,
+    output = M.ListApprovalTeamsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/approval-teams/?List" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdentitySources = schema.operation({
+    id = id.from("com.amazonaws.mpa", "ListIdentitySources"),
+    input = M.ListIdentitySourcesInput,
+    output = M.ListIdentitySourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identity-sources/?List" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicies = schema.operation({
+    id = id.from("com.amazonaws.mpa", "ListPolicies"),
+    input = M.ListPoliciesInput,
+    output = M.ListPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policies/?List" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyVersions = schema.operation({
+    id = id.from("com.amazonaws.mpa", "ListPolicyVersions"),
+    input = M.ListPolicyVersionsInput,
+    output = M.ListPolicyVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policies/{PolicyArn}/?List" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourcePolicies = schema.operation({
+    id = id.from("com.amazonaws.mpa", "ListResourcePolicies"),
+    input = M.ListResourcePoliciesInput,
+    output = M.ListResourcePoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resource-policies/{ResourceArn}/?List" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessions = schema.operation({
+    id = id.from("com.amazonaws.mpa", "ListSessions"),
+    input = M.ListSessionsInput,
+    output = M.ListSessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/approval-teams/{ApprovalTeamArn}/sessions/?List" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.mpa", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartActiveApprovalTeamDeletion = schema.operation({
+    id = id.from("com.amazonaws.mpa", "StartActiveApprovalTeamDeletion"),
+    input = M.StartActiveApprovalTeamDeletionInput,
+    output = M.StartActiveApprovalTeamDeletionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/approval-teams/{Arn}?Delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartApprovalTeamBaseline = schema.operation({
+    id = id.from("com.amazonaws.mpa", "StartApprovalTeamBaseline"),
+    input = M.StartApprovalTeamBaselineInput,
+    output = M.StartApprovalTeamBaselineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/approval-teams/{Arn}/baseline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.mpa", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.mpa", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApprovalTeam = schema.operation({
+    id = id.from("com.amazonaws.mpa", "UpdateApprovalTeam"),
+    input = M.UpdateApprovalTeamInput,
+    output = M.UpdateApprovalTeamOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/approval-teams/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

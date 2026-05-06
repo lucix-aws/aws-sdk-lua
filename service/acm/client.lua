@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("acm.endpoint_rules")
 local schemas = require("acm.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "acm", signing_region = cfg.region } }
                 else
@@ -49,224 +52,71 @@ function M.new(cfg)
 end
 
 function Client:addTagsToCertificate(input, options)
-    return self:invokeOperation(input, {
-        name = "AddTagsToCertificate",
-        input_schema = schemas.AddTagsToCertificateInput,
-        output_schema = schemas.AddTagsToCertificateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddTagsToCertificate, input, options)
 end
 
 function Client:deleteCertificate(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCertificate",
-        input_schema = schemas.DeleteCertificateInput,
-        output_schema = schemas.DeleteCertificateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCertificate, input, options)
 end
 
 function Client:describeCertificate(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCertificate",
-        input_schema = schemas.DescribeCertificateInput,
-        output_schema = schemas.DescribeCertificateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCertificate, input, options)
 end
 
 function Client:exportCertificate(input, options)
-    return self:invokeOperation(input, {
-        name = "ExportCertificate",
-        input_schema = schemas.ExportCertificateInput,
-        output_schema = schemas.ExportCertificateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExportCertificate, input, options)
 end
 
 function Client:getAccountConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccountConfiguration",
-        input_schema = schemas.GetAccountConfigurationInput,
-        output_schema = schemas.GetAccountConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccountConfiguration, input, options)
 end
 
 function Client:getCertificate(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCertificate",
-        input_schema = schemas.GetCertificateInput,
-        output_schema = schemas.GetCertificateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCertificate, input, options)
 end
 
 function Client:importCertificate(input, options)
-    return self:invokeOperation(input, {
-        name = "ImportCertificate",
-        input_schema = schemas.ImportCertificateInput,
-        output_schema = schemas.ImportCertificateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ImportCertificate, input, options)
 end
 
 function Client:listCertificates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCertificates",
-        input_schema = schemas.ListCertificatesInput,
-        output_schema = schemas.ListCertificatesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCertificates, input, options)
 end
 
 function Client:listTagsForCertificate(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForCertificate",
-        input_schema = schemas.ListTagsForCertificateInput,
-        output_schema = schemas.ListTagsForCertificateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForCertificate, input, options)
 end
 
 function Client:putAccountConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutAccountConfiguration",
-        input_schema = schemas.PutAccountConfigurationInput,
-        output_schema = schemas.PutAccountConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutAccountConfiguration, input, options)
 end
 
 function Client:removeTagsFromCertificate(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveTagsFromCertificate",
-        input_schema = schemas.RemoveTagsFromCertificateInput,
-        output_schema = schemas.RemoveTagsFromCertificateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveTagsFromCertificate, input, options)
 end
 
 function Client:renewCertificate(input, options)
-    return self:invokeOperation(input, {
-        name = "RenewCertificate",
-        input_schema = schemas.RenewCertificateInput,
-        output_schema = schemas.RenewCertificateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RenewCertificate, input, options)
 end
 
 function Client:requestCertificate(input, options)
-    return self:invokeOperation(input, {
-        name = "RequestCertificate",
-        input_schema = schemas.RequestCertificateInput,
-        output_schema = schemas.RequestCertificateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RequestCertificate, input, options)
 end
 
 function Client:resendValidationEmail(input, options)
-    return self:invokeOperation(input, {
-        name = "ResendValidationEmail",
-        input_schema = schemas.ResendValidationEmailInput,
-        output_schema = schemas.ResendValidationEmailOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ResendValidationEmail, input, options)
 end
 
 function Client:revokeCertificate(input, options)
-    return self:invokeOperation(input, {
-        name = "RevokeCertificate",
-        input_schema = schemas.RevokeCertificateInput,
-        output_schema = schemas.RevokeCertificateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RevokeCertificate, input, options)
 end
 
 function Client:searchCertificates(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchCertificates",
-        input_schema = schemas.SearchCertificatesInput,
-        output_schema = schemas.SearchCertificatesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchCertificates, input, options)
 end
 
 function Client:updateCertificateOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCertificateOptions",
-        input_schema = schemas.UpdateCertificateOptionsInput,
-        output_schema = schemas.UpdateCertificateOptionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCertificateOptions, input, options)
 end
 
 return M

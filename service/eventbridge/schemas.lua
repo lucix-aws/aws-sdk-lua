@@ -5735,4 +5735,644 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.eventbridge", "AWSEvents"),
+    version = "2015-10-07",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ActivateEventSource = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "ActivateEventSource"),
+    input = M.ActivateEventSourceInput,
+    output = M.ActivateEventSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelReplay = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "CancelReplay"),
+    input = M.CancelReplayInput,
+    output = M.CancelReplayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApiDestination = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "CreateApiDestination"),
+    input = M.CreateApiDestinationInput,
+    output = M.CreateApiDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateArchive = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "CreateArchive"),
+    input = M.CreateArchiveInput,
+    output = M.CreateArchiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnection = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "CreateConnection"),
+    input = M.CreateConnectionInput,
+    output = M.CreateConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEndpoint = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "CreateEndpoint"),
+    input = M.CreateEndpointInput,
+    output = M.CreateEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventBus = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "CreateEventBus"),
+    input = M.CreateEventBusInput,
+    output = M.CreateEventBusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePartnerEventSource = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "CreatePartnerEventSource"),
+    input = M.CreatePartnerEventSourceInput,
+    output = M.CreatePartnerEventSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeactivateEventSource = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DeactivateEventSource"),
+    input = M.DeactivateEventSourceInput,
+    output = M.DeactivateEventSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeauthorizeConnection = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DeauthorizeConnection"),
+    input = M.DeauthorizeConnectionInput,
+    output = M.DeauthorizeConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApiDestination = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DeleteApiDestination"),
+    input = M.DeleteApiDestinationInput,
+    output = M.DeleteApiDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteArchive = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DeleteArchive"),
+    input = M.DeleteArchiveInput,
+    output = M.DeleteArchiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnection = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DeleteConnection"),
+    input = M.DeleteConnectionInput,
+    output = M.DeleteConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEndpoint = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DeleteEndpoint"),
+    input = M.DeleteEndpointInput,
+    output = M.DeleteEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventBus = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DeleteEventBus"),
+    input = M.DeleteEventBusInput,
+    output = M.DeleteEventBusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePartnerEventSource = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DeletePartnerEventSource"),
+    input = M.DeletePartnerEventSourceInput,
+    output = M.DeletePartnerEventSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRule = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DeleteRule"),
+    input = M.DeleteRuleInput,
+    output = M.DeleteRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApiDestination = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DescribeApiDestination"),
+    input = M.DescribeApiDestinationInput,
+    output = M.DescribeApiDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeArchive = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DescribeArchive"),
+    input = M.DescribeArchiveInput,
+    output = M.DescribeArchiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnection = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DescribeConnection"),
+    input = M.DescribeConnectionInput,
+    output = M.DescribeConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DescribeEndpoint"),
+    input = M.DescribeEndpointInput,
+    output = M.DescribeEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventBus = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DescribeEventBus"),
+    input = M.DescribeEventBusInput,
+    output = M.DescribeEventBusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventSource = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DescribeEventSource"),
+    input = M.DescribeEventSourceInput,
+    output = M.DescribeEventSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePartnerEventSource = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DescribePartnerEventSource"),
+    input = M.DescribePartnerEventSourceInput,
+    output = M.DescribePartnerEventSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplay = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DescribeReplay"),
+    input = M.DescribeReplayInput,
+    output = M.DescribeReplayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRule = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DescribeRule"),
+    input = M.DescribeRuleInput,
+    output = M.DescribeRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableRule = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "DisableRule"),
+    input = M.DisableRuleInput,
+    output = M.DisableRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableRule = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "EnableRule"),
+    input = M.EnableRuleInput,
+    output = M.EnableRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApiDestinations = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "ListApiDestinations"),
+    input = M.ListApiDestinationsInput,
+    output = M.ListApiDestinationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListArchives = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "ListArchives"),
+    input = M.ListArchivesInput,
+    output = M.ListArchivesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnections = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "ListConnections"),
+    input = M.ListConnectionsInput,
+    output = M.ListConnectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEndpoints = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "ListEndpoints"),
+    input = M.ListEndpointsInput,
+    output = M.ListEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventBuses = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "ListEventBuses"),
+    input = M.ListEventBusesInput,
+    output = M.ListEventBusesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventSources = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "ListEventSources"),
+    input = M.ListEventSourcesInput,
+    output = M.ListEventSourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPartnerEventSourceAccounts = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "ListPartnerEventSourceAccounts"),
+    input = M.ListPartnerEventSourceAccountsInput,
+    output = M.ListPartnerEventSourceAccountsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPartnerEventSources = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "ListPartnerEventSources"),
+    input = M.ListPartnerEventSourcesInput,
+    output = M.ListPartnerEventSourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReplays = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "ListReplays"),
+    input = M.ListReplaysInput,
+    output = M.ListReplaysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRuleNamesByTarget = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "ListRuleNamesByTarget"),
+    input = M.ListRuleNamesByTargetInput,
+    output = M.ListRuleNamesByTargetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRules = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "ListRules"),
+    input = M.ListRulesInput,
+    output = M.ListRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTargetsByRule = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "ListTargetsByRule"),
+    input = M.ListTargetsByRuleInput,
+    output = M.ListTargetsByRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEvents = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "PutEvents"),
+    input = M.PutEventsInput,
+    output = M.PutEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            EndpointId = "EndpointId",
+        },
+    },
+})
+
+M.PutPartnerEvents = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "PutPartnerEvents"),
+    input = M.PutPartnerEventsInput,
+    output = M.PutPartnerEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPermission = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "PutPermission"),
+    input = M.PutPermissionInput,
+    output = M.PutPermissionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRule = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "PutRule"),
+    input = M.PutRuleInput,
+    output = M.PutRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTargets = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "PutTargets"),
+    input = M.PutTargetsInput,
+    output = M.PutTargetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemovePermission = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "RemovePermission"),
+    input = M.RemovePermissionInput,
+    output = M.RemovePermissionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTargets = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "RemoveTargets"),
+    input = M.RemoveTargetsInput,
+    output = M.RemoveTargetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReplay = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "StartReplay"),
+    input = M.StartReplayInput,
+    output = M.StartReplayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestEventPattern = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "TestEventPattern"),
+    input = M.TestEventPatternInput,
+    output = M.TestEventPatternOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApiDestination = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "UpdateApiDestination"),
+    input = M.UpdateApiDestinationInput,
+    output = M.UpdateApiDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateArchive = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "UpdateArchive"),
+    input = M.UpdateArchiveInput,
+    output = M.UpdateArchiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnection = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "UpdateConnection"),
+    input = M.UpdateConnectionInput,
+    output = M.UpdateConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEndpoint = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "UpdateEndpoint"),
+    input = M.UpdateEndpointInput,
+    output = M.UpdateEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEventBus = schema.operation({
+    id = id.from("com.amazonaws.eventbridge", "UpdateEventBus"),
+    input = M.UpdateEventBusInput,
+    output = M.UpdateEventBusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

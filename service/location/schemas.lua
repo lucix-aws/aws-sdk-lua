@@ -7488,4 +7488,782 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.location", "LocationService"),
+    version = "2020-11-19",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateTrackerConsumer = schema.operation({
+    id = id.from("com.amazonaws.location", "AssociateTrackerConsumer"),
+    input = M.AssociateTrackerConsumerInput,
+    output = M.AssociateTrackerConsumerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tracking/v0/trackers/{TrackerName}/consumers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteDevicePositionHistory = schema.operation({
+    id = id.from("com.amazonaws.location", "BatchDeleteDevicePositionHistory"),
+    input = M.BatchDeleteDevicePositionHistoryInput,
+    output = M.BatchDeleteDevicePositionHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tracking/v0/trackers/{TrackerName}/delete-positions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteGeofence = schema.operation({
+    id = id.from("com.amazonaws.location", "BatchDeleteGeofence"),
+    input = M.BatchDeleteGeofenceInput,
+    output = M.BatchDeleteGeofenceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/geofencing/v0/collections/{CollectionName}/delete-geofences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchEvaluateGeofences = schema.operation({
+    id = id.from("com.amazonaws.location", "BatchEvaluateGeofences"),
+    input = M.BatchEvaluateGeofencesInput,
+    output = M.BatchEvaluateGeofencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/geofencing/v0/collections/{CollectionName}/positions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetDevicePosition = schema.operation({
+    id = id.from("com.amazonaws.location", "BatchGetDevicePosition"),
+    input = M.BatchGetDevicePositionInput,
+    output = M.BatchGetDevicePositionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tracking/v0/trackers/{TrackerName}/get-positions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchPutGeofence = schema.operation({
+    id = id.from("com.amazonaws.location", "BatchPutGeofence"),
+    input = M.BatchPutGeofenceInput,
+    output = M.BatchPutGeofenceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/geofencing/v0/collections/{CollectionName}/put-geofences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateDevicePosition = schema.operation({
+    id = id.from("com.amazonaws.location", "BatchUpdateDevicePosition"),
+    input = M.BatchUpdateDevicePositionInput,
+    output = M.BatchUpdateDevicePositionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tracking/v0/trackers/{TrackerName}/positions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CalculateRoute = schema.operation({
+    id = id.from("com.amazonaws.location", "CalculateRoute"),
+    input = M.CalculateRouteInput,
+    output = M.CalculateRouteOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/routes/v0/calculators/{CalculatorName}/calculate/route" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CalculateRouteMatrix = schema.operation({
+    id = id.from("com.amazonaws.location", "CalculateRouteMatrix"),
+    input = M.CalculateRouteMatrixInput,
+    output = M.CalculateRouteMatrixOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/routes/v0/calculators/{CalculatorName}/calculate/route-matrix" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelJob = schema.operation({
+    id = id.from("com.amazonaws.location", "CancelJob"),
+    input = M.CancelJobInput,
+    output = M.CancelJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metadata/v0/jobs/cancel-job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGeofenceCollection = schema.operation({
+    id = id.from("com.amazonaws.location", "CreateGeofenceCollection"),
+    input = M.CreateGeofenceCollectionInput,
+    output = M.CreateGeofenceCollectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/geofencing/v0/collections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKey = schema.operation({
+    id = id.from("com.amazonaws.location", "CreateKey"),
+    input = M.CreateKeyInput,
+    output = M.CreateKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metadata/v0/keys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMap = schema.operation({
+    id = id.from("com.amazonaws.location", "CreateMap"),
+    input = M.CreateMapInput,
+    output = M.CreateMapOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/maps/v0/maps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePlaceIndex = schema.operation({
+    id = id.from("com.amazonaws.location", "CreatePlaceIndex"),
+    input = M.CreatePlaceIndexInput,
+    output = M.CreatePlaceIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/places/v0/indexes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRouteCalculator = schema.operation({
+    id = id.from("com.amazonaws.location", "CreateRouteCalculator"),
+    input = M.CreateRouteCalculatorInput,
+    output = M.CreateRouteCalculatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/routes/v0/calculators" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTracker = schema.operation({
+    id = id.from("com.amazonaws.location", "CreateTracker"),
+    input = M.CreateTrackerInput,
+    output = M.CreateTrackerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tracking/v0/trackers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGeofenceCollection = schema.operation({
+    id = id.from("com.amazonaws.location", "DeleteGeofenceCollection"),
+    input = M.DeleteGeofenceCollectionInput,
+    output = M.DeleteGeofenceCollectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/geofencing/v0/collections/{CollectionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKey = schema.operation({
+    id = id.from("com.amazonaws.location", "DeleteKey"),
+    input = M.DeleteKeyInput,
+    output = M.DeleteKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/metadata/v0/keys/{KeyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMap = schema.operation({
+    id = id.from("com.amazonaws.location", "DeleteMap"),
+    input = M.DeleteMapInput,
+    output = M.DeleteMapOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/maps/v0/maps/{MapName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePlaceIndex = schema.operation({
+    id = id.from("com.amazonaws.location", "DeletePlaceIndex"),
+    input = M.DeletePlaceIndexInput,
+    output = M.DeletePlaceIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/places/v0/indexes/{IndexName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRouteCalculator = schema.operation({
+    id = id.from("com.amazonaws.location", "DeleteRouteCalculator"),
+    input = M.DeleteRouteCalculatorInput,
+    output = M.DeleteRouteCalculatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/routes/v0/calculators/{CalculatorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTracker = schema.operation({
+    id = id.from("com.amazonaws.location", "DeleteTracker"),
+    input = M.DeleteTrackerInput,
+    output = M.DeleteTrackerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tracking/v0/trackers/{TrackerName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGeofenceCollection = schema.operation({
+    id = id.from("com.amazonaws.location", "DescribeGeofenceCollection"),
+    input = M.DescribeGeofenceCollectionInput,
+    output = M.DescribeGeofenceCollectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/geofencing/v0/collections/{CollectionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeKey = schema.operation({
+    id = id.from("com.amazonaws.location", "DescribeKey"),
+    input = M.DescribeKeyInput,
+    output = M.DescribeKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/metadata/v0/keys/{KeyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMap = schema.operation({
+    id = id.from("com.amazonaws.location", "DescribeMap"),
+    input = M.DescribeMapInput,
+    output = M.DescribeMapOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/maps/v0/maps/{MapName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePlaceIndex = schema.operation({
+    id = id.from("com.amazonaws.location", "DescribePlaceIndex"),
+    input = M.DescribePlaceIndexInput,
+    output = M.DescribePlaceIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/places/v0/indexes/{IndexName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRouteCalculator = schema.operation({
+    id = id.from("com.amazonaws.location", "DescribeRouteCalculator"),
+    input = M.DescribeRouteCalculatorInput,
+    output = M.DescribeRouteCalculatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/routes/v0/calculators/{CalculatorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTracker = schema.operation({
+    id = id.from("com.amazonaws.location", "DescribeTracker"),
+    input = M.DescribeTrackerInput,
+    output = M.DescribeTrackerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tracking/v0/trackers/{TrackerName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateTrackerConsumer = schema.operation({
+    id = id.from("com.amazonaws.location", "DisassociateTrackerConsumer"),
+    input = M.DisassociateTrackerConsumerInput,
+    output = M.DisassociateTrackerConsumerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tracking/v0/trackers/{TrackerName}/consumers/{ConsumerArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ForecastGeofenceEvents = schema.operation({
+    id = id.from("com.amazonaws.location", "ForecastGeofenceEvents"),
+    input = M.ForecastGeofenceEventsInput,
+    output = M.ForecastGeofenceEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/geofencing/v0/collections/{CollectionName}/forecast-geofence-events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDevicePosition = schema.operation({
+    id = id.from("com.amazonaws.location", "GetDevicePosition"),
+    input = M.GetDevicePositionInput,
+    output = M.GetDevicePositionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tracking/v0/trackers/{TrackerName}/devices/{DeviceId}/positions/latest" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDevicePositionHistory = schema.operation({
+    id = id.from("com.amazonaws.location", "GetDevicePositionHistory"),
+    input = M.GetDevicePositionHistoryInput,
+    output = M.GetDevicePositionHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tracking/v0/trackers/{TrackerName}/devices/{DeviceId}/list-positions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGeofence = schema.operation({
+    id = id.from("com.amazonaws.location", "GetGeofence"),
+    input = M.GetGeofenceInput,
+    output = M.GetGeofenceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/geofencing/v0/collections/{CollectionName}/geofences/{GeofenceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJob = schema.operation({
+    id = id.from("com.amazonaws.location", "GetJob"),
+    input = M.GetJobInput,
+    output = M.GetJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/metadata/v0/jobs/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMapGlyphs = schema.operation({
+    id = id.from("com.amazonaws.location", "GetMapGlyphs"),
+    input = M.GetMapGlyphsInput,
+    output = M.GetMapGlyphsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/maps/v0/maps/{MapName}/glyphs/{FontStack}/{FontUnicodeRange}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMapSprites = schema.operation({
+    id = id.from("com.amazonaws.location", "GetMapSprites"),
+    input = M.GetMapSpritesInput,
+    output = M.GetMapSpritesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/maps/v0/maps/{MapName}/sprites/{FileName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMapStyleDescriptor = schema.operation({
+    id = id.from("com.amazonaws.location", "GetMapStyleDescriptor"),
+    input = M.GetMapStyleDescriptorInput,
+    output = M.GetMapStyleDescriptorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/maps/v0/maps/{MapName}/style-descriptor" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMapTile = schema.operation({
+    id = id.from("com.amazonaws.location", "GetMapTile"),
+    input = M.GetMapTileInput,
+    output = M.GetMapTileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/maps/v0/maps/{MapName}/tiles/{Z}/{X}/{Y}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPlace = schema.operation({
+    id = id.from("com.amazonaws.location", "GetPlace"),
+    input = M.GetPlaceInput,
+    output = M.GetPlaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/places/v0/indexes/{IndexName}/places/{PlaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDevicePositions = schema.operation({
+    id = id.from("com.amazonaws.location", "ListDevicePositions"),
+    input = M.ListDevicePositionsInput,
+    output = M.ListDevicePositionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tracking/v0/trackers/{TrackerName}/list-positions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGeofenceCollections = schema.operation({
+    id = id.from("com.amazonaws.location", "ListGeofenceCollections"),
+    input = M.ListGeofenceCollectionsInput,
+    output = M.ListGeofenceCollectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/geofencing/v0/list-collections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGeofences = schema.operation({
+    id = id.from("com.amazonaws.location", "ListGeofences"),
+    input = M.ListGeofencesInput,
+    output = M.ListGeofencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/geofencing/v0/collections/{CollectionName}/list-geofences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobs = schema.operation({
+    id = id.from("com.amazonaws.location", "ListJobs"),
+    input = M.ListJobsInput,
+    output = M.ListJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metadata/v0/jobs/list-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKeys = schema.operation({
+    id = id.from("com.amazonaws.location", "ListKeys"),
+    input = M.ListKeysInput,
+    output = M.ListKeysOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metadata/v0/list-keys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMaps = schema.operation({
+    id = id.from("com.amazonaws.location", "ListMaps"),
+    input = M.ListMapsInput,
+    output = M.ListMapsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/maps/v0/list-maps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPlaceIndexes = schema.operation({
+    id = id.from("com.amazonaws.location", "ListPlaceIndexes"),
+    input = M.ListPlaceIndexesInput,
+    output = M.ListPlaceIndexesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/places/v0/list-indexes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRouteCalculators = schema.operation({
+    id = id.from("com.amazonaws.location", "ListRouteCalculators"),
+    input = M.ListRouteCalculatorsInput,
+    output = M.ListRouteCalculatorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/routes/v0/list-calculators" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.location", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrackerConsumers = schema.operation({
+    id = id.from("com.amazonaws.location", "ListTrackerConsumers"),
+    input = M.ListTrackerConsumersInput,
+    output = M.ListTrackerConsumersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tracking/v0/trackers/{TrackerName}/list-consumers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrackers = schema.operation({
+    id = id.from("com.amazonaws.location", "ListTrackers"),
+    input = M.ListTrackersInput,
+    output = M.ListTrackersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tracking/v0/list-trackers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutGeofence = schema.operation({
+    id = id.from("com.amazonaws.location", "PutGeofence"),
+    input = M.PutGeofenceInput,
+    output = M.PutGeofenceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/geofencing/v0/collections/{CollectionName}/geofences/{GeofenceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchPlaceIndexForPosition = schema.operation({
+    id = id.from("com.amazonaws.location", "SearchPlaceIndexForPosition"),
+    input = M.SearchPlaceIndexForPositionInput,
+    output = M.SearchPlaceIndexForPositionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/places/v0/indexes/{IndexName}/search/position" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchPlaceIndexForSuggestions = schema.operation({
+    id = id.from("com.amazonaws.location", "SearchPlaceIndexForSuggestions"),
+    input = M.SearchPlaceIndexForSuggestionsInput,
+    output = M.SearchPlaceIndexForSuggestionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/places/v0/indexes/{IndexName}/search/suggestions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchPlaceIndexForText = schema.operation({
+    id = id.from("com.amazonaws.location", "SearchPlaceIndexForText"),
+    input = M.SearchPlaceIndexForTextInput,
+    output = M.SearchPlaceIndexForTextOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/places/v0/indexes/{IndexName}/search/text" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartJob = schema.operation({
+    id = id.from("com.amazonaws.location", "StartJob"),
+    input = M.StartJobInput,
+    output = M.StartJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metadata/v0/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.location", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.location", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGeofenceCollection = schema.operation({
+    id = id.from("com.amazonaws.location", "UpdateGeofenceCollection"),
+    input = M.UpdateGeofenceCollectionInput,
+    output = M.UpdateGeofenceCollectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/geofencing/v0/collections/{CollectionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKey = schema.operation({
+    id = id.from("com.amazonaws.location", "UpdateKey"),
+    input = M.UpdateKeyInput,
+    output = M.UpdateKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/metadata/v0/keys/{KeyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMap = schema.operation({
+    id = id.from("com.amazonaws.location", "UpdateMap"),
+    input = M.UpdateMapInput,
+    output = M.UpdateMapOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/maps/v0/maps/{MapName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePlaceIndex = schema.operation({
+    id = id.from("com.amazonaws.location", "UpdatePlaceIndex"),
+    input = M.UpdatePlaceIndexInput,
+    output = M.UpdatePlaceIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/places/v0/indexes/{IndexName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRouteCalculator = schema.operation({
+    id = id.from("com.amazonaws.location", "UpdateRouteCalculator"),
+    input = M.UpdateRouteCalculatorInput,
+    output = M.UpdateRouteCalculatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/routes/v0/calculators/{CalculatorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTracker = schema.operation({
+    id = id.from("com.amazonaws.location", "UpdateTracker"),
+    input = M.UpdateTrackerInput,
+    output = M.UpdateTrackerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/tracking/v0/trackers/{TrackerName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyDevicePosition = schema.operation({
+    id = id.from("com.amazonaws.location", "VerifyDevicePosition"),
+    input = M.VerifyDevicePositionInput,
+    output = M.VerifyDevicePositionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tracking/v0/trackers/{TrackerName}/positions/verify" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

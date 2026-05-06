@@ -268,4 +268,50 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.uxc", "AWSAccountUXSetting"),
+    version = "2024-07-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountCustomizations = schema.operation({
+    id = id.from("com.amazonaws.uxc", "GetAccountCustomizations"),
+    input = M.GetAccountCustomizationsInput,
+    output = M.GetAccountCustomizationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/account-customizations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServices = schema.operation({
+    id = id.from("com.amazonaws.uxc", "ListServices"),
+    input = M.ListServicesInput,
+    output = M.ListServicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/services" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountCustomizations = schema.operation({
+    id = id.from("com.amazonaws.uxc", "UpdateAccountCustomizations"),
+    input = M.UpdateAccountCustomizationsInput,
+    output = M.UpdateAccountCustomizationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/account-customizations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

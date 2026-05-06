@@ -7,6 +7,7 @@ local endpoint_rules = require("lexmodelbuildingservice.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("lexmodelbuildingservice.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "lex", signing_region = cfg.region } }
                 else
@@ -49,549 +52,171 @@ function M.new(cfg)
 end
 
 function Client:createBotVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateBotVersion",
-        input_schema = schemas.CreateBotVersionInput,
-        output_schema = schemas.CreateBotVersionOutput,
-        http_method = "POST",
-        http_path = "/bots/{name}/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateBotVersion, input, options)
 end
 
 function Client:createIntentVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateIntentVersion",
-        input_schema = schemas.CreateIntentVersionInput,
-        output_schema = schemas.CreateIntentVersionOutput,
-        http_method = "POST",
-        http_path = "/intents/{name}/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateIntentVersion, input, options)
 end
 
 function Client:createSlotTypeVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSlotTypeVersion",
-        input_schema = schemas.CreateSlotTypeVersionInput,
-        output_schema = schemas.CreateSlotTypeVersionOutput,
-        http_method = "POST",
-        http_path = "/slottypes/{name}/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSlotTypeVersion, input, options)
 end
 
 function Client:deleteBot(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteBot",
-        input_schema = schemas.DeleteBotInput,
-        output_schema = schemas.DeleteBotOutput,
-        http_method = "DELETE",
-        http_path = "/bots/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteBot, input, options)
 end
 
 function Client:deleteBotAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteBotAlias",
-        input_schema = schemas.DeleteBotAliasInput,
-        output_schema = schemas.DeleteBotAliasOutput,
-        http_method = "DELETE",
-        http_path = "/bots/{botName}/aliases/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteBotAlias, input, options)
 end
 
 function Client:deleteBotChannelAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteBotChannelAssociation",
-        input_schema = schemas.DeleteBotChannelAssociationInput,
-        output_schema = schemas.DeleteBotChannelAssociationOutput,
-        http_method = "DELETE",
-        http_path = "/bots/{botName}/aliases/{botAlias}/channels/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteBotChannelAssociation, input, options)
 end
 
 function Client:deleteBotVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteBotVersion",
-        input_schema = schemas.DeleteBotVersionInput,
-        output_schema = schemas.DeleteBotVersionOutput,
-        http_method = "DELETE",
-        http_path = "/bots/{name}/versions/{version}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteBotVersion, input, options)
 end
 
 function Client:deleteIntent(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIntent",
-        input_schema = schemas.DeleteIntentInput,
-        output_schema = schemas.DeleteIntentOutput,
-        http_method = "DELETE",
-        http_path = "/intents/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIntent, input, options)
 end
 
 function Client:deleteIntentVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIntentVersion",
-        input_schema = schemas.DeleteIntentVersionInput,
-        output_schema = schemas.DeleteIntentVersionOutput,
-        http_method = "DELETE",
-        http_path = "/intents/{name}/versions/{version}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIntentVersion, input, options)
 end
 
 function Client:deleteSlotType(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSlotType",
-        input_schema = schemas.DeleteSlotTypeInput,
-        output_schema = schemas.DeleteSlotTypeOutput,
-        http_method = "DELETE",
-        http_path = "/slottypes/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSlotType, input, options)
 end
 
 function Client:deleteSlotTypeVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSlotTypeVersion",
-        input_schema = schemas.DeleteSlotTypeVersionInput,
-        output_schema = schemas.DeleteSlotTypeVersionOutput,
-        http_method = "DELETE",
-        http_path = "/slottypes/{name}/version/{version}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSlotTypeVersion, input, options)
 end
 
 function Client:deleteUtterances(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteUtterances",
-        input_schema = schemas.DeleteUtterancesInput,
-        output_schema = schemas.DeleteUtterancesOutput,
-        http_method = "DELETE",
-        http_path = "/bots/{botName}/utterances/{userId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteUtterances, input, options)
 end
 
 function Client:getBot(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBot",
-        input_schema = schemas.GetBotInput,
-        output_schema = schemas.GetBotOutput,
-        http_method = "GET",
-        http_path = "/bots/{name}/versions/{versionOrAlias}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBot, input, options)
 end
 
 function Client:getBotAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBotAlias",
-        input_schema = schemas.GetBotAliasInput,
-        output_schema = schemas.GetBotAliasOutput,
-        http_method = "GET",
-        http_path = "/bots/{botName}/aliases/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBotAlias, input, options)
 end
 
 function Client:getBotAliases(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBotAliases",
-        input_schema = schemas.GetBotAliasesInput,
-        output_schema = schemas.GetBotAliasesOutput,
-        http_method = "GET",
-        http_path = "/bots/{botName}/aliases",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBotAliases, input, options)
 end
 
 function Client:getBotChannelAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBotChannelAssociation",
-        input_schema = schemas.GetBotChannelAssociationInput,
-        output_schema = schemas.GetBotChannelAssociationOutput,
-        http_method = "GET",
-        http_path = "/bots/{botName}/aliases/{botAlias}/channels/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBotChannelAssociation, input, options)
 end
 
 function Client:getBotChannelAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBotChannelAssociations",
-        input_schema = schemas.GetBotChannelAssociationsInput,
-        output_schema = schemas.GetBotChannelAssociationsOutput,
-        http_method = "GET",
-        http_path = "/bots/{botName}/aliases/{botAlias}/channels",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBotChannelAssociations, input, options)
 end
 
 function Client:getBots(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBots",
-        input_schema = schemas.GetBotsInput,
-        output_schema = schemas.GetBotsOutput,
-        http_method = "GET",
-        http_path = "/bots",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBots, input, options)
 end
 
 function Client:getBotVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBotVersions",
-        input_schema = schemas.GetBotVersionsInput,
-        output_schema = schemas.GetBotVersionsOutput,
-        http_method = "GET",
-        http_path = "/bots/{name}/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBotVersions, input, options)
 end
 
 function Client:getBuiltinIntent(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBuiltinIntent",
-        input_schema = schemas.GetBuiltinIntentInput,
-        output_schema = schemas.GetBuiltinIntentOutput,
-        http_method = "GET",
-        http_path = "/builtins/intents/{signature}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBuiltinIntent, input, options)
 end
 
 function Client:getBuiltinIntents(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBuiltinIntents",
-        input_schema = schemas.GetBuiltinIntentsInput,
-        output_schema = schemas.GetBuiltinIntentsOutput,
-        http_method = "GET",
-        http_path = "/builtins/intents",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBuiltinIntents, input, options)
 end
 
 function Client:getBuiltinSlotTypes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBuiltinSlotTypes",
-        input_schema = schemas.GetBuiltinSlotTypesInput,
-        output_schema = schemas.GetBuiltinSlotTypesOutput,
-        http_method = "GET",
-        http_path = "/builtins/slottypes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBuiltinSlotTypes, input, options)
 end
 
 function Client:getExport(input, options)
-    return self:invokeOperation(input, {
-        name = "GetExport",
-        input_schema = schemas.GetExportInput,
-        output_schema = schemas.GetExportOutput,
-        http_method = "GET",
-        http_path = "/exports",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetExport, input, options)
 end
 
 function Client:getImport(input, options)
-    return self:invokeOperation(input, {
-        name = "GetImport",
-        input_schema = schemas.GetImportInput,
-        output_schema = schemas.GetImportOutput,
-        http_method = "GET",
-        http_path = "/imports/{importId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetImport, input, options)
 end
 
 function Client:getIntent(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIntent",
-        input_schema = schemas.GetIntentInput,
-        output_schema = schemas.GetIntentOutput,
-        http_method = "GET",
-        http_path = "/intents/{name}/versions/{version}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIntent, input, options)
 end
 
 function Client:getIntents(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIntents",
-        input_schema = schemas.GetIntentsInput,
-        output_schema = schemas.GetIntentsOutput,
-        http_method = "GET",
-        http_path = "/intents",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIntents, input, options)
 end
 
 function Client:getIntentVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIntentVersions",
-        input_schema = schemas.GetIntentVersionsInput,
-        output_schema = schemas.GetIntentVersionsOutput,
-        http_method = "GET",
-        http_path = "/intents/{name}/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIntentVersions, input, options)
 end
 
 function Client:getMigration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMigration",
-        input_schema = schemas.GetMigrationInput,
-        output_schema = schemas.GetMigrationOutput,
-        http_method = "GET",
-        http_path = "/migrations/{migrationId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMigration, input, options)
 end
 
 function Client:getMigrations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMigrations",
-        input_schema = schemas.GetMigrationsInput,
-        output_schema = schemas.GetMigrationsOutput,
-        http_method = "GET",
-        http_path = "/migrations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMigrations, input, options)
 end
 
 function Client:getSlotType(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSlotType",
-        input_schema = schemas.GetSlotTypeInput,
-        output_schema = schemas.GetSlotTypeOutput,
-        http_method = "GET",
-        http_path = "/slottypes/{name}/versions/{version}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSlotType, input, options)
 end
 
 function Client:getSlotTypes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSlotTypes",
-        input_schema = schemas.GetSlotTypesInput,
-        output_schema = schemas.GetSlotTypesOutput,
-        http_method = "GET",
-        http_path = "/slottypes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSlotTypes, input, options)
 end
 
 function Client:getSlotTypeVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSlotTypeVersions",
-        input_schema = schemas.GetSlotTypeVersionsInput,
-        output_schema = schemas.GetSlotTypeVersionsOutput,
-        http_method = "GET",
-        http_path = "/slottypes/{name}/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSlotTypeVersions, input, options)
 end
 
 function Client:getUtterancesView(input, options)
-    return self:invokeOperation(input, {
-        name = "GetUtterancesView",
-        input_schema = schemas.GetUtterancesViewInput,
-        output_schema = schemas.GetUtterancesViewOutput,
-        http_method = "GET",
-        http_path = "/bots/{botName}/utterances?view=aggregation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetUtterancesView, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putBot(input, options)
-    return self:invokeOperation(input, {
-        name = "PutBot",
-        input_schema = schemas.PutBotInput,
-        output_schema = schemas.PutBotOutput,
-        http_method = "PUT",
-        http_path = "/bots/{name}/versions/$LATEST",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutBot, input, options)
 end
 
 function Client:putBotAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "PutBotAlias",
-        input_schema = schemas.PutBotAliasInput,
-        output_schema = schemas.PutBotAliasOutput,
-        http_method = "PUT",
-        http_path = "/bots/{botName}/aliases/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutBotAlias, input, options)
 end
 
 function Client:putIntent(input, options)
-    return self:invokeOperation(input, {
-        name = "PutIntent",
-        input_schema = schemas.PutIntentInput,
-        output_schema = schemas.PutIntentOutput,
-        http_method = "PUT",
-        http_path = "/intents/{name}/versions/$LATEST",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutIntent, input, options)
 end
 
 function Client:putSlotType(input, options)
-    return self:invokeOperation(input, {
-        name = "PutSlotType",
-        input_schema = schemas.PutSlotTypeInput,
-        output_schema = schemas.PutSlotTypeOutput,
-        http_method = "PUT",
-        http_path = "/slottypes/{name}/versions/$LATEST",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutSlotType, input, options)
 end
 
 function Client:startImport(input, options)
-    return self:invokeOperation(input, {
-        name = "StartImport",
-        input_schema = schemas.StartImportInput,
-        output_schema = schemas.StartImportOutput,
-        http_method = "POST",
-        http_path = "/imports",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartImport, input, options)
 end
 
 function Client:startMigration(input, options)
-    return self:invokeOperation(input, {
-        name = "StartMigration",
-        input_schema = schemas.StartMigrationInput,
-        output_schema = schemas.StartMigrationOutput,
-        http_method = "POST",
-        http_path = "/migrations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartMigration, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 return M

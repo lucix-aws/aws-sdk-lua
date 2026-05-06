@@ -1498,4 +1498,158 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.scheduler", "AWSChronosService"),
+    version = "2021-06-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSchedule = schema.operation({
+    id = id.from("com.amazonaws.scheduler", "CreateSchedule"),
+    input = M.CreateScheduleInput,
+    output = M.CreateScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/schedules/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateScheduleGroup = schema.operation({
+    id = id.from("com.amazonaws.scheduler", "CreateScheduleGroup"),
+    input = M.CreateScheduleGroupInput,
+    output = M.CreateScheduleGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/schedule-groups/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSchedule = schema.operation({
+    id = id.from("com.amazonaws.scheduler", "DeleteSchedule"),
+    input = M.DeleteScheduleInput,
+    output = M.DeleteScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/schedules/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScheduleGroup = schema.operation({
+    id = id.from("com.amazonaws.scheduler", "DeleteScheduleGroup"),
+    input = M.DeleteScheduleGroupInput,
+    output = M.DeleteScheduleGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/schedule-groups/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSchedule = schema.operation({
+    id = id.from("com.amazonaws.scheduler", "GetSchedule"),
+    input = M.GetScheduleInput,
+    output = M.GetScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/schedules/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetScheduleGroup = schema.operation({
+    id = id.from("com.amazonaws.scheduler", "GetScheduleGroup"),
+    input = M.GetScheduleGroupInput,
+    output = M.GetScheduleGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/schedule-groups/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScheduleGroups = schema.operation({
+    id = id.from("com.amazonaws.scheduler", "ListScheduleGroups"),
+    input = M.ListScheduleGroupsInput,
+    output = M.ListScheduleGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/schedule-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSchedules = schema.operation({
+    id = id.from("com.amazonaws.scheduler", "ListSchedules"),
+    input = M.ListSchedulesInput,
+    output = M.ListSchedulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/schedules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.scheduler", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.scheduler", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.scheduler", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSchedule = schema.operation({
+    id = id.from("com.amazonaws.scheduler", "UpdateSchedule"),
+    input = M.UpdateScheduleInput,
+    output = M.UpdateScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/schedules/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

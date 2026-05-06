@@ -2085,4 +2085,267 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ecrpublic", "SpencerFrontendService"),
+    version = "2020-10-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCheckLayerAvailability = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "BatchCheckLayerAvailability"),
+    input = M.BatchCheckLayerAvailabilityInput,
+    output = M.BatchCheckLayerAvailabilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteImage = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "BatchDeleteImage"),
+    input = M.BatchDeleteImageInput,
+    output = M.BatchDeleteImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CompleteLayerUpload = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "CompleteLayerUpload"),
+    input = M.CompleteLayerUploadInput,
+    output = M.CompleteLayerUploadOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRepository = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "CreateRepository"),
+    input = M.CreateRepositoryInput,
+    output = M.CreateRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRepository = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "DeleteRepository"),
+    input = M.DeleteRepositoryInput,
+    output = M.DeleteRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRepositoryPolicy = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "DeleteRepositoryPolicy"),
+    input = M.DeleteRepositoryPolicyInput,
+    output = M.DeleteRepositoryPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImages = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "DescribeImages"),
+    input = M.DescribeImagesInput,
+    output = M.DescribeImagesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImageTags = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "DescribeImageTags"),
+    input = M.DescribeImageTagsInput,
+    output = M.DescribeImageTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRegistries = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "DescribeRegistries"),
+    input = M.DescribeRegistriesInput,
+    output = M.DescribeRegistriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRepositories = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "DescribeRepositories"),
+    input = M.DescribeRepositoriesInput,
+    output = M.DescribeRepositoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAuthorizationToken = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "GetAuthorizationToken"),
+    input = M.GetAuthorizationTokenInput,
+    output = M.GetAuthorizationTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRegistryCatalogData = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "GetRegistryCatalogData"),
+    input = M.GetRegistryCatalogDataInput,
+    output = M.GetRegistryCatalogDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRepositoryCatalogData = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "GetRepositoryCatalogData"),
+    input = M.GetRepositoryCatalogDataInput,
+    output = M.GetRepositoryCatalogDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRepositoryPolicy = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "GetRepositoryPolicy"),
+    input = M.GetRepositoryPolicyInput,
+    output = M.GetRepositoryPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InitiateLayerUpload = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "InitiateLayerUpload"),
+    input = M.InitiateLayerUploadInput,
+    output = M.InitiateLayerUploadOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutImage = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "PutImage"),
+    input = M.PutImageInput,
+    output = M.PutImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRegistryCatalogData = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "PutRegistryCatalogData"),
+    input = M.PutRegistryCatalogDataInput,
+    output = M.PutRegistryCatalogDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRepositoryCatalogData = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "PutRepositoryCatalogData"),
+    input = M.PutRepositoryCatalogDataInput,
+    output = M.PutRepositoryCatalogDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetRepositoryPolicy = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "SetRepositoryPolicy"),
+    input = M.SetRepositoryPolicyInput,
+    output = M.SetRepositoryPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UploadLayerPart = schema.operation({
+    id = id.from("com.amazonaws.ecrpublic", "UploadLayerPart"),
+    input = M.UploadLayerPartInput,
+    output = M.UploadLayerPartOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

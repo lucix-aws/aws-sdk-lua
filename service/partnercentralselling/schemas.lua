@@ -6598,4 +6598,518 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.partnercentralselling", "AWSPartnerCentralSelling"),
+    version = "2022-07-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptEngagementInvitation = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "AcceptEngagementInvitation"),
+    input = M.AcceptEngagementInvitationInput,
+    output = M.AcceptEngagementInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/AcceptEngagementInvitation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssignOpportunity = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "AssignOpportunity"),
+    input = M.AssignOpportunityInput,
+    output = M.AssignOpportunityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/AssignOpportunity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateOpportunity = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "AssociateOpportunity"),
+    input = M.AssociateOpportunityInput,
+    output = M.AssociateOpportunityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/AssociateOpportunity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEngagement = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "CreateEngagement"),
+    input = M.CreateEngagementInput,
+    output = M.CreateEngagementOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateEngagement" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEngagementContext = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "CreateEngagementContext"),
+    input = M.CreateEngagementContextInput,
+    output = M.CreateEngagementContextOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateEngagementContext" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEngagementInvitation = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "CreateEngagementInvitation"),
+    input = M.CreateEngagementInvitationInput,
+    output = M.CreateEngagementInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateEngagementInvitation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOpportunity = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "CreateOpportunity"),
+    input = M.CreateOpportunityInput,
+    output = M.CreateOpportunityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateOpportunity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResourceSnapshot = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "CreateResourceSnapshot"),
+    input = M.CreateResourceSnapshotInput,
+    output = M.CreateResourceSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateResourceSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResourceSnapshotJob = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "CreateResourceSnapshotJob"),
+    input = M.CreateResourceSnapshotJobInput,
+    output = M.CreateResourceSnapshotJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateResourceSnapshotJob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourceSnapshotJob = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "DeleteResourceSnapshotJob"),
+    input = M.DeleteResourceSnapshotJobInput,
+    output = M.DeleteResourceSnapshotJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteResourceSnapshotJob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateOpportunity = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "DisassociateOpportunity"),
+    input = M.DisassociateOpportunityInput,
+    output = M.DisassociateOpportunityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DisassociateOpportunity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAwsOpportunitySummary = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "GetAwsOpportunitySummary"),
+    input = M.GetAwsOpportunitySummaryInput,
+    output = M.GetAwsOpportunitySummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetAwsOpportunitySummary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEngagement = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "GetEngagement"),
+    input = M.GetEngagementInput,
+    output = M.GetEngagementOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetEngagement" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEngagementInvitation = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "GetEngagementInvitation"),
+    input = M.GetEngagementInvitationInput,
+    output = M.GetEngagementInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetEngagementInvitation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOpportunity = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "GetOpportunity"),
+    input = M.GetOpportunityInput,
+    output = M.GetOpportunityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetOpportunity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceSnapshot = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "GetResourceSnapshot"),
+    input = M.GetResourceSnapshotInput,
+    output = M.GetResourceSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetResourceSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceSnapshotJob = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "GetResourceSnapshotJob"),
+    input = M.GetResourceSnapshotJobInput,
+    output = M.GetResourceSnapshotJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetResourceSnapshotJob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSellingSystemSettings = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "GetSellingSystemSettings"),
+    input = M.GetSellingSystemSettingsInput,
+    output = M.GetSellingSystemSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetSellingSystemSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEngagementByAcceptingInvitationTasks = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "ListEngagementByAcceptingInvitationTasks"),
+    input = M.ListEngagementByAcceptingInvitationTasksInput,
+    output = M.ListEngagementByAcceptingInvitationTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListEngagementByAcceptingInvitationTasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEngagementFromOpportunityTasks = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "ListEngagementFromOpportunityTasks"),
+    input = M.ListEngagementFromOpportunityTasksInput,
+    output = M.ListEngagementFromOpportunityTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListEngagementFromOpportunityTasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEngagementInvitations = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "ListEngagementInvitations"),
+    input = M.ListEngagementInvitationsInput,
+    output = M.ListEngagementInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListEngagementInvitations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEngagementMembers = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "ListEngagementMembers"),
+    input = M.ListEngagementMembersInput,
+    output = M.ListEngagementMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListEngagementMembers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEngagementResourceAssociations = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "ListEngagementResourceAssociations"),
+    input = M.ListEngagementResourceAssociationsInput,
+    output = M.ListEngagementResourceAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListEngagementResourceAssociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEngagements = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "ListEngagements"),
+    input = M.ListEngagementsInput,
+    output = M.ListEngagementsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListEngagements" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOpportunities = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "ListOpportunities"),
+    input = M.ListOpportunitiesInput,
+    output = M.ListOpportunitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListOpportunities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOpportunityFromEngagementTasks = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "ListOpportunityFromEngagementTasks"),
+    input = M.ListOpportunityFromEngagementTasksInput,
+    output = M.ListOpportunityFromEngagementTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListOpportunityFromEngagementTasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceSnapshotJobs = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "ListResourceSnapshotJobs"),
+    input = M.ListResourceSnapshotJobsInput,
+    output = M.ListResourceSnapshotJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListResourceSnapshotJobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceSnapshots = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "ListResourceSnapshots"),
+    input = M.ListResourceSnapshotsInput,
+    output = M.ListResourceSnapshotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListResourceSnapshots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSolutions = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "ListSolutions"),
+    input = M.ListSolutionsInput,
+    output = M.ListSolutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListSolutions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSellingSystemSettings = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "PutSellingSystemSettings"),
+    input = M.PutSellingSystemSettingsInput,
+    output = M.PutSellingSystemSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutSellingSystemSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectEngagementInvitation = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "RejectEngagementInvitation"),
+    input = M.RejectEngagementInvitationInput,
+    output = M.RejectEngagementInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/RejectEngagementInvitation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartEngagementByAcceptingInvitationTask = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "StartEngagementByAcceptingInvitationTask"),
+    input = M.StartEngagementByAcceptingInvitationTaskInput,
+    output = M.StartEngagementByAcceptingInvitationTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartEngagementByAcceptingInvitationTask" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartEngagementFromOpportunityTask = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "StartEngagementFromOpportunityTask"),
+    input = M.StartEngagementFromOpportunityTaskInput,
+    output = M.StartEngagementFromOpportunityTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartEngagementFromOpportunityTask" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartOpportunityFromEngagementTask = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "StartOpportunityFromEngagementTask"),
+    input = M.StartOpportunityFromEngagementTaskInput,
+    output = M.StartOpportunityFromEngagementTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartOpportunityFromEngagementTask" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartResourceSnapshotJob = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "StartResourceSnapshotJob"),
+    input = M.StartResourceSnapshotJobInput,
+    output = M.StartResourceSnapshotJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartResourceSnapshotJob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopResourceSnapshotJob = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "StopResourceSnapshotJob"),
+    input = M.StopResourceSnapshotJobInput,
+    output = M.StopResourceSnapshotJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StopResourceSnapshotJob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SubmitOpportunity = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "SubmitOpportunity"),
+    input = M.SubmitOpportunityInput,
+    output = M.SubmitOpportunityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/SubmitOpportunity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UntagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEngagementContext = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "UpdateEngagementContext"),
+    input = M.UpdateEngagementContextInput,
+    output = M.UpdateEngagementContextOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateEngagementContext" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOpportunity = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "UpdateOpportunity"),
+    input = M.UpdateOpportunityInput,
+    output = M.UpdateOpportunityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateOpportunity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

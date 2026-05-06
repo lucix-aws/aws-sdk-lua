@@ -1602,4 +1602,218 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ivschat", "AmazonInteractiveVideoServiceChat"),
+    version = "2020-07-14",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChatToken = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "CreateChatToken"),
+    input = M.CreateChatTokenInput,
+    output = M.CreateChatTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateChatToken" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "CreateLoggingConfiguration"),
+    input = M.CreateLoggingConfigurationInput,
+    output = M.CreateLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateLoggingConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRoom = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "CreateRoom"),
+    input = M.CreateRoomInput,
+    output = M.CreateRoomOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateRoom" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "DeleteLoggingConfiguration"),
+    input = M.DeleteLoggingConfigurationInput,
+    output = M.DeleteLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteLoggingConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMessage = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "DeleteMessage"),
+    input = M.DeleteMessageInput,
+    output = M.DeleteMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteMessage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRoom = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "DeleteRoom"),
+    input = M.DeleteRoomInput,
+    output = M.DeleteRoomOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteRoom" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisconnectUser = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "DisconnectUser"),
+    input = M.DisconnectUserInput,
+    output = M.DisconnectUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DisconnectUser" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "GetLoggingConfiguration"),
+    input = M.GetLoggingConfigurationInput,
+    output = M.GetLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetLoggingConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRoom = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "GetRoom"),
+    input = M.GetRoomInput,
+    output = M.GetRoomOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetRoom" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLoggingConfigurations = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "ListLoggingConfigurations"),
+    input = M.ListLoggingConfigurationsInput,
+    output = M.ListLoggingConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListLoggingConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRooms = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "ListRooms"),
+    input = M.ListRoomsInput,
+    output = M.ListRoomsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListRooms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendEvent = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "SendEvent"),
+    input = M.SendEventInput,
+    output = M.SendEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/SendEvent" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "UpdateLoggingConfiguration"),
+    input = M.UpdateLoggingConfigurationInput,
+    output = M.UpdateLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateLoggingConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoom = schema.operation({
+    id = id.from("com.amazonaws.ivschat", "UpdateRoom"),
+    input = M.UpdateRoomInput,
+    output = M.UpdateRoomOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateRoom" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

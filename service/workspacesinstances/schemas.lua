@@ -2040,4 +2040,157 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.workspacesinstances", "EUCMIFrontendAPIService"),
+    version = "2022-07-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateVolume = schema.operation({
+    id = id.from("com.amazonaws.workspacesinstances", "AssociateVolume"),
+    input = M.AssociateVolumeInput,
+    output = M.AssociateVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVolume = schema.operation({
+    id = id.from("com.amazonaws.workspacesinstances", "CreateVolume"),
+    input = M.CreateVolumeInput,
+    output = M.CreateVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkspaceInstance = schema.operation({
+    id = id.from("com.amazonaws.workspacesinstances", "CreateWorkspaceInstance"),
+    input = M.CreateWorkspaceInstanceInput,
+    output = M.CreateWorkspaceInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVolume = schema.operation({
+    id = id.from("com.amazonaws.workspacesinstances", "DeleteVolume"),
+    input = M.DeleteVolumeInput,
+    output = M.DeleteVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkspaceInstance = schema.operation({
+    id = id.from("com.amazonaws.workspacesinstances", "DeleteWorkspaceInstance"),
+    input = M.DeleteWorkspaceInstanceInput,
+    output = M.DeleteWorkspaceInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateVolume = schema.operation({
+    id = id.from("com.amazonaws.workspacesinstances", "DisassociateVolume"),
+    input = M.DisassociateVolumeInput,
+    output = M.DisassociateVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkspaceInstance = schema.operation({
+    id = id.from("com.amazonaws.workspacesinstances", "GetWorkspaceInstance"),
+    input = M.GetWorkspaceInstanceInput,
+    output = M.GetWorkspaceInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstanceTypes = schema.operation({
+    id = id.from("com.amazonaws.workspacesinstances", "ListInstanceTypes"),
+    input = M.ListInstanceTypesInput,
+    output = M.ListInstanceTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRegions = schema.operation({
+    id = id.from("com.amazonaws.workspacesinstances", "ListRegions"),
+    input = M.ListRegionsInput,
+    output = M.ListRegionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.workspacesinstances", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkspaceInstances = schema.operation({
+    id = id.from("com.amazonaws.workspacesinstances", "ListWorkspaceInstances"),
+    input = M.ListWorkspaceInstancesInput,
+    output = M.ListWorkspaceInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.workspacesinstances", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.workspacesinstances", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

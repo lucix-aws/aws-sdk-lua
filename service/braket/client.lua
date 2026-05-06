@@ -7,6 +7,7 @@ local endpoint_rules = require("braket.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("braket.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "braket", signing_region = cfg.region } }
                 else
@@ -49,224 +52,71 @@ function M.new(cfg)
 end
 
 function Client:cancelJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelJob",
-        input_schema = schemas.CancelJobInput,
-        output_schema = schemas.CancelJobOutput,
-        http_method = "PUT",
-        http_path = "/job/{jobArn}/cancel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelJob, input, options)
 end
 
 function Client:cancelQuantumTask(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelQuantumTask",
-        input_schema = schemas.CancelQuantumTaskInput,
-        output_schema = schemas.CancelQuantumTaskOutput,
-        http_method = "PUT",
-        http_path = "/quantum-task/{quantumTaskArn}/cancel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelQuantumTask, input, options)
 end
 
 function Client:createJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateJob",
-        input_schema = schemas.CreateJobInput,
-        output_schema = schemas.CreateJobOutput,
-        http_method = "POST",
-        http_path = "/job",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateJob, input, options)
 end
 
 function Client:createQuantumTask(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateQuantumTask",
-        input_schema = schemas.CreateQuantumTaskInput,
-        output_schema = schemas.CreateQuantumTaskOutput,
-        http_method = "POST",
-        http_path = "/quantum-task",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateQuantumTask, input, options)
 end
 
 function Client:createSpendingLimit(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSpendingLimit",
-        input_schema = schemas.CreateSpendingLimitInput,
-        output_schema = schemas.CreateSpendingLimitOutput,
-        http_method = "POST",
-        http_path = "/spending-limit",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSpendingLimit, input, options)
 end
 
 function Client:deleteSpendingLimit(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSpendingLimit",
-        input_schema = schemas.DeleteSpendingLimitInput,
-        output_schema = schemas.DeleteSpendingLimitOutput,
-        http_method = "DELETE",
-        http_path = "/spending-limit/{spendingLimitArn}/delete",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSpendingLimit, input, options)
 end
 
 function Client:getDevice(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDevice",
-        input_schema = schemas.GetDeviceInput,
-        output_schema = schemas.GetDeviceOutput,
-        http_method = "GET",
-        http_path = "/device/{deviceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDevice, input, options)
 end
 
 function Client:getJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetJob",
-        input_schema = schemas.GetJobInput,
-        output_schema = schemas.GetJobOutput,
-        http_method = "GET",
-        http_path = "/job/{jobArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetJob, input, options)
 end
 
 function Client:getQuantumTask(input, options)
-    return self:invokeOperation(input, {
-        name = "GetQuantumTask",
-        input_schema = schemas.GetQuantumTaskInput,
-        output_schema = schemas.GetQuantumTaskOutput,
-        http_method = "GET",
-        http_path = "/quantum-task/{quantumTaskArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetQuantumTask, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:searchDevices(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchDevices",
-        input_schema = schemas.SearchDevicesInput,
-        output_schema = schemas.SearchDevicesOutput,
-        http_method = "POST",
-        http_path = "/devices",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchDevices, input, options)
 end
 
 function Client:searchJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchJobs",
-        input_schema = schemas.SearchJobsInput,
-        output_schema = schemas.SearchJobsOutput,
-        http_method = "POST",
-        http_path = "/jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchJobs, input, options)
 end
 
 function Client:searchQuantumTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchQuantumTasks",
-        input_schema = schemas.SearchQuantumTasksInput,
-        output_schema = schemas.SearchQuantumTasksOutput,
-        http_method = "POST",
-        http_path = "/quantum-tasks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchQuantumTasks, input, options)
 end
 
 function Client:searchSpendingLimits(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchSpendingLimits",
-        input_schema = schemas.SearchSpendingLimitsInput,
-        output_schema = schemas.SearchSpendingLimitsOutput,
-        http_method = "POST",
-        http_path = "/spending-limits",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchSpendingLimits, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateSpendingLimit(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSpendingLimit",
-        input_schema = schemas.UpdateSpendingLimitInput,
-        output_schema = schemas.UpdateSpendingLimitOutput,
-        http_method = "PATCH",
-        http_path = "/spending-limit/{spendingLimitArn}/update",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSpendingLimit, input, options)
 end
 
 return M

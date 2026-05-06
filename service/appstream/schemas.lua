@@ -7221,4 +7221,993 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.appstream", "PhotonAdminProxyService"),
+    version = "2016-12-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAppBlockBuilderAppBlock = schema.operation({
+    id = id.from("com.amazonaws.appstream", "AssociateAppBlockBuilderAppBlock"),
+    input = M.AssociateAppBlockBuilderAppBlockInput,
+    output = M.AssociateAppBlockBuilderAppBlockOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateApplicationFleet = schema.operation({
+    id = id.from("com.amazonaws.appstream", "AssociateApplicationFleet"),
+    input = M.AssociateApplicationFleetInput,
+    output = M.AssociateApplicationFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateApplicationToEntitlement = schema.operation({
+    id = id.from("com.amazonaws.appstream", "AssociateApplicationToEntitlement"),
+    input = M.AssociateApplicationToEntitlementInput,
+    output = M.AssociateApplicationToEntitlementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateFleet = schema.operation({
+    id = id.from("com.amazonaws.appstream", "AssociateFleet"),
+    input = M.AssociateFleetInput,
+    output = M.AssociateFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateSoftwareToImageBuilder = schema.operation({
+    id = id.from("com.amazonaws.appstream", "AssociateSoftwareToImageBuilder"),
+    input = M.AssociateSoftwareToImageBuilderInput,
+    output = M.AssociateSoftwareToImageBuilderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAssociateUserStack = schema.operation({
+    id = id.from("com.amazonaws.appstream", "BatchAssociateUserStack"),
+    input = M.BatchAssociateUserStackInput,
+    output = M.BatchAssociateUserStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDisassociateUserStack = schema.operation({
+    id = id.from("com.amazonaws.appstream", "BatchDisassociateUserStack"),
+    input = M.BatchDisassociateUserStackInput,
+    output = M.BatchDisassociateUserStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyImage = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CopyImage"),
+    input = M.CopyImageInput,
+    output = M.CopyImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAppBlock = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateAppBlock"),
+    input = M.CreateAppBlockInput,
+    output = M.CreateAppBlockOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAppBlockBuilder = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateAppBlockBuilder"),
+    input = M.CreateAppBlockBuilderInput,
+    output = M.CreateAppBlockBuilderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAppBlockBuilderStreamingURL = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateAppBlockBuilderStreamingURL"),
+    input = M.CreateAppBlockBuilderStreamingURLInput,
+    output = M.CreateAppBlockBuilderStreamingURLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDirectoryConfig = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateDirectoryConfig"),
+    input = M.CreateDirectoryConfigInput,
+    output = M.CreateDirectoryConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEntitlement = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateEntitlement"),
+    input = M.CreateEntitlementInput,
+    output = M.CreateEntitlementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExportImageTask = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateExportImageTask"),
+    input = M.CreateExportImageTaskInput,
+    output = M.CreateExportImageTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFleet = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateFleet"),
+    input = M.CreateFleetInput,
+    output = M.CreateFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateImageBuilder = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateImageBuilder"),
+    input = M.CreateImageBuilderInput,
+    output = M.CreateImageBuilderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateImageBuilderStreamingURL = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateImageBuilderStreamingURL"),
+    input = M.CreateImageBuilderStreamingURLInput,
+    output = M.CreateImageBuilderStreamingURLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateImportedImage = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateImportedImage"),
+    input = M.CreateImportedImageInput,
+    output = M.CreateImportedImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStack = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateStack"),
+    input = M.CreateStackInput,
+    output = M.CreateStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStreamingURL = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateStreamingURL"),
+    input = M.CreateStreamingURLInput,
+    output = M.CreateStreamingURLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateThemeForStack = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateThemeForStack"),
+    input = M.CreateThemeForStackInput,
+    output = M.CreateThemeForStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUpdatedImage = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateUpdatedImage"),
+    input = M.CreateUpdatedImageInput,
+    output = M.CreateUpdatedImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUsageReportSubscription = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateUsageReportSubscription"),
+    input = M.CreateUsageReportSubscriptionInput,
+    output = M.CreateUsageReportSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.appstream", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppBlock = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DeleteAppBlock"),
+    input = M.DeleteAppBlockInput,
+    output = M.DeleteAppBlockOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppBlockBuilder = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DeleteAppBlockBuilder"),
+    input = M.DeleteAppBlockBuilderInput,
+    output = M.DeleteAppBlockBuilderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDirectoryConfig = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DeleteDirectoryConfig"),
+    input = M.DeleteDirectoryConfigInput,
+    output = M.DeleteDirectoryConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEntitlement = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DeleteEntitlement"),
+    input = M.DeleteEntitlementInput,
+    output = M.DeleteEntitlementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFleet = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DeleteFleet"),
+    input = M.DeleteFleetInput,
+    output = M.DeleteFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteImage = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DeleteImage"),
+    input = M.DeleteImageInput,
+    output = M.DeleteImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteImageBuilder = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DeleteImageBuilder"),
+    input = M.DeleteImageBuilderInput,
+    output = M.DeleteImageBuilderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteImagePermissions = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DeleteImagePermissions"),
+    input = M.DeleteImagePermissionsInput,
+    output = M.DeleteImagePermissionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStack = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DeleteStack"),
+    input = M.DeleteStackInput,
+    output = M.DeleteStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteThemeForStack = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DeleteThemeForStack"),
+    input = M.DeleteThemeForStackInput,
+    output = M.DeleteThemeForStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUsageReportSubscription = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DeleteUsageReportSubscription"),
+    input = M.DeleteUsageReportSubscriptionInput,
+    output = M.DeleteUsageReportSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppBlockBuilderAppBlockAssociations = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeAppBlockBuilderAppBlockAssociations"),
+    input = M.DescribeAppBlockBuilderAppBlockAssociationsInput,
+    output = M.DescribeAppBlockBuilderAppBlockAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppBlockBuilders = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeAppBlockBuilders"),
+    input = M.DescribeAppBlockBuildersInput,
+    output = M.DescribeAppBlockBuildersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppBlocks = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeAppBlocks"),
+    input = M.DescribeAppBlocksInput,
+    output = M.DescribeAppBlocksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicationFleetAssociations = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeApplicationFleetAssociations"),
+    input = M.DescribeApplicationFleetAssociationsInput,
+    output = M.DescribeApplicationFleetAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplications = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeApplications"),
+    input = M.DescribeApplicationsInput,
+    output = M.DescribeApplicationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppLicenseUsage = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeAppLicenseUsage"),
+    input = M.DescribeAppLicenseUsageInput,
+    output = M.DescribeAppLicenseUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDirectoryConfigs = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeDirectoryConfigs"),
+    input = M.DescribeDirectoryConfigsInput,
+    output = M.DescribeDirectoryConfigsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEntitlements = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeEntitlements"),
+    input = M.DescribeEntitlementsInput,
+    output = M.DescribeEntitlementsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleets = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeFleets"),
+    input = M.DescribeFleetsInput,
+    output = M.DescribeFleetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImageBuilders = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeImageBuilders"),
+    input = M.DescribeImageBuildersInput,
+    output = M.DescribeImageBuildersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImagePermissions = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeImagePermissions"),
+    input = M.DescribeImagePermissionsInput,
+    output = M.DescribeImagePermissionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImages = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeImages"),
+    input = M.DescribeImagesInput,
+    output = M.DescribeImagesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSessions = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeSessions"),
+    input = M.DescribeSessionsInput,
+    output = M.DescribeSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSoftwareAssociations = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeSoftwareAssociations"),
+    input = M.DescribeSoftwareAssociationsInput,
+    output = M.DescribeSoftwareAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStacks = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeStacks"),
+    input = M.DescribeStacksInput,
+    output = M.DescribeStacksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeThemeForStack = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeThemeForStack"),
+    input = M.DescribeThemeForStackInput,
+    output = M.DescribeThemeForStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUsageReportSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeUsageReportSubscriptions"),
+    input = M.DescribeUsageReportSubscriptionsInput,
+    output = M.DescribeUsageReportSubscriptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUsers = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeUsers"),
+    input = M.DescribeUsersInput,
+    output = M.DescribeUsersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUserStackAssociations = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DescribeUserStackAssociations"),
+    input = M.DescribeUserStackAssociationsInput,
+    output = M.DescribeUserStackAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableUser = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DisableUser"),
+    input = M.DisableUserInput,
+    output = M.DisableUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateAppBlockBuilderAppBlock = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DisassociateAppBlockBuilderAppBlock"),
+    input = M.DisassociateAppBlockBuilderAppBlockInput,
+    output = M.DisassociateAppBlockBuilderAppBlockOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateApplicationFleet = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DisassociateApplicationFleet"),
+    input = M.DisassociateApplicationFleetInput,
+    output = M.DisassociateApplicationFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateApplicationFromEntitlement = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DisassociateApplicationFromEntitlement"),
+    input = M.DisassociateApplicationFromEntitlementInput,
+    output = M.DisassociateApplicationFromEntitlementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFleet = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DisassociateFleet"),
+    input = M.DisassociateFleetInput,
+    output = M.DisassociateFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateSoftwareFromImageBuilder = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DisassociateSoftwareFromImageBuilder"),
+    input = M.DisassociateSoftwareFromImageBuilderInput,
+    output = M.DisassociateSoftwareFromImageBuilderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DrainSessionInstance = schema.operation({
+    id = id.from("com.amazonaws.appstream", "DrainSessionInstance"),
+    input = M.DrainSessionInstanceInput,
+    output = M.DrainSessionInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableUser = schema.operation({
+    id = id.from("com.amazonaws.appstream", "EnableUser"),
+    input = M.EnableUserInput,
+    output = M.EnableUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExpireSession = schema.operation({
+    id = id.from("com.amazonaws.appstream", "ExpireSession"),
+    input = M.ExpireSessionInput,
+    output = M.ExpireSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExportImageTask = schema.operation({
+    id = id.from("com.amazonaws.appstream", "GetExportImageTask"),
+    input = M.GetExportImageTaskInput,
+    output = M.GetExportImageTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociatedFleets = schema.operation({
+    id = id.from("com.amazonaws.appstream", "ListAssociatedFleets"),
+    input = M.ListAssociatedFleetsInput,
+    output = M.ListAssociatedFleetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociatedStacks = schema.operation({
+    id = id.from("com.amazonaws.appstream", "ListAssociatedStacks"),
+    input = M.ListAssociatedStacksInput,
+    output = M.ListAssociatedStacksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEntitledApplications = schema.operation({
+    id = id.from("com.amazonaws.appstream", "ListEntitledApplications"),
+    input = M.ListEntitledApplicationsInput,
+    output = M.ListEntitledApplicationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExportImageTasks = schema.operation({
+    id = id.from("com.amazonaws.appstream", "ListExportImageTasks"),
+    input = M.ListExportImageTasksInput,
+    output = M.ListExportImageTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.appstream", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAppBlockBuilder = schema.operation({
+    id = id.from("com.amazonaws.appstream", "StartAppBlockBuilder"),
+    input = M.StartAppBlockBuilderInput,
+    output = M.StartAppBlockBuilderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFleet = schema.operation({
+    id = id.from("com.amazonaws.appstream", "StartFleet"),
+    input = M.StartFleetInput,
+    output = M.StartFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartImageBuilder = schema.operation({
+    id = id.from("com.amazonaws.appstream", "StartImageBuilder"),
+    input = M.StartImageBuilderInput,
+    output = M.StartImageBuilderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSoftwareDeploymentToImageBuilder = schema.operation({
+    id = id.from("com.amazonaws.appstream", "StartSoftwareDeploymentToImageBuilder"),
+    input = M.StartSoftwareDeploymentToImageBuilderInput,
+    output = M.StartSoftwareDeploymentToImageBuilderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopAppBlockBuilder = schema.operation({
+    id = id.from("com.amazonaws.appstream", "StopAppBlockBuilder"),
+    input = M.StopAppBlockBuilderInput,
+    output = M.StopAppBlockBuilderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopFleet = schema.operation({
+    id = id.from("com.amazonaws.appstream", "StopFleet"),
+    input = M.StopFleetInput,
+    output = M.StopFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopImageBuilder = schema.operation({
+    id = id.from("com.amazonaws.appstream", "StopImageBuilder"),
+    input = M.StopImageBuilderInput,
+    output = M.StopImageBuilderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.appstream", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.appstream", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAppBlockBuilder = schema.operation({
+    id = id.from("com.amazonaws.appstream", "UpdateAppBlockBuilder"),
+    input = M.UpdateAppBlockBuilderInput,
+    output = M.UpdateAppBlockBuilderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.appstream", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDirectoryConfig = schema.operation({
+    id = id.from("com.amazonaws.appstream", "UpdateDirectoryConfig"),
+    input = M.UpdateDirectoryConfigInput,
+    output = M.UpdateDirectoryConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEntitlement = schema.operation({
+    id = id.from("com.amazonaws.appstream", "UpdateEntitlement"),
+    input = M.UpdateEntitlementInput,
+    output = M.UpdateEntitlementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFleet = schema.operation({
+    id = id.from("com.amazonaws.appstream", "UpdateFleet"),
+    input = M.UpdateFleetInput,
+    output = M.UpdateFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateImagePermissions = schema.operation({
+    id = id.from("com.amazonaws.appstream", "UpdateImagePermissions"),
+    input = M.UpdateImagePermissionsInput,
+    output = M.UpdateImagePermissionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStack = schema.operation({
+    id = id.from("com.amazonaws.appstream", "UpdateStack"),
+    input = M.UpdateStackInput,
+    output = M.UpdateStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateThemeForStack = schema.operation({
+    id = id.from("com.amazonaws.appstream", "UpdateThemeForStack"),
+    input = M.UpdateThemeForStackInput,
+    output = M.UpdateThemeForStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

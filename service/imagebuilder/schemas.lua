@@ -9751,4 +9751,938 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.imagebuilder", "imagebuilder"),
+    version = "2019-12-02",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelImageCreation = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "CancelImageCreation"),
+    input = M.CancelImageCreationInput,
+    output = M.CancelImageCreationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/CancelImageCreation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelLifecycleExecution = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "CancelLifecycleExecution"),
+    input = M.CancelLifecycleExecutionInput,
+    output = M.CancelLifecycleExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/CancelLifecycleExecution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateComponent = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "CreateComponent"),
+    input = M.CreateComponentInput,
+    output = M.CreateComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/CreateComponent" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContainerRecipe = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "CreateContainerRecipe"),
+    input = M.CreateContainerRecipeInput,
+    output = M.CreateContainerRecipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/CreateContainerRecipe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDistributionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "CreateDistributionConfiguration"),
+    input = M.CreateDistributionConfigurationInput,
+    output = M.CreateDistributionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/CreateDistributionConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateImage = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "CreateImage"),
+    input = M.CreateImageInput,
+    output = M.CreateImageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/CreateImage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateImagePipeline = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "CreateImagePipeline"),
+    input = M.CreateImagePipelineInput,
+    output = M.CreateImagePipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/CreateImagePipeline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateImageRecipe = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "CreateImageRecipe"),
+    input = M.CreateImageRecipeInput,
+    output = M.CreateImageRecipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/CreateImageRecipe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInfrastructureConfiguration = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "CreateInfrastructureConfiguration"),
+    input = M.CreateInfrastructureConfigurationInput,
+    output = M.CreateInfrastructureConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/CreateInfrastructureConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "CreateLifecyclePolicy"),
+    input = M.CreateLifecyclePolicyInput,
+    output = M.CreateLifecyclePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/CreateLifecyclePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkflow = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "CreateWorkflow"),
+    input = M.CreateWorkflowInput,
+    output = M.CreateWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/CreateWorkflow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteComponent = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "DeleteComponent"),
+    input = M.DeleteComponentInput,
+    output = M.DeleteComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/DeleteComponent" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContainerRecipe = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "DeleteContainerRecipe"),
+    input = M.DeleteContainerRecipeInput,
+    output = M.DeleteContainerRecipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/DeleteContainerRecipe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDistributionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "DeleteDistributionConfiguration"),
+    input = M.DeleteDistributionConfigurationInput,
+    output = M.DeleteDistributionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/DeleteDistributionConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteImage = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "DeleteImage"),
+    input = M.DeleteImageInput,
+    output = M.DeleteImageOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/DeleteImage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteImagePipeline = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "DeleteImagePipeline"),
+    input = M.DeleteImagePipelineInput,
+    output = M.DeleteImagePipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/DeleteImagePipeline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteImageRecipe = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "DeleteImageRecipe"),
+    input = M.DeleteImageRecipeInput,
+    output = M.DeleteImageRecipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/DeleteImageRecipe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInfrastructureConfiguration = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "DeleteInfrastructureConfiguration"),
+    input = M.DeleteInfrastructureConfigurationInput,
+    output = M.DeleteInfrastructureConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/DeleteInfrastructureConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "DeleteLifecyclePolicy"),
+    input = M.DeleteLifecyclePolicyInput,
+    output = M.DeleteLifecyclePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/DeleteLifecyclePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkflow = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "DeleteWorkflow"),
+    input = M.DeleteWorkflowInput,
+    output = M.DeleteWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/DeleteWorkflow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DistributeImage = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "DistributeImage"),
+    input = M.DistributeImageInput,
+    output = M.DistributeImageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/DistributeImage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComponent = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetComponent"),
+    input = M.GetComponentInput,
+    output = M.GetComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetComponent" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComponentPolicy = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetComponentPolicy"),
+    input = M.GetComponentPolicyInput,
+    output = M.GetComponentPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetComponentPolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContainerRecipe = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetContainerRecipe"),
+    input = M.GetContainerRecipeInput,
+    output = M.GetContainerRecipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetContainerRecipe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContainerRecipePolicy = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetContainerRecipePolicy"),
+    input = M.GetContainerRecipePolicyInput,
+    output = M.GetContainerRecipePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetContainerRecipePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDistributionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetDistributionConfiguration"),
+    input = M.GetDistributionConfigurationInput,
+    output = M.GetDistributionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetDistributionConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImage = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetImage"),
+    input = M.GetImageInput,
+    output = M.GetImageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetImage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImagePipeline = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetImagePipeline"),
+    input = M.GetImagePipelineInput,
+    output = M.GetImagePipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetImagePipeline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImagePolicy = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetImagePolicy"),
+    input = M.GetImagePolicyInput,
+    output = M.GetImagePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetImagePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImageRecipe = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetImageRecipe"),
+    input = M.GetImageRecipeInput,
+    output = M.GetImageRecipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetImageRecipe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImageRecipePolicy = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetImageRecipePolicy"),
+    input = M.GetImageRecipePolicyInput,
+    output = M.GetImageRecipePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetImageRecipePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInfrastructureConfiguration = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetInfrastructureConfiguration"),
+    input = M.GetInfrastructureConfigurationInput,
+    output = M.GetInfrastructureConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetInfrastructureConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLifecycleExecution = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetLifecycleExecution"),
+    input = M.GetLifecycleExecutionInput,
+    output = M.GetLifecycleExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetLifecycleExecution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetLifecyclePolicy"),
+    input = M.GetLifecyclePolicyInput,
+    output = M.GetLifecyclePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetLifecyclePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMarketplaceResource = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetMarketplaceResource"),
+    input = M.GetMarketplaceResourceInput,
+    output = M.GetMarketplaceResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetMarketplaceResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflow = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetWorkflow"),
+    input = M.GetWorkflowInput,
+    output = M.GetWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetWorkflow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflowExecution = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetWorkflowExecution"),
+    input = M.GetWorkflowExecutionInput,
+    output = M.GetWorkflowExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetWorkflowExecution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflowStepExecution = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "GetWorkflowStepExecution"),
+    input = M.GetWorkflowStepExecutionInput,
+    output = M.GetWorkflowStepExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetWorkflowStepExecution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportComponent = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ImportComponent"),
+    input = M.ImportComponentInput,
+    output = M.ImportComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/ImportComponent" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportDiskImage = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ImportDiskImage"),
+    input = M.ImportDiskImageInput,
+    output = M.ImportDiskImageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/ImportDiskImage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportVmImage = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ImportVmImage"),
+    input = M.ImportVmImageInput,
+    output = M.ImportVmImageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/ImportVmImage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComponentBuildVersions = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListComponentBuildVersions"),
+    input = M.ListComponentBuildVersionsInput,
+    output = M.ListComponentBuildVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListComponentBuildVersions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComponents = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListComponents"),
+    input = M.ListComponentsInput,
+    output = M.ListComponentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListComponents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContainerRecipes = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListContainerRecipes"),
+    input = M.ListContainerRecipesInput,
+    output = M.ListContainerRecipesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListContainerRecipes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributionConfigurations = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListDistributionConfigurations"),
+    input = M.ListDistributionConfigurationsInput,
+    output = M.ListDistributionConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListDistributionConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImageBuildVersions = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListImageBuildVersions"),
+    input = M.ListImageBuildVersionsInput,
+    output = M.ListImageBuildVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListImageBuildVersions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImagePackages = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListImagePackages"),
+    input = M.ListImagePackagesInput,
+    output = M.ListImagePackagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListImagePackages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImagePipelineImages = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListImagePipelineImages"),
+    input = M.ListImagePipelineImagesInput,
+    output = M.ListImagePipelineImagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListImagePipelineImages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImagePipelines = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListImagePipelines"),
+    input = M.ListImagePipelinesInput,
+    output = M.ListImagePipelinesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListImagePipelines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImageRecipes = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListImageRecipes"),
+    input = M.ListImageRecipesInput,
+    output = M.ListImageRecipesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListImageRecipes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImages = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListImages"),
+    input = M.ListImagesInput,
+    output = M.ListImagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListImages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImageScanFindingAggregations = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListImageScanFindingAggregations"),
+    input = M.ListImageScanFindingAggregationsInput,
+    output = M.ListImageScanFindingAggregationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListImageScanFindingAggregations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImageScanFindings = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListImageScanFindings"),
+    input = M.ListImageScanFindingsInput,
+    output = M.ListImageScanFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListImageScanFindings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInfrastructureConfigurations = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListInfrastructureConfigurations"),
+    input = M.ListInfrastructureConfigurationsInput,
+    output = M.ListInfrastructureConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListInfrastructureConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLifecycleExecutionResources = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListLifecycleExecutionResources"),
+    input = M.ListLifecycleExecutionResourcesInput,
+    output = M.ListLifecycleExecutionResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListLifecycleExecutionResources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLifecycleExecutions = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListLifecycleExecutions"),
+    input = M.ListLifecycleExecutionsInput,
+    output = M.ListLifecycleExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListLifecycleExecutions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLifecyclePolicies = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListLifecyclePolicies"),
+    input = M.ListLifecyclePoliciesInput,
+    output = M.ListLifecyclePoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListLifecyclePolicies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWaitingWorkflowSteps = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListWaitingWorkflowSteps"),
+    input = M.ListWaitingWorkflowStepsInput,
+    output = M.ListWaitingWorkflowStepsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListWaitingWorkflowSteps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflowBuildVersions = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListWorkflowBuildVersions"),
+    input = M.ListWorkflowBuildVersionsInput,
+    output = M.ListWorkflowBuildVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListWorkflowBuildVersions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflowExecutions = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListWorkflowExecutions"),
+    input = M.ListWorkflowExecutionsInput,
+    output = M.ListWorkflowExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListWorkflowExecutions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflows = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListWorkflows"),
+    input = M.ListWorkflowsInput,
+    output = M.ListWorkflowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListWorkflows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflowStepExecutions = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "ListWorkflowStepExecutions"),
+    input = M.ListWorkflowStepExecutionsInput,
+    output = M.ListWorkflowStepExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListWorkflowStepExecutions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutComponentPolicy = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "PutComponentPolicy"),
+    input = M.PutComponentPolicyInput,
+    output = M.PutComponentPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/PutComponentPolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutContainerRecipePolicy = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "PutContainerRecipePolicy"),
+    input = M.PutContainerRecipePolicyInput,
+    output = M.PutContainerRecipePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/PutContainerRecipePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutImagePolicy = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "PutImagePolicy"),
+    input = M.PutImagePolicyInput,
+    output = M.PutImagePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/PutImagePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutImageRecipePolicy = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "PutImageRecipePolicy"),
+    input = M.PutImageRecipePolicyInput,
+    output = M.PutImageRecipePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/PutImageRecipePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetryImage = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "RetryImage"),
+    input = M.RetryImageInput,
+    output = M.RetryImageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/RetryImage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendWorkflowStepAction = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "SendWorkflowStepAction"),
+    input = M.SendWorkflowStepActionInput,
+    output = M.SendWorkflowStepActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/SendWorkflowStepAction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartImagePipelineExecution = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "StartImagePipelineExecution"),
+    input = M.StartImagePipelineExecutionInput,
+    output = M.StartImagePipelineExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/StartImagePipelineExecution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartResourceStateUpdate = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "StartResourceStateUpdate"),
+    input = M.StartResourceStateUpdateInput,
+    output = M.StartResourceStateUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/StartResourceStateUpdate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDistributionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "UpdateDistributionConfiguration"),
+    input = M.UpdateDistributionConfigurationInput,
+    output = M.UpdateDistributionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/UpdateDistributionConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateImagePipeline = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "UpdateImagePipeline"),
+    input = M.UpdateImagePipelineInput,
+    output = M.UpdateImagePipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/UpdateImagePipeline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInfrastructureConfiguration = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "UpdateInfrastructureConfiguration"),
+    input = M.UpdateInfrastructureConfigurationInput,
+    output = M.UpdateInfrastructureConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/UpdateInfrastructureConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.imagebuilder", "UpdateLifecyclePolicy"),
+    input = M.UpdateLifecyclePolicyInput,
+    output = M.UpdateLifecyclePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/UpdateLifecyclePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

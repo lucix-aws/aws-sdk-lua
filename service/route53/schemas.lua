@@ -6642,4 +6642,866 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.route53", "AWSDnsV20130401"),
+    version = "2013-04-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ActivateKeySigningKey = schema.operation({
+    id = id.from("com.amazonaws.route53", "ActivateKeySigningKey"),
+    input = M.ActivateKeySigningKeyInput,
+    output = M.ActivateKeySigningKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/keysigningkey/{HostedZoneId}/{Name}/activate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateVPCWithHostedZone = schema.operation({
+    id = id.from("com.amazonaws.route53", "AssociateVPCWithHostedZone"),
+    input = M.AssociateVPCWithHostedZoneInput,
+    output = M.AssociateVPCWithHostedZoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/hostedzone/{HostedZoneId}/associatevpc" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ChangeCidrCollection = schema.operation({
+    id = id.from("com.amazonaws.route53", "ChangeCidrCollection"),
+    input = M.ChangeCidrCollectionInput,
+    output = M.ChangeCidrCollectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/cidrcollection/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ChangeResourceRecordSets = schema.operation({
+    id = id.from("com.amazonaws.route53", "ChangeResourceRecordSets"),
+    input = M.ChangeResourceRecordSetsInput,
+    output = M.ChangeResourceRecordSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/hostedzone/{HostedZoneId}/rrset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ChangeTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.route53", "ChangeTagsForResource"),
+    input = M.ChangeTagsForResourceInput,
+    output = M.ChangeTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/tags/{ResourceType}/{ResourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCidrCollection = schema.operation({
+    id = id.from("com.amazonaws.route53", "CreateCidrCollection"),
+    input = M.CreateCidrCollectionInput,
+    output = M.CreateCidrCollectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/cidrcollection" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHealthCheck = schema.operation({
+    id = id.from("com.amazonaws.route53", "CreateHealthCheck"),
+    input = M.CreateHealthCheckInput,
+    output = M.CreateHealthCheckOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/healthcheck" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHostedZone = schema.operation({
+    id = id.from("com.amazonaws.route53", "CreateHostedZone"),
+    input = M.CreateHostedZoneInput,
+    output = M.CreateHostedZoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/hostedzone" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKeySigningKey = schema.operation({
+    id = id.from("com.amazonaws.route53", "CreateKeySigningKey"),
+    input = M.CreateKeySigningKeyInput,
+    output = M.CreateKeySigningKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/keysigningkey" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQueryLoggingConfig = schema.operation({
+    id = id.from("com.amazonaws.route53", "CreateQueryLoggingConfig"),
+    input = M.CreateQueryLoggingConfigInput,
+    output = M.CreateQueryLoggingConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/queryloggingconfig" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReusableDelegationSet = schema.operation({
+    id = id.from("com.amazonaws.route53", "CreateReusableDelegationSet"),
+    input = M.CreateReusableDelegationSetInput,
+    output = M.CreateReusableDelegationSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/delegationset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrafficPolicy = schema.operation({
+    id = id.from("com.amazonaws.route53", "CreateTrafficPolicy"),
+    input = M.CreateTrafficPolicyInput,
+    output = M.CreateTrafficPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/trafficpolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrafficPolicyInstance = schema.operation({
+    id = id.from("com.amazonaws.route53", "CreateTrafficPolicyInstance"),
+    input = M.CreateTrafficPolicyInstanceInput,
+    output = M.CreateTrafficPolicyInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/trafficpolicyinstance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrafficPolicyVersion = schema.operation({
+    id = id.from("com.amazonaws.route53", "CreateTrafficPolicyVersion"),
+    input = M.CreateTrafficPolicyVersionInput,
+    output = M.CreateTrafficPolicyVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/trafficpolicy/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVPCAssociationAuthorization = schema.operation({
+    id = id.from("com.amazonaws.route53", "CreateVPCAssociationAuthorization"),
+    input = M.CreateVPCAssociationAuthorizationInput,
+    output = M.CreateVPCAssociationAuthorizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/hostedzone/{HostedZoneId}/authorizevpcassociation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeactivateKeySigningKey = schema.operation({
+    id = id.from("com.amazonaws.route53", "DeactivateKeySigningKey"),
+    input = M.DeactivateKeySigningKeyInput,
+    output = M.DeactivateKeySigningKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/keysigningkey/{HostedZoneId}/{Name}/deactivate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCidrCollection = schema.operation({
+    id = id.from("com.amazonaws.route53", "DeleteCidrCollection"),
+    input = M.DeleteCidrCollectionInput,
+    output = M.DeleteCidrCollectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2013-04-01/cidrcollection/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHealthCheck = schema.operation({
+    id = id.from("com.amazonaws.route53", "DeleteHealthCheck"),
+    input = M.DeleteHealthCheckInput,
+    output = M.DeleteHealthCheckOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2013-04-01/healthcheck/{HealthCheckId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHostedZone = schema.operation({
+    id = id.from("com.amazonaws.route53", "DeleteHostedZone"),
+    input = M.DeleteHostedZoneInput,
+    output = M.DeleteHostedZoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2013-04-01/hostedzone/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKeySigningKey = schema.operation({
+    id = id.from("com.amazonaws.route53", "DeleteKeySigningKey"),
+    input = M.DeleteKeySigningKeyInput,
+    output = M.DeleteKeySigningKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2013-04-01/keysigningkey/{HostedZoneId}/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQueryLoggingConfig = schema.operation({
+    id = id.from("com.amazonaws.route53", "DeleteQueryLoggingConfig"),
+    input = M.DeleteQueryLoggingConfigInput,
+    output = M.DeleteQueryLoggingConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2013-04-01/queryloggingconfig/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReusableDelegationSet = schema.operation({
+    id = id.from("com.amazonaws.route53", "DeleteReusableDelegationSet"),
+    input = M.DeleteReusableDelegationSetInput,
+    output = M.DeleteReusableDelegationSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2013-04-01/delegationset/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrafficPolicy = schema.operation({
+    id = id.from("com.amazonaws.route53", "DeleteTrafficPolicy"),
+    input = M.DeleteTrafficPolicyInput,
+    output = M.DeleteTrafficPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2013-04-01/trafficpolicy/{Id}/{Version}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrafficPolicyInstance = schema.operation({
+    id = id.from("com.amazonaws.route53", "DeleteTrafficPolicyInstance"),
+    input = M.DeleteTrafficPolicyInstanceInput,
+    output = M.DeleteTrafficPolicyInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2013-04-01/trafficpolicyinstance/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVPCAssociationAuthorization = schema.operation({
+    id = id.from("com.amazonaws.route53", "DeleteVPCAssociationAuthorization"),
+    input = M.DeleteVPCAssociationAuthorizationInput,
+    output = M.DeleteVPCAssociationAuthorizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/hostedzone/{HostedZoneId}/deauthorizevpcassociation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableHostedZoneDNSSEC = schema.operation({
+    id = id.from("com.amazonaws.route53", "DisableHostedZoneDNSSEC"),
+    input = M.DisableHostedZoneDNSSECInput,
+    output = M.DisableHostedZoneDNSSECOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/hostedzone/{HostedZoneId}/disable-dnssec" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateVPCFromHostedZone = schema.operation({
+    id = id.from("com.amazonaws.route53", "DisassociateVPCFromHostedZone"),
+    input = M.DisassociateVPCFromHostedZoneInput,
+    output = M.DisassociateVPCFromHostedZoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/hostedzone/{HostedZoneId}/disassociatevpc" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableHostedZoneDNSSEC = schema.operation({
+    id = id.from("com.amazonaws.route53", "EnableHostedZoneDNSSEC"),
+    input = M.EnableHostedZoneDNSSECInput,
+    output = M.EnableHostedZoneDNSSECOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/hostedzone/{HostedZoneId}/enable-dnssec" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountLimit = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetAccountLimit"),
+    input = M.GetAccountLimitInput,
+    output = M.GetAccountLimitOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/accountlimit/{Type}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChange = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetChange"),
+    input = M.GetChangeInput,
+    output = M.GetChangeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/change/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCheckerIpRanges = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetCheckerIpRanges"),
+    input = M.GetCheckerIpRangesInput,
+    output = M.GetCheckerIpRangesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/checkeripranges" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDNSSEC = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetDNSSEC"),
+    input = M.GetDNSSECInput,
+    output = M.GetDNSSECOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/hostedzone/{HostedZoneId}/dnssec" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGeoLocation = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetGeoLocation"),
+    input = M.GetGeoLocationInput,
+    output = M.GetGeoLocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/geolocation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHealthCheck = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetHealthCheck"),
+    input = M.GetHealthCheckInput,
+    output = M.GetHealthCheckOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/healthcheck/{HealthCheckId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHealthCheckCount = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetHealthCheckCount"),
+    input = M.GetHealthCheckCountInput,
+    output = M.GetHealthCheckCountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/healthcheckcount" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHealthCheckLastFailureReason = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetHealthCheckLastFailureReason"),
+    input = M.GetHealthCheckLastFailureReasonInput,
+    output = M.GetHealthCheckLastFailureReasonOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/healthcheck/{HealthCheckId}/lastfailurereason" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHealthCheckStatus = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetHealthCheckStatus"),
+    input = M.GetHealthCheckStatusInput,
+    output = M.GetHealthCheckStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/healthcheck/{HealthCheckId}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHostedZone = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetHostedZone"),
+    input = M.GetHostedZoneInput,
+    output = M.GetHostedZoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/hostedzone/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHostedZoneCount = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetHostedZoneCount"),
+    input = M.GetHostedZoneCountInput,
+    output = M.GetHostedZoneCountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/hostedzonecount" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHostedZoneLimit = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetHostedZoneLimit"),
+    input = M.GetHostedZoneLimitInput,
+    output = M.GetHostedZoneLimitOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/hostedzonelimit/{HostedZoneId}/{Type}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryLoggingConfig = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetQueryLoggingConfig"),
+    input = M.GetQueryLoggingConfigInput,
+    output = M.GetQueryLoggingConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/queryloggingconfig/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReusableDelegationSet = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetReusableDelegationSet"),
+    input = M.GetReusableDelegationSetInput,
+    output = M.GetReusableDelegationSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/delegationset/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReusableDelegationSetLimit = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetReusableDelegationSetLimit"),
+    input = M.GetReusableDelegationSetLimitInput,
+    output = M.GetReusableDelegationSetLimitOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/reusabledelegationsetlimit/{DelegationSetId}/{Type}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrafficPolicy = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetTrafficPolicy"),
+    input = M.GetTrafficPolicyInput,
+    output = M.GetTrafficPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/trafficpolicy/{Id}/{Version}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrafficPolicyInstance = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetTrafficPolicyInstance"),
+    input = M.GetTrafficPolicyInstanceInput,
+    output = M.GetTrafficPolicyInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/trafficpolicyinstance/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrafficPolicyInstanceCount = schema.operation({
+    id = id.from("com.amazonaws.route53", "GetTrafficPolicyInstanceCount"),
+    input = M.GetTrafficPolicyInstanceCountInput,
+    output = M.GetTrafficPolicyInstanceCountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/trafficpolicyinstancecount" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCidrBlocks = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListCidrBlocks"),
+    input = M.ListCidrBlocksInput,
+    output = M.ListCidrBlocksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/cidrcollection/{CollectionId}/cidrblocks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCidrCollections = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListCidrCollections"),
+    input = M.ListCidrCollectionsInput,
+    output = M.ListCidrCollectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/cidrcollection" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCidrLocations = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListCidrLocations"),
+    input = M.ListCidrLocationsInput,
+    output = M.ListCidrLocationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/cidrcollection/{CollectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGeoLocations = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListGeoLocations"),
+    input = M.ListGeoLocationsInput,
+    output = M.ListGeoLocationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/geolocations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHealthChecks = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListHealthChecks"),
+    input = M.ListHealthChecksInput,
+    output = M.ListHealthChecksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/healthcheck" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHostedZones = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListHostedZones"),
+    input = M.ListHostedZonesInput,
+    output = M.ListHostedZonesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/hostedzone" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHostedZonesByName = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListHostedZonesByName"),
+    input = M.ListHostedZonesByNameInput,
+    output = M.ListHostedZonesByNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/hostedzonesbyname" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHostedZonesByVPC = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListHostedZonesByVPC"),
+    input = M.ListHostedZonesByVPCInput,
+    output = M.ListHostedZonesByVPCOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/hostedzonesbyvpc" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueryLoggingConfigs = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListQueryLoggingConfigs"),
+    input = M.ListQueryLoggingConfigsInput,
+    output = M.ListQueryLoggingConfigsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/queryloggingconfig" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceRecordSets = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListResourceRecordSets"),
+    input = M.ListResourceRecordSetsInput,
+    output = M.ListResourceRecordSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/hostedzone/{HostedZoneId}/rrset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReusableDelegationSets = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListReusableDelegationSets"),
+    input = M.ListReusableDelegationSetsInput,
+    output = M.ListReusableDelegationSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/delegationset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/tags/{ResourceType}/{ResourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResources = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListTagsForResources"),
+    input = M.ListTagsForResourcesInput,
+    output = M.ListTagsForResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/tags/{ResourceType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrafficPolicies = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListTrafficPolicies"),
+    input = M.ListTrafficPoliciesInput,
+    output = M.ListTrafficPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/trafficpolicies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrafficPolicyInstances = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListTrafficPolicyInstances"),
+    input = M.ListTrafficPolicyInstancesInput,
+    output = M.ListTrafficPolicyInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/trafficpolicyinstances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrafficPolicyInstancesByHostedZone = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListTrafficPolicyInstancesByHostedZone"),
+    input = M.ListTrafficPolicyInstancesByHostedZoneInput,
+    output = M.ListTrafficPolicyInstancesByHostedZoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/trafficpolicyinstances/hostedzone" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrafficPolicyInstancesByPolicy = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListTrafficPolicyInstancesByPolicy"),
+    input = M.ListTrafficPolicyInstancesByPolicyInput,
+    output = M.ListTrafficPolicyInstancesByPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/trafficpolicyinstances/trafficpolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrafficPolicyVersions = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListTrafficPolicyVersions"),
+    input = M.ListTrafficPolicyVersionsInput,
+    output = M.ListTrafficPolicyVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/trafficpolicies/{Id}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVPCAssociationAuthorizations = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListVPCAssociationAuthorizations"),
+    input = M.ListVPCAssociationAuthorizationsInput,
+    output = M.ListVPCAssociationAuthorizationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/hostedzone/{HostedZoneId}/authorizevpcassociation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestDNSAnswer = schema.operation({
+    id = id.from("com.amazonaws.route53", "TestDNSAnswer"),
+    input = M.TestDNSAnswerInput,
+    output = M.TestDNSAnswerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/testdnsanswer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHealthCheck = schema.operation({
+    id = id.from("com.amazonaws.route53", "UpdateHealthCheck"),
+    input = M.UpdateHealthCheckInput,
+    output = M.UpdateHealthCheckOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/healthcheck/{HealthCheckId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHostedZoneComment = schema.operation({
+    id = id.from("com.amazonaws.route53", "UpdateHostedZoneComment"),
+    input = M.UpdateHostedZoneCommentInput,
+    output = M.UpdateHostedZoneCommentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/hostedzone/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHostedZoneFeatures = schema.operation({
+    id = id.from("com.amazonaws.route53", "UpdateHostedZoneFeatures"),
+    input = M.UpdateHostedZoneFeaturesInput,
+    output = M.UpdateHostedZoneFeaturesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/hostedzone/{HostedZoneId}/features" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrafficPolicyComment = schema.operation({
+    id = id.from("com.amazonaws.route53", "UpdateTrafficPolicyComment"),
+    input = M.UpdateTrafficPolicyCommentInput,
+    output = M.UpdateTrafficPolicyCommentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/trafficpolicy/{Id}/{Version}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrafficPolicyInstance = schema.operation({
+    id = id.from("com.amazonaws.route53", "UpdateTrafficPolicyInstance"),
+    input = M.UpdateTrafficPolicyInstanceInput,
+    output = M.UpdateTrafficPolicyInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/trafficpolicyinstance/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

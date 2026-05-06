@@ -31191,4 +31191,2174 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.datazone", "DataZone"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptPredictions = schema.operation({
+    id = id.from("com.amazonaws.datazone", "AcceptPredictions"),
+    input = M.AcceptPredictionsInput,
+    output = M.AcceptPredictionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/assets/{identifier}/accept-predictions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptSubscriptionRequest = schema.operation({
+    id = id.from("com.amazonaws.datazone", "AcceptSubscriptionRequest"),
+    input = M.AcceptSubscriptionRequestInput,
+    output = M.AcceptSubscriptionRequestOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/subscription-requests/{identifier}/accept" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddEntityOwner = schema.operation({
+    id = id.from("com.amazonaws.datazone", "AddEntityOwner"),
+    input = M.AddEntityOwnerInput,
+    output = M.AddEntityOwnerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/addOwner" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddPolicyGrant = schema.operation({
+    id = id.from("com.amazonaws.datazone", "AddPolicyGrant"),
+    input = M.AddPolicyGrantInput,
+    output = M.AddPolicyGrantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/policies/managed/{entityType}/{entityIdentifier}/addGrant" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateEnvironmentRole = schema.operation({
+    id = id.from("com.amazonaws.datazone", "AssociateEnvironmentRole"),
+    input = M.AssociateEnvironmentRoleInput,
+    output = M.AssociateEnvironmentRoleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/roles/{environmentRoleArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateGovernedTerms = schema.operation({
+    id = id.from("com.amazonaws.datazone", "AssociateGovernedTerms"),
+    input = M.AssociateGovernedTermsInput,
+    output = M.AssociateGovernedTermsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/associate-governed-terms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetAttributesMetadata = schema.operation({
+    id = id.from("com.amazonaws.datazone", "BatchGetAttributesMetadata"),
+    input = M.BatchGetAttributesMetadataInput,
+    output = M.BatchGetAttributesMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/attributes-metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchPutAttributesMetadata = schema.operation({
+    id = id.from("com.amazonaws.datazone", "BatchPutAttributesMetadata"),
+    input = M.BatchPutAttributesMetadataInput,
+    output = M.BatchPutAttributesMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/attributes-metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelMetadataGenerationRun = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CancelMetadataGenerationRun"),
+    input = M.CancelMetadataGenerationRunInput,
+    output = M.CancelMetadataGenerationRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/metadata-generation-runs/{identifier}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelSubscription = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CancelSubscription"),
+    input = M.CancelSubscriptionInput,
+    output = M.CancelSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/subscriptions/{identifier}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccountPool = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateAccountPool"),
+    input = M.CreateAccountPoolInput,
+    output = M.CreateAccountPoolOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/account-pools" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAsset = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateAsset"),
+    input = M.CreateAssetInput,
+    output = M.CreateAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssetFilter = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateAssetFilter"),
+    input = M.CreateAssetFilterInput,
+    output = M.CreateAssetFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/assets/{assetIdentifier}/filters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssetRevision = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateAssetRevision"),
+    input = M.CreateAssetRevisionInput,
+    output = M.CreateAssetRevisionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/assets/{identifier}/revisions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssetType = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateAssetType"),
+    input = M.CreateAssetTypeInput,
+    output = M.CreateAssetTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/asset-types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnection = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateConnection"),
+    input = M.CreateConnectionInput,
+    output = M.CreateConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/connections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataProduct = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateDataProduct"),
+    input = M.CreateDataProductInput,
+    output = M.CreateDataProductOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/data-products" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataProductRevision = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateDataProductRevision"),
+    input = M.CreateDataProductRevisionInput,
+    output = M.CreateDataProductRevisionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/data-products/{identifier}/revisions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataSource = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateDataSource"),
+    input = M.CreateDataSourceInput,
+    output = M.CreateDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/data-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomain = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateDomain"),
+    input = M.CreateDomainInput,
+    output = M.CreateDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomainUnit = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateDomainUnit"),
+    input = M.CreateDomainUnitInput,
+    output = M.CreateDomainUnitOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/domain-units" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateEnvironment"),
+    input = M.CreateEnvironmentInput,
+    output = M.CreateEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/environments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironmentAction = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateEnvironmentAction"),
+    input = M.CreateEnvironmentActionInput,
+    output = M.CreateEnvironmentActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironmentBlueprint = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateEnvironmentBlueprint"),
+    input = M.CreateEnvironmentBlueprintInput,
+    output = M.CreateEnvironmentBlueprintOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/environment-blueprints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironmentProfile = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateEnvironmentProfile"),
+    input = M.CreateEnvironmentProfileInput,
+    output = M.CreateEnvironmentProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/environment-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFormType = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateFormType"),
+    input = M.CreateFormTypeInput,
+    output = M.CreateFormTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/form-types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGlossary = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateGlossary"),
+    input = M.CreateGlossaryInput,
+    output = M.CreateGlossaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/glossaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGlossaryTerm = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateGlossaryTerm"),
+    input = M.CreateGlossaryTermInput,
+    output = M.CreateGlossaryTermOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/glossary-terms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGroupProfile = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateGroupProfile"),
+    input = M.CreateGroupProfileInput,
+    output = M.CreateGroupProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/group-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateListingChangeSet = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateListingChangeSet"),
+    input = M.CreateListingChangeSetInput,
+    output = M.CreateListingChangeSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/listings/change-set" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProject = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateProject"),
+    input = M.CreateProjectInput,
+    output = M.CreateProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/projects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProjectMembership = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateProjectMembership"),
+    input = M.CreateProjectMembershipInput,
+    output = M.CreateProjectMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/projects/{projectIdentifier}/createMembership" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProjectProfile = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateProjectProfile"),
+    input = M.CreateProjectProfileInput,
+    output = M.CreateProjectProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/project-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRule = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateRule"),
+    input = M.CreateRuleInput,
+    output = M.CreateRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSubscriptionGrant = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateSubscriptionGrant"),
+    input = M.CreateSubscriptionGrantInput,
+    output = M.CreateSubscriptionGrantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/subscription-grants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSubscriptionRequest = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateSubscriptionRequest"),
+    input = M.CreateSubscriptionRequestInput,
+    output = M.CreateSubscriptionRequestOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/subscription-requests" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSubscriptionTarget = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateSubscriptionTarget"),
+    input = M.CreateSubscriptionTargetInput,
+    output = M.CreateSubscriptionTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/subscription-targets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUserProfile = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateUserProfile"),
+    input = M.CreateUserProfileInput,
+    output = M.CreateUserProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/user-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccountPool = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteAccountPool"),
+    input = M.DeleteAccountPoolInput,
+    output = M.DeleteAccountPoolOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/account-pools/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAsset = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteAsset"),
+    input = M.DeleteAssetInput,
+    output = M.DeleteAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/assets/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssetFilter = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteAssetFilter"),
+    input = M.DeleteAssetFilterInput,
+    output = M.DeleteAssetFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/assets/{assetIdentifier}/filters/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssetType = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteAssetType"),
+    input = M.DeleteAssetTypeInput,
+    output = M.DeleteAssetTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/asset-types/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnection = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteConnection"),
+    input = M.DeleteConnectionInput,
+    output = M.DeleteConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/connections/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataExportConfiguration = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteDataExportConfiguration"),
+    input = M.DeleteDataExportConfigurationInput,
+    output = M.DeleteDataExportConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/data-export-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataProduct = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteDataProduct"),
+    input = M.DeleteDataProductInput,
+    output = M.DeleteDataProductOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/data-products/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataSource = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteDataSource"),
+    input = M.DeleteDataSourceInput,
+    output = M.DeleteDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/data-sources/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomain = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteDomain"),
+    input = M.DeleteDomainInput,
+    output = M.DeleteDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomainUnit = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteDomainUnit"),
+    input = M.DeleteDomainUnitInput,
+    output = M.DeleteDomainUnitOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/domain-units/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironment = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteEnvironment"),
+    input = M.DeleteEnvironmentInput,
+    output = M.DeleteEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/environments/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironmentAction = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteEnvironmentAction"),
+    input = M.DeleteEnvironmentActionInput,
+    output = M.DeleteEnvironmentActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironmentBlueprint = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteEnvironmentBlueprint"),
+    input = M.DeleteEnvironmentBlueprintInput,
+    output = M.DeleteEnvironmentBlueprintOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/environment-blueprints/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironmentBlueprintConfiguration = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteEnvironmentBlueprintConfiguration"),
+    input = M.DeleteEnvironmentBlueprintConfigurationInput,
+    output = M.DeleteEnvironmentBlueprintConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/environment-blueprint-configurations/{environmentBlueprintIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironmentProfile = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteEnvironmentProfile"),
+    input = M.DeleteEnvironmentProfileInput,
+    output = M.DeleteEnvironmentProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/environment-profiles/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFormType = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteFormType"),
+    input = M.DeleteFormTypeInput,
+    output = M.DeleteFormTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/form-types/{formTypeIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGlossary = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteGlossary"),
+    input = M.DeleteGlossaryInput,
+    output = M.DeleteGlossaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/glossaries/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGlossaryTerm = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteGlossaryTerm"),
+    input = M.DeleteGlossaryTermInput,
+    output = M.DeleteGlossaryTermOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/glossary-terms/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteListing = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteListing"),
+    input = M.DeleteListingInput,
+    output = M.DeleteListingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/listings/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProject = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteProject"),
+    input = M.DeleteProjectInput,
+    output = M.DeleteProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/projects/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProjectMembership = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteProjectMembership"),
+    input = M.DeleteProjectMembershipInput,
+    output = M.DeleteProjectMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/projects/{projectIdentifier}/deleteMembership" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProjectProfile = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteProjectProfile"),
+    input = M.DeleteProjectProfileInput,
+    output = M.DeleteProjectProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/project-profiles/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRule = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteRule"),
+    input = M.DeleteRuleInput,
+    output = M.DeleteRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/rules/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSubscriptionGrant = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteSubscriptionGrant"),
+    input = M.DeleteSubscriptionGrantInput,
+    output = M.DeleteSubscriptionGrantOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/subscription-grants/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSubscriptionRequest = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteSubscriptionRequest"),
+    input = M.DeleteSubscriptionRequestInput,
+    output = M.DeleteSubscriptionRequestOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/subscription-requests/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSubscriptionTarget = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteSubscriptionTarget"),
+    input = M.DeleteSubscriptionTargetInput,
+    output = M.DeleteSubscriptionTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/subscription-targets/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTimeSeriesDataPoints = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteTimeSeriesDataPoints"),
+    input = M.DeleteTimeSeriesDataPointsInput,
+    output = M.DeleteTimeSeriesDataPointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateEnvironmentRole = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DisassociateEnvironmentRole"),
+    input = M.DisassociateEnvironmentRoleInput,
+    output = M.DisassociateEnvironmentRoleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/roles/{environmentRoleArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateGovernedTerms = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DisassociateGovernedTerms"),
+    input = M.DisassociateGovernedTermsInput,
+    output = M.DisassociateGovernedTermsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/disassociate-governed-terms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountPool = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetAccountPool"),
+    input = M.GetAccountPoolInput,
+    output = M.GetAccountPoolOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/account-pools/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAsset = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetAsset"),
+    input = M.GetAssetInput,
+    output = M.GetAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/assets/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssetFilter = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetAssetFilter"),
+    input = M.GetAssetFilterInput,
+    output = M.GetAssetFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/assets/{assetIdentifier}/filters/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssetType = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetAssetType"),
+    input = M.GetAssetTypeInput,
+    output = M.GetAssetTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/asset-types/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnection = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetConnection"),
+    input = M.GetConnectionInput,
+    output = M.GetConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/connections/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataExportConfiguration = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetDataExportConfiguration"),
+    input = M.GetDataExportConfigurationInput,
+    output = M.GetDataExportConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/data-export-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataProduct = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetDataProduct"),
+    input = M.GetDataProductInput,
+    output = M.GetDataProductOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/data-products/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataSource = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetDataSource"),
+    input = M.GetDataSourceInput,
+    output = M.GetDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/data-sources/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataSourceRun = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetDataSourceRun"),
+    input = M.GetDataSourceRunInput,
+    output = M.GetDataSourceRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/data-source-runs/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomain = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetDomain"),
+    input = M.GetDomainInput,
+    output = M.GetDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainUnit = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetDomainUnit"),
+    input = M.GetDomainUnitInput,
+    output = M.GetDomainUnitOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/domain-units/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironment = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetEnvironment"),
+    input = M.GetEnvironmentInput,
+    output = M.GetEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/environments/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironmentAction = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetEnvironmentAction"),
+    input = M.GetEnvironmentActionInput,
+    output = M.GetEnvironmentActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironmentBlueprint = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetEnvironmentBlueprint"),
+    input = M.GetEnvironmentBlueprintInput,
+    output = M.GetEnvironmentBlueprintOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/environment-blueprints/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironmentBlueprintConfiguration = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetEnvironmentBlueprintConfiguration"),
+    input = M.GetEnvironmentBlueprintConfigurationInput,
+    output = M.GetEnvironmentBlueprintConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/environment-blueprint-configurations/{environmentBlueprintIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironmentCredentials = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetEnvironmentCredentials"),
+    input = M.GetEnvironmentCredentialsInput,
+    output = M.GetEnvironmentCredentialsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/credentials" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironmentProfile = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetEnvironmentProfile"),
+    input = M.GetEnvironmentProfileInput,
+    output = M.GetEnvironmentProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/environment-profiles/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFormType = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetFormType"),
+    input = M.GetFormTypeInput,
+    output = M.GetFormTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/form-types/{formTypeIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGlossary = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetGlossary"),
+    input = M.GetGlossaryInput,
+    output = M.GetGlossaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/glossaries/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGlossaryTerm = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetGlossaryTerm"),
+    input = M.GetGlossaryTermInput,
+    output = M.GetGlossaryTermOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/glossary-terms/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGroupProfile = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetGroupProfile"),
+    input = M.GetGroupProfileInput,
+    output = M.GetGroupProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/group-profiles/{groupIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIamPortalLoginUrl = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetIamPortalLoginUrl"),
+    input = M.GetIamPortalLoginUrlInput,
+    output = M.GetIamPortalLoginUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/get-portal-login-url" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJobRun = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetJobRun"),
+    input = M.GetJobRunInput,
+    output = M.GetJobRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/jobRuns/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLineageEvent = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetLineageEvent"),
+    input = M.GetLineageEventInput,
+    output = M.GetLineageEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/lineage/events/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLineageNode = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetLineageNode"),
+    input = M.GetLineageNodeInput,
+    output = M.GetLineageNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/lineage/nodes/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetListing = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetListing"),
+    input = M.GetListingInput,
+    output = M.GetListingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/listings/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMetadataGenerationRun = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetMetadataGenerationRun"),
+    input = M.GetMetadataGenerationRunInput,
+    output = M.GetMetadataGenerationRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/metadata-generation-runs/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNotebookRun = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetNotebookRun"),
+    input = M.GetNotebookRunInput,
+    output = M.GetNotebookRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/notebook-runs/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProject = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetProject"),
+    input = M.GetProjectInput,
+    output = M.GetProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/projects/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProjectProfile = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetProjectProfile"),
+    input = M.GetProjectProfileInput,
+    output = M.GetProjectProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/project-profiles/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRule = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetRule"),
+    input = M.GetRuleInput,
+    output = M.GetRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/rules/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSubscription = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetSubscription"),
+    input = M.GetSubscriptionInput,
+    output = M.GetSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/subscriptions/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSubscriptionGrant = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetSubscriptionGrant"),
+    input = M.GetSubscriptionGrantInput,
+    output = M.GetSubscriptionGrantOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/subscription-grants/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSubscriptionRequestDetails = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetSubscriptionRequestDetails"),
+    input = M.GetSubscriptionRequestDetailsInput,
+    output = M.GetSubscriptionRequestDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/subscription-requests/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSubscriptionTarget = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetSubscriptionTarget"),
+    input = M.GetSubscriptionTargetInput,
+    output = M.GetSubscriptionTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/subscription-targets/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTimeSeriesDataPoint = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetTimeSeriesDataPoint"),
+    input = M.GetTimeSeriesDataPointInput,
+    output = M.GetTimeSeriesDataPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUserProfile = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetUserProfile"),
+    input = M.GetUserProfileInput,
+    output = M.GetUserProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/user-profiles/{userIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccountPools = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListAccountPools"),
+    input = M.ListAccountPoolsInput,
+    output = M.ListAccountPoolsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/account-pools" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccountsInAccountPool = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListAccountsInAccountPool"),
+    input = M.ListAccountsInAccountPoolInput,
+    output = M.ListAccountsInAccountPoolOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/account-pools/{identifier}/accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetFilters = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListAssetFilters"),
+    input = M.ListAssetFiltersInput,
+    output = M.ListAssetFiltersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/assets/{assetIdentifier}/filters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetRevisions = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListAssetRevisions"),
+    input = M.ListAssetRevisionsInput,
+    output = M.ListAssetRevisionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/assets/{identifier}/revisions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnections = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListConnections"),
+    input = M.ListConnectionsInput,
+    output = M.ListConnectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/connections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataProductRevisions = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListDataProductRevisions"),
+    input = M.ListDataProductRevisionsInput,
+    output = M.ListDataProductRevisionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/data-products/{identifier}/revisions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSourceRunActivities = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListDataSourceRunActivities"),
+    input = M.ListDataSourceRunActivitiesInput,
+    output = M.ListDataSourceRunActivitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/data-source-runs/{identifier}/activities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSourceRuns = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListDataSourceRuns"),
+    input = M.ListDataSourceRunsInput,
+    output = M.ListDataSourceRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/data-sources/{dataSourceIdentifier}/runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSources = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListDataSources"),
+    input = M.ListDataSourcesInput,
+    output = M.ListDataSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/data-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomains = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListDomains"),
+    input = M.ListDomainsInput,
+    output = M.ListDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainUnitsForParent = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListDomainUnitsForParent"),
+    input = M.ListDomainUnitsForParentInput,
+    output = M.ListDomainUnitsForParentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/domain-units" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEntityOwners = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListEntityOwners"),
+    input = M.ListEntityOwnersInput,
+    output = M.ListEntityOwnersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/owners" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironmentActions = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListEnvironmentActions"),
+    input = M.ListEnvironmentActionsInput,
+    output = M.ListEnvironmentActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironmentBlueprintConfigurations = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListEnvironmentBlueprintConfigurations"),
+    input = M.ListEnvironmentBlueprintConfigurationsInput,
+    output = M.ListEnvironmentBlueprintConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/environment-blueprint-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironmentBlueprints = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListEnvironmentBlueprints"),
+    input = M.ListEnvironmentBlueprintsInput,
+    output = M.ListEnvironmentBlueprintsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/environment-blueprints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironmentProfiles = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListEnvironmentProfiles"),
+    input = M.ListEnvironmentProfilesInput,
+    output = M.ListEnvironmentProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/environment-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironments = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListEnvironments"),
+    input = M.ListEnvironmentsInput,
+    output = M.ListEnvironmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/environments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobRuns = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListJobRuns"),
+    input = M.ListJobRunsInput,
+    output = M.ListJobRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/jobs/{jobIdentifier}/runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLineageEvents = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListLineageEvents"),
+    input = M.ListLineageEventsInput,
+    output = M.ListLineageEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/lineage/events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLineageNodeHistory = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListLineageNodeHistory"),
+    input = M.ListLineageNodeHistoryInput,
+    output = M.ListLineageNodeHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/lineage/nodes/{identifier}/history" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMetadataGenerationRuns = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListMetadataGenerationRuns"),
+    input = M.ListMetadataGenerationRunsInput,
+    output = M.ListMetadataGenerationRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/metadata-generation-runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotebookRuns = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListNotebookRuns"),
+    input = M.ListNotebookRunsInput,
+    output = M.ListNotebookRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/notebook-runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotifications = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListNotifications"),
+    input = M.ListNotificationsInput,
+    output = M.ListNotificationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/notifications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyGrants = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListPolicyGrants"),
+    input = M.ListPolicyGrantsInput,
+    output = M.ListPolicyGrantsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/policies/managed/{entityType}/{entityIdentifier}/grants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProjectMemberships = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListProjectMemberships"),
+    input = M.ListProjectMembershipsInput,
+    output = M.ListProjectMembershipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/projects/{projectIdentifier}/memberships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProjectProfiles = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListProjectProfiles"),
+    input = M.ListProjectProfilesInput,
+    output = M.ListProjectProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/project-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProjects = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListProjects"),
+    input = M.ListProjectsInput,
+    output = M.ListProjectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/projects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRules = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListRules"),
+    input = M.ListRulesInput,
+    output = M.ListRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/list-rules/{targetType}/{targetIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubscriptionGrants = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListSubscriptionGrants"),
+    input = M.ListSubscriptionGrantsInput,
+    output = M.ListSubscriptionGrantsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/subscription-grants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubscriptionRequests = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListSubscriptionRequests"),
+    input = M.ListSubscriptionRequestsInput,
+    output = M.ListSubscriptionRequestsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/subscription-requests" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListSubscriptions"),
+    input = M.ListSubscriptionsInput,
+    output = M.ListSubscriptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/subscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubscriptionTargets = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListSubscriptionTargets"),
+    input = M.ListSubscriptionTargetsInput,
+    output = M.ListSubscriptionTargetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/subscription-targets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTimeSeriesDataPoints = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListTimeSeriesDataPoints"),
+    input = M.ListTimeSeriesDataPointsInput,
+    output = M.ListTimeSeriesDataPointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PostLineageEvent = schema.operation({
+    id = id.from("com.amazonaws.datazone", "PostLineageEvent"),
+    input = M.PostLineageEventInput,
+    output = M.PostLineageEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/lineage/events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PostTimeSeriesDataPoints = schema.operation({
+    id = id.from("com.amazonaws.datazone", "PostTimeSeriesDataPoints"),
+    input = M.PostTimeSeriesDataPointsInput,
+    output = M.PostTimeSeriesDataPointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDataExportConfiguration = schema.operation({
+    id = id.from("com.amazonaws.datazone", "PutDataExportConfiguration"),
+    input = M.PutDataExportConfigurationInput,
+    output = M.PutDataExportConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/data-export-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEnvironmentBlueprintConfiguration = schema.operation({
+    id = id.from("com.amazonaws.datazone", "PutEnvironmentBlueprintConfiguration"),
+    input = M.PutEnvironmentBlueprintConfigurationInput,
+    output = M.PutEnvironmentBlueprintConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/environment-blueprint-configurations/{environmentBlueprintIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.QueryGraph = schema.operation({
+    id = id.from("com.amazonaws.datazone", "QueryGraph"),
+    input = M.QueryGraphInput,
+    output = M.QueryGraphOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/graph/query" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectPredictions = schema.operation({
+    id = id.from("com.amazonaws.datazone", "RejectPredictions"),
+    input = M.RejectPredictionsInput,
+    output = M.RejectPredictionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/assets/{identifier}/reject-predictions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectSubscriptionRequest = schema.operation({
+    id = id.from("com.amazonaws.datazone", "RejectSubscriptionRequest"),
+    input = M.RejectSubscriptionRequestInput,
+    output = M.RejectSubscriptionRequestOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/subscription-requests/{identifier}/reject" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveEntityOwner = schema.operation({
+    id = id.from("com.amazonaws.datazone", "RemoveEntityOwner"),
+    input = M.RemoveEntityOwnerInput,
+    output = M.RemoveEntityOwnerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/removeOwner" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemovePolicyGrant = schema.operation({
+    id = id.from("com.amazonaws.datazone", "RemovePolicyGrant"),
+    input = M.RemovePolicyGrantInput,
+    output = M.RemovePolicyGrantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/policies/managed/{entityType}/{entityIdentifier}/removeGrant" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeSubscription = schema.operation({
+    id = id.from("com.amazonaws.datazone", "RevokeSubscription"),
+    input = M.RevokeSubscriptionInput,
+    output = M.RevokeSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/subscriptions/{identifier}/revoke" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Search = schema.operation({
+    id = id.from("com.amazonaws.datazone", "Search"),
+    input = M.SearchInput,
+    output = M.SearchOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchGroupProfiles = schema.operation({
+    id = id.from("com.amazonaws.datazone", "SearchGroupProfiles"),
+    input = M.SearchGroupProfilesInput,
+    output = M.SearchGroupProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/search-group-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchListings = schema.operation({
+    id = id.from("com.amazonaws.datazone", "SearchListings"),
+    input = M.SearchListingsInput,
+    output = M.SearchListingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/listings/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchTypes = schema.operation({
+    id = id.from("com.amazonaws.datazone", "SearchTypes"),
+    input = M.SearchTypesInput,
+    output = M.SearchTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/types-search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchUserProfiles = schema.operation({
+    id = id.from("com.amazonaws.datazone", "SearchUserProfiles"),
+    input = M.SearchUserProfilesInput,
+    output = M.SearchUserProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/search-user-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDataSourceRun = schema.operation({
+    id = id.from("com.amazonaws.datazone", "StartDataSourceRun"),
+    input = M.StartDataSourceRunInput,
+    output = M.StartDataSourceRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/data-sources/{dataSourceIdentifier}/runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMetadataGenerationRun = schema.operation({
+    id = id.from("com.amazonaws.datazone", "StartMetadataGenerationRun"),
+    input = M.StartMetadataGenerationRunInput,
+    output = M.StartMetadataGenerationRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/metadata-generation-runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartNotebookRun = schema.operation({
+    id = id.from("com.amazonaws.datazone", "StartNotebookRun"),
+    input = M.StartNotebookRunInput,
+    output = M.StartNotebookRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/notebook-runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopNotebookRun = schema.operation({
+    id = id.from("com.amazonaws.datazone", "StopNotebookRun"),
+    input = M.StopNotebookRunInput,
+    output = M.StopNotebookRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/notebook-runs/{identifier}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.datazone", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountPool = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateAccountPool"),
+    input = M.UpdateAccountPoolInput,
+    output = M.UpdateAccountPoolOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/account-pools/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssetFilter = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateAssetFilter"),
+    input = M.UpdateAssetFilterInput,
+    output = M.UpdateAssetFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/assets/{assetIdentifier}/filters/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnection = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateConnection"),
+    input = M.UpdateConnectionInput,
+    output = M.UpdateConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/connections/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataSource = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateDataSource"),
+    input = M.UpdateDataSourceInput,
+    output = M.UpdateDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/data-sources/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomain = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateDomain"),
+    input = M.UpdateDomainInput,
+    output = M.UpdateDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomainUnit = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateDomainUnit"),
+    input = M.UpdateDomainUnitInput,
+    output = M.UpdateDomainUnitOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/domain-units/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateEnvironment"),
+    input = M.UpdateEnvironmentInput,
+    output = M.UpdateEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/environments/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironmentAction = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateEnvironmentAction"),
+    input = M.UpdateEnvironmentActionInput,
+    output = M.UpdateEnvironmentActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironmentBlueprint = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateEnvironmentBlueprint"),
+    input = M.UpdateEnvironmentBlueprintInput,
+    output = M.UpdateEnvironmentBlueprintOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/environment-blueprints/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironmentProfile = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateEnvironmentProfile"),
+    input = M.UpdateEnvironmentProfileInput,
+    output = M.UpdateEnvironmentProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/environment-profiles/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGlossary = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateGlossary"),
+    input = M.UpdateGlossaryInput,
+    output = M.UpdateGlossaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/glossaries/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGlossaryTerm = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateGlossaryTerm"),
+    input = M.UpdateGlossaryTermInput,
+    output = M.UpdateGlossaryTermOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/glossary-terms/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGroupProfile = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateGroupProfile"),
+    input = M.UpdateGroupProfileInput,
+    output = M.UpdateGroupProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/group-profiles/{groupIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProject = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateProject"),
+    input = M.UpdateProjectInput,
+    output = M.UpdateProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/projects/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProjectProfile = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateProjectProfile"),
+    input = M.UpdateProjectProfileInput,
+    output = M.UpdateProjectProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/project-profiles/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRootDomainUnitOwner = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateRootDomainUnitOwner"),
+    input = M.UpdateRootDomainUnitOwnerInput,
+    output = M.UpdateRootDomainUnitOwnerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/root-domain-unit-owner" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRule = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateRule"),
+    input = M.UpdateRuleInput,
+    output = M.UpdateRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/rules/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSubscriptionGrantStatus = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateSubscriptionGrantStatus"),
+    input = M.UpdateSubscriptionGrantStatusInput,
+    output = M.UpdateSubscriptionGrantStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/subscription-grants/{identifier}/status/{assetIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSubscriptionRequest = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateSubscriptionRequest"),
+    input = M.UpdateSubscriptionRequestInput,
+    output = M.UpdateSubscriptionRequestOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/subscription-requests/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSubscriptionTarget = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateSubscriptionTarget"),
+    input = M.UpdateSubscriptionTargetInput,
+    output = M.UpdateSubscriptionTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/subscription-targets/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserProfile = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateUserProfile"),
+    input = M.UpdateUserProfileInput,
+    output = M.UpdateUserProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/user-profiles/{userIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

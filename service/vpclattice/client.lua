@@ -7,6 +7,7 @@ local endpoint_rules = require("vpclattice.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("vpclattice.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "vpc-lattice", signing_region = cfg.region } }
                 else
@@ -49,952 +52,295 @@ function M.new(cfg)
 end
 
 function Client:batchUpdateRule(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchUpdateRule",
-        input_schema = schemas.BatchUpdateRuleInput,
-        output_schema = schemas.BatchUpdateRuleOutput,
-        http_method = "PATCH",
-        http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchUpdateRule, input, options)
 end
 
 function Client:createAccessLogSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAccessLogSubscription",
-        input_schema = schemas.CreateAccessLogSubscriptionInput,
-        output_schema = schemas.CreateAccessLogSubscriptionOutput,
-        http_method = "POST",
-        http_path = "/accesslogsubscriptions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAccessLogSubscription, input, options)
 end
 
 function Client:createListener(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateListener",
-        input_schema = schemas.CreateListenerInput,
-        output_schema = schemas.CreateListenerOutput,
-        http_method = "POST",
-        http_path = "/services/{serviceIdentifier}/listeners",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateListener, input, options)
 end
 
 function Client:createResourceConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateResourceConfiguration",
-        input_schema = schemas.CreateResourceConfigurationInput,
-        output_schema = schemas.CreateResourceConfigurationOutput,
-        http_method = "POST",
-        http_path = "/resourceconfigurations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateResourceConfiguration, input, options)
 end
 
 function Client:createResourceGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateResourceGateway",
-        input_schema = schemas.CreateResourceGatewayInput,
-        output_schema = schemas.CreateResourceGatewayOutput,
-        http_method = "POST",
-        http_path = "/resourcegateways",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateResourceGateway, input, options)
 end
 
 function Client:createRule(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRule",
-        input_schema = schemas.CreateRuleInput,
-        output_schema = schemas.CreateRuleOutput,
-        http_method = "POST",
-        http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRule, input, options)
 end
 
 function Client:createService(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateService",
-        input_schema = schemas.CreateServiceInput,
-        output_schema = schemas.CreateServiceOutput,
-        http_method = "POST",
-        http_path = "/services",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateService, input, options)
 end
 
 function Client:createServiceNetwork(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateServiceNetwork",
-        input_schema = schemas.CreateServiceNetworkInput,
-        output_schema = schemas.CreateServiceNetworkOutput,
-        http_method = "POST",
-        http_path = "/servicenetworks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateServiceNetwork, input, options)
 end
 
 function Client:createServiceNetworkResourceAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateServiceNetworkResourceAssociation",
-        input_schema = schemas.CreateServiceNetworkResourceAssociationInput,
-        output_schema = schemas.CreateServiceNetworkResourceAssociationOutput,
-        http_method = "POST",
-        http_path = "/servicenetworkresourceassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateServiceNetworkResourceAssociation, input, options)
 end
 
 function Client:createServiceNetworkServiceAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateServiceNetworkServiceAssociation",
-        input_schema = schemas.CreateServiceNetworkServiceAssociationInput,
-        output_schema = schemas.CreateServiceNetworkServiceAssociationOutput,
-        http_method = "POST",
-        http_path = "/servicenetworkserviceassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateServiceNetworkServiceAssociation, input, options)
 end
 
 function Client:createServiceNetworkVpcAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateServiceNetworkVpcAssociation",
-        input_schema = schemas.CreateServiceNetworkVpcAssociationInput,
-        output_schema = schemas.CreateServiceNetworkVpcAssociationOutput,
-        http_method = "POST",
-        http_path = "/servicenetworkvpcassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateServiceNetworkVpcAssociation, input, options)
 end
 
 function Client:createTargetGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTargetGroup",
-        input_schema = schemas.CreateTargetGroupInput,
-        output_schema = schemas.CreateTargetGroupOutput,
-        http_method = "POST",
-        http_path = "/targetgroups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTargetGroup, input, options)
 end
 
 function Client:deleteAccessLogSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAccessLogSubscription",
-        input_schema = schemas.DeleteAccessLogSubscriptionInput,
-        output_schema = schemas.DeleteAccessLogSubscriptionOutput,
-        http_method = "DELETE",
-        http_path = "/accesslogsubscriptions/{accessLogSubscriptionIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAccessLogSubscription, input, options)
 end
 
 function Client:deleteAuthPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAuthPolicy",
-        input_schema = schemas.DeleteAuthPolicyInput,
-        output_schema = schemas.DeleteAuthPolicyOutput,
-        http_method = "DELETE",
-        http_path = "/authpolicy/{resourceIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAuthPolicy, input, options)
 end
 
 function Client:deleteDomainVerification(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDomainVerification",
-        input_schema = schemas.DeleteDomainVerificationInput,
-        output_schema = schemas.DeleteDomainVerificationOutput,
-        http_method = "DELETE",
-        http_path = "/domainverifications/{domainVerificationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDomainVerification, input, options)
 end
 
 function Client:deleteListener(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteListener",
-        input_schema = schemas.DeleteListenerInput,
-        output_schema = schemas.DeleteListenerOutput,
-        http_method = "DELETE",
-        http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteListener, input, options)
 end
 
 function Client:deleteResourceConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResourceConfiguration",
-        input_schema = schemas.DeleteResourceConfigurationInput,
-        output_schema = schemas.DeleteResourceConfigurationOutput,
-        http_method = "DELETE",
-        http_path = "/resourceconfigurations/{resourceConfigurationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResourceConfiguration, input, options)
 end
 
 function Client:deleteResourceEndpointAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResourceEndpointAssociation",
-        input_schema = schemas.DeleteResourceEndpointAssociationInput,
-        output_schema = schemas.DeleteResourceEndpointAssociationOutput,
-        http_method = "DELETE",
-        http_path = "/resourceendpointassociations/{resourceEndpointAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResourceEndpointAssociation, input, options)
 end
 
 function Client:deleteResourceGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResourceGateway",
-        input_schema = schemas.DeleteResourceGatewayInput,
-        output_schema = schemas.DeleteResourceGatewayOutput,
-        http_method = "DELETE",
-        http_path = "/resourcegateways/{resourceGatewayIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResourceGateway, input, options)
 end
 
 function Client:deleteResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResourcePolicy",
-        input_schema = schemas.DeleteResourcePolicyInput,
-        output_schema = schemas.DeleteResourcePolicyOutput,
-        http_method = "DELETE",
-        http_path = "/resourcepolicy/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options)
 end
 
 function Client:deleteRule(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRule",
-        input_schema = schemas.DeleteRuleInput,
-        output_schema = schemas.DeleteRuleOutput,
-        http_method = "DELETE",
-        http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules/{ruleIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRule, input, options)
 end
 
 function Client:deleteService(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteService",
-        input_schema = schemas.DeleteServiceInput,
-        output_schema = schemas.DeleteServiceOutput,
-        http_method = "DELETE",
-        http_path = "/services/{serviceIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteService, input, options)
 end
 
 function Client:deleteServiceNetwork(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteServiceNetwork",
-        input_schema = schemas.DeleteServiceNetworkInput,
-        output_schema = schemas.DeleteServiceNetworkOutput,
-        http_method = "DELETE",
-        http_path = "/servicenetworks/{serviceNetworkIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteServiceNetwork, input, options)
 end
 
 function Client:deleteServiceNetworkResourceAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteServiceNetworkResourceAssociation",
-        input_schema = schemas.DeleteServiceNetworkResourceAssociationInput,
-        output_schema = schemas.DeleteServiceNetworkResourceAssociationOutput,
-        http_method = "DELETE",
-        http_path = "/servicenetworkresourceassociations/{serviceNetworkResourceAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteServiceNetworkResourceAssociation, input, options)
 end
 
 function Client:deleteServiceNetworkServiceAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteServiceNetworkServiceAssociation",
-        input_schema = schemas.DeleteServiceNetworkServiceAssociationInput,
-        output_schema = schemas.DeleteServiceNetworkServiceAssociationOutput,
-        http_method = "DELETE",
-        http_path = "/servicenetworkserviceassociations/{serviceNetworkServiceAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteServiceNetworkServiceAssociation, input, options)
 end
 
 function Client:deleteServiceNetworkVpcAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteServiceNetworkVpcAssociation",
-        input_schema = schemas.DeleteServiceNetworkVpcAssociationInput,
-        output_schema = schemas.DeleteServiceNetworkVpcAssociationOutput,
-        http_method = "DELETE",
-        http_path = "/servicenetworkvpcassociations/{serviceNetworkVpcAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteServiceNetworkVpcAssociation, input, options)
 end
 
 function Client:deleteTargetGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTargetGroup",
-        input_schema = schemas.DeleteTargetGroupInput,
-        output_schema = schemas.DeleteTargetGroupOutput,
-        http_method = "DELETE",
-        http_path = "/targetgroups/{targetGroupIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTargetGroup, input, options)
 end
 
 function Client:deregisterTargets(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterTargets",
-        input_schema = schemas.DeregisterTargetsInput,
-        output_schema = schemas.DeregisterTargetsOutput,
-        http_method = "POST",
-        http_path = "/targetgroups/{targetGroupIdentifier}/deregistertargets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterTargets, input, options)
 end
 
 function Client:getAccessLogSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccessLogSubscription",
-        input_schema = schemas.GetAccessLogSubscriptionInput,
-        output_schema = schemas.GetAccessLogSubscriptionOutput,
-        http_method = "GET",
-        http_path = "/accesslogsubscriptions/{accessLogSubscriptionIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccessLogSubscription, input, options)
 end
 
 function Client:getAuthPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAuthPolicy",
-        input_schema = schemas.GetAuthPolicyInput,
-        output_schema = schemas.GetAuthPolicyOutput,
-        http_method = "GET",
-        http_path = "/authpolicy/{resourceIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAuthPolicy, input, options)
 end
 
 function Client:getDomainVerification(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDomainVerification",
-        input_schema = schemas.GetDomainVerificationInput,
-        output_schema = schemas.GetDomainVerificationOutput,
-        http_method = "GET",
-        http_path = "/domainverifications/{domainVerificationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDomainVerification, input, options)
 end
 
 function Client:getListener(input, options)
-    return self:invokeOperation(input, {
-        name = "GetListener",
-        input_schema = schemas.GetListenerInput,
-        output_schema = schemas.GetListenerOutput,
-        http_method = "GET",
-        http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetListener, input, options)
 end
 
 function Client:getResourceConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourceConfiguration",
-        input_schema = schemas.GetResourceConfigurationInput,
-        output_schema = schemas.GetResourceConfigurationOutput,
-        http_method = "GET",
-        http_path = "/resourceconfigurations/{resourceConfigurationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourceConfiguration, input, options)
 end
 
 function Client:getResourceGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourceGateway",
-        input_schema = schemas.GetResourceGatewayInput,
-        output_schema = schemas.GetResourceGatewayOutput,
-        http_method = "GET",
-        http_path = "/resourcegateways/{resourceGatewayIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourceGateway, input, options)
 end
 
 function Client:getResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourcePolicy",
-        input_schema = schemas.GetResourcePolicyInput,
-        output_schema = schemas.GetResourcePolicyOutput,
-        http_method = "GET",
-        http_path = "/resourcepolicy/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options)
 end
 
 function Client:getRule(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRule",
-        input_schema = schemas.GetRuleInput,
-        output_schema = schemas.GetRuleOutput,
-        http_method = "GET",
-        http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules/{ruleIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRule, input, options)
 end
 
 function Client:getService(input, options)
-    return self:invokeOperation(input, {
-        name = "GetService",
-        input_schema = schemas.GetServiceInput,
-        output_schema = schemas.GetServiceOutput,
-        http_method = "GET",
-        http_path = "/services/{serviceIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetService, input, options)
 end
 
 function Client:getServiceNetwork(input, options)
-    return self:invokeOperation(input, {
-        name = "GetServiceNetwork",
-        input_schema = schemas.GetServiceNetworkInput,
-        output_schema = schemas.GetServiceNetworkOutput,
-        http_method = "GET",
-        http_path = "/servicenetworks/{serviceNetworkIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetServiceNetwork, input, options)
 end
 
 function Client:getServiceNetworkResourceAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetServiceNetworkResourceAssociation",
-        input_schema = schemas.GetServiceNetworkResourceAssociationInput,
-        output_schema = schemas.GetServiceNetworkResourceAssociationOutput,
-        http_method = "GET",
-        http_path = "/servicenetworkresourceassociations/{serviceNetworkResourceAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetServiceNetworkResourceAssociation, input, options)
 end
 
 function Client:getServiceNetworkServiceAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetServiceNetworkServiceAssociation",
-        input_schema = schemas.GetServiceNetworkServiceAssociationInput,
-        output_schema = schemas.GetServiceNetworkServiceAssociationOutput,
-        http_method = "GET",
-        http_path = "/servicenetworkserviceassociations/{serviceNetworkServiceAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetServiceNetworkServiceAssociation, input, options)
 end
 
 function Client:getServiceNetworkVpcAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetServiceNetworkVpcAssociation",
-        input_schema = schemas.GetServiceNetworkVpcAssociationInput,
-        output_schema = schemas.GetServiceNetworkVpcAssociationOutput,
-        http_method = "GET",
-        http_path = "/servicenetworkvpcassociations/{serviceNetworkVpcAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetServiceNetworkVpcAssociation, input, options)
 end
 
 function Client:getTargetGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTargetGroup",
-        input_schema = schemas.GetTargetGroupInput,
-        output_schema = schemas.GetTargetGroupOutput,
-        http_method = "GET",
-        http_path = "/targetgroups/{targetGroupIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTargetGroup, input, options)
 end
 
 function Client:listAccessLogSubscriptions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAccessLogSubscriptions",
-        input_schema = schemas.ListAccessLogSubscriptionsInput,
-        output_schema = schemas.ListAccessLogSubscriptionsOutput,
-        http_method = "GET",
-        http_path = "/accesslogsubscriptions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAccessLogSubscriptions, input, options)
 end
 
 function Client:listDomainVerifications(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDomainVerifications",
-        input_schema = schemas.ListDomainVerificationsInput,
-        output_schema = schemas.ListDomainVerificationsOutput,
-        http_method = "GET",
-        http_path = "/domainverifications",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDomainVerifications, input, options)
 end
 
 function Client:listListeners(input, options)
-    return self:invokeOperation(input, {
-        name = "ListListeners",
-        input_schema = schemas.ListListenersInput,
-        output_schema = schemas.ListListenersOutput,
-        http_method = "GET",
-        http_path = "/services/{serviceIdentifier}/listeners",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListListeners, input, options)
 end
 
 function Client:listResourceConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResourceConfigurations",
-        input_schema = schemas.ListResourceConfigurationsInput,
-        output_schema = schemas.ListResourceConfigurationsOutput,
-        http_method = "GET",
-        http_path = "/resourceconfigurations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResourceConfigurations, input, options)
 end
 
 function Client:listResourceEndpointAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResourceEndpointAssociations",
-        input_schema = schemas.ListResourceEndpointAssociationsInput,
-        output_schema = schemas.ListResourceEndpointAssociationsOutput,
-        http_method = "GET",
-        http_path = "/resourceendpointassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResourceEndpointAssociations, input, options)
 end
 
 function Client:listResourceGateways(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResourceGateways",
-        input_schema = schemas.ListResourceGatewaysInput,
-        output_schema = schemas.ListResourceGatewaysOutput,
-        http_method = "GET",
-        http_path = "/resourcegateways",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResourceGateways, input, options)
 end
 
 function Client:listRules(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRules",
-        input_schema = schemas.ListRulesInput,
-        output_schema = schemas.ListRulesOutput,
-        http_method = "GET",
-        http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRules, input, options)
 end
 
 function Client:listServiceNetworkResourceAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServiceNetworkResourceAssociations",
-        input_schema = schemas.ListServiceNetworkResourceAssociationsInput,
-        output_schema = schemas.ListServiceNetworkResourceAssociationsOutput,
-        http_method = "GET",
-        http_path = "/servicenetworkresourceassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServiceNetworkResourceAssociations, input, options)
 end
 
 function Client:listServiceNetworks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServiceNetworks",
-        input_schema = schemas.ListServiceNetworksInput,
-        output_schema = schemas.ListServiceNetworksOutput,
-        http_method = "GET",
-        http_path = "/servicenetworks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServiceNetworks, input, options)
 end
 
 function Client:listServiceNetworkServiceAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServiceNetworkServiceAssociations",
-        input_schema = schemas.ListServiceNetworkServiceAssociationsInput,
-        output_schema = schemas.ListServiceNetworkServiceAssociationsOutput,
-        http_method = "GET",
-        http_path = "/servicenetworkserviceassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServiceNetworkServiceAssociations, input, options)
 end
 
 function Client:listServiceNetworkVpcAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServiceNetworkVpcAssociations",
-        input_schema = schemas.ListServiceNetworkVpcAssociationsInput,
-        output_schema = schemas.ListServiceNetworkVpcAssociationsOutput,
-        http_method = "GET",
-        http_path = "/servicenetworkvpcassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServiceNetworkVpcAssociations, input, options)
 end
 
 function Client:listServiceNetworkVpcEndpointAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServiceNetworkVpcEndpointAssociations",
-        input_schema = schemas.ListServiceNetworkVpcEndpointAssociationsInput,
-        output_schema = schemas.ListServiceNetworkVpcEndpointAssociationsOutput,
-        http_method = "GET",
-        http_path = "/servicenetworkvpcendpointassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServiceNetworkVpcEndpointAssociations, input, options)
 end
 
 function Client:listServices(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServices",
-        input_schema = schemas.ListServicesInput,
-        output_schema = schemas.ListServicesOutput,
-        http_method = "GET",
-        http_path = "/services",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServices, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTargetGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTargetGroups",
-        input_schema = schemas.ListTargetGroupsInput,
-        output_schema = schemas.ListTargetGroupsOutput,
-        http_method = "GET",
-        http_path = "/targetgroups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTargetGroups, input, options)
 end
 
 function Client:listTargets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTargets",
-        input_schema = schemas.ListTargetsInput,
-        output_schema = schemas.ListTargetsOutput,
-        http_method = "POST",
-        http_path = "/targetgroups/{targetGroupIdentifier}/listtargets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTargets, input, options)
 end
 
 function Client:putAuthPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutAuthPolicy",
-        input_schema = schemas.PutAuthPolicyInput,
-        output_schema = schemas.PutAuthPolicyOutput,
-        http_method = "PUT",
-        http_path = "/authpolicy/{resourceIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutAuthPolicy, input, options)
 end
 
 function Client:putResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutResourcePolicy",
-        input_schema = schemas.PutResourcePolicyInput,
-        output_schema = schemas.PutResourcePolicyOutput,
-        http_method = "PUT",
-        http_path = "/resourcepolicy/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options)
 end
 
 function Client:registerTargets(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterTargets",
-        input_schema = schemas.RegisterTargetsInput,
-        output_schema = schemas.RegisterTargetsOutput,
-        http_method = "POST",
-        http_path = "/targetgroups/{targetGroupIdentifier}/registertargets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterTargets, input, options)
 end
 
 function Client:startDomainVerification(input, options)
-    return self:invokeOperation(input, {
-        name = "StartDomainVerification",
-        input_schema = schemas.StartDomainVerificationInput,
-        output_schema = schemas.StartDomainVerificationOutput,
-        http_method = "POST",
-        http_path = "/domainverifications",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartDomainVerification, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAccessLogSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAccessLogSubscription",
-        input_schema = schemas.UpdateAccessLogSubscriptionInput,
-        output_schema = schemas.UpdateAccessLogSubscriptionOutput,
-        http_method = "PATCH",
-        http_path = "/accesslogsubscriptions/{accessLogSubscriptionIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAccessLogSubscription, input, options)
 end
 
 function Client:updateListener(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateListener",
-        input_schema = schemas.UpdateListenerInput,
-        output_schema = schemas.UpdateListenerOutput,
-        http_method = "PATCH",
-        http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateListener, input, options)
 end
 
 function Client:updateResourceConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateResourceConfiguration",
-        input_schema = schemas.UpdateResourceConfigurationInput,
-        output_schema = schemas.UpdateResourceConfigurationOutput,
-        http_method = "PATCH",
-        http_path = "/resourceconfigurations/{resourceConfigurationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateResourceConfiguration, input, options)
 end
 
 function Client:updateResourceGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateResourceGateway",
-        input_schema = schemas.UpdateResourceGatewayInput,
-        output_schema = schemas.UpdateResourceGatewayOutput,
-        http_method = "PATCH",
-        http_path = "/resourcegateways/{resourceGatewayIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateResourceGateway, input, options)
 end
 
 function Client:updateRule(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRule",
-        input_schema = schemas.UpdateRuleInput,
-        output_schema = schemas.UpdateRuleOutput,
-        http_method = "PATCH",
-        http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules/{ruleIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRule, input, options)
 end
 
 function Client:updateService(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateService",
-        input_schema = schemas.UpdateServiceInput,
-        output_schema = schemas.UpdateServiceOutput,
-        http_method = "PATCH",
-        http_path = "/services/{serviceIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateService, input, options)
 end
 
 function Client:updateServiceNetwork(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateServiceNetwork",
-        input_schema = schemas.UpdateServiceNetworkInput,
-        output_schema = schemas.UpdateServiceNetworkOutput,
-        http_method = "PATCH",
-        http_path = "/servicenetworks/{serviceNetworkIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateServiceNetwork, input, options)
 end
 
 function Client:updateServiceNetworkVpcAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateServiceNetworkVpcAssociation",
-        input_schema = schemas.UpdateServiceNetworkVpcAssociationInput,
-        output_schema = schemas.UpdateServiceNetworkVpcAssociationOutput,
-        http_method = "PATCH",
-        http_path = "/servicenetworkvpcassociations/{serviceNetworkVpcAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateServiceNetworkVpcAssociation, input, options)
 end
 
 function Client:updateTargetGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTargetGroup",
-        input_schema = schemas.UpdateTargetGroupInput,
-        output_schema = schemas.UpdateTargetGroupOutput,
-        http_method = "PATCH",
-        http_path = "/targetgroups/{targetGroupIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTargetGroup, input, options)
 end
 
 return M

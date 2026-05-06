@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("timestreamquery.endpoint_rules")
 local schemas = require("timestreamquery.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "timestream", signing_region = cfg.region } }
                 else
@@ -49,198 +52,63 @@ function M.new(cfg)
 end
 
 function Client:cancelQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelQuery",
-        input_schema = schemas.CancelQueryInput,
-        output_schema = schemas.CancelQueryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelQuery, input, options)
 end
 
 function Client:createScheduledQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateScheduledQuery",
-        input_schema = schemas.CreateScheduledQueryInput,
-        output_schema = schemas.CreateScheduledQueryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateScheduledQuery, input, options)
 end
 
 function Client:deleteScheduledQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteScheduledQuery",
-        input_schema = schemas.DeleteScheduledQueryInput,
-        output_schema = schemas.DeleteScheduledQueryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteScheduledQuery, input, options)
 end
 
 function Client:describeAccountSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAccountSettings",
-        input_schema = schemas.DescribeAccountSettingsInput,
-        output_schema = schemas.DescribeAccountSettingsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAccountSettings, input, options)
 end
 
 function Client:describeEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEndpoints",
-        input_schema = schemas.DescribeEndpointsInput,
-        output_schema = schemas.DescribeEndpointsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEndpoints, input, options)
 end
 
 function Client:describeScheduledQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeScheduledQuery",
-        input_schema = schemas.DescribeScheduledQueryInput,
-        output_schema = schemas.DescribeScheduledQueryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeScheduledQuery, input, options)
 end
 
 function Client:executeScheduledQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "ExecuteScheduledQuery",
-        input_schema = schemas.ExecuteScheduledQueryInput,
-        output_schema = schemas.ExecuteScheduledQueryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExecuteScheduledQuery, input, options)
 end
 
 function Client:listScheduledQueries(input, options)
-    return self:invokeOperation(input, {
-        name = "ListScheduledQueries",
-        input_schema = schemas.ListScheduledQueriesInput,
-        output_schema = schemas.ListScheduledQueriesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListScheduledQueries, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:prepareQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "PrepareQuery",
-        input_schema = schemas.PrepareQueryInput,
-        output_schema = schemas.PrepareQueryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PrepareQuery, input, options)
 end
 
 function Client:query(input, options)
-    return self:invokeOperation(input, {
-        name = "Query",
-        input_schema = schemas.QueryInput,
-        output_schema = schemas.QueryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Query, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAccountSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAccountSettings",
-        input_schema = schemas.UpdateAccountSettingsInput,
-        output_schema = schemas.UpdateAccountSettingsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAccountSettings, input, options)
 end
 
 function Client:updateScheduledQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateScheduledQuery",
-        input_schema = schemas.UpdateScheduledQueryInput,
-        output_schema = schemas.UpdateScheduledQueryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateScheduledQuery, input, options)
 end
 
 return M

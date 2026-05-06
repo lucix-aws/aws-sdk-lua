@@ -9289,4 +9289,1081 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.configservice", "StarlingDoveService"),
+    version = "2014-11-12",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateResourceTypes = schema.operation({
+    id = id.from("com.amazonaws.configservice", "AssociateResourceTypes"),
+    input = M.AssociateResourceTypesInput,
+    output = M.AssociateResourceTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetAggregateResourceConfig = schema.operation({
+    id = id.from("com.amazonaws.configservice", "BatchGetAggregateResourceConfig"),
+    input = M.BatchGetAggregateResourceConfigInput,
+    output = M.BatchGetAggregateResourceConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetResourceConfig = schema.operation({
+    id = id.from("com.amazonaws.configservice", "BatchGetResourceConfig"),
+    input = M.BatchGetResourceConfigInput,
+    output = M.BatchGetResourceConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAggregationAuthorization = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteAggregationAuthorization"),
+    input = M.DeleteAggregationAuthorizationInput,
+    output = M.DeleteAggregationAuthorizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigRule = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteConfigRule"),
+    input = M.DeleteConfigRuleInput,
+    output = M.DeleteConfigRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationAggregator = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteConfigurationAggregator"),
+    input = M.DeleteConfigurationAggregatorInput,
+    output = M.DeleteConfigurationAggregatorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationRecorder = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteConfigurationRecorder"),
+    input = M.DeleteConfigurationRecorderInput,
+    output = M.DeleteConfigurationRecorderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConformancePack = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteConformancePack"),
+    input = M.DeleteConformancePackInput,
+    output = M.DeleteConformancePackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDeliveryChannel = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteDeliveryChannel"),
+    input = M.DeleteDeliveryChannelInput,
+    output = M.DeleteDeliveryChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEvaluationResults = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteEvaluationResults"),
+    input = M.DeleteEvaluationResultsInput,
+    output = M.DeleteEvaluationResultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOrganizationConfigRule = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteOrganizationConfigRule"),
+    input = M.DeleteOrganizationConfigRuleInput,
+    output = M.DeleteOrganizationConfigRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOrganizationConformancePack = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteOrganizationConformancePack"),
+    input = M.DeleteOrganizationConformancePackInput,
+    output = M.DeleteOrganizationConformancePackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePendingAggregationRequest = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeletePendingAggregationRequest"),
+    input = M.DeletePendingAggregationRequestInput,
+    output = M.DeletePendingAggregationRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRemediationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteRemediationConfiguration"),
+    input = M.DeleteRemediationConfigurationInput,
+    output = M.DeleteRemediationConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRemediationExceptions = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteRemediationExceptions"),
+    input = M.DeleteRemediationExceptionsInput,
+    output = M.DeleteRemediationExceptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourceConfig = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteResourceConfig"),
+    input = M.DeleteResourceConfigInput,
+    output = M.DeleteResourceConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRetentionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteRetentionConfiguration"),
+    input = M.DeleteRetentionConfigurationInput,
+    output = M.DeleteRetentionConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceLinkedConfigurationRecorder = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteServiceLinkedConfigurationRecorder"),
+    input = M.DeleteServiceLinkedConfigurationRecorderInput,
+    output = M.DeleteServiceLinkedConfigurationRecorderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStoredQuery = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteStoredQuery"),
+    input = M.DeleteStoredQueryInput,
+    output = M.DeleteStoredQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeliverConfigSnapshot = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeliverConfigSnapshot"),
+    input = M.DeliverConfigSnapshotInput,
+    output = M.DeliverConfigSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAggregateComplianceByConfigRules = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeAggregateComplianceByConfigRules"),
+    input = M.DescribeAggregateComplianceByConfigRulesInput,
+    output = M.DescribeAggregateComplianceByConfigRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAggregateComplianceByConformancePacks = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeAggregateComplianceByConformancePacks"),
+    input = M.DescribeAggregateComplianceByConformancePacksInput,
+    output = M.DescribeAggregateComplianceByConformancePacksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAggregationAuthorizations = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeAggregationAuthorizations"),
+    input = M.DescribeAggregationAuthorizationsInput,
+    output = M.DescribeAggregationAuthorizationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeComplianceByConfigRule = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeComplianceByConfigRule"),
+    input = M.DescribeComplianceByConfigRuleInput,
+    output = M.DescribeComplianceByConfigRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeComplianceByResource = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeComplianceByResource"),
+    input = M.DescribeComplianceByResourceInput,
+    output = M.DescribeComplianceByResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfigRuleEvaluationStatus = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeConfigRuleEvaluationStatus"),
+    input = M.DescribeConfigRuleEvaluationStatusInput,
+    output = M.DescribeConfigRuleEvaluationStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfigRules = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeConfigRules"),
+    input = M.DescribeConfigRulesInput,
+    output = M.DescribeConfigRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfigurationAggregators = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeConfigurationAggregators"),
+    input = M.DescribeConfigurationAggregatorsInput,
+    output = M.DescribeConfigurationAggregatorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfigurationAggregatorSourcesStatus = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeConfigurationAggregatorSourcesStatus"),
+    input = M.DescribeConfigurationAggregatorSourcesStatusInput,
+    output = M.DescribeConfigurationAggregatorSourcesStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfigurationRecorders = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeConfigurationRecorders"),
+    input = M.DescribeConfigurationRecordersInput,
+    output = M.DescribeConfigurationRecordersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfigurationRecorderStatus = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeConfigurationRecorderStatus"),
+    input = M.DescribeConfigurationRecorderStatusInput,
+    output = M.DescribeConfigurationRecorderStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConformancePackCompliance = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeConformancePackCompliance"),
+    input = M.DescribeConformancePackComplianceInput,
+    output = M.DescribeConformancePackComplianceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConformancePacks = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeConformancePacks"),
+    input = M.DescribeConformancePacksInput,
+    output = M.DescribeConformancePacksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConformancePackStatus = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeConformancePackStatus"),
+    input = M.DescribeConformancePackStatusInput,
+    output = M.DescribeConformancePackStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDeliveryChannels = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeDeliveryChannels"),
+    input = M.DescribeDeliveryChannelsInput,
+    output = M.DescribeDeliveryChannelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDeliveryChannelStatus = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeDeliveryChannelStatus"),
+    input = M.DescribeDeliveryChannelStatusInput,
+    output = M.DescribeDeliveryChannelStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrganizationConfigRules = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeOrganizationConfigRules"),
+    input = M.DescribeOrganizationConfigRulesInput,
+    output = M.DescribeOrganizationConfigRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrganizationConfigRuleStatuses = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeOrganizationConfigRuleStatuses"),
+    input = M.DescribeOrganizationConfigRuleStatusesInput,
+    output = M.DescribeOrganizationConfigRuleStatusesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrganizationConformancePacks = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeOrganizationConformancePacks"),
+    input = M.DescribeOrganizationConformancePacksInput,
+    output = M.DescribeOrganizationConformancePacksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrganizationConformancePackStatuses = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeOrganizationConformancePackStatuses"),
+    input = M.DescribeOrganizationConformancePackStatusesInput,
+    output = M.DescribeOrganizationConformancePackStatusesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePendingAggregationRequests = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribePendingAggregationRequests"),
+    input = M.DescribePendingAggregationRequestsInput,
+    output = M.DescribePendingAggregationRequestsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRemediationConfigurations = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeRemediationConfigurations"),
+    input = M.DescribeRemediationConfigurationsInput,
+    output = M.DescribeRemediationConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRemediationExceptions = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeRemediationExceptions"),
+    input = M.DescribeRemediationExceptionsInput,
+    output = M.DescribeRemediationExceptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRemediationExecutionStatus = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeRemediationExecutionStatus"),
+    input = M.DescribeRemediationExecutionStatusInput,
+    output = M.DescribeRemediationExecutionStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRetentionConfigurations = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DescribeRetentionConfigurations"),
+    input = M.DescribeRetentionConfigurationsInput,
+    output = M.DescribeRetentionConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateResourceTypes = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DisassociateResourceTypes"),
+    input = M.DisassociateResourceTypesInput,
+    output = M.DisassociateResourceTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAggregateComplianceDetailsByConfigRule = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetAggregateComplianceDetailsByConfigRule"),
+    input = M.GetAggregateComplianceDetailsByConfigRuleInput,
+    output = M.GetAggregateComplianceDetailsByConfigRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAggregateConfigRuleComplianceSummary = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetAggregateConfigRuleComplianceSummary"),
+    input = M.GetAggregateConfigRuleComplianceSummaryInput,
+    output = M.GetAggregateConfigRuleComplianceSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAggregateConformancePackComplianceSummary = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetAggregateConformancePackComplianceSummary"),
+    input = M.GetAggregateConformancePackComplianceSummaryInput,
+    output = M.GetAggregateConformancePackComplianceSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAggregateDiscoveredResourceCounts = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetAggregateDiscoveredResourceCounts"),
+    input = M.GetAggregateDiscoveredResourceCountsInput,
+    output = M.GetAggregateDiscoveredResourceCountsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAggregateResourceConfig = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetAggregateResourceConfig"),
+    input = M.GetAggregateResourceConfigInput,
+    output = M.GetAggregateResourceConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComplianceDetailsByConfigRule = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetComplianceDetailsByConfigRule"),
+    input = M.GetComplianceDetailsByConfigRuleInput,
+    output = M.GetComplianceDetailsByConfigRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComplianceDetailsByResource = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetComplianceDetailsByResource"),
+    input = M.GetComplianceDetailsByResourceInput,
+    output = M.GetComplianceDetailsByResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComplianceSummaryByConfigRule = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetComplianceSummaryByConfigRule"),
+    input = M.GetComplianceSummaryByConfigRuleInput,
+    output = M.GetComplianceSummaryByConfigRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComplianceSummaryByResourceType = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetComplianceSummaryByResourceType"),
+    input = M.GetComplianceSummaryByResourceTypeInput,
+    output = M.GetComplianceSummaryByResourceTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConformancePackComplianceDetails = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetConformancePackComplianceDetails"),
+    input = M.GetConformancePackComplianceDetailsInput,
+    output = M.GetConformancePackComplianceDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConformancePackComplianceSummary = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetConformancePackComplianceSummary"),
+    input = M.GetConformancePackComplianceSummaryInput,
+    output = M.GetConformancePackComplianceSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCustomRulePolicy = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetCustomRulePolicy"),
+    input = M.GetCustomRulePolicyInput,
+    output = M.GetCustomRulePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDiscoveredResourceCounts = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetDiscoveredResourceCounts"),
+    input = M.GetDiscoveredResourceCountsInput,
+    output = M.GetDiscoveredResourceCountsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOrganizationConfigRuleDetailedStatus = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetOrganizationConfigRuleDetailedStatus"),
+    input = M.GetOrganizationConfigRuleDetailedStatusInput,
+    output = M.GetOrganizationConfigRuleDetailedStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOrganizationConformancePackDetailedStatus = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetOrganizationConformancePackDetailedStatus"),
+    input = M.GetOrganizationConformancePackDetailedStatusInput,
+    output = M.GetOrganizationConformancePackDetailedStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOrganizationCustomRulePolicy = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetOrganizationCustomRulePolicy"),
+    input = M.GetOrganizationCustomRulePolicyInput,
+    output = M.GetOrganizationCustomRulePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceConfigHistory = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetResourceConfigHistory"),
+    input = M.GetResourceConfigHistoryInput,
+    output = M.GetResourceConfigHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceEvaluationSummary = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetResourceEvaluationSummary"),
+    input = M.GetResourceEvaluationSummaryInput,
+    output = M.GetResourceEvaluationSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStoredQuery = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetStoredQuery"),
+    input = M.GetStoredQueryInput,
+    output = M.GetStoredQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAggregateDiscoveredResources = schema.operation({
+    id = id.from("com.amazonaws.configservice", "ListAggregateDiscoveredResources"),
+    input = M.ListAggregateDiscoveredResourcesInput,
+    output = M.ListAggregateDiscoveredResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationRecorders = schema.operation({
+    id = id.from("com.amazonaws.configservice", "ListConfigurationRecorders"),
+    input = M.ListConfigurationRecordersInput,
+    output = M.ListConfigurationRecordersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConformancePackComplianceScores = schema.operation({
+    id = id.from("com.amazonaws.configservice", "ListConformancePackComplianceScores"),
+    input = M.ListConformancePackComplianceScoresInput,
+    output = M.ListConformancePackComplianceScoresOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDiscoveredResources = schema.operation({
+    id = id.from("com.amazonaws.configservice", "ListDiscoveredResources"),
+    input = M.ListDiscoveredResourcesInput,
+    output = M.ListDiscoveredResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceEvaluations = schema.operation({
+    id = id.from("com.amazonaws.configservice", "ListResourceEvaluations"),
+    input = M.ListResourceEvaluationsInput,
+    output = M.ListResourceEvaluationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStoredQueries = schema.operation({
+    id = id.from("com.amazonaws.configservice", "ListStoredQueries"),
+    input = M.ListStoredQueriesInput,
+    output = M.ListStoredQueriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.configservice", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAggregationAuthorization = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutAggregationAuthorization"),
+    input = M.PutAggregationAuthorizationInput,
+    output = M.PutAggregationAuthorizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConfigRule = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutConfigRule"),
+    input = M.PutConfigRuleInput,
+    output = M.PutConfigRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConfigurationAggregator = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutConfigurationAggregator"),
+    input = M.PutConfigurationAggregatorInput,
+    output = M.PutConfigurationAggregatorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConfigurationRecorder = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutConfigurationRecorder"),
+    input = M.PutConfigurationRecorderInput,
+    output = M.PutConfigurationRecorderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConformancePack = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutConformancePack"),
+    input = M.PutConformancePackInput,
+    output = M.PutConformancePackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDeliveryChannel = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutDeliveryChannel"),
+    input = M.PutDeliveryChannelInput,
+    output = M.PutDeliveryChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEvaluations = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutEvaluations"),
+    input = M.PutEvaluationsInput,
+    output = M.PutEvaluationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutExternalEvaluation = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutExternalEvaluation"),
+    input = M.PutExternalEvaluationInput,
+    output = M.PutExternalEvaluationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutOrganizationConfigRule = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutOrganizationConfigRule"),
+    input = M.PutOrganizationConfigRuleInput,
+    output = M.PutOrganizationConfigRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutOrganizationConformancePack = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutOrganizationConformancePack"),
+    input = M.PutOrganizationConformancePackInput,
+    output = M.PutOrganizationConformancePackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRemediationConfigurations = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutRemediationConfigurations"),
+    input = M.PutRemediationConfigurationsInput,
+    output = M.PutRemediationConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRemediationExceptions = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutRemediationExceptions"),
+    input = M.PutRemediationExceptionsInput,
+    output = M.PutRemediationExceptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourceConfig = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutResourceConfig"),
+    input = M.PutResourceConfigInput,
+    output = M.PutResourceConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRetentionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutRetentionConfiguration"),
+    input = M.PutRetentionConfigurationInput,
+    output = M.PutRetentionConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutServiceLinkedConfigurationRecorder = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutServiceLinkedConfigurationRecorder"),
+    input = M.PutServiceLinkedConfigurationRecorderInput,
+    output = M.PutServiceLinkedConfigurationRecorderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutStoredQuery = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutStoredQuery"),
+    input = M.PutStoredQueryInput,
+    output = M.PutStoredQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SelectAggregateResourceConfig = schema.operation({
+    id = id.from("com.amazonaws.configservice", "SelectAggregateResourceConfig"),
+    input = M.SelectAggregateResourceConfigInput,
+    output = M.SelectAggregateResourceConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SelectResourceConfig = schema.operation({
+    id = id.from("com.amazonaws.configservice", "SelectResourceConfig"),
+    input = M.SelectResourceConfigInput,
+    output = M.SelectResourceConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartConfigRulesEvaluation = schema.operation({
+    id = id.from("com.amazonaws.configservice", "StartConfigRulesEvaluation"),
+    input = M.StartConfigRulesEvaluationInput,
+    output = M.StartConfigRulesEvaluationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartConfigurationRecorder = schema.operation({
+    id = id.from("com.amazonaws.configservice", "StartConfigurationRecorder"),
+    input = M.StartConfigurationRecorderInput,
+    output = M.StartConfigurationRecorderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRemediationExecution = schema.operation({
+    id = id.from("com.amazonaws.configservice", "StartRemediationExecution"),
+    input = M.StartRemediationExecutionInput,
+    output = M.StartRemediationExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartResourceEvaluation = schema.operation({
+    id = id.from("com.amazonaws.configservice", "StartResourceEvaluation"),
+    input = M.StartResourceEvaluationInput,
+    output = M.StartResourceEvaluationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopConfigurationRecorder = schema.operation({
+    id = id.from("com.amazonaws.configservice", "StopConfigurationRecorder"),
+    input = M.StopConfigurationRecorderInput,
+    output = M.StopConfigurationRecorderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.configservice", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.configservice", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

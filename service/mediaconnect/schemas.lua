@@ -13592,4 +13592,998 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.mediaconnect", "MediaConnect"),
+    version = "2018-11-14",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddBridgeOutputs = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "AddBridgeOutputs"),
+    input = M.AddBridgeOutputsInput,
+    output = M.AddBridgeOutputsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/bridges/{BridgeArn}/outputs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddBridgeSources = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "AddBridgeSources"),
+    input = M.AddBridgeSourcesInput,
+    output = M.AddBridgeSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/bridges/{BridgeArn}/sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddFlowMediaStreams = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "AddFlowMediaStreams"),
+    input = M.AddFlowMediaStreamsInput,
+    output = M.AddFlowMediaStreamsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/flows/{FlowArn}/mediaStreams" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddFlowOutputs = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "AddFlowOutputs"),
+    input = M.AddFlowOutputsInput,
+    output = M.AddFlowOutputsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/flows/{FlowArn}/outputs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddFlowSources = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "AddFlowSources"),
+    input = M.AddFlowSourcesInput,
+    output = M.AddFlowSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/flows/{FlowArn}/source" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddFlowVpcInterfaces = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "AddFlowVpcInterfaces"),
+    input = M.AddFlowVpcInterfacesInput,
+    output = M.AddFlowVpcInterfacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/flows/{FlowArn}/vpcInterfaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetRouterInput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "BatchGetRouterInput"),
+    input = M.BatchGetRouterInputInput,
+    output = M.BatchGetRouterInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/routerInputs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetRouterNetworkInterface = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "BatchGetRouterNetworkInterface"),
+    input = M.BatchGetRouterNetworkInterfaceInput,
+    output = M.BatchGetRouterNetworkInterfaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/routerNetworkInterfaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetRouterOutput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "BatchGetRouterOutput"),
+    input = M.BatchGetRouterOutputInput,
+    output = M.BatchGetRouterOutputOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/routerOutputs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBridge = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "CreateBridge"),
+    input = M.CreateBridgeInput,
+    output = M.CreateBridgeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/bridges" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFlow = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "CreateFlow"),
+    input = M.CreateFlowInput,
+    output = M.CreateFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/flows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGateway = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "CreateGateway"),
+    input = M.CreateGatewayInput,
+    output = M.CreateGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/gateways" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRouterInput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "CreateRouterInput"),
+    input = M.CreateRouterInputInput,
+    output = M.CreateRouterInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/routerInput" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRouterNetworkInterface = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "CreateRouterNetworkInterface"),
+    input = M.CreateRouterNetworkInterfaceInput,
+    output = M.CreateRouterNetworkInterfaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/routerNetworkInterface" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRouterOutput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "CreateRouterOutput"),
+    input = M.CreateRouterOutputInput,
+    output = M.CreateRouterOutputOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/routerOutput" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBridge = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DeleteBridge"),
+    input = M.DeleteBridgeInput,
+    output = M.DeleteBridgeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/bridges/{BridgeArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFlow = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DeleteFlow"),
+    input = M.DeleteFlowInput,
+    output = M.DeleteFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/flows/{FlowArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGateway = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DeleteGateway"),
+    input = M.DeleteGatewayInput,
+    output = M.DeleteGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/gateways/{GatewayArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRouterInput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DeleteRouterInput"),
+    input = M.DeleteRouterInputInput,
+    output = M.DeleteRouterInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/routerInput/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRouterNetworkInterface = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DeleteRouterNetworkInterface"),
+    input = M.DeleteRouterNetworkInterfaceInput,
+    output = M.DeleteRouterNetworkInterfaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/routerNetworkInterface/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRouterOutput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DeleteRouterOutput"),
+    input = M.DeleteRouterOutputInput,
+    output = M.DeleteRouterOutputOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/routerOutput/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterGatewayInstance = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DeregisterGatewayInstance"),
+    input = M.DeregisterGatewayInstanceInput,
+    output = M.DeregisterGatewayInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/gateway-instances/{GatewayInstanceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBridge = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DescribeBridge"),
+    input = M.DescribeBridgeInput,
+    output = M.DescribeBridgeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/bridges/{BridgeArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFlow = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DescribeFlow"),
+    input = M.DescribeFlowInput,
+    output = M.DescribeFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/flows/{FlowArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFlowSourceMetadata = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DescribeFlowSourceMetadata"),
+    input = M.DescribeFlowSourceMetadataInput,
+    output = M.DescribeFlowSourceMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/flows/{FlowArn}/source-metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFlowSourceThumbnail = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DescribeFlowSourceThumbnail"),
+    input = M.DescribeFlowSourceThumbnailInput,
+    output = M.DescribeFlowSourceThumbnailOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/flows/{FlowArn}/source-thumbnail" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGateway = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DescribeGateway"),
+    input = M.DescribeGatewayInput,
+    output = M.DescribeGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/gateways/{GatewayArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGatewayInstance = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DescribeGatewayInstance"),
+    input = M.DescribeGatewayInstanceInput,
+    output = M.DescribeGatewayInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/gateway-instances/{GatewayInstanceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOffering = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DescribeOffering"),
+    input = M.DescribeOfferingInput,
+    output = M.DescribeOfferingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/offerings/{OfferingArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReservation = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DescribeReservation"),
+    input = M.DescribeReservationInput,
+    output = M.DescribeReservationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/reservations/{ReservationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRouterInput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "GetRouterInput"),
+    input = M.GetRouterInputInput,
+    output = M.GetRouterInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/routerInput/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRouterInputSourceMetadata = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "GetRouterInputSourceMetadata"),
+    input = M.GetRouterInputSourceMetadataInput,
+    output = M.GetRouterInputSourceMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/routerInput/{Arn}/source-metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRouterInputThumbnail = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "GetRouterInputThumbnail"),
+    input = M.GetRouterInputThumbnailInput,
+    output = M.GetRouterInputThumbnailOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/routerInput/{Arn}/thumbnail" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRouterNetworkInterface = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "GetRouterNetworkInterface"),
+    input = M.GetRouterNetworkInterfaceInput,
+    output = M.GetRouterNetworkInterfaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/routerNetworkInterface/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRouterOutput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "GetRouterOutput"),
+    input = M.GetRouterOutputInput,
+    output = M.GetRouterOutputOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/routerOutput/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GrantFlowEntitlements = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "GrantFlowEntitlements"),
+    input = M.GrantFlowEntitlementsInput,
+    output = M.GrantFlowEntitlementsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/flows/{FlowArn}/entitlements" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBridges = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ListBridges"),
+    input = M.ListBridgesInput,
+    output = M.ListBridgesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/bridges" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEntitlements = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ListEntitlements"),
+    input = M.ListEntitlementsInput,
+    output = M.ListEntitlementsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/entitlements" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlows = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ListFlows"),
+    input = M.ListFlowsInput,
+    output = M.ListFlowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/flows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGatewayInstances = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ListGatewayInstances"),
+    input = M.ListGatewayInstancesInput,
+    output = M.ListGatewayInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/gateway-instances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGateways = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ListGateways"),
+    input = M.ListGatewaysInput,
+    output = M.ListGatewaysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/gateways" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOfferings = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ListOfferings"),
+    input = M.ListOfferingsInput,
+    output = M.ListOfferingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/offerings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReservations = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ListReservations"),
+    input = M.ListReservationsInput,
+    output = M.ListReservationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/reservations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRouterInputs = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ListRouterInputs"),
+    input = M.ListRouterInputsInput,
+    output = M.ListRouterInputsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/routerInputs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRouterNetworkInterfaces = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ListRouterNetworkInterfaces"),
+    input = M.ListRouterNetworkInterfacesInput,
+    output = M.ListRouterNetworkInterfacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/routerNetworkInterfaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRouterOutputs = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ListRouterOutputs"),
+    input = M.ListRouterOutputsInput,
+    output = M.ListRouterOutputsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/routerOutputs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForGlobalResource = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ListTagsForGlobalResource"),
+    input = M.ListTagsForGlobalResourceInput,
+    output = M.ListTagsForGlobalResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/global/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PurchaseOffering = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "PurchaseOffering"),
+    input = M.PurchaseOfferingInput,
+    output = M.PurchaseOfferingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/offerings/{OfferingArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveBridgeOutput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "RemoveBridgeOutput"),
+    input = M.RemoveBridgeOutputInput,
+    output = M.RemoveBridgeOutputOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/bridges/{BridgeArn}/outputs/{OutputName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveBridgeSource = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "RemoveBridgeSource"),
+    input = M.RemoveBridgeSourceInput,
+    output = M.RemoveBridgeSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/bridges/{BridgeArn}/sources/{SourceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveFlowMediaStream = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "RemoveFlowMediaStream"),
+    input = M.RemoveFlowMediaStreamInput,
+    output = M.RemoveFlowMediaStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/flows/{FlowArn}/mediaStreams/{MediaStreamName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveFlowOutput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "RemoveFlowOutput"),
+    input = M.RemoveFlowOutputInput,
+    output = M.RemoveFlowOutputOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/flows/{FlowArn}/outputs/{OutputArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveFlowSource = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "RemoveFlowSource"),
+    input = M.RemoveFlowSourceInput,
+    output = M.RemoveFlowSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/flows/{FlowArn}/source/{SourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveFlowVpcInterface = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "RemoveFlowVpcInterface"),
+    input = M.RemoveFlowVpcInterfaceInput,
+    output = M.RemoveFlowVpcInterfaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/flows/{FlowArn}/vpcInterfaces/{VpcInterfaceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestartRouterInput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "RestartRouterInput"),
+    input = M.RestartRouterInputInput,
+    output = M.RestartRouterInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/routerInput/restart/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestartRouterOutput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "RestartRouterOutput"),
+    input = M.RestartRouterOutputInput,
+    output = M.RestartRouterOutputOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/routerOutput/restart/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeFlowEntitlement = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "RevokeFlowEntitlement"),
+    input = M.RevokeFlowEntitlementInput,
+    output = M.RevokeFlowEntitlementOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/flows/{FlowArn}/entitlements/{EntitlementArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFlow = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "StartFlow"),
+    input = M.StartFlowInput,
+    output = M.StartFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/flows/start/{FlowArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRouterInput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "StartRouterInput"),
+    input = M.StartRouterInputInput,
+    output = M.StartRouterInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/routerInput/start/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRouterOutput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "StartRouterOutput"),
+    input = M.StartRouterOutputInput,
+    output = M.StartRouterOutputOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/routerOutput/start/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopFlow = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "StopFlow"),
+    input = M.StopFlowInput,
+    output = M.StopFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/flows/stop/{FlowArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopRouterInput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "StopRouterInput"),
+    input = M.StopRouterInputInput,
+    output = M.StopRouterInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/routerInput/stop/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopRouterOutput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "StopRouterOutput"),
+    input = M.StopRouterOutputInput,
+    output = M.StopRouterOutputOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/routerOutput/stop/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagGlobalResource = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "TagGlobalResource"),
+    input = M.TagGlobalResourceInput,
+    output = M.TagGlobalResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/global/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TakeRouterInput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "TakeRouterInput"),
+    input = M.TakeRouterInputInput,
+    output = M.TakeRouterInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/routerOutput/takeRouterInput/{RouterOutputArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagGlobalResource = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UntagGlobalResource"),
+    input = M.UntagGlobalResourceInput,
+    output = M.UntagGlobalResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/global/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBridge = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateBridge"),
+    input = M.UpdateBridgeInput,
+    output = M.UpdateBridgeOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/bridges/{BridgeArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBridgeOutput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateBridgeOutput"),
+    input = M.UpdateBridgeOutputInput,
+    output = M.UpdateBridgeOutputOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/bridges/{BridgeArn}/outputs/{OutputName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBridgeSource = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateBridgeSource"),
+    input = M.UpdateBridgeSourceInput,
+    output = M.UpdateBridgeSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/bridges/{BridgeArn}/sources/{SourceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBridgeState = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateBridgeState"),
+    input = M.UpdateBridgeStateInput,
+    output = M.UpdateBridgeStateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/bridges/{BridgeArn}/state" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFlow = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateFlow"),
+    input = M.UpdateFlowInput,
+    output = M.UpdateFlowOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/flows/{FlowArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFlowEntitlement = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateFlowEntitlement"),
+    input = M.UpdateFlowEntitlementInput,
+    output = M.UpdateFlowEntitlementOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/flows/{FlowArn}/entitlements/{EntitlementArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFlowMediaStream = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateFlowMediaStream"),
+    input = M.UpdateFlowMediaStreamInput,
+    output = M.UpdateFlowMediaStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/flows/{FlowArn}/mediaStreams/{MediaStreamName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFlowOutput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateFlowOutput"),
+    input = M.UpdateFlowOutputInput,
+    output = M.UpdateFlowOutputOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/flows/{FlowArn}/outputs/{OutputArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFlowSource = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateFlowSource"),
+    input = M.UpdateFlowSourceInput,
+    output = M.UpdateFlowSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/flows/{FlowArn}/source/{SourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGatewayInstance = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateGatewayInstance"),
+    input = M.UpdateGatewayInstanceInput,
+    output = M.UpdateGatewayInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/gateway-instances/{GatewayInstanceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRouterInput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateRouterInput"),
+    input = M.UpdateRouterInputInput,
+    output = M.UpdateRouterInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/routerInput/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRouterNetworkInterface = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateRouterNetworkInterface"),
+    input = M.UpdateRouterNetworkInterfaceInput,
+    output = M.UpdateRouterNetworkInterfaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/routerNetworkInterface/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRouterOutput = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateRouterOutput"),
+    input = M.UpdateRouterOutputInput,
+    output = M.UpdateRouterOutputOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/routerOutput/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

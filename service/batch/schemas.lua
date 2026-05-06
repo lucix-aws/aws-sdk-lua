@@ -8019,4 +8019,554 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.batch", "AWSBatchV20160810"),
+    version = "2016-08-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelJob = schema.operation({
+    id = id.from("com.amazonaws.batch", "CancelJob"),
+    input = M.CancelJobInput,
+    output = M.CancelJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/canceljob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateComputeEnvironment = schema.operation({
+    id = id.from("com.amazonaws.batch", "CreateComputeEnvironment"),
+    input = M.CreateComputeEnvironmentInput,
+    output = M.CreateComputeEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/createcomputeenvironment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConsumableResource = schema.operation({
+    id = id.from("com.amazonaws.batch", "CreateConsumableResource"),
+    input = M.CreateConsumableResourceInput,
+    output = M.CreateConsumableResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/createconsumableresource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateJobQueue = schema.operation({
+    id = id.from("com.amazonaws.batch", "CreateJobQueue"),
+    input = M.CreateJobQueueInput,
+    output = M.CreateJobQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/createjobqueue" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQuotaShare = schema.operation({
+    id = id.from("com.amazonaws.batch", "CreateQuotaShare"),
+    input = M.CreateQuotaShareInput,
+    output = M.CreateQuotaShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/createquotashare" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSchedulingPolicy = schema.operation({
+    id = id.from("com.amazonaws.batch", "CreateSchedulingPolicy"),
+    input = M.CreateSchedulingPolicyInput,
+    output = M.CreateSchedulingPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/createschedulingpolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServiceEnvironment = schema.operation({
+    id = id.from("com.amazonaws.batch", "CreateServiceEnvironment"),
+    input = M.CreateServiceEnvironmentInput,
+    output = M.CreateServiceEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/createserviceenvironment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteComputeEnvironment = schema.operation({
+    id = id.from("com.amazonaws.batch", "DeleteComputeEnvironment"),
+    input = M.DeleteComputeEnvironmentInput,
+    output = M.DeleteComputeEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/deletecomputeenvironment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConsumableResource = schema.operation({
+    id = id.from("com.amazonaws.batch", "DeleteConsumableResource"),
+    input = M.DeleteConsumableResourceInput,
+    output = M.DeleteConsumableResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/deleteconsumableresource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteJobQueue = schema.operation({
+    id = id.from("com.amazonaws.batch", "DeleteJobQueue"),
+    input = M.DeleteJobQueueInput,
+    output = M.DeleteJobQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/deletejobqueue" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQuotaShare = schema.operation({
+    id = id.from("com.amazonaws.batch", "DeleteQuotaShare"),
+    input = M.DeleteQuotaShareInput,
+    output = M.DeleteQuotaShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/deletequotashare" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSchedulingPolicy = schema.operation({
+    id = id.from("com.amazonaws.batch", "DeleteSchedulingPolicy"),
+    input = M.DeleteSchedulingPolicyInput,
+    output = M.DeleteSchedulingPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/deleteschedulingpolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceEnvironment = schema.operation({
+    id = id.from("com.amazonaws.batch", "DeleteServiceEnvironment"),
+    input = M.DeleteServiceEnvironmentInput,
+    output = M.DeleteServiceEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/deleteserviceenvironment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterJobDefinition = schema.operation({
+    id = id.from("com.amazonaws.batch", "DeregisterJobDefinition"),
+    input = M.DeregisterJobDefinitionInput,
+    output = M.DeregisterJobDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/deregisterjobdefinition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeComputeEnvironments = schema.operation({
+    id = id.from("com.amazonaws.batch", "DescribeComputeEnvironments"),
+    input = M.DescribeComputeEnvironmentsInput,
+    output = M.DescribeComputeEnvironmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/describecomputeenvironments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConsumableResource = schema.operation({
+    id = id.from("com.amazonaws.batch", "DescribeConsumableResource"),
+    input = M.DescribeConsumableResourceInput,
+    output = M.DescribeConsumableResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/describeconsumableresource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobDefinitions = schema.operation({
+    id = id.from("com.amazonaws.batch", "DescribeJobDefinitions"),
+    input = M.DescribeJobDefinitionsInput,
+    output = M.DescribeJobDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/describejobdefinitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobQueues = schema.operation({
+    id = id.from("com.amazonaws.batch", "DescribeJobQueues"),
+    input = M.DescribeJobQueuesInput,
+    output = M.DescribeJobQueuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/describejobqueues" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobs = schema.operation({
+    id = id.from("com.amazonaws.batch", "DescribeJobs"),
+    input = M.DescribeJobsInput,
+    output = M.DescribeJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/describejobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeQuotaShare = schema.operation({
+    id = id.from("com.amazonaws.batch", "DescribeQuotaShare"),
+    input = M.DescribeQuotaShareInput,
+    output = M.DescribeQuotaShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/describequotashare" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSchedulingPolicies = schema.operation({
+    id = id.from("com.amazonaws.batch", "DescribeSchedulingPolicies"),
+    input = M.DescribeSchedulingPoliciesInput,
+    output = M.DescribeSchedulingPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/describeschedulingpolicies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServiceEnvironments = schema.operation({
+    id = id.from("com.amazonaws.batch", "DescribeServiceEnvironments"),
+    input = M.DescribeServiceEnvironmentsInput,
+    output = M.DescribeServiceEnvironmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/describeserviceenvironments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServiceJob = schema.operation({
+    id = id.from("com.amazonaws.batch", "DescribeServiceJob"),
+    input = M.DescribeServiceJobInput,
+    output = M.DescribeServiceJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/describeservicejob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJobQueueSnapshot = schema.operation({
+    id = id.from("com.amazonaws.batch", "GetJobQueueSnapshot"),
+    input = M.GetJobQueueSnapshotInput,
+    output = M.GetJobQueueSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/getjobqueuesnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConsumableResources = schema.operation({
+    id = id.from("com.amazonaws.batch", "ListConsumableResources"),
+    input = M.ListConsumableResourcesInput,
+    output = M.ListConsumableResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/listconsumableresources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobs = schema.operation({
+    id = id.from("com.amazonaws.batch", "ListJobs"),
+    input = M.ListJobsInput,
+    output = M.ListJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/listjobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobsByConsumableResource = schema.operation({
+    id = id.from("com.amazonaws.batch", "ListJobsByConsumableResource"),
+    input = M.ListJobsByConsumableResourceInput,
+    output = M.ListJobsByConsumableResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/listjobsbyconsumableresource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQuotaShares = schema.operation({
+    id = id.from("com.amazonaws.batch", "ListQuotaShares"),
+    input = M.ListQuotaSharesInput,
+    output = M.ListQuotaSharesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/listquotashares" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSchedulingPolicies = schema.operation({
+    id = id.from("com.amazonaws.batch", "ListSchedulingPolicies"),
+    input = M.ListSchedulingPoliciesInput,
+    output = M.ListSchedulingPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/listschedulingpolicies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceJobs = schema.operation({
+    id = id.from("com.amazonaws.batch", "ListServiceJobs"),
+    input = M.ListServiceJobsInput,
+    output = M.ListServiceJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/listservicejobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.batch", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterJobDefinition = schema.operation({
+    id = id.from("com.amazonaws.batch", "RegisterJobDefinition"),
+    input = M.RegisterJobDefinitionInput,
+    output = M.RegisterJobDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/registerjobdefinition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SubmitJob = schema.operation({
+    id = id.from("com.amazonaws.batch", "SubmitJob"),
+    input = M.SubmitJobInput,
+    output = M.SubmitJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/submitjob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SubmitServiceJob = schema.operation({
+    id = id.from("com.amazonaws.batch", "SubmitServiceJob"),
+    input = M.SubmitServiceJobInput,
+    output = M.SubmitServiceJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/submitservicejob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.batch", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateJob = schema.operation({
+    id = id.from("com.amazonaws.batch", "TerminateJob"),
+    input = M.TerminateJobInput,
+    output = M.TerminateJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/terminatejob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateServiceJob = schema.operation({
+    id = id.from("com.amazonaws.batch", "TerminateServiceJob"),
+    input = M.TerminateServiceJobInput,
+    output = M.TerminateServiceJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/terminateservicejob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.batch", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateComputeEnvironment = schema.operation({
+    id = id.from("com.amazonaws.batch", "UpdateComputeEnvironment"),
+    input = M.UpdateComputeEnvironmentInput,
+    output = M.UpdateComputeEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/updatecomputeenvironment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConsumableResource = schema.operation({
+    id = id.from("com.amazonaws.batch", "UpdateConsumableResource"),
+    input = M.UpdateConsumableResourceInput,
+    output = M.UpdateConsumableResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/updateconsumableresource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateJobQueue = schema.operation({
+    id = id.from("com.amazonaws.batch", "UpdateJobQueue"),
+    input = M.UpdateJobQueueInput,
+    output = M.UpdateJobQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/updatejobqueue" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQuotaShare = schema.operation({
+    id = id.from("com.amazonaws.batch", "UpdateQuotaShare"),
+    input = M.UpdateQuotaShareInput,
+    output = M.UpdateQuotaShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/updatequotashare" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSchedulingPolicy = schema.operation({
+    id = id.from("com.amazonaws.batch", "UpdateSchedulingPolicy"),
+    input = M.UpdateSchedulingPolicyInput,
+    output = M.UpdateSchedulingPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/updateschedulingpolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceEnvironment = schema.operation({
+    id = id.from("com.amazonaws.batch", "UpdateServiceEnvironment"),
+    input = M.UpdateServiceEnvironmentInput,
+    output = M.UpdateServiceEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/updateserviceenvironment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceJob = schema.operation({
+    id = id.from("com.amazonaws.batch", "UpdateServiceJob"),
+    input = M.UpdateServiceJobInput,
+    output = M.UpdateServiceJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/updateservicejob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

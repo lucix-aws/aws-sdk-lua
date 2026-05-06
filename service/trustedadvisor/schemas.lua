@@ -1998,4 +1998,146 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.trustedadvisor", "TrustedAdvisor"),
+    version = "2022-09-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateRecommendationResourceExclusion = schema.operation({
+    id = id.from("com.amazonaws.trustedadvisor", "BatchUpdateRecommendationResourceExclusion"),
+    input = M.BatchUpdateRecommendationResourceExclusionInput,
+    output = M.BatchUpdateRecommendationResourceExclusionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/batch-update-recommendation-resource-exclusion" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOrganizationRecommendation = schema.operation({
+    id = id.from("com.amazonaws.trustedadvisor", "GetOrganizationRecommendation"),
+    input = M.GetOrganizationRecommendationInput,
+    output = M.GetOrganizationRecommendationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommendation = schema.operation({
+    id = id.from("com.amazonaws.trustedadvisor", "GetRecommendation"),
+    input = M.GetRecommendationInput,
+    output = M.GetRecommendationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/recommendations/{recommendationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChecks = schema.operation({
+    id = id.from("com.amazonaws.trustedadvisor", "ListChecks"),
+    input = M.ListChecksInput,
+    output = M.ListChecksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/checks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOrganizationRecommendationAccounts = schema.operation({
+    id = id.from("com.amazonaws.trustedadvisor", "ListOrganizationRecommendationAccounts"),
+    input = M.ListOrganizationRecommendationAccountsInput,
+    output = M.ListOrganizationRecommendationAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}/accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOrganizationRecommendationResources = schema.operation({
+    id = id.from("com.amazonaws.trustedadvisor", "ListOrganizationRecommendationResources"),
+    input = M.ListOrganizationRecommendationResourcesInput,
+    output = M.ListOrganizationRecommendationResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}/resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOrganizationRecommendations = schema.operation({
+    id = id.from("com.amazonaws.trustedadvisor", "ListOrganizationRecommendations"),
+    input = M.ListOrganizationRecommendationsInput,
+    output = M.ListOrganizationRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/organization-recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommendationResources = schema.operation({
+    id = id.from("com.amazonaws.trustedadvisor", "ListRecommendationResources"),
+    input = M.ListRecommendationResourcesInput,
+    output = M.ListRecommendationResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/recommendations/{recommendationIdentifier}/resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommendations = schema.operation({
+    id = id.from("com.amazonaws.trustedadvisor", "ListRecommendations"),
+    input = M.ListRecommendationsInput,
+    output = M.ListRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOrganizationRecommendationLifecycle = schema.operation({
+    id = id.from("com.amazonaws.trustedadvisor", "UpdateOrganizationRecommendationLifecycle"),
+    input = M.UpdateOrganizationRecommendationLifecycleInput,
+    output = M.UpdateOrganizationRecommendationLifecycleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}/lifecycle" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecommendationLifecycle = schema.operation({
+    id = id.from("com.amazonaws.trustedadvisor", "UpdateRecommendationLifecycle"),
+    input = M.UpdateRecommendationLifecycleInput,
+    output = M.UpdateRecommendationLifecycleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/recommendations/{recommendationIdentifier}/lifecycle" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

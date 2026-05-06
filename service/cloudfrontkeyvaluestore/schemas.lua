@@ -634,4 +634,104 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cloudfrontkeyvaluestore", "CloudFrontKeyValueStore"),
+    version = "2022-07-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKey = schema.operation({
+    id = id.from("com.amazonaws.cloudfrontkeyvaluestore", "DeleteKey"),
+    input = M.DeleteKeyInput,
+    output = M.DeleteKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/key-value-stores/{KvsARN}/keys/{Key}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            KvsARN = "KvsARN",
+        },
+    },
+})
+
+M.DescribeKeyValueStore = schema.operation({
+    id = id.from("com.amazonaws.cloudfrontkeyvaluestore", "DescribeKeyValueStore"),
+    input = M.DescribeKeyValueStoreInput,
+    output = M.DescribeKeyValueStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/key-value-stores/{KvsARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            KvsARN = "KvsARN",
+        },
+    },
+})
+
+M.GetKey = schema.operation({
+    id = id.from("com.amazonaws.cloudfrontkeyvaluestore", "GetKey"),
+    input = M.GetKeyInput,
+    output = M.GetKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/key-value-stores/{KvsARN}/keys/{Key}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            KvsARN = "KvsARN",
+        },
+    },
+})
+
+M.ListKeys = schema.operation({
+    id = id.from("com.amazonaws.cloudfrontkeyvaluestore", "ListKeys"),
+    input = M.ListKeysInput,
+    output = M.ListKeysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/key-value-stores/{KvsARN}/keys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            KvsARN = "KvsARN",
+        },
+    },
+})
+
+M.PutKey = schema.operation({
+    id = id.from("com.amazonaws.cloudfrontkeyvaluestore", "PutKey"),
+    input = M.PutKeyInput,
+    output = M.PutKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/key-value-stores/{KvsARN}/keys/{Key}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            KvsARN = "KvsARN",
+        },
+    },
+})
+
+M.UpdateKeys = schema.operation({
+    id = id.from("com.amazonaws.cloudfrontkeyvaluestore", "UpdateKeys"),
+    input = M.UpdateKeysInput,
+    output = M.UpdateKeysOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/key-value-stores/{KvsARN}/keys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            KvsARN = "KvsARN",
+        },
+    },
+})
+
 return M

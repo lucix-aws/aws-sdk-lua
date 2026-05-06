@@ -10179,4 +10179,1011 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.qbusiness", "ExpertQ"),
+    version = "2023-11-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociatePermission = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "AssociatePermission"),
+    input = M.AssociatePermissionInput,
+    output = M.AssociatePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteDocument = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "BatchDeleteDocument"),
+    input = M.BatchDeleteDocumentInput,
+    output = M.BatchDeleteDocumentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/indices/{indexId}/documents/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchPutDocument = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "BatchPutDocument"),
+    input = M.BatchPutDocumentInput,
+    output = M.BatchPutDocumentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/indices/{indexId}/documents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelSubscription = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "CancelSubscription"),
+    input = M.CancelSubscriptionInput,
+    output = M.CancelSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/subscriptions/{subscriptionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Chat = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "Chat"),
+    input = M.ChatInput,
+    output = M.ChatOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/conversations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.ChatOutputStream,
+    },
+})
+
+M.ChatSync = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ChatSync"),
+    input = M.ChatSyncInput,
+    output = M.ChatSyncOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/conversations?sync" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckDocumentAccess = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "CheckDocumentAccess"),
+    input = M.CheckDocumentAccessInput,
+    output = M.CheckDocumentAccessOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/index/{indexId}/users/{userId}/documents/{documentId}/check-document-access" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAnonymousWebExperienceUrl = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "CreateAnonymousWebExperienceUrl"),
+    input = M.CreateAnonymousWebExperienceUrlInput,
+    output = M.CreateAnonymousWebExperienceUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/experiences/{webExperienceId}/anonymous-url" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChatResponseConfiguration = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "CreateChatResponseConfiguration"),
+    input = M.CreateChatResponseConfigurationInput,
+    output = M.CreateChatResponseConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/chatresponseconfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataAccessor = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "CreateDataAccessor"),
+    input = M.CreateDataAccessorInput,
+    output = M.CreateDataAccessorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/dataaccessors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataSource = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "CreateDataSource"),
+    input = M.CreateDataSourceInput,
+    output = M.CreateDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/indices/{indexId}/datasources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIndex = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "CreateIndex"),
+    input = M.CreateIndexInput,
+    output = M.CreateIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/indices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePlugin = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "CreatePlugin"),
+    input = M.CreatePluginInput,
+    output = M.CreatePluginOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/plugins" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRetriever = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "CreateRetriever"),
+    input = M.CreateRetrieverInput,
+    output = M.CreateRetrieverOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/retrievers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSubscription = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "CreateSubscription"),
+    input = M.CreateSubscriptionInput,
+    output = M.CreateSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/subscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWebExperience = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "CreateWebExperience"),
+    input = M.CreateWebExperienceInput,
+    output = M.CreateWebExperienceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/experiences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAttachment = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "DeleteAttachment"),
+    input = M.DeleteAttachmentInput,
+    output = M.DeleteAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/conversations/{conversationId}/attachments/{attachmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChatControlsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "DeleteChatControlsConfiguration"),
+    input = M.DeleteChatControlsConfigurationInput,
+    output = M.DeleteChatControlsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/chatcontrols" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChatResponseConfiguration = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "DeleteChatResponseConfiguration"),
+    input = M.DeleteChatResponseConfigurationInput,
+    output = M.DeleteChatResponseConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/chatresponseconfigurations/{chatResponseConfigurationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConversation = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "DeleteConversation"),
+    input = M.DeleteConversationInput,
+    output = M.DeleteConversationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/conversations/{conversationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataAccessor = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "DeleteDataAccessor"),
+    input = M.DeleteDataAccessorInput,
+    output = M.DeleteDataAccessorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/dataaccessors/{dataAccessorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataSource = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "DeleteDataSource"),
+    input = M.DeleteDataSourceInput,
+    output = M.DeleteDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGroup = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "DeleteGroup"),
+    input = M.DeleteGroupInput,
+    output = M.DeleteGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/indices/{indexId}/groups/{groupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIndex = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "DeleteIndex"),
+    input = M.DeleteIndexInput,
+    output = M.DeleteIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/indices/{indexId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePlugin = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "DeletePlugin"),
+    input = M.DeletePluginInput,
+    output = M.DeletePluginOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/plugins/{pluginId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRetriever = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "DeleteRetriever"),
+    input = M.DeleteRetrieverInput,
+    output = M.DeleteRetrieverOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/retrievers/{retrieverId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/users/{userId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWebExperience = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "DeleteWebExperience"),
+    input = M.DeleteWebExperienceInput,
+    output = M.DeleteWebExperienceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/experiences/{webExperienceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociatePermission = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "DisassociatePermission"),
+    input = M.DisassociatePermissionInput,
+    output = M.DisassociatePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/policy/{statementId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplication = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "GetApplication"),
+    input = M.GetApplicationInput,
+    output = M.GetApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChatControlsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "GetChatControlsConfiguration"),
+    input = M.GetChatControlsConfigurationInput,
+    output = M.GetChatControlsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/chatcontrols" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChatResponseConfiguration = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "GetChatResponseConfiguration"),
+    input = M.GetChatResponseConfigurationInput,
+    output = M.GetChatResponseConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/chatresponseconfigurations/{chatResponseConfigurationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataAccessor = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "GetDataAccessor"),
+    input = M.GetDataAccessorInput,
+    output = M.GetDataAccessorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/dataaccessors/{dataAccessorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataSource = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "GetDataSource"),
+    input = M.GetDataSourceInput,
+    output = M.GetDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDocumentContent = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "GetDocumentContent"),
+    input = M.GetDocumentContentInput,
+    output = M.GetDocumentContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/index/{indexId}/documents/{documentId}/content" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGroup = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "GetGroup"),
+    input = M.GetGroupInput,
+    output = M.GetGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/indices/{indexId}/groups/{groupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIndex = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "GetIndex"),
+    input = M.GetIndexInput,
+    output = M.GetIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/indices/{indexId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMedia = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "GetMedia"),
+    input = M.GetMediaInput,
+    output = M.GetMediaOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/conversations/{conversationId}/messages/{messageId}/media/{mediaId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPlugin = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "GetPlugin"),
+    input = M.GetPluginInput,
+    output = M.GetPluginOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/plugins/{pluginId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicy = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "GetPolicy"),
+    input = M.GetPolicyInput,
+    output = M.GetPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRetriever = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "GetRetriever"),
+    input = M.GetRetrieverInput,
+    output = M.GetRetrieverOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/retrievers/{retrieverId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUser = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "GetUser"),
+    input = M.GetUserInput,
+    output = M.GetUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/users/{userId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWebExperience = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "GetWebExperience"),
+    input = M.GetWebExperienceInput,
+    output = M.GetWebExperienceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/experiences/{webExperienceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttachments = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListAttachments"),
+    input = M.ListAttachmentsInput,
+    output = M.ListAttachmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/attachments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChatResponseConfigurations = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListChatResponseConfigurations"),
+    input = M.ListChatResponseConfigurationsInput,
+    output = M.ListChatResponseConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/chatresponseconfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConversations = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListConversations"),
+    input = M.ListConversationsInput,
+    output = M.ListConversationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/conversations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataAccessors = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListDataAccessors"),
+    input = M.ListDataAccessorsInput,
+    output = M.ListDataAccessorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/dataaccessors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSources = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListDataSources"),
+    input = M.ListDataSourcesInput,
+    output = M.ListDataSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/indices/{indexId}/datasources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSourceSyncJobs = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListDataSourceSyncJobs"),
+    input = M.ListDataSourceSyncJobsInput,
+    output = M.ListDataSourceSyncJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}/syncjobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDocuments = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListDocuments"),
+    input = M.ListDocumentsInput,
+    output = M.ListDocumentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/index/{indexId}/documents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroups = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListGroups"),
+    input = M.ListGroupsInput,
+    output = M.ListGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/indices/{indexId}/groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIndices = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListIndices"),
+    input = M.ListIndicesInput,
+    output = M.ListIndicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/indices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMessages = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListMessages"),
+    input = M.ListMessagesInput,
+    output = M.ListMessagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/conversations/{conversationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPluginActions = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListPluginActions"),
+    input = M.ListPluginActionsInput,
+    output = M.ListPluginActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/plugins/{pluginId}/actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPlugins = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListPlugins"),
+    input = M.ListPluginsInput,
+    output = M.ListPluginsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/plugins" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPluginTypeActions = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListPluginTypeActions"),
+    input = M.ListPluginTypeActionsInput,
+    output = M.ListPluginTypeActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/pluginTypes/{pluginType}/actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPluginTypeMetadata = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListPluginTypeMetadata"),
+    input = M.ListPluginTypeMetadataInput,
+    output = M.ListPluginTypeMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/pluginTypeMetadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRetrievers = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListRetrievers"),
+    input = M.ListRetrieversInput,
+    output = M.ListRetrieversOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/retrievers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListSubscriptions"),
+    input = M.ListSubscriptionsInput,
+    output = M.ListSubscriptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/subscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/tags/{resourceARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWebExperiences = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "ListWebExperiences"),
+    input = M.ListWebExperiencesInput,
+    output = M.ListWebExperiencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/experiences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFeedback = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "PutFeedback"),
+    input = M.PutFeedbackInput,
+    output = M.PutFeedbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/conversations/{conversationId}/messages/{messageId}/feedback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutGroup = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "PutGroup"),
+    input = M.PutGroupInput,
+    output = M.PutGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{applicationId}/indices/{indexId}/groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchRelevantContent = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "SearchRelevantContent"),
+    input = M.SearchRelevantContentInput,
+    output = M.SearchRelevantContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/relevant-content" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDataSourceSyncJob = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "StartDataSourceSyncJob"),
+    input = M.StartDataSourceSyncJobInput,
+    output = M.StartDataSourceSyncJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}/startsync" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDataSourceSyncJob = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "StopDataSourceSyncJob"),
+    input = M.StopDataSourceSyncJobInput,
+    output = M.StopDataSourceSyncJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}/stopsync" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tags/{resourceARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/tags/{resourceARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{applicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChatControlsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "UpdateChatControlsConfiguration"),
+    input = M.UpdateChatControlsConfigurationInput,
+    output = M.UpdateChatControlsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/applications/{applicationId}/chatcontrols" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChatResponseConfiguration = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "UpdateChatResponseConfiguration"),
+    input = M.UpdateChatResponseConfigurationInput,
+    output = M.UpdateChatResponseConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{applicationId}/chatresponseconfigurations/{chatResponseConfigurationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataAccessor = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "UpdateDataAccessor"),
+    input = M.UpdateDataAccessorInput,
+    output = M.UpdateDataAccessorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{applicationId}/dataaccessors/{dataAccessorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataSource = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "UpdateDataSource"),
+    input = M.UpdateDataSourceInput,
+    output = M.UpdateDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIndex = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "UpdateIndex"),
+    input = M.UpdateIndexInput,
+    output = M.UpdateIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{applicationId}/indices/{indexId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePlugin = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "UpdatePlugin"),
+    input = M.UpdatePluginInput,
+    output = M.UpdatePluginOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{applicationId}/plugins/{pluginId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRetriever = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "UpdateRetriever"),
+    input = M.UpdateRetrieverInput,
+    output = M.UpdateRetrieverOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{applicationId}/retrievers/{retrieverId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSubscription = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "UpdateSubscription"),
+    input = M.UpdateSubscriptionInput,
+    output = M.UpdateSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{applicationId}/subscriptions/{subscriptionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUser = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "UpdateUser"),
+    input = M.UpdateUserInput,
+    output = M.UpdateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{applicationId}/users/{userId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWebExperience = schema.operation({
+    id = id.from("com.amazonaws.qbusiness", "UpdateWebExperience"),
+    input = M.UpdateWebExperienceInput,
+    output = M.UpdateWebExperienceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{applicationId}/experiences/{webExperienceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

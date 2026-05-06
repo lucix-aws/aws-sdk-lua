@@ -5040,4 +5040,148 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.bedrockruntime", "AmazonBedrockFrontendService"),
+    version = "2023-09-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ApplyGuardrail = schema.operation({
+    id = id.from("com.amazonaws.bedrockruntime", "ApplyGuardrail"),
+    input = M.ApplyGuardrailInput,
+    output = M.ApplyGuardrailOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/guardrail/{guardrailIdentifier}/version/{guardrailVersion}/apply" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.Converse = schema.operation({
+    id = id.from("com.amazonaws.bedrockruntime", "Converse"),
+    input = M.ConverseInput,
+    output = M.ConverseOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/model/{modelId}/converse" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ConverseStream = schema.operation({
+    id = id.from("com.amazonaws.bedrockruntime", "ConverseStream"),
+    input = M.ConverseStreamInput,
+    output = M.ConverseStreamOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/model/{modelId}/converse-stream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+        [traits.EVENT_STREAM] = M.ConverseStreamOutput,
+    },
+})
+
+M.CountTokens = schema.operation({
+    id = id.from("com.amazonaws.bedrockruntime", "CountTokens"),
+    input = M.CountTokensOperationInput,
+    output = M.CountTokensOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/model/{modelId}/count-tokens" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetAsyncInvoke = schema.operation({
+    id = id.from("com.amazonaws.bedrockruntime", "GetAsyncInvoke"),
+    input = M.GetAsyncInvokeInput,
+    output = M.GetAsyncInvokeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/async-invoke/{invocationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.InvokeModel = schema.operation({
+    id = id.from("com.amazonaws.bedrockruntime", "InvokeModel"),
+    input = M.InvokeModelInput,
+    output = M.InvokeModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/model/{modelId}/invoke" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.InvokeModelWithBidirectionalStream = schema.operation({
+    id = id.from("com.amazonaws.bedrockruntime", "InvokeModelWithBidirectionalStream"),
+    input = M.InvokeModelWithBidirectionalStreamOperationInput,
+    output = M.InvokeModelWithBidirectionalStreamOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/model/{modelId}/invoke-with-bidirectional-stream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+        [traits.EVENT_STREAM] = M.InvokeModelWithBidirectionalStreamOutput,
+    },
+})
+
+M.InvokeModelWithResponseStream = schema.operation({
+    id = id.from("com.amazonaws.bedrockruntime", "InvokeModelWithResponseStream"),
+    input = M.InvokeModelWithResponseStreamInput,
+    output = M.InvokeModelWithResponseStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/model/{modelId}/invoke-with-response-stream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+        [traits.EVENT_STREAM] = M.ResponseStream,
+    },
+})
+
+M.ListAsyncInvokes = schema.operation({
+    id = id.from("com.amazonaws.bedrockruntime", "ListAsyncInvokes"),
+    input = M.ListAsyncInvokesInput,
+    output = M.ListAsyncInvokesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/async-invoke" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.StartAsyncInvoke = schema.operation({
+    id = id.from("com.amazonaws.bedrockruntime", "StartAsyncInvoke"),
+    input = M.StartAsyncInvokeInput,
+    output = M.StartAsyncInvokeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/async-invoke" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
 return M

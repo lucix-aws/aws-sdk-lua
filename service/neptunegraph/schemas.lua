@@ -4118,4 +4118,422 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.neptunegraph", "AmazonNeptuneGraph"),
+    version = "2023-11-29",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelExportTask = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "CancelExportTask"),
+    input = M.CancelExportTaskInput,
+    output = M.CancelExportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/exporttasks/{taskIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelImportTask = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "CancelImportTask"),
+    input = M.CancelImportTaskInput,
+    output = M.CancelImportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/importtasks/{taskIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelQuery = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "CancelQuery"),
+    input = M.CancelQueryInput,
+    output = M.CancelQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/queries/{queryId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGraph = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "CreateGraph"),
+    input = M.CreateGraphInput,
+    output = M.CreateGraphOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graphs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGraphSnapshot = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "CreateGraphSnapshot"),
+    input = M.CreateGraphSnapshotInput,
+    output = M.CreateGraphSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/snapshots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGraphUsingImportTask = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "CreateGraphUsingImportTask"),
+    input = M.CreateGraphUsingImportTaskInput,
+    output = M.CreateGraphUsingImportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/importtasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePrivateGraphEndpoint = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "CreatePrivateGraphEndpoint"),
+    input = M.CreatePrivateGraphEndpointInput,
+    output = M.CreatePrivateGraphEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graphs/{graphIdentifier}/endpoints/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGraph = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "DeleteGraph"),
+    input = M.DeleteGraphInput,
+    output = M.DeleteGraphOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/graphs/{graphIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGraphSnapshot = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "DeleteGraphSnapshot"),
+    input = M.DeleteGraphSnapshotInput,
+    output = M.DeleteGraphSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/snapshots/{snapshotIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePrivateGraphEndpoint = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "DeletePrivateGraphEndpoint"),
+    input = M.DeletePrivateGraphEndpointInput,
+    output = M.DeletePrivateGraphEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/graphs/{graphIdentifier}/endpoints/{vpcId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteQuery = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "ExecuteQuery"),
+    input = M.ExecuteQueryInput,
+    output = M.ExecuteQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/queries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExportTask = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "GetExportTask"),
+    input = M.GetExportTaskInput,
+    output = M.GetExportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/exporttasks/{taskIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGraph = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "GetGraph"),
+    input = M.GetGraphInput,
+    output = M.GetGraphOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/graphs/{graphIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGraphSnapshot = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "GetGraphSnapshot"),
+    input = M.GetGraphSnapshotInput,
+    output = M.GetGraphSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/snapshots/{snapshotIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGraphSummary = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "GetGraphSummary"),
+    input = M.GetGraphSummaryInput,
+    output = M.GetGraphSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/summary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImportTask = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "GetImportTask"),
+    input = M.GetImportTaskInput,
+    output = M.GetImportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/importtasks/{taskIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPrivateGraphEndpoint = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "GetPrivateGraphEndpoint"),
+    input = M.GetPrivateGraphEndpointInput,
+    output = M.GetPrivateGraphEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/graphs/{graphIdentifier}/endpoints/{vpcId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQuery = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "GetQuery"),
+    input = M.GetQueryInput,
+    output = M.GetQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/queries/{queryId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExportTasks = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "ListExportTasks"),
+    input = M.ListExportTasksInput,
+    output = M.ListExportTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/exporttasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGraphs = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "ListGraphs"),
+    input = M.ListGraphsInput,
+    output = M.ListGraphsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/graphs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGraphSnapshots = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "ListGraphSnapshots"),
+    input = M.ListGraphSnapshotsInput,
+    output = M.ListGraphSnapshotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/snapshots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImportTasks = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "ListImportTasks"),
+    input = M.ListImportTasksInput,
+    output = M.ListImportTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/importtasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPrivateGraphEndpoints = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "ListPrivateGraphEndpoints"),
+    input = M.ListPrivateGraphEndpointsInput,
+    output = M.ListPrivateGraphEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/graphs/{graphIdentifier}/endpoints/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueries = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "ListQueries"),
+    input = M.ListQueriesInput,
+    output = M.ListQueriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/queries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetGraph = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "ResetGraph"),
+    input = M.ResetGraphInput,
+    output = M.ResetGraphOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/graphs/{graphIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreGraphFromSnapshot = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "RestoreGraphFromSnapshot"),
+    input = M.RestoreGraphFromSnapshotInput,
+    output = M.RestoreGraphFromSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/snapshots/{snapshotIdentifier}/restore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartExportTask = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "StartExportTask"),
+    input = M.StartExportTaskInput,
+    output = M.StartExportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/exporttasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartGraph = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "StartGraph"),
+    input = M.StartGraphInput,
+    output = M.StartGraphOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graphs/{graphIdentifier}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartImportTask = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "StartImportTask"),
+    input = M.StartImportTaskInput,
+    output = M.StartImportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graphs/{graphIdentifier}/importtasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopGraph = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "StopGraph"),
+    input = M.StopGraphInput,
+    output = M.StopGraphOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/graphs/{graphIdentifier}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGraph = schema.operation({
+    id = id.from("com.amazonaws.neptunegraph", "UpdateGraph"),
+    input = M.UpdateGraphInput,
+    output = M.UpdateGraphOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/graphs/{graphIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("migrationhub.endpoint_rules")
 local schemas = require("migrationhub.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mgh", signing_region = cfg.region } }
                 else
@@ -49,276 +52,87 @@ function M.new(cfg)
 end
 
 function Client:associateCreatedArtifact(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateCreatedArtifact",
-        input_schema = schemas.AssociateCreatedArtifactInput,
-        output_schema = schemas.AssociateCreatedArtifactOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateCreatedArtifact, input, options)
 end
 
 function Client:associateDiscoveredResource(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateDiscoveredResource",
-        input_schema = schemas.AssociateDiscoveredResourceInput,
-        output_schema = schemas.AssociateDiscoveredResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateDiscoveredResource, input, options)
 end
 
 function Client:associateSourceResource(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateSourceResource",
-        input_schema = schemas.AssociateSourceResourceInput,
-        output_schema = schemas.AssociateSourceResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateSourceResource, input, options)
 end
 
 function Client:createProgressUpdateStream(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateProgressUpdateStream",
-        input_schema = schemas.CreateProgressUpdateStreamInput,
-        output_schema = schemas.CreateProgressUpdateStreamOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateProgressUpdateStream, input, options)
 end
 
 function Client:deleteProgressUpdateStream(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteProgressUpdateStream",
-        input_schema = schemas.DeleteProgressUpdateStreamInput,
-        output_schema = schemas.DeleteProgressUpdateStreamOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteProgressUpdateStream, input, options)
 end
 
 function Client:describeApplicationState(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeApplicationState",
-        input_schema = schemas.DescribeApplicationStateInput,
-        output_schema = schemas.DescribeApplicationStateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeApplicationState, input, options)
 end
 
 function Client:describeMigrationTask(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeMigrationTask",
-        input_schema = schemas.DescribeMigrationTaskInput,
-        output_schema = schemas.DescribeMigrationTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeMigrationTask, input, options)
 end
 
 function Client:disassociateCreatedArtifact(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateCreatedArtifact",
-        input_schema = schemas.DisassociateCreatedArtifactInput,
-        output_schema = schemas.DisassociateCreatedArtifactOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateCreatedArtifact, input, options)
 end
 
 function Client:disassociateDiscoveredResource(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateDiscoveredResource",
-        input_schema = schemas.DisassociateDiscoveredResourceInput,
-        output_schema = schemas.DisassociateDiscoveredResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateDiscoveredResource, input, options)
 end
 
 function Client:disassociateSourceResource(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateSourceResource",
-        input_schema = schemas.DisassociateSourceResourceInput,
-        output_schema = schemas.DisassociateSourceResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateSourceResource, input, options)
 end
 
 function Client:importMigrationTask(input, options)
-    return self:invokeOperation(input, {
-        name = "ImportMigrationTask",
-        input_schema = schemas.ImportMigrationTaskInput,
-        output_schema = schemas.ImportMigrationTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ImportMigrationTask, input, options)
 end
 
 function Client:listApplicationStates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListApplicationStates",
-        input_schema = schemas.ListApplicationStatesInput,
-        output_schema = schemas.ListApplicationStatesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListApplicationStates, input, options)
 end
 
 function Client:listCreatedArtifacts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCreatedArtifacts",
-        input_schema = schemas.ListCreatedArtifactsInput,
-        output_schema = schemas.ListCreatedArtifactsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCreatedArtifacts, input, options)
 end
 
 function Client:listDiscoveredResources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDiscoveredResources",
-        input_schema = schemas.ListDiscoveredResourcesInput,
-        output_schema = schemas.ListDiscoveredResourcesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDiscoveredResources, input, options)
 end
 
 function Client:listMigrationTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMigrationTasks",
-        input_schema = schemas.ListMigrationTasksInput,
-        output_schema = schemas.ListMigrationTasksOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMigrationTasks, input, options)
 end
 
 function Client:listMigrationTaskUpdates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMigrationTaskUpdates",
-        input_schema = schemas.ListMigrationTaskUpdatesInput,
-        output_schema = schemas.ListMigrationTaskUpdatesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMigrationTaskUpdates, input, options)
 end
 
 function Client:listProgressUpdateStreams(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProgressUpdateStreams",
-        input_schema = schemas.ListProgressUpdateStreamsInput,
-        output_schema = schemas.ListProgressUpdateStreamsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProgressUpdateStreams, input, options)
 end
 
 function Client:listSourceResources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSourceResources",
-        input_schema = schemas.ListSourceResourcesInput,
-        output_schema = schemas.ListSourceResourcesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSourceResources, input, options)
 end
 
 function Client:notifyApplicationState(input, options)
-    return self:invokeOperation(input, {
-        name = "NotifyApplicationState",
-        input_schema = schemas.NotifyApplicationStateInput,
-        output_schema = schemas.NotifyApplicationStateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.NotifyApplicationState, input, options)
 end
 
 function Client:notifyMigrationTaskState(input, options)
-    return self:invokeOperation(input, {
-        name = "NotifyMigrationTaskState",
-        input_schema = schemas.NotifyMigrationTaskStateInput,
-        output_schema = schemas.NotifyMigrationTaskStateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.NotifyMigrationTaskState, input, options)
 end
 
 function Client:putResourceAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "PutResourceAttributes",
-        input_schema = schemas.PutResourceAttributesInput,
-        output_schema = schemas.PutResourceAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutResourceAttributes, input, options)
 end
 
 return M

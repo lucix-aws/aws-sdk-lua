@@ -2797,4 +2797,338 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.managedblockchain", "TaigaWebService"),
+    version = "2018-09-24",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccessor = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "CreateAccessor"),
+    input = M.CreateAccessorInput,
+    output = M.CreateAccessorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accessors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMember = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "CreateMember"),
+    input = M.CreateMemberInput,
+    output = M.CreateMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks/{NetworkId}/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNetwork = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "CreateNetwork"),
+    input = M.CreateNetworkInput,
+    output = M.CreateNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNode = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "CreateNode"),
+    input = M.CreateNodeInput,
+    output = M.CreateNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks/{NetworkId}/nodes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProposal = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "CreateProposal"),
+    input = M.CreateProposalInput,
+    output = M.CreateProposalOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks/{NetworkId}/proposals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccessor = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "DeleteAccessor"),
+    input = M.DeleteAccessorInput,
+    output = M.DeleteAccessorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accessors/{AccessorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMember = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "DeleteMember"),
+    input = M.DeleteMemberInput,
+    output = M.DeleteMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/networks/{NetworkId}/members/{MemberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNode = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "DeleteNode"),
+    input = M.DeleteNodeInput,
+    output = M.DeleteNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/networks/{NetworkId}/nodes/{NodeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccessor = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "GetAccessor"),
+    input = M.GetAccessorInput,
+    output = M.GetAccessorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accessors/{AccessorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMember = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "GetMember"),
+    input = M.GetMemberInput,
+    output = M.GetMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{NetworkId}/members/{MemberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNetwork = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "GetNetwork"),
+    input = M.GetNetworkInput,
+    output = M.GetNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{NetworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNode = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "GetNode"),
+    input = M.GetNodeInput,
+    output = M.GetNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{NetworkId}/nodes/{NodeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProposal = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "GetProposal"),
+    input = M.GetProposalInput,
+    output = M.GetProposalOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{NetworkId}/proposals/{ProposalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccessors = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "ListAccessors"),
+    input = M.ListAccessorsInput,
+    output = M.ListAccessorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accessors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvitations = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "ListInvitations"),
+    input = M.ListInvitationsInput,
+    output = M.ListInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/invitations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMembers = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "ListMembers"),
+    input = M.ListMembersInput,
+    output = M.ListMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{NetworkId}/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworks = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "ListNetworks"),
+    input = M.ListNetworksInput,
+    output = M.ListNetworksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNodes = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "ListNodes"),
+    input = M.ListNodesInput,
+    output = M.ListNodesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{NetworkId}/nodes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProposals = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "ListProposals"),
+    input = M.ListProposalsInput,
+    output = M.ListProposalsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{NetworkId}/proposals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProposalVotes = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "ListProposalVotes"),
+    input = M.ListProposalVotesInput,
+    output = M.ListProposalVotesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/networks/{NetworkId}/proposals/{ProposalId}/votes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectInvitation = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "RejectInvitation"),
+    input = M.RejectInvitationInput,
+    output = M.RejectInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/invitations/{InvitationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMember = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "UpdateMember"),
+    input = M.UpdateMemberInput,
+    output = M.UpdateMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/networks/{NetworkId}/members/{MemberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNode = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "UpdateNode"),
+    input = M.UpdateNodeInput,
+    output = M.UpdateNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/networks/{NetworkId}/nodes/{NodeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VoteOnProposal = schema.operation({
+    id = id.from("com.amazonaws.managedblockchain", "VoteOnProposal"),
+    input = M.VoteOnProposalInput,
+    output = M.VoteOnProposalOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/networks/{NetworkId}/proposals/{ProposalId}/votes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

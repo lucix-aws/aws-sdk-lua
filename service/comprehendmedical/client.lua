@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("comprehendmedical.endpoint_rules")
 local schemas = require("comprehendmedical.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "comprehendmedical", signing_region = cfg.region } }
                 else
@@ -49,341 +52,107 @@ function M.new(cfg)
 end
 
 function Client:describeEntitiesDetectionV2Job(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEntitiesDetectionV2Job",
-        input_schema = schemas.DescribeEntitiesDetectionV2JobInput,
-        output_schema = schemas.DescribeEntitiesDetectionV2JobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEntitiesDetectionV2Job, input, options)
 end
 
 function Client:describeICD10CMInferenceJob(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeICD10CMInferenceJob",
-        input_schema = schemas.DescribeICD10CMInferenceJobInput,
-        output_schema = schemas.DescribeICD10CMInferenceJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeICD10CMInferenceJob, input, options)
 end
 
 function Client:describePHIDetectionJob(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribePHIDetectionJob",
-        input_schema = schemas.DescribePHIDetectionJobInput,
-        output_schema = schemas.DescribePHIDetectionJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribePHIDetectionJob, input, options)
 end
 
 function Client:describeRxNormInferenceJob(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeRxNormInferenceJob",
-        input_schema = schemas.DescribeRxNormInferenceJobInput,
-        output_schema = schemas.DescribeRxNormInferenceJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeRxNormInferenceJob, input, options)
 end
 
 function Client:describeSNOMEDCTInferenceJob(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeSNOMEDCTInferenceJob",
-        input_schema = schemas.DescribeSNOMEDCTInferenceJobInput,
-        output_schema = schemas.DescribeSNOMEDCTInferenceJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeSNOMEDCTInferenceJob, input, options)
 end
 
 function Client:detectEntities(input, options)
-    return self:invokeOperation(input, {
-        name = "DetectEntities",
-        input_schema = schemas.DetectEntitiesInput,
-        output_schema = schemas.DetectEntitiesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DetectEntities, input, options)
 end
 
 function Client:detectEntitiesV2(input, options)
-    return self:invokeOperation(input, {
-        name = "DetectEntitiesV2",
-        input_schema = schemas.DetectEntitiesV2Input,
-        output_schema = schemas.DetectEntitiesV2Output,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DetectEntitiesV2, input, options)
 end
 
 function Client:detectPHI(input, options)
-    return self:invokeOperation(input, {
-        name = "DetectPHI",
-        input_schema = schemas.DetectPHIInput,
-        output_schema = schemas.DetectPHIOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DetectPHI, input, options)
 end
 
 function Client:inferICD10CM(input, options)
-    return self:invokeOperation(input, {
-        name = "InferICD10CM",
-        input_schema = schemas.InferICD10CMInput,
-        output_schema = schemas.InferICD10CMOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InferICD10CM, input, options)
 end
 
 function Client:inferRxNorm(input, options)
-    return self:invokeOperation(input, {
-        name = "InferRxNorm",
-        input_schema = schemas.InferRxNormInput,
-        output_schema = schemas.InferRxNormOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InferRxNorm, input, options)
 end
 
 function Client:inferSNOMEDCT(input, options)
-    return self:invokeOperation(input, {
-        name = "InferSNOMEDCT",
-        input_schema = schemas.InferSNOMEDCTInput,
-        output_schema = schemas.InferSNOMEDCTOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InferSNOMEDCT, input, options)
 end
 
 function Client:listEntitiesDetectionV2Jobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEntitiesDetectionV2Jobs",
-        input_schema = schemas.ListEntitiesDetectionV2JobsInput,
-        output_schema = schemas.ListEntitiesDetectionV2JobsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEntitiesDetectionV2Jobs, input, options)
 end
 
 function Client:listICD10CMInferenceJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListICD10CMInferenceJobs",
-        input_schema = schemas.ListICD10CMInferenceJobsInput,
-        output_schema = schemas.ListICD10CMInferenceJobsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListICD10CMInferenceJobs, input, options)
 end
 
 function Client:listPHIDetectionJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPHIDetectionJobs",
-        input_schema = schemas.ListPHIDetectionJobsInput,
-        output_schema = schemas.ListPHIDetectionJobsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPHIDetectionJobs, input, options)
 end
 
 function Client:listRxNormInferenceJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRxNormInferenceJobs",
-        input_schema = schemas.ListRxNormInferenceJobsInput,
-        output_schema = schemas.ListRxNormInferenceJobsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRxNormInferenceJobs, input, options)
 end
 
 function Client:listSNOMEDCTInferenceJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSNOMEDCTInferenceJobs",
-        input_schema = schemas.ListSNOMEDCTInferenceJobsInput,
-        output_schema = schemas.ListSNOMEDCTInferenceJobsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSNOMEDCTInferenceJobs, input, options)
 end
 
 function Client:startEntitiesDetectionV2Job(input, options)
-    return self:invokeOperation(input, {
-        name = "StartEntitiesDetectionV2Job",
-        input_schema = schemas.StartEntitiesDetectionV2JobInput,
-        output_schema = schemas.StartEntitiesDetectionV2JobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartEntitiesDetectionV2Job, input, options)
 end
 
 function Client:startICD10CMInferenceJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartICD10CMInferenceJob",
-        input_schema = schemas.StartICD10CMInferenceJobInput,
-        output_schema = schemas.StartICD10CMInferenceJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartICD10CMInferenceJob, input, options)
 end
 
 function Client:startPHIDetectionJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartPHIDetectionJob",
-        input_schema = schemas.StartPHIDetectionJobInput,
-        output_schema = schemas.StartPHIDetectionJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartPHIDetectionJob, input, options)
 end
 
 function Client:startRxNormInferenceJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartRxNormInferenceJob",
-        input_schema = schemas.StartRxNormInferenceJobInput,
-        output_schema = schemas.StartRxNormInferenceJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartRxNormInferenceJob, input, options)
 end
 
 function Client:startSNOMEDCTInferenceJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartSNOMEDCTInferenceJob",
-        input_schema = schemas.StartSNOMEDCTInferenceJobInput,
-        output_schema = schemas.StartSNOMEDCTInferenceJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartSNOMEDCTInferenceJob, input, options)
 end
 
 function Client:stopEntitiesDetectionV2Job(input, options)
-    return self:invokeOperation(input, {
-        name = "StopEntitiesDetectionV2Job",
-        input_schema = schemas.StopEntitiesDetectionV2JobInput,
-        output_schema = schemas.StopEntitiesDetectionV2JobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopEntitiesDetectionV2Job, input, options)
 end
 
 function Client:stopICD10CMInferenceJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StopICD10CMInferenceJob",
-        input_schema = schemas.StopICD10CMInferenceJobInput,
-        output_schema = schemas.StopICD10CMInferenceJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopICD10CMInferenceJob, input, options)
 end
 
 function Client:stopPHIDetectionJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StopPHIDetectionJob",
-        input_schema = schemas.StopPHIDetectionJobInput,
-        output_schema = schemas.StopPHIDetectionJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopPHIDetectionJob, input, options)
 end
 
 function Client:stopRxNormInferenceJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StopRxNormInferenceJob",
-        input_schema = schemas.StopRxNormInferenceJobInput,
-        output_schema = schemas.StopRxNormInferenceJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopRxNormInferenceJob, input, options)
 end
 
 function Client:stopSNOMEDCTInferenceJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StopSNOMEDCTInferenceJob",
-        input_schema = schemas.StopSNOMEDCTInferenceJobInput,
-        output_schema = schemas.StopSNOMEDCTInferenceJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopSNOMEDCTInferenceJob, input, options)
 end
 
 return M

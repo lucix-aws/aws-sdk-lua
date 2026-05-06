@@ -7,6 +7,7 @@ local endpoint_rules = require("migrationhuborchestrator.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("migrationhuborchestrator.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "migrationhub-orchestrator", signing_region = cfg.region } }
                 else
@@ -49,406 +52,127 @@ function M.new(cfg)
 end
 
 function Client:createTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTemplate",
-        input_schema = schemas.CreateTemplateInput,
-        output_schema = schemas.CreateTemplateOutput,
-        http_method = "POST",
-        http_path = "/template",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTemplate, input, options)
 end
 
 function Client:createWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateWorkflow",
-        input_schema = schemas.CreateWorkflowInput,
-        output_schema = schemas.CreateWorkflowOutput,
-        http_method = "POST",
-        http_path = "/migrationworkflow/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateWorkflow, input, options)
 end
 
 function Client:createWorkflowStep(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateWorkflowStep",
-        input_schema = schemas.CreateWorkflowStepInput,
-        output_schema = schemas.CreateWorkflowStepOutput,
-        http_method = "POST",
-        http_path = "/workflowstep",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateWorkflowStep, input, options)
 end
 
 function Client:createWorkflowStepGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateWorkflowStepGroup",
-        input_schema = schemas.CreateWorkflowStepGroupInput,
-        output_schema = schemas.CreateWorkflowStepGroupOutput,
-        http_method = "POST",
-        http_path = "/workflowstepgroups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateWorkflowStepGroup, input, options)
 end
 
 function Client:deleteTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTemplate",
-        input_schema = schemas.DeleteTemplateInput,
-        output_schema = schemas.DeleteTemplateOutput,
-        http_method = "DELETE",
-        http_path = "/template/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTemplate, input, options)
 end
 
 function Client:deleteWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWorkflow",
-        input_schema = schemas.DeleteWorkflowInput,
-        output_schema = schemas.DeleteWorkflowOutput,
-        http_method = "DELETE",
-        http_path = "/migrationworkflow/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflow, input, options)
 end
 
 function Client:deleteWorkflowStep(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWorkflowStep",
-        input_schema = schemas.DeleteWorkflowStepInput,
-        output_schema = schemas.DeleteWorkflowStepOutput,
-        http_method = "DELETE",
-        http_path = "/workflowstep/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflowStep, input, options)
 end
 
 function Client:deleteWorkflowStepGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWorkflowStepGroup",
-        input_schema = schemas.DeleteWorkflowStepGroupInput,
-        output_schema = schemas.DeleteWorkflowStepGroupOutput,
-        http_method = "DELETE",
-        http_path = "/workflowstepgroup/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflowStepGroup, input, options)
 end
 
 function Client:getTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTemplate",
-        input_schema = schemas.GetTemplateInput,
-        output_schema = schemas.GetTemplateOutput,
-        http_method = "GET",
-        http_path = "/migrationworkflowtemplate/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTemplate, input, options)
 end
 
 function Client:getTemplateStep(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTemplateStep",
-        input_schema = schemas.GetTemplateStepInput,
-        output_schema = schemas.GetTemplateStepOutput,
-        http_method = "GET",
-        http_path = "/templatestep/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTemplateStep, input, options)
 end
 
 function Client:getTemplateStepGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTemplateStepGroup",
-        input_schema = schemas.GetTemplateStepGroupInput,
-        output_schema = schemas.GetTemplateStepGroupOutput,
-        http_method = "GET",
-        http_path = "/templates/{templateId}/stepgroups/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTemplateStepGroup, input, options)
 end
 
 function Client:getWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "GetWorkflow",
-        input_schema = schemas.GetWorkflowInput,
-        output_schema = schemas.GetWorkflowOutput,
-        http_method = "GET",
-        http_path = "/migrationworkflow/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetWorkflow, input, options)
 end
 
 function Client:getWorkflowStep(input, options)
-    return self:invokeOperation(input, {
-        name = "GetWorkflowStep",
-        input_schema = schemas.GetWorkflowStepInput,
-        output_schema = schemas.GetWorkflowStepOutput,
-        http_method = "GET",
-        http_path = "/workflowstep/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetWorkflowStep, input, options)
 end
 
 function Client:getWorkflowStepGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "GetWorkflowStepGroup",
-        input_schema = schemas.GetWorkflowStepGroupInput,
-        output_schema = schemas.GetWorkflowStepGroupOutput,
-        http_method = "GET",
-        http_path = "/workflowstepgroup/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetWorkflowStepGroup, input, options)
 end
 
 function Client:listPlugins(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPlugins",
-        input_schema = schemas.ListPluginsInput,
-        output_schema = schemas.ListPluginsOutput,
-        http_method = "GET",
-        http_path = "/plugins",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPlugins, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTemplates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTemplates",
-        input_schema = schemas.ListTemplatesInput,
-        output_schema = schemas.ListTemplatesOutput,
-        http_method = "GET",
-        http_path = "/migrationworkflowtemplates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTemplates, input, options)
 end
 
 function Client:listTemplateStepGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTemplateStepGroups",
-        input_schema = schemas.ListTemplateStepGroupsInput,
-        output_schema = schemas.ListTemplateStepGroupsOutput,
-        http_method = "GET",
-        http_path = "/templatestepgroups/{templateId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTemplateStepGroups, input, options)
 end
 
 function Client:listTemplateSteps(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTemplateSteps",
-        input_schema = schemas.ListTemplateStepsInput,
-        output_schema = schemas.ListTemplateStepsOutput,
-        http_method = "GET",
-        http_path = "/templatesteps",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTemplateSteps, input, options)
 end
 
 function Client:listWorkflows(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkflows",
-        input_schema = schemas.ListWorkflowsInput,
-        output_schema = schemas.ListWorkflowsOutput,
-        http_method = "GET",
-        http_path = "/migrationworkflows",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkflows, input, options)
 end
 
 function Client:listWorkflowStepGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkflowStepGroups",
-        input_schema = schemas.ListWorkflowStepGroupsInput,
-        output_schema = schemas.ListWorkflowStepGroupsOutput,
-        http_method = "GET",
-        http_path = "/workflowstepgroups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkflowStepGroups, input, options)
 end
 
 function Client:listWorkflowSteps(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkflowSteps",
-        input_schema = schemas.ListWorkflowStepsInput,
-        output_schema = schemas.ListWorkflowStepsOutput,
-        http_method = "GET",
-        http_path = "/workflow/{workflowId}/workflowstepgroups/{stepGroupId}/workflowsteps",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkflowSteps, input, options)
 end
 
 function Client:retryWorkflowStep(input, options)
-    return self:invokeOperation(input, {
-        name = "RetryWorkflowStep",
-        input_schema = schemas.RetryWorkflowStepInput,
-        output_schema = schemas.RetryWorkflowStepOutput,
-        http_method = "POST",
-        http_path = "/retryworkflowstep/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RetryWorkflowStep, input, options)
 end
 
 function Client:startWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "StartWorkflow",
-        input_schema = schemas.StartWorkflowInput,
-        output_schema = schemas.StartWorkflowOutput,
-        http_method = "POST",
-        http_path = "/migrationworkflow/{id}/start",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartWorkflow, input, options)
 end
 
 function Client:stopWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "StopWorkflow",
-        input_schema = schemas.StopWorkflowInput,
-        output_schema = schemas.StopWorkflowOutput,
-        http_method = "POST",
-        http_path = "/migrationworkflow/{id}/stop",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopWorkflow, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTemplate",
-        input_schema = schemas.UpdateTemplateInput,
-        output_schema = schemas.UpdateTemplateOutput,
-        http_method = "POST",
-        http_path = "/template/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTemplate, input, options)
 end
 
 function Client:updateWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateWorkflow",
-        input_schema = schemas.UpdateWorkflowInput,
-        output_schema = schemas.UpdateWorkflowOutput,
-        http_method = "POST",
-        http_path = "/migrationworkflow/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateWorkflow, input, options)
 end
 
 function Client:updateWorkflowStep(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateWorkflowStep",
-        input_schema = schemas.UpdateWorkflowStepInput,
-        output_schema = schemas.UpdateWorkflowStepOutput,
-        http_method = "POST",
-        http_path = "/workflowstep/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateWorkflowStep, input, options)
 end
 
 function Client:updateWorkflowStepGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateWorkflowStepGroup",
-        input_schema = schemas.UpdateWorkflowStepGroupInput,
-        output_schema = schemas.UpdateWorkflowStepGroupOutput,
-        http_method = "POST",
-        http_path = "/workflowstepgroup/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateWorkflowStepGroup, input, options)
 end
 
 return M

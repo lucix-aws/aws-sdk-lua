@@ -3167,4 +3167,362 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.greengrassv2", "GreengrassV2"),
+    version = "2020-11-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateServiceRoleToAccount = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "AssociateServiceRoleToAccount"),
+    input = M.AssociateServiceRoleToAccountInput,
+    output = M.AssociateServiceRoleToAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/greengrass/servicerole" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAssociateClientDeviceWithCoreDevice = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "BatchAssociateClientDeviceWithCoreDevice"),
+    input = M.BatchAssociateClientDeviceWithCoreDeviceInput,
+    output = M.BatchAssociateClientDeviceWithCoreDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/associateClientDevices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDisassociateClientDeviceFromCoreDevice = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "BatchDisassociateClientDeviceFromCoreDevice"),
+    input = M.BatchDisassociateClientDeviceFromCoreDeviceInput,
+    output = M.BatchDisassociateClientDeviceFromCoreDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/disassociateClientDevices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelDeployment = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "CancelDeployment"),
+    input = M.CancelDeploymentInput,
+    output = M.CancelDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/greengrass/v2/deployments/{deploymentId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateComponentVersion = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "CreateComponentVersion"),
+    input = M.CreateComponentVersionInput,
+    output = M.CreateComponentVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/greengrass/v2/createComponentVersion" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDeployment = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "CreateDeployment"),
+    input = M.CreateDeploymentInput,
+    output = M.CreateDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/greengrass/v2/deployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteComponent = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "DeleteComponent"),
+    input = M.DeleteComponentInput,
+    output = M.DeleteComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/greengrass/v2/components/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCoreDevice = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "DeleteCoreDevice"),
+    input = M.DeleteCoreDeviceInput,
+    output = M.DeleteCoreDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/greengrass/v2/coreDevices/{coreDeviceThingName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDeployment = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "DeleteDeployment"),
+    input = M.DeleteDeploymentInput,
+    output = M.DeleteDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/greengrass/v2/deployments/{deploymentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeComponent = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "DescribeComponent"),
+    input = M.DescribeComponentInput,
+    output = M.DescribeComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/greengrass/v2/components/{arn}/metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateServiceRoleFromAccount = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "DisassociateServiceRoleFromAccount"),
+    input = M.DisassociateServiceRoleFromAccountInput,
+    output = M.DisassociateServiceRoleFromAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/greengrass/servicerole" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComponent = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "GetComponent"),
+    input = M.GetComponentInput,
+    output = M.GetComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/greengrass/v2/components/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComponentVersionArtifact = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "GetComponentVersionArtifact"),
+    input = M.GetComponentVersionArtifactInput,
+    output = M.GetComponentVersionArtifactOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/greengrass/v2/components/{arn}/artifacts/{artifactName+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnectivityInfo = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "GetConnectivityInfo"),
+    input = M.GetConnectivityInfoInput,
+    output = M.GetConnectivityInfoOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/greengrass/things/{thingName}/connectivityInfo" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCoreDevice = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "GetCoreDevice"),
+    input = M.GetCoreDeviceInput,
+    output = M.GetCoreDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/greengrass/v2/coreDevices/{coreDeviceThingName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeployment = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "GetDeployment"),
+    input = M.GetDeploymentInput,
+    output = M.GetDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/greengrass/v2/deployments/{deploymentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceRoleForAccount = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "GetServiceRoleForAccount"),
+    input = M.GetServiceRoleForAccountInput,
+    output = M.GetServiceRoleForAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/greengrass/servicerole" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClientDevicesAssociatedWithCoreDevice = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "ListClientDevicesAssociatedWithCoreDevice"),
+    input = M.ListClientDevicesAssociatedWithCoreDeviceInput,
+    output = M.ListClientDevicesAssociatedWithCoreDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/associatedClientDevices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComponents = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "ListComponents"),
+    input = M.ListComponentsInput,
+    output = M.ListComponentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/greengrass/v2/components" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComponentVersions = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "ListComponentVersions"),
+    input = M.ListComponentVersionsInput,
+    output = M.ListComponentVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/greengrass/v2/components/{arn}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCoreDevices = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "ListCoreDevices"),
+    input = M.ListCoreDevicesInput,
+    output = M.ListCoreDevicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/greengrass/v2/coreDevices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeployments = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "ListDeployments"),
+    input = M.ListDeploymentsInput,
+    output = M.ListDeploymentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/greengrass/v2/deployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEffectiveDeployments = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "ListEffectiveDeployments"),
+    input = M.ListEffectiveDeploymentsInput,
+    output = M.ListEffectiveDeploymentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/effectiveDeployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstalledComponents = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "ListInstalledComponents"),
+    input = M.ListInstalledComponentsInput,
+    output = M.ListInstalledComponentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/installedComponents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResolveComponentCandidates = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "ResolveComponentCandidates"),
+    input = M.ResolveComponentCandidatesInput,
+    output = M.ResolveComponentCandidatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/greengrass/v2/resolveComponentCandidates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnectivityInfo = schema.operation({
+    id = id.from("com.amazonaws.greengrassv2", "UpdateConnectivityInfo"),
+    input = M.UpdateConnectivityInfoInput,
+    output = M.UpdateConnectivityInfoOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/greengrass/things/{thingName}/connectivityInfo" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

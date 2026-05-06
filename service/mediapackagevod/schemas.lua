@@ -2379,4 +2379,218 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.mediapackagevod", "MediaPackageVod"),
+    version = "2018-11-07",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfigureLogs = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "ConfigureLogs"),
+    input = M.ConfigureLogsInput,
+    output = M.ConfigureLogsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/packaging_groups/{Id}/configure_logs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAsset = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "CreateAsset"),
+    input = M.CreateAssetInput,
+    output = M.CreateAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePackagingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "CreatePackagingConfiguration"),
+    input = M.CreatePackagingConfigurationInput,
+    output = M.CreatePackagingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/packaging_configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePackagingGroup = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "CreatePackagingGroup"),
+    input = M.CreatePackagingGroupInput,
+    output = M.CreatePackagingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/packaging_groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAsset = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "DeleteAsset"),
+    input = M.DeleteAssetInput,
+    output = M.DeleteAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assets/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePackagingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "DeletePackagingConfiguration"),
+    input = M.DeletePackagingConfigurationInput,
+    output = M.DeletePackagingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/packaging_configurations/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePackagingGroup = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "DeletePackagingGroup"),
+    input = M.DeletePackagingGroupInput,
+    output = M.DeletePackagingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/packaging_groups/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAsset = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "DescribeAsset"),
+    input = M.DescribeAssetInput,
+    output = M.DescribeAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assets/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePackagingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "DescribePackagingConfiguration"),
+    input = M.DescribePackagingConfigurationInput,
+    output = M.DescribePackagingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packaging_configurations/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePackagingGroup = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "DescribePackagingGroup"),
+    input = M.DescribePackagingGroupInput,
+    output = M.DescribePackagingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packaging_groups/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssets = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "ListAssets"),
+    input = M.ListAssetsInput,
+    output = M.ListAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPackagingConfigurations = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "ListPackagingConfigurations"),
+    input = M.ListPackagingConfigurationsInput,
+    output = M.ListPackagingConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packaging_configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPackagingGroups = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "ListPackagingGroups"),
+    input = M.ListPackagingGroupsInput,
+    output = M.ListPackagingGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packaging_groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePackagingGroup = schema.operation({
+    id = id.from("com.amazonaws.mediapackagevod", "UpdatePackagingGroup"),
+    input = M.UpdatePackagingGroupInput,
+    output = M.UpdatePackagingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/packaging_groups/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

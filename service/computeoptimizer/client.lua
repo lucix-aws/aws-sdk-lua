@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("computeoptimizer.endpoint_rules")
 local schemas = require("computeoptimizer.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "compute-optimizer", signing_region = cfg.region } }
                 else
@@ -49,367 +52,115 @@ function M.new(cfg)
 end
 
 function Client:deleteRecommendationPreferences(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRecommendationPreferences",
-        input_schema = schemas.DeleteRecommendationPreferencesInput,
-        output_schema = schemas.DeleteRecommendationPreferencesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRecommendationPreferences, input, options)
 end
 
 function Client:describeRecommendationExportJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeRecommendationExportJobs",
-        input_schema = schemas.DescribeRecommendationExportJobsInput,
-        output_schema = schemas.DescribeRecommendationExportJobsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeRecommendationExportJobs, input, options)
 end
 
 function Client:exportAutoScalingGroupRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ExportAutoScalingGroupRecommendations",
-        input_schema = schemas.ExportAutoScalingGroupRecommendationsInput,
-        output_schema = schemas.ExportAutoScalingGroupRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExportAutoScalingGroupRecommendations, input, options)
 end
 
 function Client:exportEBSVolumeRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ExportEBSVolumeRecommendations",
-        input_schema = schemas.ExportEBSVolumeRecommendationsInput,
-        output_schema = schemas.ExportEBSVolumeRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExportEBSVolumeRecommendations, input, options)
 end
 
 function Client:exportEC2InstanceRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ExportEC2InstanceRecommendations",
-        input_schema = schemas.ExportEC2InstanceRecommendationsInput,
-        output_schema = schemas.ExportEC2InstanceRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExportEC2InstanceRecommendations, input, options)
 end
 
 function Client:exportECSServiceRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ExportECSServiceRecommendations",
-        input_schema = schemas.ExportECSServiceRecommendationsInput,
-        output_schema = schemas.ExportECSServiceRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExportECSServiceRecommendations, input, options)
 end
 
 function Client:exportIdleRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ExportIdleRecommendations",
-        input_schema = schemas.ExportIdleRecommendationsInput,
-        output_schema = schemas.ExportIdleRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExportIdleRecommendations, input, options)
 end
 
 function Client:exportLambdaFunctionRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ExportLambdaFunctionRecommendations",
-        input_schema = schemas.ExportLambdaFunctionRecommendationsInput,
-        output_schema = schemas.ExportLambdaFunctionRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExportLambdaFunctionRecommendations, input, options)
 end
 
 function Client:exportLicenseRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ExportLicenseRecommendations",
-        input_schema = schemas.ExportLicenseRecommendationsInput,
-        output_schema = schemas.ExportLicenseRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExportLicenseRecommendations, input, options)
 end
 
 function Client:exportRDSDatabaseRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ExportRDSDatabaseRecommendations",
-        input_schema = schemas.ExportRDSDatabaseRecommendationsInput,
-        output_schema = schemas.ExportRDSDatabaseRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExportRDSDatabaseRecommendations, input, options)
 end
 
 function Client:getAutoScalingGroupRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAutoScalingGroupRecommendations",
-        input_schema = schemas.GetAutoScalingGroupRecommendationsInput,
-        output_schema = schemas.GetAutoScalingGroupRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAutoScalingGroupRecommendations, input, options)
 end
 
 function Client:getEBSVolumeRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEBSVolumeRecommendations",
-        input_schema = schemas.GetEBSVolumeRecommendationsInput,
-        output_schema = schemas.GetEBSVolumeRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEBSVolumeRecommendations, input, options)
 end
 
 function Client:getEC2InstanceRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEC2InstanceRecommendations",
-        input_schema = schemas.GetEC2InstanceRecommendationsInput,
-        output_schema = schemas.GetEC2InstanceRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEC2InstanceRecommendations, input, options)
 end
 
 function Client:getEC2RecommendationProjectedMetrics(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEC2RecommendationProjectedMetrics",
-        input_schema = schemas.GetEC2RecommendationProjectedMetricsInput,
-        output_schema = schemas.GetEC2RecommendationProjectedMetricsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEC2RecommendationProjectedMetrics, input, options)
 end
 
 function Client:getECSServiceRecommendationProjectedMetrics(input, options)
-    return self:invokeOperation(input, {
-        name = "GetECSServiceRecommendationProjectedMetrics",
-        input_schema = schemas.GetECSServiceRecommendationProjectedMetricsInput,
-        output_schema = schemas.GetECSServiceRecommendationProjectedMetricsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetECSServiceRecommendationProjectedMetrics, input, options)
 end
 
 function Client:getECSServiceRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetECSServiceRecommendations",
-        input_schema = schemas.GetECSServiceRecommendationsInput,
-        output_schema = schemas.GetECSServiceRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetECSServiceRecommendations, input, options)
 end
 
 function Client:getEffectiveRecommendationPreferences(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEffectiveRecommendationPreferences",
-        input_schema = schemas.GetEffectiveRecommendationPreferencesInput,
-        output_schema = schemas.GetEffectiveRecommendationPreferencesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEffectiveRecommendationPreferences, input, options)
 end
 
 function Client:getEnrollmentStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEnrollmentStatus",
-        input_schema = schemas.GetEnrollmentStatusInput,
-        output_schema = schemas.GetEnrollmentStatusOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEnrollmentStatus, input, options)
 end
 
 function Client:getEnrollmentStatusesForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEnrollmentStatusesForOrganization",
-        input_schema = schemas.GetEnrollmentStatusesForOrganizationInput,
-        output_schema = schemas.GetEnrollmentStatusesForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEnrollmentStatusesForOrganization, input, options)
 end
 
 function Client:getIdleRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdleRecommendations",
-        input_schema = schemas.GetIdleRecommendationsInput,
-        output_schema = schemas.GetIdleRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdleRecommendations, input, options)
 end
 
 function Client:getLambdaFunctionRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetLambdaFunctionRecommendations",
-        input_schema = schemas.GetLambdaFunctionRecommendationsInput,
-        output_schema = schemas.GetLambdaFunctionRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetLambdaFunctionRecommendations, input, options)
 end
 
 function Client:getLicenseRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetLicenseRecommendations",
-        input_schema = schemas.GetLicenseRecommendationsInput,
-        output_schema = schemas.GetLicenseRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetLicenseRecommendations, input, options)
 end
 
 function Client:getRDSDatabaseRecommendationProjectedMetrics(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRDSDatabaseRecommendationProjectedMetrics",
-        input_schema = schemas.GetRDSDatabaseRecommendationProjectedMetricsInput,
-        output_schema = schemas.GetRDSDatabaseRecommendationProjectedMetricsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRDSDatabaseRecommendationProjectedMetrics, input, options)
 end
 
 function Client:getRDSDatabaseRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRDSDatabaseRecommendations",
-        input_schema = schemas.GetRDSDatabaseRecommendationsInput,
-        output_schema = schemas.GetRDSDatabaseRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRDSDatabaseRecommendations, input, options)
 end
 
 function Client:getRecommendationPreferences(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRecommendationPreferences",
-        input_schema = schemas.GetRecommendationPreferencesInput,
-        output_schema = schemas.GetRecommendationPreferencesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRecommendationPreferences, input, options)
 end
 
 function Client:getRecommendationSummaries(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRecommendationSummaries",
-        input_schema = schemas.GetRecommendationSummariesInput,
-        output_schema = schemas.GetRecommendationSummariesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRecommendationSummaries, input, options)
 end
 
 function Client:putRecommendationPreferences(input, options)
-    return self:invokeOperation(input, {
-        name = "PutRecommendationPreferences",
-        input_schema = schemas.PutRecommendationPreferencesInput,
-        output_schema = schemas.PutRecommendationPreferencesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutRecommendationPreferences, input, options)
 end
 
 function Client:updateEnrollmentStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateEnrollmentStatus",
-        input_schema = schemas.UpdateEnrollmentStatusInput,
-        output_schema = schemas.UpdateEnrollmentStatusOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateEnrollmentStatus, input, options)
 end
 
 return M

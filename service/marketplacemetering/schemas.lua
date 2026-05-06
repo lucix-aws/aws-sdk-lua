@@ -687,4 +687,58 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.marketplacemetering", "AWSMPMeteringService"),
+    version = "2016-01-14",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchMeterUsage = schema.operation({
+    id = id.from("com.amazonaws.marketplacemetering", "BatchMeterUsage"),
+    input = M.BatchMeterUsageInput,
+    output = M.BatchMeterUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.MeterUsage = schema.operation({
+    id = id.from("com.amazonaws.marketplacemetering", "MeterUsage"),
+    input = M.MeterUsageInput,
+    output = M.MeterUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterUsage = schema.operation({
+    id = id.from("com.amazonaws.marketplacemetering", "RegisterUsage"),
+    input = M.RegisterUsageInput,
+    output = M.RegisterUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResolveCustomer = schema.operation({
+    id = id.from("com.amazonaws.marketplacemetering", "ResolveCustomer"),
+    input = M.ResolveCustomerInput,
+    output = M.ResolveCustomerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

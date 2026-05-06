@@ -540,4 +540,86 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.applicationcostprofiler", "AWSApplicationCostProfiler"),
+    version = "2020-09-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReportDefinition = schema.operation({
+    id = id.from("com.amazonaws.applicationcostprofiler", "DeleteReportDefinition"),
+    input = M.DeleteReportDefinitionInput,
+    output = M.DeleteReportDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/reportDefinition/{reportId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReportDefinition = schema.operation({
+    id = id.from("com.amazonaws.applicationcostprofiler", "GetReportDefinition"),
+    input = M.GetReportDefinitionInput,
+    output = M.GetReportDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/reportDefinition/{reportId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportApplicationUsage = schema.operation({
+    id = id.from("com.amazonaws.applicationcostprofiler", "ImportApplicationUsage"),
+    input = M.ImportApplicationUsageInput,
+    output = M.ImportApplicationUsageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/importApplicationUsage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReportDefinitions = schema.operation({
+    id = id.from("com.amazonaws.applicationcostprofiler", "ListReportDefinitions"),
+    input = M.ListReportDefinitionsInput,
+    output = M.ListReportDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/reportDefinition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutReportDefinition = schema.operation({
+    id = id.from("com.amazonaws.applicationcostprofiler", "PutReportDefinition"),
+    input = M.PutReportDefinitionInput,
+    output = M.PutReportDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/reportDefinition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReportDefinition = schema.operation({
+    id = id.from("com.amazonaws.applicationcostprofiler", "UpdateReportDefinition"),
+    input = M.UpdateReportDefinitionInput,
+    output = M.UpdateReportDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/reportDefinition/{reportId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

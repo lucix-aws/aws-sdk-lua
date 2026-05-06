@@ -308,4 +308,25 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.bcmrecommendedactions", "AWSBillingAndCostManagementRecommendedActions"),
+    version = "2024-11-14",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommendedActions = schema.operation({
+    id = id.from("com.amazonaws.bcmrecommendedactions", "ListRecommendedActions"),
+    input = M.ListRecommendedActionsInput,
+    output = M.ListRecommendedActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -2932,4 +2932,267 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "ComputeOptimizerAutomationService"),
+    version = "2025-09-22",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAccounts = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "AssociateAccounts"),
+    input = M.AssociateAccountsInput,
+    output = M.AssociateAccountsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAutomationRule = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "CreateAutomationRule"),
+    input = M.CreateAutomationRuleInput,
+    output = M.CreateAutomationRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAutomationRule = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "DeleteAutomationRule"),
+    input = M.DeleteAutomationRuleInput,
+    output = M.DeleteAutomationRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateAccounts = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "DisassociateAccounts"),
+    input = M.DisassociateAccountsInput,
+    output = M.DisassociateAccountsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAutomationEvent = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "GetAutomationEvent"),
+    input = M.GetAutomationEventInput,
+    output = M.GetAutomationEventOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAutomationRule = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "GetAutomationRule"),
+    input = M.GetAutomationRuleInput,
+    output = M.GetAutomationRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnrollmentConfiguration = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "GetEnrollmentConfiguration"),
+    input = M.GetEnrollmentConfigurationInput,
+    output = M.GetEnrollmentConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccounts = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "ListAccounts"),
+    input = M.ListAccountsInput,
+    output = M.ListAccountsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutomationEvents = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "ListAutomationEvents"),
+    input = M.ListAutomationEventsInput,
+    output = M.ListAutomationEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutomationEventSteps = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "ListAutomationEventSteps"),
+    input = M.ListAutomationEventStepsInput,
+    output = M.ListAutomationEventStepsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutomationEventSummaries = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "ListAutomationEventSummaries"),
+    input = M.ListAutomationEventSummariesInput,
+    output = M.ListAutomationEventSummariesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutomationRulePreview = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "ListAutomationRulePreview"),
+    input = M.ListAutomationRulePreviewInput,
+    output = M.ListAutomationRulePreviewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutomationRulePreviewSummaries = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "ListAutomationRulePreviewSummaries"),
+    input = M.ListAutomationRulePreviewSummariesInput,
+    output = M.ListAutomationRulePreviewSummariesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutomationRules = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "ListAutomationRules"),
+    input = M.ListAutomationRulesInput,
+    output = M.ListAutomationRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommendedActions = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "ListRecommendedActions"),
+    input = M.ListRecommendedActionsInput,
+    output = M.ListRecommendedActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommendedActionSummaries = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "ListRecommendedActionSummaries"),
+    input = M.ListRecommendedActionSummariesInput,
+    output = M.ListRecommendedActionSummariesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RollbackAutomationEvent = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "RollbackAutomationEvent"),
+    input = M.RollbackAutomationEventInput,
+    output = M.RollbackAutomationEventOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAutomationEvent = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "StartAutomationEvent"),
+    input = M.StartAutomationEventInput,
+    output = M.StartAutomationEventOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAutomationRule = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "UpdateAutomationRule"),
+    input = M.UpdateAutomationRuleInput,
+    output = M.UpdateAutomationRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnrollmentConfiguration = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizerautomation", "UpdateEnrollmentConfiguration"),
+    input = M.UpdateEnrollmentConfigurationInput,
+    output = M.UpdateEnrollmentConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

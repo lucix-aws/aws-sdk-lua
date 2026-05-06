@@ -440,4 +440,50 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sagemakeredge", "AmazonSageMakerEdge"),
+    version = "2020-09-23",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeployments = schema.operation({
+    id = id.from("com.amazonaws.sagemakeredge", "GetDeployments"),
+    input = M.GetDeploymentsInput,
+    output = M.GetDeploymentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetDeployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeviceRegistration = schema.operation({
+    id = id.from("com.amazonaws.sagemakeredge", "GetDeviceRegistration"),
+    input = M.GetDeviceRegistrationInput,
+    output = M.GetDeviceRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetDeviceRegistration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendHeartbeat = schema.operation({
+    id = id.from("com.amazonaws.sagemakeredge", "SendHeartbeat"),
+    input = M.SendHeartbeatInput,
+    output = M.SendHeartbeatOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/SendHeartbeat" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("datasync.endpoint_rules")
 local schemas = require("datasync.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "datasync", signing_region = cfg.region } }
                 else
@@ -49,692 +52,215 @@ function M.new(cfg)
 end
 
 function Client:cancelTaskExecution(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelTaskExecution",
-        input_schema = schemas.CancelTaskExecutionInput,
-        output_schema = schemas.CancelTaskExecutionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelTaskExecution, input, options)
 end
 
 function Client:createAgent(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAgent",
-        input_schema = schemas.CreateAgentInput,
-        output_schema = schemas.CreateAgentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAgent, input, options)
 end
 
 function Client:createLocationAzureBlob(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLocationAzureBlob",
-        input_schema = schemas.CreateLocationAzureBlobInput,
-        output_schema = schemas.CreateLocationAzureBlobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLocationAzureBlob, input, options)
 end
 
 function Client:createLocationEfs(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLocationEfs",
-        input_schema = schemas.CreateLocationEfsInput,
-        output_schema = schemas.CreateLocationEfsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLocationEfs, input, options)
 end
 
 function Client:createLocationFsxLustre(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLocationFsxLustre",
-        input_schema = schemas.CreateLocationFsxLustreInput,
-        output_schema = schemas.CreateLocationFsxLustreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLocationFsxLustre, input, options)
 end
 
 function Client:createLocationFsxOntap(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLocationFsxOntap",
-        input_schema = schemas.CreateLocationFsxOntapInput,
-        output_schema = schemas.CreateLocationFsxOntapOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLocationFsxOntap, input, options)
 end
 
 function Client:createLocationFsxOpenZfs(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLocationFsxOpenZfs",
-        input_schema = schemas.CreateLocationFsxOpenZfsInput,
-        output_schema = schemas.CreateLocationFsxOpenZfsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLocationFsxOpenZfs, input, options)
 end
 
 function Client:createLocationFsxWindows(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLocationFsxWindows",
-        input_schema = schemas.CreateLocationFsxWindowsInput,
-        output_schema = schemas.CreateLocationFsxWindowsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLocationFsxWindows, input, options)
 end
 
 function Client:createLocationHdfs(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLocationHdfs",
-        input_schema = schemas.CreateLocationHdfsInput,
-        output_schema = schemas.CreateLocationHdfsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLocationHdfs, input, options)
 end
 
 function Client:createLocationNfs(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLocationNfs",
-        input_schema = schemas.CreateLocationNfsInput,
-        output_schema = schemas.CreateLocationNfsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLocationNfs, input, options)
 end
 
 function Client:createLocationObjectStorage(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLocationObjectStorage",
-        input_schema = schemas.CreateLocationObjectStorageInput,
-        output_schema = schemas.CreateLocationObjectStorageOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLocationObjectStorage, input, options)
 end
 
 function Client:createLocationS3(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLocationS3",
-        input_schema = schemas.CreateLocationS3Input,
-        output_schema = schemas.CreateLocationS3Output,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLocationS3, input, options)
 end
 
 function Client:createLocationSmb(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLocationSmb",
-        input_schema = schemas.CreateLocationSmbInput,
-        output_schema = schemas.CreateLocationSmbOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLocationSmb, input, options)
 end
 
 function Client:createTask(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTask",
-        input_schema = schemas.CreateTaskInput,
-        output_schema = schemas.CreateTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTask, input, options)
 end
 
 function Client:deleteAgent(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAgent",
-        input_schema = schemas.DeleteAgentInput,
-        output_schema = schemas.DeleteAgentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAgent, input, options)
 end
 
 function Client:deleteLocation(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteLocation",
-        input_schema = schemas.DeleteLocationInput,
-        output_schema = schemas.DeleteLocationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteLocation, input, options)
 end
 
 function Client:deleteTask(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTask",
-        input_schema = schemas.DeleteTaskInput,
-        output_schema = schemas.DeleteTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTask, input, options)
 end
 
 function Client:describeAgent(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAgent",
-        input_schema = schemas.DescribeAgentInput,
-        output_schema = schemas.DescribeAgentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAgent, input, options)
 end
 
 function Client:describeLocationAzureBlob(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLocationAzureBlob",
-        input_schema = schemas.DescribeLocationAzureBlobInput,
-        output_schema = schemas.DescribeLocationAzureBlobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLocationAzureBlob, input, options)
 end
 
 function Client:describeLocationEfs(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLocationEfs",
-        input_schema = schemas.DescribeLocationEfsInput,
-        output_schema = schemas.DescribeLocationEfsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLocationEfs, input, options)
 end
 
 function Client:describeLocationFsxLustre(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLocationFsxLustre",
-        input_schema = schemas.DescribeLocationFsxLustreInput,
-        output_schema = schemas.DescribeLocationFsxLustreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLocationFsxLustre, input, options)
 end
 
 function Client:describeLocationFsxOntap(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLocationFsxOntap",
-        input_schema = schemas.DescribeLocationFsxOntapInput,
-        output_schema = schemas.DescribeLocationFsxOntapOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLocationFsxOntap, input, options)
 end
 
 function Client:describeLocationFsxOpenZfs(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLocationFsxOpenZfs",
-        input_schema = schemas.DescribeLocationFsxOpenZfsInput,
-        output_schema = schemas.DescribeLocationFsxOpenZfsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLocationFsxOpenZfs, input, options)
 end
 
 function Client:describeLocationFsxWindows(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLocationFsxWindows",
-        input_schema = schemas.DescribeLocationFsxWindowsInput,
-        output_schema = schemas.DescribeLocationFsxWindowsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLocationFsxWindows, input, options)
 end
 
 function Client:describeLocationHdfs(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLocationHdfs",
-        input_schema = schemas.DescribeLocationHdfsInput,
-        output_schema = schemas.DescribeLocationHdfsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLocationHdfs, input, options)
 end
 
 function Client:describeLocationNfs(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLocationNfs",
-        input_schema = schemas.DescribeLocationNfsInput,
-        output_schema = schemas.DescribeLocationNfsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLocationNfs, input, options)
 end
 
 function Client:describeLocationObjectStorage(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLocationObjectStorage",
-        input_schema = schemas.DescribeLocationObjectStorageInput,
-        output_schema = schemas.DescribeLocationObjectStorageOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLocationObjectStorage, input, options)
 end
 
 function Client:describeLocationS3(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLocationS3",
-        input_schema = schemas.DescribeLocationS3Input,
-        output_schema = schemas.DescribeLocationS3Output,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLocationS3, input, options)
 end
 
 function Client:describeLocationSmb(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeLocationSmb",
-        input_schema = schemas.DescribeLocationSmbInput,
-        output_schema = schemas.DescribeLocationSmbOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeLocationSmb, input, options)
 end
 
 function Client:describeTask(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTask",
-        input_schema = schemas.DescribeTaskInput,
-        output_schema = schemas.DescribeTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTask, input, options)
 end
 
 function Client:describeTaskExecution(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTaskExecution",
-        input_schema = schemas.DescribeTaskExecutionInput,
-        output_schema = schemas.DescribeTaskExecutionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTaskExecution, input, options)
 end
 
 function Client:listAgents(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAgents",
-        input_schema = schemas.ListAgentsInput,
-        output_schema = schemas.ListAgentsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAgents, input, options)
 end
 
 function Client:listLocations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListLocations",
-        input_schema = schemas.ListLocationsInput,
-        output_schema = schemas.ListLocationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListLocations, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTaskExecutions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTaskExecutions",
-        input_schema = schemas.ListTaskExecutionsInput,
-        output_schema = schemas.ListTaskExecutionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTaskExecutions, input, options)
 end
 
 function Client:listTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTasks",
-        input_schema = schemas.ListTasksInput,
-        output_schema = schemas.ListTasksOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTasks, input, options)
 end
 
 function Client:startTaskExecution(input, options)
-    return self:invokeOperation(input, {
-        name = "StartTaskExecution",
-        input_schema = schemas.StartTaskExecutionInput,
-        output_schema = schemas.StartTaskExecutionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartTaskExecution, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAgent(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAgent",
-        input_schema = schemas.UpdateAgentInput,
-        output_schema = schemas.UpdateAgentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAgent, input, options)
 end
 
 function Client:updateLocationAzureBlob(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateLocationAzureBlob",
-        input_schema = schemas.UpdateLocationAzureBlobInput,
-        output_schema = schemas.UpdateLocationAzureBlobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateLocationAzureBlob, input, options)
 end
 
 function Client:updateLocationEfs(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateLocationEfs",
-        input_schema = schemas.UpdateLocationEfsInput,
-        output_schema = schemas.UpdateLocationEfsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateLocationEfs, input, options)
 end
 
 function Client:updateLocationFsxLustre(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateLocationFsxLustre",
-        input_schema = schemas.UpdateLocationFsxLustreInput,
-        output_schema = schemas.UpdateLocationFsxLustreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateLocationFsxLustre, input, options)
 end
 
 function Client:updateLocationFsxOntap(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateLocationFsxOntap",
-        input_schema = schemas.UpdateLocationFsxOntapInput,
-        output_schema = schemas.UpdateLocationFsxOntapOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateLocationFsxOntap, input, options)
 end
 
 function Client:updateLocationFsxOpenZfs(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateLocationFsxOpenZfs",
-        input_schema = schemas.UpdateLocationFsxOpenZfsInput,
-        output_schema = schemas.UpdateLocationFsxOpenZfsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateLocationFsxOpenZfs, input, options)
 end
 
 function Client:updateLocationFsxWindows(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateLocationFsxWindows",
-        input_schema = schemas.UpdateLocationFsxWindowsInput,
-        output_schema = schemas.UpdateLocationFsxWindowsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateLocationFsxWindows, input, options)
 end
 
 function Client:updateLocationHdfs(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateLocationHdfs",
-        input_schema = schemas.UpdateLocationHdfsInput,
-        output_schema = schemas.UpdateLocationHdfsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateLocationHdfs, input, options)
 end
 
 function Client:updateLocationNfs(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateLocationNfs",
-        input_schema = schemas.UpdateLocationNfsInput,
-        output_schema = schemas.UpdateLocationNfsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateLocationNfs, input, options)
 end
 
 function Client:updateLocationObjectStorage(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateLocationObjectStorage",
-        input_schema = schemas.UpdateLocationObjectStorageInput,
-        output_schema = schemas.UpdateLocationObjectStorageOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateLocationObjectStorage, input, options)
 end
 
 function Client:updateLocationS3(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateLocationS3",
-        input_schema = schemas.UpdateLocationS3Input,
-        output_schema = schemas.UpdateLocationS3Output,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateLocationS3, input, options)
 end
 
 function Client:updateLocationSmb(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateLocationSmb",
-        input_schema = schemas.UpdateLocationSmbInput,
-        output_schema = schemas.UpdateLocationSmbOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateLocationSmb, input, options)
 end
 
 function Client:updateTask(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTask",
-        input_schema = schemas.UpdateTaskInput,
-        output_schema = schemas.UpdateTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTask, input, options)
 end
 
 function Client:updateTaskExecution(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTaskExecution",
-        input_schema = schemas.UpdateTaskExecutionInput,
-        output_schema = schemas.UpdateTaskExecutionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTaskExecution, input, options)
 end
 
 return M

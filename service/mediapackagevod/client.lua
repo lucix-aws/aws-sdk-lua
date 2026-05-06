@@ -7,6 +7,7 @@ local endpoint_rules = require("mediapackagevod.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("mediapackagevod.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mediapackage-vod", signing_region = cfg.region } }
                 else
@@ -49,224 +52,71 @@ function M.new(cfg)
 end
 
 function Client:configureLogs(input, options)
-    return self:invokeOperation(input, {
-        name = "ConfigureLogs",
-        input_schema = schemas.ConfigureLogsInput,
-        output_schema = schemas.ConfigureLogsOutput,
-        http_method = "PUT",
-        http_path = "/packaging_groups/{Id}/configure_logs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ConfigureLogs, input, options)
 end
 
 function Client:createAsset(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAsset",
-        input_schema = schemas.CreateAssetInput,
-        output_schema = schemas.CreateAssetOutput,
-        http_method = "POST",
-        http_path = "/assets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAsset, input, options)
 end
 
 function Client:createPackagingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePackagingConfiguration",
-        input_schema = schemas.CreatePackagingConfigurationInput,
-        output_schema = schemas.CreatePackagingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/packaging_configurations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePackagingConfiguration, input, options)
 end
 
 function Client:createPackagingGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePackagingGroup",
-        input_schema = schemas.CreatePackagingGroupInput,
-        output_schema = schemas.CreatePackagingGroupOutput,
-        http_method = "POST",
-        http_path = "/packaging_groups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePackagingGroup, input, options)
 end
 
 function Client:deleteAsset(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAsset",
-        input_schema = schemas.DeleteAssetInput,
-        output_schema = schemas.DeleteAssetOutput,
-        http_method = "DELETE",
-        http_path = "/assets/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAsset, input, options)
 end
 
 function Client:deletePackagingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePackagingConfiguration",
-        input_schema = schemas.DeletePackagingConfigurationInput,
-        output_schema = schemas.DeletePackagingConfigurationOutput,
-        http_method = "DELETE",
-        http_path = "/packaging_configurations/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePackagingConfiguration, input, options)
 end
 
 function Client:deletePackagingGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePackagingGroup",
-        input_schema = schemas.DeletePackagingGroupInput,
-        output_schema = schemas.DeletePackagingGroupOutput,
-        http_method = "DELETE",
-        http_path = "/packaging_groups/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePackagingGroup, input, options)
 end
 
 function Client:describeAsset(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAsset",
-        input_schema = schemas.DescribeAssetInput,
-        output_schema = schemas.DescribeAssetOutput,
-        http_method = "GET",
-        http_path = "/assets/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAsset, input, options)
 end
 
 function Client:describePackagingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribePackagingConfiguration",
-        input_schema = schemas.DescribePackagingConfigurationInput,
-        output_schema = schemas.DescribePackagingConfigurationOutput,
-        http_method = "GET",
-        http_path = "/packaging_configurations/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribePackagingConfiguration, input, options)
 end
 
 function Client:describePackagingGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribePackagingGroup",
-        input_schema = schemas.DescribePackagingGroupInput,
-        output_schema = schemas.DescribePackagingGroupOutput,
-        http_method = "GET",
-        http_path = "/packaging_groups/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribePackagingGroup, input, options)
 end
 
 function Client:listAssets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAssets",
-        input_schema = schemas.ListAssetsInput,
-        output_schema = schemas.ListAssetsOutput,
-        http_method = "GET",
-        http_path = "/assets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAssets, input, options)
 end
 
 function Client:listPackagingConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPackagingConfigurations",
-        input_schema = schemas.ListPackagingConfigurationsInput,
-        output_schema = schemas.ListPackagingConfigurationsOutput,
-        http_method = "GET",
-        http_path = "/packaging_configurations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPackagingConfigurations, input, options)
 end
 
 function Client:listPackagingGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPackagingGroups",
-        input_schema = schemas.ListPackagingGroupsInput,
-        output_schema = schemas.ListPackagingGroupsOutput,
-        http_method = "GET",
-        http_path = "/packaging_groups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPackagingGroups, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updatePackagingGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePackagingGroup",
-        input_schema = schemas.UpdatePackagingGroupInput,
-        output_schema = schemas.UpdatePackagingGroupOutput,
-        http_method = "PUT",
-        http_path = "/packaging_groups/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePackagingGroup, input, options)
 end
 
 return M

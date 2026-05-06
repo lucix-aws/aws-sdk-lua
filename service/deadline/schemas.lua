@@ -17123,4 +17123,1490 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.deadline", "Deadline"),
+    version = "2023-10-12",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateMemberToFarm = schema.operation({
+    id = id.from("com.amazonaws.deadline", "AssociateMemberToFarm"),
+    input = M.AssociateMemberToFarmInput,
+    output = M.AssociateMemberToFarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2023-10-12/farms/{farmId}/members/{principalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateMemberToFleet = schema.operation({
+    id = id.from("com.amazonaws.deadline", "AssociateMemberToFleet"),
+    input = M.AssociateMemberToFleetInput,
+    output = M.AssociateMemberToFleetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/members/{principalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateMemberToJob = schema.operation({
+    id = id.from("com.amazonaws.deadline", "AssociateMemberToJob"),
+    input = M.AssociateMemberToJobInput,
+    output = M.AssociateMemberToJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/members/{principalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateMemberToQueue = schema.operation({
+    id = id.from("com.amazonaws.deadline", "AssociateMemberToQueue"),
+    input = M.AssociateMemberToQueueInput,
+    output = M.AssociateMemberToQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/members/{principalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssumeFleetRoleForRead = schema.operation({
+    id = id.from("com.amazonaws.deadline", "AssumeFleetRoleForRead"),
+    input = M.AssumeFleetRoleForReadInput,
+    output = M.AssumeFleetRoleForReadOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/read-roles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssumeFleetRoleForWorker = schema.operation({
+    id = id.from("com.amazonaws.deadline", "AssumeFleetRoleForWorker"),
+    input = M.AssumeFleetRoleForWorkerInput,
+    output = M.AssumeFleetRoleForWorkerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}/fleet-roles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssumeQueueRoleForRead = schema.operation({
+    id = id.from("com.amazonaws.deadline", "AssumeQueueRoleForRead"),
+    input = M.AssumeQueueRoleForReadInput,
+    output = M.AssumeQueueRoleForReadOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/read-roles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssumeQueueRoleForUser = schema.operation({
+    id = id.from("com.amazonaws.deadline", "AssumeQueueRoleForUser"),
+    input = M.AssumeQueueRoleForUserInput,
+    output = M.AssumeQueueRoleForUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/user-roles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssumeQueueRoleForWorker = schema.operation({
+    id = id.from("com.amazonaws.deadline", "AssumeQueueRoleForWorker"),
+    input = M.AssumeQueueRoleForWorkerInput,
+    output = M.AssumeQueueRoleForWorkerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}/queue-roles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetJob = schema.operation({
+    id = id.from("com.amazonaws.deadline", "BatchGetJob"),
+    input = M.BatchGetJobInput,
+    output = M.BatchGetJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/batch-get-job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetJobEntity = schema.operation({
+    id = id.from("com.amazonaws.deadline", "BatchGetJobEntity"),
+    input = M.BatchGetJobEntityInput,
+    output = M.BatchGetJobEntityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}/batchGetJobEntity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetSession = schema.operation({
+    id = id.from("com.amazonaws.deadline", "BatchGetSession"),
+    input = M.BatchGetSessionInput,
+    output = M.BatchGetSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/batch-get-session" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetSessionAction = schema.operation({
+    id = id.from("com.amazonaws.deadline", "BatchGetSessionAction"),
+    input = M.BatchGetSessionActionInput,
+    output = M.BatchGetSessionActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/batch-get-session-action" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetStep = schema.operation({
+    id = id.from("com.amazonaws.deadline", "BatchGetStep"),
+    input = M.BatchGetStepInput,
+    output = M.BatchGetStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/batch-get-step" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetTask = schema.operation({
+    id = id.from("com.amazonaws.deadline", "BatchGetTask"),
+    input = M.BatchGetTaskInput,
+    output = M.BatchGetTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/batch-get-task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetWorker = schema.operation({
+    id = id.from("com.amazonaws.deadline", "BatchGetWorker"),
+    input = M.BatchGetWorkerInput,
+    output = M.BatchGetWorkerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/batch-get-worker" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateJob = schema.operation({
+    id = id.from("com.amazonaws.deadline", "BatchUpdateJob"),
+    input = M.BatchUpdateJobInput,
+    output = M.BatchUpdateJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/batch-update-job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateTask = schema.operation({
+    id = id.from("com.amazonaws.deadline", "BatchUpdateTask"),
+    input = M.BatchUpdateTaskInput,
+    output = M.BatchUpdateTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/batch-update-task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyJobTemplate = schema.operation({
+    id = id.from("com.amazonaws.deadline", "CopyJobTemplate"),
+    input = M.CopyJobTemplateInput,
+    output = M.CopyJobTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/template" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBudget = schema.operation({
+    id = id.from("com.amazonaws.deadline", "CreateBudget"),
+    input = M.CreateBudgetInput,
+    output = M.CreateBudgetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/budgets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFarm = schema.operation({
+    id = id.from("com.amazonaws.deadline", "CreateFarm"),
+    input = M.CreateFarmInput,
+    output = M.CreateFarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFleet = schema.operation({
+    id = id.from("com.amazonaws.deadline", "CreateFleet"),
+    input = M.CreateFleetInput,
+    output = M.CreateFleetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/fleets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateJob = schema.operation({
+    id = id.from("com.amazonaws.deadline", "CreateJob"),
+    input = M.CreateJobInput,
+    output = M.CreateJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLicenseEndpoint = schema.operation({
+    id = id.from("com.amazonaws.deadline", "CreateLicenseEndpoint"),
+    input = M.CreateLicenseEndpointInput,
+    output = M.CreateLicenseEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/license-endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLimit = schema.operation({
+    id = id.from("com.amazonaws.deadline", "CreateLimit"),
+    input = M.CreateLimitInput,
+    output = M.CreateLimitOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/limits" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMonitor = schema.operation({
+    id = id.from("com.amazonaws.deadline", "CreateMonitor"),
+    input = M.CreateMonitorInput,
+    output = M.CreateMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/monitors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQueue = schema.operation({
+    id = id.from("com.amazonaws.deadline", "CreateQueue"),
+    input = M.CreateQueueInput,
+    output = M.CreateQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/queues" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQueueEnvironment = schema.operation({
+    id = id.from("com.amazonaws.deadline", "CreateQueueEnvironment"),
+    input = M.CreateQueueEnvironmentInput,
+    output = M.CreateQueueEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/environments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQueueFleetAssociation = schema.operation({
+    id = id.from("com.amazonaws.deadline", "CreateQueueFleetAssociation"),
+    input = M.CreateQueueFleetAssociationInput,
+    output = M.CreateQueueFleetAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2023-10-12/farms/{farmId}/queue-fleet-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQueueLimitAssociation = schema.operation({
+    id = id.from("com.amazonaws.deadline", "CreateQueueLimitAssociation"),
+    input = M.CreateQueueLimitAssociationInput,
+    output = M.CreateQueueLimitAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2023-10-12/farms/{farmId}/queue-limit-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStorageProfile = schema.operation({
+    id = id.from("com.amazonaws.deadline", "CreateStorageProfile"),
+    input = M.CreateStorageProfileInput,
+    output = M.CreateStorageProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/storage-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorker = schema.operation({
+    id = id.from("com.amazonaws.deadline", "CreateWorker"),
+    input = M.CreateWorkerInput,
+    output = M.CreateWorkerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBudget = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DeleteBudget"),
+    input = M.DeleteBudgetInput,
+    output = M.DeleteBudgetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}/budgets/{budgetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFarm = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DeleteFarm"),
+    input = M.DeleteFarmInput,
+    output = M.DeleteFarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFleet = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DeleteFleet"),
+    input = M.DeleteFleetInput,
+    output = M.DeleteFleetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLicenseEndpoint = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DeleteLicenseEndpoint"),
+    input = M.DeleteLicenseEndpointInput,
+    output = M.DeleteLicenseEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/license-endpoints/{licenseEndpointId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLimit = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DeleteLimit"),
+    input = M.DeleteLimitInput,
+    output = M.DeleteLimitOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}/limits/{limitId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMeteredProduct = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DeleteMeteredProduct"),
+    input = M.DeleteMeteredProductInput,
+    output = M.DeleteMeteredProductOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/license-endpoints/{licenseEndpointId}/metered-products/{productId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMonitor = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DeleteMonitor"),
+    input = M.DeleteMonitorInput,
+    output = M.DeleteMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/monitors/{monitorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQueue = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DeleteQueue"),
+    input = M.DeleteQueueInput,
+    output = M.DeleteQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}/queues/{queueId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQueueEnvironment = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DeleteQueueEnvironment"),
+    input = M.DeleteQueueEnvironmentInput,
+    output = M.DeleteQueueEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/environments/{queueEnvironmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQueueFleetAssociation = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DeleteQueueFleetAssociation"),
+    input = M.DeleteQueueFleetAssociationInput,
+    output = M.DeleteQueueFleetAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}/queue-fleet-associations/{queueId}/{fleetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQueueLimitAssociation = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DeleteQueueLimitAssociation"),
+    input = M.DeleteQueueLimitAssociationInput,
+    output = M.DeleteQueueLimitAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}/queue-limit-associations/{queueId}/{limitId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStorageProfile = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DeleteStorageProfile"),
+    input = M.DeleteStorageProfileInput,
+    output = M.DeleteStorageProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}/storage-profiles/{storageProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorker = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DeleteWorker"),
+    input = M.DeleteWorkerInput,
+    output = M.DeleteWorkerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateMemberFromFarm = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DisassociateMemberFromFarm"),
+    input = M.DisassociateMemberFromFarmInput,
+    output = M.DisassociateMemberFromFarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}/members/{principalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateMemberFromFleet = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DisassociateMemberFromFleet"),
+    input = M.DisassociateMemberFromFleetInput,
+    output = M.DisassociateMemberFromFleetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/members/{principalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateMemberFromJob = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DisassociateMemberFromJob"),
+    input = M.DisassociateMemberFromJobInput,
+    output = M.DisassociateMemberFromJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/members/{principalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateMemberFromQueue = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DisassociateMemberFromQueue"),
+    input = M.DisassociateMemberFromQueueInput,
+    output = M.DisassociateMemberFromQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/members/{principalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBudget = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetBudget"),
+    input = M.GetBudgetInput,
+    output = M.GetBudgetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/budgets/{budgetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFarm = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetFarm"),
+    input = M.GetFarmInput,
+    output = M.GetFarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFleet = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetFleet"),
+    input = M.GetFleetInput,
+    output = M.GetFleetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJob = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetJob"),
+    input = M.GetJobInput,
+    output = M.GetJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLicenseEndpoint = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetLicenseEndpoint"),
+    input = M.GetLicenseEndpointInput,
+    output = M.GetLicenseEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/license-endpoints/{licenseEndpointId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLimit = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetLimit"),
+    input = M.GetLimitInput,
+    output = M.GetLimitOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/limits/{limitId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMonitor = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetMonitor"),
+    input = M.GetMonitorInput,
+    output = M.GetMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/monitors/{monitorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMonitorSettings = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetMonitorSettings"),
+    input = M.GetMonitorSettingsInput,
+    output = M.GetMonitorSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/monitors/{monitorId}/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueue = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetQueue"),
+    input = M.GetQueueInput,
+    output = M.GetQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueueEnvironment = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetQueueEnvironment"),
+    input = M.GetQueueEnvironmentInput,
+    output = M.GetQueueEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/environments/{queueEnvironmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueueFleetAssociation = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetQueueFleetAssociation"),
+    input = M.GetQueueFleetAssociationInput,
+    output = M.GetQueueFleetAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queue-fleet-associations/{queueId}/{fleetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueueLimitAssociation = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetQueueLimitAssociation"),
+    input = M.GetQueueLimitAssociationInput,
+    output = M.GetQueueLimitAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queue-limit-associations/{queueId}/{limitId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSession = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetSession"),
+    input = M.GetSessionInput,
+    output = M.GetSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/sessions/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSessionAction = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetSessionAction"),
+    input = M.GetSessionActionInput,
+    output = M.GetSessionActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/session-actions/{sessionActionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSessionsStatisticsAggregation = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetSessionsStatisticsAggregation"),
+    input = M.GetSessionsStatisticsAggregationInput,
+    output = M.GetSessionsStatisticsAggregationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/sessions-statistics-aggregation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStep = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetStep"),
+    input = M.GetStepInput,
+    output = M.GetStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStorageProfile = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetStorageProfile"),
+    input = M.GetStorageProfileInput,
+    output = M.GetStorageProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/storage-profiles/{storageProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStorageProfileForQueue = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetStorageProfileForQueue"),
+    input = M.GetStorageProfileForQueueInput,
+    output = M.GetStorageProfileForQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/storage-profiles/{storageProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTask = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetTask"),
+    input = M.GetTaskInput,
+    output = M.GetTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}/tasks/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorker = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetWorker"),
+    input = M.GetWorkerInput,
+    output = M.GetWorkerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAvailableMeteredProducts = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListAvailableMeteredProducts"),
+    input = M.ListAvailableMeteredProductsInput,
+    output = M.ListAvailableMeteredProductsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/metered-products" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBudgets = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListBudgets"),
+    input = M.ListBudgetsInput,
+    output = M.ListBudgetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/budgets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFarmMembers = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListFarmMembers"),
+    input = M.ListFarmMembersInput,
+    output = M.ListFarmMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFarms = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListFarms"),
+    input = M.ListFarmsInput,
+    output = M.ListFarmsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFleetMembers = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListFleetMembers"),
+    input = M.ListFleetMembersInput,
+    output = M.ListFleetMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFleets = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListFleets"),
+    input = M.ListFleetsInput,
+    output = M.ListFleetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/fleets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobMembers = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListJobMembers"),
+    input = M.ListJobMembersInput,
+    output = M.ListJobMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobParameterDefinitions = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListJobParameterDefinitions"),
+    input = M.ListJobParameterDefinitionsInput,
+    output = M.ListJobParameterDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/parameter-definitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobs = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListJobs"),
+    input = M.ListJobsInput,
+    output = M.ListJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLicenseEndpoints = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListLicenseEndpoints"),
+    input = M.ListLicenseEndpointsInput,
+    output = M.ListLicenseEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/license-endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLimits = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListLimits"),
+    input = M.ListLimitsInput,
+    output = M.ListLimitsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/limits" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMeteredProducts = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListMeteredProducts"),
+    input = M.ListMeteredProductsInput,
+    output = M.ListMeteredProductsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/license-endpoints/{licenseEndpointId}/metered-products" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMonitors = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListMonitors"),
+    input = M.ListMonitorsInput,
+    output = M.ListMonitorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/monitors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueueEnvironments = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListQueueEnvironments"),
+    input = M.ListQueueEnvironmentsInput,
+    output = M.ListQueueEnvironmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/environments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueueFleetAssociations = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListQueueFleetAssociations"),
+    input = M.ListQueueFleetAssociationsInput,
+    output = M.ListQueueFleetAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queue-fleet-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueueLimitAssociations = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListQueueLimitAssociations"),
+    input = M.ListQueueLimitAssociationsInput,
+    output = M.ListQueueLimitAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queue-limit-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueueMembers = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListQueueMembers"),
+    input = M.ListQueueMembersInput,
+    output = M.ListQueueMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueues = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListQueues"),
+    input = M.ListQueuesInput,
+    output = M.ListQueuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessionActions = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListSessionActions"),
+    input = M.ListSessionActionsInput,
+    output = M.ListSessionActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/session-actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessions = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListSessions"),
+    input = M.ListSessionsInput,
+    output = M.ListSessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/sessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessionsForWorker = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListSessionsForWorker"),
+    input = M.ListSessionsForWorkerInput,
+    output = M.ListSessionsForWorkerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}/sessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStepConsumers = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListStepConsumers"),
+    input = M.ListStepConsumersInput,
+    output = M.ListStepConsumersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}/consumers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStepDependencies = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListStepDependencies"),
+    input = M.ListStepDependenciesInput,
+    output = M.ListStepDependenciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}/dependencies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSteps = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListSteps"),
+    input = M.ListStepsInput,
+    output = M.ListStepsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStorageProfiles = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListStorageProfiles"),
+    input = M.ListStorageProfilesInput,
+    output = M.ListStorageProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/storage-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStorageProfilesForQueue = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListStorageProfilesForQueue"),
+    input = M.ListStorageProfilesForQueueInput,
+    output = M.ListStorageProfilesForQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/storage-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTasks = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListTasks"),
+    input = M.ListTasksInput,
+    output = M.ListTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}/tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkers = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListWorkers"),
+    input = M.ListWorkersInput,
+    output = M.ListWorkersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMeteredProduct = schema.operation({
+    id = id.from("com.amazonaws.deadline", "PutMeteredProduct"),
+    input = M.PutMeteredProductInput,
+    output = M.PutMeteredProductOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2023-10-12/license-endpoints/{licenseEndpointId}/metered-products/{productId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchJobs = schema.operation({
+    id = id.from("com.amazonaws.deadline", "SearchJobs"),
+    input = M.SearchJobsInput,
+    output = M.SearchJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/search/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchSteps = schema.operation({
+    id = id.from("com.amazonaws.deadline", "SearchSteps"),
+    input = M.SearchStepsInput,
+    output = M.SearchStepsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/search/steps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchTasks = schema.operation({
+    id = id.from("com.amazonaws.deadline", "SearchTasks"),
+    input = M.SearchTasksInput,
+    output = M.SearchTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/search/tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchWorkers = schema.operation({
+    id = id.from("com.amazonaws.deadline", "SearchWorkers"),
+    input = M.SearchWorkersInput,
+    output = M.SearchWorkersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/search/workers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSessionsStatisticsAggregation = schema.operation({
+    id = id.from("com.amazonaws.deadline", "StartSessionsStatisticsAggregation"),
+    input = M.StartSessionsStatisticsAggregationInput,
+    output = M.StartSessionsStatisticsAggregationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/farms/{farmId}/sessions-statistics-aggregation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.deadline", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2023-10-12/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBudget = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateBudget"),
+    input = M.UpdateBudgetInput,
+    output = M.UpdateBudgetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}/budgets/{budgetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFarm = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateFarm"),
+    input = M.UpdateFarmInput,
+    output = M.UpdateFarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFleet = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateFleet"),
+    input = M.UpdateFleetInput,
+    output = M.UpdateFleetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateJob = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateJob"),
+    input = M.UpdateJobInput,
+    output = M.UpdateJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLimit = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateLimit"),
+    input = M.UpdateLimitInput,
+    output = M.UpdateLimitOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}/limits/{limitId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMonitor = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateMonitor"),
+    input = M.UpdateMonitorInput,
+    output = M.UpdateMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/monitors/{monitorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMonitorSettings = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateMonitorSettings"),
+    input = M.UpdateMonitorSettingsInput,
+    output = M.UpdateMonitorSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/monitors/{monitorId}/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQueue = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateQueue"),
+    input = M.UpdateQueueInput,
+    output = M.UpdateQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}/queues/{queueId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQueueEnvironment = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateQueueEnvironment"),
+    input = M.UpdateQueueEnvironmentInput,
+    output = M.UpdateQueueEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/environments/{queueEnvironmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQueueFleetAssociation = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateQueueFleetAssociation"),
+    input = M.UpdateQueueFleetAssociationInput,
+    output = M.UpdateQueueFleetAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}/queue-fleet-associations/{queueId}/{fleetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQueueLimitAssociation = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateQueueLimitAssociation"),
+    input = M.UpdateQueueLimitAssociationInput,
+    output = M.UpdateQueueLimitAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}/queue-limit-associations/{queueId}/{limitId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSession = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateSession"),
+    input = M.UpdateSessionInput,
+    output = M.UpdateSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/sessions/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStep = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateStep"),
+    input = M.UpdateStepInput,
+    output = M.UpdateStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStorageProfile = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateStorageProfile"),
+    input = M.UpdateStorageProfileInput,
+    output = M.UpdateStorageProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}/storage-profiles/{storageProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTask = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateTask"),
+    input = M.UpdateTaskInput,
+    output = M.UpdateTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}/tasks/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorker = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateWorker"),
+    input = M.UpdateWorkerInput,
+    output = M.UpdateWorkerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkerSchedule = schema.operation({
+    id = id.from("com.amazonaws.deadline", "UpdateWorkerSchedule"),
+    input = M.UpdateWorkerScheduleInput,
+    output = M.UpdateWorkerScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}/schedule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -2024,4 +2024,266 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.s3files", "S3Files"),
+    version = "2025-05-05",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccessPoint = schema.operation({
+    id = id.from("com.amazonaws.s3files", "CreateAccessPoint"),
+    input = M.CreateAccessPointInput,
+    output = M.CreateAccessPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/access-points" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFileSystem = schema.operation({
+    id = id.from("com.amazonaws.s3files", "CreateFileSystem"),
+    input = M.CreateFileSystemInput,
+    output = M.CreateFileSystemOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/file-systems" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMountTarget = schema.operation({
+    id = id.from("com.amazonaws.s3files", "CreateMountTarget"),
+    input = M.CreateMountTargetInput,
+    output = M.CreateMountTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/mount-targets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccessPoint = schema.operation({
+    id = id.from("com.amazonaws.s3files", "DeleteAccessPoint"),
+    input = M.DeleteAccessPointInput,
+    output = M.DeleteAccessPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/access-points/{accessPointId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFileSystem = schema.operation({
+    id = id.from("com.amazonaws.s3files", "DeleteFileSystem"),
+    input = M.DeleteFileSystemInput,
+    output = M.DeleteFileSystemOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/file-systems/{fileSystemId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFileSystemPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3files", "DeleteFileSystemPolicy"),
+    input = M.DeleteFileSystemPolicyInput,
+    output = M.DeleteFileSystemPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/file-systems/{fileSystemId}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMountTarget = schema.operation({
+    id = id.from("com.amazonaws.s3files", "DeleteMountTarget"),
+    input = M.DeleteMountTargetInput,
+    output = M.DeleteMountTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/mount-targets/{mountTargetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccessPoint = schema.operation({
+    id = id.from("com.amazonaws.s3files", "GetAccessPoint"),
+    input = M.GetAccessPointInput,
+    output = M.GetAccessPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/access-points/{accessPointId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFileSystem = schema.operation({
+    id = id.from("com.amazonaws.s3files", "GetFileSystem"),
+    input = M.GetFileSystemInput,
+    output = M.GetFileSystemOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/file-systems/{fileSystemId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFileSystemPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3files", "GetFileSystemPolicy"),
+    input = M.GetFileSystemPolicyInput,
+    output = M.GetFileSystemPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/file-systems/{fileSystemId}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMountTarget = schema.operation({
+    id = id.from("com.amazonaws.s3files", "GetMountTarget"),
+    input = M.GetMountTargetInput,
+    output = M.GetMountTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/mount-targets/{mountTargetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSynchronizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3files", "GetSynchronizationConfiguration"),
+    input = M.GetSynchronizationConfigurationInput,
+    output = M.GetSynchronizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/file-systems/{fileSystemId}/synchronization-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccessPoints = schema.operation({
+    id = id.from("com.amazonaws.s3files", "ListAccessPoints"),
+    input = M.ListAccessPointsInput,
+    output = M.ListAccessPointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/access-points" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFileSystems = schema.operation({
+    id = id.from("com.amazonaws.s3files", "ListFileSystems"),
+    input = M.ListFileSystemsInput,
+    output = M.ListFileSystemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/file-systems" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMountTargets = schema.operation({
+    id = id.from("com.amazonaws.s3files", "ListMountTargets"),
+    input = M.ListMountTargetsInput,
+    output = M.ListMountTargetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/mount-targets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.s3files", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resource-tags/{resourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFileSystemPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3files", "PutFileSystemPolicy"),
+    input = M.PutFileSystemPolicyInput,
+    output = M.PutFileSystemPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/file-systems/{fileSystemId}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSynchronizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3files", "PutSynchronizationConfiguration"),
+    input = M.PutSynchronizationConfigurationInput,
+    output = M.PutSynchronizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/file-systems/{fileSystemId}/synchronization-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.s3files", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resource-tags/{resourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.s3files", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/resource-tags/{resourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMountTarget = schema.operation({
+    id = id.from("com.amazonaws.s3files", "UpdateMountTarget"),
+    input = M.UpdateMountTargetInput,
+    output = M.UpdateMountTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/mount-targets/{mountTargetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

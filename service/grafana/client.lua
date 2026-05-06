@@ -7,6 +7,7 @@ local endpoint_rules = require("grafana.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("grafana.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "grafana", signing_region = cfg.region } }
                 else
@@ -49,328 +52,103 @@ function M.new(cfg)
 end
 
 function Client:associateLicense(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateLicense",
-        input_schema = schemas.AssociateLicenseInput,
-        output_schema = schemas.AssociateLicenseOutput,
-        http_method = "POST",
-        http_path = "/workspaces/{workspaceId}/licenses/{licenseType}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateLicense, input, options)
 end
 
 function Client:createWorkspace(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateWorkspace",
-        input_schema = schemas.CreateWorkspaceInput,
-        output_schema = schemas.CreateWorkspaceOutput,
-        http_method = "POST",
-        http_path = "/workspaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateWorkspace, input, options)
 end
 
 function Client:createWorkspaceApiKey(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateWorkspaceApiKey",
-        input_schema = schemas.CreateWorkspaceApiKeyInput,
-        output_schema = schemas.CreateWorkspaceApiKeyOutput,
-        http_method = "POST",
-        http_path = "/workspaces/{workspaceId}/apikeys",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateWorkspaceApiKey, input, options)
 end
 
 function Client:createWorkspaceServiceAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateWorkspaceServiceAccount",
-        input_schema = schemas.CreateWorkspaceServiceAccountInput,
-        output_schema = schemas.CreateWorkspaceServiceAccountOutput,
-        http_method = "POST",
-        http_path = "/workspaces/{workspaceId}/serviceaccounts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateWorkspaceServiceAccount, input, options)
 end
 
 function Client:createWorkspaceServiceAccountToken(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateWorkspaceServiceAccountToken",
-        input_schema = schemas.CreateWorkspaceServiceAccountTokenInput,
-        output_schema = schemas.CreateWorkspaceServiceAccountTokenOutput,
-        http_method = "POST",
-        http_path = "/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}/tokens",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateWorkspaceServiceAccountToken, input, options)
 end
 
 function Client:deleteWorkspace(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWorkspace",
-        input_schema = schemas.DeleteWorkspaceInput,
-        output_schema = schemas.DeleteWorkspaceOutput,
-        http_method = "DELETE",
-        http_path = "/workspaces/{workspaceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWorkspace, input, options)
 end
 
 function Client:deleteWorkspaceApiKey(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWorkspaceApiKey",
-        input_schema = schemas.DeleteWorkspaceApiKeyInput,
-        output_schema = schemas.DeleteWorkspaceApiKeyOutput,
-        http_method = "DELETE",
-        http_path = "/workspaces/{workspaceId}/apikeys/{keyName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWorkspaceApiKey, input, options)
 end
 
 function Client:deleteWorkspaceServiceAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWorkspaceServiceAccount",
-        input_schema = schemas.DeleteWorkspaceServiceAccountInput,
-        output_schema = schemas.DeleteWorkspaceServiceAccountOutput,
-        http_method = "DELETE",
-        http_path = "/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWorkspaceServiceAccount, input, options)
 end
 
 function Client:deleteWorkspaceServiceAccountToken(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWorkspaceServiceAccountToken",
-        input_schema = schemas.DeleteWorkspaceServiceAccountTokenInput,
-        output_schema = schemas.DeleteWorkspaceServiceAccountTokenOutput,
-        http_method = "DELETE",
-        http_path = "/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}/tokens/{tokenId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWorkspaceServiceAccountToken, input, options)
 end
 
 function Client:describeWorkspace(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeWorkspace",
-        input_schema = schemas.DescribeWorkspaceInput,
-        output_schema = schemas.DescribeWorkspaceOutput,
-        http_method = "GET",
-        http_path = "/workspaces/{workspaceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeWorkspace, input, options)
 end
 
 function Client:describeWorkspaceAuthentication(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeWorkspaceAuthentication",
-        input_schema = schemas.DescribeWorkspaceAuthenticationInput,
-        output_schema = schemas.DescribeWorkspaceAuthenticationOutput,
-        http_method = "GET",
-        http_path = "/workspaces/{workspaceId}/authentication",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeWorkspaceAuthentication, input, options)
 end
 
 function Client:describeWorkspaceConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeWorkspaceConfiguration",
-        input_schema = schemas.DescribeWorkspaceConfigurationInput,
-        output_schema = schemas.DescribeWorkspaceConfigurationOutput,
-        http_method = "GET",
-        http_path = "/workspaces/{workspaceId}/configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeWorkspaceConfiguration, input, options)
 end
 
 function Client:disassociateLicense(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateLicense",
-        input_schema = schemas.DisassociateLicenseInput,
-        output_schema = schemas.DisassociateLicenseOutput,
-        http_method = "DELETE",
-        http_path = "/workspaces/{workspaceId}/licenses/{licenseType}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateLicense, input, options)
 end
 
 function Client:listPermissions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPermissions",
-        input_schema = schemas.ListPermissionsInput,
-        output_schema = schemas.ListPermissionsOutput,
-        http_method = "GET",
-        http_path = "/workspaces/{workspaceId}/permissions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPermissions, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVersions",
-        input_schema = schemas.ListVersionsInput,
-        output_schema = schemas.ListVersionsOutput,
-        http_method = "GET",
-        http_path = "/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVersions, input, options)
 end
 
 function Client:listWorkspaces(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkspaces",
-        input_schema = schemas.ListWorkspacesInput,
-        output_schema = schemas.ListWorkspacesOutput,
-        http_method = "GET",
-        http_path = "/workspaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkspaces, input, options)
 end
 
 function Client:listWorkspaceServiceAccounts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkspaceServiceAccounts",
-        input_schema = schemas.ListWorkspaceServiceAccountsInput,
-        output_schema = schemas.ListWorkspaceServiceAccountsOutput,
-        http_method = "GET",
-        http_path = "/workspaces/{workspaceId}/serviceaccounts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkspaceServiceAccounts, input, options)
 end
 
 function Client:listWorkspaceServiceAccountTokens(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkspaceServiceAccountTokens",
-        input_schema = schemas.ListWorkspaceServiceAccountTokensInput,
-        output_schema = schemas.ListWorkspaceServiceAccountTokensOutput,
-        http_method = "GET",
-        http_path = "/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}/tokens",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkspaceServiceAccountTokens, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updatePermissions(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePermissions",
-        input_schema = schemas.UpdatePermissionsInput,
-        output_schema = schemas.UpdatePermissionsOutput,
-        http_method = "PATCH",
-        http_path = "/workspaces/{workspaceId}/permissions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePermissions, input, options)
 end
 
 function Client:updateWorkspace(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateWorkspace",
-        input_schema = schemas.UpdateWorkspaceInput,
-        output_schema = schemas.UpdateWorkspaceOutput,
-        http_method = "PUT",
-        http_path = "/workspaces/{workspaceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateWorkspace, input, options)
 end
 
 function Client:updateWorkspaceAuthentication(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateWorkspaceAuthentication",
-        input_schema = schemas.UpdateWorkspaceAuthenticationInput,
-        output_schema = schemas.UpdateWorkspaceAuthenticationOutput,
-        http_method = "POST",
-        http_path = "/workspaces/{workspaceId}/authentication",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateWorkspaceAuthentication, input, options)
 end
 
 function Client:updateWorkspaceConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateWorkspaceConfiguration",
-        input_schema = schemas.UpdateWorkspaceConfigurationInput,
-        output_schema = schemas.UpdateWorkspaceConfigurationOutput,
-        http_method = "PUT",
-        http_path = "/workspaces/{workspaceId}/configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateWorkspaceConfiguration, input, options)
 end
 
 return M

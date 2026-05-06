@@ -10995,4 +10995,1310 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.backup", "CryoControllerUserManager"),
+    version = "2018-11-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateBackupVaultMpaApprovalTeam = schema.operation({
+    id = id.from("com.amazonaws.backup", "AssociateBackupVaultMpaApprovalTeam"),
+    input = M.AssociateBackupVaultMpaApprovalTeamInput,
+    output = M.AssociateBackupVaultMpaApprovalTeamOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/backup-vaults/{BackupVaultName}/mpaApprovalTeam" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelLegalHold = schema.operation({
+    id = id.from("com.amazonaws.backup", "CancelLegalHold"),
+    input = M.CancelLegalHoldInput,
+    output = M.CancelLegalHoldOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/legal-holds/{LegalHoldId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBackupPlan = schema.operation({
+    id = id.from("com.amazonaws.backup", "CreateBackupPlan"),
+    input = M.CreateBackupPlanInput,
+    output = M.CreateBackupPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/backup/plans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBackupSelection = schema.operation({
+    id = id.from("com.amazonaws.backup", "CreateBackupSelection"),
+    input = M.CreateBackupSelectionInput,
+    output = M.CreateBackupSelectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/backup/plans/{BackupPlanId}/selections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBackupVault = schema.operation({
+    id = id.from("com.amazonaws.backup", "CreateBackupVault"),
+    input = M.CreateBackupVaultInput,
+    output = M.CreateBackupVaultOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/backup-vaults/{BackupVaultName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFramework = schema.operation({
+    id = id.from("com.amazonaws.backup", "CreateFramework"),
+    input = M.CreateFrameworkInput,
+    output = M.CreateFrameworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/audit/frameworks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLegalHold = schema.operation({
+    id = id.from("com.amazonaws.backup", "CreateLegalHold"),
+    input = M.CreateLegalHoldInput,
+    output = M.CreateLegalHoldOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/legal-holds" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLogicallyAirGappedBackupVault = schema.operation({
+    id = id.from("com.amazonaws.backup", "CreateLogicallyAirGappedBackupVault"),
+    input = M.CreateLogicallyAirGappedBackupVaultInput,
+    output = M.CreateLogicallyAirGappedBackupVaultOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/logically-air-gapped-backup-vaults/{BackupVaultName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReportPlan = schema.operation({
+    id = id.from("com.amazonaws.backup", "CreateReportPlan"),
+    input = M.CreateReportPlanInput,
+    output = M.CreateReportPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/audit/report-plans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRestoreAccessBackupVault = schema.operation({
+    id = id.from("com.amazonaws.backup", "CreateRestoreAccessBackupVault"),
+    input = M.CreateRestoreAccessBackupVaultInput,
+    output = M.CreateRestoreAccessBackupVaultOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/restore-access-backup-vaults" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRestoreTestingPlan = schema.operation({
+    id = id.from("com.amazonaws.backup", "CreateRestoreTestingPlan"),
+    input = M.CreateRestoreTestingPlanInput,
+    output = M.CreateRestoreTestingPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/restore-testing/plans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRestoreTestingSelection = schema.operation({
+    id = id.from("com.amazonaws.backup", "CreateRestoreTestingSelection"),
+    input = M.CreateRestoreTestingSelectionInput,
+    output = M.CreateRestoreTestingSelectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/restore-testing/plans/{RestoreTestingPlanName}/selections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTieringConfiguration = schema.operation({
+    id = id.from("com.amazonaws.backup", "CreateTieringConfiguration"),
+    input = M.CreateTieringConfigurationInput,
+    output = M.CreateTieringConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tiering-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBackupPlan = schema.operation({
+    id = id.from("com.amazonaws.backup", "DeleteBackupPlan"),
+    input = M.DeleteBackupPlanInput,
+    output = M.DeleteBackupPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/backup/plans/{BackupPlanId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBackupSelection = schema.operation({
+    id = id.from("com.amazonaws.backup", "DeleteBackupSelection"),
+    input = M.DeleteBackupSelectionInput,
+    output = M.DeleteBackupSelectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/backup/plans/{BackupPlanId}/selections/{SelectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBackupVault = schema.operation({
+    id = id.from("com.amazonaws.backup", "DeleteBackupVault"),
+    input = M.DeleteBackupVaultInput,
+    output = M.DeleteBackupVaultOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/backup-vaults/{BackupVaultName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBackupVaultAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.backup", "DeleteBackupVaultAccessPolicy"),
+    input = M.DeleteBackupVaultAccessPolicyInput,
+    output = M.DeleteBackupVaultAccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/backup-vaults/{BackupVaultName}/access-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBackupVaultLockConfiguration = schema.operation({
+    id = id.from("com.amazonaws.backup", "DeleteBackupVaultLockConfiguration"),
+    input = M.DeleteBackupVaultLockConfigurationInput,
+    output = M.DeleteBackupVaultLockConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/backup-vaults/{BackupVaultName}/vault-lock" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBackupVaultNotifications = schema.operation({
+    id = id.from("com.amazonaws.backup", "DeleteBackupVaultNotifications"),
+    input = M.DeleteBackupVaultNotificationsInput,
+    output = M.DeleteBackupVaultNotificationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/backup-vaults/{BackupVaultName}/notification-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFramework = schema.operation({
+    id = id.from("com.amazonaws.backup", "DeleteFramework"),
+    input = M.DeleteFrameworkInput,
+    output = M.DeleteFrameworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/audit/frameworks/{FrameworkName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecoveryPoint = schema.operation({
+    id = id.from("com.amazonaws.backup", "DeleteRecoveryPoint"),
+    input = M.DeleteRecoveryPointInput,
+    output = M.DeleteRecoveryPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReportPlan = schema.operation({
+    id = id.from("com.amazonaws.backup", "DeleteReportPlan"),
+    input = M.DeleteReportPlanInput,
+    output = M.DeleteReportPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/audit/report-plans/{ReportPlanName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRestoreTestingPlan = schema.operation({
+    id = id.from("com.amazonaws.backup", "DeleteRestoreTestingPlan"),
+    input = M.DeleteRestoreTestingPlanInput,
+    output = M.DeleteRestoreTestingPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restore-testing/plans/{RestoreTestingPlanName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRestoreTestingSelection = schema.operation({
+    id = id.from("com.amazonaws.backup", "DeleteRestoreTestingSelection"),
+    input = M.DeleteRestoreTestingSelectionInput,
+    output = M.DeleteRestoreTestingSelectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restore-testing/plans/{RestoreTestingPlanName}/selections/{RestoreTestingSelectionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTieringConfiguration = schema.operation({
+    id = id.from("com.amazonaws.backup", "DeleteTieringConfiguration"),
+    input = M.DeleteTieringConfigurationInput,
+    output = M.DeleteTieringConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tiering-configurations/{TieringConfigurationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBackupJob = schema.operation({
+    id = id.from("com.amazonaws.backup", "DescribeBackupJob"),
+    input = M.DescribeBackupJobInput,
+    output = M.DescribeBackupJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup-jobs/{BackupJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBackupVault = schema.operation({
+    id = id.from("com.amazonaws.backup", "DescribeBackupVault"),
+    input = M.DescribeBackupVaultInput,
+    output = M.DescribeBackupVaultOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup-vaults/{BackupVaultName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCopyJob = schema.operation({
+    id = id.from("com.amazonaws.backup", "DescribeCopyJob"),
+    input = M.DescribeCopyJobInput,
+    output = M.DescribeCopyJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/copy-jobs/{CopyJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFramework = schema.operation({
+    id = id.from("com.amazonaws.backup", "DescribeFramework"),
+    input = M.DescribeFrameworkInput,
+    output = M.DescribeFrameworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/frameworks/{FrameworkName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGlobalSettings = schema.operation({
+    id = id.from("com.amazonaws.backup", "DescribeGlobalSettings"),
+    input = M.DescribeGlobalSettingsInput,
+    output = M.DescribeGlobalSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProtectedResource = schema.operation({
+    id = id.from("com.amazonaws.backup", "DescribeProtectedResource"),
+    input = M.DescribeProtectedResourceInput,
+    output = M.DescribeProtectedResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resources/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRecoveryPoint = schema.operation({
+    id = id.from("com.amazonaws.backup", "DescribeRecoveryPoint"),
+    input = M.DescribeRecoveryPointInput,
+    output = M.DescribeRecoveryPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRegionSettings = schema.operation({
+    id = id.from("com.amazonaws.backup", "DescribeRegionSettings"),
+    input = M.DescribeRegionSettingsInput,
+    output = M.DescribeRegionSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/account-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReportJob = schema.operation({
+    id = id.from("com.amazonaws.backup", "DescribeReportJob"),
+    input = M.DescribeReportJobInput,
+    output = M.DescribeReportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/report-jobs/{ReportJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReportPlan = schema.operation({
+    id = id.from("com.amazonaws.backup", "DescribeReportPlan"),
+    input = M.DescribeReportPlanInput,
+    output = M.DescribeReportPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/report-plans/{ReportPlanName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRestoreJob = schema.operation({
+    id = id.from("com.amazonaws.backup", "DescribeRestoreJob"),
+    input = M.DescribeRestoreJobInput,
+    output = M.DescribeRestoreJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restore-jobs/{RestoreJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScanJob = schema.operation({
+    id = id.from("com.amazonaws.backup", "DescribeScanJob"),
+    input = M.DescribeScanJobInput,
+    output = M.DescribeScanJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/scan/jobs/{ScanJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateBackupVaultMpaApprovalTeam = schema.operation({
+    id = id.from("com.amazonaws.backup", "DisassociateBackupVaultMpaApprovalTeam"),
+    input = M.DisassociateBackupVaultMpaApprovalTeamInput,
+    output = M.DisassociateBackupVaultMpaApprovalTeamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backup-vaults/{BackupVaultName}/mpaApprovalTeam?delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateRecoveryPoint = schema.operation({
+    id = id.from("com.amazonaws.backup", "DisassociateRecoveryPoint"),
+    input = M.DisassociateRecoveryPointInput,
+    output = M.DisassociateRecoveryPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateRecoveryPointFromParent = schema.operation({
+    id = id.from("com.amazonaws.backup", "DisassociateRecoveryPointFromParent"),
+    input = M.DisassociateRecoveryPointFromParentInput,
+    output = M.DisassociateRecoveryPointFromParentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/parentAssociation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportBackupPlanTemplate = schema.operation({
+    id = id.from("com.amazonaws.backup", "ExportBackupPlanTemplate"),
+    input = M.ExportBackupPlanTemplateInput,
+    output = M.ExportBackupPlanTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup/plans/{BackupPlanId}/toTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBackupPlan = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetBackupPlan"),
+    input = M.GetBackupPlanInput,
+    output = M.GetBackupPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup/plans/{BackupPlanId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBackupPlanFromJSON = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetBackupPlanFromJSON"),
+    input = M.GetBackupPlanFromJSONInput,
+    output = M.GetBackupPlanFromJSONOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backup/template/json/toPlan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBackupPlanFromTemplate = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetBackupPlanFromTemplate"),
+    input = M.GetBackupPlanFromTemplateInput,
+    output = M.GetBackupPlanFromTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup/template/plans/{BackupPlanTemplateId}/toPlan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBackupSelection = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetBackupSelection"),
+    input = M.GetBackupSelectionInput,
+    output = M.GetBackupSelectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup/plans/{BackupPlanId}/selections/{SelectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBackupVaultAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetBackupVaultAccessPolicy"),
+    input = M.GetBackupVaultAccessPolicyInput,
+    output = M.GetBackupVaultAccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup-vaults/{BackupVaultName}/access-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBackupVaultNotifications = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetBackupVaultNotifications"),
+    input = M.GetBackupVaultNotificationsInput,
+    output = M.GetBackupVaultNotificationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup-vaults/{BackupVaultName}/notification-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLegalHold = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetLegalHold"),
+    input = M.GetLegalHoldInput,
+    output = M.GetLegalHoldOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/legal-holds/{LegalHoldId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecoveryPointIndexDetails = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetRecoveryPointIndexDetails"),
+    input = M.GetRecoveryPointIndexDetailsInput,
+    output = M.GetRecoveryPointIndexDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/index" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecoveryPointRestoreMetadata = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetRecoveryPointRestoreMetadata"),
+    input = M.GetRecoveryPointRestoreMetadataInput,
+    output = M.GetRecoveryPointRestoreMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/restore-metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRestoreJobMetadata = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetRestoreJobMetadata"),
+    input = M.GetRestoreJobMetadataInput,
+    output = M.GetRestoreJobMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restore-jobs/{RestoreJobId}/metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRestoreTestingInferredMetadata = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetRestoreTestingInferredMetadata"),
+    input = M.GetRestoreTestingInferredMetadataInput,
+    output = M.GetRestoreTestingInferredMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restore-testing/inferred-metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRestoreTestingPlan = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetRestoreTestingPlan"),
+    input = M.GetRestoreTestingPlanInput,
+    output = M.GetRestoreTestingPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restore-testing/plans/{RestoreTestingPlanName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRestoreTestingSelection = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetRestoreTestingSelection"),
+    input = M.GetRestoreTestingSelectionInput,
+    output = M.GetRestoreTestingSelectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restore-testing/plans/{RestoreTestingPlanName}/selections/{RestoreTestingSelectionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSupportedResourceTypes = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetSupportedResourceTypes"),
+    input = M.GetSupportedResourceTypesInput,
+    output = M.GetSupportedResourceTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/supported-resource-types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTieringConfiguration = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetTieringConfiguration"),
+    input = M.GetTieringConfigurationInput,
+    output = M.GetTieringConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tiering-configurations/{TieringConfigurationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBackupJobs = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListBackupJobs"),
+    input = M.ListBackupJobsInput,
+    output = M.ListBackupJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBackupJobSummaries = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListBackupJobSummaries"),
+    input = M.ListBackupJobSummariesInput,
+    output = M.ListBackupJobSummariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/backup-job-summaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBackupPlans = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListBackupPlans"),
+    input = M.ListBackupPlansInput,
+    output = M.ListBackupPlansOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup/plans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBackupPlanTemplates = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListBackupPlanTemplates"),
+    input = M.ListBackupPlanTemplatesInput,
+    output = M.ListBackupPlanTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup/template/plans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBackupPlanVersions = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListBackupPlanVersions"),
+    input = M.ListBackupPlanVersionsInput,
+    output = M.ListBackupPlanVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup/plans/{BackupPlanId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBackupSelections = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListBackupSelections"),
+    input = M.ListBackupSelectionsInput,
+    output = M.ListBackupSelectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup/plans/{BackupPlanId}/selections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBackupVaults = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListBackupVaults"),
+    input = M.ListBackupVaultsInput,
+    output = M.ListBackupVaultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup-vaults" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCopyJobs = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListCopyJobs"),
+    input = M.ListCopyJobsInput,
+    output = M.ListCopyJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/copy-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCopyJobSummaries = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListCopyJobSummaries"),
+    input = M.ListCopyJobSummariesInput,
+    output = M.ListCopyJobSummariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/copy-job-summaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFrameworks = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListFrameworks"),
+    input = M.ListFrameworksInput,
+    output = M.ListFrameworksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/frameworks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIndexedRecoveryPoints = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListIndexedRecoveryPoints"),
+    input = M.ListIndexedRecoveryPointsInput,
+    output = M.ListIndexedRecoveryPointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/indexes/recovery-point" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLegalHolds = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListLegalHolds"),
+    input = M.ListLegalHoldsInput,
+    output = M.ListLegalHoldsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/legal-holds" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProtectedResources = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListProtectedResources"),
+    input = M.ListProtectedResourcesInput,
+    output = M.ListProtectedResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProtectedResourcesByBackupVault = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListProtectedResourcesByBackupVault"),
+    input = M.ListProtectedResourcesByBackupVaultInput,
+    output = M.ListProtectedResourcesByBackupVaultOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup-vaults/{BackupVaultName}/resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecoveryPointsByBackupVault = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListRecoveryPointsByBackupVault"),
+    input = M.ListRecoveryPointsByBackupVaultInput,
+    output = M.ListRecoveryPointsByBackupVaultOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup-vaults/{BackupVaultName}/recovery-points" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecoveryPointsByLegalHold = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListRecoveryPointsByLegalHold"),
+    input = M.ListRecoveryPointsByLegalHoldInput,
+    output = M.ListRecoveryPointsByLegalHoldOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/legal-holds/{LegalHoldId}/recovery-points" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecoveryPointsByResource = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListRecoveryPointsByResource"),
+    input = M.ListRecoveryPointsByResourceInput,
+    output = M.ListRecoveryPointsByResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resources/{ResourceArn}/recovery-points" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReportJobs = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListReportJobs"),
+    input = M.ListReportJobsInput,
+    output = M.ListReportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/report-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReportPlans = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListReportPlans"),
+    input = M.ListReportPlansInput,
+    output = M.ListReportPlansOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/report-plans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRestoreAccessBackupVaults = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListRestoreAccessBackupVaults"),
+    input = M.ListRestoreAccessBackupVaultsInput,
+    output = M.ListRestoreAccessBackupVaultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/logically-air-gapped-backup-vaults/{BackupVaultName}/restore-access-backup-vaults" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRestoreJobs = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListRestoreJobs"),
+    input = M.ListRestoreJobsInput,
+    output = M.ListRestoreJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restore-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRestoreJobsByProtectedResource = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListRestoreJobsByProtectedResource"),
+    input = M.ListRestoreJobsByProtectedResourceInput,
+    output = M.ListRestoreJobsByProtectedResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resources/{ResourceArn}/restore-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRestoreJobSummaries = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListRestoreJobSummaries"),
+    input = M.ListRestoreJobSummariesInput,
+    output = M.ListRestoreJobSummariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/restore-job-summaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRestoreTestingPlans = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListRestoreTestingPlans"),
+    input = M.ListRestoreTestingPlansInput,
+    output = M.ListRestoreTestingPlansOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restore-testing/plans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRestoreTestingSelections = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListRestoreTestingSelections"),
+    input = M.ListRestoreTestingSelectionsInput,
+    output = M.ListRestoreTestingSelectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restore-testing/plans/{RestoreTestingPlanName}/selections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScanJobs = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListScanJobs"),
+    input = M.ListScanJobsInput,
+    output = M.ListScanJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/scan/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScanJobSummaries = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListScanJobSummaries"),
+    input = M.ListScanJobSummariesInput,
+    output = M.ListScanJobSummariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/scan-job-summaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTags = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListTags"),
+    input = M.ListTagsInput,
+    output = M.ListTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTieringConfigurations = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListTieringConfigurations"),
+    input = M.ListTieringConfigurationsInput,
+    output = M.ListTieringConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tiering-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutBackupVaultAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.backup", "PutBackupVaultAccessPolicy"),
+    input = M.PutBackupVaultAccessPolicyInput,
+    output = M.PutBackupVaultAccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/backup-vaults/{BackupVaultName}/access-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutBackupVaultLockConfiguration = schema.operation({
+    id = id.from("com.amazonaws.backup", "PutBackupVaultLockConfiguration"),
+    input = M.PutBackupVaultLockConfigurationInput,
+    output = M.PutBackupVaultLockConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/backup-vaults/{BackupVaultName}/vault-lock" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutBackupVaultNotifications = schema.operation({
+    id = id.from("com.amazonaws.backup", "PutBackupVaultNotifications"),
+    input = M.PutBackupVaultNotificationsInput,
+    output = M.PutBackupVaultNotificationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/backup-vaults/{BackupVaultName}/notification-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRestoreValidationResult = schema.operation({
+    id = id.from("com.amazonaws.backup", "PutRestoreValidationResult"),
+    input = M.PutRestoreValidationResultInput,
+    output = M.PutRestoreValidationResultOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/restore-jobs/{RestoreJobId}/validations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeRestoreAccessBackupVault = schema.operation({
+    id = id.from("com.amazonaws.backup", "RevokeRestoreAccessBackupVault"),
+    input = M.RevokeRestoreAccessBackupVaultInput,
+    output = M.RevokeRestoreAccessBackupVaultOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/logically-air-gapped-backup-vaults/{BackupVaultName}/restore-access-backup-vaults/{RestoreAccessBackupVaultArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartBackupJob = schema.operation({
+    id = id.from("com.amazonaws.backup", "StartBackupJob"),
+    input = M.StartBackupJobInput,
+    output = M.StartBackupJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/backup-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCopyJob = schema.operation({
+    id = id.from("com.amazonaws.backup", "StartCopyJob"),
+    input = M.StartCopyJobInput,
+    output = M.StartCopyJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/copy-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReportJob = schema.operation({
+    id = id.from("com.amazonaws.backup", "StartReportJob"),
+    input = M.StartReportJobInput,
+    output = M.StartReportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/audit/report-jobs/{ReportPlanName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRestoreJob = schema.operation({
+    id = id.from("com.amazonaws.backup", "StartRestoreJob"),
+    input = M.StartRestoreJobInput,
+    output = M.StartRestoreJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/restore-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartScanJob = schema.operation({
+    id = id.from("com.amazonaws.backup", "StartScanJob"),
+    input = M.StartScanJobInput,
+    output = M.StartScanJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/scan/job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopBackupJob = schema.operation({
+    id = id.from("com.amazonaws.backup", "StopBackupJob"),
+    input = M.StopBackupJobInput,
+    output = M.StopBackupJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backup-jobs/{BackupJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.backup", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.backup", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/untag/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBackupPlan = schema.operation({
+    id = id.from("com.amazonaws.backup", "UpdateBackupPlan"),
+    input = M.UpdateBackupPlanInput,
+    output = M.UpdateBackupPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backup/plans/{BackupPlanId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFramework = schema.operation({
+    id = id.from("com.amazonaws.backup", "UpdateFramework"),
+    input = M.UpdateFrameworkInput,
+    output = M.UpdateFrameworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/audit/frameworks/{FrameworkName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGlobalSettings = schema.operation({
+    id = id.from("com.amazonaws.backup", "UpdateGlobalSettings"),
+    input = M.UpdateGlobalSettingsInput,
+    output = M.UpdateGlobalSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/global-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecoveryPointIndexSettings = schema.operation({
+    id = id.from("com.amazonaws.backup", "UpdateRecoveryPointIndexSettings"),
+    input = M.UpdateRecoveryPointIndexSettingsInput,
+    output = M.UpdateRecoveryPointIndexSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/index" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecoveryPointLifecycle = schema.operation({
+    id = id.from("com.amazonaws.backup", "UpdateRecoveryPointLifecycle"),
+    input = M.UpdateRecoveryPointLifecycleInput,
+    output = M.UpdateRecoveryPointLifecycleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRegionSettings = schema.operation({
+    id = id.from("com.amazonaws.backup", "UpdateRegionSettings"),
+    input = M.UpdateRegionSettingsInput,
+    output = M.UpdateRegionSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/account-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReportPlan = schema.operation({
+    id = id.from("com.amazonaws.backup", "UpdateReportPlan"),
+    input = M.UpdateReportPlanInput,
+    output = M.UpdateReportPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/audit/report-plans/{ReportPlanName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRestoreTestingPlan = schema.operation({
+    id = id.from("com.amazonaws.backup", "UpdateRestoreTestingPlan"),
+    input = M.UpdateRestoreTestingPlanInput,
+    output = M.UpdateRestoreTestingPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/restore-testing/plans/{RestoreTestingPlanName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRestoreTestingSelection = schema.operation({
+    id = id.from("com.amazonaws.backup", "UpdateRestoreTestingSelection"),
+    input = M.UpdateRestoreTestingSelectionInput,
+    output = M.UpdateRestoreTestingSelectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/restore-testing/plans/{RestoreTestingPlanName}/selections/{RestoreTestingSelectionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTieringConfiguration = schema.operation({
+    id = id.from("com.amazonaws.backup", "UpdateTieringConfiguration"),
+    input = M.UpdateTieringConfigurationInput,
+    output = M.UpdateTieringConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tiering-configurations/{TieringConfigurationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

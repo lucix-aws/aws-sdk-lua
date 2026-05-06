@@ -3223,4 +3223,443 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ssmcontacts", "SSMContacts"),
+    version = "2021-05-03",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptPage = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "AcceptPage"),
+    input = M.AcceptPageInput,
+    output = M.AcceptPageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ActivateContactChannel = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "ActivateContactChannel"),
+    input = M.ActivateContactChannelInput,
+    output = M.ActivateContactChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContact = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "CreateContact"),
+    input = M.CreateContactInput,
+    output = M.CreateContactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContactChannel = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "CreateContactChannel"),
+    input = M.CreateContactChannelInput,
+    output = M.CreateContactChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRotation = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "CreateRotation"),
+    input = M.CreateRotationInput,
+    output = M.CreateRotationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRotationOverride = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "CreateRotationOverride"),
+    input = M.CreateRotationOverrideInput,
+    output = M.CreateRotationOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeactivateContactChannel = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "DeactivateContactChannel"),
+    input = M.DeactivateContactChannelInput,
+    output = M.DeactivateContactChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContact = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "DeleteContact"),
+    input = M.DeleteContactInput,
+    output = M.DeleteContactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContactChannel = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "DeleteContactChannel"),
+    input = M.DeleteContactChannelInput,
+    output = M.DeleteContactChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRotation = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "DeleteRotation"),
+    input = M.DeleteRotationInput,
+    output = M.DeleteRotationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRotationOverride = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "DeleteRotationOverride"),
+    input = M.DeleteRotationOverrideInput,
+    output = M.DeleteRotationOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEngagement = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "DescribeEngagement"),
+    input = M.DescribeEngagementInput,
+    output = M.DescribeEngagementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePage = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "DescribePage"),
+    input = M.DescribePageInput,
+    output = M.DescribePageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContact = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "GetContact"),
+    input = M.GetContactInput,
+    output = M.GetContactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContactChannel = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "GetContactChannel"),
+    input = M.GetContactChannelInput,
+    output = M.GetContactChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContactPolicy = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "GetContactPolicy"),
+    input = M.GetContactPolicyInput,
+    output = M.GetContactPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRotation = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "GetRotation"),
+    input = M.GetRotationInput,
+    output = M.GetRotationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRotationOverride = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "GetRotationOverride"),
+    input = M.GetRotationOverrideInput,
+    output = M.GetRotationOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContactChannels = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "ListContactChannels"),
+    input = M.ListContactChannelsInput,
+    output = M.ListContactChannelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContacts = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "ListContacts"),
+    input = M.ListContactsInput,
+    output = M.ListContactsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEngagements = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "ListEngagements"),
+    input = M.ListEngagementsInput,
+    output = M.ListEngagementsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPageReceipts = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "ListPageReceipts"),
+    input = M.ListPageReceiptsInput,
+    output = M.ListPageReceiptsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPageResolutions = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "ListPageResolutions"),
+    input = M.ListPageResolutionsInput,
+    output = M.ListPageResolutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPagesByContact = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "ListPagesByContact"),
+    input = M.ListPagesByContactInput,
+    output = M.ListPagesByContactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPagesByEngagement = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "ListPagesByEngagement"),
+    input = M.ListPagesByEngagementInput,
+    output = M.ListPagesByEngagementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPreviewRotationShifts = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "ListPreviewRotationShifts"),
+    input = M.ListPreviewRotationShiftsInput,
+    output = M.ListPreviewRotationShiftsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRotationOverrides = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "ListRotationOverrides"),
+    input = M.ListRotationOverridesInput,
+    output = M.ListRotationOverridesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRotations = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "ListRotations"),
+    input = M.ListRotationsInput,
+    output = M.ListRotationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRotationShifts = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "ListRotationShifts"),
+    input = M.ListRotationShiftsInput,
+    output = M.ListRotationShiftsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutContactPolicy = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "PutContactPolicy"),
+    input = M.PutContactPolicyInput,
+    output = M.PutContactPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendActivationCode = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "SendActivationCode"),
+    input = M.SendActivationCodeInput,
+    output = M.SendActivationCodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartEngagement = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "StartEngagement"),
+    input = M.StartEngagementInput,
+    output = M.StartEngagementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopEngagement = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "StopEngagement"),
+    input = M.StopEngagementInput,
+    output = M.StopEngagementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContact = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "UpdateContact"),
+    input = M.UpdateContactInput,
+    output = M.UpdateContactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContactChannel = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "UpdateContactChannel"),
+    input = M.UpdateContactChannelInput,
+    output = M.UpdateContactChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRotation = schema.operation({
+    id = id.from("com.amazonaws.ssmcontacts", "UpdateRotation"),
+    input = M.UpdateRotationInput,
+    output = M.UpdateRotationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

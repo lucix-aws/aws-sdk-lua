@@ -7,6 +7,7 @@ local endpoint_rules = require("securityagent.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("securityagent.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "securityagent", signing_region = cfg.region } }
                 else
@@ -49,653 +52,203 @@ function M.new(cfg)
 end
 
 function Client:addArtifact(input, options)
-    return self:invokeOperation(input, {
-        name = "AddArtifact",
-        input_schema = schemas.AddArtifactInput,
-        output_schema = schemas.AddArtifactOutput,
-        http_method = "POST",
-        http_path = "/AddArtifact",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddArtifact, input, options)
 end
 
 function Client:batchDeletePentests(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDeletePentests",
-        input_schema = schemas.BatchDeletePentestsInput,
-        output_schema = schemas.BatchDeletePentestsOutput,
-        http_method = "POST",
-        http_path = "/BatchDeletePentests",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDeletePentests, input, options)
 end
 
 function Client:batchGetAgentSpaces(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetAgentSpaces",
-        input_schema = schemas.BatchGetAgentSpacesInput,
-        output_schema = schemas.BatchGetAgentSpacesOutput,
-        http_method = "POST",
-        http_path = "/BatchGetAgentSpaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetAgentSpaces, input, options)
 end
 
 function Client:batchGetArtifactMetadata(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetArtifactMetadata",
-        input_schema = schemas.BatchGetArtifactMetadataInput,
-        output_schema = schemas.BatchGetArtifactMetadataOutput,
-        http_method = "POST",
-        http_path = "/BatchGetArtifactMetadata",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetArtifactMetadata, input, options)
 end
 
 function Client:batchGetFindings(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetFindings",
-        input_schema = schemas.BatchGetFindingsInput,
-        output_schema = schemas.BatchGetFindingsOutput,
-        http_method = "POST",
-        http_path = "/BatchGetFindings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetFindings, input, options)
 end
 
 function Client:batchGetPentestJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetPentestJobs",
-        input_schema = schemas.BatchGetPentestJobsInput,
-        output_schema = schemas.BatchGetPentestJobsOutput,
-        http_method = "POST",
-        http_path = "/BatchGetPentestJobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetPentestJobs, input, options)
 end
 
 function Client:batchGetPentestJobTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetPentestJobTasks",
-        input_schema = schemas.BatchGetPentestJobTasksInput,
-        output_schema = schemas.BatchGetPentestJobTasksOutput,
-        http_method = "POST",
-        http_path = "/BatchGetPentestJobTasks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetPentestJobTasks, input, options)
 end
 
 function Client:batchGetPentests(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetPentests",
-        input_schema = schemas.BatchGetPentestsInput,
-        output_schema = schemas.BatchGetPentestsOutput,
-        http_method = "POST",
-        http_path = "/BatchGetPentests",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetPentests, input, options)
 end
 
 function Client:batchGetTargetDomains(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetTargetDomains",
-        input_schema = schemas.BatchGetTargetDomainsInput,
-        output_schema = schemas.BatchGetTargetDomainsOutput,
-        http_method = "POST",
-        http_path = "/BatchGetTargetDomains",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetTargetDomains, input, options)
 end
 
 function Client:createAgentSpace(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAgentSpace",
-        input_schema = schemas.CreateAgentSpaceInput,
-        output_schema = schemas.CreateAgentSpaceOutput,
-        http_method = "POST",
-        http_path = "/CreateAgentSpace",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAgentSpace, input, options)
 end
 
 function Client:createApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateApplication",
-        input_schema = schemas.CreateApplicationInput,
-        output_schema = schemas.CreateApplicationOutput,
-        http_method = "POST",
-        http_path = "/CreateApplication",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options)
 end
 
 function Client:createIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateIntegration",
-        input_schema = schemas.CreateIntegrationInput,
-        output_schema = schemas.CreateIntegrationOutput,
-        http_method = "POST",
-        http_path = "/CreateIntegration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateIntegration, input, options)
 end
 
 function Client:createMembership(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateMembership",
-        input_schema = schemas.CreateMembershipInput,
-        output_schema = schemas.CreateMembershipOutput,
-        http_method = "POST",
-        http_path = "/CreateMembership",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateMembership, input, options)
 end
 
 function Client:createPentest(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePentest",
-        input_schema = schemas.CreatePentestInput,
-        output_schema = schemas.CreatePentestOutput,
-        http_method = "POST",
-        http_path = "/CreatePentest",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePentest, input, options)
 end
 
 function Client:createTargetDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTargetDomain",
-        input_schema = schemas.CreateTargetDomainInput,
-        output_schema = schemas.CreateTargetDomainOutput,
-        http_method = "POST",
-        http_path = "/CreateTargetDomain",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTargetDomain, input, options)
 end
 
 function Client:deleteAgentSpace(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAgentSpace",
-        input_schema = schemas.DeleteAgentSpaceInput,
-        output_schema = schemas.DeleteAgentSpaceOutput,
-        http_method = "POST",
-        http_path = "/DeleteAgentSpace",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAgentSpace, input, options)
 end
 
 function Client:deleteApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteApplication",
-        input_schema = schemas.DeleteApplicationInput,
-        output_schema = schemas.DeleteApplicationOutput,
-        http_method = "POST",
-        http_path = "/DeleteApplication",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options)
 end
 
 function Client:deleteArtifact(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteArtifact",
-        input_schema = schemas.DeleteArtifactInput,
-        output_schema = schemas.DeleteArtifactOutput,
-        http_method = "POST",
-        http_path = "/DeleteArtifact",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteArtifact, input, options)
 end
 
 function Client:deleteIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIntegration",
-        input_schema = schemas.DeleteIntegrationInput,
-        output_schema = schemas.DeleteIntegrationOutput,
-        http_method = "POST",
-        http_path = "/DeleteIntegration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIntegration, input, options)
 end
 
 function Client:deleteMembership(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMembership",
-        input_schema = schemas.DeleteMembershipInput,
-        output_schema = schemas.DeleteMembershipOutput,
-        http_method = "POST",
-        http_path = "/DeleteMembership",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMembership, input, options)
 end
 
 function Client:deleteTargetDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTargetDomain",
-        input_schema = schemas.DeleteTargetDomainInput,
-        output_schema = schemas.DeleteTargetDomainOutput,
-        http_method = "POST",
-        http_path = "/DeleteTargetDomain",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTargetDomain, input, options)
 end
 
 function Client:getApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "GetApplication",
-        input_schema = schemas.GetApplicationInput,
-        output_schema = schemas.GetApplicationOutput,
-        http_method = "POST",
-        http_path = "/GetApplication",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetApplication, input, options)
 end
 
 function Client:getArtifact(input, options)
-    return self:invokeOperation(input, {
-        name = "GetArtifact",
-        input_schema = schemas.GetArtifactInput,
-        output_schema = schemas.GetArtifactOutput,
-        http_method = "POST",
-        http_path = "/GetArtifact",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetArtifact, input, options)
 end
 
 function Client:getIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIntegration",
-        input_schema = schemas.GetIntegrationInput,
-        output_schema = schemas.GetIntegrationOutput,
-        http_method = "POST",
-        http_path = "/GetIntegration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIntegration, input, options)
 end
 
 function Client:initiateProviderRegistration(input, options)
-    return self:invokeOperation(input, {
-        name = "InitiateProviderRegistration",
-        input_schema = schemas.InitiateProviderRegistrationInput,
-        output_schema = schemas.InitiateProviderRegistrationOutput,
-        http_method = "POST",
-        http_path = "/oauth2/provider/register",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InitiateProviderRegistration, input, options)
 end
 
 function Client:listAgentSpaces(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAgentSpaces",
-        input_schema = schemas.ListAgentSpacesInput,
-        output_schema = schemas.ListAgentSpacesOutput,
-        http_method = "POST",
-        http_path = "/ListAgentSpaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAgentSpaces, input, options)
 end
 
 function Client:listApplications(input, options)
-    return self:invokeOperation(input, {
-        name = "ListApplications",
-        input_schema = schemas.ListApplicationsInput,
-        output_schema = schemas.ListApplicationsOutput,
-        http_method = "POST",
-        http_path = "/ListApplications",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options)
 end
 
 function Client:listArtifacts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListArtifacts",
-        input_schema = schemas.ListArtifactsInput,
-        output_schema = schemas.ListArtifactsOutput,
-        http_method = "POST",
-        http_path = "/ListArtifacts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListArtifacts, input, options)
 end
 
 function Client:listDiscoveredEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDiscoveredEndpoints",
-        input_schema = schemas.ListDiscoveredEndpointsInput,
-        output_schema = schemas.ListDiscoveredEndpointsOutput,
-        http_method = "POST",
-        http_path = "/ListDiscoveredEndpoints",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDiscoveredEndpoints, input, options)
 end
 
 function Client:listFindings(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFindings",
-        input_schema = schemas.ListFindingsInput,
-        output_schema = schemas.ListFindingsOutput,
-        http_method = "POST",
-        http_path = "/ListFindings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFindings, input, options)
 end
 
 function Client:listIntegratedResources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIntegratedResources",
-        input_schema = schemas.ListIntegratedResourcesInput,
-        output_schema = schemas.ListIntegratedResourcesOutput,
-        http_method = "POST",
-        http_path = "/ListIntegratedResources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIntegratedResources, input, options)
 end
 
 function Client:listIntegrations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIntegrations",
-        input_schema = schemas.ListIntegrationsInput,
-        output_schema = schemas.ListIntegrationsOutput,
-        http_method = "POST",
-        http_path = "/ListIntegrations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIntegrations, input, options)
 end
 
 function Client:listMemberships(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMemberships",
-        input_schema = schemas.ListMembershipsInput,
-        output_schema = schemas.ListMembershipsOutput,
-        http_method = "POST",
-        http_path = "/ListMemberships",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMemberships, input, options)
 end
 
 function Client:listPentestJobsForPentest(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPentestJobsForPentest",
-        input_schema = schemas.ListPentestJobsForPentestInput,
-        output_schema = schemas.ListPentestJobsForPentestOutput,
-        http_method = "POST",
-        http_path = "/ListPentestJobsForPentest",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPentestJobsForPentest, input, options)
 end
 
 function Client:listPentestJobTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPentestJobTasks",
-        input_schema = schemas.ListPentestJobTasksInput,
-        output_schema = schemas.ListPentestJobTasksOutput,
-        http_method = "POST",
-        http_path = "/ListPentestJobTasks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPentestJobTasks, input, options)
 end
 
 function Client:listPentests(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPentests",
-        input_schema = schemas.ListPentestsInput,
-        output_schema = schemas.ListPentestsOutput,
-        http_method = "POST",
-        http_path = "/ListPentests",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPentests, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTargetDomains(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTargetDomains",
-        input_schema = schemas.ListTargetDomainsInput,
-        output_schema = schemas.ListTargetDomainsOutput,
-        http_method = "POST",
-        http_path = "/ListTargetDomains",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTargetDomains, input, options)
 end
 
 function Client:startCodeRemediation(input, options)
-    return self:invokeOperation(input, {
-        name = "StartCodeRemediation",
-        input_schema = schemas.StartCodeRemediationInput,
-        output_schema = schemas.StartCodeRemediationOutput,
-        http_method = "POST",
-        http_path = "/StartCodeRemediation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartCodeRemediation, input, options)
 end
 
 function Client:startPentestJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartPentestJob",
-        input_schema = schemas.StartPentestJobInput,
-        output_schema = schemas.StartPentestJobOutput,
-        http_method = "POST",
-        http_path = "/StartPentestJob",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartPentestJob, input, options)
 end
 
 function Client:stopPentestJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StopPentestJob",
-        input_schema = schemas.StopPentestJobInput,
-        output_schema = schemas.StopPentestJobOutput,
-        http_method = "POST",
-        http_path = "/StopPentestJob",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopPentestJob, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAgentSpace(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAgentSpace",
-        input_schema = schemas.UpdateAgentSpaceInput,
-        output_schema = schemas.UpdateAgentSpaceOutput,
-        http_method = "POST",
-        http_path = "/UpdateAgentSpace",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAgentSpace, input, options)
 end
 
 function Client:updateApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateApplication",
-        input_schema = schemas.UpdateApplicationInput,
-        output_schema = schemas.UpdateApplicationOutput,
-        http_method = "POST",
-        http_path = "/UpdateApplication",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options)
 end
 
 function Client:updateFinding(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateFinding",
-        input_schema = schemas.UpdateFindingInput,
-        output_schema = schemas.UpdateFindingOutput,
-        http_method = "POST",
-        http_path = "/UpdateFinding",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateFinding, input, options)
 end
 
 function Client:updateIntegratedResources(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateIntegratedResources",
-        input_schema = schemas.UpdateIntegratedResourcesInput,
-        output_schema = schemas.UpdateIntegratedResourcesOutput,
-        http_method = "POST",
-        http_path = "/UpdateIntegratedResources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateIntegratedResources, input, options)
 end
 
 function Client:updatePentest(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePentest",
-        input_schema = schemas.UpdatePentestInput,
-        output_schema = schemas.UpdatePentestOutput,
-        http_method = "POST",
-        http_path = "/UpdatePentest",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePentest, input, options)
 end
 
 function Client:updateTargetDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTargetDomain",
-        input_schema = schemas.UpdateTargetDomainInput,
-        output_schema = schemas.UpdateTargetDomainOutput,
-        http_method = "POST",
-        http_path = "/UpdateTargetDomain",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTargetDomain, input, options)
 end
 
 function Client:verifyTargetDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "VerifyTargetDomain",
-        input_schema = schemas.VerifyTargetDomainInput,
-        output_schema = schemas.VerifyTargetDomainOutput,
-        http_method = "POST",
-        http_path = "/VerifyTargetDomain",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.VerifyTargetDomain, input, options)
 end
 
 return M

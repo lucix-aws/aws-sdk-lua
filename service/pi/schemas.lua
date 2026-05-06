@@ -1560,4 +1560,157 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.pi", "PerformanceInsightsv20180227"),
+    version = "2018-02-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePerformanceAnalysisReport = schema.operation({
+    id = id.from("com.amazonaws.pi", "CreatePerformanceAnalysisReport"),
+    input = M.CreatePerformanceAnalysisReportInput,
+    output = M.CreatePerformanceAnalysisReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePerformanceAnalysisReport = schema.operation({
+    id = id.from("com.amazonaws.pi", "DeletePerformanceAnalysisReport"),
+    input = M.DeletePerformanceAnalysisReportInput,
+    output = M.DeletePerformanceAnalysisReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDimensionKeys = schema.operation({
+    id = id.from("com.amazonaws.pi", "DescribeDimensionKeys"),
+    input = M.DescribeDimensionKeysInput,
+    output = M.DescribeDimensionKeysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDimensionKeyDetails = schema.operation({
+    id = id.from("com.amazonaws.pi", "GetDimensionKeyDetails"),
+    input = M.GetDimensionKeyDetailsInput,
+    output = M.GetDimensionKeyDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPerformanceAnalysisReport = schema.operation({
+    id = id.from("com.amazonaws.pi", "GetPerformanceAnalysisReport"),
+    input = M.GetPerformanceAnalysisReportInput,
+    output = M.GetPerformanceAnalysisReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceMetadata = schema.operation({
+    id = id.from("com.amazonaws.pi", "GetResourceMetadata"),
+    input = M.GetResourceMetadataInput,
+    output = M.GetResourceMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceMetrics = schema.operation({
+    id = id.from("com.amazonaws.pi", "GetResourceMetrics"),
+    input = M.GetResourceMetricsInput,
+    output = M.GetResourceMetricsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAvailableResourceDimensions = schema.operation({
+    id = id.from("com.amazonaws.pi", "ListAvailableResourceDimensions"),
+    input = M.ListAvailableResourceDimensionsInput,
+    output = M.ListAvailableResourceDimensionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAvailableResourceMetrics = schema.operation({
+    id = id.from("com.amazonaws.pi", "ListAvailableResourceMetrics"),
+    input = M.ListAvailableResourceMetricsInput,
+    output = M.ListAvailableResourceMetricsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPerformanceAnalysisReports = schema.operation({
+    id = id.from("com.amazonaws.pi", "ListPerformanceAnalysisReports"),
+    input = M.ListPerformanceAnalysisReportsInput,
+    output = M.ListPerformanceAnalysisReportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.pi", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.pi", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.pi", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

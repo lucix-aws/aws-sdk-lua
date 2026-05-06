@@ -7,6 +7,7 @@ local endpoint_rules = require("codegurureviewer.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("codegurureviewer.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codeguru-reviewer", signing_region = cfg.region } }
                 else
@@ -49,185 +52,59 @@ function M.new(cfg)
 end
 
 function Client:associateRepository(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateRepository",
-        input_schema = schemas.AssociateRepositoryInput,
-        output_schema = schemas.AssociateRepositoryOutput,
-        http_method = "POST",
-        http_path = "/associations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateRepository, input, options)
 end
 
 function Client:createCodeReview(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCodeReview",
-        input_schema = schemas.CreateCodeReviewInput,
-        output_schema = schemas.CreateCodeReviewOutput,
-        http_method = "POST",
-        http_path = "/codereviews",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCodeReview, input, options)
 end
 
 function Client:describeCodeReview(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCodeReview",
-        input_schema = schemas.DescribeCodeReviewInput,
-        output_schema = schemas.DescribeCodeReviewOutput,
-        http_method = "GET",
-        http_path = "/codereviews/{CodeReviewArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCodeReview, input, options)
 end
 
 function Client:describeRecommendationFeedback(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeRecommendationFeedback",
-        input_schema = schemas.DescribeRecommendationFeedbackInput,
-        output_schema = schemas.DescribeRecommendationFeedbackOutput,
-        http_method = "GET",
-        http_path = "/feedback/{CodeReviewArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeRecommendationFeedback, input, options)
 end
 
 function Client:describeRepositoryAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeRepositoryAssociation",
-        input_schema = schemas.DescribeRepositoryAssociationInput,
-        output_schema = schemas.DescribeRepositoryAssociationOutput,
-        http_method = "GET",
-        http_path = "/associations/{AssociationArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeRepositoryAssociation, input, options)
 end
 
 function Client:disassociateRepository(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateRepository",
-        input_schema = schemas.DisassociateRepositoryInput,
-        output_schema = schemas.DisassociateRepositoryOutput,
-        http_method = "DELETE",
-        http_path = "/associations/{AssociationArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateRepository, input, options)
 end
 
 function Client:listCodeReviews(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCodeReviews",
-        input_schema = schemas.ListCodeReviewsInput,
-        output_schema = schemas.ListCodeReviewsOutput,
-        http_method = "GET",
-        http_path = "/codereviews",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCodeReviews, input, options)
 end
 
 function Client:listRecommendationFeedback(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRecommendationFeedback",
-        input_schema = schemas.ListRecommendationFeedbackInput,
-        output_schema = schemas.ListRecommendationFeedbackOutput,
-        http_method = "GET",
-        http_path = "/feedback/{CodeReviewArn}/RecommendationFeedback",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRecommendationFeedback, input, options)
 end
 
 function Client:listRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRecommendations",
-        input_schema = schemas.ListRecommendationsInput,
-        output_schema = schemas.ListRecommendationsOutput,
-        http_method = "GET",
-        http_path = "/codereviews/{CodeReviewArn}/Recommendations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRecommendations, input, options)
 end
 
 function Client:listRepositoryAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRepositoryAssociations",
-        input_schema = schemas.ListRepositoryAssociationsInput,
-        output_schema = schemas.ListRepositoryAssociationsOutput,
-        http_method = "GET",
-        http_path = "/associations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRepositoryAssociations, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putRecommendationFeedback(input, options)
-    return self:invokeOperation(input, {
-        name = "PutRecommendationFeedback",
-        input_schema = schemas.PutRecommendationFeedbackInput,
-        output_schema = schemas.PutRecommendationFeedbackOutput,
-        http_method = "PUT",
-        http_path = "/feedback",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutRecommendationFeedback, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 return M

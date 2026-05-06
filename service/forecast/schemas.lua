@@ -5693,4 +5693,707 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.forecast", "AmazonForecast"),
+    version = "2018-06-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAutoPredictor = schema.operation({
+    id = id.from("com.amazonaws.forecast", "CreateAutoPredictor"),
+    input = M.CreateAutoPredictorInput,
+    output = M.CreateAutoPredictorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataset = schema.operation({
+    id = id.from("com.amazonaws.forecast", "CreateDataset"),
+    input = M.CreateDatasetInput,
+    output = M.CreateDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDatasetGroup = schema.operation({
+    id = id.from("com.amazonaws.forecast", "CreateDatasetGroup"),
+    input = M.CreateDatasetGroupInput,
+    output = M.CreateDatasetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDatasetImportJob = schema.operation({
+    id = id.from("com.amazonaws.forecast", "CreateDatasetImportJob"),
+    input = M.CreateDatasetImportJobInput,
+    output = M.CreateDatasetImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExplainability = schema.operation({
+    id = id.from("com.amazonaws.forecast", "CreateExplainability"),
+    input = M.CreateExplainabilityInput,
+    output = M.CreateExplainabilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExplainabilityExport = schema.operation({
+    id = id.from("com.amazonaws.forecast", "CreateExplainabilityExport"),
+    input = M.CreateExplainabilityExportInput,
+    output = M.CreateExplainabilityExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateForecast = schema.operation({
+    id = id.from("com.amazonaws.forecast", "CreateForecast"),
+    input = M.CreateForecastInput,
+    output = M.CreateForecastOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateForecastExportJob = schema.operation({
+    id = id.from("com.amazonaws.forecast", "CreateForecastExportJob"),
+    input = M.CreateForecastExportJobInput,
+    output = M.CreateForecastExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMonitor = schema.operation({
+    id = id.from("com.amazonaws.forecast", "CreateMonitor"),
+    input = M.CreateMonitorInput,
+    output = M.CreateMonitorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePredictor = schema.operation({
+    id = id.from("com.amazonaws.forecast", "CreatePredictor"),
+    input = M.CreatePredictorInput,
+    output = M.CreatePredictorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePredictorBacktestExportJob = schema.operation({
+    id = id.from("com.amazonaws.forecast", "CreatePredictorBacktestExportJob"),
+    input = M.CreatePredictorBacktestExportJobInput,
+    output = M.CreatePredictorBacktestExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWhatIfAnalysis = schema.operation({
+    id = id.from("com.amazonaws.forecast", "CreateWhatIfAnalysis"),
+    input = M.CreateWhatIfAnalysisInput,
+    output = M.CreateWhatIfAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWhatIfForecast = schema.operation({
+    id = id.from("com.amazonaws.forecast", "CreateWhatIfForecast"),
+    input = M.CreateWhatIfForecastInput,
+    output = M.CreateWhatIfForecastOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWhatIfForecastExport = schema.operation({
+    id = id.from("com.amazonaws.forecast", "CreateWhatIfForecastExport"),
+    input = M.CreateWhatIfForecastExportInput,
+    output = M.CreateWhatIfForecastExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataset = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DeleteDataset"),
+    input = M.DeleteDatasetInput,
+    output = M.DeleteDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDatasetGroup = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DeleteDatasetGroup"),
+    input = M.DeleteDatasetGroupInput,
+    output = M.DeleteDatasetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDatasetImportJob = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DeleteDatasetImportJob"),
+    input = M.DeleteDatasetImportJobInput,
+    output = M.DeleteDatasetImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteExplainability = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DeleteExplainability"),
+    input = M.DeleteExplainabilityInput,
+    output = M.DeleteExplainabilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteExplainabilityExport = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DeleteExplainabilityExport"),
+    input = M.DeleteExplainabilityExportInput,
+    output = M.DeleteExplainabilityExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteForecast = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DeleteForecast"),
+    input = M.DeleteForecastInput,
+    output = M.DeleteForecastOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteForecastExportJob = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DeleteForecastExportJob"),
+    input = M.DeleteForecastExportJobInput,
+    output = M.DeleteForecastExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMonitor = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DeleteMonitor"),
+    input = M.DeleteMonitorInput,
+    output = M.DeleteMonitorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePredictor = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DeletePredictor"),
+    input = M.DeletePredictorInput,
+    output = M.DeletePredictorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePredictorBacktestExportJob = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DeletePredictorBacktestExportJob"),
+    input = M.DeletePredictorBacktestExportJobInput,
+    output = M.DeletePredictorBacktestExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourceTree = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DeleteResourceTree"),
+    input = M.DeleteResourceTreeInput,
+    output = M.DeleteResourceTreeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWhatIfAnalysis = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DeleteWhatIfAnalysis"),
+    input = M.DeleteWhatIfAnalysisInput,
+    output = M.DeleteWhatIfAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWhatIfForecast = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DeleteWhatIfForecast"),
+    input = M.DeleteWhatIfForecastInput,
+    output = M.DeleteWhatIfForecastOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWhatIfForecastExport = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DeleteWhatIfForecastExport"),
+    input = M.DeleteWhatIfForecastExportInput,
+    output = M.DeleteWhatIfForecastExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAutoPredictor = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DescribeAutoPredictor"),
+    input = M.DescribeAutoPredictorInput,
+    output = M.DescribeAutoPredictorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataset = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DescribeDataset"),
+    input = M.DescribeDatasetInput,
+    output = M.DescribeDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDatasetGroup = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DescribeDatasetGroup"),
+    input = M.DescribeDatasetGroupInput,
+    output = M.DescribeDatasetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDatasetImportJob = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DescribeDatasetImportJob"),
+    input = M.DescribeDatasetImportJobInput,
+    output = M.DescribeDatasetImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExplainability = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DescribeExplainability"),
+    input = M.DescribeExplainabilityInput,
+    output = M.DescribeExplainabilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExplainabilityExport = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DescribeExplainabilityExport"),
+    input = M.DescribeExplainabilityExportInput,
+    output = M.DescribeExplainabilityExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeForecast = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DescribeForecast"),
+    input = M.DescribeForecastInput,
+    output = M.DescribeForecastOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeForecastExportJob = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DescribeForecastExportJob"),
+    input = M.DescribeForecastExportJobInput,
+    output = M.DescribeForecastExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMonitor = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DescribeMonitor"),
+    input = M.DescribeMonitorInput,
+    output = M.DescribeMonitorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePredictor = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DescribePredictor"),
+    input = M.DescribePredictorInput,
+    output = M.DescribePredictorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePredictorBacktestExportJob = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DescribePredictorBacktestExportJob"),
+    input = M.DescribePredictorBacktestExportJobInput,
+    output = M.DescribePredictorBacktestExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWhatIfAnalysis = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DescribeWhatIfAnalysis"),
+    input = M.DescribeWhatIfAnalysisInput,
+    output = M.DescribeWhatIfAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWhatIfForecast = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DescribeWhatIfForecast"),
+    input = M.DescribeWhatIfForecastInput,
+    output = M.DescribeWhatIfForecastOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWhatIfForecastExport = schema.operation({
+    id = id.from("com.amazonaws.forecast", "DescribeWhatIfForecastExport"),
+    input = M.DescribeWhatIfForecastExportInput,
+    output = M.DescribeWhatIfForecastExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccuracyMetrics = schema.operation({
+    id = id.from("com.amazonaws.forecast", "GetAccuracyMetrics"),
+    input = M.GetAccuracyMetricsInput,
+    output = M.GetAccuracyMetricsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasetGroups = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListDatasetGroups"),
+    input = M.ListDatasetGroupsInput,
+    output = M.ListDatasetGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasetImportJobs = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListDatasetImportJobs"),
+    input = M.ListDatasetImportJobsInput,
+    output = M.ListDatasetImportJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasets = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListDatasets"),
+    input = M.ListDatasetsInput,
+    output = M.ListDatasetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExplainabilities = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListExplainabilities"),
+    input = M.ListExplainabilitiesInput,
+    output = M.ListExplainabilitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExplainabilityExports = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListExplainabilityExports"),
+    input = M.ListExplainabilityExportsInput,
+    output = M.ListExplainabilityExportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListForecastExportJobs = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListForecastExportJobs"),
+    input = M.ListForecastExportJobsInput,
+    output = M.ListForecastExportJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListForecasts = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListForecasts"),
+    input = M.ListForecastsInput,
+    output = M.ListForecastsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMonitorEvaluations = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListMonitorEvaluations"),
+    input = M.ListMonitorEvaluationsInput,
+    output = M.ListMonitorEvaluationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMonitors = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListMonitors"),
+    input = M.ListMonitorsInput,
+    output = M.ListMonitorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPredictorBacktestExportJobs = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListPredictorBacktestExportJobs"),
+    input = M.ListPredictorBacktestExportJobsInput,
+    output = M.ListPredictorBacktestExportJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPredictors = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListPredictors"),
+    input = M.ListPredictorsInput,
+    output = M.ListPredictorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWhatIfAnalyses = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListWhatIfAnalyses"),
+    input = M.ListWhatIfAnalysesInput,
+    output = M.ListWhatIfAnalysesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWhatIfForecastExports = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListWhatIfForecastExports"),
+    input = M.ListWhatIfForecastExportsInput,
+    output = M.ListWhatIfForecastExportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWhatIfForecasts = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ListWhatIfForecasts"),
+    input = M.ListWhatIfForecastsInput,
+    output = M.ListWhatIfForecastsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResumeResource = schema.operation({
+    id = id.from("com.amazonaws.forecast", "ResumeResource"),
+    input = M.ResumeResourceInput,
+    output = M.ResumeResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopResource = schema.operation({
+    id = id.from("com.amazonaws.forecast", "StopResource"),
+    input = M.StopResourceInput,
+    output = M.StopResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.forecast", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.forecast", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDatasetGroup = schema.operation({
+    id = id.from("com.amazonaws.forecast", "UpdateDatasetGroup"),
+    input = M.UpdateDatasetGroupInput,
+    output = M.UpdateDatasetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

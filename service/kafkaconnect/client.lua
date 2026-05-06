@@ -7,6 +7,7 @@ local endpoint_rules = require("kafkaconnect.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("kafkaconnect.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kafkaconnect", signing_region = cfg.region } }
                 else
@@ -49,237 +52,75 @@ function M.new(cfg)
 end
 
 function Client:createConnector(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConnector",
-        input_schema = schemas.CreateConnectorInput,
-        output_schema = schemas.CreateConnectorOutput,
-        http_method = "POST",
-        http_path = "/v1/connectors",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConnector, input, options)
 end
 
 function Client:createCustomPlugin(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCustomPlugin",
-        input_schema = schemas.CreateCustomPluginInput,
-        output_schema = schemas.CreateCustomPluginOutput,
-        http_method = "POST",
-        http_path = "/v1/custom-plugins",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCustomPlugin, input, options)
 end
 
 function Client:createWorkerConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateWorkerConfiguration",
-        input_schema = schemas.CreateWorkerConfigurationInput,
-        output_schema = schemas.CreateWorkerConfigurationOutput,
-        http_method = "POST",
-        http_path = "/v1/worker-configurations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateWorkerConfiguration, input, options)
 end
 
 function Client:deleteConnector(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConnector",
-        input_schema = schemas.DeleteConnectorInput,
-        output_schema = schemas.DeleteConnectorOutput,
-        http_method = "DELETE",
-        http_path = "/v1/connectors/{connectorArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConnector, input, options)
 end
 
 function Client:deleteCustomPlugin(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCustomPlugin",
-        input_schema = schemas.DeleteCustomPluginInput,
-        output_schema = schemas.DeleteCustomPluginOutput,
-        http_method = "DELETE",
-        http_path = "/v1/custom-plugins/{customPluginArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCustomPlugin, input, options)
 end
 
 function Client:deleteWorkerConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWorkerConfiguration",
-        input_schema = schemas.DeleteWorkerConfigurationInput,
-        output_schema = schemas.DeleteWorkerConfigurationOutput,
-        http_method = "DELETE",
-        http_path = "/v1/worker-configurations/{workerConfigurationArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWorkerConfiguration, input, options)
 end
 
 function Client:describeConnector(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeConnector",
-        input_schema = schemas.DescribeConnectorInput,
-        output_schema = schemas.DescribeConnectorOutput,
-        http_method = "GET",
-        http_path = "/v1/connectors/{connectorArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeConnector, input, options)
 end
 
 function Client:describeConnectorOperation(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeConnectorOperation",
-        input_schema = schemas.DescribeConnectorOperationInput,
-        output_schema = schemas.DescribeConnectorOperationOutput,
-        http_method = "GET",
-        http_path = "/v1/connectorOperations/{connectorOperationArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeConnectorOperation, input, options)
 end
 
 function Client:describeCustomPlugin(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCustomPlugin",
-        input_schema = schemas.DescribeCustomPluginInput,
-        output_schema = schemas.DescribeCustomPluginOutput,
-        http_method = "GET",
-        http_path = "/v1/custom-plugins/{customPluginArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCustomPlugin, input, options)
 end
 
 function Client:describeWorkerConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeWorkerConfiguration",
-        input_schema = schemas.DescribeWorkerConfigurationInput,
-        output_schema = schemas.DescribeWorkerConfigurationOutput,
-        http_method = "GET",
-        http_path = "/v1/worker-configurations/{workerConfigurationArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeWorkerConfiguration, input, options)
 end
 
 function Client:listConnectorOperations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConnectorOperations",
-        input_schema = schemas.ListConnectorOperationsInput,
-        output_schema = schemas.ListConnectorOperationsOutput,
-        http_method = "GET",
-        http_path = "/v1/connectors/{connectorArn}/operations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConnectorOperations, input, options)
 end
 
 function Client:listConnectors(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConnectors",
-        input_schema = schemas.ListConnectorsInput,
-        output_schema = schemas.ListConnectorsOutput,
-        http_method = "GET",
-        http_path = "/v1/connectors",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConnectors, input, options)
 end
 
 function Client:listCustomPlugins(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCustomPlugins",
-        input_schema = schemas.ListCustomPluginsInput,
-        output_schema = schemas.ListCustomPluginsOutput,
-        http_method = "GET",
-        http_path = "/v1/custom-plugins",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCustomPlugins, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/v1/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listWorkerConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkerConfigurations",
-        input_schema = schemas.ListWorkerConfigurationsInput,
-        output_schema = schemas.ListWorkerConfigurationsOutput,
-        http_method = "GET",
-        http_path = "/v1/worker-configurations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkerConfigurations, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/v1/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/v1/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateConnector(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConnector",
-        input_schema = schemas.UpdateConnectorInput,
-        output_schema = schemas.UpdateConnectorOutput,
-        http_method = "PUT",
-        http_path = "/v1/connectors/{connectorArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConnector, input, options)
 end
 
 return M

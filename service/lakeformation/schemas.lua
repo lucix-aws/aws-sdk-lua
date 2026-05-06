@@ -4822,4 +4822,746 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.lakeformation", "AWSLakeFormation"),
+    version = "2017-03-31",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddLFTagsToResource = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "AddLFTagsToResource"),
+    input = M.AddLFTagsToResourceInput,
+    output = M.AddLFTagsToResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/AddLFTagsToResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssumeDecoratedRoleWithSAML = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "AssumeDecoratedRoleWithSAML"),
+    input = M.AssumeDecoratedRoleWithSAMLInput,
+    output = M.AssumeDecoratedRoleWithSAMLOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/AssumeDecoratedRoleWithSAML" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGrantPermissions = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "BatchGrantPermissions"),
+    input = M.BatchGrantPermissionsInput,
+    output = M.BatchGrantPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGrantPermissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchRevokePermissions = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "BatchRevokePermissions"),
+    input = M.BatchRevokePermissionsInput,
+    output = M.BatchRevokePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchRevokePermissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelTransaction = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "CancelTransaction"),
+    input = M.CancelTransactionInput,
+    output = M.CancelTransactionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CancelTransaction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CommitTransaction = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "CommitTransaction"),
+    input = M.CommitTransactionInput,
+    output = M.CommitTransactionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CommitTransaction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataCellsFilter = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "CreateDataCellsFilter"),
+    input = M.CreateDataCellsFilterInput,
+    output = M.CreateDataCellsFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateDataCellsFilter" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLakeFormationIdentityCenterConfiguration = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "CreateLakeFormationIdentityCenterConfiguration"),
+    input = M.CreateLakeFormationIdentityCenterConfigurationInput,
+    output = M.CreateLakeFormationIdentityCenterConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateLakeFormationIdentityCenterConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLakeFormationOptIn = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "CreateLakeFormationOptIn"),
+    input = M.CreateLakeFormationOptInInput,
+    output = M.CreateLakeFormationOptInOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateLakeFormationOptIn" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLFTag = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "CreateLFTag"),
+    input = M.CreateLFTagInput,
+    output = M.CreateLFTagOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateLFTag" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLFTagExpression = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "CreateLFTagExpression"),
+    input = M.CreateLFTagExpressionInput,
+    output = M.CreateLFTagExpressionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateLFTagExpression" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataCellsFilter = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "DeleteDataCellsFilter"),
+    input = M.DeleteDataCellsFilterInput,
+    output = M.DeleteDataCellsFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteDataCellsFilter" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLakeFormationIdentityCenterConfiguration = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "DeleteLakeFormationIdentityCenterConfiguration"),
+    input = M.DeleteLakeFormationIdentityCenterConfigurationInput,
+    output = M.DeleteLakeFormationIdentityCenterConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteLakeFormationIdentityCenterConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLakeFormationOptIn = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "DeleteLakeFormationOptIn"),
+    input = M.DeleteLakeFormationOptInInput,
+    output = M.DeleteLakeFormationOptInOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteLakeFormationOptIn" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLFTag = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "DeleteLFTag"),
+    input = M.DeleteLFTagInput,
+    output = M.DeleteLFTagOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteLFTag" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLFTagExpression = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "DeleteLFTagExpression"),
+    input = M.DeleteLFTagExpressionInput,
+    output = M.DeleteLFTagExpressionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteLFTagExpression" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteObjectsOnCancel = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "DeleteObjectsOnCancel"),
+    input = M.DeleteObjectsOnCancelInput,
+    output = M.DeleteObjectsOnCancelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteObjectsOnCancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterResource = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "DeregisterResource"),
+    input = M.DeregisterResourceInput,
+    output = M.DeregisterResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeregisterResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLakeFormationIdentityCenterConfiguration = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "DescribeLakeFormationIdentityCenterConfiguration"),
+    input = M.DescribeLakeFormationIdentityCenterConfigurationInput,
+    output = M.DescribeLakeFormationIdentityCenterConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeLakeFormationIdentityCenterConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResource = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "DescribeResource"),
+    input = M.DescribeResourceInput,
+    output = M.DescribeResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTransaction = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "DescribeTransaction"),
+    input = M.DescribeTransactionInput,
+    output = M.DescribeTransactionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeTransaction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExtendTransaction = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "ExtendTransaction"),
+    input = M.ExtendTransactionInput,
+    output = M.ExtendTransactionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ExtendTransaction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataCellsFilter = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetDataCellsFilter"),
+    input = M.GetDataCellsFilterInput,
+    output = M.GetDataCellsFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetDataCellsFilter" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataLakePrincipal = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetDataLakePrincipal"),
+    input = M.GetDataLakePrincipalInput,
+    output = M.GetDataLakePrincipalOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetDataLakePrincipal" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataLakeSettings = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetDataLakeSettings"),
+    input = M.GetDataLakeSettingsInput,
+    output = M.GetDataLakeSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetDataLakeSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEffectivePermissionsForPath = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetEffectivePermissionsForPath"),
+    input = M.GetEffectivePermissionsForPathInput,
+    output = M.GetEffectivePermissionsForPathOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetEffectivePermissionsForPath" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLFTag = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetLFTag"),
+    input = M.GetLFTagInput,
+    output = M.GetLFTagOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetLFTag" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLFTagExpression = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetLFTagExpression"),
+    input = M.GetLFTagExpressionInput,
+    output = M.GetLFTagExpressionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetLFTagExpression" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryState = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetQueryState"),
+    input = M.GetQueryStateInput,
+    output = M.GetQueryStateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetQueryState" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryStatistics = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetQueryStatistics"),
+    input = M.GetQueryStatisticsInput,
+    output = M.GetQueryStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetQueryStatistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceLFTags = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetResourceLFTags"),
+    input = M.GetResourceLFTagsInput,
+    output = M.GetResourceLFTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetResourceLFTags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableObjects = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetTableObjects"),
+    input = M.GetTableObjectsInput,
+    output = M.GetTableObjectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTableObjects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemporaryDataLocationCredentials = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetTemporaryDataLocationCredentials"),
+    input = M.GetTemporaryDataLocationCredentialsInput,
+    output = M.GetTemporaryDataLocationCredentialsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTemporaryDataLocationCredentials" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemporaryGluePartitionCredentials = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetTemporaryGluePartitionCredentials"),
+    input = M.GetTemporaryGluePartitionCredentialsInput,
+    output = M.GetTemporaryGluePartitionCredentialsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTemporaryGluePartitionCredentials" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemporaryGlueTableCredentials = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetTemporaryGlueTableCredentials"),
+    input = M.GetTemporaryGlueTableCredentialsInput,
+    output = M.GetTemporaryGlueTableCredentialsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTemporaryGlueTableCredentials" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkUnitResults = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetWorkUnitResults"),
+    input = M.GetWorkUnitResultsInput,
+    output = M.GetWorkUnitResultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetWorkUnitResults" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkUnits = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetWorkUnits"),
+    input = M.GetWorkUnitsInput,
+    output = M.GetWorkUnitsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetWorkUnits" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GrantPermissions = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GrantPermissions"),
+    input = M.GrantPermissionsInput,
+    output = M.GrantPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GrantPermissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataCellsFilter = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "ListDataCellsFilter"),
+    input = M.ListDataCellsFilterInput,
+    output = M.ListDataCellsFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListDataCellsFilter" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLakeFormationOptIns = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "ListLakeFormationOptIns"),
+    input = M.ListLakeFormationOptInsInput,
+    output = M.ListLakeFormationOptInsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListLakeFormationOptIns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLFTagExpressions = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "ListLFTagExpressions"),
+    input = M.ListLFTagExpressionsInput,
+    output = M.ListLFTagExpressionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListLFTagExpressions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLFTags = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "ListLFTags"),
+    input = M.ListLFTagsInput,
+    output = M.ListLFTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListLFTags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPermissions = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "ListPermissions"),
+    input = M.ListPermissionsInput,
+    output = M.ListPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListPermissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResources = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "ListResources"),
+    input = M.ListResourcesInput,
+    output = M.ListResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListResources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTableStorageOptimizers = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "ListTableStorageOptimizers"),
+    input = M.ListTableStorageOptimizersInput,
+    output = M.ListTableStorageOptimizersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTableStorageOptimizers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTransactions = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "ListTransactions"),
+    input = M.ListTransactionsInput,
+    output = M.ListTransactionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTransactions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDataLakeSettings = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "PutDataLakeSettings"),
+    input = M.PutDataLakeSettingsInput,
+    output = M.PutDataLakeSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutDataLakeSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterResource = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "RegisterResource"),
+    input = M.RegisterResourceInput,
+    output = M.RegisterResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/RegisterResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveLFTagsFromResource = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "RemoveLFTagsFromResource"),
+    input = M.RemoveLFTagsFromResourceInput,
+    output = M.RemoveLFTagsFromResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/RemoveLFTagsFromResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokePermissions = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "RevokePermissions"),
+    input = M.RevokePermissionsInput,
+    output = M.RevokePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/RevokePermissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchDatabasesByLFTags = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "SearchDatabasesByLFTags"),
+    input = M.SearchDatabasesByLFTagsInput,
+    output = M.SearchDatabasesByLFTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/SearchDatabasesByLFTags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchTablesByLFTags = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "SearchTablesByLFTags"),
+    input = M.SearchTablesByLFTagsInput,
+    output = M.SearchTablesByLFTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/SearchTablesByLFTags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartQueryPlanning = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "StartQueryPlanning"),
+    input = M.StartQueryPlanningInput,
+    output = M.StartQueryPlanningOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartQueryPlanning" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTransaction = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "StartTransaction"),
+    input = M.StartTransactionInput,
+    output = M.StartTransactionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartTransaction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataCellsFilter = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "UpdateDataCellsFilter"),
+    input = M.UpdateDataCellsFilterInput,
+    output = M.UpdateDataCellsFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateDataCellsFilter" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLakeFormationIdentityCenterConfiguration = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "UpdateLakeFormationIdentityCenterConfiguration"),
+    input = M.UpdateLakeFormationIdentityCenterConfigurationInput,
+    output = M.UpdateLakeFormationIdentityCenterConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateLakeFormationIdentityCenterConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLFTag = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "UpdateLFTag"),
+    input = M.UpdateLFTagInput,
+    output = M.UpdateLFTagOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateLFTag" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLFTagExpression = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "UpdateLFTagExpression"),
+    input = M.UpdateLFTagExpressionInput,
+    output = M.UpdateLFTagExpressionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateLFTagExpression" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResource = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "UpdateResource"),
+    input = M.UpdateResourceInput,
+    output = M.UpdateResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTableObjects = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "UpdateTableObjects"),
+    input = M.UpdateTableObjectsInput,
+    output = M.UpdateTableObjectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateTableObjects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTableStorageOptimizer = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "UpdateTableStorageOptimizer"),
+    input = M.UpdateTableStorageOptimizerInput,
+    output = M.UpdateTableStorageOptimizerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateTableStorageOptimizer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

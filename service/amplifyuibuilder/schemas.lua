@@ -4734,4 +4734,350 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.amplifyuibuilder", "AmplifyUIBuilder"),
+    version = "2021-08-11",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateComponent = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "CreateComponent"),
+    input = M.CreateComponentInput,
+    output = M.CreateComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/app/{appId}/environment/{environmentName}/components" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateForm = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "CreateForm"),
+    input = M.CreateFormInput,
+    output = M.CreateFormOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/app/{appId}/environment/{environmentName}/forms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTheme = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "CreateTheme"),
+    input = M.CreateThemeInput,
+    output = M.CreateThemeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/app/{appId}/environment/{environmentName}/themes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteComponent = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "DeleteComponent"),
+    input = M.DeleteComponentInput,
+    output = M.DeleteComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/app/{appId}/environment/{environmentName}/components/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteForm = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "DeleteForm"),
+    input = M.DeleteFormInput,
+    output = M.DeleteFormOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/app/{appId}/environment/{environmentName}/forms/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTheme = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "DeleteTheme"),
+    input = M.DeleteThemeInput,
+    output = M.DeleteThemeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/app/{appId}/environment/{environmentName}/themes/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExchangeCodeForToken = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "ExchangeCodeForToken"),
+    input = M.ExchangeCodeForTokenInput,
+    output = M.ExchangeCodeForTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tokens/{provider}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportComponents = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "ExportComponents"),
+    input = M.ExportComponentsInput,
+    output = M.ExportComponentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/export/app/{appId}/environment/{environmentName}/components" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportForms = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "ExportForms"),
+    input = M.ExportFormsInput,
+    output = M.ExportFormsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/export/app/{appId}/environment/{environmentName}/forms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportThemes = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "ExportThemes"),
+    input = M.ExportThemesInput,
+    output = M.ExportThemesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/export/app/{appId}/environment/{environmentName}/themes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCodegenJob = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "GetCodegenJob"),
+    input = M.GetCodegenJobInput,
+    output = M.GetCodegenJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app/{appId}/environment/{environmentName}/codegen-jobs/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComponent = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "GetComponent"),
+    input = M.GetComponentInput,
+    output = M.GetComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app/{appId}/environment/{environmentName}/components/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetForm = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "GetForm"),
+    input = M.GetFormInput,
+    output = M.GetFormOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app/{appId}/environment/{environmentName}/forms/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMetadata = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "GetMetadata"),
+    input = M.GetMetadataInput,
+    output = M.GetMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app/{appId}/environment/{environmentName}/metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTheme = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "GetTheme"),
+    input = M.GetThemeInput,
+    output = M.GetThemeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app/{appId}/environment/{environmentName}/themes/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCodegenJobs = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "ListCodegenJobs"),
+    input = M.ListCodegenJobsInput,
+    output = M.ListCodegenJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app/{appId}/environment/{environmentName}/codegen-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComponents = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "ListComponents"),
+    input = M.ListComponentsInput,
+    output = M.ListComponentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app/{appId}/environment/{environmentName}/components" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListForms = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "ListForms"),
+    input = M.ListFormsInput,
+    output = M.ListFormsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app/{appId}/environment/{environmentName}/forms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThemes = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "ListThemes"),
+    input = M.ListThemesInput,
+    output = M.ListThemesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app/{appId}/environment/{environmentName}/themes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMetadataFlag = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "PutMetadataFlag"),
+    input = M.PutMetadataFlagInput,
+    output = M.PutMetadataFlagOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/app/{appId}/environment/{environmentName}/metadata/features/{featureName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RefreshToken = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "RefreshToken"),
+    input = M.RefreshTokenInput,
+    output = M.RefreshTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tokens/{provider}/refresh" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCodegenJob = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "StartCodegenJob"),
+    input = M.StartCodegenJobInput,
+    output = M.StartCodegenJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/app/{appId}/environment/{environmentName}/codegen-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateComponent = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "UpdateComponent"),
+    input = M.UpdateComponentInput,
+    output = M.UpdateComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/app/{appId}/environment/{environmentName}/components/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateForm = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "UpdateForm"),
+    input = M.UpdateFormInput,
+    output = M.UpdateFormOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/app/{appId}/environment/{environmentName}/forms/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTheme = schema.operation({
+    id = id.from("com.amazonaws.amplifyuibuilder", "UpdateTheme"),
+    input = M.UpdateThemeInput,
+    output = M.UpdateThemeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/app/{appId}/environment/{environmentName}/themes/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

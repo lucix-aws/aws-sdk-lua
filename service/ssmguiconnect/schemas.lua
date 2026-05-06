@@ -323,4 +323,50 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ssmguiconnect", "SSMGuiConnect"),
+    version = "2021-05-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnectionRecordingPreferences = schema.operation({
+    id = id.from("com.amazonaws.ssmguiconnect", "DeleteConnectionRecordingPreferences"),
+    input = M.DeleteConnectionRecordingPreferencesInput,
+    output = M.DeleteConnectionRecordingPreferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteConnectionRecordingPreferences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnectionRecordingPreferences = schema.operation({
+    id = id.from("com.amazonaws.ssmguiconnect", "GetConnectionRecordingPreferences"),
+    input = M.GetConnectionRecordingPreferencesInput,
+    output = M.GetConnectionRecordingPreferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetConnectionRecordingPreferences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnectionRecordingPreferences = schema.operation({
+    id = id.from("com.amazonaws.ssmguiconnect", "UpdateConnectionRecordingPreferences"),
+    input = M.UpdateConnectionRecordingPreferencesInput,
+    output = M.UpdateConnectionRecordingPreferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateConnectionRecordingPreferences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

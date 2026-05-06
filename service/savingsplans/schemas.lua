@@ -1226,4 +1226,134 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.savingsplans", "AWSSavingsPlan"),
+    version = "2019-06-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSavingsPlan = schema.operation({
+    id = id.from("com.amazonaws.savingsplans", "CreateSavingsPlan"),
+    input = M.CreateSavingsPlanInput,
+    output = M.CreateSavingsPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateSavingsPlan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQueuedSavingsPlan = schema.operation({
+    id = id.from("com.amazonaws.savingsplans", "DeleteQueuedSavingsPlan"),
+    input = M.DeleteQueuedSavingsPlanInput,
+    output = M.DeleteQueuedSavingsPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteQueuedSavingsPlan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSavingsPlanRates = schema.operation({
+    id = id.from("com.amazonaws.savingsplans", "DescribeSavingsPlanRates"),
+    input = M.DescribeSavingsPlanRatesInput,
+    output = M.DescribeSavingsPlanRatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeSavingsPlanRates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSavingsPlans = schema.operation({
+    id = id.from("com.amazonaws.savingsplans", "DescribeSavingsPlans"),
+    input = M.DescribeSavingsPlansInput,
+    output = M.DescribeSavingsPlansOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeSavingsPlans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSavingsPlansOfferingRates = schema.operation({
+    id = id.from("com.amazonaws.savingsplans", "DescribeSavingsPlansOfferingRates"),
+    input = M.DescribeSavingsPlansOfferingRatesInput,
+    output = M.DescribeSavingsPlansOfferingRatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeSavingsPlansOfferingRates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSavingsPlansOfferings = schema.operation({
+    id = id.from("com.amazonaws.savingsplans", "DescribeSavingsPlansOfferings"),
+    input = M.DescribeSavingsPlansOfferingsInput,
+    output = M.DescribeSavingsPlansOfferingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeSavingsPlansOfferings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.savingsplans", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReturnSavingsPlan = schema.operation({
+    id = id.from("com.amazonaws.savingsplans", "ReturnSavingsPlan"),
+    input = M.ReturnSavingsPlanInput,
+    output = M.ReturnSavingsPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ReturnSavingsPlan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.savingsplans", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.savingsplans", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UntagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

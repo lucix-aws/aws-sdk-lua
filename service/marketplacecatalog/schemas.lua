@@ -3367,4 +3367,170 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.marketplacecatalog", "AWSMPSeymour"),
+    version = "2018-09-17",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDescribeEntities = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "BatchDescribeEntities"),
+    input = M.BatchDescribeEntitiesInput,
+    output = M.BatchDescribeEntitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchDescribeEntities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelChangeSet = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "CancelChangeSet"),
+    input = M.CancelChangeSetInput,
+    output = M.CancelChangeSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/CancelChangeSet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/DeleteResourcePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChangeSet = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "DescribeChangeSet"),
+    input = M.DescribeChangeSetInput,
+    output = M.DescribeChangeSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/DescribeChangeSet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEntity = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "DescribeEntity"),
+    input = M.DescribeEntityInput,
+    output = M.DescribeEntityOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/DescribeEntity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/GetResourcePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChangeSets = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "ListChangeSets"),
+    input = M.ListChangeSetsInput,
+    output = M.ListChangeSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListChangeSets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEntities = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "ListEntities"),
+    input = M.ListEntitiesInput,
+    output = M.ListEntitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListEntities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutResourcePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartChangeSet = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "StartChangeSet"),
+    input = M.StartChangeSetInput,
+    output = M.StartChangeSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartChangeSet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UntagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

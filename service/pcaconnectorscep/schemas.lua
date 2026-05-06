@@ -981,4 +981,158 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.pcaconnectorscep", "PcaConnectorScep"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChallenge = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorscep", "CreateChallenge"),
+    input = M.CreateChallengeInput,
+    output = M.CreateChallengeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/challenges" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnector = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorscep", "CreateConnector"),
+    input = M.CreateConnectorInput,
+    output = M.CreateConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChallenge = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorscep", "DeleteChallenge"),
+    input = M.DeleteChallengeInput,
+    output = M.DeleteChallengeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/challenges/{ChallengeArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnector = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorscep", "DeleteConnector"),
+    input = M.DeleteConnectorInput,
+    output = M.DeleteConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/connectors/{ConnectorArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChallengeMetadata = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorscep", "GetChallengeMetadata"),
+    input = M.GetChallengeMetadataInput,
+    output = M.GetChallengeMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/challengeMetadata/{ChallengeArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChallengePassword = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorscep", "GetChallengePassword"),
+    input = M.GetChallengePasswordInput,
+    output = M.GetChallengePasswordOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/challengePasswords/{ChallengeArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnector = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorscep", "GetConnector"),
+    input = M.GetConnectorInput,
+    output = M.GetConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connectors/{ConnectorArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChallengeMetadata = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorscep", "ListChallengeMetadata"),
+    input = M.ListChallengeMetadataInput,
+    output = M.ListChallengeMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/challengeMetadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectors = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorscep", "ListConnectors"),
+    input = M.ListConnectorsInput,
+    output = M.ListConnectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorscep", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorscep", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.pcaconnectorscep", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

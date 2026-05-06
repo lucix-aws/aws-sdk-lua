@@ -7,6 +7,7 @@ local endpoint_rules = require("codeartifact.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("codeartifact.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codeartifact", signing_region = cfg.region } }
                 else
@@ -49,627 +52,195 @@ function M.new(cfg)
 end
 
 function Client:associateExternalConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateExternalConnection",
-        input_schema = schemas.AssociateExternalConnectionInput,
-        output_schema = schemas.AssociateExternalConnectionOutput,
-        http_method = "POST",
-        http_path = "/v1/repository/external-connection",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateExternalConnection, input, options)
 end
 
 function Client:copyPackageVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "CopyPackageVersions",
-        input_schema = schemas.CopyPackageVersionsInput,
-        output_schema = schemas.CopyPackageVersionsOutput,
-        http_method = "POST",
-        http_path = "/v1/package/versions/copy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CopyPackageVersions, input, options)
 end
 
 function Client:createDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDomain",
-        input_schema = schemas.CreateDomainInput,
-        output_schema = schemas.CreateDomainOutput,
-        http_method = "POST",
-        http_path = "/v1/domain",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDomain, input, options)
 end
 
 function Client:createPackageGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePackageGroup",
-        input_schema = schemas.CreatePackageGroupInput,
-        output_schema = schemas.CreatePackageGroupOutput,
-        http_method = "POST",
-        http_path = "/v1/package-group",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePackageGroup, input, options)
 end
 
 function Client:createRepository(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRepository",
-        input_schema = schemas.CreateRepositoryInput,
-        output_schema = schemas.CreateRepositoryOutput,
-        http_method = "POST",
-        http_path = "/v1/repository",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRepository, input, options)
 end
 
 function Client:deleteDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDomain",
-        input_schema = schemas.DeleteDomainInput,
-        output_schema = schemas.DeleteDomainOutput,
-        http_method = "DELETE",
-        http_path = "/v1/domain",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDomain, input, options)
 end
 
 function Client:deleteDomainPermissionsPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDomainPermissionsPolicy",
-        input_schema = schemas.DeleteDomainPermissionsPolicyInput,
-        output_schema = schemas.DeleteDomainPermissionsPolicyOutput,
-        http_method = "DELETE",
-        http_path = "/v1/domain/permissions/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDomainPermissionsPolicy, input, options)
 end
 
 function Client:deletePackage(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePackage",
-        input_schema = schemas.DeletePackageInput,
-        output_schema = schemas.DeletePackageOutput,
-        http_method = "DELETE",
-        http_path = "/v1/package",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePackage, input, options)
 end
 
 function Client:deletePackageGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePackageGroup",
-        input_schema = schemas.DeletePackageGroupInput,
-        output_schema = schemas.DeletePackageGroupOutput,
-        http_method = "DELETE",
-        http_path = "/v1/package-group",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePackageGroup, input, options)
 end
 
 function Client:deletePackageVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePackageVersions",
-        input_schema = schemas.DeletePackageVersionsInput,
-        output_schema = schemas.DeletePackageVersionsOutput,
-        http_method = "POST",
-        http_path = "/v1/package/versions/delete",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePackageVersions, input, options)
 end
 
 function Client:deleteRepository(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRepository",
-        input_schema = schemas.DeleteRepositoryInput,
-        output_schema = schemas.DeleteRepositoryOutput,
-        http_method = "DELETE",
-        http_path = "/v1/repository",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRepository, input, options)
 end
 
 function Client:deleteRepositoryPermissionsPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRepositoryPermissionsPolicy",
-        input_schema = schemas.DeleteRepositoryPermissionsPolicyInput,
-        output_schema = schemas.DeleteRepositoryPermissionsPolicyOutput,
-        http_method = "DELETE",
-        http_path = "/v1/repository/permissions/policies",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRepositoryPermissionsPolicy, input, options)
 end
 
 function Client:describeDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDomain",
-        input_schema = schemas.DescribeDomainInput,
-        output_schema = schemas.DescribeDomainOutput,
-        http_method = "GET",
-        http_path = "/v1/domain",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDomain, input, options)
 end
 
 function Client:describePackage(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribePackage",
-        input_schema = schemas.DescribePackageInput,
-        output_schema = schemas.DescribePackageOutput,
-        http_method = "GET",
-        http_path = "/v1/package",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribePackage, input, options)
 end
 
 function Client:describePackageGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribePackageGroup",
-        input_schema = schemas.DescribePackageGroupInput,
-        output_schema = schemas.DescribePackageGroupOutput,
-        http_method = "GET",
-        http_path = "/v1/package-group",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribePackageGroup, input, options)
 end
 
 function Client:describePackageVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribePackageVersion",
-        input_schema = schemas.DescribePackageVersionInput,
-        output_schema = schemas.DescribePackageVersionOutput,
-        http_method = "GET",
-        http_path = "/v1/package/version",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribePackageVersion, input, options)
 end
 
 function Client:describeRepository(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeRepository",
-        input_schema = schemas.DescribeRepositoryInput,
-        output_schema = schemas.DescribeRepositoryOutput,
-        http_method = "GET",
-        http_path = "/v1/repository",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeRepository, input, options)
 end
 
 function Client:disassociateExternalConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateExternalConnection",
-        input_schema = schemas.DisassociateExternalConnectionInput,
-        output_schema = schemas.DisassociateExternalConnectionOutput,
-        http_method = "DELETE",
-        http_path = "/v1/repository/external-connection",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateExternalConnection, input, options)
 end
 
 function Client:disposePackageVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "DisposePackageVersions",
-        input_schema = schemas.DisposePackageVersionsInput,
-        output_schema = schemas.DisposePackageVersionsOutput,
-        http_method = "POST",
-        http_path = "/v1/package/versions/dispose",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisposePackageVersions, input, options)
 end
 
 function Client:getAssociatedPackageGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAssociatedPackageGroup",
-        input_schema = schemas.GetAssociatedPackageGroupInput,
-        output_schema = schemas.GetAssociatedPackageGroupOutput,
-        http_method = "GET",
-        http_path = "/v1/get-associated-package-group",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAssociatedPackageGroup, input, options)
 end
 
 function Client:getAuthorizationToken(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAuthorizationToken",
-        input_schema = schemas.GetAuthorizationTokenInput,
-        output_schema = schemas.GetAuthorizationTokenOutput,
-        http_method = "POST",
-        http_path = "/v1/authorization-token",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAuthorizationToken, input, options)
 end
 
 function Client:getDomainPermissionsPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDomainPermissionsPolicy",
-        input_schema = schemas.GetDomainPermissionsPolicyInput,
-        output_schema = schemas.GetDomainPermissionsPolicyOutput,
-        http_method = "GET",
-        http_path = "/v1/domain/permissions/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDomainPermissionsPolicy, input, options)
 end
 
 function Client:getPackageVersionAsset(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPackageVersionAsset",
-        input_schema = schemas.GetPackageVersionAssetInput,
-        output_schema = schemas.GetPackageVersionAssetOutput,
-        http_method = "GET",
-        http_path = "/v1/package/version/asset",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPackageVersionAsset, input, options)
 end
 
 function Client:getPackageVersionReadme(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPackageVersionReadme",
-        input_schema = schemas.GetPackageVersionReadmeInput,
-        output_schema = schemas.GetPackageVersionReadmeOutput,
-        http_method = "GET",
-        http_path = "/v1/package/version/readme",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPackageVersionReadme, input, options)
 end
 
 function Client:getRepositoryEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRepositoryEndpoint",
-        input_schema = schemas.GetRepositoryEndpointInput,
-        output_schema = schemas.GetRepositoryEndpointOutput,
-        http_method = "GET",
-        http_path = "/v1/repository/endpoint",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRepositoryEndpoint, input, options)
 end
 
 function Client:getRepositoryPermissionsPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRepositoryPermissionsPolicy",
-        input_schema = schemas.GetRepositoryPermissionsPolicyInput,
-        output_schema = schemas.GetRepositoryPermissionsPolicyOutput,
-        http_method = "GET",
-        http_path = "/v1/repository/permissions/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRepositoryPermissionsPolicy, input, options)
 end
 
 function Client:listAllowedRepositoriesForGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAllowedRepositoriesForGroup",
-        input_schema = schemas.ListAllowedRepositoriesForGroupInput,
-        output_schema = schemas.ListAllowedRepositoriesForGroupOutput,
-        http_method = "GET",
-        http_path = "/v1/package-group-allowed-repositories",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAllowedRepositoriesForGroup, input, options)
 end
 
 function Client:listAssociatedPackages(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAssociatedPackages",
-        input_schema = schemas.ListAssociatedPackagesInput,
-        output_schema = schemas.ListAssociatedPackagesOutput,
-        http_method = "GET",
-        http_path = "/v1/list-associated-packages",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAssociatedPackages, input, options)
 end
 
 function Client:listDomains(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDomains",
-        input_schema = schemas.ListDomainsInput,
-        output_schema = schemas.ListDomainsOutput,
-        http_method = "POST",
-        http_path = "/v1/domains",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDomains, input, options)
 end
 
 function Client:listPackageGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPackageGroups",
-        input_schema = schemas.ListPackageGroupsInput,
-        output_schema = schemas.ListPackageGroupsOutput,
-        http_method = "POST",
-        http_path = "/v1/package-groups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPackageGroups, input, options)
 end
 
 function Client:listPackages(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPackages",
-        input_schema = schemas.ListPackagesInput,
-        output_schema = schemas.ListPackagesOutput,
-        http_method = "POST",
-        http_path = "/v1/packages",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPackages, input, options)
 end
 
 function Client:listPackageVersionAssets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPackageVersionAssets",
-        input_schema = schemas.ListPackageVersionAssetsInput,
-        output_schema = schemas.ListPackageVersionAssetsOutput,
-        http_method = "POST",
-        http_path = "/v1/package/version/assets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPackageVersionAssets, input, options)
 end
 
 function Client:listPackageVersionDependencies(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPackageVersionDependencies",
-        input_schema = schemas.ListPackageVersionDependenciesInput,
-        output_schema = schemas.ListPackageVersionDependenciesOutput,
-        http_method = "POST",
-        http_path = "/v1/package/version/dependencies",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPackageVersionDependencies, input, options)
 end
 
 function Client:listPackageVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPackageVersions",
-        input_schema = schemas.ListPackageVersionsInput,
-        output_schema = schemas.ListPackageVersionsOutput,
-        http_method = "POST",
-        http_path = "/v1/package/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPackageVersions, input, options)
 end
 
 function Client:listRepositories(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRepositories",
-        input_schema = schemas.ListRepositoriesInput,
-        output_schema = schemas.ListRepositoriesOutput,
-        http_method = "POST",
-        http_path = "/v1/repositories",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRepositories, input, options)
 end
 
 function Client:listRepositoriesInDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRepositoriesInDomain",
-        input_schema = schemas.ListRepositoriesInDomainInput,
-        output_schema = schemas.ListRepositoriesInDomainOutput,
-        http_method = "POST",
-        http_path = "/v1/domain/repositories",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRepositoriesInDomain, input, options)
 end
 
 function Client:listSubPackageGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSubPackageGroups",
-        input_schema = schemas.ListSubPackageGroupsInput,
-        output_schema = schemas.ListSubPackageGroupsOutput,
-        http_method = "POST",
-        http_path = "/v1/package-groups/sub-groups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSubPackageGroups, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/v1/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:publishPackageVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "PublishPackageVersion",
-        input_schema = schemas.PublishPackageVersionInput,
-        output_schema = schemas.PublishPackageVersionOutput,
-        http_method = "POST",
-        http_path = "/v1/package/version/publish",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PublishPackageVersion, input, options)
 end
 
 function Client:putDomainPermissionsPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutDomainPermissionsPolicy",
-        input_schema = schemas.PutDomainPermissionsPolicyInput,
-        output_schema = schemas.PutDomainPermissionsPolicyOutput,
-        http_method = "PUT",
-        http_path = "/v1/domain/permissions/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutDomainPermissionsPolicy, input, options)
 end
 
 function Client:putPackageOriginConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutPackageOriginConfiguration",
-        input_schema = schemas.PutPackageOriginConfigurationInput,
-        output_schema = schemas.PutPackageOriginConfigurationOutput,
-        http_method = "POST",
-        http_path = "/v1/package",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutPackageOriginConfiguration, input, options)
 end
 
 function Client:putRepositoryPermissionsPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutRepositoryPermissionsPolicy",
-        input_schema = schemas.PutRepositoryPermissionsPolicyInput,
-        output_schema = schemas.PutRepositoryPermissionsPolicyOutput,
-        http_method = "PUT",
-        http_path = "/v1/repository/permissions/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutRepositoryPermissionsPolicy, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/v1/tag",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/v1/untag",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updatePackageGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePackageGroup",
-        input_schema = schemas.UpdatePackageGroupInput,
-        output_schema = schemas.UpdatePackageGroupOutput,
-        http_method = "PUT",
-        http_path = "/v1/package-group",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePackageGroup, input, options)
 end
 
 function Client:updatePackageGroupOriginConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePackageGroupOriginConfiguration",
-        input_schema = schemas.UpdatePackageGroupOriginConfigurationInput,
-        output_schema = schemas.UpdatePackageGroupOriginConfigurationOutput,
-        http_method = "PUT",
-        http_path = "/v1/package-group-origin-configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePackageGroupOriginConfiguration, input, options)
 end
 
 function Client:updatePackageVersionsStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePackageVersionsStatus",
-        input_schema = schemas.UpdatePackageVersionsStatusInput,
-        output_schema = schemas.UpdatePackageVersionsStatusOutput,
-        http_method = "POST",
-        http_path = "/v1/package/versions/update_status",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePackageVersionsStatus, input, options)
 end
 
 function Client:updateRepository(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRepository",
-        input_schema = schemas.UpdateRepositoryInput,
-        output_schema = schemas.UpdateRepositoryOutput,
-        http_method = "PUT",
-        http_path = "/v1/repository",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRepository, input, options)
 end
 
 return M

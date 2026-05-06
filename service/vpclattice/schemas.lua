@@ -7413,4 +7413,890 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.vpclattice", "MercuryControlPlane"),
+    version = "2022-11-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateRule = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "BatchUpdateRule"),
+    input = M.BatchUpdateRuleInput,
+    output = M.BatchUpdateRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccessLogSubscription = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "CreateAccessLogSubscription"),
+    input = M.CreateAccessLogSubscriptionInput,
+    output = M.CreateAccessLogSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accesslogsubscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateListener = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "CreateListener"),
+    input = M.CreateListenerInput,
+    output = M.CreateListenerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/services/{serviceIdentifier}/listeners" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResourceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "CreateResourceConfiguration"),
+    input = M.CreateResourceConfigurationInput,
+    output = M.CreateResourceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resourceconfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResourceGateway = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "CreateResourceGateway"),
+    input = M.CreateResourceGatewayInput,
+    output = M.CreateResourceGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resourcegateways" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRule = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "CreateRule"),
+    input = M.CreateRuleInput,
+    output = M.CreateRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateService = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "CreateService"),
+    input = M.CreateServiceInput,
+    output = M.CreateServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/services" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServiceNetwork = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "CreateServiceNetwork"),
+    input = M.CreateServiceNetworkInput,
+    output = M.CreateServiceNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/servicenetworks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServiceNetworkResourceAssociation = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "CreateServiceNetworkResourceAssociation"),
+    input = M.CreateServiceNetworkResourceAssociationInput,
+    output = M.CreateServiceNetworkResourceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/servicenetworkresourceassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServiceNetworkServiceAssociation = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "CreateServiceNetworkServiceAssociation"),
+    input = M.CreateServiceNetworkServiceAssociationInput,
+    output = M.CreateServiceNetworkServiceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/servicenetworkserviceassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServiceNetworkVpcAssociation = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "CreateServiceNetworkVpcAssociation"),
+    input = M.CreateServiceNetworkVpcAssociationInput,
+    output = M.CreateServiceNetworkVpcAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/servicenetworkvpcassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTargetGroup = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "CreateTargetGroup"),
+    input = M.CreateTargetGroupInput,
+    output = M.CreateTargetGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/targetgroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccessLogSubscription = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteAccessLogSubscription"),
+    input = M.DeleteAccessLogSubscriptionInput,
+    output = M.DeleteAccessLogSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accesslogsubscriptions/{accessLogSubscriptionIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAuthPolicy = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteAuthPolicy"),
+    input = M.DeleteAuthPolicyInput,
+    output = M.DeleteAuthPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/authpolicy/{resourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomainVerification = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteDomainVerification"),
+    input = M.DeleteDomainVerificationInput,
+    output = M.DeleteDomainVerificationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domainverifications/{domainVerificationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteListener = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteListener"),
+    input = M.DeleteListenerInput,
+    output = M.DeleteListenerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteResourceConfiguration"),
+    input = M.DeleteResourceConfigurationInput,
+    output = M.DeleteResourceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/resourceconfigurations/{resourceConfigurationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourceEndpointAssociation = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteResourceEndpointAssociation"),
+    input = M.DeleteResourceEndpointAssociationInput,
+    output = M.DeleteResourceEndpointAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/resourceendpointassociations/{resourceEndpointAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourceGateway = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteResourceGateway"),
+    input = M.DeleteResourceGatewayInput,
+    output = M.DeleteResourceGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/resourcegateways/{resourceGatewayIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/resourcepolicy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRule = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteRule"),
+    input = M.DeleteRuleInput,
+    output = M.DeleteRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules/{ruleIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteService = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteService"),
+    input = M.DeleteServiceInput,
+    output = M.DeleteServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/services/{serviceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceNetwork = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteServiceNetwork"),
+    input = M.DeleteServiceNetworkInput,
+    output = M.DeleteServiceNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/servicenetworks/{serviceNetworkIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceNetworkResourceAssociation = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteServiceNetworkResourceAssociation"),
+    input = M.DeleteServiceNetworkResourceAssociationInput,
+    output = M.DeleteServiceNetworkResourceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/servicenetworkresourceassociations/{serviceNetworkResourceAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceNetworkServiceAssociation = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteServiceNetworkServiceAssociation"),
+    input = M.DeleteServiceNetworkServiceAssociationInput,
+    output = M.DeleteServiceNetworkServiceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/servicenetworkserviceassociations/{serviceNetworkServiceAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceNetworkVpcAssociation = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteServiceNetworkVpcAssociation"),
+    input = M.DeleteServiceNetworkVpcAssociationInput,
+    output = M.DeleteServiceNetworkVpcAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/servicenetworkvpcassociations/{serviceNetworkVpcAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTargetGroup = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeleteTargetGroup"),
+    input = M.DeleteTargetGroupInput,
+    output = M.DeleteTargetGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/targetgroups/{targetGroupIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterTargets = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "DeregisterTargets"),
+    input = M.DeregisterTargetsInput,
+    output = M.DeregisterTargetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/targetgroups/{targetGroupIdentifier}/deregistertargets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccessLogSubscription = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "GetAccessLogSubscription"),
+    input = M.GetAccessLogSubscriptionInput,
+    output = M.GetAccessLogSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accesslogsubscriptions/{accessLogSubscriptionIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAuthPolicy = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "GetAuthPolicy"),
+    input = M.GetAuthPolicyInput,
+    output = M.GetAuthPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/authpolicy/{resourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainVerification = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "GetDomainVerification"),
+    input = M.GetDomainVerificationInput,
+    output = M.GetDomainVerificationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domainverifications/{domainVerificationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetListener = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "GetListener"),
+    input = M.GetListenerInput,
+    output = M.GetListenerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "GetResourceConfiguration"),
+    input = M.GetResourceConfigurationInput,
+    output = M.GetResourceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resourceconfigurations/{resourceConfigurationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceGateway = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "GetResourceGateway"),
+    input = M.GetResourceGatewayInput,
+    output = M.GetResourceGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resourcegateways/{resourceGatewayIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resourcepolicy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRule = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "GetRule"),
+    input = M.GetRuleInput,
+    output = M.GetRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules/{ruleIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetService = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "GetService"),
+    input = M.GetServiceInput,
+    output = M.GetServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/services/{serviceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceNetwork = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "GetServiceNetwork"),
+    input = M.GetServiceNetworkInput,
+    output = M.GetServiceNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/servicenetworks/{serviceNetworkIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceNetworkResourceAssociation = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "GetServiceNetworkResourceAssociation"),
+    input = M.GetServiceNetworkResourceAssociationInput,
+    output = M.GetServiceNetworkResourceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/servicenetworkresourceassociations/{serviceNetworkResourceAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceNetworkServiceAssociation = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "GetServiceNetworkServiceAssociation"),
+    input = M.GetServiceNetworkServiceAssociationInput,
+    output = M.GetServiceNetworkServiceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/servicenetworkserviceassociations/{serviceNetworkServiceAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceNetworkVpcAssociation = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "GetServiceNetworkVpcAssociation"),
+    input = M.GetServiceNetworkVpcAssociationInput,
+    output = M.GetServiceNetworkVpcAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/servicenetworkvpcassociations/{serviceNetworkVpcAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTargetGroup = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "GetTargetGroup"),
+    input = M.GetTargetGroupInput,
+    output = M.GetTargetGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/targetgroups/{targetGroupIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccessLogSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListAccessLogSubscriptions"),
+    input = M.ListAccessLogSubscriptionsInput,
+    output = M.ListAccessLogSubscriptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accesslogsubscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainVerifications = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListDomainVerifications"),
+    input = M.ListDomainVerificationsInput,
+    output = M.ListDomainVerificationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domainverifications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListListeners = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListListeners"),
+    input = M.ListListenersInput,
+    output = M.ListListenersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/services/{serviceIdentifier}/listeners" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceConfigurations = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListResourceConfigurations"),
+    input = M.ListResourceConfigurationsInput,
+    output = M.ListResourceConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resourceconfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceEndpointAssociations = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListResourceEndpointAssociations"),
+    input = M.ListResourceEndpointAssociationsInput,
+    output = M.ListResourceEndpointAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resourceendpointassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceGateways = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListResourceGateways"),
+    input = M.ListResourceGatewaysInput,
+    output = M.ListResourceGatewaysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resourcegateways" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRules = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListRules"),
+    input = M.ListRulesInput,
+    output = M.ListRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceNetworkResourceAssociations = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListServiceNetworkResourceAssociations"),
+    input = M.ListServiceNetworkResourceAssociationsInput,
+    output = M.ListServiceNetworkResourceAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/servicenetworkresourceassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceNetworks = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListServiceNetworks"),
+    input = M.ListServiceNetworksInput,
+    output = M.ListServiceNetworksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/servicenetworks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceNetworkServiceAssociations = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListServiceNetworkServiceAssociations"),
+    input = M.ListServiceNetworkServiceAssociationsInput,
+    output = M.ListServiceNetworkServiceAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/servicenetworkserviceassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceNetworkVpcAssociations = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListServiceNetworkVpcAssociations"),
+    input = M.ListServiceNetworkVpcAssociationsInput,
+    output = M.ListServiceNetworkVpcAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/servicenetworkvpcassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceNetworkVpcEndpointAssociations = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListServiceNetworkVpcEndpointAssociations"),
+    input = M.ListServiceNetworkVpcEndpointAssociationsInput,
+    output = M.ListServiceNetworkVpcEndpointAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/servicenetworkvpcendpointassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServices = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListServices"),
+    input = M.ListServicesInput,
+    output = M.ListServicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/services" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTargetGroups = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListTargetGroups"),
+    input = M.ListTargetGroupsInput,
+    output = M.ListTargetGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/targetgroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTargets = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "ListTargets"),
+    input = M.ListTargetsInput,
+    output = M.ListTargetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/targetgroups/{targetGroupIdentifier}/listtargets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAuthPolicy = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "PutAuthPolicy"),
+    input = M.PutAuthPolicyInput,
+    output = M.PutAuthPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/authpolicy/{resourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/resourcepolicy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterTargets = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "RegisterTargets"),
+    input = M.RegisterTargetsInput,
+    output = M.RegisterTargetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/targetgroups/{targetGroupIdentifier}/registertargets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDomainVerification = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "StartDomainVerification"),
+    input = M.StartDomainVerificationInput,
+    output = M.StartDomainVerificationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domainverifications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccessLogSubscription = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "UpdateAccessLogSubscription"),
+    input = M.UpdateAccessLogSubscriptionInput,
+    output = M.UpdateAccessLogSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/accesslogsubscriptions/{accessLogSubscriptionIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateListener = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "UpdateListener"),
+    input = M.UpdateListenerInput,
+    output = M.UpdateListenerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResourceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "UpdateResourceConfiguration"),
+    input = M.UpdateResourceConfigurationInput,
+    output = M.UpdateResourceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/resourceconfigurations/{resourceConfigurationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResourceGateway = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "UpdateResourceGateway"),
+    input = M.UpdateResourceGatewayInput,
+    output = M.UpdateResourceGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/resourcegateways/{resourceGatewayIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRule = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "UpdateRule"),
+    input = M.UpdateRuleInput,
+    output = M.UpdateRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules/{ruleIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateService = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "UpdateService"),
+    input = M.UpdateServiceInput,
+    output = M.UpdateServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/services/{serviceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceNetwork = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "UpdateServiceNetwork"),
+    input = M.UpdateServiceNetworkInput,
+    output = M.UpdateServiceNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/servicenetworks/{serviceNetworkIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceNetworkVpcAssociation = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "UpdateServiceNetworkVpcAssociation"),
+    input = M.UpdateServiceNetworkVpcAssociationInput,
+    output = M.UpdateServiceNetworkVpcAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/servicenetworkvpcassociations/{serviceNetworkVpcAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTargetGroup = schema.operation({
+    id = id.from("com.amazonaws.vpclattice", "UpdateTargetGroup"),
+    input = M.UpdateTargetGroupInput,
+    output = M.UpdateTargetGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/targetgroups/{targetGroupIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

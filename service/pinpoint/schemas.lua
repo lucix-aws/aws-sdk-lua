@@ -15748,4 +15748,1478 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.pinpoint", "Pinpoint"),
+    version = "2016-12-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApp = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "CreateApp"),
+    input = M.CreateAppInput,
+    output = M.CreateAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCampaign = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "CreateCampaign"),
+    input = M.CreateCampaignInput,
+    output = M.CreateCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apps/{ApplicationId}/campaigns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "CreateEmailTemplate"),
+    input = M.CreateEmailTemplateInput,
+    output = M.CreateEmailTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/templates/{TemplateName}/email" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExportJob = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "CreateExportJob"),
+    input = M.CreateExportJobInput,
+    output = M.CreateExportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apps/{ApplicationId}/jobs/export" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateImportJob = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "CreateImportJob"),
+    input = M.CreateImportJobInput,
+    output = M.CreateImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apps/{ApplicationId}/jobs/import" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInAppTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "CreateInAppTemplate"),
+    input = M.CreateInAppTemplateInput,
+    output = M.CreateInAppTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/templates/{TemplateName}/inapp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateJourney = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "CreateJourney"),
+    input = M.CreateJourneyInput,
+    output = M.CreateJourneyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apps/{ApplicationId}/journeys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePushTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "CreatePushTemplate"),
+    input = M.CreatePushTemplateInput,
+    output = M.CreatePushTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/templates/{TemplateName}/push" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRecommenderConfiguration = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "CreateRecommenderConfiguration"),
+    input = M.CreateRecommenderConfigurationInput,
+    output = M.CreateRecommenderConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/recommenders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSegment = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "CreateSegment"),
+    input = M.CreateSegmentInput,
+    output = M.CreateSegmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apps/{ApplicationId}/segments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSmsTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "CreateSmsTemplate"),
+    input = M.CreateSmsTemplateInput,
+    output = M.CreateSmsTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/templates/{TemplateName}/sms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVoiceTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "CreateVoiceTemplate"),
+    input = M.CreateVoiceTemplateInput,
+    output = M.CreateVoiceTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/templates/{TemplateName}/voice" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAdmChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteAdmChannel"),
+    input = M.DeleteAdmChannelInput,
+    output = M.DeleteAdmChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/channels/adm" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApnsChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteApnsChannel"),
+    input = M.DeleteApnsChannelInput,
+    output = M.DeleteApnsChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/channels/apns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApnsSandboxChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteApnsSandboxChannel"),
+    input = M.DeleteApnsSandboxChannelInput,
+    output = M.DeleteApnsSandboxChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/channels/apns_sandbox" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApnsVoipChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteApnsVoipChannel"),
+    input = M.DeleteApnsVoipChannelInput,
+    output = M.DeleteApnsVoipChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/channels/apns_voip" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApnsVoipSandboxChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteApnsVoipSandboxChannel"),
+    input = M.DeleteApnsVoipSandboxChannelInput,
+    output = M.DeleteApnsVoipSandboxChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/channels/apns_voip_sandbox" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApp = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteApp"),
+    input = M.DeleteAppInput,
+    output = M.DeleteAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBaiduChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteBaiduChannel"),
+    input = M.DeleteBaiduChannelInput,
+    output = M.DeleteBaiduChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/channels/baidu" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCampaign = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteCampaign"),
+    input = M.DeleteCampaignInput,
+    output = M.DeleteCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/campaigns/{CampaignId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEmailChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteEmailChannel"),
+    input = M.DeleteEmailChannelInput,
+    output = M.DeleteEmailChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/channels/email" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteEmailTemplate"),
+    input = M.DeleteEmailTemplateInput,
+    output = M.DeleteEmailTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/templates/{TemplateName}/email" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEndpoint = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteEndpoint"),
+    input = M.DeleteEndpointInput,
+    output = M.DeleteEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/endpoints/{EndpointId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventStream = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteEventStream"),
+    input = M.DeleteEventStreamInput,
+    output = M.DeleteEventStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/eventstream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGcmChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteGcmChannel"),
+    input = M.DeleteGcmChannelInput,
+    output = M.DeleteGcmChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/channels/gcm" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInAppTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteInAppTemplate"),
+    input = M.DeleteInAppTemplateInput,
+    output = M.DeleteInAppTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/templates/{TemplateName}/inapp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteJourney = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteJourney"),
+    input = M.DeleteJourneyInput,
+    output = M.DeleteJourneyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePushTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeletePushTemplate"),
+    input = M.DeletePushTemplateInput,
+    output = M.DeletePushTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/templates/{TemplateName}/push" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecommenderConfiguration = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteRecommenderConfiguration"),
+    input = M.DeleteRecommenderConfigurationInput,
+    output = M.DeleteRecommenderConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/recommenders/{RecommenderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSegment = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteSegment"),
+    input = M.DeleteSegmentInput,
+    output = M.DeleteSegmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/segments/{SegmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSmsChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteSmsChannel"),
+    input = M.DeleteSmsChannelInput,
+    output = M.DeleteSmsChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/channels/sms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSmsTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteSmsTemplate"),
+    input = M.DeleteSmsTemplateInput,
+    output = M.DeleteSmsTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/templates/{TemplateName}/sms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserEndpoints = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteUserEndpoints"),
+    input = M.DeleteUserEndpointsInput,
+    output = M.DeleteUserEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/users/{UserId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVoiceChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteVoiceChannel"),
+    input = M.DeleteVoiceChannelInput,
+    output = M.DeleteVoiceChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apps/{ApplicationId}/channels/voice" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVoiceTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "DeleteVoiceTemplate"),
+    input = M.DeleteVoiceTemplateInput,
+    output = M.DeleteVoiceTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/templates/{TemplateName}/voice" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAdmChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetAdmChannel"),
+    input = M.GetAdmChannelInput,
+    output = M.GetAdmChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/channels/adm" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApnsChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetApnsChannel"),
+    input = M.GetApnsChannelInput,
+    output = M.GetApnsChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/channels/apns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApnsSandboxChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetApnsSandboxChannel"),
+    input = M.GetApnsSandboxChannelInput,
+    output = M.GetApnsSandboxChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/channels/apns_sandbox" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApnsVoipChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetApnsVoipChannel"),
+    input = M.GetApnsVoipChannelInput,
+    output = M.GetApnsVoipChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/channels/apns_voip" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApnsVoipSandboxChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetApnsVoipSandboxChannel"),
+    input = M.GetApnsVoipSandboxChannelInput,
+    output = M.GetApnsVoipSandboxChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/channels/apns_voip_sandbox" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApp = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetApp"),
+    input = M.GetAppInput,
+    output = M.GetAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplicationDateRangeKpi = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetApplicationDateRangeKpi"),
+    input = M.GetApplicationDateRangeKpiInput,
+    output = M.GetApplicationDateRangeKpiOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/kpis/daterange/{KpiName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplicationSettings = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetApplicationSettings"),
+    input = M.GetApplicationSettingsInput,
+    output = M.GetApplicationSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApps = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetApps"),
+    input = M.GetAppsInput,
+    output = M.GetAppsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBaiduChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetBaiduChannel"),
+    input = M.GetBaiduChannelInput,
+    output = M.GetBaiduChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/channels/baidu" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCampaign = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetCampaign"),
+    input = M.GetCampaignInput,
+    output = M.GetCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/campaigns/{CampaignId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCampaignActivities = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetCampaignActivities"),
+    input = M.GetCampaignActivitiesInput,
+    output = M.GetCampaignActivitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/campaigns/{CampaignId}/activities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCampaignDateRangeKpi = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetCampaignDateRangeKpi"),
+    input = M.GetCampaignDateRangeKpiInput,
+    output = M.GetCampaignDateRangeKpiOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/campaigns/{CampaignId}/kpis/daterange/{KpiName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCampaigns = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetCampaigns"),
+    input = M.GetCampaignsInput,
+    output = M.GetCampaignsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/campaigns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCampaignVersion = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetCampaignVersion"),
+    input = M.GetCampaignVersionInput,
+    output = M.GetCampaignVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/campaigns/{CampaignId}/versions/{Version}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCampaignVersions = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetCampaignVersions"),
+    input = M.GetCampaignVersionsInput,
+    output = M.GetCampaignVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/campaigns/{CampaignId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChannels = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetChannels"),
+    input = M.GetChannelsInput,
+    output = M.GetChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEmailChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetEmailChannel"),
+    input = M.GetEmailChannelInput,
+    output = M.GetEmailChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/channels/email" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetEmailTemplate"),
+    input = M.GetEmailTemplateInput,
+    output = M.GetEmailTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/templates/{TemplateName}/email" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEndpoint = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetEndpoint"),
+    input = M.GetEndpointInput,
+    output = M.GetEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/endpoints/{EndpointId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventStream = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetEventStream"),
+    input = M.GetEventStreamInput,
+    output = M.GetEventStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/eventstream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExportJob = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetExportJob"),
+    input = M.GetExportJobInput,
+    output = M.GetExportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/jobs/export/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExportJobs = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetExportJobs"),
+    input = M.GetExportJobsInput,
+    output = M.GetExportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/jobs/export" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGcmChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetGcmChannel"),
+    input = M.GetGcmChannelInput,
+    output = M.GetGcmChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/channels/gcm" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImportJob = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetImportJob"),
+    input = M.GetImportJobInput,
+    output = M.GetImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/jobs/import/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImportJobs = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetImportJobs"),
+    input = M.GetImportJobsInput,
+    output = M.GetImportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/jobs/import" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInAppMessages = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetInAppMessages"),
+    input = M.GetInAppMessagesInput,
+    output = M.GetInAppMessagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/endpoints/{EndpointId}/inappmessages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInAppTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetInAppTemplate"),
+    input = M.GetInAppTemplateInput,
+    output = M.GetInAppTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/templates/{TemplateName}/inapp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJourney = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetJourney"),
+    input = M.GetJourneyInput,
+    output = M.GetJourneyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJourneyDateRangeKpi = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetJourneyDateRangeKpi"),
+    input = M.GetJourneyDateRangeKpiInput,
+    output = M.GetJourneyDateRangeKpiOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}/kpis/daterange/{KpiName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJourneyExecutionActivityMetrics = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetJourneyExecutionActivityMetrics"),
+    input = M.GetJourneyExecutionActivityMetricsInput,
+    output = M.GetJourneyExecutionActivityMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}/activities/{JourneyActivityId}/execution-metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJourneyExecutionMetrics = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetJourneyExecutionMetrics"),
+    input = M.GetJourneyExecutionMetricsInput,
+    output = M.GetJourneyExecutionMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}/execution-metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJourneyRunExecutionActivityMetrics = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetJourneyRunExecutionActivityMetrics"),
+    input = M.GetJourneyRunExecutionActivityMetricsInput,
+    output = M.GetJourneyRunExecutionActivityMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}/runs/{RunId}/activities/{JourneyActivityId}/execution-metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJourneyRunExecutionMetrics = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetJourneyRunExecutionMetrics"),
+    input = M.GetJourneyRunExecutionMetricsInput,
+    output = M.GetJourneyRunExecutionMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}/runs/{RunId}/execution-metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJourneyRuns = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetJourneyRuns"),
+    input = M.GetJourneyRunsInput,
+    output = M.GetJourneyRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}/runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPushTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetPushTemplate"),
+    input = M.GetPushTemplateInput,
+    output = M.GetPushTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/templates/{TemplateName}/push" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommenderConfiguration = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetRecommenderConfiguration"),
+    input = M.GetRecommenderConfigurationInput,
+    output = M.GetRecommenderConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/recommenders/{RecommenderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommenderConfigurations = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetRecommenderConfigurations"),
+    input = M.GetRecommenderConfigurationsInput,
+    output = M.GetRecommenderConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/recommenders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSegment = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetSegment"),
+    input = M.GetSegmentInput,
+    output = M.GetSegmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/segments/{SegmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSegmentExportJobs = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetSegmentExportJobs"),
+    input = M.GetSegmentExportJobsInput,
+    output = M.GetSegmentExportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/segments/{SegmentId}/jobs/export" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSegmentImportJobs = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetSegmentImportJobs"),
+    input = M.GetSegmentImportJobsInput,
+    output = M.GetSegmentImportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/segments/{SegmentId}/jobs/import" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSegments = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetSegments"),
+    input = M.GetSegmentsInput,
+    output = M.GetSegmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/segments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSegmentVersion = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetSegmentVersion"),
+    input = M.GetSegmentVersionInput,
+    output = M.GetSegmentVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/segments/{SegmentId}/versions/{Version}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSegmentVersions = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetSegmentVersions"),
+    input = M.GetSegmentVersionsInput,
+    output = M.GetSegmentVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/segments/{SegmentId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSmsChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetSmsChannel"),
+    input = M.GetSmsChannelInput,
+    output = M.GetSmsChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/channels/sms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSmsTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetSmsTemplate"),
+    input = M.GetSmsTemplateInput,
+    output = M.GetSmsTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/templates/{TemplateName}/sms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUserEndpoints = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetUserEndpoints"),
+    input = M.GetUserEndpointsInput,
+    output = M.GetUserEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/users/{UserId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetVoiceChannel"),
+    input = M.GetVoiceChannelInput,
+    output = M.GetVoiceChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/channels/voice" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "GetVoiceTemplate"),
+    input = M.GetVoiceTemplateInput,
+    output = M.GetVoiceTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/templates/{TemplateName}/voice" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJourneys = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "ListJourneys"),
+    input = M.ListJourneysInput,
+    output = M.ListJourneysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apps/{ApplicationId}/journeys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTemplates = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "ListTemplates"),
+    input = M.ListTemplatesInput,
+    output = M.ListTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTemplateVersions = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "ListTemplateVersions"),
+    input = M.ListTemplateVersionsInput,
+    output = M.ListTemplateVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/templates/{TemplateName}/{TemplateType}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PhoneNumberValidate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "PhoneNumberValidate"),
+    input = M.PhoneNumberValidateInput,
+    output = M.PhoneNumberValidateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/phone/number/validate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEvents = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "PutEvents"),
+    input = M.PutEventsInput,
+    output = M.PutEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apps/{ApplicationId}/events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEventStream = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "PutEventStream"),
+    input = M.PutEventStreamInput,
+    output = M.PutEventStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apps/{ApplicationId}/eventstream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveAttributes = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "RemoveAttributes"),
+    input = M.RemoveAttributesInput,
+    output = M.RemoveAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/attributes/{AttributeType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendMessages = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "SendMessages"),
+    input = M.SendMessagesInput,
+    output = M.SendMessagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apps/{ApplicationId}/messages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendOTPMessage = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "SendOTPMessage"),
+    input = M.SendOTPMessageInput,
+    output = M.SendOTPMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apps/{ApplicationId}/otp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendUsersMessages = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "SendUsersMessages"),
+    input = M.SendUsersMessagesInput,
+    output = M.SendUsersMessagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apps/{ApplicationId}/users-messages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAdmChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateAdmChannel"),
+    input = M.UpdateAdmChannelInput,
+    output = M.UpdateAdmChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/channels/adm" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApnsChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateApnsChannel"),
+    input = M.UpdateApnsChannelInput,
+    output = M.UpdateApnsChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/channels/apns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApnsSandboxChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateApnsSandboxChannel"),
+    input = M.UpdateApnsSandboxChannelInput,
+    output = M.UpdateApnsSandboxChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/channels/apns_sandbox" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApnsVoipChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateApnsVoipChannel"),
+    input = M.UpdateApnsVoipChannelInput,
+    output = M.UpdateApnsVoipChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/channels/apns_voip" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApnsVoipSandboxChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateApnsVoipSandboxChannel"),
+    input = M.UpdateApnsVoipSandboxChannelInput,
+    output = M.UpdateApnsVoipSandboxChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/channels/apns_voip_sandbox" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplicationSettings = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateApplicationSettings"),
+    input = M.UpdateApplicationSettingsInput,
+    output = M.UpdateApplicationSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBaiduChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateBaiduChannel"),
+    input = M.UpdateBaiduChannelInput,
+    output = M.UpdateBaiduChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/channels/baidu" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCampaign = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateCampaign"),
+    input = M.UpdateCampaignInput,
+    output = M.UpdateCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/campaigns/{CampaignId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEmailChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateEmailChannel"),
+    input = M.UpdateEmailChannelInput,
+    output = M.UpdateEmailChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/channels/email" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateEmailTemplate"),
+    input = M.UpdateEmailTemplateInput,
+    output = M.UpdateEmailTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/templates/{TemplateName}/email" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEndpoint = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateEndpoint"),
+    input = M.UpdateEndpointInput,
+    output = M.UpdateEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/endpoints/{EndpointId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEndpointsBatch = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateEndpointsBatch"),
+    input = M.UpdateEndpointsBatchInput,
+    output = M.UpdateEndpointsBatchOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGcmChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateGcmChannel"),
+    input = M.UpdateGcmChannelInput,
+    output = M.UpdateGcmChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/channels/gcm" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInAppTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateInAppTemplate"),
+    input = M.UpdateInAppTemplateInput,
+    output = M.UpdateInAppTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/templates/{TemplateName}/inapp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateJourney = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateJourney"),
+    input = M.UpdateJourneyInput,
+    output = M.UpdateJourneyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateJourneyState = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateJourneyState"),
+    input = M.UpdateJourneyStateInput,
+    output = M.UpdateJourneyStateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}/state" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePushTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdatePushTemplate"),
+    input = M.UpdatePushTemplateInput,
+    output = M.UpdatePushTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/templates/{TemplateName}/push" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecommenderConfiguration = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateRecommenderConfiguration"),
+    input = M.UpdateRecommenderConfigurationInput,
+    output = M.UpdateRecommenderConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/recommenders/{RecommenderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSegment = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateSegment"),
+    input = M.UpdateSegmentInput,
+    output = M.UpdateSegmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/segments/{SegmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSmsChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateSmsChannel"),
+    input = M.UpdateSmsChannelInput,
+    output = M.UpdateSmsChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/channels/sms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSmsTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateSmsTemplate"),
+    input = M.UpdateSmsTemplateInput,
+    output = M.UpdateSmsTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/templates/{TemplateName}/sms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTemplateActiveVersion = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateTemplateActiveVersion"),
+    input = M.UpdateTemplateActiveVersionInput,
+    output = M.UpdateTemplateActiveVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/templates/{TemplateName}/{TemplateType}/active-version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVoiceChannel = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateVoiceChannel"),
+    input = M.UpdateVoiceChannelInput,
+    output = M.UpdateVoiceChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apps/{ApplicationId}/channels/voice" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVoiceTemplate = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "UpdateVoiceTemplate"),
+    input = M.UpdateVoiceTemplateInput,
+    output = M.UpdateVoiceTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/templates/{TemplateName}/voice" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyOTPMessage = schema.operation({
+    id = id.from("com.amazonaws.pinpoint", "VerifyOTPMessage"),
+    input = M.VerifyOTPMessageInput,
+    output = M.VerifyOTPMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apps/{ApplicationId}/verify-otp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -943,4 +943,194 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.account", "Account"),
+    version = "2021-02-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptPrimaryEmailUpdate = schema.operation({
+    id = id.from("com.amazonaws.account", "AcceptPrimaryEmailUpdate"),
+    input = M.AcceptPrimaryEmailUpdateInput,
+    output = M.AcceptPrimaryEmailUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/acceptPrimaryEmailUpdate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAlternateContact = schema.operation({
+    id = id.from("com.amazonaws.account", "DeleteAlternateContact"),
+    input = M.DeleteAlternateContactInput,
+    output = M.DeleteAlternateContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deleteAlternateContact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableRegion = schema.operation({
+    id = id.from("com.amazonaws.account", "DisableRegion"),
+    input = M.DisableRegionInput,
+    output = M.DisableRegionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/disableRegion" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableRegion = schema.operation({
+    id = id.from("com.amazonaws.account", "EnableRegion"),
+    input = M.EnableRegionInput,
+    output = M.EnableRegionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/enableRegion" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountInformation = schema.operation({
+    id = id.from("com.amazonaws.account", "GetAccountInformation"),
+    input = M.GetAccountInformationInput,
+    output = M.GetAccountInformationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getAccountInformation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAlternateContact = schema.operation({
+    id = id.from("com.amazonaws.account", "GetAlternateContact"),
+    input = M.GetAlternateContactInput,
+    output = M.GetAlternateContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getAlternateContact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContactInformation = schema.operation({
+    id = id.from("com.amazonaws.account", "GetContactInformation"),
+    input = M.GetContactInformationInput,
+    output = M.GetContactInformationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getContactInformation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGovCloudAccountInformation = schema.operation({
+    id = id.from("com.amazonaws.account", "GetGovCloudAccountInformation"),
+    input = M.GetGovCloudAccountInformationInput,
+    output = M.GetGovCloudAccountInformationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getGovCloudAccountInformation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPrimaryEmail = schema.operation({
+    id = id.from("com.amazonaws.account", "GetPrimaryEmail"),
+    input = M.GetPrimaryEmailInput,
+    output = M.GetPrimaryEmailOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getPrimaryEmail" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRegionOptStatus = schema.operation({
+    id = id.from("com.amazonaws.account", "GetRegionOptStatus"),
+    input = M.GetRegionOptStatusInput,
+    output = M.GetRegionOptStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getRegionOptStatus" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRegions = schema.operation({
+    id = id.from("com.amazonaws.account", "ListRegions"),
+    input = M.ListRegionsInput,
+    output = M.ListRegionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listRegions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountName = schema.operation({
+    id = id.from("com.amazonaws.account", "PutAccountName"),
+    input = M.PutAccountNameInput,
+    output = M.PutAccountNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/putAccountName" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAlternateContact = schema.operation({
+    id = id.from("com.amazonaws.account", "PutAlternateContact"),
+    input = M.PutAlternateContactInput,
+    output = M.PutAlternateContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/putAlternateContact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutContactInformation = schema.operation({
+    id = id.from("com.amazonaws.account", "PutContactInformation"),
+    input = M.PutContactInformationInput,
+    output = M.PutContactInformationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/putContactInformation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartPrimaryEmailUpdate = schema.operation({
+    id = id.from("com.amazonaws.account", "StartPrimaryEmailUpdate"),
+    input = M.StartPrimaryEmailUpdateInput,
+    output = M.StartPrimaryEmailUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/startPrimaryEmailUpdate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

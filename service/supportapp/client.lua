@@ -7,6 +7,7 @@ local endpoint_rules = require("supportapp.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("supportapp.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "supportapp", signing_region = cfg.region } }
                 else
@@ -49,133 +52,43 @@ function M.new(cfg)
 end
 
 function Client:createSlackChannelConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSlackChannelConfiguration",
-        input_schema = schemas.CreateSlackChannelConfigurationInput,
-        output_schema = schemas.CreateSlackChannelConfigurationOutput,
-        http_method = "POST",
-        http_path = "/control/create-slack-channel-configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSlackChannelConfiguration, input, options)
 end
 
 function Client:deleteAccountAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAccountAlias",
-        input_schema = schemas.DeleteAccountAliasInput,
-        output_schema = schemas.DeleteAccountAliasOutput,
-        http_method = "POST",
-        http_path = "/control/delete-account-alias",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAccountAlias, input, options)
 end
 
 function Client:deleteSlackChannelConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSlackChannelConfiguration",
-        input_schema = schemas.DeleteSlackChannelConfigurationInput,
-        output_schema = schemas.DeleteSlackChannelConfigurationOutput,
-        http_method = "POST",
-        http_path = "/control/delete-slack-channel-configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSlackChannelConfiguration, input, options)
 end
 
 function Client:deleteSlackWorkspaceConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSlackWorkspaceConfiguration",
-        input_schema = schemas.DeleteSlackWorkspaceConfigurationInput,
-        output_schema = schemas.DeleteSlackWorkspaceConfigurationOutput,
-        http_method = "POST",
-        http_path = "/control/delete-slack-workspace-configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSlackWorkspaceConfiguration, input, options)
 end
 
 function Client:getAccountAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccountAlias",
-        input_schema = schemas.GetAccountAliasInput,
-        output_schema = schemas.GetAccountAliasOutput,
-        http_method = "POST",
-        http_path = "/control/get-account-alias",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccountAlias, input, options)
 end
 
 function Client:listSlackChannelConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSlackChannelConfigurations",
-        input_schema = schemas.ListSlackChannelConfigurationsInput,
-        output_schema = schemas.ListSlackChannelConfigurationsOutput,
-        http_method = "POST",
-        http_path = "/control/list-slack-channel-configurations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSlackChannelConfigurations, input, options)
 end
 
 function Client:listSlackWorkspaceConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSlackWorkspaceConfigurations",
-        input_schema = schemas.ListSlackWorkspaceConfigurationsInput,
-        output_schema = schemas.ListSlackWorkspaceConfigurationsOutput,
-        http_method = "POST",
-        http_path = "/control/list-slack-workspace-configurations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSlackWorkspaceConfigurations, input, options)
 end
 
 function Client:putAccountAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "PutAccountAlias",
-        input_schema = schemas.PutAccountAliasInput,
-        output_schema = schemas.PutAccountAliasOutput,
-        http_method = "POST",
-        http_path = "/control/put-account-alias",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutAccountAlias, input, options)
 end
 
 function Client:registerSlackWorkspaceForOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterSlackWorkspaceForOrganization",
-        input_schema = schemas.RegisterSlackWorkspaceForOrganizationInput,
-        output_schema = schemas.RegisterSlackWorkspaceForOrganizationOutput,
-        http_method = "POST",
-        http_path = "/control/register-slack-workspace-for-organization",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterSlackWorkspaceForOrganization, input, options)
 end
 
 function Client:updateSlackChannelConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSlackChannelConfiguration",
-        input_schema = schemas.UpdateSlackChannelConfigurationInput,
-        output_schema = schemas.UpdateSlackChannelConfigurationOutput,
-        http_method = "POST",
-        http_path = "/control/update-slack-channel-configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSlackChannelConfiguration, input, options)
 end
 
 return M

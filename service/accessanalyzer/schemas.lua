@@ -5420,4 +5420,458 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.accessanalyzer", "AccessAnalyzer"),
+    version = "2019-11-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ApplyArchiveRule = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "ApplyArchiveRule"),
+    input = M.ApplyArchiveRuleInput,
+    output = M.ApplyArchiveRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/archive-rule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelPolicyGeneration = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "CancelPolicyGeneration"),
+    input = M.CancelPolicyGenerationInput,
+    output = M.CancelPolicyGenerationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/policy/generation/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckAccessNotGranted = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "CheckAccessNotGranted"),
+    input = M.CheckAccessNotGrantedInput,
+    output = M.CheckAccessNotGrantedOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policy/check-access-not-granted" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckNoNewAccess = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "CheckNoNewAccess"),
+    input = M.CheckNoNewAccessInput,
+    output = M.CheckNoNewAccessOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policy/check-no-new-access" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckNoPublicAccess = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "CheckNoPublicAccess"),
+    input = M.CheckNoPublicAccessInput,
+    output = M.CheckNoPublicAccessOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policy/check-no-public-access" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccessPreview = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "CreateAccessPreview"),
+    input = M.CreateAccessPreviewInput,
+    output = M.CreateAccessPreviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/access-preview" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAnalyzer = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "CreateAnalyzer"),
+    input = M.CreateAnalyzerInput,
+    output = M.CreateAnalyzerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/analyzer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateArchiveRule = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "CreateArchiveRule"),
+    input = M.CreateArchiveRuleInput,
+    output = M.CreateArchiveRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/analyzer/{analyzerName}/archive-rule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAnalyzer = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "DeleteAnalyzer"),
+    input = M.DeleteAnalyzerInput,
+    output = M.DeleteAnalyzerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/analyzer/{analyzerName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteArchiveRule = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "DeleteArchiveRule"),
+    input = M.DeleteArchiveRuleInput,
+    output = M.DeleteArchiveRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/analyzer/{analyzerName}/archive-rule/{ruleName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateFindingRecommendation = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "GenerateFindingRecommendation"),
+    input = M.GenerateFindingRecommendationInput,
+    output = M.GenerateFindingRecommendationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/recommendation/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccessPreview = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "GetAccessPreview"),
+    input = M.GetAccessPreviewInput,
+    output = M.GetAccessPreviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/access-preview/{accessPreviewId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAnalyzedResource = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "GetAnalyzedResource"),
+    input = M.GetAnalyzedResourceInput,
+    output = M.GetAnalyzedResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/analyzed-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAnalyzer = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "GetAnalyzer"),
+    input = M.GetAnalyzerInput,
+    output = M.GetAnalyzerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/analyzer/{analyzerName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetArchiveRule = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "GetArchiveRule"),
+    input = M.GetArchiveRuleInput,
+    output = M.GetArchiveRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/analyzer/{analyzerName}/archive-rule/{ruleName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFinding = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "GetFinding"),
+    input = M.GetFindingInput,
+    output = M.GetFindingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/finding/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingRecommendation = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "GetFindingRecommendation"),
+    input = M.GetFindingRecommendationInput,
+    output = M.GetFindingRecommendationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/recommendation/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingsStatistics = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "GetFindingsStatistics"),
+    input = M.GetFindingsStatisticsInput,
+    output = M.GetFindingsStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/analyzer/findings/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingV2 = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "GetFindingV2"),
+    input = M.GetFindingV2Input,
+    output = M.GetFindingV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/findingv2/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGeneratedPolicy = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "GetGeneratedPolicy"),
+    input = M.GetGeneratedPolicyInput,
+    output = M.GetGeneratedPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy/generation/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccessPreviewFindings = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "ListAccessPreviewFindings"),
+    input = M.ListAccessPreviewFindingsInput,
+    output = M.ListAccessPreviewFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/access-preview/{accessPreviewId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccessPreviews = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "ListAccessPreviews"),
+    input = M.ListAccessPreviewsInput,
+    output = M.ListAccessPreviewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/access-preview" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnalyzedResources = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "ListAnalyzedResources"),
+    input = M.ListAnalyzedResourcesInput,
+    output = M.ListAnalyzedResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/analyzed-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnalyzers = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "ListAnalyzers"),
+    input = M.ListAnalyzersInput,
+    output = M.ListAnalyzersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/analyzer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListArchiveRules = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "ListArchiveRules"),
+    input = M.ListArchiveRulesInput,
+    output = M.ListArchiveRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/analyzer/{analyzerName}/archive-rule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFindings = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "ListFindings"),
+    input = M.ListFindingsInput,
+    output = M.ListFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/finding" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFindingsV2 = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "ListFindingsV2"),
+    input = M.ListFindingsV2Input,
+    output = M.ListFindingsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/findingv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyGenerations = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "ListPolicyGenerations"),
+    input = M.ListPolicyGenerationsInput,
+    output = M.ListPolicyGenerationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy/generation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartPolicyGeneration = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "StartPolicyGeneration"),
+    input = M.StartPolicyGenerationInput,
+    output = M.StartPolicyGenerationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/policy/generation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartResourceScan = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "StartResourceScan"),
+    input = M.StartResourceScanInput,
+    output = M.StartResourceScanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resource/scan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAnalyzer = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "UpdateAnalyzer"),
+    input = M.UpdateAnalyzerInput,
+    output = M.UpdateAnalyzerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/analyzer/{analyzerName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateArchiveRule = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "UpdateArchiveRule"),
+    input = M.UpdateArchiveRuleInput,
+    output = M.UpdateArchiveRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/analyzer/{analyzerName}/archive-rule/{ruleName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFindings = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "UpdateFindings"),
+    input = M.UpdateFindingsInput,
+    output = M.UpdateFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/finding" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidatePolicy = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "ValidatePolicy"),
+    input = M.ValidatePolicyInput,
+    output = M.ValidatePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policy/validation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

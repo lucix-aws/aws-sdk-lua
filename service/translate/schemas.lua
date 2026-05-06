@@ -2023,4 +2023,223 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.translate", "AWSShineFrontendService_20170701"),
+    version = "2017-07-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateParallelData = schema.operation({
+    id = id.from("com.amazonaws.translate", "CreateParallelData"),
+    input = M.CreateParallelDataInput,
+    output = M.CreateParallelDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteParallelData = schema.operation({
+    id = id.from("com.amazonaws.translate", "DeleteParallelData"),
+    input = M.DeleteParallelDataInput,
+    output = M.DeleteParallelDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTerminology = schema.operation({
+    id = id.from("com.amazonaws.translate", "DeleteTerminology"),
+    input = M.DeleteTerminologyInput,
+    output = M.DeleteTerminologyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTextTranslationJob = schema.operation({
+    id = id.from("com.amazonaws.translate", "DescribeTextTranslationJob"),
+    input = M.DescribeTextTranslationJobInput,
+    output = M.DescribeTextTranslationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetParallelData = schema.operation({
+    id = id.from("com.amazonaws.translate", "GetParallelData"),
+    input = M.GetParallelDataInput,
+    output = M.GetParallelDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTerminology = schema.operation({
+    id = id.from("com.amazonaws.translate", "GetTerminology"),
+    input = M.GetTerminologyInput,
+    output = M.GetTerminologyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportTerminology = schema.operation({
+    id = id.from("com.amazonaws.translate", "ImportTerminology"),
+    input = M.ImportTerminologyInput,
+    output = M.ImportTerminologyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLanguages = schema.operation({
+    id = id.from("com.amazonaws.translate", "ListLanguages"),
+    input = M.ListLanguagesInput,
+    output = M.ListLanguagesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListParallelData = schema.operation({
+    id = id.from("com.amazonaws.translate", "ListParallelData"),
+    input = M.ListParallelDataInput,
+    output = M.ListParallelDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.translate", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTerminologies = schema.operation({
+    id = id.from("com.amazonaws.translate", "ListTerminologies"),
+    input = M.ListTerminologiesInput,
+    output = M.ListTerminologiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTextTranslationJobs = schema.operation({
+    id = id.from("com.amazonaws.translate", "ListTextTranslationJobs"),
+    input = M.ListTextTranslationJobsInput,
+    output = M.ListTextTranslationJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTextTranslationJob = schema.operation({
+    id = id.from("com.amazonaws.translate", "StartTextTranslationJob"),
+    input = M.StartTextTranslationJobInput,
+    output = M.StartTextTranslationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopTextTranslationJob = schema.operation({
+    id = id.from("com.amazonaws.translate", "StopTextTranslationJob"),
+    input = M.StopTextTranslationJobInput,
+    output = M.StopTextTranslationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.translate", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TranslateDocument = schema.operation({
+    id = id.from("com.amazonaws.translate", "TranslateDocument"),
+    input = M.TranslateDocumentInput,
+    output = M.TranslateDocumentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TranslateText = schema.operation({
+    id = id.from("com.amazonaws.translate", "TranslateText"),
+    input = M.TranslateTextInput,
+    output = M.TranslateTextOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.translate", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateParallelData = schema.operation({
+    id = id.from("com.amazonaws.translate", "UpdateParallelData"),
+    input = M.UpdateParallelDataInput,
+    output = M.UpdateParallelDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

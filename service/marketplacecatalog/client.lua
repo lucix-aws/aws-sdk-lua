@@ -7,6 +7,7 @@ local endpoint_rules = require("marketplacecatalog.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("marketplacecatalog.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "aws-marketplace", signing_region = cfg.region } }
                 else
@@ -49,172 +52,55 @@ function M.new(cfg)
 end
 
 function Client:batchDescribeEntities(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDescribeEntities",
-        input_schema = schemas.BatchDescribeEntitiesInput,
-        output_schema = schemas.BatchDescribeEntitiesOutput,
-        http_method = "POST",
-        http_path = "/BatchDescribeEntities",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDescribeEntities, input, options)
 end
 
 function Client:cancelChangeSet(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelChangeSet",
-        input_schema = schemas.CancelChangeSetInput,
-        output_schema = schemas.CancelChangeSetOutput,
-        http_method = "PATCH",
-        http_path = "/CancelChangeSet",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelChangeSet, input, options)
 end
 
 function Client:deleteResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResourcePolicy",
-        input_schema = schemas.DeleteResourcePolicyInput,
-        output_schema = schemas.DeleteResourcePolicyOutput,
-        http_method = "DELETE",
-        http_path = "/DeleteResourcePolicy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options)
 end
 
 function Client:describeChangeSet(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeChangeSet",
-        input_schema = schemas.DescribeChangeSetInput,
-        output_schema = schemas.DescribeChangeSetOutput,
-        http_method = "GET",
-        http_path = "/DescribeChangeSet",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeChangeSet, input, options)
 end
 
 function Client:describeEntity(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEntity",
-        input_schema = schemas.DescribeEntityInput,
-        output_schema = schemas.DescribeEntityOutput,
-        http_method = "GET",
-        http_path = "/DescribeEntity",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEntity, input, options)
 end
 
 function Client:getResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourcePolicy",
-        input_schema = schemas.GetResourcePolicyInput,
-        output_schema = schemas.GetResourcePolicyOutput,
-        http_method = "GET",
-        http_path = "/GetResourcePolicy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options)
 end
 
 function Client:listChangeSets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListChangeSets",
-        input_schema = schemas.ListChangeSetsInput,
-        output_schema = schemas.ListChangeSetsOutput,
-        http_method = "POST",
-        http_path = "/ListChangeSets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListChangeSets, input, options)
 end
 
 function Client:listEntities(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEntities",
-        input_schema = schemas.ListEntitiesInput,
-        output_schema = schemas.ListEntitiesOutput,
-        http_method = "POST",
-        http_path = "/ListEntities",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEntities, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/ListTagsForResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutResourcePolicy",
-        input_schema = schemas.PutResourcePolicyInput,
-        output_schema = schemas.PutResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/PutResourcePolicy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options)
 end
 
 function Client:startChangeSet(input, options)
-    return self:invokeOperation(input, {
-        name = "StartChangeSet",
-        input_schema = schemas.StartChangeSetInput,
-        output_schema = schemas.StartChangeSetOutput,
-        http_method = "POST",
-        http_path = "/StartChangeSet",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartChangeSet, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/TagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/UntagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 return M

@@ -6389,4 +6389,314 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.appflow", "SandstoneConfigurationServiceLambda"),
+    version = "2020-08-23",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelFlowExecutions = schema.operation({
+    id = id.from("com.amazonaws.appflow", "CancelFlowExecutions"),
+    input = M.CancelFlowExecutionsInput,
+    output = M.CancelFlowExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cancel-flow-executions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnectorProfile = schema.operation({
+    id = id.from("com.amazonaws.appflow", "CreateConnectorProfile"),
+    input = M.CreateConnectorProfileInput,
+    output = M.CreateConnectorProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-connector-profile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFlow = schema.operation({
+    id = id.from("com.amazonaws.appflow", "CreateFlow"),
+    input = M.CreateFlowInput,
+    output = M.CreateFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-flow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnectorProfile = schema.operation({
+    id = id.from("com.amazonaws.appflow", "DeleteConnectorProfile"),
+    input = M.DeleteConnectorProfileInput,
+    output = M.DeleteConnectorProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-connector-profile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFlow = schema.operation({
+    id = id.from("com.amazonaws.appflow", "DeleteFlow"),
+    input = M.DeleteFlowInput,
+    output = M.DeleteFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-flow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnector = schema.operation({
+    id = id.from("com.amazonaws.appflow", "DescribeConnector"),
+    input = M.DescribeConnectorInput,
+    output = M.DescribeConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-connector" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnectorEntity = schema.operation({
+    id = id.from("com.amazonaws.appflow", "DescribeConnectorEntity"),
+    input = M.DescribeConnectorEntityInput,
+    output = M.DescribeConnectorEntityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-connector-entity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnectorProfiles = schema.operation({
+    id = id.from("com.amazonaws.appflow", "DescribeConnectorProfiles"),
+    input = M.DescribeConnectorProfilesInput,
+    output = M.DescribeConnectorProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-connector-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnectors = schema.operation({
+    id = id.from("com.amazonaws.appflow", "DescribeConnectors"),
+    input = M.DescribeConnectorsInput,
+    output = M.DescribeConnectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFlow = schema.operation({
+    id = id.from("com.amazonaws.appflow", "DescribeFlow"),
+    input = M.DescribeFlowInput,
+    output = M.DescribeFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-flow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFlowExecutionRecords = schema.operation({
+    id = id.from("com.amazonaws.appflow", "DescribeFlowExecutionRecords"),
+    input = M.DescribeFlowExecutionRecordsInput,
+    output = M.DescribeFlowExecutionRecordsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-flow-execution-records" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectorEntities = schema.operation({
+    id = id.from("com.amazonaws.appflow", "ListConnectorEntities"),
+    input = M.ListConnectorEntitiesInput,
+    output = M.ListConnectorEntitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-connector-entities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectors = schema.operation({
+    id = id.from("com.amazonaws.appflow", "ListConnectors"),
+    input = M.ListConnectorsInput,
+    output = M.ListConnectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlows = schema.operation({
+    id = id.from("com.amazonaws.appflow", "ListFlows"),
+    input = M.ListFlowsInput,
+    output = M.ListFlowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-flows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.appflow", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterConnector = schema.operation({
+    id = id.from("com.amazonaws.appflow", "RegisterConnector"),
+    input = M.RegisterConnectorInput,
+    output = M.RegisterConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/register-connector" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetConnectorMetadataCache = schema.operation({
+    id = id.from("com.amazonaws.appflow", "ResetConnectorMetadataCache"),
+    input = M.ResetConnectorMetadataCacheInput,
+    output = M.ResetConnectorMetadataCacheOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/reset-connector-metadata-cache" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFlow = schema.operation({
+    id = id.from("com.amazonaws.appflow", "StartFlow"),
+    input = M.StartFlowInput,
+    output = M.StartFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/start-flow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopFlow = schema.operation({
+    id = id.from("com.amazonaws.appflow", "StopFlow"),
+    input = M.StopFlowInput,
+    output = M.StopFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/stop-flow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.appflow", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UnregisterConnector = schema.operation({
+    id = id.from("com.amazonaws.appflow", "UnregisterConnector"),
+    input = M.UnregisterConnectorInput,
+    output = M.UnregisterConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/unregister-connector" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.appflow", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnectorProfile = schema.operation({
+    id = id.from("com.amazonaws.appflow", "UpdateConnectorProfile"),
+    input = M.UpdateConnectorProfileInput,
+    output = M.UpdateConnectorProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-connector-profile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnectorRegistration = schema.operation({
+    id = id.from("com.amazonaws.appflow", "UpdateConnectorRegistration"),
+    input = M.UpdateConnectorRegistrationInput,
+    output = M.UpdateConnectorRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-connector-registration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFlow = schema.operation({
+    id = id.from("com.amazonaws.appflow", "UpdateFlow"),
+    input = M.UpdateFlowInput,
+    output = M.UpdateFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-flow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

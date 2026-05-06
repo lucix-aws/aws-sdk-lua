@@ -1774,4 +1774,242 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.repostspace", "RepostSpace"),
+    version = "2022-05-13",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAddChannelRoleToAccessors = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "BatchAddChannelRoleToAccessors"),
+    input = M.BatchAddChannelRoleToAccessorsInput,
+    output = M.BatchAddChannelRoleToAccessorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/spaces/{spaceId}/channels/{channelId}/roles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAddRole = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "BatchAddRole"),
+    input = M.BatchAddRoleInput,
+    output = M.BatchAddRoleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/spaces/{spaceId}/roles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchRemoveChannelRoleFromAccessors = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "BatchRemoveChannelRoleFromAccessors"),
+    input = M.BatchRemoveChannelRoleFromAccessorsInput,
+    output = M.BatchRemoveChannelRoleFromAccessorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/spaces/{spaceId}/channels/{channelId}/roles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchRemoveRole = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "BatchRemoveRole"),
+    input = M.BatchRemoveRoleInput,
+    output = M.BatchRemoveRoleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/spaces/{spaceId}/roles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChannel = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "CreateChannel"),
+    input = M.CreateChannelInput,
+    output = M.CreateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/spaces/{spaceId}/channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSpace = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "CreateSpace"),
+    input = M.CreateSpaceInput,
+    output = M.CreateSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/spaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSpace = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "DeleteSpace"),
+    input = M.DeleteSpaceInput,
+    output = M.DeleteSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/spaces/{spaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterAdmin = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "DeregisterAdmin"),
+    input = M.DeregisterAdminInput,
+    output = M.DeregisterAdminOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/spaces/{spaceId}/admins/{adminId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChannel = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "GetChannel"),
+    input = M.GetChannelInput,
+    output = M.GetChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/spaces/{spaceId}/channels/{channelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSpace = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "GetSpace"),
+    input = M.GetSpaceInput,
+    output = M.GetSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/spaces/{spaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannels = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "ListChannels"),
+    input = M.ListChannelsInput,
+    output = M.ListChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/spaces/{spaceId}/channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSpaces = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "ListSpaces"),
+    input = M.ListSpacesInput,
+    output = M.ListSpacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/spaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterAdmin = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "RegisterAdmin"),
+    input = M.RegisterAdminInput,
+    output = M.RegisterAdminOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/spaces/{spaceId}/admins/{adminId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendInvites = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "SendInvites"),
+    input = M.SendInvitesInput,
+    output = M.SendInvitesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/spaces/{spaceId}/invite" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChannel = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "UpdateChannel"),
+    input = M.UpdateChannelInput,
+    output = M.UpdateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/spaces/{spaceId}/channels/{channelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSpace = schema.operation({
+    id = id.from("com.amazonaws.repostspace", "UpdateSpace"),
+    input = M.UpdateSpaceInput,
+    output = M.UpdateSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/spaces/{spaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

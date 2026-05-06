@@ -2945,4 +2945,374 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.supplychain", "GalaxyPublicAPIGateway"),
+    version = "2024-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBillOfMaterialsImportJob = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "CreateBillOfMaterialsImportJob"),
+    input = M.CreateBillOfMaterialsImportJobInput,
+    output = M.CreateBillOfMaterialsImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/configuration/instances/{instanceId}/bill-of-materials-import-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataIntegrationFlow = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "CreateDataIntegrationFlow"),
+    input = M.CreateDataIntegrationFlowInput,
+    output = M.CreateDataIntegrationFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataLakeDataset = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "CreateDataLakeDataset"),
+    input = M.CreateDataLakeDatasetInput,
+    output = M.CreateDataLakeDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataLakeNamespace = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "CreateDataLakeNamespace"),
+    input = M.CreateDataLakeNamespaceInput,
+    output = M.CreateDataLakeNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/api/datalake/instance/{instanceId}/namespaces/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInstance = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "CreateInstance"),
+    input = M.CreateInstanceInput,
+    output = M.CreateInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/instance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataIntegrationFlow = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "DeleteDataIntegrationFlow"),
+    input = M.DeleteDataIntegrationFlowInput,
+    output = M.DeleteDataIntegrationFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataLakeDataset = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "DeleteDataLakeDataset"),
+    input = M.DeleteDataLakeDatasetInput,
+    output = M.DeleteDataLakeDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataLakeNamespace = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "DeleteDataLakeNamespace"),
+    input = M.DeleteDataLakeNamespaceInput,
+    output = M.DeleteDataLakeNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/datalake/instance/{instanceId}/namespaces/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInstance = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "DeleteInstance"),
+    input = M.DeleteInstanceInput,
+    output = M.DeleteInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/instance/{instanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBillOfMaterialsImportJob = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "GetBillOfMaterialsImportJob"),
+    input = M.GetBillOfMaterialsImportJobInput,
+    output = M.GetBillOfMaterialsImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/configuration/instances/{instanceId}/bill-of-materials-import-jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataIntegrationEvent = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "GetDataIntegrationEvent"),
+    input = M.GetDataIntegrationEventInput,
+    output = M.GetDataIntegrationEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api-data/data-integration/instance/{instanceId}/data-integration-events/{eventId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataIntegrationFlow = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "GetDataIntegrationFlow"),
+    input = M.GetDataIntegrationFlowInput,
+    output = M.GetDataIntegrationFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataIntegrationFlowExecution = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "GetDataIntegrationFlowExecution"),
+    input = M.GetDataIntegrationFlowExecutionInput,
+    output = M.GetDataIntegrationFlowExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api-data/data-integration/instance/{instanceId}/data-integration-flows/{flowName}/executions/{executionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataLakeDataset = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "GetDataLakeDataset"),
+    input = M.GetDataLakeDatasetInput,
+    output = M.GetDataLakeDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataLakeNamespace = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "GetDataLakeNamespace"),
+    input = M.GetDataLakeNamespaceInput,
+    output = M.GetDataLakeNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/datalake/instance/{instanceId}/namespaces/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstance = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "GetInstance"),
+    input = M.GetInstanceInput,
+    output = M.GetInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/instance/{instanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataIntegrationEvents = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "ListDataIntegrationEvents"),
+    input = M.ListDataIntegrationEventsInput,
+    output = M.ListDataIntegrationEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api-data/data-integration/instance/{instanceId}/data-integration-events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataIntegrationFlowExecutions = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "ListDataIntegrationFlowExecutions"),
+    input = M.ListDataIntegrationFlowExecutionsInput,
+    output = M.ListDataIntegrationFlowExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api-data/data-integration/instance/{instanceId}/data-integration-flows/{flowName}/executions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataIntegrationFlows = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "ListDataIntegrationFlows"),
+    input = M.ListDataIntegrationFlowsInput,
+    output = M.ListDataIntegrationFlowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/data-integration/instance/{instanceId}/data-integration-flows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataLakeDatasets = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "ListDataLakeDatasets"),
+    input = M.ListDataLakeDatasetsInput,
+    output = M.ListDataLakeDatasetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataLakeNamespaces = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "ListDataLakeNamespaces"),
+    input = M.ListDataLakeNamespacesInput,
+    output = M.ListDataLakeNamespacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/datalake/instance/{instanceId}/namespaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstances = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "ListInstances"),
+    input = M.ListInstancesInput,
+    output = M.ListInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/instance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendDataIntegrationEvent = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "SendDataIntegrationEvent"),
+    input = M.SendDataIntegrationEventInput,
+    output = M.SendDataIntegrationEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api-data/data-integration/instance/{instanceId}/data-integration-events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataIntegrationFlow = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "UpdateDataIntegrationFlow"),
+    input = M.UpdateDataIntegrationFlowInput,
+    output = M.UpdateDataIntegrationFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataLakeDataset = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "UpdateDataLakeDataset"),
+    input = M.UpdateDataLakeDatasetInput,
+    output = M.UpdateDataLakeDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataLakeNamespace = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "UpdateDataLakeNamespace"),
+    input = M.UpdateDataLakeNamespaceInput,
+    output = M.UpdateDataLakeNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/api/datalake/instance/{instanceId}/namespaces/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInstance = schema.operation({
+    id = id.from("com.amazonaws.supplychain", "UpdateInstance"),
+    input = M.UpdateInstanceInput,
+    output = M.UpdateInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/api/instance/{instanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

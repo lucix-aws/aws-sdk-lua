@@ -13304,4 +13304,850 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ecs", "AmazonEC2ContainerServiceV20141113"),
+    version = "2014-11-13",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCapacityProvider = schema.operation({
+    id = id.from("com.amazonaws.ecs", "CreateCapacityProvider"),
+    input = M.CreateCapacityProviderInput,
+    output = M.CreateCapacityProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCluster = schema.operation({
+    id = id.from("com.amazonaws.ecs", "CreateCluster"),
+    input = M.CreateClusterInput,
+    output = M.CreateClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDaemon = schema.operation({
+    id = id.from("com.amazonaws.ecs", "CreateDaemon"),
+    input = M.CreateDaemonInput,
+    output = M.CreateDaemonOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExpressGatewayService = schema.operation({
+    id = id.from("com.amazonaws.ecs", "CreateExpressGatewayService"),
+    input = M.CreateExpressGatewayServiceInput,
+    output = M.CreateExpressGatewayServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateService = schema.operation({
+    id = id.from("com.amazonaws.ecs", "CreateService"),
+    input = M.CreateServiceInput,
+    output = M.CreateServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTaskSet = schema.operation({
+    id = id.from("com.amazonaws.ecs", "CreateTaskSet"),
+    input = M.CreateTaskSetInput,
+    output = M.CreateTaskSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccountSetting = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DeleteAccountSetting"),
+    input = M.DeleteAccountSettingInput,
+    output = M.DeleteAccountSettingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAttributes = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DeleteAttributes"),
+    input = M.DeleteAttributesInput,
+    output = M.DeleteAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCapacityProvider = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DeleteCapacityProvider"),
+    input = M.DeleteCapacityProviderInput,
+    output = M.DeleteCapacityProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCluster = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DeleteCluster"),
+    input = M.DeleteClusterInput,
+    output = M.DeleteClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDaemon = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DeleteDaemon"),
+    input = M.DeleteDaemonInput,
+    output = M.DeleteDaemonOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDaemonTaskDefinition = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DeleteDaemonTaskDefinition"),
+    input = M.DeleteDaemonTaskDefinitionInput,
+    output = M.DeleteDaemonTaskDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteExpressGatewayService = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DeleteExpressGatewayService"),
+    input = M.DeleteExpressGatewayServiceInput,
+    output = M.DeleteExpressGatewayServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteService = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DeleteService"),
+    input = M.DeleteServiceInput,
+    output = M.DeleteServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTaskDefinitions = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DeleteTaskDefinitions"),
+    input = M.DeleteTaskDefinitionsInput,
+    output = M.DeleteTaskDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTaskSet = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DeleteTaskSet"),
+    input = M.DeleteTaskSetInput,
+    output = M.DeleteTaskSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterContainerInstance = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DeregisterContainerInstance"),
+    input = M.DeregisterContainerInstanceInput,
+    output = M.DeregisterContainerInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterTaskDefinition = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DeregisterTaskDefinition"),
+    input = M.DeregisterTaskDefinitionInput,
+    output = M.DeregisterTaskDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCapacityProviders = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeCapacityProviders"),
+    input = M.DescribeCapacityProvidersInput,
+    output = M.DescribeCapacityProvidersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClusters = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeClusters"),
+    input = M.DescribeClustersInput,
+    output = M.DescribeClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContainerInstances = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeContainerInstances"),
+    input = M.DescribeContainerInstancesInput,
+    output = M.DescribeContainerInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDaemon = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeDaemon"),
+    input = M.DescribeDaemonInput,
+    output = M.DescribeDaemonOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDaemonDeployments = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeDaemonDeployments"),
+    input = M.DescribeDaemonDeploymentsInput,
+    output = M.DescribeDaemonDeploymentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDaemonRevisions = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeDaemonRevisions"),
+    input = M.DescribeDaemonRevisionsInput,
+    output = M.DescribeDaemonRevisionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDaemonTaskDefinition = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeDaemonTaskDefinition"),
+    input = M.DescribeDaemonTaskDefinitionInput,
+    output = M.DescribeDaemonTaskDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExpressGatewayService = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeExpressGatewayService"),
+    input = M.DescribeExpressGatewayServiceInput,
+    output = M.DescribeExpressGatewayServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServiceDeployments = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeServiceDeployments"),
+    input = M.DescribeServiceDeploymentsInput,
+    output = M.DescribeServiceDeploymentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServiceRevisions = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeServiceRevisions"),
+    input = M.DescribeServiceRevisionsInput,
+    output = M.DescribeServiceRevisionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServices = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeServices"),
+    input = M.DescribeServicesInput,
+    output = M.DescribeServicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTaskDefinition = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeTaskDefinition"),
+    input = M.DescribeTaskDefinitionInput,
+    output = M.DescribeTaskDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTasks = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeTasks"),
+    input = M.DescribeTasksInput,
+    output = M.DescribeTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTaskSets = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeTaskSets"),
+    input = M.DescribeTaskSetsInput,
+    output = M.DescribeTaskSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DiscoverPollEndpoint = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DiscoverPollEndpoint"),
+    input = M.DiscoverPollEndpointInput,
+    output = M.DiscoverPollEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteCommand = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ExecuteCommand"),
+    input = M.ExecuteCommandInput,
+    output = M.ExecuteCommandOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTaskProtection = schema.operation({
+    id = id.from("com.amazonaws.ecs", "GetTaskProtection"),
+    input = M.GetTaskProtectionInput,
+    output = M.GetTaskProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListAccountSettings"),
+    input = M.ListAccountSettingsInput,
+    output = M.ListAccountSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttributes = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListAttributes"),
+    input = M.ListAttributesInput,
+    output = M.ListAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusters = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListClusters"),
+    input = M.ListClustersInput,
+    output = M.ListClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContainerInstances = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListContainerInstances"),
+    input = M.ListContainerInstancesInput,
+    output = M.ListContainerInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDaemonDeployments = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListDaemonDeployments"),
+    input = M.ListDaemonDeploymentsInput,
+    output = M.ListDaemonDeploymentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDaemons = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListDaemons"),
+    input = M.ListDaemonsInput,
+    output = M.ListDaemonsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDaemonTaskDefinitions = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListDaemonTaskDefinitions"),
+    input = M.ListDaemonTaskDefinitionsInput,
+    output = M.ListDaemonTaskDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceDeployments = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListServiceDeployments"),
+    input = M.ListServiceDeploymentsInput,
+    output = M.ListServiceDeploymentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServices = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListServices"),
+    input = M.ListServicesInput,
+    output = M.ListServicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServicesByNamespace = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListServicesByNamespace"),
+    input = M.ListServicesByNamespaceInput,
+    output = M.ListServicesByNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTaskDefinitionFamilies = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListTaskDefinitionFamilies"),
+    input = M.ListTaskDefinitionFamiliesInput,
+    output = M.ListTaskDefinitionFamiliesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTaskDefinitions = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListTaskDefinitions"),
+    input = M.ListTaskDefinitionsInput,
+    output = M.ListTaskDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTasks = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListTasks"),
+    input = M.ListTasksInput,
+    output = M.ListTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountSetting = schema.operation({
+    id = id.from("com.amazonaws.ecs", "PutAccountSetting"),
+    input = M.PutAccountSettingInput,
+    output = M.PutAccountSettingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountSettingDefault = schema.operation({
+    id = id.from("com.amazonaws.ecs", "PutAccountSettingDefault"),
+    input = M.PutAccountSettingDefaultInput,
+    output = M.PutAccountSettingDefaultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAttributes = schema.operation({
+    id = id.from("com.amazonaws.ecs", "PutAttributes"),
+    input = M.PutAttributesInput,
+    output = M.PutAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutClusterCapacityProviders = schema.operation({
+    id = id.from("com.amazonaws.ecs", "PutClusterCapacityProviders"),
+    input = M.PutClusterCapacityProvidersInput,
+    output = M.PutClusterCapacityProvidersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterContainerInstance = schema.operation({
+    id = id.from("com.amazonaws.ecs", "RegisterContainerInstance"),
+    input = M.RegisterContainerInstanceInput,
+    output = M.RegisterContainerInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterDaemonTaskDefinition = schema.operation({
+    id = id.from("com.amazonaws.ecs", "RegisterDaemonTaskDefinition"),
+    input = M.RegisterDaemonTaskDefinitionInput,
+    output = M.RegisterDaemonTaskDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterTaskDefinition = schema.operation({
+    id = id.from("com.amazonaws.ecs", "RegisterTaskDefinition"),
+    input = M.RegisterTaskDefinitionInput,
+    output = M.RegisterTaskDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RunTask = schema.operation({
+    id = id.from("com.amazonaws.ecs", "RunTask"),
+    input = M.RunTaskInput,
+    output = M.RunTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTask = schema.operation({
+    id = id.from("com.amazonaws.ecs", "StartTask"),
+    input = M.StartTaskInput,
+    output = M.StartTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopServiceDeployment = schema.operation({
+    id = id.from("com.amazonaws.ecs", "StopServiceDeployment"),
+    input = M.StopServiceDeploymentInput,
+    output = M.StopServiceDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopTask = schema.operation({
+    id = id.from("com.amazonaws.ecs", "StopTask"),
+    input = M.StopTaskInput,
+    output = M.StopTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SubmitAttachmentStateChanges = schema.operation({
+    id = id.from("com.amazonaws.ecs", "SubmitAttachmentStateChanges"),
+    input = M.SubmitAttachmentStateChangesInput,
+    output = M.SubmitAttachmentStateChangesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SubmitContainerStateChange = schema.operation({
+    id = id.from("com.amazonaws.ecs", "SubmitContainerStateChange"),
+    input = M.SubmitContainerStateChangeInput,
+    output = M.SubmitContainerStateChangeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SubmitTaskStateChange = schema.operation({
+    id = id.from("com.amazonaws.ecs", "SubmitTaskStateChange"),
+    input = M.SubmitTaskStateChangeInput,
+    output = M.SubmitTaskStateChangeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.ecs", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.ecs", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCapacityProvider = schema.operation({
+    id = id.from("com.amazonaws.ecs", "UpdateCapacityProvider"),
+    input = M.UpdateCapacityProviderInput,
+    output = M.UpdateCapacityProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCluster = schema.operation({
+    id = id.from("com.amazonaws.ecs", "UpdateCluster"),
+    input = M.UpdateClusterInput,
+    output = M.UpdateClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateClusterSettings = schema.operation({
+    id = id.from("com.amazonaws.ecs", "UpdateClusterSettings"),
+    input = M.UpdateClusterSettingsInput,
+    output = M.UpdateClusterSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContainerAgent = schema.operation({
+    id = id.from("com.amazonaws.ecs", "UpdateContainerAgent"),
+    input = M.UpdateContainerAgentInput,
+    output = M.UpdateContainerAgentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContainerInstancesState = schema.operation({
+    id = id.from("com.amazonaws.ecs", "UpdateContainerInstancesState"),
+    input = M.UpdateContainerInstancesStateInput,
+    output = M.UpdateContainerInstancesStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDaemon = schema.operation({
+    id = id.from("com.amazonaws.ecs", "UpdateDaemon"),
+    input = M.UpdateDaemonInput,
+    output = M.UpdateDaemonOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateExpressGatewayService = schema.operation({
+    id = id.from("com.amazonaws.ecs", "UpdateExpressGatewayService"),
+    input = M.UpdateExpressGatewayServiceInput,
+    output = M.UpdateExpressGatewayServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateService = schema.operation({
+    id = id.from("com.amazonaws.ecs", "UpdateService"),
+    input = M.UpdateServiceInput,
+    output = M.UpdateServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServicePrimaryTaskSet = schema.operation({
+    id = id.from("com.amazonaws.ecs", "UpdateServicePrimaryTaskSet"),
+    input = M.UpdateServicePrimaryTaskSetInput,
+    output = M.UpdateServicePrimaryTaskSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTaskProtection = schema.operation({
+    id = id.from("com.amazonaws.ecs", "UpdateTaskProtection"),
+    input = M.UpdateTaskProtectionInput,
+    output = M.UpdateTaskProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTaskSet = schema.operation({
+    id = id.from("com.amazonaws.ecs", "UpdateTaskSet"),
+    input = M.UpdateTaskSetInput,
+    output = M.UpdateTaskSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

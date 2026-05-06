@@ -1933,4 +1933,194 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.mwaaserverless", "AmazonMWAAServerless"),
+    version = "2024-07-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkflow = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "CreateWorkflow"),
+    input = M.CreateWorkflowInput,
+    output = M.CreateWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workflows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkflow = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "DeleteWorkflow"),
+    input = M.DeleteWorkflowInput,
+    output = M.DeleteWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workflows/{WorkflowArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTaskInstance = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "GetTaskInstance"),
+    input = M.GetTaskInstanceInput,
+    output = M.GetTaskInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflows/{WorkflowArn}/runs/{RunId}/tasks/{TaskInstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflow = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "GetWorkflow"),
+    input = M.GetWorkflowInput,
+    output = M.GetWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflows/{WorkflowArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflowRun = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "GetWorkflowRun"),
+    input = M.GetWorkflowRunInput,
+    output = M.GetWorkflowRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflows/{WorkflowArn}/runs/{RunId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTaskInstances = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "ListTaskInstances"),
+    input = M.ListTaskInstancesInput,
+    output = M.ListTaskInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflows/{WorkflowArn}/runs/{RunId}/tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflowRuns = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "ListWorkflowRuns"),
+    input = M.ListWorkflowRunsInput,
+    output = M.ListWorkflowRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflows/{WorkflowArn}/runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflows = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "ListWorkflows"),
+    input = M.ListWorkflowsInput,
+    output = M.ListWorkflowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflowVersions = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "ListWorkflowVersions"),
+    input = M.ListWorkflowVersionsInput,
+    output = M.ListWorkflowVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflows/{WorkflowArn}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartWorkflowRun = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "StartWorkflowRun"),
+    input = M.StartWorkflowRunInput,
+    output = M.StartWorkflowRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workflows/{WorkflowArn}/runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopWorkflowRun = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "StopWorkflowRun"),
+    input = M.StopWorkflowRunInput,
+    output = M.StopWorkflowRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workflows/{WorkflowArn}/runs/{RunId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkflow = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "UpdateWorkflow"),
+    input = M.UpdateWorkflowInput,
+    output = M.UpdateWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workflows/{WorkflowArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

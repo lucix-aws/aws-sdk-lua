@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("pi.endpoint_rules")
 local schemas = require("pi.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "pi", signing_region = cfg.region } }
                 else
@@ -49,172 +52,55 @@ function M.new(cfg)
 end
 
 function Client:createPerformanceAnalysisReport(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePerformanceAnalysisReport",
-        input_schema = schemas.CreatePerformanceAnalysisReportInput,
-        output_schema = schemas.CreatePerformanceAnalysisReportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePerformanceAnalysisReport, input, options)
 end
 
 function Client:deletePerformanceAnalysisReport(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePerformanceAnalysisReport",
-        input_schema = schemas.DeletePerformanceAnalysisReportInput,
-        output_schema = schemas.DeletePerformanceAnalysisReportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePerformanceAnalysisReport, input, options)
 end
 
 function Client:describeDimensionKeys(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDimensionKeys",
-        input_schema = schemas.DescribeDimensionKeysInput,
-        output_schema = schemas.DescribeDimensionKeysOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDimensionKeys, input, options)
 end
 
 function Client:getDimensionKeyDetails(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDimensionKeyDetails",
-        input_schema = schemas.GetDimensionKeyDetailsInput,
-        output_schema = schemas.GetDimensionKeyDetailsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDimensionKeyDetails, input, options)
 end
 
 function Client:getPerformanceAnalysisReport(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPerformanceAnalysisReport",
-        input_schema = schemas.GetPerformanceAnalysisReportInput,
-        output_schema = schemas.GetPerformanceAnalysisReportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPerformanceAnalysisReport, input, options)
 end
 
 function Client:getResourceMetadata(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourceMetadata",
-        input_schema = schemas.GetResourceMetadataInput,
-        output_schema = schemas.GetResourceMetadataOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourceMetadata, input, options)
 end
 
 function Client:getResourceMetrics(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourceMetrics",
-        input_schema = schemas.GetResourceMetricsInput,
-        output_schema = schemas.GetResourceMetricsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourceMetrics, input, options)
 end
 
 function Client:listAvailableResourceDimensions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAvailableResourceDimensions",
-        input_schema = schemas.ListAvailableResourceDimensionsInput,
-        output_schema = schemas.ListAvailableResourceDimensionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAvailableResourceDimensions, input, options)
 end
 
 function Client:listAvailableResourceMetrics(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAvailableResourceMetrics",
-        input_schema = schemas.ListAvailableResourceMetricsInput,
-        output_schema = schemas.ListAvailableResourceMetricsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAvailableResourceMetrics, input, options)
 end
 
 function Client:listPerformanceAnalysisReports(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPerformanceAnalysisReports",
-        input_schema = schemas.ListPerformanceAnalysisReportsInput,
-        output_schema = schemas.ListPerformanceAnalysisReportsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPerformanceAnalysisReports, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 return M

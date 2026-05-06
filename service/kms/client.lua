@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("kms.endpoint_rules")
 local schemas = require("kms.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kms", signing_region = cfg.region } }
                 else
@@ -49,705 +52,219 @@ function M.new(cfg)
 end
 
 function Client:cancelKeyDeletion(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelKeyDeletion",
-        input_schema = schemas.CancelKeyDeletionInput,
-        output_schema = schemas.CancelKeyDeletionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelKeyDeletion, input, options)
 end
 
 function Client:connectCustomKeyStore(input, options)
-    return self:invokeOperation(input, {
-        name = "ConnectCustomKeyStore",
-        input_schema = schemas.ConnectCustomKeyStoreInput,
-        output_schema = schemas.ConnectCustomKeyStoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ConnectCustomKeyStore, input, options)
 end
 
 function Client:createAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAlias",
-        input_schema = schemas.CreateAliasInput,
-        output_schema = schemas.CreateAliasOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAlias, input, options)
 end
 
 function Client:createCustomKeyStore(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCustomKeyStore",
-        input_schema = schemas.CreateCustomKeyStoreInput,
-        output_schema = schemas.CreateCustomKeyStoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCustomKeyStore, input, options)
 end
 
 function Client:createGrant(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGrant",
-        input_schema = schemas.CreateGrantInput,
-        output_schema = schemas.CreateGrantOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGrant, input, options)
 end
 
 function Client:createKey(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateKey",
-        input_schema = schemas.CreateKeyInput,
-        output_schema = schemas.CreateKeyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateKey, input, options)
 end
 
 function Client:decrypt(input, options)
-    return self:invokeOperation(input, {
-        name = "Decrypt",
-        input_schema = schemas.DecryptInput,
-        output_schema = schemas.DecryptOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Decrypt, input, options)
 end
 
 function Client:deleteAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAlias",
-        input_schema = schemas.DeleteAliasInput,
-        output_schema = schemas.DeleteAliasOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAlias, input, options)
 end
 
 function Client:deleteCustomKeyStore(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCustomKeyStore",
-        input_schema = schemas.DeleteCustomKeyStoreInput,
-        output_schema = schemas.DeleteCustomKeyStoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCustomKeyStore, input, options)
 end
 
 function Client:deleteImportedKeyMaterial(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteImportedKeyMaterial",
-        input_schema = schemas.DeleteImportedKeyMaterialInput,
-        output_schema = schemas.DeleteImportedKeyMaterialOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteImportedKeyMaterial, input, options)
 end
 
 function Client:deriveSharedSecret(input, options)
-    return self:invokeOperation(input, {
-        name = "DeriveSharedSecret",
-        input_schema = schemas.DeriveSharedSecretInput,
-        output_schema = schemas.DeriveSharedSecretOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeriveSharedSecret, input, options)
 end
 
 function Client:describeCustomKeyStores(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCustomKeyStores",
-        input_schema = schemas.DescribeCustomKeyStoresInput,
-        output_schema = schemas.DescribeCustomKeyStoresOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCustomKeyStores, input, options)
 end
 
 function Client:describeKey(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeKey",
-        input_schema = schemas.DescribeKeyInput,
-        output_schema = schemas.DescribeKeyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeKey, input, options)
 end
 
 function Client:disableKey(input, options)
-    return self:invokeOperation(input, {
-        name = "DisableKey",
-        input_schema = schemas.DisableKeyInput,
-        output_schema = schemas.DisableKeyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisableKey, input, options)
 end
 
 function Client:disableKeyRotation(input, options)
-    return self:invokeOperation(input, {
-        name = "DisableKeyRotation",
-        input_schema = schemas.DisableKeyRotationInput,
-        output_schema = schemas.DisableKeyRotationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisableKeyRotation, input, options)
 end
 
 function Client:disconnectCustomKeyStore(input, options)
-    return self:invokeOperation(input, {
-        name = "DisconnectCustomKeyStore",
-        input_schema = schemas.DisconnectCustomKeyStoreInput,
-        output_schema = schemas.DisconnectCustomKeyStoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisconnectCustomKeyStore, input, options)
 end
 
 function Client:enableKey(input, options)
-    return self:invokeOperation(input, {
-        name = "EnableKey",
-        input_schema = schemas.EnableKeyInput,
-        output_schema = schemas.EnableKeyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.EnableKey, input, options)
 end
 
 function Client:enableKeyRotation(input, options)
-    return self:invokeOperation(input, {
-        name = "EnableKeyRotation",
-        input_schema = schemas.EnableKeyRotationInput,
-        output_schema = schemas.EnableKeyRotationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.EnableKeyRotation, input, options)
 end
 
 function Client:encrypt(input, options)
-    return self:invokeOperation(input, {
-        name = "Encrypt",
-        input_schema = schemas.EncryptInput,
-        output_schema = schemas.EncryptOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Encrypt, input, options)
 end
 
 function Client:generateDataKey(input, options)
-    return self:invokeOperation(input, {
-        name = "GenerateDataKey",
-        input_schema = schemas.GenerateDataKeyInput,
-        output_schema = schemas.GenerateDataKeyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GenerateDataKey, input, options)
 end
 
 function Client:generateDataKeyPair(input, options)
-    return self:invokeOperation(input, {
-        name = "GenerateDataKeyPair",
-        input_schema = schemas.GenerateDataKeyPairInput,
-        output_schema = schemas.GenerateDataKeyPairOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GenerateDataKeyPair, input, options)
 end
 
 function Client:generateDataKeyPairWithoutPlaintext(input, options)
-    return self:invokeOperation(input, {
-        name = "GenerateDataKeyPairWithoutPlaintext",
-        input_schema = schemas.GenerateDataKeyPairWithoutPlaintextInput,
-        output_schema = schemas.GenerateDataKeyPairWithoutPlaintextOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GenerateDataKeyPairWithoutPlaintext, input, options)
 end
 
 function Client:generateDataKeyWithoutPlaintext(input, options)
-    return self:invokeOperation(input, {
-        name = "GenerateDataKeyWithoutPlaintext",
-        input_schema = schemas.GenerateDataKeyWithoutPlaintextInput,
-        output_schema = schemas.GenerateDataKeyWithoutPlaintextOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GenerateDataKeyWithoutPlaintext, input, options)
 end
 
 function Client:generateMac(input, options)
-    return self:invokeOperation(input, {
-        name = "GenerateMac",
-        input_schema = schemas.GenerateMacInput,
-        output_schema = schemas.GenerateMacOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GenerateMac, input, options)
 end
 
 function Client:generateRandom(input, options)
-    return self:invokeOperation(input, {
-        name = "GenerateRandom",
-        input_schema = schemas.GenerateRandomInput,
-        output_schema = schemas.GenerateRandomOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GenerateRandom, input, options)
 end
 
 function Client:getKeyLastUsage(input, options)
-    return self:invokeOperation(input, {
-        name = "GetKeyLastUsage",
-        input_schema = schemas.GetKeyLastUsageInput,
-        output_schema = schemas.GetKeyLastUsageOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetKeyLastUsage, input, options)
 end
 
 function Client:getKeyPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetKeyPolicy",
-        input_schema = schemas.GetKeyPolicyInput,
-        output_schema = schemas.GetKeyPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetKeyPolicy, input, options)
 end
 
 function Client:getKeyRotationStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetKeyRotationStatus",
-        input_schema = schemas.GetKeyRotationStatusInput,
-        output_schema = schemas.GetKeyRotationStatusOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetKeyRotationStatus, input, options)
 end
 
 function Client:getParametersForImport(input, options)
-    return self:invokeOperation(input, {
-        name = "GetParametersForImport",
-        input_schema = schemas.GetParametersForImportInput,
-        output_schema = schemas.GetParametersForImportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetParametersForImport, input, options)
 end
 
 function Client:getPublicKey(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPublicKey",
-        input_schema = schemas.GetPublicKeyInput,
-        output_schema = schemas.GetPublicKeyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPublicKey, input, options)
 end
 
 function Client:importKeyMaterial(input, options)
-    return self:invokeOperation(input, {
-        name = "ImportKeyMaterial",
-        input_schema = schemas.ImportKeyMaterialInput,
-        output_schema = schemas.ImportKeyMaterialOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ImportKeyMaterial, input, options)
 end
 
 function Client:listAliases(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAliases",
-        input_schema = schemas.ListAliasesInput,
-        output_schema = schemas.ListAliasesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAliases, input, options)
 end
 
 function Client:listGrants(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGrants",
-        input_schema = schemas.ListGrantsInput,
-        output_schema = schemas.ListGrantsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGrants, input, options)
 end
 
 function Client:listKeyPolicies(input, options)
-    return self:invokeOperation(input, {
-        name = "ListKeyPolicies",
-        input_schema = schemas.ListKeyPoliciesInput,
-        output_schema = schemas.ListKeyPoliciesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListKeyPolicies, input, options)
 end
 
 function Client:listKeyRotations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListKeyRotations",
-        input_schema = schemas.ListKeyRotationsInput,
-        output_schema = schemas.ListKeyRotationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListKeyRotations, input, options)
 end
 
 function Client:listKeys(input, options)
-    return self:invokeOperation(input, {
-        name = "ListKeys",
-        input_schema = schemas.ListKeysInput,
-        output_schema = schemas.ListKeysOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListKeys, input, options)
 end
 
 function Client:listResourceTags(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResourceTags",
-        input_schema = schemas.ListResourceTagsInput,
-        output_schema = schemas.ListResourceTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResourceTags, input, options)
 end
 
 function Client:listRetirableGrants(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRetirableGrants",
-        input_schema = schemas.ListRetirableGrantsInput,
-        output_schema = schemas.ListRetirableGrantsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRetirableGrants, input, options)
 end
 
 function Client:putKeyPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutKeyPolicy",
-        input_schema = schemas.PutKeyPolicyInput,
-        output_schema = schemas.PutKeyPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutKeyPolicy, input, options)
 end
 
 function Client:reEncrypt(input, options)
-    return self:invokeOperation(input, {
-        name = "ReEncrypt",
-        input_schema = schemas.ReEncryptInput,
-        output_schema = schemas.ReEncryptOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ReEncrypt, input, options)
 end
 
 function Client:replicateKey(input, options)
-    return self:invokeOperation(input, {
-        name = "ReplicateKey",
-        input_schema = schemas.ReplicateKeyInput,
-        output_schema = schemas.ReplicateKeyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ReplicateKey, input, options)
 end
 
 function Client:retireGrant(input, options)
-    return self:invokeOperation(input, {
-        name = "RetireGrant",
-        input_schema = schemas.RetireGrantInput,
-        output_schema = schemas.RetireGrantOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RetireGrant, input, options)
 end
 
 function Client:revokeGrant(input, options)
-    return self:invokeOperation(input, {
-        name = "RevokeGrant",
-        input_schema = schemas.RevokeGrantInput,
-        output_schema = schemas.RevokeGrantOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RevokeGrant, input, options)
 end
 
 function Client:rotateKeyOnDemand(input, options)
-    return self:invokeOperation(input, {
-        name = "RotateKeyOnDemand",
-        input_schema = schemas.RotateKeyOnDemandInput,
-        output_schema = schemas.RotateKeyOnDemandOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RotateKeyOnDemand, input, options)
 end
 
 function Client:scheduleKeyDeletion(input, options)
-    return self:invokeOperation(input, {
-        name = "ScheduleKeyDeletion",
-        input_schema = schemas.ScheduleKeyDeletionInput,
-        output_schema = schemas.ScheduleKeyDeletionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ScheduleKeyDeletion, input, options)
 end
 
 function Client:sign(input, options)
-    return self:invokeOperation(input, {
-        name = "Sign",
-        input_schema = schemas.SignInput,
-        output_schema = schemas.SignOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Sign, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAlias",
-        input_schema = schemas.UpdateAliasInput,
-        output_schema = schemas.UpdateAliasOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAlias, input, options)
 end
 
 function Client:updateCustomKeyStore(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCustomKeyStore",
-        input_schema = schemas.UpdateCustomKeyStoreInput,
-        output_schema = schemas.UpdateCustomKeyStoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCustomKeyStore, input, options)
 end
 
 function Client:updateKeyDescription(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateKeyDescription",
-        input_schema = schemas.UpdateKeyDescriptionInput,
-        output_schema = schemas.UpdateKeyDescriptionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateKeyDescription, input, options)
 end
 
 function Client:updatePrimaryRegion(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePrimaryRegion",
-        input_schema = schemas.UpdatePrimaryRegionInput,
-        output_schema = schemas.UpdatePrimaryRegionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePrimaryRegion, input, options)
 end
 
 function Client:verify(input, options)
-    return self:invokeOperation(input, {
-        name = "Verify",
-        input_schema = schemas.VerifyInput,
-        output_schema = schemas.VerifyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Verify, input, options)
 end
 
 function Client:verifyMac(input, options)
-    return self:invokeOperation(input, {
-        name = "VerifyMac",
-        input_schema = schemas.VerifyMacInput,
-        output_schema = schemas.VerifyMacOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.VerifyMac, input, options)
 end
 
 return M

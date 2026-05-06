@@ -8435,4 +8435,1340 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sesv2", "SimpleEmailService_v2"),
+    version = "2019-09-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetMetricData = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "BatchGetMetricData"),
+    input = M.BatchGetMetricDataInput,
+    output = M.BatchGetMetricDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/metrics/batch" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelExportJob = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CancelExportJob"),
+    input = M.CancelExportJobInput,
+    output = M.CancelExportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/export-jobs/{JobId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfigurationSet = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateConfigurationSet"),
+    input = M.CreateConfigurationSetInput,
+    output = M.CreateConfigurationSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/configuration-sets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfigurationSetEventDestination = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateConfigurationSetEventDestination"),
+    input = M.CreateConfigurationSetEventDestinationInput,
+    output = M.CreateConfigurationSetEventDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/configuration-sets/{ConfigurationSetName}/event-destinations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContact = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateContact"),
+    input = M.CreateContactInput,
+    output = M.CreateContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/contact-lists/{ContactListName}/contacts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContactList = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateContactList"),
+    input = M.CreateContactListInput,
+    output = M.CreateContactListOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/contact-lists" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomVerificationEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateCustomVerificationEmailTemplate"),
+    input = M.CreateCustomVerificationEmailTemplateInput,
+    output = M.CreateCustomVerificationEmailTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/custom-verification-email-templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDedicatedIpPool = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateDedicatedIpPool"),
+    input = M.CreateDedicatedIpPoolInput,
+    output = M.CreateDedicatedIpPoolOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/dedicated-ip-pools" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDeliverabilityTestReport = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateDeliverabilityTestReport"),
+    input = M.CreateDeliverabilityTestReportInput,
+    output = M.CreateDeliverabilityTestReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/deliverability-dashboard/test" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEmailIdentity = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateEmailIdentity"),
+    input = M.CreateEmailIdentityInput,
+    output = M.CreateEmailIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/identities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEmailIdentityPolicy = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateEmailIdentityPolicy"),
+    input = M.CreateEmailIdentityPolicyInput,
+    output = M.CreateEmailIdentityPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/identities/{EmailIdentity}/policies/{PolicyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateEmailTemplate"),
+    input = M.CreateEmailTemplateInput,
+    output = M.CreateEmailTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExportJob = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateExportJob"),
+    input = M.CreateExportJobInput,
+    output = M.CreateExportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/export-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateImportJob = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateImportJob"),
+    input = M.CreateImportJobInput,
+    output = M.CreateImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/import-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMultiRegionEndpoint = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateMultiRegionEndpoint"),
+    input = M.CreateMultiRegionEndpointInput,
+    output = M.CreateMultiRegionEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/multi-region-endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTenant = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateTenant"),
+    input = M.CreateTenantInput,
+    output = M.CreateTenantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/tenants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTenantResourceAssociation = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "CreateTenantResourceAssociation"),
+    input = M.CreateTenantResourceAssociationInput,
+    output = M.CreateTenantResourceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/tenants/resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationSet = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "DeleteConfigurationSet"),
+    input = M.DeleteConfigurationSetInput,
+    output = M.DeleteConfigurationSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/email/configuration-sets/{ConfigurationSetName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationSetEventDestination = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "DeleteConfigurationSetEventDestination"),
+    input = M.DeleteConfigurationSetEventDestinationInput,
+    output = M.DeleteConfigurationSetEventDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/email/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContact = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "DeleteContact"),
+    input = M.DeleteContactInput,
+    output = M.DeleteContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/email/contact-lists/{ContactListName}/contacts/{EmailAddress}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContactList = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "DeleteContactList"),
+    input = M.DeleteContactListInput,
+    output = M.DeleteContactListOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/email/contact-lists/{ContactListName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomVerificationEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "DeleteCustomVerificationEmailTemplate"),
+    input = M.DeleteCustomVerificationEmailTemplateInput,
+    output = M.DeleteCustomVerificationEmailTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/email/custom-verification-email-templates/{TemplateName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDedicatedIpPool = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "DeleteDedicatedIpPool"),
+    input = M.DeleteDedicatedIpPoolInput,
+    output = M.DeleteDedicatedIpPoolOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/email/dedicated-ip-pools/{PoolName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEmailIdentity = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "DeleteEmailIdentity"),
+    input = M.DeleteEmailIdentityInput,
+    output = M.DeleteEmailIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/email/identities/{EmailIdentity}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEmailIdentityPolicy = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "DeleteEmailIdentityPolicy"),
+    input = M.DeleteEmailIdentityPolicyInput,
+    output = M.DeleteEmailIdentityPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/email/identities/{EmailIdentity}/policies/{PolicyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "DeleteEmailTemplate"),
+    input = M.DeleteEmailTemplateInput,
+    output = M.DeleteEmailTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/email/templates/{TemplateName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMultiRegionEndpoint = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "DeleteMultiRegionEndpoint"),
+    input = M.DeleteMultiRegionEndpointInput,
+    output = M.DeleteMultiRegionEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/email/multi-region-endpoints/{EndpointName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSuppressedDestination = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "DeleteSuppressedDestination"),
+    input = M.DeleteSuppressedDestinationInput,
+    output = M.DeleteSuppressedDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/email/suppression/addresses/{EmailAddress}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTenant = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "DeleteTenant"),
+    input = M.DeleteTenantInput,
+    output = M.DeleteTenantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/tenants/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTenantResourceAssociation = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "DeleteTenantResourceAssociation"),
+    input = M.DeleteTenantResourceAssociationInput,
+    output = M.DeleteTenantResourceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/tenants/resources/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccount = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetAccount"),
+    input = M.GetAccountInput,
+    output = M.GetAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/account" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBlacklistReports = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetBlacklistReports"),
+    input = M.GetBlacklistReportsInput,
+    output = M.GetBlacklistReportsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/deliverability-dashboard/blacklist-report" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfigurationSet = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetConfigurationSet"),
+    input = M.GetConfigurationSetInput,
+    output = M.GetConfigurationSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/configuration-sets/{ConfigurationSetName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfigurationSetEventDestinations = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetConfigurationSetEventDestinations"),
+    input = M.GetConfigurationSetEventDestinationsInput,
+    output = M.GetConfigurationSetEventDestinationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/configuration-sets/{ConfigurationSetName}/event-destinations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContact = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetContact"),
+    input = M.GetContactInput,
+    output = M.GetContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/contact-lists/{ContactListName}/contacts/{EmailAddress}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContactList = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetContactList"),
+    input = M.GetContactListInput,
+    output = M.GetContactListOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/contact-lists/{ContactListName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCustomVerificationEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetCustomVerificationEmailTemplate"),
+    input = M.GetCustomVerificationEmailTemplateInput,
+    output = M.GetCustomVerificationEmailTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/custom-verification-email-templates/{TemplateName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDedicatedIp = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetDedicatedIp"),
+    input = M.GetDedicatedIpInput,
+    output = M.GetDedicatedIpOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/dedicated-ips/{Ip}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDedicatedIpPool = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetDedicatedIpPool"),
+    input = M.GetDedicatedIpPoolInput,
+    output = M.GetDedicatedIpPoolOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/dedicated-ip-pools/{PoolName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDedicatedIps = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetDedicatedIps"),
+    input = M.GetDedicatedIpsInput,
+    output = M.GetDedicatedIpsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/dedicated-ips" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeliverabilityDashboardOptions = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetDeliverabilityDashboardOptions"),
+    input = M.GetDeliverabilityDashboardOptionsInput,
+    output = M.GetDeliverabilityDashboardOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/deliverability-dashboard" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeliverabilityTestReport = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetDeliverabilityTestReport"),
+    input = M.GetDeliverabilityTestReportInput,
+    output = M.GetDeliverabilityTestReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/deliverability-dashboard/test-reports/{ReportId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainDeliverabilityCampaign = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetDomainDeliverabilityCampaign"),
+    input = M.GetDomainDeliverabilityCampaignInput,
+    output = M.GetDomainDeliverabilityCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/deliverability-dashboard/campaigns/{CampaignId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainStatisticsReport = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetDomainStatisticsReport"),
+    input = M.GetDomainStatisticsReportInput,
+    output = M.GetDomainStatisticsReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/deliverability-dashboard/statistics-report/{Domain}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEmailAddressInsights = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetEmailAddressInsights"),
+    input = M.GetEmailAddressInsightsInput,
+    output = M.GetEmailAddressInsightsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/email-address-insights" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEmailIdentity = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetEmailIdentity"),
+    input = M.GetEmailIdentityInput,
+    output = M.GetEmailIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/identities/{EmailIdentity}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEmailIdentityPolicies = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetEmailIdentityPolicies"),
+    input = M.GetEmailIdentityPoliciesInput,
+    output = M.GetEmailIdentityPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/identities/{EmailIdentity}/policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetEmailTemplate"),
+    input = M.GetEmailTemplateInput,
+    output = M.GetEmailTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/templates/{TemplateName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExportJob = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetExportJob"),
+    input = M.GetExportJobInput,
+    output = M.GetExportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/export-jobs/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImportJob = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetImportJob"),
+    input = M.GetImportJobInput,
+    output = M.GetImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/import-jobs/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMessageInsights = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetMessageInsights"),
+    input = M.GetMessageInsightsInput,
+    output = M.GetMessageInsightsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/insights/{MessageId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMultiRegionEndpoint = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetMultiRegionEndpoint"),
+    input = M.GetMultiRegionEndpointInput,
+    output = M.GetMultiRegionEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/multi-region-endpoints/{EndpointName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReputationEntity = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetReputationEntity"),
+    input = M.GetReputationEntityInput,
+    output = M.GetReputationEntityOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/reputation/entities/{ReputationEntityType}/{ReputationEntityReference}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSuppressedDestination = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetSuppressedDestination"),
+    input = M.GetSuppressedDestinationInput,
+    output = M.GetSuppressedDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/suppression/addresses/{EmailAddress}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTenant = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "GetTenant"),
+    input = M.GetTenantInput,
+    output = M.GetTenantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/tenants/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationSets = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListConfigurationSets"),
+    input = M.ListConfigurationSetsInput,
+    output = M.ListConfigurationSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/configuration-sets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContactLists = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListContactLists"),
+    input = M.ListContactListsInput,
+    output = M.ListContactListsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/contact-lists" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContacts = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListContacts"),
+    input = M.ListContactsInput,
+    output = M.ListContactsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/contact-lists/{ContactListName}/contacts/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomVerificationEmailTemplates = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListCustomVerificationEmailTemplates"),
+    input = M.ListCustomVerificationEmailTemplatesInput,
+    output = M.ListCustomVerificationEmailTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/custom-verification-email-templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDedicatedIpPools = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListDedicatedIpPools"),
+    input = M.ListDedicatedIpPoolsInput,
+    output = M.ListDedicatedIpPoolsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/dedicated-ip-pools" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeliverabilityTestReports = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListDeliverabilityTestReports"),
+    input = M.ListDeliverabilityTestReportsInput,
+    output = M.ListDeliverabilityTestReportsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/deliverability-dashboard/test-reports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainDeliverabilityCampaigns = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListDomainDeliverabilityCampaigns"),
+    input = M.ListDomainDeliverabilityCampaignsInput,
+    output = M.ListDomainDeliverabilityCampaignsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/deliverability-dashboard/domains/{SubscribedDomain}/campaigns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEmailIdentities = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListEmailIdentities"),
+    input = M.ListEmailIdentitiesInput,
+    output = M.ListEmailIdentitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/identities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEmailTemplates = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListEmailTemplates"),
+    input = M.ListEmailTemplatesInput,
+    output = M.ListEmailTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExportJobs = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListExportJobs"),
+    input = M.ListExportJobsInput,
+    output = M.ListExportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/list-export-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImportJobs = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListImportJobs"),
+    input = M.ListImportJobsInput,
+    output = M.ListImportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/import-jobs/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMultiRegionEndpoints = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListMultiRegionEndpoints"),
+    input = M.ListMultiRegionEndpointsInput,
+    output = M.ListMultiRegionEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/multi-region-endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommendations = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListRecommendations"),
+    input = M.ListRecommendationsInput,
+    output = M.ListRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/vdm/recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReputationEntities = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListReputationEntities"),
+    input = M.ListReputationEntitiesInput,
+    output = M.ListReputationEntitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/reputation/entities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceTenants = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListResourceTenants"),
+    input = M.ListResourceTenantsInput,
+    output = M.ListResourceTenantsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/resources/tenants/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSuppressedDestinations = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListSuppressedDestinations"),
+    input = M.ListSuppressedDestinationsInput,
+    output = M.ListSuppressedDestinationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/suppression/addresses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/email/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTenantResources = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListTenantResources"),
+    input = M.ListTenantResourcesInput,
+    output = M.ListTenantResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/tenants/resources/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTenants = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListTenants"),
+    input = M.ListTenantsInput,
+    output = M.ListTenantsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/tenants/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountDedicatedIpWarmupAttributes = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutAccountDedicatedIpWarmupAttributes"),
+    input = M.PutAccountDedicatedIpWarmupAttributesInput,
+    output = M.PutAccountDedicatedIpWarmupAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/account/dedicated-ips/warmup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountDetails = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutAccountDetails"),
+    input = M.PutAccountDetailsInput,
+    output = M.PutAccountDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/account/details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountSendingAttributes = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutAccountSendingAttributes"),
+    input = M.PutAccountSendingAttributesInput,
+    output = M.PutAccountSendingAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/account/sending" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountSuppressionAttributes = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutAccountSuppressionAttributes"),
+    input = M.PutAccountSuppressionAttributesInput,
+    output = M.PutAccountSuppressionAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/account/suppression" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountVdmAttributes = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutAccountVdmAttributes"),
+    input = M.PutAccountVdmAttributesInput,
+    output = M.PutAccountVdmAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/account/vdm" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConfigurationSetArchivingOptions = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutConfigurationSetArchivingOptions"),
+    input = M.PutConfigurationSetArchivingOptionsInput,
+    output = M.PutConfigurationSetArchivingOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/configuration-sets/{ConfigurationSetName}/archiving-options" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConfigurationSetDeliveryOptions = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutConfigurationSetDeliveryOptions"),
+    input = M.PutConfigurationSetDeliveryOptionsInput,
+    output = M.PutConfigurationSetDeliveryOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/configuration-sets/{ConfigurationSetName}/delivery-options" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConfigurationSetReputationOptions = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutConfigurationSetReputationOptions"),
+    input = M.PutConfigurationSetReputationOptionsInput,
+    output = M.PutConfigurationSetReputationOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/configuration-sets/{ConfigurationSetName}/reputation-options" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConfigurationSetSendingOptions = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutConfigurationSetSendingOptions"),
+    input = M.PutConfigurationSetSendingOptionsInput,
+    output = M.PutConfigurationSetSendingOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/configuration-sets/{ConfigurationSetName}/sending" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConfigurationSetSuppressionOptions = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutConfigurationSetSuppressionOptions"),
+    input = M.PutConfigurationSetSuppressionOptionsInput,
+    output = M.PutConfigurationSetSuppressionOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/configuration-sets/{ConfigurationSetName}/suppression-options" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConfigurationSetTrackingOptions = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutConfigurationSetTrackingOptions"),
+    input = M.PutConfigurationSetTrackingOptionsInput,
+    output = M.PutConfigurationSetTrackingOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/configuration-sets/{ConfigurationSetName}/tracking-options" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConfigurationSetVdmOptions = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutConfigurationSetVdmOptions"),
+    input = M.PutConfigurationSetVdmOptionsInput,
+    output = M.PutConfigurationSetVdmOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/configuration-sets/{ConfigurationSetName}/vdm-options" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDedicatedIpInPool = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutDedicatedIpInPool"),
+    input = M.PutDedicatedIpInPoolInput,
+    output = M.PutDedicatedIpInPoolOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/dedicated-ips/{Ip}/pool" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDedicatedIpPoolScalingAttributes = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutDedicatedIpPoolScalingAttributes"),
+    input = M.PutDedicatedIpPoolScalingAttributesInput,
+    output = M.PutDedicatedIpPoolScalingAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/dedicated-ip-pools/{PoolName}/scaling" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDedicatedIpWarmupAttributes = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutDedicatedIpWarmupAttributes"),
+    input = M.PutDedicatedIpWarmupAttributesInput,
+    output = M.PutDedicatedIpWarmupAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/dedicated-ips/{Ip}/warmup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDeliverabilityDashboardOption = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutDeliverabilityDashboardOption"),
+    input = M.PutDeliverabilityDashboardOptionInput,
+    output = M.PutDeliverabilityDashboardOptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/deliverability-dashboard" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEmailIdentityConfigurationSetAttributes = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutEmailIdentityConfigurationSetAttributes"),
+    input = M.PutEmailIdentityConfigurationSetAttributesInput,
+    output = M.PutEmailIdentityConfigurationSetAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/identities/{EmailIdentity}/configuration-set" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEmailIdentityDkimAttributes = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutEmailIdentityDkimAttributes"),
+    input = M.PutEmailIdentityDkimAttributesInput,
+    output = M.PutEmailIdentityDkimAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/identities/{EmailIdentity}/dkim" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEmailIdentityDkimSigningAttributes = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutEmailIdentityDkimSigningAttributes"),
+    input = M.PutEmailIdentityDkimSigningAttributesInput,
+    output = M.PutEmailIdentityDkimSigningAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/identities/{EmailIdentity}/dkim/signing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEmailIdentityFeedbackAttributes = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutEmailIdentityFeedbackAttributes"),
+    input = M.PutEmailIdentityFeedbackAttributesInput,
+    output = M.PutEmailIdentityFeedbackAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/identities/{EmailIdentity}/feedback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEmailIdentityMailFromAttributes = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutEmailIdentityMailFromAttributes"),
+    input = M.PutEmailIdentityMailFromAttributesInput,
+    output = M.PutEmailIdentityMailFromAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/identities/{EmailIdentity}/mail-from" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSuppressedDestination = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutSuppressedDestination"),
+    input = M.PutSuppressedDestinationInput,
+    output = M.PutSuppressedDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/suppression/addresses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendBulkEmail = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "SendBulkEmail"),
+    input = M.SendBulkEmailInput,
+    output = M.SendBulkEmailOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/outbound-bulk-emails" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            EndpointId = "EndpointId",
+        },
+    },
+})
+
+M.SendCustomVerificationEmail = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "SendCustomVerificationEmail"),
+    input = M.SendCustomVerificationEmailInput,
+    output = M.SendCustomVerificationEmailOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/outbound-custom-verification-emails" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendEmail = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "SendEmail"),
+    input = M.SendEmailInput,
+    output = M.SendEmailOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/outbound-emails" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            EndpointId = "EndpointId",
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestRenderEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "TestRenderEmailTemplate"),
+    input = M.TestRenderEmailTemplateInput,
+    output = M.TestRenderEmailTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/templates/{TemplateName}/render" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/email/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfigurationSetEventDestination = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "UpdateConfigurationSetEventDestination"),
+    input = M.UpdateConfigurationSetEventDestinationInput,
+    output = M.UpdateConfigurationSetEventDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContact = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "UpdateContact"),
+    input = M.UpdateContactInput,
+    output = M.UpdateContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/contact-lists/{ContactListName}/contacts/{EmailAddress}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContactList = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "UpdateContactList"),
+    input = M.UpdateContactListInput,
+    output = M.UpdateContactListOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/contact-lists/{ContactListName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCustomVerificationEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "UpdateCustomVerificationEmailTemplate"),
+    input = M.UpdateCustomVerificationEmailTemplateInput,
+    output = M.UpdateCustomVerificationEmailTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/custom-verification-email-templates/{TemplateName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEmailIdentityPolicy = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "UpdateEmailIdentityPolicy"),
+    input = M.UpdateEmailIdentityPolicyInput,
+    output = M.UpdateEmailIdentityPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/identities/{EmailIdentity}/policies/{PolicyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "UpdateEmailTemplate"),
+    input = M.UpdateEmailTemplateInput,
+    output = M.UpdateEmailTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/templates/{TemplateName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReputationEntityCustomerManagedStatus = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "UpdateReputationEntityCustomerManagedStatus"),
+    input = M.UpdateReputationEntityCustomerManagedStatusInput,
+    output = M.UpdateReputationEntityCustomerManagedStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/reputation/entities/{ReputationEntityType}/{ReputationEntityReference}/customer-managed-status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReputationEntityPolicy = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "UpdateReputationEntityPolicy"),
+    input = M.UpdateReputationEntityPolicyInput,
+    output = M.UpdateReputationEntityPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/reputation/entities/{ReputationEntityType}/{ReputationEntityReference}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

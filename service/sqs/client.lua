@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("sqs.endpoint_rules")
 local schemas = require("sqs.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sqs", signing_region = cfg.region } }
                 else
@@ -49,302 +52,95 @@ function M.new(cfg)
 end
 
 function Client:addPermission(input, options)
-    return self:invokeOperation(input, {
-        name = "AddPermission",
-        input_schema = schemas.AddPermissionInput,
-        output_schema = schemas.AddPermissionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddPermission, input, options)
 end
 
 function Client:cancelMessageMoveTask(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelMessageMoveTask",
-        input_schema = schemas.CancelMessageMoveTaskInput,
-        output_schema = schemas.CancelMessageMoveTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelMessageMoveTask, input, options)
 end
 
 function Client:changeMessageVisibility(input, options)
-    return self:invokeOperation(input, {
-        name = "ChangeMessageVisibility",
-        input_schema = schemas.ChangeMessageVisibilityInput,
-        output_schema = schemas.ChangeMessageVisibilityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ChangeMessageVisibility, input, options)
 end
 
 function Client:changeMessageVisibilityBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "ChangeMessageVisibilityBatch",
-        input_schema = schemas.ChangeMessageVisibilityBatchInput,
-        output_schema = schemas.ChangeMessageVisibilityBatchOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ChangeMessageVisibilityBatch, input, options)
 end
 
 function Client:createQueue(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateQueue",
-        input_schema = schemas.CreateQueueInput,
-        output_schema = schemas.CreateQueueOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateQueue, input, options)
 end
 
 function Client:deleteMessage(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMessage",
-        input_schema = schemas.DeleteMessageInput,
-        output_schema = schemas.DeleteMessageOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMessage, input, options)
 end
 
 function Client:deleteMessageBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMessageBatch",
-        input_schema = schemas.DeleteMessageBatchInput,
-        output_schema = schemas.DeleteMessageBatchOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMessageBatch, input, options)
 end
 
 function Client:deleteQueue(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteQueue",
-        input_schema = schemas.DeleteQueueInput,
-        output_schema = schemas.DeleteQueueOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteQueue, input, options)
 end
 
 function Client:getQueueAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "GetQueueAttributes",
-        input_schema = schemas.GetQueueAttributesInput,
-        output_schema = schemas.GetQueueAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetQueueAttributes, input, options)
 end
 
 function Client:getQueueUrl(input, options)
-    return self:invokeOperation(input, {
-        name = "GetQueueUrl",
-        input_schema = schemas.GetQueueUrlInput,
-        output_schema = schemas.GetQueueUrlOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetQueueUrl, input, options)
 end
 
 function Client:listDeadLetterSourceQueues(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDeadLetterSourceQueues",
-        input_schema = schemas.ListDeadLetterSourceQueuesInput,
-        output_schema = schemas.ListDeadLetterSourceQueuesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDeadLetterSourceQueues, input, options)
 end
 
 function Client:listMessageMoveTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMessageMoveTasks",
-        input_schema = schemas.ListMessageMoveTasksInput,
-        output_schema = schemas.ListMessageMoveTasksOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMessageMoveTasks, input, options)
 end
 
 function Client:listQueues(input, options)
-    return self:invokeOperation(input, {
-        name = "ListQueues",
-        input_schema = schemas.ListQueuesInput,
-        output_schema = schemas.ListQueuesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListQueues, input, options)
 end
 
 function Client:listQueueTags(input, options)
-    return self:invokeOperation(input, {
-        name = "ListQueueTags",
-        input_schema = schemas.ListQueueTagsInput,
-        output_schema = schemas.ListQueueTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListQueueTags, input, options)
 end
 
 function Client:purgeQueue(input, options)
-    return self:invokeOperation(input, {
-        name = "PurgeQueue",
-        input_schema = schemas.PurgeQueueInput,
-        output_schema = schemas.PurgeQueueOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PurgeQueue, input, options)
 end
 
 function Client:receiveMessage(input, options)
-    return self:invokeOperation(input, {
-        name = "ReceiveMessage",
-        input_schema = schemas.ReceiveMessageInput,
-        output_schema = schemas.ReceiveMessageOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ReceiveMessage, input, options)
 end
 
 function Client:removePermission(input, options)
-    return self:invokeOperation(input, {
-        name = "RemovePermission",
-        input_schema = schemas.RemovePermissionInput,
-        output_schema = schemas.RemovePermissionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemovePermission, input, options)
 end
 
 function Client:sendMessage(input, options)
-    return self:invokeOperation(input, {
-        name = "SendMessage",
-        input_schema = schemas.SendMessageInput,
-        output_schema = schemas.SendMessageOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SendMessage, input, options)
 end
 
 function Client:sendMessageBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "SendMessageBatch",
-        input_schema = schemas.SendMessageBatchInput,
-        output_schema = schemas.SendMessageBatchOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SendMessageBatch, input, options)
 end
 
 function Client:setQueueAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "SetQueueAttributes",
-        input_schema = schemas.SetQueueAttributesInput,
-        output_schema = schemas.SetQueueAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetQueueAttributes, input, options)
 end
 
 function Client:startMessageMoveTask(input, options)
-    return self:invokeOperation(input, {
-        name = "StartMessageMoveTask",
-        input_schema = schemas.StartMessageMoveTaskInput,
-        output_schema = schemas.StartMessageMoveTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartMessageMoveTask, input, options)
 end
 
 function Client:tagQueue(input, options)
-    return self:invokeOperation(input, {
-        name = "TagQueue",
-        input_schema = schemas.TagQueueInput,
-        output_schema = schemas.TagQueueOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagQueue, input, options)
 end
 
 function Client:untagQueue(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagQueue",
-        input_schema = schemas.UntagQueueInput,
-        output_schema = schemas.UntagQueueOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagQueue, input, options)
 end
 
 return M

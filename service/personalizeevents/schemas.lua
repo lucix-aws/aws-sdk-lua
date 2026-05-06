@@ -480,4 +480,74 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.personalizeevents", "AmazonPersonalizeEvents"),
+    version = "2018-03-22",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutActionInteractions = schema.operation({
+    id = id.from("com.amazonaws.personalizeevents", "PutActionInteractions"),
+    input = M.PutActionInteractionsInput,
+    output = M.PutActionInteractionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/action-interactions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutActions = schema.operation({
+    id = id.from("com.amazonaws.personalizeevents", "PutActions"),
+    input = M.PutActionsInput,
+    output = M.PutActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEvents = schema.operation({
+    id = id.from("com.amazonaws.personalizeevents", "PutEvents"),
+    input = M.PutEventsInput,
+    output = M.PutEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutItems = schema.operation({
+    id = id.from("com.amazonaws.personalizeevents", "PutItems"),
+    input = M.PutItemsInput,
+    output = M.PutItemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/items" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutUsers = schema.operation({
+    id = id.from("com.amazonaws.personalizeevents", "PutUsers"),
+    input = M.PutUsersInput,
+    output = M.PutUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

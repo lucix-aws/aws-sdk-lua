@@ -7,6 +7,7 @@ local endpoint_rules = require("medicalimaging.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("medicalimaging.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "medical-imaging", signing_region = cfg.region } }
                 else
@@ -49,237 +52,75 @@ function M.new(cfg)
 end
 
 function Client:copyImageSet(input, options)
-    return self:invokeOperation(input, {
-        name = "CopyImageSet",
-        input_schema = schemas.CopyImageSetInput,
-        output_schema = schemas.CopyImageSetOutput,
-        http_method = "POST",
-        http_path = "/datastore/{datastoreId}/imageSet/{sourceImageSetId}/copyImageSet",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CopyImageSet, input, options)
 end
 
 function Client:createDatastore(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDatastore",
-        input_schema = schemas.CreateDatastoreInput,
-        output_schema = schemas.CreateDatastoreOutput,
-        http_method = "POST",
-        http_path = "/datastore",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDatastore, input, options)
 end
 
 function Client:deleteDatastore(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDatastore",
-        input_schema = schemas.DeleteDatastoreInput,
-        output_schema = schemas.DeleteDatastoreOutput,
-        http_method = "DELETE",
-        http_path = "/datastore/{datastoreId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDatastore, input, options)
 end
 
 function Client:deleteImageSet(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteImageSet",
-        input_schema = schemas.DeleteImageSetInput,
-        output_schema = schemas.DeleteImageSetOutput,
-        http_method = "POST",
-        http_path = "/datastore/{datastoreId}/imageSet/{imageSetId}/deleteImageSet",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteImageSet, input, options)
 end
 
 function Client:getDatastore(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDatastore",
-        input_schema = schemas.GetDatastoreInput,
-        output_schema = schemas.GetDatastoreOutput,
-        http_method = "GET",
-        http_path = "/datastore/{datastoreId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDatastore, input, options)
 end
 
 function Client:getDICOMImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDICOMImportJob",
-        input_schema = schemas.GetDICOMImportJobInput,
-        output_schema = schemas.GetDICOMImportJobOutput,
-        http_method = "GET",
-        http_path = "/getDICOMImportJob/datastore/{datastoreId}/job/{jobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDICOMImportJob, input, options)
 end
 
 function Client:getImageFrame(input, options)
-    return self:invokeOperation(input, {
-        name = "GetImageFrame",
-        input_schema = schemas.GetImageFrameInput,
-        output_schema = schemas.GetImageFrameOutput,
-        http_method = "POST",
-        http_path = "/datastore/{datastoreId}/imageSet/{imageSetId}/getImageFrame",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetImageFrame, input, options)
 end
 
 function Client:getImageSet(input, options)
-    return self:invokeOperation(input, {
-        name = "GetImageSet",
-        input_schema = schemas.GetImageSetInput,
-        output_schema = schemas.GetImageSetOutput,
-        http_method = "POST",
-        http_path = "/datastore/{datastoreId}/imageSet/{imageSetId}/getImageSet",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetImageSet, input, options)
 end
 
 function Client:getImageSetMetadata(input, options)
-    return self:invokeOperation(input, {
-        name = "GetImageSetMetadata",
-        input_schema = schemas.GetImageSetMetadataInput,
-        output_schema = schemas.GetImageSetMetadataOutput,
-        http_method = "POST",
-        http_path = "/datastore/{datastoreId}/imageSet/{imageSetId}/getImageSetMetadata",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetImageSetMetadata, input, options)
 end
 
 function Client:listDatastores(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDatastores",
-        input_schema = schemas.ListDatastoresInput,
-        output_schema = schemas.ListDatastoresOutput,
-        http_method = "GET",
-        http_path = "/datastore",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDatastores, input, options)
 end
 
 function Client:listDICOMImportJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDICOMImportJobs",
-        input_schema = schemas.ListDICOMImportJobsInput,
-        output_schema = schemas.ListDICOMImportJobsOutput,
-        http_method = "GET",
-        http_path = "/listDICOMImportJobs/datastore/{datastoreId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDICOMImportJobs, input, options)
 end
 
 function Client:listImageSetVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListImageSetVersions",
-        input_schema = schemas.ListImageSetVersionsInput,
-        output_schema = schemas.ListImageSetVersionsOutput,
-        http_method = "POST",
-        http_path = "/datastore/{datastoreId}/imageSet/{imageSetId}/listImageSetVersions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListImageSetVersions, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:searchImageSets(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchImageSets",
-        input_schema = schemas.SearchImageSetsInput,
-        output_schema = schemas.SearchImageSetsOutput,
-        http_method = "POST",
-        http_path = "/datastore/{datastoreId}/searchImageSets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchImageSets, input, options)
 end
 
 function Client:startDICOMImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartDICOMImportJob",
-        input_schema = schemas.StartDICOMImportJobInput,
-        output_schema = schemas.StartDICOMImportJobOutput,
-        http_method = "POST",
-        http_path = "/startDICOMImportJob/datastore/{datastoreId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartDICOMImportJob, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateImageSetMetadata(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateImageSetMetadata",
-        input_schema = schemas.UpdateImageSetMetadataInput,
-        output_schema = schemas.UpdateImageSetMetadataOutput,
-        http_method = "POST",
-        http_path = "/datastore/{datastoreId}/imageSet/{imageSetId}/updateImageSetMetadata",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateImageSetMetadata, input, options)
 end
 
 return M

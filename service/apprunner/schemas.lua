@@ -3127,4 +3127,421 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.apprunner", "AppRunner"),
+    version = "2020-05-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateCustomDomain = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "AssociateCustomDomain"),
+    input = M.AssociateCustomDomainInput,
+    output = M.AssociateCustomDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAutoScalingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "CreateAutoScalingConfiguration"),
+    input = M.CreateAutoScalingConfigurationInput,
+    output = M.CreateAutoScalingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnection = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "CreateConnection"),
+    input = M.CreateConnectionInput,
+    output = M.CreateConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateObservabilityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "CreateObservabilityConfiguration"),
+    input = M.CreateObservabilityConfigurationInput,
+    output = M.CreateObservabilityConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateService = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "CreateService"),
+    input = M.CreateServiceInput,
+    output = M.CreateServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVpcConnector = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "CreateVpcConnector"),
+    input = M.CreateVpcConnectorInput,
+    output = M.CreateVpcConnectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVpcIngressConnection = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "CreateVpcIngressConnection"),
+    input = M.CreateVpcIngressConnectionInput,
+    output = M.CreateVpcIngressConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAutoScalingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "DeleteAutoScalingConfiguration"),
+    input = M.DeleteAutoScalingConfigurationInput,
+    output = M.DeleteAutoScalingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnection = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "DeleteConnection"),
+    input = M.DeleteConnectionInput,
+    output = M.DeleteConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteObservabilityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "DeleteObservabilityConfiguration"),
+    input = M.DeleteObservabilityConfigurationInput,
+    output = M.DeleteObservabilityConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteService = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "DeleteService"),
+    input = M.DeleteServiceInput,
+    output = M.DeleteServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVpcConnector = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "DeleteVpcConnector"),
+    input = M.DeleteVpcConnectorInput,
+    output = M.DeleteVpcConnectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVpcIngressConnection = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "DeleteVpcIngressConnection"),
+    input = M.DeleteVpcIngressConnectionInput,
+    output = M.DeleteVpcIngressConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAutoScalingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "DescribeAutoScalingConfiguration"),
+    input = M.DescribeAutoScalingConfigurationInput,
+    output = M.DescribeAutoScalingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCustomDomains = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "DescribeCustomDomains"),
+    input = M.DescribeCustomDomainsInput,
+    output = M.DescribeCustomDomainsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeObservabilityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "DescribeObservabilityConfiguration"),
+    input = M.DescribeObservabilityConfigurationInput,
+    output = M.DescribeObservabilityConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeService = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "DescribeService"),
+    input = M.DescribeServiceInput,
+    output = M.DescribeServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVpcConnector = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "DescribeVpcConnector"),
+    input = M.DescribeVpcConnectorInput,
+    output = M.DescribeVpcConnectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVpcIngressConnection = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "DescribeVpcIngressConnection"),
+    input = M.DescribeVpcIngressConnectionInput,
+    output = M.DescribeVpcIngressConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateCustomDomain = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "DisassociateCustomDomain"),
+    input = M.DisassociateCustomDomainInput,
+    output = M.DisassociateCustomDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutoScalingConfigurations = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "ListAutoScalingConfigurations"),
+    input = M.ListAutoScalingConfigurationsInput,
+    output = M.ListAutoScalingConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnections = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "ListConnections"),
+    input = M.ListConnectionsInput,
+    output = M.ListConnectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListObservabilityConfigurations = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "ListObservabilityConfigurations"),
+    input = M.ListObservabilityConfigurationsInput,
+    output = M.ListObservabilityConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOperations = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "ListOperations"),
+    input = M.ListOperationsInput,
+    output = M.ListOperationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServices = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "ListServices"),
+    input = M.ListServicesInput,
+    output = M.ListServicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServicesForAutoScalingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "ListServicesForAutoScalingConfiguration"),
+    input = M.ListServicesForAutoScalingConfigurationInput,
+    output = M.ListServicesForAutoScalingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVpcConnectors = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "ListVpcConnectors"),
+    input = M.ListVpcConnectorsInput,
+    output = M.ListVpcConnectorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVpcIngressConnections = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "ListVpcIngressConnections"),
+    input = M.ListVpcIngressConnectionsInput,
+    output = M.ListVpcIngressConnectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PauseService = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "PauseService"),
+    input = M.PauseServiceInput,
+    output = M.PauseServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResumeService = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "ResumeService"),
+    input = M.ResumeServiceInput,
+    output = M.ResumeServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDeployment = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "StartDeployment"),
+    input = M.StartDeploymentInput,
+    output = M.StartDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDefaultAutoScalingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "UpdateDefaultAutoScalingConfiguration"),
+    input = M.UpdateDefaultAutoScalingConfigurationInput,
+    output = M.UpdateDefaultAutoScalingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateService = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "UpdateService"),
+    input = M.UpdateServiceInput,
+    output = M.UpdateServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVpcIngressConnection = schema.operation({
+    id = id.from("com.amazonaws.apprunner", "UpdateVpcIngressConnection"),
+    input = M.UpdateVpcIngressConnectionInput,
+    output = M.UpdateVpcIngressConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

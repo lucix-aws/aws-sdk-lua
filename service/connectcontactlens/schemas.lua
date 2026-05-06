@@ -421,4 +421,26 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.connectcontactlens", "AmazonConnectContactLens"),
+    version = "2020-08-21",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRealtimeContactAnalysisSegments = schema.operation({
+    id = id.from("com.amazonaws.connectcontactlens", "ListRealtimeContactAnalysisSegments"),
+    input = M.ListRealtimeContactAnalysisSegmentsInput,
+    output = M.ListRealtimeContactAnalysisSegmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/realtime-contact-analysis/analysis-segments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

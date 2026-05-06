@@ -5839,4 +5839,531 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.codedeploy", "CodeDeploy_20141006"),
+    version = "2014-10-06",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTagsToOnPremisesInstances = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "AddTagsToOnPremisesInstances"),
+    input = M.AddTagsToOnPremisesInstancesInput,
+    output = M.AddTagsToOnPremisesInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetApplicationRevisions = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "BatchGetApplicationRevisions"),
+    input = M.BatchGetApplicationRevisionsInput,
+    output = M.BatchGetApplicationRevisionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetApplications = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "BatchGetApplications"),
+    input = M.BatchGetApplicationsInput,
+    output = M.BatchGetApplicationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetDeploymentGroups = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "BatchGetDeploymentGroups"),
+    input = M.BatchGetDeploymentGroupsInput,
+    output = M.BatchGetDeploymentGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetDeploymentInstances = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "BatchGetDeploymentInstances"),
+    input = M.BatchGetDeploymentInstancesInput,
+    output = M.BatchGetDeploymentInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetDeployments = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "BatchGetDeployments"),
+    input = M.BatchGetDeploymentsInput,
+    output = M.BatchGetDeploymentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetDeploymentTargets = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "BatchGetDeploymentTargets"),
+    input = M.BatchGetDeploymentTargetsInput,
+    output = M.BatchGetDeploymentTargetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetOnPremisesInstances = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "BatchGetOnPremisesInstances"),
+    input = M.BatchGetOnPremisesInstancesInput,
+    output = M.BatchGetOnPremisesInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ContinueDeployment = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "ContinueDeployment"),
+    input = M.ContinueDeploymentInput,
+    output = M.ContinueDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDeployment = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "CreateDeployment"),
+    input = M.CreateDeploymentInput,
+    output = M.CreateDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDeploymentConfig = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "CreateDeploymentConfig"),
+    input = M.CreateDeploymentConfigInput,
+    output = M.CreateDeploymentConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDeploymentGroup = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "CreateDeploymentGroup"),
+    input = M.CreateDeploymentGroupInput,
+    output = M.CreateDeploymentGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDeploymentConfig = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "DeleteDeploymentConfig"),
+    input = M.DeleteDeploymentConfigInput,
+    output = M.DeleteDeploymentConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDeploymentGroup = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "DeleteDeploymentGroup"),
+    input = M.DeleteDeploymentGroupInput,
+    output = M.DeleteDeploymentGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGitHubAccountToken = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "DeleteGitHubAccountToken"),
+    input = M.DeleteGitHubAccountTokenInput,
+    output = M.DeleteGitHubAccountTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcesByExternalId = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "DeleteResourcesByExternalId"),
+    input = M.DeleteResourcesByExternalIdInput,
+    output = M.DeleteResourcesByExternalIdOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterOnPremisesInstance = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "DeregisterOnPremisesInstance"),
+    input = M.DeregisterOnPremisesInstanceInput,
+    output = M.DeregisterOnPremisesInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplication = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "GetApplication"),
+    input = M.GetApplicationInput,
+    output = M.GetApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplicationRevision = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "GetApplicationRevision"),
+    input = M.GetApplicationRevisionInput,
+    output = M.GetApplicationRevisionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeployment = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "GetDeployment"),
+    input = M.GetDeploymentInput,
+    output = M.GetDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeploymentConfig = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "GetDeploymentConfig"),
+    input = M.GetDeploymentConfigInput,
+    output = M.GetDeploymentConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeploymentGroup = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "GetDeploymentGroup"),
+    input = M.GetDeploymentGroupInput,
+    output = M.GetDeploymentGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeploymentInstance = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "GetDeploymentInstance"),
+    input = M.GetDeploymentInstanceInput,
+    output = M.GetDeploymentInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeploymentTarget = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "GetDeploymentTarget"),
+    input = M.GetDeploymentTargetInput,
+    output = M.GetDeploymentTargetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOnPremisesInstance = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "GetOnPremisesInstance"),
+    input = M.GetOnPremisesInstanceInput,
+    output = M.GetOnPremisesInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationRevisions = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "ListApplicationRevisions"),
+    input = M.ListApplicationRevisionsInput,
+    output = M.ListApplicationRevisionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeploymentConfigs = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "ListDeploymentConfigs"),
+    input = M.ListDeploymentConfigsInput,
+    output = M.ListDeploymentConfigsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeploymentGroups = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "ListDeploymentGroups"),
+    input = M.ListDeploymentGroupsInput,
+    output = M.ListDeploymentGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeploymentInstances = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "ListDeploymentInstances"),
+    input = M.ListDeploymentInstancesInput,
+    output = M.ListDeploymentInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeployments = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "ListDeployments"),
+    input = M.ListDeploymentsInput,
+    output = M.ListDeploymentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeploymentTargets = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "ListDeploymentTargets"),
+    input = M.ListDeploymentTargetsInput,
+    output = M.ListDeploymentTargetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGitHubAccountTokenNames = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "ListGitHubAccountTokenNames"),
+    input = M.ListGitHubAccountTokenNamesInput,
+    output = M.ListGitHubAccountTokenNamesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOnPremisesInstances = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "ListOnPremisesInstances"),
+    input = M.ListOnPremisesInstancesInput,
+    output = M.ListOnPremisesInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLifecycleEventHookExecutionStatus = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "PutLifecycleEventHookExecutionStatus"),
+    input = M.PutLifecycleEventHookExecutionStatusInput,
+    output = M.PutLifecycleEventHookExecutionStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterApplicationRevision = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "RegisterApplicationRevision"),
+    input = M.RegisterApplicationRevisionInput,
+    output = M.RegisterApplicationRevisionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterOnPremisesInstance = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "RegisterOnPremisesInstance"),
+    input = M.RegisterOnPremisesInstanceInput,
+    output = M.RegisterOnPremisesInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTagsFromOnPremisesInstances = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "RemoveTagsFromOnPremisesInstances"),
+    input = M.RemoveTagsFromOnPremisesInstancesInput,
+    output = M.RemoveTagsFromOnPremisesInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SkipWaitTimeForInstanceTermination = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "SkipWaitTimeForInstanceTermination"),
+    input = M.SkipWaitTimeForInstanceTerminationInput,
+    output = M.SkipWaitTimeForInstanceTerminationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDeployment = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "StopDeployment"),
+    input = M.StopDeploymentInput,
+    output = M.StopDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDeploymentGroup = schema.operation({
+    id = id.from("com.amazonaws.codedeploy", "UpdateDeploymentGroup"),
+    input = M.UpdateDeploymentGroupInput,
+    output = M.UpdateDeploymentGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

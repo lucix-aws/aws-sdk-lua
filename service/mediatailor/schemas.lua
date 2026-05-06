@@ -6228,4 +6228,590 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.mediatailor", "MediaTailor"),
+    version = "2018-04-23",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfigureLogsForChannel = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "ConfigureLogsForChannel"),
+    input = M.ConfigureLogsForChannelInput,
+    output = M.ConfigureLogsForChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/configureLogs/channel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfigureLogsForPlaybackConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "ConfigureLogsForPlaybackConfiguration"),
+    input = M.ConfigureLogsForPlaybackConfigurationInput,
+    output = M.ConfigureLogsForPlaybackConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/configureLogs/playbackConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChannel = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "CreateChannel"),
+    input = M.CreateChannelInput,
+    output = M.CreateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channel/{ChannelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLiveSource = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "CreateLiveSource"),
+    input = M.CreateLiveSourceInput,
+    output = M.CreateLiveSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePrefetchSchedule = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "CreatePrefetchSchedule"),
+    input = M.CreatePrefetchScheduleInput,
+    output = M.CreatePrefetchScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prefetchSchedule/{PlaybackConfigurationName}/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProgram = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "CreateProgram"),
+    input = M.CreateProgramInput,
+    output = M.CreateProgramOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channel/{ChannelName}/program/{ProgramName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSourceLocation = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "CreateSourceLocation"),
+    input = M.CreateSourceLocationInput,
+    output = M.CreateSourceLocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sourceLocation/{SourceLocationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVodSource = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "CreateVodSource"),
+    input = M.CreateVodSourceInput,
+    output = M.CreateVodSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChannel = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "DeleteChannel"),
+    input = M.DeleteChannelInput,
+    output = M.DeleteChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/channel/{ChannelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChannelPolicy = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "DeleteChannelPolicy"),
+    input = M.DeleteChannelPolicyInput,
+    output = M.DeleteChannelPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/channel/{ChannelName}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFunction = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "DeleteFunction"),
+    input = M.DeleteFunctionInput,
+    output = M.DeleteFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/function/{FunctionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLiveSource = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "DeleteLiveSource"),
+    input = M.DeleteLiveSourceInput,
+    output = M.DeleteLiveSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePlaybackConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "DeletePlaybackConfiguration"),
+    input = M.DeletePlaybackConfigurationInput,
+    output = M.DeletePlaybackConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/playbackConfiguration/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePrefetchSchedule = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "DeletePrefetchSchedule"),
+    input = M.DeletePrefetchScheduleInput,
+    output = M.DeletePrefetchScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prefetchSchedule/{PlaybackConfigurationName}/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProgram = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "DeleteProgram"),
+    input = M.DeleteProgramInput,
+    output = M.DeleteProgramOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/channel/{ChannelName}/program/{ProgramName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSourceLocation = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "DeleteSourceLocation"),
+    input = M.DeleteSourceLocationInput,
+    output = M.DeleteSourceLocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sourceLocation/{SourceLocationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVodSource = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "DeleteVodSource"),
+    input = M.DeleteVodSourceInput,
+    output = M.DeleteVodSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChannel = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "DescribeChannel"),
+    input = M.DescribeChannelInput,
+    output = M.DescribeChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channel/{ChannelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLiveSource = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "DescribeLiveSource"),
+    input = M.DescribeLiveSourceInput,
+    output = M.DescribeLiveSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProgram = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "DescribeProgram"),
+    input = M.DescribeProgramInput,
+    output = M.DescribeProgramOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channel/{ChannelName}/program/{ProgramName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSourceLocation = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "DescribeSourceLocation"),
+    input = M.DescribeSourceLocationInput,
+    output = M.DescribeSourceLocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sourceLocation/{SourceLocationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVodSource = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "DescribeVodSource"),
+    input = M.DescribeVodSourceInput,
+    output = M.DescribeVodSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChannelPolicy = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "GetChannelPolicy"),
+    input = M.GetChannelPolicyInput,
+    output = M.GetChannelPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channel/{ChannelName}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChannelSchedule = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "GetChannelSchedule"),
+    input = M.GetChannelScheduleInput,
+    output = M.GetChannelScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channel/{ChannelName}/schedule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFunction = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "GetFunction"),
+    input = M.GetFunctionInput,
+    output = M.GetFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/function/{FunctionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPlaybackConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "GetPlaybackConfiguration"),
+    input = M.GetPlaybackConfigurationInput,
+    output = M.GetPlaybackConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/playbackConfiguration/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPrefetchSchedule = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "GetPrefetchSchedule"),
+    input = M.GetPrefetchScheduleInput,
+    output = M.GetPrefetchScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prefetchSchedule/{PlaybackConfigurationName}/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAlerts = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "ListAlerts"),
+    input = M.ListAlertsInput,
+    output = M.ListAlertsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/alerts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannels = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "ListChannels"),
+    input = M.ListChannelsInput,
+    output = M.ListChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFunctions = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "ListFunctions"),
+    input = M.ListFunctionsInput,
+    output = M.ListFunctionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/functions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLiveSources = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "ListLiveSources"),
+    input = M.ListLiveSourcesInput,
+    output = M.ListLiveSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sourceLocation/{SourceLocationName}/liveSources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPlaybackConfigurations = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "ListPlaybackConfigurations"),
+    input = M.ListPlaybackConfigurationsInput,
+    output = M.ListPlaybackConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/playbackConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPrefetchSchedules = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "ListPrefetchSchedules"),
+    input = M.ListPrefetchSchedulesInput,
+    output = M.ListPrefetchSchedulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prefetchSchedule/{PlaybackConfigurationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSourceLocations = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "ListSourceLocations"),
+    input = M.ListSourceLocationsInput,
+    output = M.ListSourceLocationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sourceLocations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVodSources = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "ListVodSources"),
+    input = M.ListVodSourcesInput,
+    output = M.ListVodSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sourceLocation/{SourceLocationName}/vodSources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutChannelPolicy = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "PutChannelPolicy"),
+    input = M.PutChannelPolicyInput,
+    output = M.PutChannelPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channel/{ChannelName}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFunction = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "PutFunction"),
+    input = M.PutFunctionInput,
+    output = M.PutFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/function/{FunctionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPlaybackConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "PutPlaybackConfiguration"),
+    input = M.PutPlaybackConfigurationInput,
+    output = M.PutPlaybackConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/playbackConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartChannel = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "StartChannel"),
+    input = M.StartChannelInput,
+    output = M.StartChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channel/{ChannelName}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopChannel = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "StopChannel"),
+    input = M.StopChannelInput,
+    output = M.StopChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channel/{ChannelName}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChannel = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "UpdateChannel"),
+    input = M.UpdateChannelInput,
+    output = M.UpdateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channel/{ChannelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLiveSource = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "UpdateLiveSource"),
+    input = M.UpdateLiveSourceInput,
+    output = M.UpdateLiveSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProgram = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "UpdateProgram"),
+    input = M.UpdateProgramInput,
+    output = M.UpdateProgramOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channel/{ChannelName}/program/{ProgramName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSourceLocation = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "UpdateSourceLocation"),
+    input = M.UpdateSourceLocationInput,
+    output = M.UpdateSourceLocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sourceLocation/{SourceLocationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVodSource = schema.operation({
+    id = id.from("com.amazonaws.mediatailor", "UpdateVodSource"),
+    input = M.UpdateVodSourceInput,
+    output = M.UpdateVodSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

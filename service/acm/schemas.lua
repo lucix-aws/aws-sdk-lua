@@ -2268,4 +2268,201 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.acm", "CertificateManager"),
+    version = "2015-12-08",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTagsToCertificate = schema.operation({
+    id = id.from("com.amazonaws.acm", "AddTagsToCertificate"),
+    input = M.AddTagsToCertificateInput,
+    output = M.AddTagsToCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCertificate = schema.operation({
+    id = id.from("com.amazonaws.acm", "DeleteCertificate"),
+    input = M.DeleteCertificateInput,
+    output = M.DeleteCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCertificate = schema.operation({
+    id = id.from("com.amazonaws.acm", "DescribeCertificate"),
+    input = M.DescribeCertificateInput,
+    output = M.DescribeCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportCertificate = schema.operation({
+    id = id.from("com.amazonaws.acm", "ExportCertificate"),
+    input = M.ExportCertificateInput,
+    output = M.ExportCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountConfiguration = schema.operation({
+    id = id.from("com.amazonaws.acm", "GetAccountConfiguration"),
+    input = M.GetAccountConfigurationInput,
+    output = M.GetAccountConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCertificate = schema.operation({
+    id = id.from("com.amazonaws.acm", "GetCertificate"),
+    input = M.GetCertificateInput,
+    output = M.GetCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportCertificate = schema.operation({
+    id = id.from("com.amazonaws.acm", "ImportCertificate"),
+    input = M.ImportCertificateInput,
+    output = M.ImportCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCertificates = schema.operation({
+    id = id.from("com.amazonaws.acm", "ListCertificates"),
+    input = M.ListCertificatesInput,
+    output = M.ListCertificatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForCertificate = schema.operation({
+    id = id.from("com.amazonaws.acm", "ListTagsForCertificate"),
+    input = M.ListTagsForCertificateInput,
+    output = M.ListTagsForCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountConfiguration = schema.operation({
+    id = id.from("com.amazonaws.acm", "PutAccountConfiguration"),
+    input = M.PutAccountConfigurationInput,
+    output = M.PutAccountConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTagsFromCertificate = schema.operation({
+    id = id.from("com.amazonaws.acm", "RemoveTagsFromCertificate"),
+    input = M.RemoveTagsFromCertificateInput,
+    output = M.RemoveTagsFromCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RenewCertificate = schema.operation({
+    id = id.from("com.amazonaws.acm", "RenewCertificate"),
+    input = M.RenewCertificateInput,
+    output = M.RenewCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RequestCertificate = schema.operation({
+    id = id.from("com.amazonaws.acm", "RequestCertificate"),
+    input = M.RequestCertificateInput,
+    output = M.RequestCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResendValidationEmail = schema.operation({
+    id = id.from("com.amazonaws.acm", "ResendValidationEmail"),
+    input = M.ResendValidationEmailInput,
+    output = M.ResendValidationEmailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeCertificate = schema.operation({
+    id = id.from("com.amazonaws.acm", "RevokeCertificate"),
+    input = M.RevokeCertificateInput,
+    output = M.RevokeCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchCertificates = schema.operation({
+    id = id.from("com.amazonaws.acm", "SearchCertificates"),
+    input = M.SearchCertificatesInput,
+    output = M.SearchCertificatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCertificateOptions = schema.operation({
+    id = id.from("com.amazonaws.acm", "UpdateCertificateOptions"),
+    input = M.UpdateCertificateOptionsInput,
+    output = M.UpdateCertificateOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

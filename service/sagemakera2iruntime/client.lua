@@ -7,6 +7,7 @@ local endpoint_rules = require("sagemakera2iruntime.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("sagemakera2iruntime.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sagemaker", signing_region = cfg.region } }
                 else
@@ -49,68 +52,23 @@ function M.new(cfg)
 end
 
 function Client:deleteHumanLoop(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteHumanLoop",
-        input_schema = schemas.DeleteHumanLoopInput,
-        output_schema = schemas.DeleteHumanLoopOutput,
-        http_method = "DELETE",
-        http_path = "/human-loops/{HumanLoopName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteHumanLoop, input, options)
 end
 
 function Client:describeHumanLoop(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeHumanLoop",
-        input_schema = schemas.DescribeHumanLoopInput,
-        output_schema = schemas.DescribeHumanLoopOutput,
-        http_method = "GET",
-        http_path = "/human-loops/{HumanLoopName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeHumanLoop, input, options)
 end
 
 function Client:listHumanLoops(input, options)
-    return self:invokeOperation(input, {
-        name = "ListHumanLoops",
-        input_schema = schemas.ListHumanLoopsInput,
-        output_schema = schemas.ListHumanLoopsOutput,
-        http_method = "GET",
-        http_path = "/human-loops",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListHumanLoops, input, options)
 end
 
 function Client:startHumanLoop(input, options)
-    return self:invokeOperation(input, {
-        name = "StartHumanLoop",
-        input_schema = schemas.StartHumanLoopInput,
-        output_schema = schemas.StartHumanLoopOutput,
-        http_method = "POST",
-        http_path = "/human-loops",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartHumanLoop, input, options)
 end
 
 function Client:stopHumanLoop(input, options)
-    return self:invokeOperation(input, {
-        name = "StopHumanLoop",
-        input_schema = schemas.StopHumanLoopInput,
-        output_schema = schemas.StopHumanLoopOutput,
-        http_method = "POST",
-        http_path = "/human-loops/stop",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopHumanLoop, input, options)
 end
 
 return M

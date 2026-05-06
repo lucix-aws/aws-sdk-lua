@@ -4652,4 +4652,458 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.m2", "AwsSupernovaControlPlaneService"),
+    version = "2021-04-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelBatchJobExecution = schema.operation({
+    id = id.from("com.amazonaws.m2", "CancelBatchJobExecution"),
+    input = M.CancelBatchJobExecutionInput,
+    output = M.CancelBatchJobExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/batch-job-executions/{executionId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.m2", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataSetExportTask = schema.operation({
+    id = id.from("com.amazonaws.m2", "CreateDataSetExportTask"),
+    input = M.CreateDataSetExportTaskInput,
+    output = M.CreateDataSetExportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/dataset-export-task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataSetImportTask = schema.operation({
+    id = id.from("com.amazonaws.m2", "CreateDataSetImportTask"),
+    input = M.CreateDataSetImportTaskInput,
+    output = M.CreateDataSetImportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/dataset-import-task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDeployment = schema.operation({
+    id = id.from("com.amazonaws.m2", "CreateDeployment"),
+    input = M.CreateDeploymentInput,
+    output = M.CreateDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/deployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.m2", "CreateEnvironment"),
+    input = M.CreateEnvironmentInput,
+    output = M.CreateEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/environments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.m2", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplicationFromEnvironment = schema.operation({
+    id = id.from("com.amazonaws.m2", "DeleteApplicationFromEnvironment"),
+    input = M.DeleteApplicationFromEnvironmentInput,
+    output = M.DeleteApplicationFromEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/environment/{environmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironment = schema.operation({
+    id = id.from("com.amazonaws.m2", "DeleteEnvironment"),
+    input = M.DeleteEnvironmentInput,
+    output = M.DeleteEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/environments/{environmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplication = schema.operation({
+    id = id.from("com.amazonaws.m2", "GetApplication"),
+    input = M.GetApplicationInput,
+    output = M.GetApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplicationVersion = schema.operation({
+    id = id.from("com.amazonaws.m2", "GetApplicationVersion"),
+    input = M.GetApplicationVersionInput,
+    output = M.GetApplicationVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/versions/{applicationVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBatchJobExecution = schema.operation({
+    id = id.from("com.amazonaws.m2", "GetBatchJobExecution"),
+    input = M.GetBatchJobExecutionInput,
+    output = M.GetBatchJobExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/batch-job-executions/{executionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataSetDetails = schema.operation({
+    id = id.from("com.amazonaws.m2", "GetDataSetDetails"),
+    input = M.GetDataSetDetailsInput,
+    output = M.GetDataSetDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/datasets/{dataSetName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataSetExportTask = schema.operation({
+    id = id.from("com.amazonaws.m2", "GetDataSetExportTask"),
+    input = M.GetDataSetExportTaskInput,
+    output = M.GetDataSetExportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/dataset-export-tasks/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataSetImportTask = schema.operation({
+    id = id.from("com.amazonaws.m2", "GetDataSetImportTask"),
+    input = M.GetDataSetImportTaskInput,
+    output = M.GetDataSetImportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/dataset-import-tasks/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeployment = schema.operation({
+    id = id.from("com.amazonaws.m2", "GetDeployment"),
+    input = M.GetDeploymentInput,
+    output = M.GetDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/deployments/{deploymentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironment = schema.operation({
+    id = id.from("com.amazonaws.m2", "GetEnvironment"),
+    input = M.GetEnvironmentInput,
+    output = M.GetEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/environments/{environmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSignedBluinsightsUrl = schema.operation({
+    id = id.from("com.amazonaws.m2", "GetSignedBluinsightsUrl"),
+    input = M.GetSignedBluinsightsUrlInput,
+    output = M.GetSignedBluinsightsUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/signed-bi-url" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.m2", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationVersions = schema.operation({
+    id = id.from("com.amazonaws.m2", "ListApplicationVersions"),
+    input = M.ListApplicationVersionsInput,
+    output = M.ListApplicationVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBatchJobDefinitions = schema.operation({
+    id = id.from("com.amazonaws.m2", "ListBatchJobDefinitions"),
+    input = M.ListBatchJobDefinitionsInput,
+    output = M.ListBatchJobDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/batch-job-definitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBatchJobExecutions = schema.operation({
+    id = id.from("com.amazonaws.m2", "ListBatchJobExecutions"),
+    input = M.ListBatchJobExecutionsInput,
+    output = M.ListBatchJobExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/batch-job-executions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBatchJobRestartPoints = schema.operation({
+    id = id.from("com.amazonaws.m2", "ListBatchJobRestartPoints"),
+    input = M.ListBatchJobRestartPointsInput,
+    output = M.ListBatchJobRestartPointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/batch-job-executions/{executionId}/steps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSetExportHistory = schema.operation({
+    id = id.from("com.amazonaws.m2", "ListDataSetExportHistory"),
+    input = M.ListDataSetExportHistoryInput,
+    output = M.ListDataSetExportHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/dataset-export-tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSetImportHistory = schema.operation({
+    id = id.from("com.amazonaws.m2", "ListDataSetImportHistory"),
+    input = M.ListDataSetImportHistoryInput,
+    output = M.ListDataSetImportHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/dataset-import-tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSets = schema.operation({
+    id = id.from("com.amazonaws.m2", "ListDataSets"),
+    input = M.ListDataSetsInput,
+    output = M.ListDataSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/datasets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeployments = schema.operation({
+    id = id.from("com.amazonaws.m2", "ListDeployments"),
+    input = M.ListDeploymentsInput,
+    output = M.ListDeploymentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/deployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEngineVersions = schema.operation({
+    id = id.from("com.amazonaws.m2", "ListEngineVersions"),
+    input = M.ListEngineVersionsInput,
+    output = M.ListEngineVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/engine-versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironments = schema.operation({
+    id = id.from("com.amazonaws.m2", "ListEnvironments"),
+    input = M.ListEnvironmentsInput,
+    output = M.ListEnvironmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/environments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.m2", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartApplication = schema.operation({
+    id = id.from("com.amazonaws.m2", "StartApplication"),
+    input = M.StartApplicationInput,
+    output = M.StartApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartBatchJob = schema.operation({
+    id = id.from("com.amazonaws.m2", "StartBatchJob"),
+    input = M.StartBatchJobInput,
+    output = M.StartBatchJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/batch-job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopApplication = schema.operation({
+    id = id.from("com.amazonaws.m2", "StopApplication"),
+    input = M.StopApplicationInput,
+    output = M.StopApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.m2", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.m2", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.m2", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/applications/{applicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.m2", "UpdateEnvironment"),
+    input = M.UpdateEnvironmentInput,
+    output = M.UpdateEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/environments/{environmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

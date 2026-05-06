@@ -2329,4 +2329,300 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.comprehendmedical", "ComprehendMedical_20181030"),
+    version = "2018-10-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEntitiesDetectionV2Job = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "DescribeEntitiesDetectionV2Job"),
+    input = M.DescribeEntitiesDetectionV2JobInput,
+    output = M.DescribeEntitiesDetectionV2JobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeICD10CMInferenceJob = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "DescribeICD10CMInferenceJob"),
+    input = M.DescribeICD10CMInferenceJobInput,
+    output = M.DescribeICD10CMInferenceJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePHIDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "DescribePHIDetectionJob"),
+    input = M.DescribePHIDetectionJobInput,
+    output = M.DescribePHIDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRxNormInferenceJob = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "DescribeRxNormInferenceJob"),
+    input = M.DescribeRxNormInferenceJobInput,
+    output = M.DescribeRxNormInferenceJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSNOMEDCTInferenceJob = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "DescribeSNOMEDCTInferenceJob"),
+    input = M.DescribeSNOMEDCTInferenceJobInput,
+    output = M.DescribeSNOMEDCTInferenceJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectEntities = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "DetectEntities"),
+    input = M.DetectEntitiesInput,
+    output = M.DetectEntitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectEntitiesV2 = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "DetectEntitiesV2"),
+    input = M.DetectEntitiesV2Input,
+    output = M.DetectEntitiesV2Output,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectPHI = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "DetectPHI"),
+    input = M.DetectPHIInput,
+    output = M.DetectPHIOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InferICD10CM = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "InferICD10CM"),
+    input = M.InferICD10CMInput,
+    output = M.InferICD10CMOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InferRxNorm = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "InferRxNorm"),
+    input = M.InferRxNormInput,
+    output = M.InferRxNormOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InferSNOMEDCT = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "InferSNOMEDCT"),
+    input = M.InferSNOMEDCTInput,
+    output = M.InferSNOMEDCTOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEntitiesDetectionV2Jobs = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "ListEntitiesDetectionV2Jobs"),
+    input = M.ListEntitiesDetectionV2JobsInput,
+    output = M.ListEntitiesDetectionV2JobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListICD10CMInferenceJobs = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "ListICD10CMInferenceJobs"),
+    input = M.ListICD10CMInferenceJobsInput,
+    output = M.ListICD10CMInferenceJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPHIDetectionJobs = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "ListPHIDetectionJobs"),
+    input = M.ListPHIDetectionJobsInput,
+    output = M.ListPHIDetectionJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRxNormInferenceJobs = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "ListRxNormInferenceJobs"),
+    input = M.ListRxNormInferenceJobsInput,
+    output = M.ListRxNormInferenceJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSNOMEDCTInferenceJobs = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "ListSNOMEDCTInferenceJobs"),
+    input = M.ListSNOMEDCTInferenceJobsInput,
+    output = M.ListSNOMEDCTInferenceJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartEntitiesDetectionV2Job = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "StartEntitiesDetectionV2Job"),
+    input = M.StartEntitiesDetectionV2JobInput,
+    output = M.StartEntitiesDetectionV2JobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartICD10CMInferenceJob = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "StartICD10CMInferenceJob"),
+    input = M.StartICD10CMInferenceJobInput,
+    output = M.StartICD10CMInferenceJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartPHIDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "StartPHIDetectionJob"),
+    input = M.StartPHIDetectionJobInput,
+    output = M.StartPHIDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRxNormInferenceJob = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "StartRxNormInferenceJob"),
+    input = M.StartRxNormInferenceJobInput,
+    output = M.StartRxNormInferenceJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSNOMEDCTInferenceJob = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "StartSNOMEDCTInferenceJob"),
+    input = M.StartSNOMEDCTInferenceJobInput,
+    output = M.StartSNOMEDCTInferenceJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopEntitiesDetectionV2Job = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "StopEntitiesDetectionV2Job"),
+    input = M.StopEntitiesDetectionV2JobInput,
+    output = M.StopEntitiesDetectionV2JobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopICD10CMInferenceJob = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "StopICD10CMInferenceJob"),
+    input = M.StopICD10CMInferenceJobInput,
+    output = M.StopICD10CMInferenceJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopPHIDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "StopPHIDetectionJob"),
+    input = M.StopPHIDetectionJobInput,
+    output = M.StopPHIDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopRxNormInferenceJob = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "StopRxNormInferenceJob"),
+    input = M.StopRxNormInferenceJobInput,
+    output = M.StopRxNormInferenceJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopSNOMEDCTInferenceJob = schema.operation({
+    id = id.from("com.amazonaws.comprehendmedical", "StopSNOMEDCTInferenceJob"),
+    input = M.StopSNOMEDCTInferenceJobInput,
+    output = M.StopSNOMEDCTInferenceJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

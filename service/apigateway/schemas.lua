@@ -11842,4 +11842,1502 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.apigateway", "BackplaneControlService"),
+    version = "2015-07-09",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApiKey = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateApiKey"),
+    input = M.CreateApiKeyInput,
+    output = M.CreateApiKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apikeys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAuthorizer = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateAuthorizer"),
+    input = M.CreateAuthorizerInput,
+    output = M.CreateAuthorizerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/restapis/{restApiId}/authorizers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBasePathMapping = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateBasePathMapping"),
+    input = M.CreateBasePathMappingInput,
+    output = M.CreateBasePathMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domainnames/{domainName}/basepathmappings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDeployment = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateDeployment"),
+    input = M.CreateDeploymentInput,
+    output = M.CreateDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/restapis/{restApiId}/deployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDocumentationPart = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateDocumentationPart"),
+    input = M.CreateDocumentationPartInput,
+    output = M.CreateDocumentationPartOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/restapis/{restApiId}/documentation/parts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDocumentationVersion = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateDocumentationVersion"),
+    input = M.CreateDocumentationVersionInput,
+    output = M.CreateDocumentationVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/restapis/{restApiId}/documentation/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomainName = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateDomainName"),
+    input = M.CreateDomainNameInput,
+    output = M.CreateDomainNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domainnames" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomainNameAccessAssociation = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateDomainNameAccessAssociation"),
+    input = M.CreateDomainNameAccessAssociationInput,
+    output = M.CreateDomainNameAccessAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domainnameaccessassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateModel = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateModel"),
+    input = M.CreateModelInput,
+    output = M.CreateModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/restapis/{restApiId}/models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRequestValidator = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateRequestValidator"),
+    input = M.CreateRequestValidatorInput,
+    output = M.CreateRequestValidatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/restapis/{restApiId}/requestvalidators" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResource = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateResource"),
+    input = M.CreateResourceInput,
+    output = M.CreateResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/restapis/{restApiId}/resources/{parentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRestApi = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateRestApi"),
+    input = M.CreateRestApiInput,
+    output = M.CreateRestApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/restapis" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStage = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateStage"),
+    input = M.CreateStageInput,
+    output = M.CreateStageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/restapis/{restApiId}/stages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUsagePlan = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateUsagePlan"),
+    input = M.CreateUsagePlanInput,
+    output = M.CreateUsagePlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/usageplans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUsagePlanKey = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateUsagePlanKey"),
+    input = M.CreateUsagePlanKeyInput,
+    output = M.CreateUsagePlanKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/usageplans/{usagePlanId}/keys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVpcLink = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "CreateVpcLink"),
+    input = M.CreateVpcLinkInput,
+    output = M.CreateVpcLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/vpclinks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApiKey = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteApiKey"),
+    input = M.DeleteApiKeyInput,
+    output = M.DeleteApiKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/apikeys/{apiKey}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAuthorizer = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteAuthorizer"),
+    input = M.DeleteAuthorizerInput,
+    output = M.DeleteAuthorizerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/authorizers/{authorizerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBasePathMapping = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteBasePathMapping"),
+    input = M.DeleteBasePathMappingInput,
+    output = M.DeleteBasePathMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domainnames/{domainName}/basepathmappings/{basePath}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteClientCertificate = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteClientCertificate"),
+    input = M.DeleteClientCertificateInput,
+    output = M.DeleteClientCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/clientcertificates/{clientCertificateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDeployment = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteDeployment"),
+    input = M.DeleteDeploymentInput,
+    output = M.DeleteDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/deployments/{deploymentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDocumentationPart = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteDocumentationPart"),
+    input = M.DeleteDocumentationPartInput,
+    output = M.DeleteDocumentationPartOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/documentation/parts/{documentationPartId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDocumentationVersion = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteDocumentationVersion"),
+    input = M.DeleteDocumentationVersionInput,
+    output = M.DeleteDocumentationVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/documentation/versions/{documentationVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomainName = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteDomainName"),
+    input = M.DeleteDomainNameInput,
+    output = M.DeleteDomainNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domainnames/{domainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomainNameAccessAssociation = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteDomainNameAccessAssociation"),
+    input = M.DeleteDomainNameAccessAssociationInput,
+    output = M.DeleteDomainNameAccessAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domainnameaccessassociations/{domainNameAccessAssociationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGatewayResponse = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteGatewayResponse"),
+    input = M.DeleteGatewayResponseInput,
+    output = M.DeleteGatewayResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/gatewayresponses/{responseType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIntegration = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteIntegration"),
+    input = M.DeleteIntegrationInput,
+    output = M.DeleteIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIntegrationResponse = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteIntegrationResponse"),
+    input = M.DeleteIntegrationResponseInput,
+    output = M.DeleteIntegrationResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration/responses/{statusCode}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMethod = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteMethod"),
+    input = M.DeleteMethodInput,
+    output = M.DeleteMethodOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMethodResponse = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteMethodResponse"),
+    input = M.DeleteMethodResponseInput,
+    output = M.DeleteMethodResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/responses/{statusCode}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteModel = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteModel"),
+    input = M.DeleteModelInput,
+    output = M.DeleteModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/models/{modelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRequestValidator = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteRequestValidator"),
+    input = M.DeleteRequestValidatorInput,
+    output = M.DeleteRequestValidatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/requestvalidators/{requestValidatorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResource = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteResource"),
+    input = M.DeleteResourceInput,
+    output = M.DeleteResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/resources/{resourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRestApi = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteRestApi"),
+    input = M.DeleteRestApiInput,
+    output = M.DeleteRestApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStage = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteStage"),
+    input = M.DeleteStageInput,
+    output = M.DeleteStageOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/stages/{stageName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUsagePlan = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteUsagePlan"),
+    input = M.DeleteUsagePlanInput,
+    output = M.DeleteUsagePlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/usageplans/{usagePlanId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUsagePlanKey = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteUsagePlanKey"),
+    input = M.DeleteUsagePlanKeyInput,
+    output = M.DeleteUsagePlanKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/usageplans/{usagePlanId}/keys/{keyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVpcLink = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "DeleteVpcLink"),
+    input = M.DeleteVpcLinkInput,
+    output = M.DeleteVpcLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/vpclinks/{vpcLinkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FlushStageAuthorizersCache = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "FlushStageAuthorizersCache"),
+    input = M.FlushStageAuthorizersCacheInput,
+    output = M.FlushStageAuthorizersCacheOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/stages/{stageName}/cache/authorizers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FlushStageCache = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "FlushStageCache"),
+    input = M.FlushStageCacheInput,
+    output = M.FlushStageCacheOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/restapis/{restApiId}/stages/{stageName}/cache/data" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateClientCertificate = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GenerateClientCertificate"),
+    input = M.GenerateClientCertificateInput,
+    output = M.GenerateClientCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clientcertificates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccount = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetAccount"),
+    input = M.GetAccountInput,
+    output = M.GetAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/account" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApiKey = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetApiKey"),
+    input = M.GetApiKeyInput,
+    output = M.GetApiKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apikeys/{apiKey}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApiKeys = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetApiKeys"),
+    input = M.GetApiKeysInput,
+    output = M.GetApiKeysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apikeys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAuthorizer = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetAuthorizer"),
+    input = M.GetAuthorizerInput,
+    output = M.GetAuthorizerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/authorizers/{authorizerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAuthorizers = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetAuthorizers"),
+    input = M.GetAuthorizersInput,
+    output = M.GetAuthorizersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/authorizers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBasePathMapping = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetBasePathMapping"),
+    input = M.GetBasePathMappingInput,
+    output = M.GetBasePathMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domainnames/{domainName}/basepathmappings/{basePath}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBasePathMappings = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetBasePathMappings"),
+    input = M.GetBasePathMappingsInput,
+    output = M.GetBasePathMappingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domainnames/{domainName}/basepathmappings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetClientCertificate = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetClientCertificate"),
+    input = M.GetClientCertificateInput,
+    output = M.GetClientCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clientcertificates/{clientCertificateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetClientCertificates = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetClientCertificates"),
+    input = M.GetClientCertificatesInput,
+    output = M.GetClientCertificatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clientcertificates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeployment = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetDeployment"),
+    input = M.GetDeploymentInput,
+    output = M.GetDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/deployments/{deploymentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeployments = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetDeployments"),
+    input = M.GetDeploymentsInput,
+    output = M.GetDeploymentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/deployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDocumentationPart = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetDocumentationPart"),
+    input = M.GetDocumentationPartInput,
+    output = M.GetDocumentationPartOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/documentation/parts/{documentationPartId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDocumentationParts = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetDocumentationParts"),
+    input = M.GetDocumentationPartsInput,
+    output = M.GetDocumentationPartsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/documentation/parts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDocumentationVersion = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetDocumentationVersion"),
+    input = M.GetDocumentationVersionInput,
+    output = M.GetDocumentationVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/documentation/versions/{documentationVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDocumentationVersions = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetDocumentationVersions"),
+    input = M.GetDocumentationVersionsInput,
+    output = M.GetDocumentationVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/documentation/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainName = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetDomainName"),
+    input = M.GetDomainNameInput,
+    output = M.GetDomainNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domainnames/{domainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainNameAccessAssociations = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetDomainNameAccessAssociations"),
+    input = M.GetDomainNameAccessAssociationsInput,
+    output = M.GetDomainNameAccessAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domainnameaccessassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainNames = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetDomainNames"),
+    input = M.GetDomainNamesInput,
+    output = M.GetDomainNamesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domainnames" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExport = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetExport"),
+    input = M.GetExportInput,
+    output = M.GetExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/stages/{stageName}/exports/{exportType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGatewayResponse = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetGatewayResponse"),
+    input = M.GetGatewayResponseInput,
+    output = M.GetGatewayResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/gatewayresponses/{responseType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGatewayResponses = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetGatewayResponses"),
+    input = M.GetGatewayResponsesInput,
+    output = M.GetGatewayResponsesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/gatewayresponses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIntegration = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetIntegration"),
+    input = M.GetIntegrationInput,
+    output = M.GetIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIntegrationResponse = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetIntegrationResponse"),
+    input = M.GetIntegrationResponseInput,
+    output = M.GetIntegrationResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration/responses/{statusCode}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMethod = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetMethod"),
+    input = M.GetMethodInput,
+    output = M.GetMethodOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMethodResponse = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetMethodResponse"),
+    input = M.GetMethodResponseInput,
+    output = M.GetMethodResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/responses/{statusCode}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetModel = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetModel"),
+    input = M.GetModelInput,
+    output = M.GetModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/models/{modelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetModels = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetModels"),
+    input = M.GetModelsInput,
+    output = M.GetModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetModelTemplate = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetModelTemplate"),
+    input = M.GetModelTemplateInput,
+    output = M.GetModelTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/models/{modelName}/default_template" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRequestValidator = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetRequestValidator"),
+    input = M.GetRequestValidatorInput,
+    output = M.GetRequestValidatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/requestvalidators/{requestValidatorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRequestValidators = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetRequestValidators"),
+    input = M.GetRequestValidatorsInput,
+    output = M.GetRequestValidatorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/requestvalidators" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResource = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetResource"),
+    input = M.GetResourceInput,
+    output = M.GetResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/resources/{resourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResources = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetResources"),
+    input = M.GetResourcesInput,
+    output = M.GetResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRestApi = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetRestApi"),
+    input = M.GetRestApiInput,
+    output = M.GetRestApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRestApis = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetRestApis"),
+    input = M.GetRestApisInput,
+    output = M.GetRestApisOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSdk = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetSdk"),
+    input = M.GetSdkInput,
+    output = M.GetSdkOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/stages/{stageName}/sdks/{sdkType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSdkType = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetSdkType"),
+    input = M.GetSdkTypeInput,
+    output = M.GetSdkTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sdktypes/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSdkTypes = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetSdkTypes"),
+    input = M.GetSdkTypesInput,
+    output = M.GetSdkTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sdktypes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStage = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetStage"),
+    input = M.GetStageInput,
+    output = M.GetStageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/stages/{stageName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStages = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetStages"),
+    input = M.GetStagesInput,
+    output = M.GetStagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/restapis/{restApiId}/stages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTags = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetTags"),
+    input = M.GetTagsInput,
+    output = M.GetTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUsage = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetUsage"),
+    input = M.GetUsageInput,
+    output = M.GetUsageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/usageplans/{usagePlanId}/usage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUsagePlan = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetUsagePlan"),
+    input = M.GetUsagePlanInput,
+    output = M.GetUsagePlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/usageplans/{usagePlanId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUsagePlanKey = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetUsagePlanKey"),
+    input = M.GetUsagePlanKeyInput,
+    output = M.GetUsagePlanKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/usageplans/{usagePlanId}/keys/{keyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUsagePlanKeys = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetUsagePlanKeys"),
+    input = M.GetUsagePlanKeysInput,
+    output = M.GetUsagePlanKeysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/usageplans/{usagePlanId}/keys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUsagePlans = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetUsagePlans"),
+    input = M.GetUsagePlansInput,
+    output = M.GetUsagePlansOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/usageplans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVpcLink = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetVpcLink"),
+    input = M.GetVpcLinkInput,
+    output = M.GetVpcLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/vpclinks/{vpcLinkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVpcLinks = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "GetVpcLinks"),
+    input = M.GetVpcLinksInput,
+    output = M.GetVpcLinksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/vpclinks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportApiKeys = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "ImportApiKeys"),
+    input = M.ImportApiKeysInput,
+    output = M.ImportApiKeysOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apikeys?mode=import" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportDocumentationParts = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "ImportDocumentationParts"),
+    input = M.ImportDocumentationPartsInput,
+    output = M.ImportDocumentationPartsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/restapis/{restApiId}/documentation/parts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportRestApi = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "ImportRestApi"),
+    input = M.ImportRestApiInput,
+    output = M.ImportRestApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/restapis?mode=import" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutGatewayResponse = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "PutGatewayResponse"),
+    input = M.PutGatewayResponseInput,
+    output = M.PutGatewayResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/restapis/{restApiId}/gatewayresponses/{responseType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutIntegration = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "PutIntegration"),
+    input = M.PutIntegrationInput,
+    output = M.PutIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutIntegrationResponse = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "PutIntegrationResponse"),
+    input = M.PutIntegrationResponseInput,
+    output = M.PutIntegrationResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration/responses/{statusCode}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMethod = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "PutMethod"),
+    input = M.PutMethodInput,
+    output = M.PutMethodOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMethodResponse = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "PutMethodResponse"),
+    input = M.PutMethodResponseInput,
+    output = M.PutMethodResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/responses/{statusCode}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRestApi = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "PutRestApi"),
+    input = M.PutRestApiInput,
+    output = M.PutRestApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/restapis/{restApiId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectDomainNameAccessAssociation = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "RejectDomainNameAccessAssociation"),
+    input = M.RejectDomainNameAccessAssociationInput,
+    output = M.RejectDomainNameAccessAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/rejectdomainnameaccessassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestInvokeAuthorizer = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "TestInvokeAuthorizer"),
+    input = M.TestInvokeAuthorizerInput,
+    output = M.TestInvokeAuthorizerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/restapis/{restApiId}/authorizers/{authorizerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestInvokeMethod = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "TestInvokeMethod"),
+    input = M.TestInvokeMethodInput,
+    output = M.TestInvokeMethodOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccount = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateAccount"),
+    input = M.UpdateAccountInput,
+    output = M.UpdateAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/account" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApiKey = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateApiKey"),
+    input = M.UpdateApiKeyInput,
+    output = M.UpdateApiKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/apikeys/{apiKey}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAuthorizer = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateAuthorizer"),
+    input = M.UpdateAuthorizerInput,
+    output = M.UpdateAuthorizerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/restapis/{restApiId}/authorizers/{authorizerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBasePathMapping = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateBasePathMapping"),
+    input = M.UpdateBasePathMappingInput,
+    output = M.UpdateBasePathMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/domainnames/{domainName}/basepathmappings/{basePath}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateClientCertificate = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateClientCertificate"),
+    input = M.UpdateClientCertificateInput,
+    output = M.UpdateClientCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/clientcertificates/{clientCertificateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDeployment = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateDeployment"),
+    input = M.UpdateDeploymentInput,
+    output = M.UpdateDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/restapis/{restApiId}/deployments/{deploymentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDocumentationPart = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateDocumentationPart"),
+    input = M.UpdateDocumentationPartInput,
+    output = M.UpdateDocumentationPartOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/restapis/{restApiId}/documentation/parts/{documentationPartId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDocumentationVersion = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateDocumentationVersion"),
+    input = M.UpdateDocumentationVersionInput,
+    output = M.UpdateDocumentationVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/restapis/{restApiId}/documentation/versions/{documentationVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomainName = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateDomainName"),
+    input = M.UpdateDomainNameInput,
+    output = M.UpdateDomainNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/domainnames/{domainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGatewayResponse = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateGatewayResponse"),
+    input = M.UpdateGatewayResponseInput,
+    output = M.UpdateGatewayResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/restapis/{restApiId}/gatewayresponses/{responseType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIntegration = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateIntegration"),
+    input = M.UpdateIntegrationInput,
+    output = M.UpdateIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIntegrationResponse = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateIntegrationResponse"),
+    input = M.UpdateIntegrationResponseInput,
+    output = M.UpdateIntegrationResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration/responses/{statusCode}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMethod = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateMethod"),
+    input = M.UpdateMethodInput,
+    output = M.UpdateMethodOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMethodResponse = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateMethodResponse"),
+    input = M.UpdateMethodResponseInput,
+    output = M.UpdateMethodResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/responses/{statusCode}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateModel = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateModel"),
+    input = M.UpdateModelInput,
+    output = M.UpdateModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/restapis/{restApiId}/models/{modelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRequestValidator = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateRequestValidator"),
+    input = M.UpdateRequestValidatorInput,
+    output = M.UpdateRequestValidatorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/restapis/{restApiId}/requestvalidators/{requestValidatorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResource = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateResource"),
+    input = M.UpdateResourceInput,
+    output = M.UpdateResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/restapis/{restApiId}/resources/{resourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRestApi = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateRestApi"),
+    input = M.UpdateRestApiInput,
+    output = M.UpdateRestApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/restapis/{restApiId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStage = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateStage"),
+    input = M.UpdateStageInput,
+    output = M.UpdateStageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/restapis/{restApiId}/stages/{stageName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUsage = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateUsage"),
+    input = M.UpdateUsageInput,
+    output = M.UpdateUsageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/usageplans/{usagePlanId}/keys/{keyId}/usage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUsagePlan = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateUsagePlan"),
+    input = M.UpdateUsagePlanInput,
+    output = M.UpdateUsagePlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/usageplans/{usagePlanId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVpcLink = schema.operation({
+    id = id.from("com.amazonaws.apigateway", "UpdateVpcLink"),
+    input = M.UpdateVpcLinkInput,
+    output = M.UpdateVpcLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/vpclinks/{vpcLinkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

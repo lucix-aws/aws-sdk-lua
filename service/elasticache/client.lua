@@ -7,6 +7,7 @@ local endpoint_rules = require("elasticache.endpoint_rules")
 local query_protocol = require("smithy.protocol.query")
 local schemas = require("elasticache.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "elasticache", signing_region = cfg.region } }
                 else
@@ -49,978 +52,303 @@ function M.new(cfg)
 end
 
 function Client:addTagsToResource(input, options)
-    return self:invokeOperation(input, {
-        name = "AddTagsToResource",
-        input_schema = schemas.AddTagsToResourceInput,
-        output_schema = schemas.AddTagsToResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddTagsToResource, input, options)
 end
 
 function Client:authorizeCacheSecurityGroupIngress(input, options)
-    return self:invokeOperation(input, {
-        name = "AuthorizeCacheSecurityGroupIngress",
-        input_schema = schemas.AuthorizeCacheSecurityGroupIngressInput,
-        output_schema = schemas.AuthorizeCacheSecurityGroupIngressOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AuthorizeCacheSecurityGroupIngress, input, options)
 end
 
 function Client:batchApplyUpdateAction(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchApplyUpdateAction",
-        input_schema = schemas.BatchApplyUpdateActionInput,
-        output_schema = schemas.BatchApplyUpdateActionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchApplyUpdateAction, input, options)
 end
 
 function Client:batchStopUpdateAction(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchStopUpdateAction",
-        input_schema = schemas.BatchStopUpdateActionInput,
-        output_schema = schemas.BatchStopUpdateActionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchStopUpdateAction, input, options)
 end
 
 function Client:completeMigration(input, options)
-    return self:invokeOperation(input, {
-        name = "CompleteMigration",
-        input_schema = schemas.CompleteMigrationInput,
-        output_schema = schemas.CompleteMigrationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CompleteMigration, input, options)
 end
 
 function Client:copyServerlessCacheSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "CopyServerlessCacheSnapshot",
-        input_schema = schemas.CopyServerlessCacheSnapshotInput,
-        output_schema = schemas.CopyServerlessCacheSnapshotOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CopyServerlessCacheSnapshot, input, options)
 end
 
 function Client:copySnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "CopySnapshot",
-        input_schema = schemas.CopySnapshotInput,
-        output_schema = schemas.CopySnapshotOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CopySnapshot, input, options)
 end
 
 function Client:createCacheCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCacheCluster",
-        input_schema = schemas.CreateCacheClusterInput,
-        output_schema = schemas.CreateCacheClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCacheCluster, input, options)
 end
 
 function Client:createCacheParameterGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCacheParameterGroup",
-        input_schema = schemas.CreateCacheParameterGroupInput,
-        output_schema = schemas.CreateCacheParameterGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCacheParameterGroup, input, options)
 end
 
 function Client:createCacheSecurityGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCacheSecurityGroup",
-        input_schema = schemas.CreateCacheSecurityGroupInput,
-        output_schema = schemas.CreateCacheSecurityGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCacheSecurityGroup, input, options)
 end
 
 function Client:createCacheSubnetGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCacheSubnetGroup",
-        input_schema = schemas.CreateCacheSubnetGroupInput,
-        output_schema = schemas.CreateCacheSubnetGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCacheSubnetGroup, input, options)
 end
 
 function Client:createGlobalReplicationGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGlobalReplicationGroup",
-        input_schema = schemas.CreateGlobalReplicationGroupInput,
-        output_schema = schemas.CreateGlobalReplicationGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGlobalReplicationGroup, input, options)
 end
 
 function Client:createReplicationGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateReplicationGroup",
-        input_schema = schemas.CreateReplicationGroupInput,
-        output_schema = schemas.CreateReplicationGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateReplicationGroup, input, options)
 end
 
 function Client:createServerlessCache(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateServerlessCache",
-        input_schema = schemas.CreateServerlessCacheInput,
-        output_schema = schemas.CreateServerlessCacheOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateServerlessCache, input, options)
 end
 
 function Client:createServerlessCacheSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateServerlessCacheSnapshot",
-        input_schema = schemas.CreateServerlessCacheSnapshotInput,
-        output_schema = schemas.CreateServerlessCacheSnapshotOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateServerlessCacheSnapshot, input, options)
 end
 
 function Client:createSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSnapshot",
-        input_schema = schemas.CreateSnapshotInput,
-        output_schema = schemas.CreateSnapshotOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSnapshot, input, options)
 end
 
 function Client:createUser(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateUser",
-        input_schema = schemas.CreateUserInput,
-        output_schema = schemas.CreateUserOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateUser, input, options)
 end
 
 function Client:createUserGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateUserGroup",
-        input_schema = schemas.CreateUserGroupInput,
-        output_schema = schemas.CreateUserGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateUserGroup, input, options)
 end
 
 function Client:decreaseNodeGroupsInGlobalReplicationGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DecreaseNodeGroupsInGlobalReplicationGroup",
-        input_schema = schemas.DecreaseNodeGroupsInGlobalReplicationGroupInput,
-        output_schema = schemas.DecreaseNodeGroupsInGlobalReplicationGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DecreaseNodeGroupsInGlobalReplicationGroup, input, options)
 end
 
 function Client:decreaseReplicaCount(input, options)
-    return self:invokeOperation(input, {
-        name = "DecreaseReplicaCount",
-        input_schema = schemas.DecreaseReplicaCountInput,
-        output_schema = schemas.DecreaseReplicaCountOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DecreaseReplicaCount, input, options)
 end
 
 function Client:deleteCacheCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCacheCluster",
-        input_schema = schemas.DeleteCacheClusterInput,
-        output_schema = schemas.DeleteCacheClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCacheCluster, input, options)
 end
 
 function Client:deleteCacheParameterGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCacheParameterGroup",
-        input_schema = schemas.DeleteCacheParameterGroupInput,
-        output_schema = schemas.DeleteCacheParameterGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCacheParameterGroup, input, options)
 end
 
 function Client:deleteCacheSecurityGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCacheSecurityGroup",
-        input_schema = schemas.DeleteCacheSecurityGroupInput,
-        output_schema = schemas.DeleteCacheSecurityGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCacheSecurityGroup, input, options)
 end
 
 function Client:deleteCacheSubnetGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCacheSubnetGroup",
-        input_schema = schemas.DeleteCacheSubnetGroupInput,
-        output_schema = schemas.DeleteCacheSubnetGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCacheSubnetGroup, input, options)
 end
 
 function Client:deleteGlobalReplicationGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGlobalReplicationGroup",
-        input_schema = schemas.DeleteGlobalReplicationGroupInput,
-        output_schema = schemas.DeleteGlobalReplicationGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGlobalReplicationGroup, input, options)
 end
 
 function Client:deleteReplicationGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteReplicationGroup",
-        input_schema = schemas.DeleteReplicationGroupInput,
-        output_schema = schemas.DeleteReplicationGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteReplicationGroup, input, options)
 end
 
 function Client:deleteServerlessCache(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteServerlessCache",
-        input_schema = schemas.DeleteServerlessCacheInput,
-        output_schema = schemas.DeleteServerlessCacheOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteServerlessCache, input, options)
 end
 
 function Client:deleteServerlessCacheSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteServerlessCacheSnapshot",
-        input_schema = schemas.DeleteServerlessCacheSnapshotInput,
-        output_schema = schemas.DeleteServerlessCacheSnapshotOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteServerlessCacheSnapshot, input, options)
 end
 
 function Client:deleteSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSnapshot",
-        input_schema = schemas.DeleteSnapshotInput,
-        output_schema = schemas.DeleteSnapshotOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSnapshot, input, options)
 end
 
 function Client:deleteUser(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteUser",
-        input_schema = schemas.DeleteUserInput,
-        output_schema = schemas.DeleteUserOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteUser, input, options)
 end
 
 function Client:deleteUserGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteUserGroup",
-        input_schema = schemas.DeleteUserGroupInput,
-        output_schema = schemas.DeleteUserGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteUserGroup, input, options)
 end
 
 function Client:describeCacheClusters(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCacheClusters",
-        input_schema = schemas.DescribeCacheClustersInput,
-        output_schema = schemas.DescribeCacheClustersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCacheClusters, input, options)
 end
 
 function Client:describeCacheEngineVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCacheEngineVersions",
-        input_schema = schemas.DescribeCacheEngineVersionsInput,
-        output_schema = schemas.DescribeCacheEngineVersionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCacheEngineVersions, input, options)
 end
 
 function Client:describeCacheParameterGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCacheParameterGroups",
-        input_schema = schemas.DescribeCacheParameterGroupsInput,
-        output_schema = schemas.DescribeCacheParameterGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCacheParameterGroups, input, options)
 end
 
 function Client:describeCacheParameters(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCacheParameters",
-        input_schema = schemas.DescribeCacheParametersInput,
-        output_schema = schemas.DescribeCacheParametersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCacheParameters, input, options)
 end
 
 function Client:describeCacheSecurityGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCacheSecurityGroups",
-        input_schema = schemas.DescribeCacheSecurityGroupsInput,
-        output_schema = schemas.DescribeCacheSecurityGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCacheSecurityGroups, input, options)
 end
 
 function Client:describeCacheSubnetGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCacheSubnetGroups",
-        input_schema = schemas.DescribeCacheSubnetGroupsInput,
-        output_schema = schemas.DescribeCacheSubnetGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCacheSubnetGroups, input, options)
 end
 
 function Client:describeEngineDefaultParameters(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEngineDefaultParameters",
-        input_schema = schemas.DescribeEngineDefaultParametersInput,
-        output_schema = schemas.DescribeEngineDefaultParametersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEngineDefaultParameters, input, options)
 end
 
 function Client:describeEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEvents",
-        input_schema = schemas.DescribeEventsInput,
-        output_schema = schemas.DescribeEventsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEvents, input, options)
 end
 
 function Client:describeGlobalReplicationGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeGlobalReplicationGroups",
-        input_schema = schemas.DescribeGlobalReplicationGroupsInput,
-        output_schema = schemas.DescribeGlobalReplicationGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeGlobalReplicationGroups, input, options)
 end
 
 function Client:describeReplicationGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeReplicationGroups",
-        input_schema = schemas.DescribeReplicationGroupsInput,
-        output_schema = schemas.DescribeReplicationGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeReplicationGroups, input, options)
 end
 
 function Client:describeReservedCacheNodes(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeReservedCacheNodes",
-        input_schema = schemas.DescribeReservedCacheNodesInput,
-        output_schema = schemas.DescribeReservedCacheNodesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeReservedCacheNodes, input, options)
 end
 
 function Client:describeReservedCacheNodesOfferings(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeReservedCacheNodesOfferings",
-        input_schema = schemas.DescribeReservedCacheNodesOfferingsInput,
-        output_schema = schemas.DescribeReservedCacheNodesOfferingsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeReservedCacheNodesOfferings, input, options)
 end
 
 function Client:describeServerlessCaches(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeServerlessCaches",
-        input_schema = schemas.DescribeServerlessCachesInput,
-        output_schema = schemas.DescribeServerlessCachesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeServerlessCaches, input, options)
 end
 
 function Client:describeServerlessCacheSnapshots(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeServerlessCacheSnapshots",
-        input_schema = schemas.DescribeServerlessCacheSnapshotsInput,
-        output_schema = schemas.DescribeServerlessCacheSnapshotsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeServerlessCacheSnapshots, input, options)
 end
 
 function Client:describeServiceUpdates(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeServiceUpdates",
-        input_schema = schemas.DescribeServiceUpdatesInput,
-        output_schema = schemas.DescribeServiceUpdatesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeServiceUpdates, input, options)
 end
 
 function Client:describeSnapshots(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeSnapshots",
-        input_schema = schemas.DescribeSnapshotsInput,
-        output_schema = schemas.DescribeSnapshotsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeSnapshots, input, options)
 end
 
 function Client:describeUpdateActions(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeUpdateActions",
-        input_schema = schemas.DescribeUpdateActionsInput,
-        output_schema = schemas.DescribeUpdateActionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeUpdateActions, input, options)
 end
 
 function Client:describeUserGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeUserGroups",
-        input_schema = schemas.DescribeUserGroupsInput,
-        output_schema = schemas.DescribeUserGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeUserGroups, input, options)
 end
 
 function Client:describeUsers(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeUsers",
-        input_schema = schemas.DescribeUsersInput,
-        output_schema = schemas.DescribeUsersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeUsers, input, options)
 end
 
 function Client:disassociateGlobalReplicationGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateGlobalReplicationGroup",
-        input_schema = schemas.DisassociateGlobalReplicationGroupInput,
-        output_schema = schemas.DisassociateGlobalReplicationGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateGlobalReplicationGroup, input, options)
 end
 
 function Client:exportServerlessCacheSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "ExportServerlessCacheSnapshot",
-        input_schema = schemas.ExportServerlessCacheSnapshotInput,
-        output_schema = schemas.ExportServerlessCacheSnapshotOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExportServerlessCacheSnapshot, input, options)
 end
 
 function Client:failoverGlobalReplicationGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "FailoverGlobalReplicationGroup",
-        input_schema = schemas.FailoverGlobalReplicationGroupInput,
-        output_schema = schemas.FailoverGlobalReplicationGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.FailoverGlobalReplicationGroup, input, options)
 end
 
 function Client:increaseNodeGroupsInGlobalReplicationGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "IncreaseNodeGroupsInGlobalReplicationGroup",
-        input_schema = schemas.IncreaseNodeGroupsInGlobalReplicationGroupInput,
-        output_schema = schemas.IncreaseNodeGroupsInGlobalReplicationGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.IncreaseNodeGroupsInGlobalReplicationGroup, input, options)
 end
 
 function Client:increaseReplicaCount(input, options)
-    return self:invokeOperation(input, {
-        name = "IncreaseReplicaCount",
-        input_schema = schemas.IncreaseReplicaCountInput,
-        output_schema = schemas.IncreaseReplicaCountOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.IncreaseReplicaCount, input, options)
 end
 
 function Client:listAllowedNodeTypeModifications(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAllowedNodeTypeModifications",
-        input_schema = schemas.ListAllowedNodeTypeModificationsInput,
-        output_schema = schemas.ListAllowedNodeTypeModificationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAllowedNodeTypeModifications, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:modifyCacheCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyCacheCluster",
-        input_schema = schemas.ModifyCacheClusterInput,
-        output_schema = schemas.ModifyCacheClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyCacheCluster, input, options)
 end
 
 function Client:modifyCacheParameterGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyCacheParameterGroup",
-        input_schema = schemas.ModifyCacheParameterGroupInput,
-        output_schema = schemas.ModifyCacheParameterGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyCacheParameterGroup, input, options)
 end
 
 function Client:modifyCacheSubnetGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyCacheSubnetGroup",
-        input_schema = schemas.ModifyCacheSubnetGroupInput,
-        output_schema = schemas.ModifyCacheSubnetGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyCacheSubnetGroup, input, options)
 end
 
 function Client:modifyGlobalReplicationGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyGlobalReplicationGroup",
-        input_schema = schemas.ModifyGlobalReplicationGroupInput,
-        output_schema = schemas.ModifyGlobalReplicationGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyGlobalReplicationGroup, input, options)
 end
 
 function Client:modifyReplicationGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyReplicationGroup",
-        input_schema = schemas.ModifyReplicationGroupInput,
-        output_schema = schemas.ModifyReplicationGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyReplicationGroup, input, options)
 end
 
 function Client:modifyReplicationGroupShardConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyReplicationGroupShardConfiguration",
-        input_schema = schemas.ModifyReplicationGroupShardConfigurationInput,
-        output_schema = schemas.ModifyReplicationGroupShardConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyReplicationGroupShardConfiguration, input, options)
 end
 
 function Client:modifyServerlessCache(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyServerlessCache",
-        input_schema = schemas.ModifyServerlessCacheInput,
-        output_schema = schemas.ModifyServerlessCacheOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyServerlessCache, input, options)
 end
 
 function Client:modifyUser(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyUser",
-        input_schema = schemas.ModifyUserInput,
-        output_schema = schemas.ModifyUserOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyUser, input, options)
 end
 
 function Client:modifyUserGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyUserGroup",
-        input_schema = schemas.ModifyUserGroupInput,
-        output_schema = schemas.ModifyUserGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyUserGroup, input, options)
 end
 
 function Client:purchaseReservedCacheNodesOffering(input, options)
-    return self:invokeOperation(input, {
-        name = "PurchaseReservedCacheNodesOffering",
-        input_schema = schemas.PurchaseReservedCacheNodesOfferingInput,
-        output_schema = schemas.PurchaseReservedCacheNodesOfferingOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PurchaseReservedCacheNodesOffering, input, options)
 end
 
 function Client:rebalanceSlotsInGlobalReplicationGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "RebalanceSlotsInGlobalReplicationGroup",
-        input_schema = schemas.RebalanceSlotsInGlobalReplicationGroupInput,
-        output_schema = schemas.RebalanceSlotsInGlobalReplicationGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RebalanceSlotsInGlobalReplicationGroup, input, options)
 end
 
 function Client:rebootCacheCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "RebootCacheCluster",
-        input_schema = schemas.RebootCacheClusterInput,
-        output_schema = schemas.RebootCacheClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RebootCacheCluster, input, options)
 end
 
 function Client:removeTagsFromResource(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveTagsFromResource",
-        input_schema = schemas.RemoveTagsFromResourceInput,
-        output_schema = schemas.RemoveTagsFromResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveTagsFromResource, input, options)
 end
 
 function Client:resetCacheParameterGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "ResetCacheParameterGroup",
-        input_schema = schemas.ResetCacheParameterGroupInput,
-        output_schema = schemas.ResetCacheParameterGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ResetCacheParameterGroup, input, options)
 end
 
 function Client:revokeCacheSecurityGroupIngress(input, options)
-    return self:invokeOperation(input, {
-        name = "RevokeCacheSecurityGroupIngress",
-        input_schema = schemas.RevokeCacheSecurityGroupIngressInput,
-        output_schema = schemas.RevokeCacheSecurityGroupIngressOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RevokeCacheSecurityGroupIngress, input, options)
 end
 
 function Client:startMigration(input, options)
-    return self:invokeOperation(input, {
-        name = "StartMigration",
-        input_schema = schemas.StartMigrationInput,
-        output_schema = schemas.StartMigrationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartMigration, input, options)
 end
 
 function Client:testFailover(input, options)
-    return self:invokeOperation(input, {
-        name = "TestFailover",
-        input_schema = schemas.TestFailoverInput,
-        output_schema = schemas.TestFailoverOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TestFailover, input, options)
 end
 
 function Client:testMigration(input, options)
-    return self:invokeOperation(input, {
-        name = "TestMigration",
-        input_schema = schemas.TestMigrationInput,
-        output_schema = schemas.TestMigrationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TestMigration, input, options)
 end
 
 return M

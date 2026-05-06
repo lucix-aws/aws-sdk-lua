@@ -1533,4 +1533,110 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.dlm", "dlm_20180112"),
+    version = "2018-01-12",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.dlm", "CreateLifecyclePolicy"),
+    input = M.CreateLifecyclePolicyInput,
+    output = M.CreateLifecyclePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.dlm", "DeleteLifecyclePolicy"),
+    input = M.DeleteLifecyclePolicyInput,
+    output = M.DeleteLifecyclePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/policies/{PolicyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLifecyclePolicies = schema.operation({
+    id = id.from("com.amazonaws.dlm", "GetLifecyclePolicies"),
+    input = M.GetLifecyclePoliciesInput,
+    output = M.GetLifecyclePoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.dlm", "GetLifecyclePolicy"),
+    input = M.GetLifecyclePolicyInput,
+    output = M.GetLifecyclePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policies/{PolicyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.dlm", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.dlm", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.dlm", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.dlm", "UpdateLifecyclePolicy"),
+    input = M.UpdateLifecyclePolicyInput,
+    output = M.UpdateLifecyclePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/policies/{PolicyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

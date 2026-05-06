@@ -1045,4 +1045,80 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.autoscalingplans", "AnyScaleScalingPlannerFrontendService"),
+    version = "2018-01-06",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateScalingPlan = schema.operation({
+    id = id.from("com.amazonaws.autoscalingplans", "CreateScalingPlan"),
+    input = M.CreateScalingPlanInput,
+    output = M.CreateScalingPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScalingPlan = schema.operation({
+    id = id.from("com.amazonaws.autoscalingplans", "DeleteScalingPlan"),
+    input = M.DeleteScalingPlanInput,
+    output = M.DeleteScalingPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScalingPlanResources = schema.operation({
+    id = id.from("com.amazonaws.autoscalingplans", "DescribeScalingPlanResources"),
+    input = M.DescribeScalingPlanResourcesInput,
+    output = M.DescribeScalingPlanResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScalingPlans = schema.operation({
+    id = id.from("com.amazonaws.autoscalingplans", "DescribeScalingPlans"),
+    input = M.DescribeScalingPlansInput,
+    output = M.DescribeScalingPlansOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetScalingPlanResourceForecastData = schema.operation({
+    id = id.from("com.amazonaws.autoscalingplans", "GetScalingPlanResourceForecastData"),
+    input = M.GetScalingPlanResourceForecastDataInput,
+    output = M.GetScalingPlanResourceForecastDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateScalingPlan = schema.operation({
+    id = id.from("com.amazonaws.autoscalingplans", "UpdateScalingPlan"),
+    input = M.UpdateScalingPlanInput,
+    output = M.UpdateScalingPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

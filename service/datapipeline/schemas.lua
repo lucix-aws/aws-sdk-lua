@@ -1385,4 +1385,223 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.datapipeline", "DataPipeline"),
+    version = "2012-10-29",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ActivatePipeline = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "ActivatePipeline"),
+    input = M.ActivatePipelineInput,
+    output = M.ActivatePipelineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTags = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "AddTags"),
+    input = M.AddTagsInput,
+    output = M.AddTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePipeline = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "CreatePipeline"),
+    input = M.CreatePipelineInput,
+    output = M.CreatePipelineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeactivatePipeline = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "DeactivatePipeline"),
+    input = M.DeactivatePipelineInput,
+    output = M.DeactivatePipelineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePipeline = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "DeletePipeline"),
+    input = M.DeletePipelineInput,
+    output = M.DeletePipelineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeObjects = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "DescribeObjects"),
+    input = M.DescribeObjectsInput,
+    output = M.DescribeObjectsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePipelines = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "DescribePipelines"),
+    input = M.DescribePipelinesInput,
+    output = M.DescribePipelinesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EvaluateExpression = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "EvaluateExpression"),
+    input = M.EvaluateExpressionInput,
+    output = M.EvaluateExpressionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPipelineDefinition = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "GetPipelineDefinition"),
+    input = M.GetPipelineDefinitionInput,
+    output = M.GetPipelineDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPipelines = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "ListPipelines"),
+    input = M.ListPipelinesInput,
+    output = M.ListPipelinesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PollForTask = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "PollForTask"),
+    input = M.PollForTaskInput,
+    output = M.PollForTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPipelineDefinition = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "PutPipelineDefinition"),
+    input = M.PutPipelineDefinitionInput,
+    output = M.PutPipelineDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.QueryObjects = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "QueryObjects"),
+    input = M.QueryObjectsInput,
+    output = M.QueryObjectsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTags = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "RemoveTags"),
+    input = M.RemoveTagsInput,
+    output = M.RemoveTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReportTaskProgress = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "ReportTaskProgress"),
+    input = M.ReportTaskProgressInput,
+    output = M.ReportTaskProgressOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReportTaskRunnerHeartbeat = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "ReportTaskRunnerHeartbeat"),
+    input = M.ReportTaskRunnerHeartbeatInput,
+    output = M.ReportTaskRunnerHeartbeatOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetStatus = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "SetStatus"),
+    input = M.SetStatusInput,
+    output = M.SetStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetTaskStatus = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "SetTaskStatus"),
+    input = M.SetTaskStatusInput,
+    output = M.SetTaskStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidatePipelineDefinition = schema.operation({
+    id = id.from("com.amazonaws.datapipeline", "ValidatePipelineDefinition"),
+    input = M.ValidatePipelineDefinitionInput,
+    output = M.ValidatePipelineDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -4235,4 +4235,386 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.amplifybackend", "AmplifyBackend"),
+    version = "2020-08-11",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CloneBackend = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "CloneBackend"),
+    input = M.CloneBackendInput,
+    output = M.CloneBackendOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/environments/{BackendEnvironmentName}/clone" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBackend = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "CreateBackend"),
+    input = M.CreateBackendInput,
+    output = M.CreateBackendOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBackendAPI = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "CreateBackendAPI"),
+    input = M.CreateBackendAPIInput,
+    output = M.CreateBackendAPIOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/api" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBackendAuth = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "CreateBackendAuth"),
+    input = M.CreateBackendAuthInput,
+    output = M.CreateBackendAuthOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/auth" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBackendConfig = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "CreateBackendConfig"),
+    input = M.CreateBackendConfigInput,
+    output = M.CreateBackendConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBackendStorage = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "CreateBackendStorage"),
+    input = M.CreateBackendStorageInput,
+    output = M.CreateBackendStorageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/storage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateToken = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "CreateToken"),
+    input = M.CreateTokenInput,
+    output = M.CreateTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/challenge" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBackend = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "DeleteBackend"),
+    input = M.DeleteBackendInput,
+    output = M.DeleteBackendOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/environments/{BackendEnvironmentName}/remove" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBackendAPI = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "DeleteBackendAPI"),
+    input = M.DeleteBackendAPIInput,
+    output = M.DeleteBackendAPIOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/api/{BackendEnvironmentName}/remove" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBackendAuth = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "DeleteBackendAuth"),
+    input = M.DeleteBackendAuthInput,
+    output = M.DeleteBackendAuthOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/auth/{BackendEnvironmentName}/remove" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBackendStorage = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "DeleteBackendStorage"),
+    input = M.DeleteBackendStorageInput,
+    output = M.DeleteBackendStorageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/storage/{BackendEnvironmentName}/remove" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteToken = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "DeleteToken"),
+    input = M.DeleteTokenInput,
+    output = M.DeleteTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/challenge/{SessionId}/remove" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateBackendAPIModels = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "GenerateBackendAPIModels"),
+    input = M.GenerateBackendAPIModelsInput,
+    output = M.GenerateBackendAPIModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/api/{BackendEnvironmentName}/generateModels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBackend = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "GetBackend"),
+    input = M.GetBackendInput,
+    output = M.GetBackendOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBackendAPI = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "GetBackendAPI"),
+    input = M.GetBackendAPIInput,
+    output = M.GetBackendAPIOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/api/{BackendEnvironmentName}/details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBackendAPIModels = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "GetBackendAPIModels"),
+    input = M.GetBackendAPIModelsInput,
+    output = M.GetBackendAPIModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/api/{BackendEnvironmentName}/getModels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBackendAuth = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "GetBackendAuth"),
+    input = M.GetBackendAuthInput,
+    output = M.GetBackendAuthOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/auth/{BackendEnvironmentName}/details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBackendJob = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "GetBackendJob"),
+    input = M.GetBackendJobInput,
+    output = M.GetBackendJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backend/{AppId}/job/{BackendEnvironmentName}/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBackendStorage = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "GetBackendStorage"),
+    input = M.GetBackendStorageInput,
+    output = M.GetBackendStorageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/storage/{BackendEnvironmentName}/details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetToken = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "GetToken"),
+    input = M.GetTokenInput,
+    output = M.GetTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backend/{AppId}/challenge/{SessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportBackendAuth = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "ImportBackendAuth"),
+    input = M.ImportBackendAuthInput,
+    output = M.ImportBackendAuthOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/auth/{BackendEnvironmentName}/import" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportBackendStorage = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "ImportBackendStorage"),
+    input = M.ImportBackendStorageInput,
+    output = M.ImportBackendStorageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/storage/{BackendEnvironmentName}/import" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBackendJobs = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "ListBackendJobs"),
+    input = M.ListBackendJobsInput,
+    output = M.ListBackendJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/job/{BackendEnvironmentName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListS3Buckets = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "ListS3Buckets"),
+    input = M.ListS3BucketsInput,
+    output = M.ListS3BucketsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/s3Buckets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveAllBackends = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "RemoveAllBackends"),
+    input = M.RemoveAllBackendsInput,
+    output = M.RemoveAllBackendsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/remove" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveBackendConfig = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "RemoveBackendConfig"),
+    input = M.RemoveBackendConfigInput,
+    output = M.RemoveBackendConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/config/remove" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBackendAPI = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "UpdateBackendAPI"),
+    input = M.UpdateBackendAPIInput,
+    output = M.UpdateBackendAPIOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/api/{BackendEnvironmentName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBackendAuth = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "UpdateBackendAuth"),
+    input = M.UpdateBackendAuthInput,
+    output = M.UpdateBackendAuthOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/auth/{BackendEnvironmentName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBackendConfig = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "UpdateBackendConfig"),
+    input = M.UpdateBackendConfigInput,
+    output = M.UpdateBackendConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/config/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBackendJob = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "UpdateBackendJob"),
+    input = M.UpdateBackendJobInput,
+    output = M.UpdateBackendJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/job/{BackendEnvironmentName}/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBackendStorage = schema.operation({
+    id = id.from("com.amazonaws.amplifybackend", "UpdateBackendStorage"),
+    input = M.UpdateBackendStorageInput,
+    output = M.UpdateBackendStorageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backend/{AppId}/storage/{BackendEnvironmentName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -6638,4 +6638,663 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.codebuild", "CodeBuild_20161006"),
+    version = "2016-10-06",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteBuilds = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "BatchDeleteBuilds"),
+    input = M.BatchDeleteBuildsInput,
+    output = M.BatchDeleteBuildsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetBuildBatches = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "BatchGetBuildBatches"),
+    input = M.BatchGetBuildBatchesInput,
+    output = M.BatchGetBuildBatchesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetBuilds = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "BatchGetBuilds"),
+    input = M.BatchGetBuildsInput,
+    output = M.BatchGetBuildsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetCommandExecutions = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "BatchGetCommandExecutions"),
+    input = M.BatchGetCommandExecutionsInput,
+    output = M.BatchGetCommandExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetFleets = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "BatchGetFleets"),
+    input = M.BatchGetFleetsInput,
+    output = M.BatchGetFleetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetProjects = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "BatchGetProjects"),
+    input = M.BatchGetProjectsInput,
+    output = M.BatchGetProjectsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetReportGroups = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "BatchGetReportGroups"),
+    input = M.BatchGetReportGroupsInput,
+    output = M.BatchGetReportGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetReports = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "BatchGetReports"),
+    input = M.BatchGetReportsInput,
+    output = M.BatchGetReportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetSandboxes = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "BatchGetSandboxes"),
+    input = M.BatchGetSandboxesInput,
+    output = M.BatchGetSandboxesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFleet = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "CreateFleet"),
+    input = M.CreateFleetInput,
+    output = M.CreateFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProject = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "CreateProject"),
+    input = M.CreateProjectInput,
+    output = M.CreateProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReportGroup = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "CreateReportGroup"),
+    input = M.CreateReportGroupInput,
+    output = M.CreateReportGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWebhook = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "CreateWebhook"),
+    input = M.CreateWebhookInput,
+    output = M.CreateWebhookOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBuildBatch = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "DeleteBuildBatch"),
+    input = M.DeleteBuildBatchInput,
+    output = M.DeleteBuildBatchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFleet = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "DeleteFleet"),
+    input = M.DeleteFleetInput,
+    output = M.DeleteFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProject = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "DeleteProject"),
+    input = M.DeleteProjectInput,
+    output = M.DeleteProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReport = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "DeleteReport"),
+    input = M.DeleteReportInput,
+    output = M.DeleteReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReportGroup = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "DeleteReportGroup"),
+    input = M.DeleteReportGroupInput,
+    output = M.DeleteReportGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSourceCredentials = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "DeleteSourceCredentials"),
+    input = M.DeleteSourceCredentialsInput,
+    output = M.DeleteSourceCredentialsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWebhook = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "DeleteWebhook"),
+    input = M.DeleteWebhookInput,
+    output = M.DeleteWebhookOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCodeCoverages = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "DescribeCodeCoverages"),
+    input = M.DescribeCodeCoveragesInput,
+    output = M.DescribeCodeCoveragesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTestCases = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "DescribeTestCases"),
+    input = M.DescribeTestCasesInput,
+    output = M.DescribeTestCasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReportGroupTrend = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "GetReportGroupTrend"),
+    input = M.GetReportGroupTrendInput,
+    output = M.GetReportGroupTrendOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportSourceCredentials = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ImportSourceCredentials"),
+    input = M.ImportSourceCredentialsInput,
+    output = M.ImportSourceCredentialsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InvalidateProjectCache = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "InvalidateProjectCache"),
+    input = M.InvalidateProjectCacheInput,
+    output = M.InvalidateProjectCacheOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBuildBatches = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListBuildBatches"),
+    input = M.ListBuildBatchesInput,
+    output = M.ListBuildBatchesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBuildBatchesForProject = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListBuildBatchesForProject"),
+    input = M.ListBuildBatchesForProjectInput,
+    output = M.ListBuildBatchesForProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBuilds = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListBuilds"),
+    input = M.ListBuildsInput,
+    output = M.ListBuildsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBuildsForProject = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListBuildsForProject"),
+    input = M.ListBuildsForProjectInput,
+    output = M.ListBuildsForProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCommandExecutionsForSandbox = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListCommandExecutionsForSandbox"),
+    input = M.ListCommandExecutionsForSandboxInput,
+    output = M.ListCommandExecutionsForSandboxOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCuratedEnvironmentImages = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListCuratedEnvironmentImages"),
+    input = M.ListCuratedEnvironmentImagesInput,
+    output = M.ListCuratedEnvironmentImagesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFleets = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListFleets"),
+    input = M.ListFleetsInput,
+    output = M.ListFleetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProjects = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListProjects"),
+    input = M.ListProjectsInput,
+    output = M.ListProjectsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReportGroups = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListReportGroups"),
+    input = M.ListReportGroupsInput,
+    output = M.ListReportGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReports = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListReports"),
+    input = M.ListReportsInput,
+    output = M.ListReportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReportsForReportGroup = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListReportsForReportGroup"),
+    input = M.ListReportsForReportGroupInput,
+    output = M.ListReportsForReportGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSandboxes = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListSandboxes"),
+    input = M.ListSandboxesInput,
+    output = M.ListSandboxesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSandboxesForProject = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListSandboxesForProject"),
+    input = M.ListSandboxesForProjectInput,
+    output = M.ListSandboxesForProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSharedProjects = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListSharedProjects"),
+    input = M.ListSharedProjectsInput,
+    output = M.ListSharedProjectsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSharedReportGroups = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListSharedReportGroups"),
+    input = M.ListSharedReportGroupsInput,
+    output = M.ListSharedReportGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSourceCredentials = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "ListSourceCredentials"),
+    input = M.ListSourceCredentialsInput,
+    output = M.ListSourceCredentialsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetryBuild = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "RetryBuild"),
+    input = M.RetryBuildInput,
+    output = M.RetryBuildOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetryBuildBatch = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "RetryBuildBatch"),
+    input = M.RetryBuildBatchInput,
+    output = M.RetryBuildBatchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartBuild = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "StartBuild"),
+    input = M.StartBuildInput,
+    output = M.StartBuildOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartBuildBatch = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "StartBuildBatch"),
+    input = M.StartBuildBatchInput,
+    output = M.StartBuildBatchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCommandExecution = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "StartCommandExecution"),
+    input = M.StartCommandExecutionInput,
+    output = M.StartCommandExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSandbox = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "StartSandbox"),
+    input = M.StartSandboxInput,
+    output = M.StartSandboxOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSandboxConnection = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "StartSandboxConnection"),
+    input = M.StartSandboxConnectionInput,
+    output = M.StartSandboxConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopBuild = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "StopBuild"),
+    input = M.StopBuildInput,
+    output = M.StopBuildOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopBuildBatch = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "StopBuildBatch"),
+    input = M.StopBuildBatchInput,
+    output = M.StopBuildBatchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopSandbox = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "StopSandbox"),
+    input = M.StopSandboxInput,
+    output = M.StopSandboxOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFleet = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "UpdateFleet"),
+    input = M.UpdateFleetInput,
+    output = M.UpdateFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProject = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "UpdateProject"),
+    input = M.UpdateProjectInput,
+    output = M.UpdateProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProjectVisibility = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "UpdateProjectVisibility"),
+    input = M.UpdateProjectVisibilityInput,
+    output = M.UpdateProjectVisibilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReportGroup = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "UpdateReportGroup"),
+    input = M.UpdateReportGroupInput,
+    output = M.UpdateReportGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWebhook = schema.operation({
+    id = id.from("com.amazonaws.codebuild", "UpdateWebhook"),
+    input = M.UpdateWebhookInput,
+    output = M.UpdateWebhookOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

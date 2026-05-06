@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("timestreamwrite.endpoint_rules")
 local schemas = require("timestreamwrite.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "timestream", signing_region = cfg.region } }
                 else
@@ -49,250 +52,79 @@ function M.new(cfg)
 end
 
 function Client:createBatchLoadTask(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateBatchLoadTask",
-        input_schema = schemas.CreateBatchLoadTaskInput,
-        output_schema = schemas.CreateBatchLoadTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateBatchLoadTask, input, options)
 end
 
 function Client:createDatabase(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDatabase",
-        input_schema = schemas.CreateDatabaseInput,
-        output_schema = schemas.CreateDatabaseOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDatabase, input, options)
 end
 
 function Client:createTable(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTable",
-        input_schema = schemas.CreateTableInput,
-        output_schema = schemas.CreateTableOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTable, input, options)
 end
 
 function Client:deleteDatabase(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDatabase",
-        input_schema = schemas.DeleteDatabaseInput,
-        output_schema = schemas.DeleteDatabaseOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDatabase, input, options)
 end
 
 function Client:deleteTable(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTable",
-        input_schema = schemas.DeleteTableInput,
-        output_schema = schemas.DeleteTableOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTable, input, options)
 end
 
 function Client:describeBatchLoadTask(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeBatchLoadTask",
-        input_schema = schemas.DescribeBatchLoadTaskInput,
-        output_schema = schemas.DescribeBatchLoadTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeBatchLoadTask, input, options)
 end
 
 function Client:describeDatabase(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDatabase",
-        input_schema = schemas.DescribeDatabaseInput,
-        output_schema = schemas.DescribeDatabaseOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDatabase, input, options)
 end
 
 function Client:describeEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEndpoints",
-        input_schema = schemas.DescribeEndpointsInput,
-        output_schema = schemas.DescribeEndpointsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEndpoints, input, options)
 end
 
 function Client:describeTable(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTable",
-        input_schema = schemas.DescribeTableInput,
-        output_schema = schemas.DescribeTableOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTable, input, options)
 end
 
 function Client:listBatchLoadTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListBatchLoadTasks",
-        input_schema = schemas.ListBatchLoadTasksInput,
-        output_schema = schemas.ListBatchLoadTasksOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListBatchLoadTasks, input, options)
 end
 
 function Client:listDatabases(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDatabases",
-        input_schema = schemas.ListDatabasesInput,
-        output_schema = schemas.ListDatabasesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDatabases, input, options)
 end
 
 function Client:listTables(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTables",
-        input_schema = schemas.ListTablesInput,
-        output_schema = schemas.ListTablesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTables, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:resumeBatchLoadTask(input, options)
-    return self:invokeOperation(input, {
-        name = "ResumeBatchLoadTask",
-        input_schema = schemas.ResumeBatchLoadTaskInput,
-        output_schema = schemas.ResumeBatchLoadTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ResumeBatchLoadTask, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateDatabase(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDatabase",
-        input_schema = schemas.UpdateDatabaseInput,
-        output_schema = schemas.UpdateDatabaseOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDatabase, input, options)
 end
 
 function Client:updateTable(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTable",
-        input_schema = schemas.UpdateTableInput,
-        output_schema = schemas.UpdateTableOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTable, input, options)
 end
 
 function Client:writeRecords(input, options)
-    return self:invokeOperation(input, {
-        name = "WriteRecords",
-        input_schema = schemas.WriteRecordsInput,
-        output_schema = schemas.WriteRecordsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.WriteRecords, input, options)
 end
 
 return M

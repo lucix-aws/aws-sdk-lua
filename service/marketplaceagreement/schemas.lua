@@ -3930,4 +3930,289 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.marketplaceagreement", "AWSMPCommerceService_v20200301"),
+    version = "2020-03-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptAgreementCancellationRequest = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "AcceptAgreementCancellationRequest"),
+    input = M.AcceptAgreementCancellationRequestInput,
+    output = M.AcceptAgreementCancellationRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptAgreementPaymentRequest = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "AcceptAgreementPaymentRequest"),
+    input = M.AcceptAgreementPaymentRequestInput,
+    output = M.AcceptAgreementPaymentRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptAgreementRequest = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "AcceptAgreementRequest"),
+    input = M.AcceptAgreementRequestInput,
+    output = M.AcceptAgreementRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateBillingAdjustmentRequest = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "BatchCreateBillingAdjustmentRequest"),
+    input = M.BatchCreateBillingAdjustmentRequestInput,
+    output = M.BatchCreateBillingAdjustmentRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelAgreement = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "CancelAgreement"),
+    input = M.CancelAgreementInput,
+    output = M.CancelAgreementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelAgreementCancellationRequest = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "CancelAgreementCancellationRequest"),
+    input = M.CancelAgreementCancellationRequestInput,
+    output = M.CancelAgreementCancellationRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelAgreementPaymentRequest = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "CancelAgreementPaymentRequest"),
+    input = M.CancelAgreementPaymentRequestInput,
+    output = M.CancelAgreementPaymentRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAgreementRequest = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "CreateAgreementRequest"),
+    input = M.CreateAgreementRequestInput,
+    output = M.CreateAgreementRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAgreement = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "DescribeAgreement"),
+    input = M.DescribeAgreementInput,
+    output = M.DescribeAgreementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgreementCancellationRequest = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "GetAgreementCancellationRequest"),
+    input = M.GetAgreementCancellationRequestInput,
+    output = M.GetAgreementCancellationRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgreementEntitlements = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "GetAgreementEntitlements"),
+    input = M.GetAgreementEntitlementsInput,
+    output = M.GetAgreementEntitlementsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgreementPaymentRequest = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "GetAgreementPaymentRequest"),
+    input = M.GetAgreementPaymentRequestInput,
+    output = M.GetAgreementPaymentRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgreementTerms = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "GetAgreementTerms"),
+    input = M.GetAgreementTermsInput,
+    output = M.GetAgreementTermsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBillingAdjustmentRequest = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "GetBillingAdjustmentRequest"),
+    input = M.GetBillingAdjustmentRequestInput,
+    output = M.GetBillingAdjustmentRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgreementCancellationRequests = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "ListAgreementCancellationRequests"),
+    input = M.ListAgreementCancellationRequestsInput,
+    output = M.ListAgreementCancellationRequestsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgreementCharges = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "ListAgreementCharges"),
+    input = M.ListAgreementChargesInput,
+    output = M.ListAgreementChargesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgreementInvoiceLineItems = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "ListAgreementInvoiceLineItems"),
+    input = M.ListAgreementInvoiceLineItemsInput,
+    output = M.ListAgreementInvoiceLineItemsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgreementPaymentRequests = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "ListAgreementPaymentRequests"),
+    input = M.ListAgreementPaymentRequestsInput,
+    output = M.ListAgreementPaymentRequestsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBillingAdjustmentRequests = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "ListBillingAdjustmentRequests"),
+    input = M.ListBillingAdjustmentRequestsInput,
+    output = M.ListBillingAdjustmentRequestsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectAgreementCancellationRequest = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "RejectAgreementCancellationRequest"),
+    input = M.RejectAgreementCancellationRequestInput,
+    output = M.RejectAgreementCancellationRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectAgreementPaymentRequest = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "RejectAgreementPaymentRequest"),
+    input = M.RejectAgreementPaymentRequestInput,
+    output = M.RejectAgreementPaymentRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchAgreements = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "SearchAgreements"),
+    input = M.SearchAgreementsInput,
+    output = M.SearchAgreementsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendAgreementCancellationRequest = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "SendAgreementCancellationRequest"),
+    input = M.SendAgreementCancellationRequestInput,
+    output = M.SendAgreementCancellationRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendAgreementPaymentRequest = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "SendAgreementPaymentRequest"),
+    input = M.SendAgreementPaymentRequestInput,
+    output = M.SendAgreementPaymentRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePurchaseOrders = schema.operation({
+    id = id.from("com.amazonaws.marketplaceagreement", "UpdatePurchaseOrders"),
+    input = M.UpdatePurchaseOrdersInput,
+    output = M.UpdatePurchaseOrdersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

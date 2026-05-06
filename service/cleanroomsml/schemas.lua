@@ -7510,4 +7510,722 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cleanroomsml", "AWSStarkControlService"),
+    version = "2023-09-06",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelTrainedModel = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "CancelTrainedModel"),
+    input = M.CancelTrainedModelInput,
+    output = M.CancelTrainedModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelTrainedModelInferenceJob = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "CancelTrainedModelInferenceJob"),
+    input = M.CancelTrainedModelInferenceJobInput,
+    output = M.CancelTrainedModelInferenceJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}/trained-model-inference-jobs/{trainedModelInferenceJobArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAudienceModel = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "CreateAudienceModel"),
+    input = M.CreateAudienceModelInput,
+    output = M.CreateAudienceModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/audience-model" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfiguredAudienceModel = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "CreateConfiguredAudienceModel"),
+    input = M.CreateConfiguredAudienceModelInput,
+    output = M.CreateConfiguredAudienceModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configured-audience-model" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfiguredModelAlgorithm = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "CreateConfiguredModelAlgorithm"),
+    input = M.CreateConfiguredModelAlgorithmInput,
+    output = M.CreateConfiguredModelAlgorithmOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configured-model-algorithms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfiguredModelAlgorithmAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "CreateConfiguredModelAlgorithmAssociation"),
+    input = M.CreateConfiguredModelAlgorithmAssociationInput,
+    output = M.CreateConfiguredModelAlgorithmAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/configured-model-algorithm-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMLInputChannel = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "CreateMLInputChannel"),
+    input = M.CreateMLInputChannelInput,
+    output = M.CreateMLInputChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/ml-input-channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrainedModel = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "CreateTrainedModel"),
+    input = M.CreateTrainedModelInput,
+    output = M.CreateTrainedModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/trained-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrainingDataset = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "CreateTrainingDataset"),
+    input = M.CreateTrainingDatasetInput,
+    output = M.CreateTrainingDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/training-dataset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAudienceGenerationJob = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "DeleteAudienceGenerationJob"),
+    input = M.DeleteAudienceGenerationJobInput,
+    output = M.DeleteAudienceGenerationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/audience-generation-job/{audienceGenerationJobArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAudienceModel = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "DeleteAudienceModel"),
+    input = M.DeleteAudienceModelInput,
+    output = M.DeleteAudienceModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/audience-model/{audienceModelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfiguredAudienceModel = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "DeleteConfiguredAudienceModel"),
+    input = M.DeleteConfiguredAudienceModelInput,
+    output = M.DeleteConfiguredAudienceModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/configured-audience-model/{configuredAudienceModelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfiguredAudienceModelPolicy = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "DeleteConfiguredAudienceModelPolicy"),
+    input = M.DeleteConfiguredAudienceModelPolicyInput,
+    output = M.DeleteConfiguredAudienceModelPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/configured-audience-model/{configuredAudienceModelArn}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfiguredModelAlgorithm = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "DeleteConfiguredModelAlgorithm"),
+    input = M.DeleteConfiguredModelAlgorithmInput,
+    output = M.DeleteConfiguredModelAlgorithmOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/configured-model-algorithms/{configuredModelAlgorithmArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfiguredModelAlgorithmAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "DeleteConfiguredModelAlgorithmAssociation"),
+    input = M.DeleteConfiguredModelAlgorithmAssociationInput,
+    output = M.DeleteConfiguredModelAlgorithmAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}/configured-model-algorithm-associations/{configuredModelAlgorithmAssociationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMLConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "DeleteMLConfiguration"),
+    input = M.DeleteMLConfigurationInput,
+    output = M.DeleteMLConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}/ml-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMLInputChannelData = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "DeleteMLInputChannelData"),
+    input = M.DeleteMLInputChannelDataInput,
+    output = M.DeleteMLInputChannelDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}/ml-input-channels/{mlInputChannelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrainedModelOutput = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "DeleteTrainedModelOutput"),
+    input = M.DeleteTrainedModelOutputInput,
+    output = M.DeleteTrainedModelOutputOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrainingDataset = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "DeleteTrainingDataset"),
+    input = M.DeleteTrainingDatasetInput,
+    output = M.DeleteTrainingDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/training-dataset/{trainingDatasetArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAudienceGenerationJob = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "GetAudienceGenerationJob"),
+    input = M.GetAudienceGenerationJobInput,
+    output = M.GetAudienceGenerationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audience-generation-job/{audienceGenerationJobArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAudienceModel = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "GetAudienceModel"),
+    input = M.GetAudienceModelInput,
+    output = M.GetAudienceModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audience-model/{audienceModelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCollaborationConfiguredModelAlgorithmAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "GetCollaborationConfiguredModelAlgorithmAssociation"),
+    input = M.GetCollaborationConfiguredModelAlgorithmAssociationInput,
+    output = M.GetCollaborationConfiguredModelAlgorithmAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/configured-model-algorithm-associations/{configuredModelAlgorithmAssociationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCollaborationMLInputChannel = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "GetCollaborationMLInputChannel"),
+    input = M.GetCollaborationMLInputChannelInput,
+    output = M.GetCollaborationMLInputChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/ml-input-channels/{mlInputChannelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCollaborationTrainedModel = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "GetCollaborationTrainedModel"),
+    input = M.GetCollaborationTrainedModelInput,
+    output = M.GetCollaborationTrainedModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/trained-models/{trainedModelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfiguredAudienceModel = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "GetConfiguredAudienceModel"),
+    input = M.GetConfiguredAudienceModelInput,
+    output = M.GetConfiguredAudienceModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configured-audience-model/{configuredAudienceModelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfiguredAudienceModelPolicy = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "GetConfiguredAudienceModelPolicy"),
+    input = M.GetConfiguredAudienceModelPolicyInput,
+    output = M.GetConfiguredAudienceModelPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configured-audience-model/{configuredAudienceModelArn}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfiguredModelAlgorithm = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "GetConfiguredModelAlgorithm"),
+    input = M.GetConfiguredModelAlgorithmInput,
+    output = M.GetConfiguredModelAlgorithmOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configured-model-algorithms/{configuredModelAlgorithmArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfiguredModelAlgorithmAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "GetConfiguredModelAlgorithmAssociation"),
+    input = M.GetConfiguredModelAlgorithmAssociationInput,
+    output = M.GetConfiguredModelAlgorithmAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/configured-model-algorithm-associations/{configuredModelAlgorithmAssociationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMLConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "GetMLConfiguration"),
+    input = M.GetMLConfigurationInput,
+    output = M.GetMLConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/ml-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMLInputChannel = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "GetMLInputChannel"),
+    input = M.GetMLInputChannelInput,
+    output = M.GetMLInputChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/ml-input-channels/{mlInputChannelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrainedModel = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "GetTrainedModel"),
+    input = M.GetTrainedModelInput,
+    output = M.GetTrainedModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrainedModelInferenceJob = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "GetTrainedModelInferenceJob"),
+    input = M.GetTrainedModelInferenceJobInput,
+    output = M.GetTrainedModelInferenceJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/trained-model-inference-jobs/{trainedModelInferenceJobArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrainingDataset = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "GetTrainingDataset"),
+    input = M.GetTrainingDatasetInput,
+    output = M.GetTrainingDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/training-dataset/{trainingDatasetArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAudienceExportJobs = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListAudienceExportJobs"),
+    input = M.ListAudienceExportJobsInput,
+    output = M.ListAudienceExportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audience-export-job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAudienceGenerationJobs = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListAudienceGenerationJobs"),
+    input = M.ListAudienceGenerationJobsInput,
+    output = M.ListAudienceGenerationJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audience-generation-job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAudienceModels = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListAudienceModels"),
+    input = M.ListAudienceModelsInput,
+    output = M.ListAudienceModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audience-model" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollaborationConfiguredModelAlgorithmAssociations = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListCollaborationConfiguredModelAlgorithmAssociations"),
+    input = M.ListCollaborationConfiguredModelAlgorithmAssociationsInput,
+    output = M.ListCollaborationConfiguredModelAlgorithmAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/configured-model-algorithm-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollaborationMLInputChannels = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListCollaborationMLInputChannels"),
+    input = M.ListCollaborationMLInputChannelsInput,
+    output = M.ListCollaborationMLInputChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/ml-input-channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollaborationTrainedModelExportJobs = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListCollaborationTrainedModelExportJobs"),
+    input = M.ListCollaborationTrainedModelExportJobsInput,
+    output = M.ListCollaborationTrainedModelExportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/trained-models/{trainedModelArn}/export-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollaborationTrainedModelInferenceJobs = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListCollaborationTrainedModelInferenceJobs"),
+    input = M.ListCollaborationTrainedModelInferenceJobsInput,
+    output = M.ListCollaborationTrainedModelInferenceJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/trained-model-inference-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollaborationTrainedModels = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListCollaborationTrainedModels"),
+    input = M.ListCollaborationTrainedModelsInput,
+    output = M.ListCollaborationTrainedModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/trained-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfiguredAudienceModels = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListConfiguredAudienceModels"),
+    input = M.ListConfiguredAudienceModelsInput,
+    output = M.ListConfiguredAudienceModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configured-audience-model" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfiguredModelAlgorithmAssociations = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListConfiguredModelAlgorithmAssociations"),
+    input = M.ListConfiguredModelAlgorithmAssociationsInput,
+    output = M.ListConfiguredModelAlgorithmAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/configured-model-algorithm-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfiguredModelAlgorithms = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListConfiguredModelAlgorithms"),
+    input = M.ListConfiguredModelAlgorithmsInput,
+    output = M.ListConfiguredModelAlgorithmsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configured-model-algorithms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMLInputChannels = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListMLInputChannels"),
+    input = M.ListMLInputChannelsInput,
+    output = M.ListMLInputChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/ml-input-channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrainedModelInferenceJobs = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListTrainedModelInferenceJobs"),
+    input = M.ListTrainedModelInferenceJobsInput,
+    output = M.ListTrainedModelInferenceJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/trained-model-inference-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrainedModels = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListTrainedModels"),
+    input = M.ListTrainedModelsInput,
+    output = M.ListTrainedModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/trained-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrainedModelVersions = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListTrainedModelVersions"),
+    input = M.ListTrainedModelVersionsInput,
+    output = M.ListTrainedModelVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrainingDatasets = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "ListTrainingDatasets"),
+    input = M.ListTrainingDatasetsInput,
+    output = M.ListTrainingDatasetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/training-dataset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConfiguredAudienceModelPolicy = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "PutConfiguredAudienceModelPolicy"),
+    input = M.PutConfiguredAudienceModelPolicyInput,
+    output = M.PutConfiguredAudienceModelPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/configured-audience-model/{configuredAudienceModelArn}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMLConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "PutMLConfiguration"),
+    input = M.PutMLConfigurationInput,
+    output = M.PutMLConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/memberships/{membershipIdentifier}/ml-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAudienceExportJob = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "StartAudienceExportJob"),
+    input = M.StartAudienceExportJobInput,
+    output = M.StartAudienceExportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/audience-export-job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAudienceGenerationJob = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "StartAudienceGenerationJob"),
+    input = M.StartAudienceGenerationJobInput,
+    output = M.StartAudienceGenerationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/audience-generation-job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTrainedModelExportJob = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "StartTrainedModelExportJob"),
+    input = M.StartTrainedModelExportJobInput,
+    output = M.StartTrainedModelExportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}/export-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTrainedModelInferenceJob = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "StartTrainedModelInferenceJob"),
+    input = M.StartTrainedModelInferenceJobInput,
+    output = M.StartTrainedModelInferenceJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/trained-model-inference-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfiguredAudienceModel = schema.operation({
+    id = id.from("com.amazonaws.cleanroomsml", "UpdateConfiguredAudienceModel"),
+    input = M.UpdateConfiguredAudienceModelInput,
+    output = M.UpdateConfiguredAudienceModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/configured-audience-model/{configuredAudienceModelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

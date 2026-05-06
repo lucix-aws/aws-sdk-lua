@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("mailmanager.endpoint_rules")
 local schemas = require("mailmanager.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ses", signing_region = cfg.region } }
                 else
@@ -49,783 +52,243 @@ function M.new(cfg)
 end
 
 function Client:createAddonInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAddonInstance",
-        input_schema = schemas.CreateAddonInstanceInput,
-        output_schema = schemas.CreateAddonInstanceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAddonInstance, input, options)
 end
 
 function Client:createAddonSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAddonSubscription",
-        input_schema = schemas.CreateAddonSubscriptionInput,
-        output_schema = schemas.CreateAddonSubscriptionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAddonSubscription, input, options)
 end
 
 function Client:createAddressList(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAddressList",
-        input_schema = schemas.CreateAddressListInput,
-        output_schema = schemas.CreateAddressListOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAddressList, input, options)
 end
 
 function Client:createAddressListImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAddressListImportJob",
-        input_schema = schemas.CreateAddressListImportJobInput,
-        output_schema = schemas.CreateAddressListImportJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAddressListImportJob, input, options)
 end
 
 function Client:createArchive(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateArchive",
-        input_schema = schemas.CreateArchiveInput,
-        output_schema = schemas.CreateArchiveOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateArchive, input, options)
 end
 
 function Client:createIngressPoint(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateIngressPoint",
-        input_schema = schemas.CreateIngressPointInput,
-        output_schema = schemas.CreateIngressPointOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateIngressPoint, input, options)
 end
 
 function Client:createRelay(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRelay",
-        input_schema = schemas.CreateRelayInput,
-        output_schema = schemas.CreateRelayOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRelay, input, options)
 end
 
 function Client:createRuleSet(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRuleSet",
-        input_schema = schemas.CreateRuleSetInput,
-        output_schema = schemas.CreateRuleSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRuleSet, input, options)
 end
 
 function Client:createTrafficPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTrafficPolicy",
-        input_schema = schemas.CreateTrafficPolicyInput,
-        output_schema = schemas.CreateTrafficPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTrafficPolicy, input, options)
 end
 
 function Client:deleteAddonInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAddonInstance",
-        input_schema = schemas.DeleteAddonInstanceInput,
-        output_schema = schemas.DeleteAddonInstanceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAddonInstance, input, options)
 end
 
 function Client:deleteAddonSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAddonSubscription",
-        input_schema = schemas.DeleteAddonSubscriptionInput,
-        output_schema = schemas.DeleteAddonSubscriptionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAddonSubscription, input, options)
 end
 
 function Client:deleteAddressList(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAddressList",
-        input_schema = schemas.DeleteAddressListInput,
-        output_schema = schemas.DeleteAddressListOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAddressList, input, options)
 end
 
 function Client:deleteArchive(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteArchive",
-        input_schema = schemas.DeleteArchiveInput,
-        output_schema = schemas.DeleteArchiveOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteArchive, input, options)
 end
 
 function Client:deleteIngressPoint(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIngressPoint",
-        input_schema = schemas.DeleteIngressPointInput,
-        output_schema = schemas.DeleteIngressPointOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIngressPoint, input, options)
 end
 
 function Client:deleteRelay(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRelay",
-        input_schema = schemas.DeleteRelayInput,
-        output_schema = schemas.DeleteRelayOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRelay, input, options)
 end
 
 function Client:deleteRuleSet(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRuleSet",
-        input_schema = schemas.DeleteRuleSetInput,
-        output_schema = schemas.DeleteRuleSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRuleSet, input, options)
 end
 
 function Client:deleteTrafficPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTrafficPolicy",
-        input_schema = schemas.DeleteTrafficPolicyInput,
-        output_schema = schemas.DeleteTrafficPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTrafficPolicy, input, options)
 end
 
 function Client:deregisterMemberFromAddressList(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterMemberFromAddressList",
-        input_schema = schemas.DeregisterMemberFromAddressListInput,
-        output_schema = schemas.DeregisterMemberFromAddressListOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterMemberFromAddressList, input, options)
 end
 
 function Client:getAddonInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAddonInstance",
-        input_schema = schemas.GetAddonInstanceInput,
-        output_schema = schemas.GetAddonInstanceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAddonInstance, input, options)
 end
 
 function Client:getAddonSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAddonSubscription",
-        input_schema = schemas.GetAddonSubscriptionInput,
-        output_schema = schemas.GetAddonSubscriptionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAddonSubscription, input, options)
 end
 
 function Client:getAddressList(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAddressList",
-        input_schema = schemas.GetAddressListInput,
-        output_schema = schemas.GetAddressListOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAddressList, input, options)
 end
 
 function Client:getAddressListImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAddressListImportJob",
-        input_schema = schemas.GetAddressListImportJobInput,
-        output_schema = schemas.GetAddressListImportJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAddressListImportJob, input, options)
 end
 
 function Client:getArchive(input, options)
-    return self:invokeOperation(input, {
-        name = "GetArchive",
-        input_schema = schemas.GetArchiveInput,
-        output_schema = schemas.GetArchiveOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetArchive, input, options)
 end
 
 function Client:getArchiveExport(input, options)
-    return self:invokeOperation(input, {
-        name = "GetArchiveExport",
-        input_schema = schemas.GetArchiveExportInput,
-        output_schema = schemas.GetArchiveExportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetArchiveExport, input, options)
 end
 
 function Client:getArchiveMessage(input, options)
-    return self:invokeOperation(input, {
-        name = "GetArchiveMessage",
-        input_schema = schemas.GetArchiveMessageInput,
-        output_schema = schemas.GetArchiveMessageOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetArchiveMessage, input, options)
 end
 
 function Client:getArchiveMessageContent(input, options)
-    return self:invokeOperation(input, {
-        name = "GetArchiveMessageContent",
-        input_schema = schemas.GetArchiveMessageContentInput,
-        output_schema = schemas.GetArchiveMessageContentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetArchiveMessageContent, input, options)
 end
 
 function Client:getArchiveSearch(input, options)
-    return self:invokeOperation(input, {
-        name = "GetArchiveSearch",
-        input_schema = schemas.GetArchiveSearchInput,
-        output_schema = schemas.GetArchiveSearchOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetArchiveSearch, input, options)
 end
 
 function Client:getArchiveSearchResults(input, options)
-    return self:invokeOperation(input, {
-        name = "GetArchiveSearchResults",
-        input_schema = schemas.GetArchiveSearchResultsInput,
-        output_schema = schemas.GetArchiveSearchResultsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetArchiveSearchResults, input, options)
 end
 
 function Client:getIngressPoint(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIngressPoint",
-        input_schema = schemas.GetIngressPointInput,
-        output_schema = schemas.GetIngressPointOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIngressPoint, input, options)
 end
 
 function Client:getMemberOfAddressList(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMemberOfAddressList",
-        input_schema = schemas.GetMemberOfAddressListInput,
-        output_schema = schemas.GetMemberOfAddressListOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMemberOfAddressList, input, options)
 end
 
 function Client:getRelay(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRelay",
-        input_schema = schemas.GetRelayInput,
-        output_schema = schemas.GetRelayOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRelay, input, options)
 end
 
 function Client:getRuleSet(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRuleSet",
-        input_schema = schemas.GetRuleSetInput,
-        output_schema = schemas.GetRuleSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRuleSet, input, options)
 end
 
 function Client:getTrafficPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTrafficPolicy",
-        input_schema = schemas.GetTrafficPolicyInput,
-        output_schema = schemas.GetTrafficPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTrafficPolicy, input, options)
 end
 
 function Client:listAddonInstances(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAddonInstances",
-        input_schema = schemas.ListAddonInstancesInput,
-        output_schema = schemas.ListAddonInstancesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAddonInstances, input, options)
 end
 
 function Client:listAddonSubscriptions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAddonSubscriptions",
-        input_schema = schemas.ListAddonSubscriptionsInput,
-        output_schema = schemas.ListAddonSubscriptionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAddonSubscriptions, input, options)
 end
 
 function Client:listAddressListImportJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAddressListImportJobs",
-        input_schema = schemas.ListAddressListImportJobsInput,
-        output_schema = schemas.ListAddressListImportJobsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAddressListImportJobs, input, options)
 end
 
 function Client:listAddressLists(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAddressLists",
-        input_schema = schemas.ListAddressListsInput,
-        output_schema = schemas.ListAddressListsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAddressLists, input, options)
 end
 
 function Client:listArchiveExports(input, options)
-    return self:invokeOperation(input, {
-        name = "ListArchiveExports",
-        input_schema = schemas.ListArchiveExportsInput,
-        output_schema = schemas.ListArchiveExportsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListArchiveExports, input, options)
 end
 
 function Client:listArchives(input, options)
-    return self:invokeOperation(input, {
-        name = "ListArchives",
-        input_schema = schemas.ListArchivesInput,
-        output_schema = schemas.ListArchivesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListArchives, input, options)
 end
 
 function Client:listArchiveSearches(input, options)
-    return self:invokeOperation(input, {
-        name = "ListArchiveSearches",
-        input_schema = schemas.ListArchiveSearchesInput,
-        output_schema = schemas.ListArchiveSearchesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListArchiveSearches, input, options)
 end
 
 function Client:listIngressPoints(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIngressPoints",
-        input_schema = schemas.ListIngressPointsInput,
-        output_schema = schemas.ListIngressPointsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIngressPoints, input, options)
 end
 
 function Client:listMembersOfAddressList(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMembersOfAddressList",
-        input_schema = schemas.ListMembersOfAddressListInput,
-        output_schema = schemas.ListMembersOfAddressListOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMembersOfAddressList, input, options)
 end
 
 function Client:listRelays(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRelays",
-        input_schema = schemas.ListRelaysInput,
-        output_schema = schemas.ListRelaysOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRelays, input, options)
 end
 
 function Client:listRuleSets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRuleSets",
-        input_schema = schemas.ListRuleSetsInput,
-        output_schema = schemas.ListRuleSetsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRuleSets, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTrafficPolicies(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTrafficPolicies",
-        input_schema = schemas.ListTrafficPoliciesInput,
-        output_schema = schemas.ListTrafficPoliciesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTrafficPolicies, input, options)
 end
 
 function Client:registerMemberToAddressList(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterMemberToAddressList",
-        input_schema = schemas.RegisterMemberToAddressListInput,
-        output_schema = schemas.RegisterMemberToAddressListOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterMemberToAddressList, input, options)
 end
 
 function Client:startAddressListImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartAddressListImportJob",
-        input_schema = schemas.StartAddressListImportJobInput,
-        output_schema = schemas.StartAddressListImportJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartAddressListImportJob, input, options)
 end
 
 function Client:startArchiveExport(input, options)
-    return self:invokeOperation(input, {
-        name = "StartArchiveExport",
-        input_schema = schemas.StartArchiveExportInput,
-        output_schema = schemas.StartArchiveExportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartArchiveExport, input, options)
 end
 
 function Client:startArchiveSearch(input, options)
-    return self:invokeOperation(input, {
-        name = "StartArchiveSearch",
-        input_schema = schemas.StartArchiveSearchInput,
-        output_schema = schemas.StartArchiveSearchOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartArchiveSearch, input, options)
 end
 
 function Client:stopAddressListImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StopAddressListImportJob",
-        input_schema = schemas.StopAddressListImportJobInput,
-        output_schema = schemas.StopAddressListImportJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopAddressListImportJob, input, options)
 end
 
 function Client:stopArchiveExport(input, options)
-    return self:invokeOperation(input, {
-        name = "StopArchiveExport",
-        input_schema = schemas.StopArchiveExportInput,
-        output_schema = schemas.StopArchiveExportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopArchiveExport, input, options)
 end
 
 function Client:stopArchiveSearch(input, options)
-    return self:invokeOperation(input, {
-        name = "StopArchiveSearch",
-        input_schema = schemas.StopArchiveSearchInput,
-        output_schema = schemas.StopArchiveSearchOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopArchiveSearch, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateArchive(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateArchive",
-        input_schema = schemas.UpdateArchiveInput,
-        output_schema = schemas.UpdateArchiveOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateArchive, input, options)
 end
 
 function Client:updateIngressPoint(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateIngressPoint",
-        input_schema = schemas.UpdateIngressPointInput,
-        output_schema = schemas.UpdateIngressPointOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateIngressPoint, input, options)
 end
 
 function Client:updateRelay(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRelay",
-        input_schema = schemas.UpdateRelayInput,
-        output_schema = schemas.UpdateRelayOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRelay, input, options)
 end
 
 function Client:updateRuleSet(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRuleSet",
-        input_schema = schemas.UpdateRuleSetInput,
-        output_schema = schemas.UpdateRuleSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRuleSet, input, options)
 end
 
 function Client:updateTrafficPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTrafficPolicy",
-        input_schema = schemas.UpdateTrafficPolicyInput,
-        output_schema = schemas.UpdateTrafficPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTrafficPolicy, input, options)
 end
 
 return M

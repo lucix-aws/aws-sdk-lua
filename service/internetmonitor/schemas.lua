@@ -2099,4 +2099,206 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.internetmonitor", "InternetMonitor20210603"),
+    version = "2021-06-03",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMonitor = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "CreateMonitor"),
+    input = M.CreateMonitorInput,
+    output = M.CreateMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v20210603/Monitors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMonitor = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "DeleteMonitor"),
+    input = M.DeleteMonitorInput,
+    output = M.DeleteMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20210603/Monitors/{MonitorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHealthEvent = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "GetHealthEvent"),
+    input = M.GetHealthEventInput,
+    output = M.GetHealthEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20210603/Monitors/{MonitorName}/HealthEvents/{EventId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInternetEvent = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "GetInternetEvent"),
+    input = M.GetInternetEventInput,
+    output = M.GetInternetEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20210603/InternetEvents/{EventId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMonitor = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "GetMonitor"),
+    input = M.GetMonitorInput,
+    output = M.GetMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20210603/Monitors/{MonitorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryResults = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "GetQueryResults"),
+    input = M.GetQueryResultsInput,
+    output = M.GetQueryResultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20210603/Monitors/{MonitorName}/Queries/{QueryId}/Results" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryStatus = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "GetQueryStatus"),
+    input = M.GetQueryStatusInput,
+    output = M.GetQueryStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20210603/Monitors/{MonitorName}/Queries/{QueryId}/Status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHealthEvents = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "ListHealthEvents"),
+    input = M.ListHealthEventsInput,
+    output = M.ListHealthEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20210603/Monitors/{MonitorName}/HealthEvents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInternetEvents = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "ListInternetEvents"),
+    input = M.ListInternetEventsInput,
+    output = M.ListInternetEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20210603/InternetEvents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMonitors = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "ListMonitors"),
+    input = M.ListMonitorsInput,
+    output = M.ListMonitorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20210603/Monitors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartQuery = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "StartQuery"),
+    input = M.StartQueryInput,
+    output = M.StartQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v20210603/Monitors/{MonitorName}/Queries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopQuery = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "StopQuery"),
+    input = M.StopQueryInput,
+    output = M.StopQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20210603/Monitors/{MonitorName}/Queries/{QueryId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMonitor = schema.operation({
+    id = id.from("com.amazonaws.internetmonitor", "UpdateMonitor"),
+    input = M.UpdateMonitorInput,
+    output = M.UpdateMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v20210603/Monitors/{MonitorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

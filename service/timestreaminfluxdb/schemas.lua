@@ -3574,4 +3574,223 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "AmazonTimestreamInfluxDB"),
+    version = "2023-01-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDbCluster = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "CreateDbCluster"),
+    input = M.CreateDbClusterInput,
+    output = M.CreateDbClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDbInstance = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "CreateDbInstance"),
+    input = M.CreateDbInstanceInput,
+    output = M.CreateDbInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDbParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "CreateDbParameterGroup"),
+    input = M.CreateDbParameterGroupInput,
+    output = M.CreateDbParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDbCluster = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "DeleteDbCluster"),
+    input = M.DeleteDbClusterInput,
+    output = M.DeleteDbClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDbInstance = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "DeleteDbInstance"),
+    input = M.DeleteDbInstanceInput,
+    output = M.DeleteDbInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDbCluster = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "GetDbCluster"),
+    input = M.GetDbClusterInput,
+    output = M.GetDbClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDbInstance = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "GetDbInstance"),
+    input = M.GetDbInstanceInput,
+    output = M.GetDbInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDbParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "GetDbParameterGroup"),
+    input = M.GetDbParameterGroupInput,
+    output = M.GetDbParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDbClusters = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "ListDbClusters"),
+    input = M.ListDbClustersInput,
+    output = M.ListDbClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDbInstances = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "ListDbInstances"),
+    input = M.ListDbInstancesInput,
+    output = M.ListDbInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDbInstancesForCluster = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "ListDbInstancesForCluster"),
+    input = M.ListDbInstancesForClusterInput,
+    output = M.ListDbInstancesForClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDbParameterGroups = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "ListDbParameterGroups"),
+    input = M.ListDbParameterGroupsInput,
+    output = M.ListDbParameterGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootDbCluster = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "RebootDbCluster"),
+    input = M.RebootDbClusterInput,
+    output = M.RebootDbClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootDbInstance = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "RebootDbInstance"),
+    input = M.RebootDbInstanceInput,
+    output = M.RebootDbInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDbCluster = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "UpdateDbCluster"),
+    input = M.UpdateDbClusterInput,
+    output = M.UpdateDbClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDbInstance = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "UpdateDbInstance"),
+    input = M.UpdateDbInstanceInput,
+    output = M.UpdateDbInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

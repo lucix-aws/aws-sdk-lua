@@ -4779,4 +4779,553 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.lookoutequipment", "AWSLookoutEquipmentFrontendService"),
+    version = "2020-12-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataset = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "CreateDataset"),
+    input = M.CreateDatasetInput,
+    output = M.CreateDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInferenceScheduler = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "CreateInferenceScheduler"),
+    input = M.CreateInferenceSchedulerInput,
+    output = M.CreateInferenceSchedulerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLabel = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "CreateLabel"),
+    input = M.CreateLabelInput,
+    output = M.CreateLabelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLabelGroup = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "CreateLabelGroup"),
+    input = M.CreateLabelGroupInput,
+    output = M.CreateLabelGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateModel = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "CreateModel"),
+    input = M.CreateModelInput,
+    output = M.CreateModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRetrainingScheduler = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "CreateRetrainingScheduler"),
+    input = M.CreateRetrainingSchedulerInput,
+    output = M.CreateRetrainingSchedulerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataset = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DeleteDataset"),
+    input = M.DeleteDatasetInput,
+    output = M.DeleteDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInferenceScheduler = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DeleteInferenceScheduler"),
+    input = M.DeleteInferenceSchedulerInput,
+    output = M.DeleteInferenceSchedulerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLabel = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DeleteLabel"),
+    input = M.DeleteLabelInput,
+    output = M.DeleteLabelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLabelGroup = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DeleteLabelGroup"),
+    input = M.DeleteLabelGroupInput,
+    output = M.DeleteLabelGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteModel = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DeleteModel"),
+    input = M.DeleteModelInput,
+    output = M.DeleteModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRetrainingScheduler = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DeleteRetrainingScheduler"),
+    input = M.DeleteRetrainingSchedulerInput,
+    output = M.DeleteRetrainingSchedulerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataIngestionJob = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DescribeDataIngestionJob"),
+    input = M.DescribeDataIngestionJobInput,
+    output = M.DescribeDataIngestionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataset = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DescribeDataset"),
+    input = M.DescribeDatasetInput,
+    output = M.DescribeDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInferenceScheduler = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DescribeInferenceScheduler"),
+    input = M.DescribeInferenceSchedulerInput,
+    output = M.DescribeInferenceSchedulerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLabel = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DescribeLabel"),
+    input = M.DescribeLabelInput,
+    output = M.DescribeLabelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLabelGroup = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DescribeLabelGroup"),
+    input = M.DescribeLabelGroupInput,
+    output = M.DescribeLabelGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeModel = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DescribeModel"),
+    input = M.DescribeModelInput,
+    output = M.DescribeModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeModelVersion = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DescribeModelVersion"),
+    input = M.DescribeModelVersionInput,
+    output = M.DescribeModelVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DescribeResourcePolicy"),
+    input = M.DescribeResourcePolicyInput,
+    output = M.DescribeResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRetrainingScheduler = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "DescribeRetrainingScheduler"),
+    input = M.DescribeRetrainingSchedulerInput,
+    output = M.DescribeRetrainingSchedulerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportDataset = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "ImportDataset"),
+    input = M.ImportDatasetInput,
+    output = M.ImportDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportModelVersion = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "ImportModelVersion"),
+    input = M.ImportModelVersionInput,
+    output = M.ImportModelVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataIngestionJobs = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "ListDataIngestionJobs"),
+    input = M.ListDataIngestionJobsInput,
+    output = M.ListDataIngestionJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasets = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "ListDatasets"),
+    input = M.ListDatasetsInput,
+    output = M.ListDatasetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInferenceEvents = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "ListInferenceEvents"),
+    input = M.ListInferenceEventsInput,
+    output = M.ListInferenceEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInferenceExecutions = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "ListInferenceExecutions"),
+    input = M.ListInferenceExecutionsInput,
+    output = M.ListInferenceExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInferenceSchedulers = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "ListInferenceSchedulers"),
+    input = M.ListInferenceSchedulersInput,
+    output = M.ListInferenceSchedulersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLabelGroups = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "ListLabelGroups"),
+    input = M.ListLabelGroupsInput,
+    output = M.ListLabelGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLabels = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "ListLabels"),
+    input = M.ListLabelsInput,
+    output = M.ListLabelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModels = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "ListModels"),
+    input = M.ListModelsInput,
+    output = M.ListModelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModelVersions = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "ListModelVersions"),
+    input = M.ListModelVersionsInput,
+    output = M.ListModelVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRetrainingSchedulers = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "ListRetrainingSchedulers"),
+    input = M.ListRetrainingSchedulersInput,
+    output = M.ListRetrainingSchedulersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSensorStatistics = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "ListSensorStatistics"),
+    input = M.ListSensorStatisticsInput,
+    output = M.ListSensorStatisticsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDataIngestionJob = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "StartDataIngestionJob"),
+    input = M.StartDataIngestionJobInput,
+    output = M.StartDataIngestionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartInferenceScheduler = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "StartInferenceScheduler"),
+    input = M.StartInferenceSchedulerInput,
+    output = M.StartInferenceSchedulerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRetrainingScheduler = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "StartRetrainingScheduler"),
+    input = M.StartRetrainingSchedulerInput,
+    output = M.StartRetrainingSchedulerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopInferenceScheduler = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "StopInferenceScheduler"),
+    input = M.StopInferenceSchedulerInput,
+    output = M.StopInferenceSchedulerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopRetrainingScheduler = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "StopRetrainingScheduler"),
+    input = M.StopRetrainingSchedulerInput,
+    output = M.StopRetrainingSchedulerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateActiveModelVersion = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "UpdateActiveModelVersion"),
+    input = M.UpdateActiveModelVersionInput,
+    output = M.UpdateActiveModelVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInferenceScheduler = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "UpdateInferenceScheduler"),
+    input = M.UpdateInferenceSchedulerInput,
+    output = M.UpdateInferenceSchedulerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLabelGroup = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "UpdateLabelGroup"),
+    input = M.UpdateLabelGroupInput,
+    output = M.UpdateLabelGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateModel = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "UpdateModel"),
+    input = M.UpdateModelInput,
+    output = M.UpdateModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRetrainingScheduler = schema.operation({
+    id = id.from("com.amazonaws.lookoutequipment", "UpdateRetrainingScheduler"),
+    input = M.UpdateRetrainingSchedulerInput,
+    output = M.UpdateRetrainingSchedulerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

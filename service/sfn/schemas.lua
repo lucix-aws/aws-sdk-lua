@@ -5159,4 +5159,421 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sfn", "AWSStepFunctions"),
+    version = "2016-11-23",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateActivity = schema.operation({
+    id = id.from("com.amazonaws.sfn", "CreateActivity"),
+    input = M.CreateActivityInput,
+    output = M.CreateActivityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStateMachine = schema.operation({
+    id = id.from("com.amazonaws.sfn", "CreateStateMachine"),
+    input = M.CreateStateMachineInput,
+    output = M.CreateStateMachineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStateMachineAlias = schema.operation({
+    id = id.from("com.amazonaws.sfn", "CreateStateMachineAlias"),
+    input = M.CreateStateMachineAliasInput,
+    output = M.CreateStateMachineAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteActivity = schema.operation({
+    id = id.from("com.amazonaws.sfn", "DeleteActivity"),
+    input = M.DeleteActivityInput,
+    output = M.DeleteActivityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStateMachine = schema.operation({
+    id = id.from("com.amazonaws.sfn", "DeleteStateMachine"),
+    input = M.DeleteStateMachineInput,
+    output = M.DeleteStateMachineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStateMachineAlias = schema.operation({
+    id = id.from("com.amazonaws.sfn", "DeleteStateMachineAlias"),
+    input = M.DeleteStateMachineAliasInput,
+    output = M.DeleteStateMachineAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStateMachineVersion = schema.operation({
+    id = id.from("com.amazonaws.sfn", "DeleteStateMachineVersion"),
+    input = M.DeleteStateMachineVersionInput,
+    output = M.DeleteStateMachineVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeActivity = schema.operation({
+    id = id.from("com.amazonaws.sfn", "DescribeActivity"),
+    input = M.DescribeActivityInput,
+    output = M.DescribeActivityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExecution = schema.operation({
+    id = id.from("com.amazonaws.sfn", "DescribeExecution"),
+    input = M.DescribeExecutionInput,
+    output = M.DescribeExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMapRun = schema.operation({
+    id = id.from("com.amazonaws.sfn", "DescribeMapRun"),
+    input = M.DescribeMapRunInput,
+    output = M.DescribeMapRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStateMachine = schema.operation({
+    id = id.from("com.amazonaws.sfn", "DescribeStateMachine"),
+    input = M.DescribeStateMachineInput,
+    output = M.DescribeStateMachineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStateMachineAlias = schema.operation({
+    id = id.from("com.amazonaws.sfn", "DescribeStateMachineAlias"),
+    input = M.DescribeStateMachineAliasInput,
+    output = M.DescribeStateMachineAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStateMachineForExecution = schema.operation({
+    id = id.from("com.amazonaws.sfn", "DescribeStateMachineForExecution"),
+    input = M.DescribeStateMachineForExecutionInput,
+    output = M.DescribeStateMachineForExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetActivityTask = schema.operation({
+    id = id.from("com.amazonaws.sfn", "GetActivityTask"),
+    input = M.GetActivityTaskInput,
+    output = M.GetActivityTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExecutionHistory = schema.operation({
+    id = id.from("com.amazonaws.sfn", "GetExecutionHistory"),
+    input = M.GetExecutionHistoryInput,
+    output = M.GetExecutionHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListActivities = schema.operation({
+    id = id.from("com.amazonaws.sfn", "ListActivities"),
+    input = M.ListActivitiesInput,
+    output = M.ListActivitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExecutions = schema.operation({
+    id = id.from("com.amazonaws.sfn", "ListExecutions"),
+    input = M.ListExecutionsInput,
+    output = M.ListExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMapRuns = schema.operation({
+    id = id.from("com.amazonaws.sfn", "ListMapRuns"),
+    input = M.ListMapRunsInput,
+    output = M.ListMapRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStateMachineAliases = schema.operation({
+    id = id.from("com.amazonaws.sfn", "ListStateMachineAliases"),
+    input = M.ListStateMachineAliasesInput,
+    output = M.ListStateMachineAliasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStateMachines = schema.operation({
+    id = id.from("com.amazonaws.sfn", "ListStateMachines"),
+    input = M.ListStateMachinesInput,
+    output = M.ListStateMachinesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStateMachineVersions = schema.operation({
+    id = id.from("com.amazonaws.sfn", "ListStateMachineVersions"),
+    input = M.ListStateMachineVersionsInput,
+    output = M.ListStateMachineVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.sfn", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PublishStateMachineVersion = schema.operation({
+    id = id.from("com.amazonaws.sfn", "PublishStateMachineVersion"),
+    input = M.PublishStateMachineVersionInput,
+    output = M.PublishStateMachineVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RedriveExecution = schema.operation({
+    id = id.from("com.amazonaws.sfn", "RedriveExecution"),
+    input = M.RedriveExecutionInput,
+    output = M.RedriveExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendTaskFailure = schema.operation({
+    id = id.from("com.amazonaws.sfn", "SendTaskFailure"),
+    input = M.SendTaskFailureInput,
+    output = M.SendTaskFailureOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendTaskHeartbeat = schema.operation({
+    id = id.from("com.amazonaws.sfn", "SendTaskHeartbeat"),
+    input = M.SendTaskHeartbeatInput,
+    output = M.SendTaskHeartbeatOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendTaskSuccess = schema.operation({
+    id = id.from("com.amazonaws.sfn", "SendTaskSuccess"),
+    input = M.SendTaskSuccessInput,
+    output = M.SendTaskSuccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartExecution = schema.operation({
+    id = id.from("com.amazonaws.sfn", "StartExecution"),
+    input = M.StartExecutionInput,
+    output = M.StartExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSyncExecution = schema.operation({
+    id = id.from("com.amazonaws.sfn", "StartSyncExecution"),
+    input = M.StartSyncExecutionInput,
+    output = M.StartSyncExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopExecution = schema.operation({
+    id = id.from("com.amazonaws.sfn", "StopExecution"),
+    input = M.StopExecutionInput,
+    output = M.StopExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.sfn", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestState = schema.operation({
+    id = id.from("com.amazonaws.sfn", "TestState"),
+    input = M.TestStateInput,
+    output = M.TestStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.sfn", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMapRun = schema.operation({
+    id = id.from("com.amazonaws.sfn", "UpdateMapRun"),
+    input = M.UpdateMapRunInput,
+    output = M.UpdateMapRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStateMachine = schema.operation({
+    id = id.from("com.amazonaws.sfn", "UpdateStateMachine"),
+    input = M.UpdateStateMachineInput,
+    output = M.UpdateStateMachineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStateMachineAlias = schema.operation({
+    id = id.from("com.amazonaws.sfn", "UpdateStateMachineAlias"),
+    input = M.UpdateStateMachineAliasInput,
+    output = M.UpdateStateMachineAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateStateMachineDefinition = schema.operation({
+    id = id.from("com.amazonaws.sfn", "ValidateStateMachineDefinition"),
+    input = M.ValidateStateMachineDefinitionInput,
+    output = M.ValidateStateMachineDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

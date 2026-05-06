@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("partnercentralbenefits.endpoint_rules")
 local schemas = require("partnercentralbenefits.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "partnercentral-benefits", signing_region = cfg.region } }
                 else
@@ -49,224 +52,71 @@ function M.new(cfg)
 end
 
 function Client:amendBenefitApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "AmendBenefitApplication",
-        input_schema = schemas.AmendBenefitApplicationInput,
-        output_schema = schemas.AmendBenefitApplicationOutput,
-        http_method = "POST",
-        http_path = "/AmendBenefitApplication",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AmendBenefitApplication, input, options)
 end
 
 function Client:associateBenefitApplicationResource(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateBenefitApplicationResource",
-        input_schema = schemas.AssociateBenefitApplicationResourceInput,
-        output_schema = schemas.AssociateBenefitApplicationResourceOutput,
-        http_method = "POST",
-        http_path = "/AssociateBenefitApplicationResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateBenefitApplicationResource, input, options)
 end
 
 function Client:cancelBenefitApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelBenefitApplication",
-        input_schema = schemas.CancelBenefitApplicationInput,
-        output_schema = schemas.CancelBenefitApplicationOutput,
-        http_method = "POST",
-        http_path = "/CancelBenefitApplication",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelBenefitApplication, input, options)
 end
 
 function Client:createBenefitApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateBenefitApplication",
-        input_schema = schemas.CreateBenefitApplicationInput,
-        output_schema = schemas.CreateBenefitApplicationOutput,
-        http_method = "POST",
-        http_path = "/CreateBenefitApplication",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateBenefitApplication, input, options)
 end
 
 function Client:disassociateBenefitApplicationResource(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateBenefitApplicationResource",
-        input_schema = schemas.DisassociateBenefitApplicationResourceInput,
-        output_schema = schemas.DisassociateBenefitApplicationResourceOutput,
-        http_method = "POST",
-        http_path = "/DisassociateBenefitApplicationResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateBenefitApplicationResource, input, options)
 end
 
 function Client:getBenefit(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBenefit",
-        input_schema = schemas.GetBenefitInput,
-        output_schema = schemas.GetBenefitOutput,
-        http_method = "POST",
-        http_path = "/GetBenefit",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBenefit, input, options)
 end
 
 function Client:getBenefitAllocation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBenefitAllocation",
-        input_schema = schemas.GetBenefitAllocationInput,
-        output_schema = schemas.GetBenefitAllocationOutput,
-        http_method = "POST",
-        http_path = "/GetBenefitAllocation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBenefitAllocation, input, options)
 end
 
 function Client:getBenefitApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBenefitApplication",
-        input_schema = schemas.GetBenefitApplicationInput,
-        output_schema = schemas.GetBenefitApplicationOutput,
-        http_method = "POST",
-        http_path = "/GetBenefitApplication",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBenefitApplication, input, options)
 end
 
 function Client:listBenefitAllocations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListBenefitAllocations",
-        input_schema = schemas.ListBenefitAllocationsInput,
-        output_schema = schemas.ListBenefitAllocationsOutput,
-        http_method = "POST",
-        http_path = "/ListBenefitAllocations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListBenefitAllocations, input, options)
 end
 
 function Client:listBenefitApplications(input, options)
-    return self:invokeOperation(input, {
-        name = "ListBenefitApplications",
-        input_schema = schemas.ListBenefitApplicationsInput,
-        output_schema = schemas.ListBenefitApplicationsOutput,
-        http_method = "POST",
-        http_path = "/ListBenefitApplications",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListBenefitApplications, input, options)
 end
 
 function Client:listBenefits(input, options)
-    return self:invokeOperation(input, {
-        name = "ListBenefits",
-        input_schema = schemas.ListBenefitsInput,
-        output_schema = schemas.ListBenefitsOutput,
-        http_method = "POST",
-        http_path = "/ListBenefits",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListBenefits, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/ListTagsForResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:recallBenefitApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "RecallBenefitApplication",
-        input_schema = schemas.RecallBenefitApplicationInput,
-        output_schema = schemas.RecallBenefitApplicationOutput,
-        http_method = "POST",
-        http_path = "/RecallBenefitApplication",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RecallBenefitApplication, input, options)
 end
 
 function Client:submitBenefitApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "SubmitBenefitApplication",
-        input_schema = schemas.SubmitBenefitApplicationInput,
-        output_schema = schemas.SubmitBenefitApplicationOutput,
-        http_method = "POST",
-        http_path = "/SubmitBenefitApplication",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SubmitBenefitApplication, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/TagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/UntagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateBenefitApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateBenefitApplication",
-        input_schema = schemas.UpdateBenefitApplicationInput,
-        output_schema = schemas.UpdateBenefitApplicationOutput,
-        http_method = "POST",
-        http_path = "/UpdateBenefitApplication",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateBenefitApplication, input, options)
 end
 
 return M

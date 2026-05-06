@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("codebuild.endpoint_rules")
 local schemas = require("codebuild.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codebuild", signing_region = cfg.region } }
                 else
@@ -49,770 +52,239 @@ function M.new(cfg)
 end
 
 function Client:batchDeleteBuilds(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDeleteBuilds",
-        input_schema = schemas.BatchDeleteBuildsInput,
-        output_schema = schemas.BatchDeleteBuildsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDeleteBuilds, input, options)
 end
 
 function Client:batchGetBuildBatches(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetBuildBatches",
-        input_schema = schemas.BatchGetBuildBatchesInput,
-        output_schema = schemas.BatchGetBuildBatchesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetBuildBatches, input, options)
 end
 
 function Client:batchGetBuilds(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetBuilds",
-        input_schema = schemas.BatchGetBuildsInput,
-        output_schema = schemas.BatchGetBuildsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetBuilds, input, options)
 end
 
 function Client:batchGetCommandExecutions(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetCommandExecutions",
-        input_schema = schemas.BatchGetCommandExecutionsInput,
-        output_schema = schemas.BatchGetCommandExecutionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetCommandExecutions, input, options)
 end
 
 function Client:batchGetFleets(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetFleets",
-        input_schema = schemas.BatchGetFleetsInput,
-        output_schema = schemas.BatchGetFleetsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetFleets, input, options)
 end
 
 function Client:batchGetProjects(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetProjects",
-        input_schema = schemas.BatchGetProjectsInput,
-        output_schema = schemas.BatchGetProjectsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetProjects, input, options)
 end
 
 function Client:batchGetReportGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetReportGroups",
-        input_schema = schemas.BatchGetReportGroupsInput,
-        output_schema = schemas.BatchGetReportGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetReportGroups, input, options)
 end
 
 function Client:batchGetReports(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetReports",
-        input_schema = schemas.BatchGetReportsInput,
-        output_schema = schemas.BatchGetReportsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetReports, input, options)
 end
 
 function Client:batchGetSandboxes(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetSandboxes",
-        input_schema = schemas.BatchGetSandboxesInput,
-        output_schema = schemas.BatchGetSandboxesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetSandboxes, input, options)
 end
 
 function Client:createFleet(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateFleet",
-        input_schema = schemas.CreateFleetInput,
-        output_schema = schemas.CreateFleetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateFleet, input, options)
 end
 
 function Client:createProject(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateProject",
-        input_schema = schemas.CreateProjectInput,
-        output_schema = schemas.CreateProjectOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateProject, input, options)
 end
 
 function Client:createReportGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateReportGroup",
-        input_schema = schemas.CreateReportGroupInput,
-        output_schema = schemas.CreateReportGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateReportGroup, input, options)
 end
 
 function Client:createWebhook(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateWebhook",
-        input_schema = schemas.CreateWebhookInput,
-        output_schema = schemas.CreateWebhookOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateWebhook, input, options)
 end
 
 function Client:deleteBuildBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteBuildBatch",
-        input_schema = schemas.DeleteBuildBatchInput,
-        output_schema = schemas.DeleteBuildBatchOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteBuildBatch, input, options)
 end
 
 function Client:deleteFleet(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFleet",
-        input_schema = schemas.DeleteFleetInput,
-        output_schema = schemas.DeleteFleetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFleet, input, options)
 end
 
 function Client:deleteProject(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteProject",
-        input_schema = schemas.DeleteProjectInput,
-        output_schema = schemas.DeleteProjectOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteProject, input, options)
 end
 
 function Client:deleteReport(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteReport",
-        input_schema = schemas.DeleteReportInput,
-        output_schema = schemas.DeleteReportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteReport, input, options)
 end
 
 function Client:deleteReportGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteReportGroup",
-        input_schema = schemas.DeleteReportGroupInput,
-        output_schema = schemas.DeleteReportGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteReportGroup, input, options)
 end
 
 function Client:deleteResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResourcePolicy",
-        input_schema = schemas.DeleteResourcePolicyInput,
-        output_schema = schemas.DeleteResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options)
 end
 
 function Client:deleteSourceCredentials(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSourceCredentials",
-        input_schema = schemas.DeleteSourceCredentialsInput,
-        output_schema = schemas.DeleteSourceCredentialsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSourceCredentials, input, options)
 end
 
 function Client:deleteWebhook(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWebhook",
-        input_schema = schemas.DeleteWebhookInput,
-        output_schema = schemas.DeleteWebhookOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWebhook, input, options)
 end
 
 function Client:describeCodeCoverages(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCodeCoverages",
-        input_schema = schemas.DescribeCodeCoveragesInput,
-        output_schema = schemas.DescribeCodeCoveragesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCodeCoverages, input, options)
 end
 
 function Client:describeTestCases(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTestCases",
-        input_schema = schemas.DescribeTestCasesInput,
-        output_schema = schemas.DescribeTestCasesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTestCases, input, options)
 end
 
 function Client:getReportGroupTrend(input, options)
-    return self:invokeOperation(input, {
-        name = "GetReportGroupTrend",
-        input_schema = schemas.GetReportGroupTrendInput,
-        output_schema = schemas.GetReportGroupTrendOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetReportGroupTrend, input, options)
 end
 
 function Client:getResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourcePolicy",
-        input_schema = schemas.GetResourcePolicyInput,
-        output_schema = schemas.GetResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options)
 end
 
 function Client:importSourceCredentials(input, options)
-    return self:invokeOperation(input, {
-        name = "ImportSourceCredentials",
-        input_schema = schemas.ImportSourceCredentialsInput,
-        output_schema = schemas.ImportSourceCredentialsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ImportSourceCredentials, input, options)
 end
 
 function Client:invalidateProjectCache(input, options)
-    return self:invokeOperation(input, {
-        name = "InvalidateProjectCache",
-        input_schema = schemas.InvalidateProjectCacheInput,
-        output_schema = schemas.InvalidateProjectCacheOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InvalidateProjectCache, input, options)
 end
 
 function Client:listBuildBatches(input, options)
-    return self:invokeOperation(input, {
-        name = "ListBuildBatches",
-        input_schema = schemas.ListBuildBatchesInput,
-        output_schema = schemas.ListBuildBatchesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListBuildBatches, input, options)
 end
 
 function Client:listBuildBatchesForProject(input, options)
-    return self:invokeOperation(input, {
-        name = "ListBuildBatchesForProject",
-        input_schema = schemas.ListBuildBatchesForProjectInput,
-        output_schema = schemas.ListBuildBatchesForProjectOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListBuildBatchesForProject, input, options)
 end
 
 function Client:listBuilds(input, options)
-    return self:invokeOperation(input, {
-        name = "ListBuilds",
-        input_schema = schemas.ListBuildsInput,
-        output_schema = schemas.ListBuildsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListBuilds, input, options)
 end
 
 function Client:listBuildsForProject(input, options)
-    return self:invokeOperation(input, {
-        name = "ListBuildsForProject",
-        input_schema = schemas.ListBuildsForProjectInput,
-        output_schema = schemas.ListBuildsForProjectOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListBuildsForProject, input, options)
 end
 
 function Client:listCommandExecutionsForSandbox(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCommandExecutionsForSandbox",
-        input_schema = schemas.ListCommandExecutionsForSandboxInput,
-        output_schema = schemas.ListCommandExecutionsForSandboxOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCommandExecutionsForSandbox, input, options)
 end
 
 function Client:listCuratedEnvironmentImages(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCuratedEnvironmentImages",
-        input_schema = schemas.ListCuratedEnvironmentImagesInput,
-        output_schema = schemas.ListCuratedEnvironmentImagesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCuratedEnvironmentImages, input, options)
 end
 
 function Client:listFleets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFleets",
-        input_schema = schemas.ListFleetsInput,
-        output_schema = schemas.ListFleetsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFleets, input, options)
 end
 
 function Client:listProjects(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProjects",
-        input_schema = schemas.ListProjectsInput,
-        output_schema = schemas.ListProjectsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProjects, input, options)
 end
 
 function Client:listReportGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReportGroups",
-        input_schema = schemas.ListReportGroupsInput,
-        output_schema = schemas.ListReportGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReportGroups, input, options)
 end
 
 function Client:listReports(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReports",
-        input_schema = schemas.ListReportsInput,
-        output_schema = schemas.ListReportsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReports, input, options)
 end
 
 function Client:listReportsForReportGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReportsForReportGroup",
-        input_schema = schemas.ListReportsForReportGroupInput,
-        output_schema = schemas.ListReportsForReportGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReportsForReportGroup, input, options)
 end
 
 function Client:listSandboxes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSandboxes",
-        input_schema = schemas.ListSandboxesInput,
-        output_schema = schemas.ListSandboxesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSandboxes, input, options)
 end
 
 function Client:listSandboxesForProject(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSandboxesForProject",
-        input_schema = schemas.ListSandboxesForProjectInput,
-        output_schema = schemas.ListSandboxesForProjectOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSandboxesForProject, input, options)
 end
 
 function Client:listSharedProjects(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSharedProjects",
-        input_schema = schemas.ListSharedProjectsInput,
-        output_schema = schemas.ListSharedProjectsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSharedProjects, input, options)
 end
 
 function Client:listSharedReportGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSharedReportGroups",
-        input_schema = schemas.ListSharedReportGroupsInput,
-        output_schema = schemas.ListSharedReportGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSharedReportGroups, input, options)
 end
 
 function Client:listSourceCredentials(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSourceCredentials",
-        input_schema = schemas.ListSourceCredentialsInput,
-        output_schema = schemas.ListSourceCredentialsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSourceCredentials, input, options)
 end
 
 function Client:putResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutResourcePolicy",
-        input_schema = schemas.PutResourcePolicyInput,
-        output_schema = schemas.PutResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options)
 end
 
 function Client:retryBuild(input, options)
-    return self:invokeOperation(input, {
-        name = "RetryBuild",
-        input_schema = schemas.RetryBuildInput,
-        output_schema = schemas.RetryBuildOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RetryBuild, input, options)
 end
 
 function Client:retryBuildBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "RetryBuildBatch",
-        input_schema = schemas.RetryBuildBatchInput,
-        output_schema = schemas.RetryBuildBatchOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RetryBuildBatch, input, options)
 end
 
 function Client:startBuild(input, options)
-    return self:invokeOperation(input, {
-        name = "StartBuild",
-        input_schema = schemas.StartBuildInput,
-        output_schema = schemas.StartBuildOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartBuild, input, options)
 end
 
 function Client:startBuildBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "StartBuildBatch",
-        input_schema = schemas.StartBuildBatchInput,
-        output_schema = schemas.StartBuildBatchOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartBuildBatch, input, options)
 end
 
 function Client:startCommandExecution(input, options)
-    return self:invokeOperation(input, {
-        name = "StartCommandExecution",
-        input_schema = schemas.StartCommandExecutionInput,
-        output_schema = schemas.StartCommandExecutionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartCommandExecution, input, options)
 end
 
 function Client:startSandbox(input, options)
-    return self:invokeOperation(input, {
-        name = "StartSandbox",
-        input_schema = schemas.StartSandboxInput,
-        output_schema = schemas.StartSandboxOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartSandbox, input, options)
 end
 
 function Client:startSandboxConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "StartSandboxConnection",
-        input_schema = schemas.StartSandboxConnectionInput,
-        output_schema = schemas.StartSandboxConnectionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartSandboxConnection, input, options)
 end
 
 function Client:stopBuild(input, options)
-    return self:invokeOperation(input, {
-        name = "StopBuild",
-        input_schema = schemas.StopBuildInput,
-        output_schema = schemas.StopBuildOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopBuild, input, options)
 end
 
 function Client:stopBuildBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "StopBuildBatch",
-        input_schema = schemas.StopBuildBatchInput,
-        output_schema = schemas.StopBuildBatchOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopBuildBatch, input, options)
 end
 
 function Client:stopSandbox(input, options)
-    return self:invokeOperation(input, {
-        name = "StopSandbox",
-        input_schema = schemas.StopSandboxInput,
-        output_schema = schemas.StopSandboxOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopSandbox, input, options)
 end
 
 function Client:updateFleet(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateFleet",
-        input_schema = schemas.UpdateFleetInput,
-        output_schema = schemas.UpdateFleetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateFleet, input, options)
 end
 
 function Client:updateProject(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateProject",
-        input_schema = schemas.UpdateProjectInput,
-        output_schema = schemas.UpdateProjectOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateProject, input, options)
 end
 
 function Client:updateProjectVisibility(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateProjectVisibility",
-        input_schema = schemas.UpdateProjectVisibilityInput,
-        output_schema = schemas.UpdateProjectVisibilityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateProjectVisibility, input, options)
 end
 
 function Client:updateReportGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateReportGroup",
-        input_schema = schemas.UpdateReportGroupInput,
-        output_schema = schemas.UpdateReportGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateReportGroup, input, options)
 end
 
 function Client:updateWebhook(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateWebhook",
-        input_schema = schemas.UpdateWebhookInput,
-        output_schema = schemas.UpdateWebhookOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateWebhook, input, options)
 end
 
 return M

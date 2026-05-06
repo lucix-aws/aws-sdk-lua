@@ -2019,4 +2019,374 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.rolesanywhere", "RolesAnywhere"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProfile = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "CreateProfile"),
+    input = M.CreateProfileInput,
+    output = M.CreateProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrustAnchor = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "CreateTrustAnchor"),
+    input = M.CreateTrustAnchorInput,
+    output = M.CreateTrustAnchorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/trustanchors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAttributeMapping = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "DeleteAttributeMapping"),
+    input = M.DeleteAttributeMappingInput,
+    output = M.DeleteAttributeMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/profiles/{profileId}/mappings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCrl = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "DeleteCrl"),
+    input = M.DeleteCrlInput,
+    output = M.DeleteCrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/crl/{crlId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProfile = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "DeleteProfile"),
+    input = M.DeleteProfileInput,
+    output = M.DeleteProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/profile/{profileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrustAnchor = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "DeleteTrustAnchor"),
+    input = M.DeleteTrustAnchorInput,
+    output = M.DeleteTrustAnchorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/trustanchor/{trustAnchorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableCrl = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "DisableCrl"),
+    input = M.DisableCrlInput,
+    output = M.DisableCrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/crl/{crlId}/disable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableProfile = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "DisableProfile"),
+    input = M.DisableProfileInput,
+    output = M.DisableProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profile/{profileId}/disable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableTrustAnchor = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "DisableTrustAnchor"),
+    input = M.DisableTrustAnchorInput,
+    output = M.DisableTrustAnchorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/trustanchor/{trustAnchorId}/disable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableCrl = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "EnableCrl"),
+    input = M.EnableCrlInput,
+    output = M.EnableCrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/crl/{crlId}/enable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableProfile = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "EnableProfile"),
+    input = M.EnableProfileInput,
+    output = M.EnableProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profile/{profileId}/enable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableTrustAnchor = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "EnableTrustAnchor"),
+    input = M.EnableTrustAnchorInput,
+    output = M.EnableTrustAnchorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/trustanchor/{trustAnchorId}/enable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCrl = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "GetCrl"),
+    input = M.GetCrlInput,
+    output = M.GetCrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/crl/{crlId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfile = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "GetProfile"),
+    input = M.GetProfileInput,
+    output = M.GetProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profile/{profileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSubject = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "GetSubject"),
+    input = M.GetSubjectInput,
+    output = M.GetSubjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/subject/{subjectId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrustAnchor = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "GetTrustAnchor"),
+    input = M.GetTrustAnchorInput,
+    output = M.GetTrustAnchorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/trustanchor/{trustAnchorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportCrl = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "ImportCrl"),
+    input = M.ImportCrlInput,
+    output = M.ImportCrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/crls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCrls = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "ListCrls"),
+    input = M.ListCrlsInput,
+    output = M.ListCrlsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/crls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfiles = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "ListProfiles"),
+    input = M.ListProfilesInput,
+    output = M.ListProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubjects = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "ListSubjects"),
+    input = M.ListSubjectsInput,
+    output = M.ListSubjectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/subjects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ListTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrustAnchors = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "ListTrustAnchors"),
+    input = M.ListTrustAnchorsInput,
+    output = M.ListTrustAnchorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/trustanchors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAttributeMapping = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "PutAttributeMapping"),
+    input = M.PutAttributeMappingInput,
+    output = M.PutAttributeMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/profiles/{profileId}/mappings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutNotificationSettings = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "PutNotificationSettings"),
+    input = M.PutNotificationSettingsInput,
+    output = M.PutNotificationSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/put-notifications-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetNotificationSettings = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "ResetNotificationSettings"),
+    input = M.ResetNotificationSettingsInput,
+    output = M.ResetNotificationSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/reset-notifications-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UntagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCrl = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "UpdateCrl"),
+    input = M.UpdateCrlInput,
+    output = M.UpdateCrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/crl/{crlId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProfile = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "UpdateProfile"),
+    input = M.UpdateProfileInput,
+    output = M.UpdateProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/profile/{profileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrustAnchor = schema.operation({
+    id = id.from("com.amazonaws.rolesanywhere", "UpdateTrustAnchor"),
+    input = M.UpdateTrustAnchorInput,
+    output = M.UpdateTrustAnchorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/trustanchor/{trustAnchorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

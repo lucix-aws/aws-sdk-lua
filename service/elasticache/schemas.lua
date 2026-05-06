@@ -9227,4 +9227,839 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.elasticache", "AmazonElastiCacheV9"),
+    version = "2015-02-02",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTagsToResource = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "AddTagsToResource"),
+    input = M.AddTagsToResourceInput,
+    output = M.AddTagsToResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AuthorizeCacheSecurityGroupIngress = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "AuthorizeCacheSecurityGroupIngress"),
+    input = M.AuthorizeCacheSecurityGroupIngressInput,
+    output = M.AuthorizeCacheSecurityGroupIngressOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchApplyUpdateAction = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "BatchApplyUpdateAction"),
+    input = M.BatchApplyUpdateActionInput,
+    output = M.BatchApplyUpdateActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchStopUpdateAction = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "BatchStopUpdateAction"),
+    input = M.BatchStopUpdateActionInput,
+    output = M.BatchStopUpdateActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CompleteMigration = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "CompleteMigration"),
+    input = M.CompleteMigrationInput,
+    output = M.CompleteMigrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyServerlessCacheSnapshot = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "CopyServerlessCacheSnapshot"),
+    input = M.CopyServerlessCacheSnapshotInput,
+    output = M.CopyServerlessCacheSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopySnapshot = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "CopySnapshot"),
+    input = M.CopySnapshotInput,
+    output = M.CopySnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCacheCluster = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "CreateCacheCluster"),
+    input = M.CreateCacheClusterInput,
+    output = M.CreateCacheClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCacheParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "CreateCacheParameterGroup"),
+    input = M.CreateCacheParameterGroupInput,
+    output = M.CreateCacheParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCacheSecurityGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "CreateCacheSecurityGroup"),
+    input = M.CreateCacheSecurityGroupInput,
+    output = M.CreateCacheSecurityGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCacheSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "CreateCacheSubnetGroup"),
+    input = M.CreateCacheSubnetGroupInput,
+    output = M.CreateCacheSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGlobalReplicationGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "CreateGlobalReplicationGroup"),
+    input = M.CreateGlobalReplicationGroupInput,
+    output = M.CreateGlobalReplicationGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReplicationGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "CreateReplicationGroup"),
+    input = M.CreateReplicationGroupInput,
+    output = M.CreateReplicationGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServerlessCache = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "CreateServerlessCache"),
+    input = M.CreateServerlessCacheInput,
+    output = M.CreateServerlessCacheOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServerlessCacheSnapshot = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "CreateServerlessCacheSnapshot"),
+    input = M.CreateServerlessCacheSnapshotInput,
+    output = M.CreateServerlessCacheSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSnapshot = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "CreateSnapshot"),
+    input = M.CreateSnapshotInput,
+    output = M.CreateSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUserGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "CreateUserGroup"),
+    input = M.CreateUserGroupInput,
+    output = M.CreateUserGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DecreaseNodeGroupsInGlobalReplicationGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DecreaseNodeGroupsInGlobalReplicationGroup"),
+    input = M.DecreaseNodeGroupsInGlobalReplicationGroupInput,
+    output = M.DecreaseNodeGroupsInGlobalReplicationGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DecreaseReplicaCount = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DecreaseReplicaCount"),
+    input = M.DecreaseReplicaCountInput,
+    output = M.DecreaseReplicaCountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCacheCluster = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DeleteCacheCluster"),
+    input = M.DeleteCacheClusterInput,
+    output = M.DeleteCacheClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCacheParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DeleteCacheParameterGroup"),
+    input = M.DeleteCacheParameterGroupInput,
+    output = M.DeleteCacheParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCacheSecurityGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DeleteCacheSecurityGroup"),
+    input = M.DeleteCacheSecurityGroupInput,
+    output = M.DeleteCacheSecurityGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCacheSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DeleteCacheSubnetGroup"),
+    input = M.DeleteCacheSubnetGroupInput,
+    output = M.DeleteCacheSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGlobalReplicationGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DeleteGlobalReplicationGroup"),
+    input = M.DeleteGlobalReplicationGroupInput,
+    output = M.DeleteGlobalReplicationGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReplicationGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DeleteReplicationGroup"),
+    input = M.DeleteReplicationGroupInput,
+    output = M.DeleteReplicationGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServerlessCache = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DeleteServerlessCache"),
+    input = M.DeleteServerlessCacheInput,
+    output = M.DeleteServerlessCacheOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServerlessCacheSnapshot = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DeleteServerlessCacheSnapshot"),
+    input = M.DeleteServerlessCacheSnapshotInput,
+    output = M.DeleteServerlessCacheSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSnapshot = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DeleteSnapshot"),
+    input = M.DeleteSnapshotInput,
+    output = M.DeleteSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DeleteUserGroup"),
+    input = M.DeleteUserGroupInput,
+    output = M.DeleteUserGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCacheClusters = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeCacheClusters"),
+    input = M.DescribeCacheClustersInput,
+    output = M.DescribeCacheClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCacheEngineVersions = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeCacheEngineVersions"),
+    input = M.DescribeCacheEngineVersionsInput,
+    output = M.DescribeCacheEngineVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCacheParameterGroups = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeCacheParameterGroups"),
+    input = M.DescribeCacheParameterGroupsInput,
+    output = M.DescribeCacheParameterGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCacheParameters = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeCacheParameters"),
+    input = M.DescribeCacheParametersInput,
+    output = M.DescribeCacheParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCacheSecurityGroups = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeCacheSecurityGroups"),
+    input = M.DescribeCacheSecurityGroupsInput,
+    output = M.DescribeCacheSecurityGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCacheSubnetGroups = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeCacheSubnetGroups"),
+    input = M.DescribeCacheSubnetGroupsInput,
+    output = M.DescribeCacheSubnetGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEngineDefaultParameters = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeEngineDefaultParameters"),
+    input = M.DescribeEngineDefaultParametersInput,
+    output = M.DescribeEngineDefaultParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEvents = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeEvents"),
+    input = M.DescribeEventsInput,
+    output = M.DescribeEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGlobalReplicationGroups = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeGlobalReplicationGroups"),
+    input = M.DescribeGlobalReplicationGroupsInput,
+    output = M.DescribeGlobalReplicationGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplicationGroups = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeReplicationGroups"),
+    input = M.DescribeReplicationGroupsInput,
+    output = M.DescribeReplicationGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReservedCacheNodes = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeReservedCacheNodes"),
+    input = M.DescribeReservedCacheNodesInput,
+    output = M.DescribeReservedCacheNodesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReservedCacheNodesOfferings = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeReservedCacheNodesOfferings"),
+    input = M.DescribeReservedCacheNodesOfferingsInput,
+    output = M.DescribeReservedCacheNodesOfferingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServerlessCaches = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeServerlessCaches"),
+    input = M.DescribeServerlessCachesInput,
+    output = M.DescribeServerlessCachesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServerlessCacheSnapshots = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeServerlessCacheSnapshots"),
+    input = M.DescribeServerlessCacheSnapshotsInput,
+    output = M.DescribeServerlessCacheSnapshotsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServiceUpdates = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeServiceUpdates"),
+    input = M.DescribeServiceUpdatesInput,
+    output = M.DescribeServiceUpdatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSnapshots = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeSnapshots"),
+    input = M.DescribeSnapshotsInput,
+    output = M.DescribeSnapshotsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUpdateActions = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeUpdateActions"),
+    input = M.DescribeUpdateActionsInput,
+    output = M.DescribeUpdateActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUserGroups = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeUserGroups"),
+    input = M.DescribeUserGroupsInput,
+    output = M.DescribeUserGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUsers = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DescribeUsers"),
+    input = M.DescribeUsersInput,
+    output = M.DescribeUsersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateGlobalReplicationGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "DisassociateGlobalReplicationGroup"),
+    input = M.DisassociateGlobalReplicationGroupInput,
+    output = M.DisassociateGlobalReplicationGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportServerlessCacheSnapshot = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "ExportServerlessCacheSnapshot"),
+    input = M.ExportServerlessCacheSnapshotInput,
+    output = M.ExportServerlessCacheSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FailoverGlobalReplicationGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "FailoverGlobalReplicationGroup"),
+    input = M.FailoverGlobalReplicationGroupInput,
+    output = M.FailoverGlobalReplicationGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.IncreaseNodeGroupsInGlobalReplicationGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "IncreaseNodeGroupsInGlobalReplicationGroup"),
+    input = M.IncreaseNodeGroupsInGlobalReplicationGroupInput,
+    output = M.IncreaseNodeGroupsInGlobalReplicationGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.IncreaseReplicaCount = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "IncreaseReplicaCount"),
+    input = M.IncreaseReplicaCountInput,
+    output = M.IncreaseReplicaCountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAllowedNodeTypeModifications = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "ListAllowedNodeTypeModifications"),
+    input = M.ListAllowedNodeTypeModificationsInput,
+    output = M.ListAllowedNodeTypeModificationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyCacheCluster = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "ModifyCacheCluster"),
+    input = M.ModifyCacheClusterInput,
+    output = M.ModifyCacheClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyCacheParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "ModifyCacheParameterGroup"),
+    input = M.ModifyCacheParameterGroupInput,
+    output = M.ModifyCacheParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyCacheSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "ModifyCacheSubnetGroup"),
+    input = M.ModifyCacheSubnetGroupInput,
+    output = M.ModifyCacheSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyGlobalReplicationGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "ModifyGlobalReplicationGroup"),
+    input = M.ModifyGlobalReplicationGroupInput,
+    output = M.ModifyGlobalReplicationGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyReplicationGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "ModifyReplicationGroup"),
+    input = M.ModifyReplicationGroupInput,
+    output = M.ModifyReplicationGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyReplicationGroupShardConfiguration = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "ModifyReplicationGroupShardConfiguration"),
+    input = M.ModifyReplicationGroupShardConfigurationInput,
+    output = M.ModifyReplicationGroupShardConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyServerlessCache = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "ModifyServerlessCache"),
+    input = M.ModifyServerlessCacheInput,
+    output = M.ModifyServerlessCacheOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyUser = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "ModifyUser"),
+    input = M.ModifyUserInput,
+    output = M.ModifyUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyUserGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "ModifyUserGroup"),
+    input = M.ModifyUserGroupInput,
+    output = M.ModifyUserGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PurchaseReservedCacheNodesOffering = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "PurchaseReservedCacheNodesOffering"),
+    input = M.PurchaseReservedCacheNodesOfferingInput,
+    output = M.PurchaseReservedCacheNodesOfferingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebalanceSlotsInGlobalReplicationGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "RebalanceSlotsInGlobalReplicationGroup"),
+    input = M.RebalanceSlotsInGlobalReplicationGroupInput,
+    output = M.RebalanceSlotsInGlobalReplicationGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootCacheCluster = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "RebootCacheCluster"),
+    input = M.RebootCacheClusterInput,
+    output = M.RebootCacheClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTagsFromResource = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "RemoveTagsFromResource"),
+    input = M.RemoveTagsFromResourceInput,
+    output = M.RemoveTagsFromResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetCacheParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "ResetCacheParameterGroup"),
+    input = M.ResetCacheParameterGroupInput,
+    output = M.ResetCacheParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeCacheSecurityGroupIngress = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "RevokeCacheSecurityGroupIngress"),
+    input = M.RevokeCacheSecurityGroupIngressInput,
+    output = M.RevokeCacheSecurityGroupIngressOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMigration = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "StartMigration"),
+    input = M.StartMigrationInput,
+    output = M.StartMigrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestFailover = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "TestFailover"),
+    input = M.TestFailoverInput,
+    output = M.TestFailoverOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestMigration = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "TestMigration"),
+    input = M.TestMigrationInput,
+    output = M.TestMigrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

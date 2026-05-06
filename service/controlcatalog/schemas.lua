@@ -1135,4 +1135,86 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.controlcatalog", "ControlCatalog"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetControl = schema.operation({
+    id = id.from("com.amazonaws.controlcatalog", "GetControl"),
+    input = M.GetControlInput,
+    output = M.GetControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-control" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCommonControls = schema.operation({
+    id = id.from("com.amazonaws.controlcatalog", "ListCommonControls"),
+    input = M.ListCommonControlsInput,
+    output = M.ListCommonControlsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/common-controls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListControlMappings = schema.operation({
+    id = id.from("com.amazonaws.controlcatalog", "ListControlMappings"),
+    input = M.ListControlMappingsInput,
+    output = M.ListControlMappingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-control-mappings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListControls = schema.operation({
+    id = id.from("com.amazonaws.controlcatalog", "ListControls"),
+    input = M.ListControlsInput,
+    output = M.ListControlsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-controls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomains = schema.operation({
+    id = id.from("com.amazonaws.controlcatalog", "ListDomains"),
+    input = M.ListDomainsInput,
+    output = M.ListDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListObjectives = schema.operation({
+    id = id.from("com.amazonaws.controlcatalog", "ListObjectives"),
+    input = M.ListObjectivesInput,
+    output = M.ListObjectivesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/objectives" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

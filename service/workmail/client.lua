@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("workmail.endpoint_rules")
 local schemas = require("workmail.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "workmail", signing_region = cfg.region } }
                 else
@@ -49,1199 +52,371 @@ function M.new(cfg)
 end
 
 function Client:associateDelegateToResource(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateDelegateToResource",
-        input_schema = schemas.AssociateDelegateToResourceInput,
-        output_schema = schemas.AssociateDelegateToResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateDelegateToResource, input, options)
 end
 
 function Client:associateMemberToGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateMemberToGroup",
-        input_schema = schemas.AssociateMemberToGroupInput,
-        output_schema = schemas.AssociateMemberToGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateMemberToGroup, input, options)
 end
 
 function Client:assumeImpersonationRole(input, options)
-    return self:invokeOperation(input, {
-        name = "AssumeImpersonationRole",
-        input_schema = schemas.AssumeImpersonationRoleInput,
-        output_schema = schemas.AssumeImpersonationRoleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssumeImpersonationRole, input, options)
 end
 
 function Client:cancelMailboxExportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelMailboxExportJob",
-        input_schema = schemas.CancelMailboxExportJobInput,
-        output_schema = schemas.CancelMailboxExportJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelMailboxExportJob, input, options)
 end
 
 function Client:createAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAlias",
-        input_schema = schemas.CreateAliasInput,
-        output_schema = schemas.CreateAliasOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAlias, input, options)
 end
 
 function Client:createAvailabilityConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAvailabilityConfiguration",
-        input_schema = schemas.CreateAvailabilityConfigurationInput,
-        output_schema = schemas.CreateAvailabilityConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAvailabilityConfiguration, input, options)
 end
 
 function Client:createGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGroup",
-        input_schema = schemas.CreateGroupInput,
-        output_schema = schemas.CreateGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGroup, input, options)
 end
 
 function Client:createIdentityCenterApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateIdentityCenterApplication",
-        input_schema = schemas.CreateIdentityCenterApplicationInput,
-        output_schema = schemas.CreateIdentityCenterApplicationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateIdentityCenterApplication, input, options)
 end
 
 function Client:createImpersonationRole(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateImpersonationRole",
-        input_schema = schemas.CreateImpersonationRoleInput,
-        output_schema = schemas.CreateImpersonationRoleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateImpersonationRole, input, options)
 end
 
 function Client:createMobileDeviceAccessRule(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateMobileDeviceAccessRule",
-        input_schema = schemas.CreateMobileDeviceAccessRuleInput,
-        output_schema = schemas.CreateMobileDeviceAccessRuleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateMobileDeviceAccessRule, input, options)
 end
 
 function Client:createOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateOrganization",
-        input_schema = schemas.CreateOrganizationInput,
-        output_schema = schemas.CreateOrganizationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateOrganization, input, options)
 end
 
 function Client:createResource(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateResource",
-        input_schema = schemas.CreateResourceInput,
-        output_schema = schemas.CreateResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateResource, input, options)
 end
 
 function Client:createUser(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateUser",
-        input_schema = schemas.CreateUserInput,
-        output_schema = schemas.CreateUserOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateUser, input, options)
 end
 
 function Client:deleteAccessControlRule(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAccessControlRule",
-        input_schema = schemas.DeleteAccessControlRuleInput,
-        output_schema = schemas.DeleteAccessControlRuleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAccessControlRule, input, options)
 end
 
 function Client:deleteAlias(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAlias",
-        input_schema = schemas.DeleteAliasInput,
-        output_schema = schemas.DeleteAliasOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAlias, input, options)
 end
 
 function Client:deleteAvailabilityConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAvailabilityConfiguration",
-        input_schema = schemas.DeleteAvailabilityConfigurationInput,
-        output_schema = schemas.DeleteAvailabilityConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAvailabilityConfiguration, input, options)
 end
 
 function Client:deleteEmailMonitoringConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEmailMonitoringConfiguration",
-        input_schema = schemas.DeleteEmailMonitoringConfigurationInput,
-        output_schema = schemas.DeleteEmailMonitoringConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEmailMonitoringConfiguration, input, options)
 end
 
 function Client:deleteGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGroup",
-        input_schema = schemas.DeleteGroupInput,
-        output_schema = schemas.DeleteGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGroup, input, options)
 end
 
 function Client:deleteIdentityCenterApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIdentityCenterApplication",
-        input_schema = schemas.DeleteIdentityCenterApplicationInput,
-        output_schema = schemas.DeleteIdentityCenterApplicationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIdentityCenterApplication, input, options)
 end
 
 function Client:deleteIdentityProviderConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIdentityProviderConfiguration",
-        input_schema = schemas.DeleteIdentityProviderConfigurationInput,
-        output_schema = schemas.DeleteIdentityProviderConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIdentityProviderConfiguration, input, options)
 end
 
 function Client:deleteImpersonationRole(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteImpersonationRole",
-        input_schema = schemas.DeleteImpersonationRoleInput,
-        output_schema = schemas.DeleteImpersonationRoleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteImpersonationRole, input, options)
 end
 
 function Client:deleteMailboxPermissions(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMailboxPermissions",
-        input_schema = schemas.DeleteMailboxPermissionsInput,
-        output_schema = schemas.DeleteMailboxPermissionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMailboxPermissions, input, options)
 end
 
 function Client:deleteMobileDeviceAccessOverride(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMobileDeviceAccessOverride",
-        input_schema = schemas.DeleteMobileDeviceAccessOverrideInput,
-        output_schema = schemas.DeleteMobileDeviceAccessOverrideOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMobileDeviceAccessOverride, input, options)
 end
 
 function Client:deleteMobileDeviceAccessRule(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMobileDeviceAccessRule",
-        input_schema = schemas.DeleteMobileDeviceAccessRuleInput,
-        output_schema = schemas.DeleteMobileDeviceAccessRuleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMobileDeviceAccessRule, input, options)
 end
 
 function Client:deleteOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteOrganization",
-        input_schema = schemas.DeleteOrganizationInput,
-        output_schema = schemas.DeleteOrganizationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteOrganization, input, options)
 end
 
 function Client:deletePersonalAccessToken(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePersonalAccessToken",
-        input_schema = schemas.DeletePersonalAccessTokenInput,
-        output_schema = schemas.DeletePersonalAccessTokenOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePersonalAccessToken, input, options)
 end
 
 function Client:deleteResource(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResource",
-        input_schema = schemas.DeleteResourceInput,
-        output_schema = schemas.DeleteResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResource, input, options)
 end
 
 function Client:deleteRetentionPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRetentionPolicy",
-        input_schema = schemas.DeleteRetentionPolicyInput,
-        output_schema = schemas.DeleteRetentionPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRetentionPolicy, input, options)
 end
 
 function Client:deleteUser(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteUser",
-        input_schema = schemas.DeleteUserInput,
-        output_schema = schemas.DeleteUserOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteUser, input, options)
 end
 
 function Client:deregisterFromWorkMail(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterFromWorkMail",
-        input_schema = schemas.DeregisterFromWorkMailInput,
-        output_schema = schemas.DeregisterFromWorkMailOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterFromWorkMail, input, options)
 end
 
 function Client:deregisterMailDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterMailDomain",
-        input_schema = schemas.DeregisterMailDomainInput,
-        output_schema = schemas.DeregisterMailDomainOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterMailDomain, input, options)
 end
 
 function Client:describeEmailMonitoringConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEmailMonitoringConfiguration",
-        input_schema = schemas.DescribeEmailMonitoringConfigurationInput,
-        output_schema = schemas.DescribeEmailMonitoringConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEmailMonitoringConfiguration, input, options)
 end
 
 function Client:describeEntity(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEntity",
-        input_schema = schemas.DescribeEntityInput,
-        output_schema = schemas.DescribeEntityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEntity, input, options)
 end
 
 function Client:describeGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeGroup",
-        input_schema = schemas.DescribeGroupInput,
-        output_schema = schemas.DescribeGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeGroup, input, options)
 end
 
 function Client:describeIdentityProviderConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeIdentityProviderConfiguration",
-        input_schema = schemas.DescribeIdentityProviderConfigurationInput,
-        output_schema = schemas.DescribeIdentityProviderConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeIdentityProviderConfiguration, input, options)
 end
 
 function Client:describeInboundDmarcSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeInboundDmarcSettings",
-        input_schema = schemas.DescribeInboundDmarcSettingsInput,
-        output_schema = schemas.DescribeInboundDmarcSettingsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeInboundDmarcSettings, input, options)
 end
 
 function Client:describeMailboxExportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeMailboxExportJob",
-        input_schema = schemas.DescribeMailboxExportJobInput,
-        output_schema = schemas.DescribeMailboxExportJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeMailboxExportJob, input, options)
 end
 
 function Client:describeOrganization(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeOrganization",
-        input_schema = schemas.DescribeOrganizationInput,
-        output_schema = schemas.DescribeOrganizationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeOrganization, input, options)
 end
 
 function Client:describeResource(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeResource",
-        input_schema = schemas.DescribeResourceInput,
-        output_schema = schemas.DescribeResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeResource, input, options)
 end
 
 function Client:describeUser(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeUser",
-        input_schema = schemas.DescribeUserInput,
-        output_schema = schemas.DescribeUserOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeUser, input, options)
 end
 
 function Client:disassociateDelegateFromResource(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateDelegateFromResource",
-        input_schema = schemas.DisassociateDelegateFromResourceInput,
-        output_schema = schemas.DisassociateDelegateFromResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateDelegateFromResource, input, options)
 end
 
 function Client:disassociateMemberFromGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateMemberFromGroup",
-        input_schema = schemas.DisassociateMemberFromGroupInput,
-        output_schema = schemas.DisassociateMemberFromGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateMemberFromGroup, input, options)
 end
 
 function Client:getAccessControlEffect(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccessControlEffect",
-        input_schema = schemas.GetAccessControlEffectInput,
-        output_schema = schemas.GetAccessControlEffectOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccessControlEffect, input, options)
 end
 
 function Client:getDefaultRetentionPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDefaultRetentionPolicy",
-        input_schema = schemas.GetDefaultRetentionPolicyInput,
-        output_schema = schemas.GetDefaultRetentionPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDefaultRetentionPolicy, input, options)
 end
 
 function Client:getImpersonationRole(input, options)
-    return self:invokeOperation(input, {
-        name = "GetImpersonationRole",
-        input_schema = schemas.GetImpersonationRoleInput,
-        output_schema = schemas.GetImpersonationRoleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetImpersonationRole, input, options)
 end
 
 function Client:getImpersonationRoleEffect(input, options)
-    return self:invokeOperation(input, {
-        name = "GetImpersonationRoleEffect",
-        input_schema = schemas.GetImpersonationRoleEffectInput,
-        output_schema = schemas.GetImpersonationRoleEffectOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetImpersonationRoleEffect, input, options)
 end
 
 function Client:getMailboxDetails(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMailboxDetails",
-        input_schema = schemas.GetMailboxDetailsInput,
-        output_schema = schemas.GetMailboxDetailsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMailboxDetails, input, options)
 end
 
 function Client:getMailDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMailDomain",
-        input_schema = schemas.GetMailDomainInput,
-        output_schema = schemas.GetMailDomainOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMailDomain, input, options)
 end
 
 function Client:getMobileDeviceAccessEffect(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMobileDeviceAccessEffect",
-        input_schema = schemas.GetMobileDeviceAccessEffectInput,
-        output_schema = schemas.GetMobileDeviceAccessEffectOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMobileDeviceAccessEffect, input, options)
 end
 
 function Client:getMobileDeviceAccessOverride(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMobileDeviceAccessOverride",
-        input_schema = schemas.GetMobileDeviceAccessOverrideInput,
-        output_schema = schemas.GetMobileDeviceAccessOverrideOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMobileDeviceAccessOverride, input, options)
 end
 
 function Client:getPersonalAccessTokenMetadata(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPersonalAccessTokenMetadata",
-        input_schema = schemas.GetPersonalAccessTokenMetadataInput,
-        output_schema = schemas.GetPersonalAccessTokenMetadataOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPersonalAccessTokenMetadata, input, options)
 end
 
 function Client:listAccessControlRules(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAccessControlRules",
-        input_schema = schemas.ListAccessControlRulesInput,
-        output_schema = schemas.ListAccessControlRulesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAccessControlRules, input, options)
 end
 
 function Client:listAliases(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAliases",
-        input_schema = schemas.ListAliasesInput,
-        output_schema = schemas.ListAliasesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAliases, input, options)
 end
 
 function Client:listAvailabilityConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAvailabilityConfigurations",
-        input_schema = schemas.ListAvailabilityConfigurationsInput,
-        output_schema = schemas.ListAvailabilityConfigurationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAvailabilityConfigurations, input, options)
 end
 
 function Client:listGroupMembers(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGroupMembers",
-        input_schema = schemas.ListGroupMembersInput,
-        output_schema = schemas.ListGroupMembersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGroupMembers, input, options)
 end
 
 function Client:listGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGroups",
-        input_schema = schemas.ListGroupsInput,
-        output_schema = schemas.ListGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGroups, input, options)
 end
 
 function Client:listGroupsForEntity(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGroupsForEntity",
-        input_schema = schemas.ListGroupsForEntityInput,
-        output_schema = schemas.ListGroupsForEntityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGroupsForEntity, input, options)
 end
 
 function Client:listImpersonationRoles(input, options)
-    return self:invokeOperation(input, {
-        name = "ListImpersonationRoles",
-        input_schema = schemas.ListImpersonationRolesInput,
-        output_schema = schemas.ListImpersonationRolesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListImpersonationRoles, input, options)
 end
 
 function Client:listMailboxExportJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMailboxExportJobs",
-        input_schema = schemas.ListMailboxExportJobsInput,
-        output_schema = schemas.ListMailboxExportJobsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMailboxExportJobs, input, options)
 end
 
 function Client:listMailboxPermissions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMailboxPermissions",
-        input_schema = schemas.ListMailboxPermissionsInput,
-        output_schema = schemas.ListMailboxPermissionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMailboxPermissions, input, options)
 end
 
 function Client:listMailDomains(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMailDomains",
-        input_schema = schemas.ListMailDomainsInput,
-        output_schema = schemas.ListMailDomainsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMailDomains, input, options)
 end
 
 function Client:listMobileDeviceAccessOverrides(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMobileDeviceAccessOverrides",
-        input_schema = schemas.ListMobileDeviceAccessOverridesInput,
-        output_schema = schemas.ListMobileDeviceAccessOverridesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMobileDeviceAccessOverrides, input, options)
 end
 
 function Client:listMobileDeviceAccessRules(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMobileDeviceAccessRules",
-        input_schema = schemas.ListMobileDeviceAccessRulesInput,
-        output_schema = schemas.ListMobileDeviceAccessRulesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMobileDeviceAccessRules, input, options)
 end
 
 function Client:listOrganizations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListOrganizations",
-        input_schema = schemas.ListOrganizationsInput,
-        output_schema = schemas.ListOrganizationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListOrganizations, input, options)
 end
 
 function Client:listPersonalAccessTokens(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPersonalAccessTokens",
-        input_schema = schemas.ListPersonalAccessTokensInput,
-        output_schema = schemas.ListPersonalAccessTokensOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPersonalAccessTokens, input, options)
 end
 
 function Client:listResourceDelegates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResourceDelegates",
-        input_schema = schemas.ListResourceDelegatesInput,
-        output_schema = schemas.ListResourceDelegatesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResourceDelegates, input, options)
 end
 
 function Client:listResources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResources",
-        input_schema = schemas.ListResourcesInput,
-        output_schema = schemas.ListResourcesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResources, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listUsers(input, options)
-    return self:invokeOperation(input, {
-        name = "ListUsers",
-        input_schema = schemas.ListUsersInput,
-        output_schema = schemas.ListUsersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListUsers, input, options)
 end
 
 function Client:putAccessControlRule(input, options)
-    return self:invokeOperation(input, {
-        name = "PutAccessControlRule",
-        input_schema = schemas.PutAccessControlRuleInput,
-        output_schema = schemas.PutAccessControlRuleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutAccessControlRule, input, options)
 end
 
 function Client:putEmailMonitoringConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutEmailMonitoringConfiguration",
-        input_schema = schemas.PutEmailMonitoringConfigurationInput,
-        output_schema = schemas.PutEmailMonitoringConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutEmailMonitoringConfiguration, input, options)
 end
 
 function Client:putIdentityProviderConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutIdentityProviderConfiguration",
-        input_schema = schemas.PutIdentityProviderConfigurationInput,
-        output_schema = schemas.PutIdentityProviderConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutIdentityProviderConfiguration, input, options)
 end
 
 function Client:putInboundDmarcSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "PutInboundDmarcSettings",
-        input_schema = schemas.PutInboundDmarcSettingsInput,
-        output_schema = schemas.PutInboundDmarcSettingsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutInboundDmarcSettings, input, options)
 end
 
 function Client:putMailboxPermissions(input, options)
-    return self:invokeOperation(input, {
-        name = "PutMailboxPermissions",
-        input_schema = schemas.PutMailboxPermissionsInput,
-        output_schema = schemas.PutMailboxPermissionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutMailboxPermissions, input, options)
 end
 
 function Client:putMobileDeviceAccessOverride(input, options)
-    return self:invokeOperation(input, {
-        name = "PutMobileDeviceAccessOverride",
-        input_schema = schemas.PutMobileDeviceAccessOverrideInput,
-        output_schema = schemas.PutMobileDeviceAccessOverrideOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutMobileDeviceAccessOverride, input, options)
 end
 
 function Client:putRetentionPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutRetentionPolicy",
-        input_schema = schemas.PutRetentionPolicyInput,
-        output_schema = schemas.PutRetentionPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutRetentionPolicy, input, options)
 end
 
 function Client:registerMailDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterMailDomain",
-        input_schema = schemas.RegisterMailDomainInput,
-        output_schema = schemas.RegisterMailDomainOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterMailDomain, input, options)
 end
 
 function Client:registerToWorkMail(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterToWorkMail",
-        input_schema = schemas.RegisterToWorkMailInput,
-        output_schema = schemas.RegisterToWorkMailOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterToWorkMail, input, options)
 end
 
 function Client:resetPassword(input, options)
-    return self:invokeOperation(input, {
-        name = "ResetPassword",
-        input_schema = schemas.ResetPasswordInput,
-        output_schema = schemas.ResetPasswordOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ResetPassword, input, options)
 end
 
 function Client:startMailboxExportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartMailboxExportJob",
-        input_schema = schemas.StartMailboxExportJobInput,
-        output_schema = schemas.StartMailboxExportJobOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartMailboxExportJob, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:testAvailabilityConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "TestAvailabilityConfiguration",
-        input_schema = schemas.TestAvailabilityConfigurationInput,
-        output_schema = schemas.TestAvailabilityConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TestAvailabilityConfiguration, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAvailabilityConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAvailabilityConfiguration",
-        input_schema = schemas.UpdateAvailabilityConfigurationInput,
-        output_schema = schemas.UpdateAvailabilityConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAvailabilityConfiguration, input, options)
 end
 
 function Client:updateDefaultMailDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDefaultMailDomain",
-        input_schema = schemas.UpdateDefaultMailDomainInput,
-        output_schema = schemas.UpdateDefaultMailDomainOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDefaultMailDomain, input, options)
 end
 
 function Client:updateGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateGroup",
-        input_schema = schemas.UpdateGroupInput,
-        output_schema = schemas.UpdateGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateGroup, input, options)
 end
 
 function Client:updateImpersonationRole(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateImpersonationRole",
-        input_schema = schemas.UpdateImpersonationRoleInput,
-        output_schema = schemas.UpdateImpersonationRoleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateImpersonationRole, input, options)
 end
 
 function Client:updateMailboxQuota(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateMailboxQuota",
-        input_schema = schemas.UpdateMailboxQuotaInput,
-        output_schema = schemas.UpdateMailboxQuotaOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateMailboxQuota, input, options)
 end
 
 function Client:updateMobileDeviceAccessRule(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateMobileDeviceAccessRule",
-        input_schema = schemas.UpdateMobileDeviceAccessRuleInput,
-        output_schema = schemas.UpdateMobileDeviceAccessRuleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateMobileDeviceAccessRule, input, options)
 end
 
 function Client:updatePrimaryEmailAddress(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePrimaryEmailAddress",
-        input_schema = schemas.UpdatePrimaryEmailAddressInput,
-        output_schema = schemas.UpdatePrimaryEmailAddressOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePrimaryEmailAddress, input, options)
 end
 
 function Client:updateResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateResource",
-        input_schema = schemas.UpdateResourceInput,
-        output_schema = schemas.UpdateResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateResource, input, options)
 end
 
 function Client:updateUser(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateUser",
-        input_schema = schemas.UpdateUserInput,
-        output_schema = schemas.UpdateUserOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateUser, input, options)
 end
 
 return M

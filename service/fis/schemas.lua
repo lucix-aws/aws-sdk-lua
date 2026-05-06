@@ -3391,4 +3391,326 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.fis", "FaultInjectionSimulator"),
+    version = "2020-12-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExperimentTemplate = schema.operation({
+    id = id.from("com.amazonaws.fis", "CreateExperimentTemplate"),
+    input = M.CreateExperimentTemplateInput,
+    output = M.CreateExperimentTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/experimentTemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTargetAccountConfiguration = schema.operation({
+    id = id.from("com.amazonaws.fis", "CreateTargetAccountConfiguration"),
+    input = M.CreateTargetAccountConfigurationInput,
+    output = M.CreateTargetAccountConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations/{accountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteExperimentTemplate = schema.operation({
+    id = id.from("com.amazonaws.fis", "DeleteExperimentTemplate"),
+    input = M.DeleteExperimentTemplateInput,
+    output = M.DeleteExperimentTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/experimentTemplates/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTargetAccountConfiguration = schema.operation({
+    id = id.from("com.amazonaws.fis", "DeleteTargetAccountConfiguration"),
+    input = M.DeleteTargetAccountConfigurationInput,
+    output = M.DeleteTargetAccountConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations/{accountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAction = schema.operation({
+    id = id.from("com.amazonaws.fis", "GetAction"),
+    input = M.GetActionInput,
+    output = M.GetActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/actions/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExperiment = schema.operation({
+    id = id.from("com.amazonaws.fis", "GetExperiment"),
+    input = M.GetExperimentInput,
+    output = M.GetExperimentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/experiments/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExperimentTargetAccountConfiguration = schema.operation({
+    id = id.from("com.amazonaws.fis", "GetExperimentTargetAccountConfiguration"),
+    input = M.GetExperimentTargetAccountConfigurationInput,
+    output = M.GetExperimentTargetAccountConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/experiments/{experimentId}/targetAccountConfigurations/{accountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExperimentTemplate = schema.operation({
+    id = id.from("com.amazonaws.fis", "GetExperimentTemplate"),
+    input = M.GetExperimentTemplateInput,
+    output = M.GetExperimentTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/experimentTemplates/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSafetyLever = schema.operation({
+    id = id.from("com.amazonaws.fis", "GetSafetyLever"),
+    input = M.GetSafetyLeverInput,
+    output = M.GetSafetyLeverOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/safetyLevers/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTargetAccountConfiguration = schema.operation({
+    id = id.from("com.amazonaws.fis", "GetTargetAccountConfiguration"),
+    input = M.GetTargetAccountConfigurationInput,
+    output = M.GetTargetAccountConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations/{accountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTargetResourceType = schema.operation({
+    id = id.from("com.amazonaws.fis", "GetTargetResourceType"),
+    input = M.GetTargetResourceTypeInput,
+    output = M.GetTargetResourceTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/targetResourceTypes/{resourceType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListActions = schema.operation({
+    id = id.from("com.amazonaws.fis", "ListActions"),
+    input = M.ListActionsInput,
+    output = M.ListActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExperimentResolvedTargets = schema.operation({
+    id = id.from("com.amazonaws.fis", "ListExperimentResolvedTargets"),
+    input = M.ListExperimentResolvedTargetsInput,
+    output = M.ListExperimentResolvedTargetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/experiments/{experimentId}/resolvedTargets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExperiments = schema.operation({
+    id = id.from("com.amazonaws.fis", "ListExperiments"),
+    input = M.ListExperimentsInput,
+    output = M.ListExperimentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/experiments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExperimentTargetAccountConfigurations = schema.operation({
+    id = id.from("com.amazonaws.fis", "ListExperimentTargetAccountConfigurations"),
+    input = M.ListExperimentTargetAccountConfigurationsInput,
+    output = M.ListExperimentTargetAccountConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/experiments/{experimentId}/targetAccountConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExperimentTemplates = schema.operation({
+    id = id.from("com.amazonaws.fis", "ListExperimentTemplates"),
+    input = M.ListExperimentTemplatesInput,
+    output = M.ListExperimentTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/experimentTemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.fis", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTargetAccountConfigurations = schema.operation({
+    id = id.from("com.amazonaws.fis", "ListTargetAccountConfigurations"),
+    input = M.ListTargetAccountConfigurationsInput,
+    output = M.ListTargetAccountConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTargetResourceTypes = schema.operation({
+    id = id.from("com.amazonaws.fis", "ListTargetResourceTypes"),
+    input = M.ListTargetResourceTypesInput,
+    output = M.ListTargetResourceTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/targetResourceTypes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartExperiment = schema.operation({
+    id = id.from("com.amazonaws.fis", "StartExperiment"),
+    input = M.StartExperimentInput,
+    output = M.StartExperimentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/experiments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopExperiment = schema.operation({
+    id = id.from("com.amazonaws.fis", "StopExperiment"),
+    input = M.StopExperimentInput,
+    output = M.StopExperimentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/experiments/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.fis", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.fis", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateExperimentTemplate = schema.operation({
+    id = id.from("com.amazonaws.fis", "UpdateExperimentTemplate"),
+    input = M.UpdateExperimentTemplateInput,
+    output = M.UpdateExperimentTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/experimentTemplates/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSafetyLeverState = schema.operation({
+    id = id.from("com.amazonaws.fis", "UpdateSafetyLeverState"),
+    input = M.UpdateSafetyLeverStateOperationInput,
+    output = M.UpdateSafetyLeverStateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/safetyLevers/{id}/state" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTargetAccountConfiguration = schema.operation({
+    id = id.from("com.amazonaws.fis", "UpdateTargetAccountConfiguration"),
+    input = M.UpdateTargetAccountConfigurationInput,
+    output = M.UpdateTargetAccountConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations/{accountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

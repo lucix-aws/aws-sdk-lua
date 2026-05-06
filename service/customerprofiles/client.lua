@@ -7,6 +7,7 @@ local endpoint_rules = require("customerprofiles.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("customerprofiles.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "profile", signing_region = cfg.region } }
                 else
@@ -49,1381 +52,427 @@ function M.new(cfg)
 end
 
 function Client:addProfileKey(input, options)
-    return self:invokeOperation(input, {
-        name = "AddProfileKey",
-        input_schema = schemas.AddProfileKeyInput,
-        output_schema = schemas.AddProfileKeyOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/profiles/keys",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddProfileKey, input, options)
 end
 
 function Client:batchGetCalculatedAttributeForProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetCalculatedAttributeForProfile",
-        input_schema = schemas.BatchGetCalculatedAttributeForProfileInput,
-        output_schema = schemas.BatchGetCalculatedAttributeForProfileOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}/batch-get-for-profiles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetCalculatedAttributeForProfile, input, options)
 end
 
 function Client:batchGetProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetProfile",
-        input_schema = schemas.BatchGetProfileInput,
-        output_schema = schemas.BatchGetProfileOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/batch-get-profiles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetProfile, input, options)
 end
 
 function Client:createCalculatedAttributeDefinition(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCalculatedAttributeDefinition",
-        input_schema = schemas.CreateCalculatedAttributeDefinitionInput,
-        output_schema = schemas.CreateCalculatedAttributeDefinitionOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCalculatedAttributeDefinition, input, options)
 end
 
 function Client:createDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDomain",
-        input_schema = schemas.CreateDomainInput,
-        output_schema = schemas.CreateDomainOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDomain, input, options)
 end
 
 function Client:createDomainLayout(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDomainLayout",
-        input_schema = schemas.CreateDomainLayoutInput,
-        output_schema = schemas.CreateDomainLayoutOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/layouts/{LayoutDefinitionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDomainLayout, input, options)
 end
 
 function Client:createEventStream(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEventStream",
-        input_schema = schemas.CreateEventStreamInput,
-        output_schema = schemas.CreateEventStreamOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/event-streams/{EventStreamName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEventStream, input, options)
 end
 
 function Client:createEventTrigger(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEventTrigger",
-        input_schema = schemas.CreateEventTriggerInput,
-        output_schema = schemas.CreateEventTriggerOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/event-triggers/{EventTriggerName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEventTrigger, input, options)
 end
 
 function Client:createIntegrationWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateIntegrationWorkflow",
-        input_schema = schemas.CreateIntegrationWorkflowInput,
-        output_schema = schemas.CreateIntegrationWorkflowOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/workflows/integrations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateIntegrationWorkflow, input, options)
 end
 
 function Client:createProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateProfile",
-        input_schema = schemas.CreateProfileInput,
-        output_schema = schemas.CreateProfileOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/profiles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateProfile, input, options)
 end
 
 function Client:createRecommender(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRecommender",
-        input_schema = schemas.CreateRecommenderInput,
-        output_schema = schemas.CreateRecommenderOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/recommenders/{RecommenderName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRecommender, input, options)
 end
 
 function Client:createRecommenderFilter(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRecommenderFilter",
-        input_schema = schemas.CreateRecommenderFilterInput,
-        output_schema = schemas.CreateRecommenderFilterOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/recommender-filters/{RecommenderFilterName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRecommenderFilter, input, options)
 end
 
 function Client:createRecommenderSchema(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRecommenderSchema",
-        input_schema = schemas.CreateRecommenderSchemaInput,
-        output_schema = schemas.CreateRecommenderSchemaOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/recommender-schemas/{RecommenderSchemaName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRecommenderSchema, input, options)
 end
 
 function Client:createSegmentDefinition(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSegmentDefinition",
-        input_schema = schemas.CreateSegmentDefinitionInput,
-        output_schema = schemas.CreateSegmentDefinitionOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSegmentDefinition, input, options)
 end
 
 function Client:createSegmentEstimate(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSegmentEstimate",
-        input_schema = schemas.CreateSegmentEstimateInput,
-        output_schema = schemas.CreateSegmentEstimateOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/segment-estimates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSegmentEstimate, input, options)
 end
 
 function Client:createSegmentSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSegmentSnapshot",
-        input_schema = schemas.CreateSegmentSnapshotInput,
-        output_schema = schemas.CreateSegmentSnapshotOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/segments/{SegmentDefinitionName}/snapshots",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSegmentSnapshot, input, options)
 end
 
 function Client:createUploadJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateUploadJob",
-        input_schema = schemas.CreateUploadJobInput,
-        output_schema = schemas.CreateUploadJobOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/upload-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateUploadJob, input, options)
 end
 
 function Client:deleteCalculatedAttributeDefinition(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCalculatedAttributeDefinition",
-        input_schema = schemas.DeleteCalculatedAttributeDefinitionInput,
-        output_schema = schemas.DeleteCalculatedAttributeDefinitionOutput,
-        http_method = "DELETE",
-        http_path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCalculatedAttributeDefinition, input, options)
 end
 
 function Client:deleteDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDomain",
-        input_schema = schemas.DeleteDomainInput,
-        output_schema = schemas.DeleteDomainOutput,
-        http_method = "DELETE",
-        http_path = "/domains/{DomainName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDomain, input, options)
 end
 
 function Client:deleteDomainLayout(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDomainLayout",
-        input_schema = schemas.DeleteDomainLayoutInput,
-        output_schema = schemas.DeleteDomainLayoutOutput,
-        http_method = "DELETE",
-        http_path = "/domains/{DomainName}/layouts/{LayoutDefinitionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDomainLayout, input, options)
 end
 
 function Client:deleteDomainObjectType(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDomainObjectType",
-        input_schema = schemas.DeleteDomainObjectTypeInput,
-        output_schema = schemas.DeleteDomainObjectTypeOutput,
-        http_method = "DELETE",
-        http_path = "/domains/{DomainName}/domain-object-types/{ObjectTypeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDomainObjectType, input, options)
 end
 
 function Client:deleteEventStream(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEventStream",
-        input_schema = schemas.DeleteEventStreamInput,
-        output_schema = schemas.DeleteEventStreamOutput,
-        http_method = "DELETE",
-        http_path = "/domains/{DomainName}/event-streams/{EventStreamName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEventStream, input, options)
 end
 
 function Client:deleteEventTrigger(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEventTrigger",
-        input_schema = schemas.DeleteEventTriggerInput,
-        output_schema = schemas.DeleteEventTriggerOutput,
-        http_method = "DELETE",
-        http_path = "/domains/{DomainName}/event-triggers/{EventTriggerName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEventTrigger, input, options)
 end
 
 function Client:deleteIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIntegration",
-        input_schema = schemas.DeleteIntegrationInput,
-        output_schema = schemas.DeleteIntegrationOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/integrations/delete",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIntegration, input, options)
 end
 
 function Client:deleteProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteProfile",
-        input_schema = schemas.DeleteProfileInput,
-        output_schema = schemas.DeleteProfileOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/profiles/delete",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteProfile, input, options)
 end
 
 function Client:deleteProfileKey(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteProfileKey",
-        input_schema = schemas.DeleteProfileKeyInput,
-        output_schema = schemas.DeleteProfileKeyOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/profiles/keys/delete",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteProfileKey, input, options)
 end
 
 function Client:deleteProfileObject(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteProfileObject",
-        input_schema = schemas.DeleteProfileObjectInput,
-        output_schema = schemas.DeleteProfileObjectOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/profiles/objects/delete",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteProfileObject, input, options)
 end
 
 function Client:deleteProfileObjectType(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteProfileObjectType",
-        input_schema = schemas.DeleteProfileObjectTypeInput,
-        output_schema = schemas.DeleteProfileObjectTypeOutput,
-        http_method = "DELETE",
-        http_path = "/domains/{DomainName}/object-types/{ObjectTypeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteProfileObjectType, input, options)
 end
 
 function Client:deleteRecommender(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRecommender",
-        input_schema = schemas.DeleteRecommenderInput,
-        output_schema = schemas.DeleteRecommenderOutput,
-        http_method = "DELETE",
-        http_path = "/domains/{DomainName}/recommenders/{RecommenderName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRecommender, input, options)
 end
 
 function Client:deleteRecommenderFilter(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRecommenderFilter",
-        input_schema = schemas.DeleteRecommenderFilterInput,
-        output_schema = schemas.DeleteRecommenderFilterOutput,
-        http_method = "DELETE",
-        http_path = "/domains/{DomainName}/recommender-filters/{RecommenderFilterName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRecommenderFilter, input, options)
 end
 
 function Client:deleteRecommenderSchema(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRecommenderSchema",
-        input_schema = schemas.DeleteRecommenderSchemaInput,
-        output_schema = schemas.DeleteRecommenderSchemaOutput,
-        http_method = "DELETE",
-        http_path = "/domains/{DomainName}/recommender-schemas/{RecommenderSchemaName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRecommenderSchema, input, options)
 end
 
 function Client:deleteSegmentDefinition(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSegmentDefinition",
-        input_schema = schemas.DeleteSegmentDefinitionInput,
-        output_schema = schemas.DeleteSegmentDefinitionOutput,
-        http_method = "DELETE",
-        http_path = "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSegmentDefinition, input, options)
 end
 
 function Client:deleteWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWorkflow",
-        input_schema = schemas.DeleteWorkflowInput,
-        output_schema = schemas.DeleteWorkflowOutput,
-        http_method = "DELETE",
-        http_path = "/domains/{DomainName}/workflows/{WorkflowId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflow, input, options)
 end
 
 function Client:detectProfileObjectType(input, options)
-    return self:invokeOperation(input, {
-        name = "DetectProfileObjectType",
-        input_schema = schemas.DetectProfileObjectTypeInput,
-        output_schema = schemas.DetectProfileObjectTypeOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/detect/object-types",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DetectProfileObjectType, input, options)
 end
 
 function Client:getAutoMergingPreview(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAutoMergingPreview",
-        input_schema = schemas.GetAutoMergingPreviewInput,
-        output_schema = schemas.GetAutoMergingPreviewOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/identity-resolution-jobs/auto-merging-preview",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAutoMergingPreview, input, options)
 end
 
 function Client:getCalculatedAttributeDefinition(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCalculatedAttributeDefinition",
-        input_schema = schemas.GetCalculatedAttributeDefinitionInput,
-        output_schema = schemas.GetCalculatedAttributeDefinitionOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCalculatedAttributeDefinition, input, options)
 end
 
 function Client:getCalculatedAttributeForProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCalculatedAttributeForProfile",
-        input_schema = schemas.GetCalculatedAttributeForProfileInput,
-        output_schema = schemas.GetCalculatedAttributeForProfileOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/profile/{ProfileId}/calculated-attributes/{CalculatedAttributeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCalculatedAttributeForProfile, input, options)
 end
 
 function Client:getDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDomain",
-        input_schema = schemas.GetDomainInput,
-        output_schema = schemas.GetDomainOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDomain, input, options)
 end
 
 function Client:getDomainLayout(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDomainLayout",
-        input_schema = schemas.GetDomainLayoutInput,
-        output_schema = schemas.GetDomainLayoutOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/layouts/{LayoutDefinitionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDomainLayout, input, options)
 end
 
 function Client:getDomainObjectType(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDomainObjectType",
-        input_schema = schemas.GetDomainObjectTypeInput,
-        output_schema = schemas.GetDomainObjectTypeOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/domain-object-types/{ObjectTypeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDomainObjectType, input, options)
 end
 
 function Client:getEventStream(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEventStream",
-        input_schema = schemas.GetEventStreamInput,
-        output_schema = schemas.GetEventStreamOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/event-streams/{EventStreamName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEventStream, input, options)
 end
 
 function Client:getEventTrigger(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEventTrigger",
-        input_schema = schemas.GetEventTriggerInput,
-        output_schema = schemas.GetEventTriggerOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/event-triggers/{EventTriggerName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEventTrigger, input, options)
 end
 
 function Client:getIdentityResolutionJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdentityResolutionJob",
-        input_schema = schemas.GetIdentityResolutionJobInput,
-        output_schema = schemas.GetIdentityResolutionJobOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/identity-resolution-jobs/{JobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdentityResolutionJob, input, options)
 end
 
 function Client:getIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIntegration",
-        input_schema = schemas.GetIntegrationInput,
-        output_schema = schemas.GetIntegrationOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/integrations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIntegration, input, options)
 end
 
 function Client:getMatches(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMatches",
-        input_schema = schemas.GetMatchesInput,
-        output_schema = schemas.GetMatchesOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/matches",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMatches, input, options)
 end
 
 function Client:getObjectTypeAttributeStatistics(input, options)
-    return self:invokeOperation(input, {
-        name = "GetObjectTypeAttributeStatistics",
-        input_schema = schemas.GetObjectTypeAttributeStatisticsInput,
-        output_schema = schemas.GetObjectTypeAttributeStatisticsOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/object-types/{ObjectTypeName}/attributes/{AttributeName}/statistics",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetObjectTypeAttributeStatistics, input, options)
 end
 
 function Client:getProfileHistoryRecord(input, options)
-    return self:invokeOperation(input, {
-        name = "GetProfileHistoryRecord",
-        input_schema = schemas.GetProfileHistoryRecordInput,
-        output_schema = schemas.GetProfileHistoryRecordOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/profiles/{ProfileId}/history-records/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetProfileHistoryRecord, input, options)
 end
 
 function Client:getProfileObjectType(input, options)
-    return self:invokeOperation(input, {
-        name = "GetProfileObjectType",
-        input_schema = schemas.GetProfileObjectTypeInput,
-        output_schema = schemas.GetProfileObjectTypeOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/object-types/{ObjectTypeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetProfileObjectType, input, options)
 end
 
 function Client:getProfileObjectTypeTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "GetProfileObjectTypeTemplate",
-        input_schema = schemas.GetProfileObjectTypeTemplateInput,
-        output_schema = schemas.GetProfileObjectTypeTemplateOutput,
-        http_method = "GET",
-        http_path = "/templates/{TemplateId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetProfileObjectTypeTemplate, input, options)
 end
 
 function Client:getProfileRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetProfileRecommendations",
-        input_schema = schemas.GetProfileRecommendationsInput,
-        output_schema = schemas.GetProfileRecommendationsOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/profiles/{ProfileId}/recommendations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetProfileRecommendations, input, options)
 end
 
 function Client:getRecommender(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRecommender",
-        input_schema = schemas.GetRecommenderInput,
-        output_schema = schemas.GetRecommenderOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/recommenders/{RecommenderName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRecommender, input, options)
 end
 
 function Client:getRecommenderFilter(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRecommenderFilter",
-        input_schema = schemas.GetRecommenderFilterInput,
-        output_schema = schemas.GetRecommenderFilterOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/recommender-filters/{RecommenderFilterName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRecommenderFilter, input, options)
 end
 
 function Client:getRecommenderSchema(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRecommenderSchema",
-        input_schema = schemas.GetRecommenderSchemaInput,
-        output_schema = schemas.GetRecommenderSchemaOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/recommender-schemas/{RecommenderSchemaName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRecommenderSchema, input, options)
 end
 
 function Client:getSegmentDefinition(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSegmentDefinition",
-        input_schema = schemas.GetSegmentDefinitionInput,
-        output_schema = schemas.GetSegmentDefinitionOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSegmentDefinition, input, options)
 end
 
 function Client:getSegmentEstimate(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSegmentEstimate",
-        input_schema = schemas.GetSegmentEstimateInput,
-        output_schema = schemas.GetSegmentEstimateOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/segment-estimates/{EstimateId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSegmentEstimate, input, options)
 end
 
 function Client:getSegmentMembership(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSegmentMembership",
-        input_schema = schemas.GetSegmentMembershipInput,
-        output_schema = schemas.GetSegmentMembershipOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/segments/{SegmentDefinitionName}/membership",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSegmentMembership, input, options)
 end
 
 function Client:getSegmentSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSegmentSnapshot",
-        input_schema = schemas.GetSegmentSnapshotInput,
-        output_schema = schemas.GetSegmentSnapshotOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/segments/{SegmentDefinitionName}/snapshots/{SnapshotId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSegmentSnapshot, input, options)
 end
 
 function Client:getSimilarProfiles(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSimilarProfiles",
-        input_schema = schemas.GetSimilarProfilesInput,
-        output_schema = schemas.GetSimilarProfilesOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/matches",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSimilarProfiles, input, options)
 end
 
 function Client:getUploadJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetUploadJob",
-        input_schema = schemas.GetUploadJobInput,
-        output_schema = schemas.GetUploadJobOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/upload-jobs/{JobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetUploadJob, input, options)
 end
 
 function Client:getUploadJobPath(input, options)
-    return self:invokeOperation(input, {
-        name = "GetUploadJobPath",
-        input_schema = schemas.GetUploadJobPathInput,
-        output_schema = schemas.GetUploadJobPathOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/upload-jobs/{JobId}/path",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetUploadJobPath, input, options)
 end
 
 function Client:getWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "GetWorkflow",
-        input_schema = schemas.GetWorkflowInput,
-        output_schema = schemas.GetWorkflowOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/workflows/{WorkflowId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetWorkflow, input, options)
 end
 
 function Client:getWorkflowSteps(input, options)
-    return self:invokeOperation(input, {
-        name = "GetWorkflowSteps",
-        input_schema = schemas.GetWorkflowStepsInput,
-        output_schema = schemas.GetWorkflowStepsOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/workflows/{WorkflowId}/steps",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetWorkflowSteps, input, options)
 end
 
 function Client:listAccountIntegrations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAccountIntegrations",
-        input_schema = schemas.ListAccountIntegrationsInput,
-        output_schema = schemas.ListAccountIntegrationsOutput,
-        http_method = "POST",
-        http_path = "/integrations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAccountIntegrations, input, options)
 end
 
 function Client:listCalculatedAttributeDefinitions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCalculatedAttributeDefinitions",
-        input_schema = schemas.ListCalculatedAttributeDefinitionsInput,
-        output_schema = schemas.ListCalculatedAttributeDefinitionsOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/calculated-attributes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCalculatedAttributeDefinitions, input, options)
 end
 
 function Client:listCalculatedAttributesForProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCalculatedAttributesForProfile",
-        input_schema = schemas.ListCalculatedAttributesForProfileInput,
-        output_schema = schemas.ListCalculatedAttributesForProfileOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/profile/{ProfileId}/calculated-attributes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCalculatedAttributesForProfile, input, options)
 end
 
 function Client:listDomainLayouts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDomainLayouts",
-        input_schema = schemas.ListDomainLayoutsInput,
-        output_schema = schemas.ListDomainLayoutsOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/layouts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDomainLayouts, input, options)
 end
 
 function Client:listDomainObjectTypes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDomainObjectTypes",
-        input_schema = schemas.ListDomainObjectTypesInput,
-        output_schema = schemas.ListDomainObjectTypesOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/domain-object-types",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDomainObjectTypes, input, options)
 end
 
 function Client:listDomains(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDomains",
-        input_schema = schemas.ListDomainsInput,
-        output_schema = schemas.ListDomainsOutput,
-        http_method = "GET",
-        http_path = "/domains",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDomains, input, options)
 end
 
 function Client:listEventStreams(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEventStreams",
-        input_schema = schemas.ListEventStreamsInput,
-        output_schema = schemas.ListEventStreamsOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/event-streams",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEventStreams, input, options)
 end
 
 function Client:listEventTriggers(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEventTriggers",
-        input_schema = schemas.ListEventTriggersInput,
-        output_schema = schemas.ListEventTriggersOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/event-triggers",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEventTriggers, input, options)
 end
 
 function Client:listIdentityResolutionJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIdentityResolutionJobs",
-        input_schema = schemas.ListIdentityResolutionJobsInput,
-        output_schema = schemas.ListIdentityResolutionJobsOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/identity-resolution-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIdentityResolutionJobs, input, options)
 end
 
 function Client:listIntegrations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIntegrations",
-        input_schema = schemas.ListIntegrationsInput,
-        output_schema = schemas.ListIntegrationsOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/integrations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIntegrations, input, options)
 end
 
 function Client:listObjectTypeAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListObjectTypeAttributes",
-        input_schema = schemas.ListObjectTypeAttributesInput,
-        output_schema = schemas.ListObjectTypeAttributesOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/object-types/{ObjectTypeName}/attributes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListObjectTypeAttributes, input, options)
 end
 
 function Client:listObjectTypeAttributeValues(input, options)
-    return self:invokeOperation(input, {
-        name = "ListObjectTypeAttributeValues",
-        input_schema = schemas.ListObjectTypeAttributeValuesInput,
-        output_schema = schemas.ListObjectTypeAttributeValuesOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/object-types/{ObjectTypeName}/attributes/{AttributeName}/values",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListObjectTypeAttributeValues, input, options)
 end
 
 function Client:listProfileAttributeValues(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProfileAttributeValues",
-        input_schema = schemas.ListProfileAttributeValuesInput,
-        output_schema = schemas.ListProfileAttributeValuesOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/profile-attributes/{AttributeName}/values",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProfileAttributeValues, input, options)
 end
 
 function Client:listProfileHistoryRecords(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProfileHistoryRecords",
-        input_schema = schemas.ListProfileHistoryRecordsInput,
-        output_schema = schemas.ListProfileHistoryRecordsOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/profiles/history-records",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProfileHistoryRecords, input, options)
 end
 
 function Client:listProfileObjects(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProfileObjects",
-        input_schema = schemas.ListProfileObjectsInput,
-        output_schema = schemas.ListProfileObjectsOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/profiles/objects",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProfileObjects, input, options)
 end
 
 function Client:listProfileObjectTypes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProfileObjectTypes",
-        input_schema = schemas.ListProfileObjectTypesInput,
-        output_schema = schemas.ListProfileObjectTypesOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/object-types",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProfileObjectTypes, input, options)
 end
 
 function Client:listProfileObjectTypeTemplates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProfileObjectTypeTemplates",
-        input_schema = schemas.ListProfileObjectTypeTemplatesInput,
-        output_schema = schemas.ListProfileObjectTypeTemplatesOutput,
-        http_method = "GET",
-        http_path = "/templates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProfileObjectTypeTemplates, input, options)
 end
 
 function Client:listRecommenderFilters(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRecommenderFilters",
-        input_schema = schemas.ListRecommenderFiltersInput,
-        output_schema = schemas.ListRecommenderFiltersOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/recommender-filters",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRecommenderFilters, input, options)
 end
 
 function Client:listRecommenderRecipes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRecommenderRecipes",
-        input_schema = schemas.ListRecommenderRecipesInput,
-        output_schema = schemas.ListRecommenderRecipesOutput,
-        http_method = "GET",
-        http_path = "/recommender-recipes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRecommenderRecipes, input, options)
 end
 
 function Client:listRecommenders(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRecommenders",
-        input_schema = schemas.ListRecommendersInput,
-        output_schema = schemas.ListRecommendersOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/recommenders",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRecommenders, input, options)
 end
 
 function Client:listRecommenderSchemas(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRecommenderSchemas",
-        input_schema = schemas.ListRecommenderSchemasInput,
-        output_schema = schemas.ListRecommenderSchemasOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/recommender-schemas",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRecommenderSchemas, input, options)
 end
 
 function Client:listRuleBasedMatches(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRuleBasedMatches",
-        input_schema = schemas.ListRuleBasedMatchesInput,
-        output_schema = schemas.ListRuleBasedMatchesOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/profiles/ruleBasedMatches",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRuleBasedMatches, input, options)
 end
 
 function Client:listSegmentDefinitions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSegmentDefinitions",
-        input_schema = schemas.ListSegmentDefinitionsInput,
-        output_schema = schemas.ListSegmentDefinitionsOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/segment-definitions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSegmentDefinitions, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listUploadJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListUploadJobs",
-        input_schema = schemas.ListUploadJobsInput,
-        output_schema = schemas.ListUploadJobsOutput,
-        http_method = "GET",
-        http_path = "/domains/{DomainName}/upload-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListUploadJobs, input, options)
 end
 
 function Client:listWorkflows(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkflows",
-        input_schema = schemas.ListWorkflowsInput,
-        output_schema = schemas.ListWorkflowsOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/workflows",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkflows, input, options)
 end
 
 function Client:mergeProfiles(input, options)
-    return self:invokeOperation(input, {
-        name = "MergeProfiles",
-        input_schema = schemas.MergeProfilesInput,
-        output_schema = schemas.MergeProfilesOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/profiles/objects/merge",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.MergeProfiles, input, options)
 end
 
 function Client:putDomainObjectType(input, options)
-    return self:invokeOperation(input, {
-        name = "PutDomainObjectType",
-        input_schema = schemas.PutDomainObjectTypeInput,
-        output_schema = schemas.PutDomainObjectTypeOutput,
-        http_method = "PUT",
-        http_path = "/domains/{DomainName}/domain-object-types/{ObjectTypeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutDomainObjectType, input, options)
 end
 
 function Client:putIntegration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutIntegration",
-        input_schema = schemas.PutIntegrationInput,
-        output_schema = schemas.PutIntegrationOutput,
-        http_method = "PUT",
-        http_path = "/domains/{DomainName}/integrations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutIntegration, input, options)
 end
 
 function Client:putProfileObject(input, options)
-    return self:invokeOperation(input, {
-        name = "PutProfileObject",
-        input_schema = schemas.PutProfileObjectInput,
-        output_schema = schemas.PutProfileObjectOutput,
-        http_method = "PUT",
-        http_path = "/domains/{DomainName}/profiles/objects",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutProfileObject, input, options)
 end
 
 function Client:putProfileObjectType(input, options)
-    return self:invokeOperation(input, {
-        name = "PutProfileObjectType",
-        input_schema = schemas.PutProfileObjectTypeInput,
-        output_schema = schemas.PutProfileObjectTypeOutput,
-        http_method = "PUT",
-        http_path = "/domains/{DomainName}/object-types/{ObjectTypeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutProfileObjectType, input, options)
 end
 
 function Client:searchProfiles(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchProfiles",
-        input_schema = schemas.SearchProfilesInput,
-        output_schema = schemas.SearchProfilesOutput,
-        http_method = "POST",
-        http_path = "/domains/{DomainName}/profiles/search",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchProfiles, input, options)
 end
 
 function Client:startRecommender(input, options)
-    return self:invokeOperation(input, {
-        name = "StartRecommender",
-        input_schema = schemas.StartRecommenderInput,
-        output_schema = schemas.StartRecommenderOutput,
-        http_method = "PUT",
-        http_path = "/domains/{DomainName}/recommenders/{RecommenderName}/start",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartRecommender, input, options)
 end
 
 function Client:startUploadJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartUploadJob",
-        input_schema = schemas.StartUploadJobInput,
-        output_schema = schemas.StartUploadJobOutput,
-        http_method = "PUT",
-        http_path = "/domains/{DomainName}/upload-jobs/{JobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartUploadJob, input, options)
 end
 
 function Client:stopRecommender(input, options)
-    return self:invokeOperation(input, {
-        name = "StopRecommender",
-        input_schema = schemas.StopRecommenderInput,
-        output_schema = schemas.StopRecommenderOutput,
-        http_method = "PUT",
-        http_path = "/domains/{DomainName}/recommenders/{RecommenderName}/stop",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopRecommender, input, options)
 end
 
 function Client:stopUploadJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StopUploadJob",
-        input_schema = schemas.StopUploadJobInput,
-        output_schema = schemas.StopUploadJobOutput,
-        http_method = "PUT",
-        http_path = "/domains/{DomainName}/upload-jobs/{JobId}/stop",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopUploadJob, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateCalculatedAttributeDefinition(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCalculatedAttributeDefinition",
-        input_schema = schemas.UpdateCalculatedAttributeDefinitionInput,
-        output_schema = schemas.UpdateCalculatedAttributeDefinitionOutput,
-        http_method = "PUT",
-        http_path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCalculatedAttributeDefinition, input, options)
 end
 
 function Client:updateDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDomain",
-        input_schema = schemas.UpdateDomainInput,
-        output_schema = schemas.UpdateDomainOutput,
-        http_method = "PUT",
-        http_path = "/domains/{DomainName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDomain, input, options)
 end
 
 function Client:updateDomainLayout(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDomainLayout",
-        input_schema = schemas.UpdateDomainLayoutInput,
-        output_schema = schemas.UpdateDomainLayoutOutput,
-        http_method = "PUT",
-        http_path = "/domains/{DomainName}/layouts/{LayoutDefinitionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDomainLayout, input, options)
 end
 
 function Client:updateEventTrigger(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateEventTrigger",
-        input_schema = schemas.UpdateEventTriggerInput,
-        output_schema = schemas.UpdateEventTriggerOutput,
-        http_method = "PUT",
-        http_path = "/domains/{DomainName}/event-triggers/{EventTriggerName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateEventTrigger, input, options)
 end
 
 function Client:updateProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateProfile",
-        input_schema = schemas.UpdateProfileInput,
-        output_schema = schemas.UpdateProfileOutput,
-        http_method = "PUT",
-        http_path = "/domains/{DomainName}/profiles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateProfile, input, options)
 end
 
 function Client:updateRecommender(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRecommender",
-        input_schema = schemas.UpdateRecommenderInput,
-        output_schema = schemas.UpdateRecommenderOutput,
-        http_method = "PATCH",
-        http_path = "/domains/{DomainName}/recommenders/{RecommenderName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRecommender, input, options)
 end
 
 return M

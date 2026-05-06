@@ -1001,4 +1001,157 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cloud9", "AWSCloud9WorkspaceManagementService"),
+    version = "2017-09-23",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironmentEC2 = schema.operation({
+    id = id.from("com.amazonaws.cloud9", "CreateEnvironmentEC2"),
+    input = M.CreateEnvironmentEC2Input,
+    output = M.CreateEnvironmentEC2Output,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironmentMembership = schema.operation({
+    id = id.from("com.amazonaws.cloud9", "CreateEnvironmentMembership"),
+    input = M.CreateEnvironmentMembershipInput,
+    output = M.CreateEnvironmentMembershipOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironment = schema.operation({
+    id = id.from("com.amazonaws.cloud9", "DeleteEnvironment"),
+    input = M.DeleteEnvironmentInput,
+    output = M.DeleteEnvironmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironmentMembership = schema.operation({
+    id = id.from("com.amazonaws.cloud9", "DeleteEnvironmentMembership"),
+    input = M.DeleteEnvironmentMembershipInput,
+    output = M.DeleteEnvironmentMembershipOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEnvironmentMemberships = schema.operation({
+    id = id.from("com.amazonaws.cloud9", "DescribeEnvironmentMemberships"),
+    input = M.DescribeEnvironmentMembershipsInput,
+    output = M.DescribeEnvironmentMembershipsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEnvironments = schema.operation({
+    id = id.from("com.amazonaws.cloud9", "DescribeEnvironments"),
+    input = M.DescribeEnvironmentsInput,
+    output = M.DescribeEnvironmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEnvironmentStatus = schema.operation({
+    id = id.from("com.amazonaws.cloud9", "DescribeEnvironmentStatus"),
+    input = M.DescribeEnvironmentStatusInput,
+    output = M.DescribeEnvironmentStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironments = schema.operation({
+    id = id.from("com.amazonaws.cloud9", "ListEnvironments"),
+    input = M.ListEnvironmentsInput,
+    output = M.ListEnvironmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.cloud9", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.cloud9", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.cloud9", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.cloud9", "UpdateEnvironment"),
+    input = M.UpdateEnvironmentInput,
+    output = M.UpdateEnvironmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironmentMembership = schema.operation({
+    id = id.from("com.amazonaws.cloud9", "UpdateEnvironmentMembership"),
+    input = M.UpdateEnvironmentMembershipInput,
+    output = M.UpdateEnvironmentMembershipOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

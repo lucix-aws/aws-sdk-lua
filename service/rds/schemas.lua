@@ -22923,4 +22923,1818 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.rds", "AmazonRDSv19"),
+    version = "2014-10-31",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddRoleToDBCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "AddRoleToDBCluster"),
+    input = M.AddRoleToDBClusterInput,
+    output = M.AddRoleToDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddRoleToDBInstance = schema.operation({
+    id = id.from("com.amazonaws.rds", "AddRoleToDBInstance"),
+    input = M.AddRoleToDBInstanceInput,
+    output = M.AddRoleToDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddSourceIdentifierToSubscription = schema.operation({
+    id = id.from("com.amazonaws.rds", "AddSourceIdentifierToSubscription"),
+    input = M.AddSourceIdentifierToSubscriptionInput,
+    output = M.AddSourceIdentifierToSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTagsToResource = schema.operation({
+    id = id.from("com.amazonaws.rds", "AddTagsToResource"),
+    input = M.AddTagsToResourceInput,
+    output = M.AddTagsToResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ApplyPendingMaintenanceAction = schema.operation({
+    id = id.from("com.amazonaws.rds", "ApplyPendingMaintenanceAction"),
+    input = M.ApplyPendingMaintenanceActionInput,
+    output = M.ApplyPendingMaintenanceActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AuthorizeDBSecurityGroupIngress = schema.operation({
+    id = id.from("com.amazonaws.rds", "AuthorizeDBSecurityGroupIngress"),
+    input = M.AuthorizeDBSecurityGroupIngressInput,
+    output = M.AuthorizeDBSecurityGroupIngressOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BacktrackDBCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "BacktrackDBCluster"),
+    input = M.BacktrackDBClusterInput,
+    output = M.BacktrackDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelExportTask = schema.operation({
+    id = id.from("com.amazonaws.rds", "CancelExportTask"),
+    input = M.CancelExportTaskInput,
+    output = M.CancelExportTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "CopyDBClusterParameterGroup"),
+    input = M.CopyDBClusterParameterGroupInput,
+    output = M.CopyDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyDBClusterSnapshot = schema.operation({
+    id = id.from("com.amazonaws.rds", "CopyDBClusterSnapshot"),
+    input = M.CopyDBClusterSnapshotInput,
+    output = M.CopyDBClusterSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyDBParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "CopyDBParameterGroup"),
+    input = M.CopyDBParameterGroupInput,
+    output = M.CopyDBParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyDBSnapshot = schema.operation({
+    id = id.from("com.amazonaws.rds", "CopyDBSnapshot"),
+    input = M.CopyDBSnapshotInput,
+    output = M.CopyDBSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyOptionGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "CopyOptionGroup"),
+    input = M.CopyOptionGroupInput,
+    output = M.CopyOptionGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBlueGreenDeployment = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateBlueGreenDeployment"),
+    input = M.CreateBlueGreenDeploymentInput,
+    output = M.CreateBlueGreenDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomDBEngineVersion = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateCustomDBEngineVersion"),
+    input = M.CreateCustomDBEngineVersionInput,
+    output = M.CreateCustomDBEngineVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateDBCluster"),
+    input = M.CreateDBClusterInput,
+    output = M.CreateDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBClusterEndpoint = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateDBClusterEndpoint"),
+    input = M.CreateDBClusterEndpointInput,
+    output = M.CreateDBClusterEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateDBClusterParameterGroup"),
+    input = M.CreateDBClusterParameterGroupInput,
+    output = M.CreateDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBClusterSnapshot = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateDBClusterSnapshot"),
+    input = M.CreateDBClusterSnapshotInput,
+    output = M.CreateDBClusterSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBInstance = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateDBInstance"),
+    input = M.CreateDBInstanceInput,
+    output = M.CreateDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBInstanceReadReplica = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateDBInstanceReadReplica"),
+    input = M.CreateDBInstanceReadReplicaInput,
+    output = M.CreateDBInstanceReadReplicaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateDBParameterGroup"),
+    input = M.CreateDBParameterGroupInput,
+    output = M.CreateDBParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBProxy = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateDBProxy"),
+    input = M.CreateDBProxyInput,
+    output = M.CreateDBProxyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBProxyEndpoint = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateDBProxyEndpoint"),
+    input = M.CreateDBProxyEndpointInput,
+    output = M.CreateDBProxyEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBSecurityGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateDBSecurityGroup"),
+    input = M.CreateDBSecurityGroupInput,
+    output = M.CreateDBSecurityGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBShardGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateDBShardGroup"),
+    input = M.CreateDBShardGroupInput,
+    output = M.CreateDBShardGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBSnapshot = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateDBSnapshot"),
+    input = M.CreateDBSnapshotInput,
+    output = M.CreateDBSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateDBSubnetGroup"),
+    input = M.CreateDBSubnetGroupInput,
+    output = M.CreateDBSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventSubscription = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateEventSubscription"),
+    input = M.CreateEventSubscriptionInput,
+    output = M.CreateEventSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateGlobalCluster"),
+    input = M.CreateGlobalClusterInput,
+    output = M.CreateGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIntegration = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateIntegration"),
+    input = M.CreateIntegrationInput,
+    output = M.CreateIntegrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOptionGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateOptionGroup"),
+    input = M.CreateOptionGroupInput,
+    output = M.CreateOptionGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTenantDatabase = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateTenantDatabase"),
+    input = M.CreateTenantDatabaseInput,
+    output = M.CreateTenantDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBlueGreenDeployment = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteBlueGreenDeployment"),
+    input = M.DeleteBlueGreenDeploymentInput,
+    output = M.DeleteBlueGreenDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomDBEngineVersion = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteCustomDBEngineVersion"),
+    input = M.DeleteCustomDBEngineVersionInput,
+    output = M.DeleteCustomDBEngineVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteDBCluster"),
+    input = M.DeleteDBClusterInput,
+    output = M.DeleteDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBClusterAutomatedBackup = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteDBClusterAutomatedBackup"),
+    input = M.DeleteDBClusterAutomatedBackupInput,
+    output = M.DeleteDBClusterAutomatedBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBClusterEndpoint = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteDBClusterEndpoint"),
+    input = M.DeleteDBClusterEndpointInput,
+    output = M.DeleteDBClusterEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteDBClusterParameterGroup"),
+    input = M.DeleteDBClusterParameterGroupInput,
+    output = M.DeleteDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBClusterSnapshot = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteDBClusterSnapshot"),
+    input = M.DeleteDBClusterSnapshotInput,
+    output = M.DeleteDBClusterSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBInstance = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteDBInstance"),
+    input = M.DeleteDBInstanceInput,
+    output = M.DeleteDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBInstanceAutomatedBackup = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteDBInstanceAutomatedBackup"),
+    input = M.DeleteDBInstanceAutomatedBackupInput,
+    output = M.DeleteDBInstanceAutomatedBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteDBParameterGroup"),
+    input = M.DeleteDBParameterGroupInput,
+    output = M.DeleteDBParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBProxy = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteDBProxy"),
+    input = M.DeleteDBProxyInput,
+    output = M.DeleteDBProxyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBProxyEndpoint = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteDBProxyEndpoint"),
+    input = M.DeleteDBProxyEndpointInput,
+    output = M.DeleteDBProxyEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBSecurityGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteDBSecurityGroup"),
+    input = M.DeleteDBSecurityGroupInput,
+    output = M.DeleteDBSecurityGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBShardGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteDBShardGroup"),
+    input = M.DeleteDBShardGroupInput,
+    output = M.DeleteDBShardGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBSnapshot = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteDBSnapshot"),
+    input = M.DeleteDBSnapshotInput,
+    output = M.DeleteDBSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteDBSubnetGroup"),
+    input = M.DeleteDBSubnetGroupInput,
+    output = M.DeleteDBSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventSubscription = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteEventSubscription"),
+    input = M.DeleteEventSubscriptionInput,
+    output = M.DeleteEventSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteGlobalCluster"),
+    input = M.DeleteGlobalClusterInput,
+    output = M.DeleteGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIntegration = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteIntegration"),
+    input = M.DeleteIntegrationInput,
+    output = M.DeleteIntegrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOptionGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteOptionGroup"),
+    input = M.DeleteOptionGroupInput,
+    output = M.DeleteOptionGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTenantDatabase = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeleteTenantDatabase"),
+    input = M.DeleteTenantDatabaseInput,
+    output = M.DeleteTenantDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterDBProxyTargets = schema.operation({
+    id = id.from("com.amazonaws.rds", "DeregisterDBProxyTargets"),
+    input = M.DeregisterDBProxyTargetsInput,
+    output = M.DeregisterDBProxyTargetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountAttributes = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeAccountAttributes"),
+    input = M.DescribeAccountAttributesInput,
+    output = M.DescribeAccountAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBlueGreenDeployments = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeBlueGreenDeployments"),
+    input = M.DescribeBlueGreenDeploymentsInput,
+    output = M.DescribeBlueGreenDeploymentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCertificates = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeCertificates"),
+    input = M.DescribeCertificatesInput,
+    output = M.DescribeCertificatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterAutomatedBackups = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBClusterAutomatedBackups"),
+    input = M.DescribeDBClusterAutomatedBackupsInput,
+    output = M.DescribeDBClusterAutomatedBackupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterBacktracks = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBClusterBacktracks"),
+    input = M.DescribeDBClusterBacktracksInput,
+    output = M.DescribeDBClusterBacktracksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterEndpoints = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBClusterEndpoints"),
+    input = M.DescribeDBClusterEndpointsInput,
+    output = M.DescribeDBClusterEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterParameterGroups = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBClusterParameterGroups"),
+    input = M.DescribeDBClusterParameterGroupsInput,
+    output = M.DescribeDBClusterParameterGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterParameters = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBClusterParameters"),
+    input = M.DescribeDBClusterParametersInput,
+    output = M.DescribeDBClusterParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusters = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBClusters"),
+    input = M.DescribeDBClustersInput,
+    output = M.DescribeDBClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterSnapshotAttributes = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBClusterSnapshotAttributes"),
+    input = M.DescribeDBClusterSnapshotAttributesInput,
+    output = M.DescribeDBClusterSnapshotAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterSnapshots = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBClusterSnapshots"),
+    input = M.DescribeDBClusterSnapshotsInput,
+    output = M.DescribeDBClusterSnapshotsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBEngineVersions = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBEngineVersions"),
+    input = M.DescribeDBEngineVersionsInput,
+    output = M.DescribeDBEngineVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBInstanceAutomatedBackups = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBInstanceAutomatedBackups"),
+    input = M.DescribeDBInstanceAutomatedBackupsInput,
+    output = M.DescribeDBInstanceAutomatedBackupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBInstances = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBInstances"),
+    input = M.DescribeDBInstancesInput,
+    output = M.DescribeDBInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBLogFiles = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBLogFiles"),
+    input = M.DescribeDBLogFilesInput,
+    output = M.DescribeDBLogFilesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBMajorEngineVersions = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBMajorEngineVersions"),
+    input = M.DescribeDBMajorEngineVersionsInput,
+    output = M.DescribeDBMajorEngineVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBParameterGroups = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBParameterGroups"),
+    input = M.DescribeDBParameterGroupsInput,
+    output = M.DescribeDBParameterGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBParameters = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBParameters"),
+    input = M.DescribeDBParametersInput,
+    output = M.DescribeDBParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBProxies = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBProxies"),
+    input = M.DescribeDBProxiesInput,
+    output = M.DescribeDBProxiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBProxyEndpoints = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBProxyEndpoints"),
+    input = M.DescribeDBProxyEndpointsInput,
+    output = M.DescribeDBProxyEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBProxyTargetGroups = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBProxyTargetGroups"),
+    input = M.DescribeDBProxyTargetGroupsInput,
+    output = M.DescribeDBProxyTargetGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBProxyTargets = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBProxyTargets"),
+    input = M.DescribeDBProxyTargetsInput,
+    output = M.DescribeDBProxyTargetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBRecommendations = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBRecommendations"),
+    input = M.DescribeDBRecommendationsInput,
+    output = M.DescribeDBRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBSecurityGroups = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBSecurityGroups"),
+    input = M.DescribeDBSecurityGroupsInput,
+    output = M.DescribeDBSecurityGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBShardGroups = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBShardGroups"),
+    input = M.DescribeDBShardGroupsInput,
+    output = M.DescribeDBShardGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBSnapshotAttributes = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBSnapshotAttributes"),
+    input = M.DescribeDBSnapshotAttributesInput,
+    output = M.DescribeDBSnapshotAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBSnapshots = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBSnapshots"),
+    input = M.DescribeDBSnapshotsInput,
+    output = M.DescribeDBSnapshotsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBSnapshotTenantDatabases = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBSnapshotTenantDatabases"),
+    input = M.DescribeDBSnapshotTenantDatabasesInput,
+    output = M.DescribeDBSnapshotTenantDatabasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBSubnetGroups = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBSubnetGroups"),
+    input = M.DescribeDBSubnetGroupsInput,
+    output = M.DescribeDBSubnetGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEngineDefaultClusterParameters = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeEngineDefaultClusterParameters"),
+    input = M.DescribeEngineDefaultClusterParametersInput,
+    output = M.DescribeEngineDefaultClusterParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEngineDefaultParameters = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeEngineDefaultParameters"),
+    input = M.DescribeEngineDefaultParametersInput,
+    output = M.DescribeEngineDefaultParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventCategories = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeEventCategories"),
+    input = M.DescribeEventCategoriesInput,
+    output = M.DescribeEventCategoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEvents = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeEvents"),
+    input = M.DescribeEventsInput,
+    output = M.DescribeEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeEventSubscriptions"),
+    input = M.DescribeEventSubscriptionsInput,
+    output = M.DescribeEventSubscriptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExportTasks = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeExportTasks"),
+    input = M.DescribeExportTasksInput,
+    output = M.DescribeExportTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGlobalClusters = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeGlobalClusters"),
+    input = M.DescribeGlobalClustersInput,
+    output = M.DescribeGlobalClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIntegrations = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeIntegrations"),
+    input = M.DescribeIntegrationsInput,
+    output = M.DescribeIntegrationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOptionGroupOptions = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeOptionGroupOptions"),
+    input = M.DescribeOptionGroupOptionsInput,
+    output = M.DescribeOptionGroupOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOptionGroups = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeOptionGroups"),
+    input = M.DescribeOptionGroupsInput,
+    output = M.DescribeOptionGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrderableDBInstanceOptions = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeOrderableDBInstanceOptions"),
+    input = M.DescribeOrderableDBInstanceOptionsInput,
+    output = M.DescribeOrderableDBInstanceOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePendingMaintenanceActions = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribePendingMaintenanceActions"),
+    input = M.DescribePendingMaintenanceActionsInput,
+    output = M.DescribePendingMaintenanceActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReservedDBInstances = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeReservedDBInstances"),
+    input = M.DescribeReservedDBInstancesInput,
+    output = M.DescribeReservedDBInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReservedDBInstancesOfferings = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeReservedDBInstancesOfferings"),
+    input = M.DescribeReservedDBInstancesOfferingsInput,
+    output = M.DescribeReservedDBInstancesOfferingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServerlessV2PlatformVersions = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeServerlessV2PlatformVersions"),
+    input = M.DescribeServerlessV2PlatformVersionsInput,
+    output = M.DescribeServerlessV2PlatformVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSourceRegions = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeSourceRegions"),
+    input = M.DescribeSourceRegionsInput,
+    output = M.DescribeSourceRegionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTenantDatabases = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeTenantDatabases"),
+    input = M.DescribeTenantDatabasesInput,
+    output = M.DescribeTenantDatabasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeValidDBInstanceModifications = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeValidDBInstanceModifications"),
+    input = M.DescribeValidDBInstanceModificationsInput,
+    output = M.DescribeValidDBInstanceModificationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableHttpEndpoint = schema.operation({
+    id = id.from("com.amazonaws.rds", "DisableHttpEndpoint"),
+    input = M.DisableHttpEndpointInput,
+    output = M.DisableHttpEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DownloadDBLogFilePortion = schema.operation({
+    id = id.from("com.amazonaws.rds", "DownloadDBLogFilePortion"),
+    input = M.DownloadDBLogFilePortionInput,
+    output = M.DownloadDBLogFilePortionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableHttpEndpoint = schema.operation({
+    id = id.from("com.amazonaws.rds", "EnableHttpEndpoint"),
+    input = M.EnableHttpEndpointInput,
+    output = M.EnableHttpEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FailoverDBCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "FailoverDBCluster"),
+    input = M.FailoverDBClusterInput,
+    output = M.FailoverDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FailoverGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "FailoverGlobalCluster"),
+    input = M.FailoverGlobalClusterInput,
+    output = M.FailoverGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.rds", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyActivityStream = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyActivityStream"),
+    input = M.ModifyActivityStreamInput,
+    output = M.ModifyActivityStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyCertificates = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyCertificates"),
+    input = M.ModifyCertificatesInput,
+    output = M.ModifyCertificatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyCurrentDBClusterCapacity = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyCurrentDBClusterCapacity"),
+    input = M.ModifyCurrentDBClusterCapacityInput,
+    output = M.ModifyCurrentDBClusterCapacityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyCustomDBEngineVersion = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyCustomDBEngineVersion"),
+    input = M.ModifyCustomDBEngineVersionInput,
+    output = M.ModifyCustomDBEngineVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBCluster"),
+    input = M.ModifyDBClusterInput,
+    output = M.ModifyDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBClusterEndpoint = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBClusterEndpoint"),
+    input = M.ModifyDBClusterEndpointInput,
+    output = M.ModifyDBClusterEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBClusterParameterGroup"),
+    input = M.ModifyDBClusterParameterGroupInput,
+    output = M.ModifyDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBClusterSnapshotAttribute = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBClusterSnapshotAttribute"),
+    input = M.ModifyDBClusterSnapshotAttributeInput,
+    output = M.ModifyDBClusterSnapshotAttributeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBInstance = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBInstance"),
+    input = M.ModifyDBInstanceInput,
+    output = M.ModifyDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBParameterGroup"),
+    input = M.ModifyDBParameterGroupInput,
+    output = M.ModifyDBParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBProxy = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBProxy"),
+    input = M.ModifyDBProxyInput,
+    output = M.ModifyDBProxyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBProxyEndpoint = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBProxyEndpoint"),
+    input = M.ModifyDBProxyEndpointInput,
+    output = M.ModifyDBProxyEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBProxyTargetGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBProxyTargetGroup"),
+    input = M.ModifyDBProxyTargetGroupInput,
+    output = M.ModifyDBProxyTargetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBRecommendation = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBRecommendation"),
+    input = M.ModifyDBRecommendationInput,
+    output = M.ModifyDBRecommendationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBShardGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBShardGroup"),
+    input = M.ModifyDBShardGroupInput,
+    output = M.ModifyDBShardGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBSnapshot = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBSnapshot"),
+    input = M.ModifyDBSnapshotInput,
+    output = M.ModifyDBSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBSnapshotAttribute = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBSnapshotAttribute"),
+    input = M.ModifyDBSnapshotAttributeInput,
+    output = M.ModifyDBSnapshotAttributeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBSubnetGroup"),
+    input = M.ModifyDBSubnetGroupInput,
+    output = M.ModifyDBSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyEventSubscription = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyEventSubscription"),
+    input = M.ModifyEventSubscriptionInput,
+    output = M.ModifyEventSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyGlobalCluster"),
+    input = M.ModifyGlobalClusterInput,
+    output = M.ModifyGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyIntegration = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyIntegration"),
+    input = M.ModifyIntegrationInput,
+    output = M.ModifyIntegrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyOptionGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyOptionGroup"),
+    input = M.ModifyOptionGroupInput,
+    output = M.ModifyOptionGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyTenantDatabase = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyTenantDatabase"),
+    input = M.ModifyTenantDatabaseInput,
+    output = M.ModifyTenantDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PromoteReadReplica = schema.operation({
+    id = id.from("com.amazonaws.rds", "PromoteReadReplica"),
+    input = M.PromoteReadReplicaInput,
+    output = M.PromoteReadReplicaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PromoteReadReplicaDBCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "PromoteReadReplicaDBCluster"),
+    input = M.PromoteReadReplicaDBClusterInput,
+    output = M.PromoteReadReplicaDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PurchaseReservedDBInstancesOffering = schema.operation({
+    id = id.from("com.amazonaws.rds", "PurchaseReservedDBInstancesOffering"),
+    input = M.PurchaseReservedDBInstancesOfferingInput,
+    output = M.PurchaseReservedDBInstancesOfferingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootDBCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "RebootDBCluster"),
+    input = M.RebootDBClusterInput,
+    output = M.RebootDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootDBInstance = schema.operation({
+    id = id.from("com.amazonaws.rds", "RebootDBInstance"),
+    input = M.RebootDBInstanceInput,
+    output = M.RebootDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootDBShardGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "RebootDBShardGroup"),
+    input = M.RebootDBShardGroupInput,
+    output = M.RebootDBShardGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterDBProxyTargets = schema.operation({
+    id = id.from("com.amazonaws.rds", "RegisterDBProxyTargets"),
+    input = M.RegisterDBProxyTargetsInput,
+    output = M.RegisterDBProxyTargetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveFromGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "RemoveFromGlobalCluster"),
+    input = M.RemoveFromGlobalClusterInput,
+    output = M.RemoveFromGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveRoleFromDBCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "RemoveRoleFromDBCluster"),
+    input = M.RemoveRoleFromDBClusterInput,
+    output = M.RemoveRoleFromDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveRoleFromDBInstance = schema.operation({
+    id = id.from("com.amazonaws.rds", "RemoveRoleFromDBInstance"),
+    input = M.RemoveRoleFromDBInstanceInput,
+    output = M.RemoveRoleFromDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveSourceIdentifierFromSubscription = schema.operation({
+    id = id.from("com.amazonaws.rds", "RemoveSourceIdentifierFromSubscription"),
+    input = M.RemoveSourceIdentifierFromSubscriptionInput,
+    output = M.RemoveSourceIdentifierFromSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTagsFromResource = schema.operation({
+    id = id.from("com.amazonaws.rds", "RemoveTagsFromResource"),
+    input = M.RemoveTagsFromResourceInput,
+    output = M.RemoveTagsFromResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "ResetDBClusterParameterGroup"),
+    input = M.ResetDBClusterParameterGroupInput,
+    output = M.ResetDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetDBParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.rds", "ResetDBParameterGroup"),
+    input = M.ResetDBParameterGroupInput,
+    output = M.ResetDBParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreDBClusterFromS3 = schema.operation({
+    id = id.from("com.amazonaws.rds", "RestoreDBClusterFromS3"),
+    input = M.RestoreDBClusterFromS3Input,
+    output = M.RestoreDBClusterFromS3Output,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreDBClusterFromSnapshot = schema.operation({
+    id = id.from("com.amazonaws.rds", "RestoreDBClusterFromSnapshot"),
+    input = M.RestoreDBClusterFromSnapshotInput,
+    output = M.RestoreDBClusterFromSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreDBClusterToPointInTime = schema.operation({
+    id = id.from("com.amazonaws.rds", "RestoreDBClusterToPointInTime"),
+    input = M.RestoreDBClusterToPointInTimeInput,
+    output = M.RestoreDBClusterToPointInTimeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreDBInstanceFromDBSnapshot = schema.operation({
+    id = id.from("com.amazonaws.rds", "RestoreDBInstanceFromDBSnapshot"),
+    input = M.RestoreDBInstanceFromDBSnapshotInput,
+    output = M.RestoreDBInstanceFromDBSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreDBInstanceFromS3 = schema.operation({
+    id = id.from("com.amazonaws.rds", "RestoreDBInstanceFromS3"),
+    input = M.RestoreDBInstanceFromS3Input,
+    output = M.RestoreDBInstanceFromS3Output,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreDBInstanceToPointInTime = schema.operation({
+    id = id.from("com.amazonaws.rds", "RestoreDBInstanceToPointInTime"),
+    input = M.RestoreDBInstanceToPointInTimeInput,
+    output = M.RestoreDBInstanceToPointInTimeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeDBSecurityGroupIngress = schema.operation({
+    id = id.from("com.amazonaws.rds", "RevokeDBSecurityGroupIngress"),
+    input = M.RevokeDBSecurityGroupIngressInput,
+    output = M.RevokeDBSecurityGroupIngressOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartActivityStream = schema.operation({
+    id = id.from("com.amazonaws.rds", "StartActivityStream"),
+    input = M.StartActivityStreamInput,
+    output = M.StartActivityStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDBCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "StartDBCluster"),
+    input = M.StartDBClusterInput,
+    output = M.StartDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDBInstance = schema.operation({
+    id = id.from("com.amazonaws.rds", "StartDBInstance"),
+    input = M.StartDBInstanceInput,
+    output = M.StartDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDBInstanceAutomatedBackupsReplication = schema.operation({
+    id = id.from("com.amazonaws.rds", "StartDBInstanceAutomatedBackupsReplication"),
+    input = M.StartDBInstanceAutomatedBackupsReplicationInput,
+    output = M.StartDBInstanceAutomatedBackupsReplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartExportTask = schema.operation({
+    id = id.from("com.amazonaws.rds", "StartExportTask"),
+    input = M.StartExportTaskInput,
+    output = M.StartExportTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopActivityStream = schema.operation({
+    id = id.from("com.amazonaws.rds", "StopActivityStream"),
+    input = M.StopActivityStreamInput,
+    output = M.StopActivityStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDBCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "StopDBCluster"),
+    input = M.StopDBClusterInput,
+    output = M.StopDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDBInstance = schema.operation({
+    id = id.from("com.amazonaws.rds", "StopDBInstance"),
+    input = M.StopDBInstanceInput,
+    output = M.StopDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDBInstanceAutomatedBackupsReplication = schema.operation({
+    id = id.from("com.amazonaws.rds", "StopDBInstanceAutomatedBackupsReplication"),
+    input = M.StopDBInstanceAutomatedBackupsReplicationInput,
+    output = M.StopDBInstanceAutomatedBackupsReplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SwitchoverBlueGreenDeployment = schema.operation({
+    id = id.from("com.amazonaws.rds", "SwitchoverBlueGreenDeployment"),
+    input = M.SwitchoverBlueGreenDeploymentInput,
+    output = M.SwitchoverBlueGreenDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SwitchoverGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.rds", "SwitchoverGlobalCluster"),
+    input = M.SwitchoverGlobalClusterInput,
+    output = M.SwitchoverGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SwitchoverReadReplica = schema.operation({
+    id = id.from("com.amazonaws.rds", "SwitchoverReadReplica"),
+    input = M.SwitchoverReadReplicaInput,
+    output = M.SwitchoverReadReplicaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -1471,4 +1471,245 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.migrationhub", "AWSMigrationHub"),
+    version = "2017-05-31",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateCreatedArtifact = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "AssociateCreatedArtifact"),
+    input = M.AssociateCreatedArtifactInput,
+    output = M.AssociateCreatedArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateDiscoveredResource = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "AssociateDiscoveredResource"),
+    input = M.AssociateDiscoveredResourceInput,
+    output = M.AssociateDiscoveredResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateSourceResource = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "AssociateSourceResource"),
+    input = M.AssociateSourceResourceInput,
+    output = M.AssociateSourceResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProgressUpdateStream = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "CreateProgressUpdateStream"),
+    input = M.CreateProgressUpdateStreamInput,
+    output = M.CreateProgressUpdateStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProgressUpdateStream = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "DeleteProgressUpdateStream"),
+    input = M.DeleteProgressUpdateStreamInput,
+    output = M.DeleteProgressUpdateStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicationState = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "DescribeApplicationState"),
+    input = M.DescribeApplicationStateInput,
+    output = M.DescribeApplicationStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMigrationTask = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "DescribeMigrationTask"),
+    input = M.DescribeMigrationTaskInput,
+    output = M.DescribeMigrationTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateCreatedArtifact = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "DisassociateCreatedArtifact"),
+    input = M.DisassociateCreatedArtifactInput,
+    output = M.DisassociateCreatedArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateDiscoveredResource = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "DisassociateDiscoveredResource"),
+    input = M.DisassociateDiscoveredResourceInput,
+    output = M.DisassociateDiscoveredResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateSourceResource = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "DisassociateSourceResource"),
+    input = M.DisassociateSourceResourceInput,
+    output = M.DisassociateSourceResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportMigrationTask = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "ImportMigrationTask"),
+    input = M.ImportMigrationTaskInput,
+    output = M.ImportMigrationTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationStates = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "ListApplicationStates"),
+    input = M.ListApplicationStatesInput,
+    output = M.ListApplicationStatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCreatedArtifacts = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "ListCreatedArtifacts"),
+    input = M.ListCreatedArtifactsInput,
+    output = M.ListCreatedArtifactsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDiscoveredResources = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "ListDiscoveredResources"),
+    input = M.ListDiscoveredResourcesInput,
+    output = M.ListDiscoveredResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMigrationTasks = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "ListMigrationTasks"),
+    input = M.ListMigrationTasksInput,
+    output = M.ListMigrationTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMigrationTaskUpdates = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "ListMigrationTaskUpdates"),
+    input = M.ListMigrationTaskUpdatesInput,
+    output = M.ListMigrationTaskUpdatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProgressUpdateStreams = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "ListProgressUpdateStreams"),
+    input = M.ListProgressUpdateStreamsInput,
+    output = M.ListProgressUpdateStreamsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSourceResources = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "ListSourceResources"),
+    input = M.ListSourceResourcesInput,
+    output = M.ListSourceResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.NotifyApplicationState = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "NotifyApplicationState"),
+    input = M.NotifyApplicationStateInput,
+    output = M.NotifyApplicationStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.NotifyMigrationTaskState = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "NotifyMigrationTaskState"),
+    input = M.NotifyMigrationTaskStateInput,
+    output = M.NotifyMigrationTaskStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourceAttributes = schema.operation({
+    id = id.from("com.amazonaws.migrationhub", "PutResourceAttributes"),
+    input = M.PutResourceAttributesInput,
+    output = M.PutResourceAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

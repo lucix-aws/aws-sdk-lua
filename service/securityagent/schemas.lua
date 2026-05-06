@@ -5409,4 +5409,614 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.securityagent", "SecurityAgent"),
+    version = "2025-09-06",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddArtifact = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "AddArtifact"),
+    input = M.AddArtifactInput,
+    output = M.AddArtifactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/AddArtifact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeletePentests = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "BatchDeletePentests"),
+    input = M.BatchDeletePentestsInput,
+    output = M.BatchDeletePentestsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchDeletePentests" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetAgentSpaces = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "BatchGetAgentSpaces"),
+    input = M.BatchGetAgentSpacesInput,
+    output = M.BatchGetAgentSpacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetAgentSpaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetArtifactMetadata = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "BatchGetArtifactMetadata"),
+    input = M.BatchGetArtifactMetadataInput,
+    output = M.BatchGetArtifactMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetArtifactMetadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetFindings = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "BatchGetFindings"),
+    input = M.BatchGetFindingsInput,
+    output = M.BatchGetFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetFindings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetPentestJobs = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "BatchGetPentestJobs"),
+    input = M.BatchGetPentestJobsInput,
+    output = M.BatchGetPentestJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetPentestJobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetPentestJobTasks = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "BatchGetPentestJobTasks"),
+    input = M.BatchGetPentestJobTasksInput,
+    output = M.BatchGetPentestJobTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetPentestJobTasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetPentests = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "BatchGetPentests"),
+    input = M.BatchGetPentestsInput,
+    output = M.BatchGetPentestsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetPentests" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetTargetDomains = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "BatchGetTargetDomains"),
+    input = M.BatchGetTargetDomainsInput,
+    output = M.BatchGetTargetDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetTargetDomains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAgentSpace = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "CreateAgentSpace"),
+    input = M.CreateAgentSpaceInput,
+    output = M.CreateAgentSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateAgentSpace" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIntegration = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "CreateIntegration"),
+    input = M.CreateIntegrationInput,
+    output = M.CreateIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateIntegration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMembership = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "CreateMembership"),
+    input = M.CreateMembershipInput,
+    output = M.CreateMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateMembership" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePentest = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "CreatePentest"),
+    input = M.CreatePentestInput,
+    output = M.CreatePentestOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreatePentest" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTargetDomain = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "CreateTargetDomain"),
+    input = M.CreateTargetDomainInput,
+    output = M.CreateTargetDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateTargetDomain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAgentSpace = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "DeleteAgentSpace"),
+    input = M.DeleteAgentSpaceInput,
+    output = M.DeleteAgentSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteAgentSpace" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteArtifact = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "DeleteArtifact"),
+    input = M.DeleteArtifactInput,
+    output = M.DeleteArtifactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteArtifact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIntegration = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "DeleteIntegration"),
+    input = M.DeleteIntegrationInput,
+    output = M.DeleteIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteIntegration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMembership = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "DeleteMembership"),
+    input = M.DeleteMembershipInput,
+    output = M.DeleteMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteMembership" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTargetDomain = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "DeleteTargetDomain"),
+    input = M.DeleteTargetDomainInput,
+    output = M.DeleteTargetDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteTargetDomain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplication = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "GetApplication"),
+    input = M.GetApplicationInput,
+    output = M.GetApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetArtifact = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "GetArtifact"),
+    input = M.GetArtifactInput,
+    output = M.GetArtifactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetArtifact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIntegration = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "GetIntegration"),
+    input = M.GetIntegrationInput,
+    output = M.GetIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetIntegration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InitiateProviderRegistration = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "InitiateProviderRegistration"),
+    input = M.InitiateProviderRegistrationInput,
+    output = M.InitiateProviderRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/oauth2/provider/register" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentSpaces = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListAgentSpaces"),
+    input = M.ListAgentSpacesInput,
+    output = M.ListAgentSpacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListAgentSpaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListApplications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListArtifacts = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListArtifacts"),
+    input = M.ListArtifactsInput,
+    output = M.ListArtifactsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListArtifacts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDiscoveredEndpoints = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListDiscoveredEndpoints"),
+    input = M.ListDiscoveredEndpointsInput,
+    output = M.ListDiscoveredEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListDiscoveredEndpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFindings = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListFindings"),
+    input = M.ListFindingsInput,
+    output = M.ListFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListFindings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIntegratedResources = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListIntegratedResources"),
+    input = M.ListIntegratedResourcesInput,
+    output = M.ListIntegratedResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListIntegratedResources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIntegrations = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListIntegrations"),
+    input = M.ListIntegrationsInput,
+    output = M.ListIntegrationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListIntegrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMemberships = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListMemberships"),
+    input = M.ListMembershipsInput,
+    output = M.ListMembershipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListMemberships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPentestJobsForPentest = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListPentestJobsForPentest"),
+    input = M.ListPentestJobsForPentestInput,
+    output = M.ListPentestJobsForPentestOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListPentestJobsForPentest" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPentestJobTasks = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListPentestJobTasks"),
+    input = M.ListPentestJobTasksInput,
+    output = M.ListPentestJobTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListPentestJobTasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPentests = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListPentests"),
+    input = M.ListPentestsInput,
+    output = M.ListPentestsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListPentests" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTargetDomains = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListTargetDomains"),
+    input = M.ListTargetDomainsInput,
+    output = M.ListTargetDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTargetDomains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCodeRemediation = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "StartCodeRemediation"),
+    input = M.StartCodeRemediationInput,
+    output = M.StartCodeRemediationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartCodeRemediation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartPentestJob = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "StartPentestJob"),
+    input = M.StartPentestJobInput,
+    output = M.StartPentestJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartPentestJob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopPentestJob = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "StopPentestJob"),
+    input = M.StopPentestJobInput,
+    output = M.StopPentestJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StopPentestJob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentSpace = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "UpdateAgentSpace"),
+    input = M.UpdateAgentSpaceInput,
+    output = M.UpdateAgentSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateAgentSpace" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFinding = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "UpdateFinding"),
+    input = M.UpdateFindingInput,
+    output = M.UpdateFindingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateFinding" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIntegratedResources = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "UpdateIntegratedResources"),
+    input = M.UpdateIntegratedResourcesInput,
+    output = M.UpdateIntegratedResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateIntegratedResources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePentest = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "UpdatePentest"),
+    input = M.UpdatePentestInput,
+    output = M.UpdatePentestOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdatePentest" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTargetDomain = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "UpdateTargetDomain"),
+    input = M.UpdateTargetDomainInput,
+    output = M.UpdateTargetDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateTargetDomain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyTargetDomain = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "VerifyTargetDomain"),
+    input = M.VerifyTargetDomainInput,
+    output = M.VerifyTargetDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/VerifyTargetDomain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

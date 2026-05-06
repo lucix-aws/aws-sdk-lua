@@ -1524,4 +1524,278 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.connectcampaigns", "AmazonConnectCampaignService"),
+    version = "2021-01-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCampaign = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "CreateCampaign"),
+    input = M.CreateCampaignInput,
+    output = M.CreateCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/campaigns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCampaign = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "DeleteCampaign"),
+    input = M.DeleteCampaignInput,
+    output = M.DeleteCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/campaigns/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnectInstanceConfig = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "DeleteConnectInstanceConfig"),
+    input = M.DeleteConnectInstanceConfigInput,
+    output = M.DeleteConnectInstanceConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/connect-instance/{connectInstanceId}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInstanceOnboardingJob = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "DeleteInstanceOnboardingJob"),
+    input = M.DeleteInstanceOnboardingJobInput,
+    output = M.DeleteInstanceOnboardingJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/connect-instance/{connectInstanceId}/onboarding" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCampaign = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "DescribeCampaign"),
+    input = M.DescribeCampaignInput,
+    output = M.DescribeCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/campaigns/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCampaignState = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "GetCampaignState"),
+    input = M.GetCampaignStateInput,
+    output = M.GetCampaignStateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/campaigns/{id}/state" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCampaignStateBatch = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "GetCampaignStateBatch"),
+    input = M.GetCampaignStateBatchInput,
+    output = M.GetCampaignStateBatchOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/campaigns-state" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnectInstanceConfig = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "GetConnectInstanceConfig"),
+    input = M.GetConnectInstanceConfigInput,
+    output = M.GetConnectInstanceConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connect-instance/{connectInstanceId}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstanceOnboardingJobStatus = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "GetInstanceOnboardingJobStatus"),
+    input = M.GetInstanceOnboardingJobStatusInput,
+    output = M.GetInstanceOnboardingJobStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connect-instance/{connectInstanceId}/onboarding" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCampaigns = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "ListCampaigns"),
+    input = M.ListCampaignsInput,
+    output = M.ListCampaignsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/campaigns-summary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PauseCampaign = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "PauseCampaign"),
+    input = M.PauseCampaignInput,
+    output = M.PauseCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/campaigns/{id}/pause" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDialRequestBatch = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "PutDialRequestBatch"),
+    input = M.PutDialRequestBatchInput,
+    output = M.PutDialRequestBatchOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/campaigns/{id}/dial-requests" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResumeCampaign = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "ResumeCampaign"),
+    input = M.ResumeCampaignInput,
+    output = M.ResumeCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/campaigns/{id}/resume" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCampaign = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "StartCampaign"),
+    input = M.StartCampaignInput,
+    output = M.StartCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/campaigns/{id}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartInstanceOnboardingJob = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "StartInstanceOnboardingJob"),
+    input = M.StartInstanceOnboardingJobInput,
+    output = M.StartInstanceOnboardingJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/connect-instance/{connectInstanceId}/onboarding" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopCampaign = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "StopCampaign"),
+    input = M.StopCampaignInput,
+    output = M.StopCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/campaigns/{id}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCampaignDialerConfig = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "UpdateCampaignDialerConfig"),
+    input = M.UpdateCampaignDialerConfigInput,
+    output = M.UpdateCampaignDialerConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/campaigns/{id}/dialer-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCampaignName = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "UpdateCampaignName"),
+    input = M.UpdateCampaignNameInput,
+    output = M.UpdateCampaignNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/campaigns/{id}/name" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCampaignOutboundCallConfig = schema.operation({
+    id = id.from("com.amazonaws.connectcampaigns", "UpdateCampaignOutboundCallConfig"),
+    input = M.UpdateCampaignOutboundCallConfigInput,
+    output = M.UpdateCampaignOutboundCallConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/campaigns/{id}/outbound-call-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

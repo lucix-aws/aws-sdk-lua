@@ -214,4 +214,25 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.marketplaceentitlementservice", "AWSMPEntitlementService"),
+    version = "2017-01-11",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEntitlements = schema.operation({
+    id = id.from("com.amazonaws.marketplaceentitlementservice", "GetEntitlements"),
+    input = M.GetEntitlementsInput,
+    output = M.GetEntitlementsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

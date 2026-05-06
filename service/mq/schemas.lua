@@ -3461,4 +3461,302 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.mq", "mq"),
+    version = "2017-11-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBroker = schema.operation({
+    id = id.from("com.amazonaws.mq", "CreateBroker"),
+    input = M.CreateBrokerInput,
+    output = M.CreateBrokerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/brokers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mq", "CreateConfiguration"),
+    input = M.CreateConfigurationInput,
+    output = M.CreateConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTags = schema.operation({
+    id = id.from("com.amazonaws.mq", "CreateTags"),
+    input = M.CreateTagsInput,
+    output = M.CreateTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.mq", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/brokers/{BrokerId}/users/{Username}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBroker = schema.operation({
+    id = id.from("com.amazonaws.mq", "DeleteBroker"),
+    input = M.DeleteBrokerInput,
+    output = M.DeleteBrokerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/brokers/{BrokerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mq", "DeleteConfiguration"),
+    input = M.DeleteConfigurationInput,
+    output = M.DeleteConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/configurations/{ConfigurationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTags = schema.operation({
+    id = id.from("com.amazonaws.mq", "DeleteTags"),
+    input = M.DeleteTagsInput,
+    output = M.DeleteTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.mq", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/brokers/{BrokerId}/users/{Username}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBroker = schema.operation({
+    id = id.from("com.amazonaws.mq", "DescribeBroker"),
+    input = M.DescribeBrokerInput,
+    output = M.DescribeBrokerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/brokers/{BrokerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBrokerEngineTypes = schema.operation({
+    id = id.from("com.amazonaws.mq", "DescribeBrokerEngineTypes"),
+    input = M.DescribeBrokerEngineTypesInput,
+    output = M.DescribeBrokerEngineTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/broker-engine-types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBrokerInstanceOptions = schema.operation({
+    id = id.from("com.amazonaws.mq", "DescribeBrokerInstanceOptions"),
+    input = M.DescribeBrokerInstanceOptionsInput,
+    output = M.DescribeBrokerInstanceOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/broker-instance-options" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mq", "DescribeConfiguration"),
+    input = M.DescribeConfigurationInput,
+    output = M.DescribeConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/configurations/{ConfigurationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfigurationRevision = schema.operation({
+    id = id.from("com.amazonaws.mq", "DescribeConfigurationRevision"),
+    input = M.DescribeConfigurationRevisionInput,
+    output = M.DescribeConfigurationRevisionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/configurations/{ConfigurationId}/revisions/{ConfigurationRevision}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUser = schema.operation({
+    id = id.from("com.amazonaws.mq", "DescribeUser"),
+    input = M.DescribeUserInput,
+    output = M.DescribeUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/brokers/{BrokerId}/users/{Username}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBrokers = schema.operation({
+    id = id.from("com.amazonaws.mq", "ListBrokers"),
+    input = M.ListBrokersInput,
+    output = M.ListBrokersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/brokers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationRevisions = schema.operation({
+    id = id.from("com.amazonaws.mq", "ListConfigurationRevisions"),
+    input = M.ListConfigurationRevisionsInput,
+    output = M.ListConfigurationRevisionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/configurations/{ConfigurationId}/revisions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurations = schema.operation({
+    id = id.from("com.amazonaws.mq", "ListConfigurations"),
+    input = M.ListConfigurationsInput,
+    output = M.ListConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTags = schema.operation({
+    id = id.from("com.amazonaws.mq", "ListTags"),
+    input = M.ListTagsInput,
+    output = M.ListTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsers = schema.operation({
+    id = id.from("com.amazonaws.mq", "ListUsers"),
+    input = M.ListUsersInput,
+    output = M.ListUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/brokers/{BrokerId}/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Promote = schema.operation({
+    id = id.from("com.amazonaws.mq", "Promote"),
+    input = M.PromoteInput,
+    output = M.PromoteOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/brokers/{BrokerId}/promote" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootBroker = schema.operation({
+    id = id.from("com.amazonaws.mq", "RebootBroker"),
+    input = M.RebootBrokerInput,
+    output = M.RebootBrokerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/brokers/{BrokerId}/reboot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBroker = schema.operation({
+    id = id.from("com.amazonaws.mq", "UpdateBroker"),
+    input = M.UpdateBrokerInput,
+    output = M.UpdateBrokerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/brokers/{BrokerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mq", "UpdateConfiguration"),
+    input = M.UpdateConfigurationInput,
+    output = M.UpdateConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/configurations/{ConfigurationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUser = schema.operation({
+    id = id.from("com.amazonaws.mq", "UpdateUser"),
+    input = M.UpdateUserInput,
+    output = M.UpdateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/brokers/{BrokerId}/users/{Username}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

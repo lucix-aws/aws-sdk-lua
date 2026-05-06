@@ -7,6 +7,7 @@ local endpoint_rules = require("appconfig.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("appconfig.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "appconfig", signing_region = cfg.region } }
                 else
@@ -49,588 +52,183 @@ function M.new(cfg)
 end
 
 function Client:createApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateApplication",
-        input_schema = schemas.CreateApplicationInput,
-        output_schema = schemas.CreateApplicationOutput,
-        http_method = "POST",
-        http_path = "/applications",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options)
 end
 
 function Client:createConfigurationProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfigurationProfile",
-        input_schema = schemas.CreateConfigurationProfileInput,
-        output_schema = schemas.CreateConfigurationProfileOutput,
-        http_method = "POST",
-        http_path = "/applications/{ApplicationId}/configurationprofiles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationProfile, input, options)
 end
 
 function Client:createDeploymentStrategy(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDeploymentStrategy",
-        input_schema = schemas.CreateDeploymentStrategyInput,
-        output_schema = schemas.CreateDeploymentStrategyOutput,
-        http_method = "POST",
-        http_path = "/deploymentstrategies",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDeploymentStrategy, input, options)
 end
 
 function Client:createEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEnvironment",
-        input_schema = schemas.CreateEnvironmentInput,
-        output_schema = schemas.CreateEnvironmentOutput,
-        http_method = "POST",
-        http_path = "/applications/{ApplicationId}/environments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEnvironment, input, options)
 end
 
 function Client:createExtension(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateExtension",
-        input_schema = schemas.CreateExtensionInput,
-        output_schema = schemas.CreateExtensionOutput,
-        http_method = "POST",
-        http_path = "/extensions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateExtension, input, options)
 end
 
 function Client:createExtensionAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateExtensionAssociation",
-        input_schema = schemas.CreateExtensionAssociationInput,
-        output_schema = schemas.CreateExtensionAssociationOutput,
-        http_method = "POST",
-        http_path = "/extensionassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateExtensionAssociation, input, options)
 end
 
 function Client:createHostedConfigurationVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateHostedConfigurationVersion",
-        input_schema = schemas.CreateHostedConfigurationVersionInput,
-        output_schema = schemas.CreateHostedConfigurationVersionOutput,
-        http_method = "POST",
-        http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateHostedConfigurationVersion, input, options)
 end
 
 function Client:deleteApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteApplication",
-        input_schema = schemas.DeleteApplicationInput,
-        output_schema = schemas.DeleteApplicationOutput,
-        http_method = "DELETE",
-        http_path = "/applications/{ApplicationId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options)
 end
 
 function Client:deleteConfigurationProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfigurationProfile",
-        input_schema = schemas.DeleteConfigurationProfileInput,
-        output_schema = schemas.DeleteConfigurationProfileOutput,
-        http_method = "DELETE",
-        http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationProfile, input, options)
 end
 
 function Client:deleteDeploymentStrategy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDeploymentStrategy",
-        input_schema = schemas.DeleteDeploymentStrategyInput,
-        output_schema = schemas.DeleteDeploymentStrategyOutput,
-        http_method = "DELETE",
-        http_path = "/deployementstrategies/{DeploymentStrategyId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDeploymentStrategy, input, options)
 end
 
 function Client:deleteEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEnvironment",
-        input_schema = schemas.DeleteEnvironmentInput,
-        output_schema = schemas.DeleteEnvironmentOutput,
-        http_method = "DELETE",
-        http_path = "/applications/{ApplicationId}/environments/{EnvironmentId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironment, input, options)
 end
 
 function Client:deleteExtension(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteExtension",
-        input_schema = schemas.DeleteExtensionInput,
-        output_schema = schemas.DeleteExtensionOutput,
-        http_method = "DELETE",
-        http_path = "/extensions/{ExtensionIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteExtension, input, options)
 end
 
 function Client:deleteExtensionAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteExtensionAssociation",
-        input_schema = schemas.DeleteExtensionAssociationInput,
-        output_schema = schemas.DeleteExtensionAssociationOutput,
-        http_method = "DELETE",
-        http_path = "/extensionassociations/{ExtensionAssociationId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteExtensionAssociation, input, options)
 end
 
 function Client:deleteHostedConfigurationVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteHostedConfigurationVersion",
-        input_schema = schemas.DeleteHostedConfigurationVersionInput,
-        output_schema = schemas.DeleteHostedConfigurationVersionOutput,
-        http_method = "DELETE",
-        http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions/{VersionNumber}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteHostedConfigurationVersion, input, options)
 end
 
 function Client:getAccountSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccountSettings",
-        input_schema = schemas.GetAccountSettingsInput,
-        output_schema = schemas.GetAccountSettingsOutput,
-        http_method = "GET",
-        http_path = "/settings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccountSettings, input, options)
 end
 
 function Client:getApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "GetApplication",
-        input_schema = schemas.GetApplicationInput,
-        output_schema = schemas.GetApplicationOutput,
-        http_method = "GET",
-        http_path = "/applications/{ApplicationId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetApplication, input, options)
 end
 
 function Client:getConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConfiguration",
-        input_schema = schemas.GetConfigurationInput,
-        output_schema = schemas.GetConfigurationOutput,
-        http_method = "GET",
-        http_path = "/applications/{Application}/environments/{Environment}/configurations/{Configuration}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConfiguration, input, options)
 end
 
 function Client:getConfigurationProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConfigurationProfile",
-        input_schema = schemas.GetConfigurationProfileInput,
-        output_schema = schemas.GetConfigurationProfileOutput,
-        http_method = "GET",
-        http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConfigurationProfile, input, options)
 end
 
 function Client:getDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDeployment",
-        input_schema = schemas.GetDeploymentInput,
-        output_schema = schemas.GetDeploymentOutput,
-        http_method = "GET",
-        http_path = "/applications/{ApplicationId}/environments/{EnvironmentId}/deployments/{DeploymentNumber}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDeployment, input, options)
 end
 
 function Client:getDeploymentStrategy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDeploymentStrategy",
-        input_schema = schemas.GetDeploymentStrategyInput,
-        output_schema = schemas.GetDeploymentStrategyOutput,
-        http_method = "GET",
-        http_path = "/deploymentstrategies/{DeploymentStrategyId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDeploymentStrategy, input, options)
 end
 
 function Client:getEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEnvironment",
-        input_schema = schemas.GetEnvironmentInput,
-        output_schema = schemas.GetEnvironmentOutput,
-        http_method = "GET",
-        http_path = "/applications/{ApplicationId}/environments/{EnvironmentId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEnvironment, input, options)
 end
 
 function Client:getExtension(input, options)
-    return self:invokeOperation(input, {
-        name = "GetExtension",
-        input_schema = schemas.GetExtensionInput,
-        output_schema = schemas.GetExtensionOutput,
-        http_method = "GET",
-        http_path = "/extensions/{ExtensionIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetExtension, input, options)
 end
 
 function Client:getExtensionAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetExtensionAssociation",
-        input_schema = schemas.GetExtensionAssociationInput,
-        output_schema = schemas.GetExtensionAssociationOutput,
-        http_method = "GET",
-        http_path = "/extensionassociations/{ExtensionAssociationId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetExtensionAssociation, input, options)
 end
 
 function Client:getHostedConfigurationVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "GetHostedConfigurationVersion",
-        input_schema = schemas.GetHostedConfigurationVersionInput,
-        output_schema = schemas.GetHostedConfigurationVersionOutput,
-        http_method = "GET",
-        http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions/{VersionNumber}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetHostedConfigurationVersion, input, options)
 end
 
 function Client:listApplications(input, options)
-    return self:invokeOperation(input, {
-        name = "ListApplications",
-        input_schema = schemas.ListApplicationsInput,
-        output_schema = schemas.ListApplicationsOutput,
-        http_method = "GET",
-        http_path = "/applications",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options)
 end
 
 function Client:listConfigurationProfiles(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConfigurationProfiles",
-        input_schema = schemas.ListConfigurationProfilesInput,
-        output_schema = schemas.ListConfigurationProfilesOutput,
-        http_method = "GET",
-        http_path = "/applications/{ApplicationId}/configurationprofiles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConfigurationProfiles, input, options)
 end
 
 function Client:listDeployments(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDeployments",
-        input_schema = schemas.ListDeploymentsInput,
-        output_schema = schemas.ListDeploymentsOutput,
-        http_method = "GET",
-        http_path = "/applications/{ApplicationId}/environments/{EnvironmentId}/deployments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDeployments, input, options)
 end
 
 function Client:listDeploymentStrategies(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDeploymentStrategies",
-        input_schema = schemas.ListDeploymentStrategiesInput,
-        output_schema = schemas.ListDeploymentStrategiesOutput,
-        http_method = "GET",
-        http_path = "/deploymentstrategies",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDeploymentStrategies, input, options)
 end
 
 function Client:listEnvironments(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEnvironments",
-        input_schema = schemas.ListEnvironmentsInput,
-        output_schema = schemas.ListEnvironmentsOutput,
-        http_method = "GET",
-        http_path = "/applications/{ApplicationId}/environments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEnvironments, input, options)
 end
 
 function Client:listExtensionAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListExtensionAssociations",
-        input_schema = schemas.ListExtensionAssociationsInput,
-        output_schema = schemas.ListExtensionAssociationsOutput,
-        http_method = "GET",
-        http_path = "/extensionassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListExtensionAssociations, input, options)
 end
 
 function Client:listExtensions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListExtensions",
-        input_schema = schemas.ListExtensionsInput,
-        output_schema = schemas.ListExtensionsOutput,
-        http_method = "GET",
-        http_path = "/extensions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListExtensions, input, options)
 end
 
 function Client:listHostedConfigurationVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListHostedConfigurationVersions",
-        input_schema = schemas.ListHostedConfigurationVersionsInput,
-        output_schema = schemas.ListHostedConfigurationVersionsOutput,
-        http_method = "GET",
-        http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListHostedConfigurationVersions, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:startDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "StartDeployment",
-        input_schema = schemas.StartDeploymentInput,
-        output_schema = schemas.StartDeploymentOutput,
-        http_method = "POST",
-        http_path = "/applications/{ApplicationId}/environments/{EnvironmentId}/deployments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartDeployment, input, options)
 end
 
 function Client:stopDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "StopDeployment",
-        input_schema = schemas.StopDeploymentInput,
-        output_schema = schemas.StopDeploymentOutput,
-        http_method = "DELETE",
-        http_path = "/applications/{ApplicationId}/environments/{EnvironmentId}/deployments/{DeploymentNumber}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopDeployment, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAccountSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAccountSettings",
-        input_schema = schemas.UpdateAccountSettingsInput,
-        output_schema = schemas.UpdateAccountSettingsOutput,
-        http_method = "PATCH",
-        http_path = "/settings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAccountSettings, input, options)
 end
 
 function Client:updateApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateApplication",
-        input_schema = schemas.UpdateApplicationInput,
-        output_schema = schemas.UpdateApplicationOutput,
-        http_method = "PATCH",
-        http_path = "/applications/{ApplicationId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options)
 end
 
 function Client:updateConfigurationProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConfigurationProfile",
-        input_schema = schemas.UpdateConfigurationProfileInput,
-        output_schema = schemas.UpdateConfigurationProfileOutput,
-        http_method = "PATCH",
-        http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationProfile, input, options)
 end
 
 function Client:updateDeploymentStrategy(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDeploymentStrategy",
-        input_schema = schemas.UpdateDeploymentStrategyInput,
-        output_schema = schemas.UpdateDeploymentStrategyOutput,
-        http_method = "PATCH",
-        http_path = "/deploymentstrategies/{DeploymentStrategyId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDeploymentStrategy, input, options)
 end
 
 function Client:updateEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateEnvironment",
-        input_schema = schemas.UpdateEnvironmentInput,
-        output_schema = schemas.UpdateEnvironmentOutput,
-        http_method = "PATCH",
-        http_path = "/applications/{ApplicationId}/environments/{EnvironmentId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateEnvironment, input, options)
 end
 
 function Client:updateExtension(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateExtension",
-        input_schema = schemas.UpdateExtensionInput,
-        output_schema = schemas.UpdateExtensionOutput,
-        http_method = "PATCH",
-        http_path = "/extensions/{ExtensionIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateExtension, input, options)
 end
 
 function Client:updateExtensionAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateExtensionAssociation",
-        input_schema = schemas.UpdateExtensionAssociationInput,
-        output_schema = schemas.UpdateExtensionAssociationOutput,
-        http_method = "PATCH",
-        http_path = "/extensionassociations/{ExtensionAssociationId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateExtensionAssociation, input, options)
 end
 
 function Client:validateConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "ValidateConfiguration",
-        input_schema = schemas.ValidateConfigurationInput,
-        output_schema = schemas.ValidateConfigurationOutput,
-        http_method = "POST",
-        http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/validators",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ValidateConfiguration, input, options)
 end
 
 return M

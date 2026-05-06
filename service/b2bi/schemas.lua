@@ -3894,4 +3894,374 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.b2bi", "B2BI"),
+    version = "2022-06-23",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCapability = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "CreateCapability"),
+    input = M.CreateCapabilityInput,
+    output = M.CreateCapabilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/capabilities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePartnership = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "CreatePartnership"),
+    input = M.CreatePartnershipInput,
+    output = M.CreatePartnershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/partnerships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProfile = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "CreateProfile"),
+    input = M.CreateProfileInput,
+    output = M.CreateProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStarterMappingTemplate = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "CreateStarterMappingTemplate"),
+    input = M.CreateStarterMappingTemplateInput,
+    output = M.CreateStarterMappingTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/createmappingstarttemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTransformer = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "CreateTransformer"),
+    input = M.CreateTransformerInput,
+    output = M.CreateTransformerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/transformers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCapability = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "DeleteCapability"),
+    input = M.DeleteCapabilityInput,
+    output = M.DeleteCapabilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/capabilities/{capabilityId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePartnership = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "DeletePartnership"),
+    input = M.DeletePartnershipInput,
+    output = M.DeletePartnershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/partnerships/{partnershipId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProfile = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "DeleteProfile"),
+    input = M.DeleteProfileInput,
+    output = M.DeleteProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/profiles/{profileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTransformer = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "DeleteTransformer"),
+    input = M.DeleteTransformerInput,
+    output = M.DeleteTransformerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/transformers/{transformerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateMapping = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "GenerateMapping"),
+    input = M.GenerateMappingInput,
+    output = M.GenerateMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/generate-mapping" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCapability = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "GetCapability"),
+    input = M.GetCapabilityInput,
+    output = M.GetCapabilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/capabilities/{capabilityId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPartnership = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "GetPartnership"),
+    input = M.GetPartnershipInput,
+    output = M.GetPartnershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/partnerships/{partnershipId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfile = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "GetProfile"),
+    input = M.GetProfileInput,
+    output = M.GetProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profiles/{profileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTransformer = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "GetTransformer"),
+    input = M.GetTransformerInput,
+    output = M.GetTransformerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/transformers/{transformerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTransformerJob = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "GetTransformerJob"),
+    input = M.GetTransformerJobInput,
+    output = M.GetTransformerJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/transformer-jobs/{transformerJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCapabilities = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "ListCapabilities"),
+    input = M.ListCapabilitiesInput,
+    output = M.ListCapabilitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/capabilities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPartnerships = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "ListPartnerships"),
+    input = M.ListPartnershipsInput,
+    output = M.ListPartnershipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/partnerships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfiles = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "ListProfiles"),
+    input = M.ListProfilesInput,
+    output = M.ListProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTransformers = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "ListTransformers"),
+    input = M.ListTransformersInput,
+    output = M.ListTransformersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/transformers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTransformerJob = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "StartTransformerJob"),
+    input = M.StartTransformerJobInput,
+    output = M.StartTransformerJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/transformer-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestConversion = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "TestConversion"),
+    input = M.TestConversionInput,
+    output = M.TestConversionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/testconversion" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestMapping = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "TestMapping"),
+    input = M.TestMappingInput,
+    output = M.TestMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/testmapping" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestParsing = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "TestParsing"),
+    input = M.TestParsingInput,
+    output = M.TestParsingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/testparsing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCapability = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "UpdateCapability"),
+    input = M.UpdateCapabilityInput,
+    output = M.UpdateCapabilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/capabilities/{capabilityId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePartnership = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "UpdatePartnership"),
+    input = M.UpdatePartnershipInput,
+    output = M.UpdatePartnershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/partnerships/{partnershipId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProfile = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "UpdateProfile"),
+    input = M.UpdateProfileInput,
+    output = M.UpdateProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/profiles/{profileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTransformer = schema.operation({
+    id = id.from("com.amazonaws.b2bi", "UpdateTransformer"),
+    input = M.UpdateTransformerInput,
+    output = M.UpdateTransformerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/transformers/{transformerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

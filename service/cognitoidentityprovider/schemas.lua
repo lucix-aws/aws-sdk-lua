@@ -10510,4 +10510,1356 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AWSCognitoIdentityProviderService"),
+    version = "2016-04-18",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddCustomAttributes = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AddCustomAttributes"),
+    input = M.AddCustomAttributesInput,
+    output = M.AddCustomAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddUserPoolClientSecret = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AddUserPoolClientSecret"),
+    input = M.AddUserPoolClientSecretInput,
+    output = M.AddUserPoolClientSecretOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminAddUserToGroup = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminAddUserToGroup"),
+    input = M.AdminAddUserToGroupInput,
+    output = M.AdminAddUserToGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminConfirmSignUp = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminConfirmSignUp"),
+    input = M.AdminConfirmSignUpInput,
+    output = M.AdminConfirmSignUpOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminCreateUser = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminCreateUser"),
+    input = M.AdminCreateUserInput,
+    output = M.AdminCreateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminDeleteUser = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminDeleteUser"),
+    input = M.AdminDeleteUserInput,
+    output = M.AdminDeleteUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminDeleteUserAttributes = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminDeleteUserAttributes"),
+    input = M.AdminDeleteUserAttributesInput,
+    output = M.AdminDeleteUserAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminDisableProviderForUser = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminDisableProviderForUser"),
+    input = M.AdminDisableProviderForUserInput,
+    output = M.AdminDisableProviderForUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminDisableUser = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminDisableUser"),
+    input = M.AdminDisableUserInput,
+    output = M.AdminDisableUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminEnableUser = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminEnableUser"),
+    input = M.AdminEnableUserInput,
+    output = M.AdminEnableUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminForgetDevice = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminForgetDevice"),
+    input = M.AdminForgetDeviceInput,
+    output = M.AdminForgetDeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminGetDevice = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminGetDevice"),
+    input = M.AdminGetDeviceInput,
+    output = M.AdminGetDeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminGetUser = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminGetUser"),
+    input = M.AdminGetUserInput,
+    output = M.AdminGetUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminInitiateAuth = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminInitiateAuth"),
+    input = M.AdminInitiateAuthInput,
+    output = M.AdminInitiateAuthOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminLinkProviderForUser = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminLinkProviderForUser"),
+    input = M.AdminLinkProviderForUserInput,
+    output = M.AdminLinkProviderForUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminListDevices = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminListDevices"),
+    input = M.AdminListDevicesInput,
+    output = M.AdminListDevicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminListGroupsForUser = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminListGroupsForUser"),
+    input = M.AdminListGroupsForUserInput,
+    output = M.AdminListGroupsForUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminListUserAuthEvents = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminListUserAuthEvents"),
+    input = M.AdminListUserAuthEventsInput,
+    output = M.AdminListUserAuthEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminRemoveUserFromGroup = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminRemoveUserFromGroup"),
+    input = M.AdminRemoveUserFromGroupInput,
+    output = M.AdminRemoveUserFromGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminResetUserPassword = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminResetUserPassword"),
+    input = M.AdminResetUserPasswordInput,
+    output = M.AdminResetUserPasswordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminRespondToAuthChallenge = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminRespondToAuthChallenge"),
+    input = M.AdminRespondToAuthChallengeInput,
+    output = M.AdminRespondToAuthChallengeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminSetUserMFAPreference = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminSetUserMFAPreference"),
+    input = M.AdminSetUserMFAPreferenceInput,
+    output = M.AdminSetUserMFAPreferenceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminSetUserPassword = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminSetUserPassword"),
+    input = M.AdminSetUserPasswordInput,
+    output = M.AdminSetUserPasswordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminSetUserSettings = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminSetUserSettings"),
+    input = M.AdminSetUserSettingsInput,
+    output = M.AdminSetUserSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminUpdateAuthEventFeedback = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminUpdateAuthEventFeedback"),
+    input = M.AdminUpdateAuthEventFeedbackInput,
+    output = M.AdminUpdateAuthEventFeedbackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminUpdateDeviceStatus = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminUpdateDeviceStatus"),
+    input = M.AdminUpdateDeviceStatusInput,
+    output = M.AdminUpdateDeviceStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminUpdateUserAttributes = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminUpdateUserAttributes"),
+    input = M.AdminUpdateUserAttributesInput,
+    output = M.AdminUpdateUserAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminUserGlobalSignOut = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminUserGlobalSignOut"),
+    input = M.AdminUserGlobalSignOutInput,
+    output = M.AdminUserGlobalSignOutOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateSoftwareToken = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AssociateSoftwareToken"),
+    input = M.AssociateSoftwareTokenInput,
+    output = M.AssociateSoftwareTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.ChangePassword = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ChangePassword"),
+    input = M.ChangePasswordInput,
+    output = M.ChangePasswordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.CompleteWebAuthnRegistration = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "CompleteWebAuthnRegistration"),
+    input = M.CompleteWebAuthnRegistrationInput,
+    output = M.CompleteWebAuthnRegistrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.ConfirmDevice = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ConfirmDevice"),
+    input = M.ConfirmDeviceInput,
+    output = M.ConfirmDeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.ConfirmForgotPassword = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ConfirmForgotPassword"),
+    input = M.ConfirmForgotPasswordInput,
+    output = M.ConfirmForgotPasswordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.ConfirmSignUp = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ConfirmSignUp"),
+    input = M.ConfirmSignUpInput,
+    output = M.ConfirmSignUpOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.CreateGroup = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "CreateGroup"),
+    input = M.CreateGroupInput,
+    output = M.CreateGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIdentityProvider = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "CreateIdentityProvider"),
+    input = M.CreateIdentityProviderInput,
+    output = M.CreateIdentityProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateManagedLoginBranding = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "CreateManagedLoginBranding"),
+    input = M.CreateManagedLoginBrandingInput,
+    output = M.CreateManagedLoginBrandingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResourceServer = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "CreateResourceServer"),
+    input = M.CreateResourceServerInput,
+    output = M.CreateResourceServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTerms = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "CreateTerms"),
+    input = M.CreateTermsInput,
+    output = M.CreateTermsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUserImportJob = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "CreateUserImportJob"),
+    input = M.CreateUserImportJobInput,
+    output = M.CreateUserImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUserPool = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "CreateUserPool"),
+    input = M.CreateUserPoolInput,
+    output = M.CreateUserPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUserPoolClient = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "CreateUserPoolClient"),
+    input = M.CreateUserPoolClientInput,
+    output = M.CreateUserPoolClientOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUserPoolDomain = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "CreateUserPoolDomain"),
+    input = M.CreateUserPoolDomainInput,
+    output = M.CreateUserPoolDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGroup = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteGroup"),
+    input = M.DeleteGroupInput,
+    output = M.DeleteGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdentityProvider = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteIdentityProvider"),
+    input = M.DeleteIdentityProviderInput,
+    output = M.DeleteIdentityProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteManagedLoginBranding = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteManagedLoginBranding"),
+    input = M.DeleteManagedLoginBrandingInput,
+    output = M.DeleteManagedLoginBrandingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourceServer = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteResourceServer"),
+    input = M.DeleteResourceServerInput,
+    output = M.DeleteResourceServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTerms = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteTerms"),
+    input = M.DeleteTermsInput,
+    output = M.DeleteTermsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.DeleteUserAttributes = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteUserAttributes"),
+    input = M.DeleteUserAttributesInput,
+    output = M.DeleteUserAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.DeleteUserPool = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteUserPool"),
+    input = M.DeleteUserPoolInput,
+    output = M.DeleteUserPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserPoolClient = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteUserPoolClient"),
+    input = M.DeleteUserPoolClientInput,
+    output = M.DeleteUserPoolClientOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserPoolClientSecret = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteUserPoolClientSecret"),
+    input = M.DeleteUserPoolClientSecretInput,
+    output = M.DeleteUserPoolClientSecretOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserPoolDomain = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteUserPoolDomain"),
+    input = M.DeleteUserPoolDomainInput,
+    output = M.DeleteUserPoolDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWebAuthnCredential = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteWebAuthnCredential"),
+    input = M.DeleteWebAuthnCredentialInput,
+    output = M.DeleteWebAuthnCredentialOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.DescribeIdentityProvider = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DescribeIdentityProvider"),
+    input = M.DescribeIdentityProviderInput,
+    output = M.DescribeIdentityProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeManagedLoginBranding = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DescribeManagedLoginBranding"),
+    input = M.DescribeManagedLoginBrandingInput,
+    output = M.DescribeManagedLoginBrandingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeManagedLoginBrandingByClient = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DescribeManagedLoginBrandingByClient"),
+    input = M.DescribeManagedLoginBrandingByClientInput,
+    output = M.DescribeManagedLoginBrandingByClientOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResourceServer = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DescribeResourceServer"),
+    input = M.DescribeResourceServerInput,
+    output = M.DescribeResourceServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRiskConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DescribeRiskConfiguration"),
+    input = M.DescribeRiskConfigurationInput,
+    output = M.DescribeRiskConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTerms = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DescribeTerms"),
+    input = M.DescribeTermsInput,
+    output = M.DescribeTermsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUserImportJob = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DescribeUserImportJob"),
+    input = M.DescribeUserImportJobInput,
+    output = M.DescribeUserImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUserPool = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DescribeUserPool"),
+    input = M.DescribeUserPoolInput,
+    output = M.DescribeUserPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUserPoolClient = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DescribeUserPoolClient"),
+    input = M.DescribeUserPoolClientInput,
+    output = M.DescribeUserPoolClientOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUserPoolDomain = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DescribeUserPoolDomain"),
+    input = M.DescribeUserPoolDomainInput,
+    output = M.DescribeUserPoolDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ForgetDevice = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ForgetDevice"),
+    input = M.ForgetDeviceInput,
+    output = M.ForgetDeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.ForgotPassword = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ForgotPassword"),
+    input = M.ForgotPasswordInput,
+    output = M.ForgotPasswordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.GetCSVHeader = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetCSVHeader"),
+    input = M.GetCSVHeaderInput,
+    output = M.GetCSVHeaderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDevice = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetDevice"),
+    input = M.GetDeviceInput,
+    output = M.GetDeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.GetGroup = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetGroup"),
+    input = M.GetGroupInput,
+    output = M.GetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdentityProviderByIdentifier = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetIdentityProviderByIdentifier"),
+    input = M.GetIdentityProviderByIdentifierInput,
+    output = M.GetIdentityProviderByIdentifierOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLogDeliveryConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetLogDeliveryConfiguration"),
+    input = M.GetLogDeliveryConfigurationInput,
+    output = M.GetLogDeliveryConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSigningCertificate = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetSigningCertificate"),
+    input = M.GetSigningCertificateInput,
+    output = M.GetSigningCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTokensFromRefreshToken = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetTokensFromRefreshToken"),
+    input = M.GetTokensFromRefreshTokenInput,
+    output = M.GetTokensFromRefreshTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.GetUICustomization = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetUICustomization"),
+    input = M.GetUICustomizationInput,
+    output = M.GetUICustomizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUser = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetUser"),
+    input = M.GetUserInput,
+    output = M.GetUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.GetUserAttributeVerificationCode = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetUserAttributeVerificationCode"),
+    input = M.GetUserAttributeVerificationCodeInput,
+    output = M.GetUserAttributeVerificationCodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.GetUserAuthFactors = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetUserAuthFactors"),
+    input = M.GetUserAuthFactorsInput,
+    output = M.GetUserAuthFactorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.GetUserPoolMfaConfig = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetUserPoolMfaConfig"),
+    input = M.GetUserPoolMfaConfigInput,
+    output = M.GetUserPoolMfaConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GlobalSignOut = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GlobalSignOut"),
+    input = M.GlobalSignOutInput,
+    output = M.GlobalSignOutOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.InitiateAuth = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "InitiateAuth"),
+    input = M.InitiateAuthInput,
+    output = M.InitiateAuthOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.ListDevices = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListDevices"),
+    input = M.ListDevicesInput,
+    output = M.ListDevicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.ListGroups = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListGroups"),
+    input = M.ListGroupsInput,
+    output = M.ListGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdentityProviders = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListIdentityProviders"),
+    input = M.ListIdentityProvidersInput,
+    output = M.ListIdentityProvidersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceServers = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListResourceServers"),
+    input = M.ListResourceServersInput,
+    output = M.ListResourceServersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTerms = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListTerms"),
+    input = M.ListTermsInput,
+    output = M.ListTermsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUserImportJobs = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListUserImportJobs"),
+    input = M.ListUserImportJobsInput,
+    output = M.ListUserImportJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUserPoolClients = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListUserPoolClients"),
+    input = M.ListUserPoolClientsInput,
+    output = M.ListUserPoolClientsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUserPoolClientSecrets = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListUserPoolClientSecrets"),
+    input = M.ListUserPoolClientSecretsInput,
+    output = M.ListUserPoolClientSecretsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUserPools = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListUserPools"),
+    input = M.ListUserPoolsInput,
+    output = M.ListUserPoolsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsers = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListUsers"),
+    input = M.ListUsersInput,
+    output = M.ListUsersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsersInGroup = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListUsersInGroup"),
+    input = M.ListUsersInGroupInput,
+    output = M.ListUsersInGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWebAuthnCredentials = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListWebAuthnCredentials"),
+    input = M.ListWebAuthnCredentialsInput,
+    output = M.ListWebAuthnCredentialsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.ResendConfirmationCode = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ResendConfirmationCode"),
+    input = M.ResendConfirmationCodeInput,
+    output = M.ResendConfirmationCodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.RespondToAuthChallenge = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "RespondToAuthChallenge"),
+    input = M.RespondToAuthChallengeInput,
+    output = M.RespondToAuthChallengeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.RevokeToken = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "RevokeToken"),
+    input = M.RevokeTokenInput,
+    output = M.RevokeTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.SetLogDeliveryConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "SetLogDeliveryConfiguration"),
+    input = M.SetLogDeliveryConfigurationInput,
+    output = M.SetLogDeliveryConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetRiskConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "SetRiskConfiguration"),
+    input = M.SetRiskConfigurationInput,
+    output = M.SetRiskConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetUICustomization = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "SetUICustomization"),
+    input = M.SetUICustomizationInput,
+    output = M.SetUICustomizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetUserMFAPreference = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "SetUserMFAPreference"),
+    input = M.SetUserMFAPreferenceInput,
+    output = M.SetUserMFAPreferenceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.SetUserPoolMfaConfig = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "SetUserPoolMfaConfig"),
+    input = M.SetUserPoolMfaConfigInput,
+    output = M.SetUserPoolMfaConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetUserSettings = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "SetUserSettings"),
+    input = M.SetUserSettingsInput,
+    output = M.SetUserSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.SignUp = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "SignUp"),
+    input = M.SignUpInput,
+    output = M.SignUpOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.StartUserImportJob = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "StartUserImportJob"),
+    input = M.StartUserImportJobInput,
+    output = M.StartUserImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartWebAuthnRegistration = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "StartWebAuthnRegistration"),
+    input = M.StartWebAuthnRegistrationInput,
+    output = M.StartWebAuthnRegistrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.StopUserImportJob = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "StopUserImportJob"),
+    input = M.StopUserImportJobInput,
+    output = M.StopUserImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAuthEventFeedback = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateAuthEventFeedback"),
+    input = M.UpdateAuthEventFeedbackInput,
+    output = M.UpdateAuthEventFeedbackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.UpdateDeviceStatus = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateDeviceStatus"),
+    input = M.UpdateDeviceStatusInput,
+    output = M.UpdateDeviceStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.UpdateGroup = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateGroup"),
+    input = M.UpdateGroupInput,
+    output = M.UpdateGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIdentityProvider = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateIdentityProvider"),
+    input = M.UpdateIdentityProviderInput,
+    output = M.UpdateIdentityProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateManagedLoginBranding = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateManagedLoginBranding"),
+    input = M.UpdateManagedLoginBrandingInput,
+    output = M.UpdateManagedLoginBrandingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResourceServer = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateResourceServer"),
+    input = M.UpdateResourceServerInput,
+    output = M.UpdateResourceServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTerms = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateTerms"),
+    input = M.UpdateTermsInput,
+    output = M.UpdateTermsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserAttributes = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateUserAttributes"),
+    input = M.UpdateUserAttributesInput,
+    output = M.UpdateUserAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.UpdateUserPool = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateUserPool"),
+    input = M.UpdateUserPoolInput,
+    output = M.UpdateUserPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserPoolClient = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateUserPoolClient"),
+    input = M.UpdateUserPoolClientInput,
+    output = M.UpdateUserPoolClientOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserPoolDomain = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateUserPoolDomain"),
+    input = M.UpdateUserPoolDomainInput,
+    output = M.UpdateUserPoolDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifySoftwareToken = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "VerifySoftwareToken"),
+    input = M.VerifySoftwareTokenInput,
+    output = M.VerifySoftwareTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.VerifyUserAttribute = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "VerifyUserAttribute"),
+    input = M.VerifyUserAttributeInput,
+    output = M.VerifyUserAttributeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
 return M

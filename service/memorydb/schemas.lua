@@ -4903,4 +4903,509 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.memorydb", "AmazonMemoryDB"),
+    version = "2021-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateCluster = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "BatchUpdateCluster"),
+    input = M.BatchUpdateClusterInput,
+    output = M.BatchUpdateClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopySnapshot = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "CopySnapshot"),
+    input = M.CopySnapshotInput,
+    output = M.CopySnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateACL = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "CreateACL"),
+    input = M.CreateACLInput,
+    output = M.CreateACLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCluster = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "CreateCluster"),
+    input = M.CreateClusterInput,
+    output = M.CreateClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMultiRegionCluster = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "CreateMultiRegionCluster"),
+    input = M.CreateMultiRegionClusterInput,
+    output = M.CreateMultiRegionClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "CreateParameterGroup"),
+    input = M.CreateParameterGroupInput,
+    output = M.CreateParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSnapshot = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "CreateSnapshot"),
+    input = M.CreateSnapshotInput,
+    output = M.CreateSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "CreateSubnetGroup"),
+    input = M.CreateSubnetGroupInput,
+    output = M.CreateSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteACL = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DeleteACL"),
+    input = M.DeleteACLInput,
+    output = M.DeleteACLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCluster = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DeleteCluster"),
+    input = M.DeleteClusterInput,
+    output = M.DeleteClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMultiRegionCluster = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DeleteMultiRegionCluster"),
+    input = M.DeleteMultiRegionClusterInput,
+    output = M.DeleteMultiRegionClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DeleteParameterGroup"),
+    input = M.DeleteParameterGroupInput,
+    output = M.DeleteParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSnapshot = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DeleteSnapshot"),
+    input = M.DeleteSnapshotInput,
+    output = M.DeleteSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DeleteSubnetGroup"),
+    input = M.DeleteSubnetGroupInput,
+    output = M.DeleteSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeACLs = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeACLs"),
+    input = M.DescribeACLsInput,
+    output = M.DescribeACLsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClusters = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeClusters"),
+    input = M.DescribeClustersInput,
+    output = M.DescribeClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEngineVersions = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeEngineVersions"),
+    input = M.DescribeEngineVersionsInput,
+    output = M.DescribeEngineVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEvents = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeEvents"),
+    input = M.DescribeEventsInput,
+    output = M.DescribeEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMultiRegionClusters = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeMultiRegionClusters"),
+    input = M.DescribeMultiRegionClustersInput,
+    output = M.DescribeMultiRegionClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMultiRegionParameterGroups = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeMultiRegionParameterGroups"),
+    input = M.DescribeMultiRegionParameterGroupsInput,
+    output = M.DescribeMultiRegionParameterGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMultiRegionParameters = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeMultiRegionParameters"),
+    input = M.DescribeMultiRegionParametersInput,
+    output = M.DescribeMultiRegionParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeParameterGroups = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeParameterGroups"),
+    input = M.DescribeParameterGroupsInput,
+    output = M.DescribeParameterGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeParameters = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeParameters"),
+    input = M.DescribeParametersInput,
+    output = M.DescribeParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReservedNodes = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeReservedNodes"),
+    input = M.DescribeReservedNodesInput,
+    output = M.DescribeReservedNodesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReservedNodesOfferings = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeReservedNodesOfferings"),
+    input = M.DescribeReservedNodesOfferingsInput,
+    output = M.DescribeReservedNodesOfferingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServiceUpdates = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeServiceUpdates"),
+    input = M.DescribeServiceUpdatesInput,
+    output = M.DescribeServiceUpdatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSnapshots = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeSnapshots"),
+    input = M.DescribeSnapshotsInput,
+    output = M.DescribeSnapshotsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSubnetGroups = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeSubnetGroups"),
+    input = M.DescribeSubnetGroupsInput,
+    output = M.DescribeSubnetGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUsers = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "DescribeUsers"),
+    input = M.DescribeUsersInput,
+    output = M.DescribeUsersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FailoverShard = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "FailoverShard"),
+    input = M.FailoverShardInput,
+    output = M.FailoverShardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAllowedMultiRegionClusterUpdates = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "ListAllowedMultiRegionClusterUpdates"),
+    input = M.ListAllowedMultiRegionClusterUpdatesInput,
+    output = M.ListAllowedMultiRegionClusterUpdatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAllowedNodeTypeUpdates = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "ListAllowedNodeTypeUpdates"),
+    input = M.ListAllowedNodeTypeUpdatesInput,
+    output = M.ListAllowedNodeTypeUpdatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTags = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "ListTags"),
+    input = M.ListTagsInput,
+    output = M.ListTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PurchaseReservedNodesOffering = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "PurchaseReservedNodesOffering"),
+    input = M.PurchaseReservedNodesOfferingInput,
+    output = M.PurchaseReservedNodesOfferingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "ResetParameterGroup"),
+    input = M.ResetParameterGroupInput,
+    output = M.ResetParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateACL = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "UpdateACL"),
+    input = M.UpdateACLInput,
+    output = M.UpdateACLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCluster = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "UpdateCluster"),
+    input = M.UpdateClusterInput,
+    output = M.UpdateClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMultiRegionCluster = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "UpdateMultiRegionCluster"),
+    input = M.UpdateMultiRegionClusterInput,
+    output = M.UpdateMultiRegionClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "UpdateParameterGroup"),
+    input = M.UpdateParameterGroupInput,
+    output = M.UpdateParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "UpdateSubnetGroup"),
+    input = M.UpdateSubnetGroupInput,
+    output = M.UpdateSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUser = schema.operation({
+    id = id.from("com.amazonaws.memorydb", "UpdateUser"),
+    input = M.UpdateUserInput,
+    output = M.UpdateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -1237,4 +1237,146 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.connectparticipant", "AmazonConnectParticipantServiceLambda"),
+    version = "2018-09-07",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelParticipantAuthentication = schema.operation({
+    id = id.from("com.amazonaws.connectparticipant", "CancelParticipantAuthentication"),
+    input = M.CancelParticipantAuthenticationInput,
+    output = M.CancelParticipantAuthenticationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/participant/cancel-authentication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CompleteAttachmentUpload = schema.operation({
+    id = id.from("com.amazonaws.connectparticipant", "CompleteAttachmentUpload"),
+    input = M.CompleteAttachmentUploadInput,
+    output = M.CompleteAttachmentUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/participant/complete-attachment-upload" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateParticipantConnection = schema.operation({
+    id = id.from("com.amazonaws.connectparticipant", "CreateParticipantConnection"),
+    input = M.CreateParticipantConnectionInput,
+    output = M.CreateParticipantConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/participant/connection" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeView = schema.operation({
+    id = id.from("com.amazonaws.connectparticipant", "DescribeView"),
+    input = M.DescribeViewInput,
+    output = M.DescribeViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/participant/views/{ViewToken}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisconnectParticipant = schema.operation({
+    id = id.from("com.amazonaws.connectparticipant", "DisconnectParticipant"),
+    input = M.DisconnectParticipantInput,
+    output = M.DisconnectParticipantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/participant/disconnect" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAttachment = schema.operation({
+    id = id.from("com.amazonaws.connectparticipant", "GetAttachment"),
+    input = M.GetAttachmentInput,
+    output = M.GetAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/participant/attachment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAuthenticationUrl = schema.operation({
+    id = id.from("com.amazonaws.connectparticipant", "GetAuthenticationUrl"),
+    input = M.GetAuthenticationUrlInput,
+    output = M.GetAuthenticationUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/participant/authentication-url" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTranscript = schema.operation({
+    id = id.from("com.amazonaws.connectparticipant", "GetTranscript"),
+    input = M.GetTranscriptInput,
+    output = M.GetTranscriptOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/participant/transcript" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendEvent = schema.operation({
+    id = id.from("com.amazonaws.connectparticipant", "SendEvent"),
+    input = M.SendEventInput,
+    output = M.SendEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/participant/event" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendMessage = schema.operation({
+    id = id.from("com.amazonaws.connectparticipant", "SendMessage"),
+    input = M.SendMessageInput,
+    output = M.SendMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/participant/message" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAttachmentUpload = schema.operation({
+    id = id.from("com.amazonaws.connectparticipant", "StartAttachmentUpload"),
+    input = M.StartAttachmentUploadInput,
+    output = M.StartAttachmentUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/participant/start-attachment-upload" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("bcmdashboards.endpoint_rules")
 local schemas = require("bcmdashboards.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bcm-dashboards", signing_region = cfg.region } }
                 else
@@ -49,198 +52,63 @@ function M.new(cfg)
 end
 
 function Client:createDashboard(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDashboard",
-        input_schema = schemas.CreateDashboardInput,
-        output_schema = schemas.CreateDashboardOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDashboard, input, options)
 end
 
 function Client:createScheduledReport(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateScheduledReport",
-        input_schema = schemas.CreateScheduledReportInput,
-        output_schema = schemas.CreateScheduledReportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateScheduledReport, input, options)
 end
 
 function Client:deleteDashboard(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDashboard",
-        input_schema = schemas.DeleteDashboardInput,
-        output_schema = schemas.DeleteDashboardOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDashboard, input, options)
 end
 
 function Client:deleteScheduledReport(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteScheduledReport",
-        input_schema = schemas.DeleteScheduledReportInput,
-        output_schema = schemas.DeleteScheduledReportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteScheduledReport, input, options)
 end
 
 function Client:executeScheduledReport(input, options)
-    return self:invokeOperation(input, {
-        name = "ExecuteScheduledReport",
-        input_schema = schemas.ExecuteScheduledReportInput,
-        output_schema = schemas.ExecuteScheduledReportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExecuteScheduledReport, input, options)
 end
 
 function Client:getDashboard(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDashboard",
-        input_schema = schemas.GetDashboardInput,
-        output_schema = schemas.GetDashboardOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDashboard, input, options)
 end
 
 function Client:getResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourcePolicy",
-        input_schema = schemas.GetResourcePolicyInput,
-        output_schema = schemas.GetResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options)
 end
 
 function Client:getScheduledReport(input, options)
-    return self:invokeOperation(input, {
-        name = "GetScheduledReport",
-        input_schema = schemas.GetScheduledReportInput,
-        output_schema = schemas.GetScheduledReportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetScheduledReport, input, options)
 end
 
 function Client:listDashboards(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDashboards",
-        input_schema = schemas.ListDashboardsInput,
-        output_schema = schemas.ListDashboardsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDashboards, input, options)
 end
 
 function Client:listScheduledReports(input, options)
-    return self:invokeOperation(input, {
-        name = "ListScheduledReports",
-        input_schema = schemas.ListScheduledReportsInput,
-        output_schema = schemas.ListScheduledReportsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListScheduledReports, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateDashboard(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDashboard",
-        input_schema = schemas.UpdateDashboardInput,
-        output_schema = schemas.UpdateDashboardOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDashboard, input, options)
 end
 
 function Client:updateScheduledReport(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateScheduledReport",
-        input_schema = schemas.UpdateScheduledReportInput,
-        output_schema = schemas.UpdateScheduledReportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateScheduledReport, input, options)
 end
 
 return M

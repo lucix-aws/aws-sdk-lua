@@ -7418,4 +7418,878 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.wellarchitected", "WellArchitectedApiServiceLambda"),
+    version = "2020-03-31",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateLenses = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "AssociateLenses"),
+    input = M.AssociateLensesInput,
+    output = M.AssociateLensesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/workloads/{WorkloadId}/associateLenses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateProfiles = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "AssociateProfiles"),
+    input = M.AssociateProfilesInput,
+    output = M.AssociateProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/workloads/{WorkloadId}/associateProfiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLensShare = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateLensShare"),
+    input = M.CreateLensShareInput,
+    output = M.CreateLensShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/lenses/{LensAlias}/shares" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLensVersion = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateLensVersion"),
+    input = M.CreateLensVersionInput,
+    output = M.CreateLensVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/lenses/{LensAlias}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMilestone = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateMilestone"),
+    input = M.CreateMilestoneInput,
+    output = M.CreateMilestoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workloads/{WorkloadId}/milestones" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProfile = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateProfile"),
+    input = M.CreateProfileInput,
+    output = M.CreateProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProfileShare = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateProfileShare"),
+    input = M.CreateProfileShareInput,
+    output = M.CreateProfileShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profiles/{ProfileArn}/shares" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReviewTemplate = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateReviewTemplate"),
+    input = M.CreateReviewTemplateInput,
+    output = M.CreateReviewTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/reviewTemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTemplateShare = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateTemplateShare"),
+    input = M.CreateTemplateShareInput,
+    output = M.CreateTemplateShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/templates/shares/{TemplateArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkload = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateWorkload"),
+    input = M.CreateWorkloadInput,
+    output = M.CreateWorkloadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workloads" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkloadShare = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateWorkloadShare"),
+    input = M.CreateWorkloadShareInput,
+    output = M.CreateWorkloadShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workloads/{WorkloadId}/shares" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLens = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DeleteLens"),
+    input = M.DeleteLensInput,
+    output = M.DeleteLensOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/lenses/{LensAlias}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLensShare = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DeleteLensShare"),
+    input = M.DeleteLensShareInput,
+    output = M.DeleteLensShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/lenses/{LensAlias}/shares/{ShareId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProfile = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DeleteProfile"),
+    input = M.DeleteProfileInput,
+    output = M.DeleteProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/profiles/{ProfileArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProfileShare = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DeleteProfileShare"),
+    input = M.DeleteProfileShareInput,
+    output = M.DeleteProfileShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/profiles/{ProfileArn}/shares/{ShareId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReviewTemplate = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DeleteReviewTemplate"),
+    input = M.DeleteReviewTemplateInput,
+    output = M.DeleteReviewTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/reviewTemplates/{TemplateArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTemplateShare = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DeleteTemplateShare"),
+    input = M.DeleteTemplateShareInput,
+    output = M.DeleteTemplateShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/templates/shares/{TemplateArn}/{ShareId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkload = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DeleteWorkload"),
+    input = M.DeleteWorkloadInput,
+    output = M.DeleteWorkloadOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workloads/{WorkloadId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkloadShare = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DeleteWorkloadShare"),
+    input = M.DeleteWorkloadShareInput,
+    output = M.DeleteWorkloadShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workloads/{WorkloadId}/shares/{ShareId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateLenses = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DisassociateLenses"),
+    input = M.DisassociateLensesInput,
+    output = M.DisassociateLensesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/workloads/{WorkloadId}/disassociateLenses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateProfiles = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DisassociateProfiles"),
+    input = M.DisassociateProfilesInput,
+    output = M.DisassociateProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/workloads/{WorkloadId}/disassociateProfiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportLens = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ExportLens"),
+    input = M.ExportLensInput,
+    output = M.ExportLensOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/lenses/{LensAlias}/export" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAnswer = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetAnswer"),
+    input = M.GetAnswerInput,
+    output = M.GetAnswerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/answers/{QuestionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConsolidatedReport = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetConsolidatedReport"),
+    input = M.GetConsolidatedReportInput,
+    output = M.GetConsolidatedReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/consolidatedReport" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGlobalSettings = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetGlobalSettings"),
+    input = M.GetGlobalSettingsInput,
+    output = M.GetGlobalSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLens = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetLens"),
+    input = M.GetLensInput,
+    output = M.GetLensOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/lenses/{LensAlias}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLensReview = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetLensReview"),
+    input = M.GetLensReviewInput,
+    output = M.GetLensReviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLensReviewReport = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetLensReviewReport"),
+    input = M.GetLensReviewReportInput,
+    output = M.GetLensReviewReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/report" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLensVersionDifference = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetLensVersionDifference"),
+    input = M.GetLensVersionDifferenceInput,
+    output = M.GetLensVersionDifferenceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/lenses/{LensAlias}/versionDifference" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMilestone = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetMilestone"),
+    input = M.GetMilestoneInput,
+    output = M.GetMilestoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workloads/{WorkloadId}/milestones/{MilestoneNumber}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfile = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetProfile"),
+    input = M.GetProfileInput,
+    output = M.GetProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profiles/{ProfileArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfileTemplate = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetProfileTemplate"),
+    input = M.GetProfileTemplateInput,
+    output = M.GetProfileTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profileTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReviewTemplate = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetReviewTemplate"),
+    input = M.GetReviewTemplateInput,
+    output = M.GetReviewTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/reviewTemplates/{TemplateArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReviewTemplateAnswer = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetReviewTemplateAnswer"),
+    input = M.GetReviewTemplateAnswerInput,
+    output = M.GetReviewTemplateAnswerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/answers/{QuestionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReviewTemplateLensReview = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetReviewTemplateLensReview"),
+    input = M.GetReviewTemplateLensReviewInput,
+    output = M.GetReviewTemplateLensReviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkload = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetWorkload"),
+    input = M.GetWorkloadInput,
+    output = M.GetWorkloadOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workloads/{WorkloadId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportLens = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ImportLens"),
+    input = M.ImportLensInput,
+    output = M.ImportLensOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/importLens" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnswers = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListAnswers"),
+    input = M.ListAnswersInput,
+    output = M.ListAnswersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/answers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCheckDetails = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListCheckDetails"),
+    input = M.ListCheckDetailsInput,
+    output = M.ListCheckDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workloads/{WorkloadId}/checks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCheckSummaries = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListCheckSummaries"),
+    input = M.ListCheckSummariesInput,
+    output = M.ListCheckSummariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workloads/{WorkloadId}/checkSummaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLenses = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListLenses"),
+    input = M.ListLensesInput,
+    output = M.ListLensesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/lenses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLensReviewImprovements = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListLensReviewImprovements"),
+    input = M.ListLensReviewImprovementsInput,
+    output = M.ListLensReviewImprovementsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/improvements" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLensReviews = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListLensReviews"),
+    input = M.ListLensReviewsInput,
+    output = M.ListLensReviewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workloads/{WorkloadId}/lensReviews" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLensShares = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListLensShares"),
+    input = M.ListLensSharesInput,
+    output = M.ListLensSharesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/lenses/{LensAlias}/shares" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMilestones = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListMilestones"),
+    input = M.ListMilestonesInput,
+    output = M.ListMilestonesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workloads/{WorkloadId}/milestonesSummaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotifications = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListNotifications"),
+    input = M.ListNotificationsInput,
+    output = M.ListNotificationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/notifications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfileNotifications = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListProfileNotifications"),
+    input = M.ListProfileNotificationsInput,
+    output = M.ListProfileNotificationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profileNotifications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfiles = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListProfiles"),
+    input = M.ListProfilesInput,
+    output = M.ListProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profileSummaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfileShares = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListProfileShares"),
+    input = M.ListProfileSharesInput,
+    output = M.ListProfileSharesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profiles/{ProfileArn}/shares" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReviewTemplateAnswers = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListReviewTemplateAnswers"),
+    input = M.ListReviewTemplateAnswersInput,
+    output = M.ListReviewTemplateAnswersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/answers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReviewTemplates = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListReviewTemplates"),
+    input = M.ListReviewTemplatesInput,
+    output = M.ListReviewTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/reviewTemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListShareInvitations = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListShareInvitations"),
+    input = M.ListShareInvitationsInput,
+    output = M.ListShareInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/shareInvitations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{WorkloadArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTemplateShares = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListTemplateShares"),
+    input = M.ListTemplateSharesInput,
+    output = M.ListTemplateSharesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/templates/shares/{TemplateArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkloads = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListWorkloads"),
+    input = M.ListWorkloadsInput,
+    output = M.ListWorkloadsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workloadsSummaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkloadShares = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListWorkloadShares"),
+    input = M.ListWorkloadSharesInput,
+    output = M.ListWorkloadSharesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workloads/{WorkloadId}/shares" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{WorkloadArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{WorkloadArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAnswer = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateAnswer"),
+    input = M.UpdateAnswerInput,
+    output = M.UpdateAnswerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/answers/{QuestionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGlobalSettings = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateGlobalSettings"),
+    input = M.UpdateGlobalSettingsInput,
+    output = M.UpdateGlobalSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/global-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIntegration = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateIntegration"),
+    input = M.UpdateIntegrationInput,
+    output = M.UpdateIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workloads/{WorkloadId}/updateIntegration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLensReview = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateLensReview"),
+    input = M.UpdateLensReviewInput,
+    output = M.UpdateLensReviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProfile = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateProfile"),
+    input = M.UpdateProfileInput,
+    output = M.UpdateProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/profiles/{ProfileArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReviewTemplate = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateReviewTemplate"),
+    input = M.UpdateReviewTemplateInput,
+    output = M.UpdateReviewTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/reviewTemplates/{TemplateArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReviewTemplateAnswer = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateReviewTemplateAnswer"),
+    input = M.UpdateReviewTemplateAnswerInput,
+    output = M.UpdateReviewTemplateAnswerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/answers/{QuestionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReviewTemplateLensReview = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateReviewTemplateLensReview"),
+    input = M.UpdateReviewTemplateLensReviewInput,
+    output = M.UpdateReviewTemplateLensReviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateShareInvitation = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateShareInvitation"),
+    input = M.UpdateShareInvitationInput,
+    output = M.UpdateShareInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/shareInvitations/{ShareInvitationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkload = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateWorkload"),
+    input = M.UpdateWorkloadInput,
+    output = M.UpdateWorkloadOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/workloads/{WorkloadId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkloadShare = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateWorkloadShare"),
+    input = M.UpdateWorkloadShareInput,
+    output = M.UpdateWorkloadShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/workloads/{WorkloadId}/shares/{ShareId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpgradeLensReview = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpgradeLensReview"),
+    input = M.UpgradeLensReviewInput,
+    output = M.UpgradeLensReviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/upgrade" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpgradeProfileVersion = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpgradeProfileVersion"),
+    input = M.UpgradeProfileVersionInput,
+    output = M.UpgradeProfileVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workloads/{WorkloadId}/profiles/{ProfileArn}/upgrade" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpgradeReviewTemplateLensReview = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpgradeReviewTemplateLensReview"),
+    input = M.UpgradeReviewTemplateLensReviewInput,
+    output = M.UpgradeReviewTemplateLensReviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/upgrade" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

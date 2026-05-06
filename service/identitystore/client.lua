@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("identitystore.endpoint_rules")
 local schemas = require("identitystore.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "identitystore", signing_region = cfg.region } }
                 else
@@ -49,250 +52,79 @@ function M.new(cfg)
 end
 
 function Client:createGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGroup",
-        input_schema = schemas.CreateGroupInput,
-        output_schema = schemas.CreateGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGroup, input, options)
 end
 
 function Client:createGroupMembership(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGroupMembership",
-        input_schema = schemas.CreateGroupMembershipInput,
-        output_schema = schemas.CreateGroupMembershipOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGroupMembership, input, options)
 end
 
 function Client:createUser(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateUser",
-        input_schema = schemas.CreateUserInput,
-        output_schema = schemas.CreateUserOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateUser, input, options)
 end
 
 function Client:deleteGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGroup",
-        input_schema = schemas.DeleteGroupInput,
-        output_schema = schemas.DeleteGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGroup, input, options)
 end
 
 function Client:deleteGroupMembership(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGroupMembership",
-        input_schema = schemas.DeleteGroupMembershipInput,
-        output_schema = schemas.DeleteGroupMembershipOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGroupMembership, input, options)
 end
 
 function Client:deleteUser(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteUser",
-        input_schema = schemas.DeleteUserInput,
-        output_schema = schemas.DeleteUserOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteUser, input, options)
 end
 
 function Client:describeGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeGroup",
-        input_schema = schemas.DescribeGroupInput,
-        output_schema = schemas.DescribeGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeGroup, input, options)
 end
 
 function Client:describeGroupMembership(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeGroupMembership",
-        input_schema = schemas.DescribeGroupMembershipInput,
-        output_schema = schemas.DescribeGroupMembershipOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeGroupMembership, input, options)
 end
 
 function Client:describeUser(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeUser",
-        input_schema = schemas.DescribeUserInput,
-        output_schema = schemas.DescribeUserOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeUser, input, options)
 end
 
 function Client:getGroupId(input, options)
-    return self:invokeOperation(input, {
-        name = "GetGroupId",
-        input_schema = schemas.GetGroupIdInput,
-        output_schema = schemas.GetGroupIdOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetGroupId, input, options)
 end
 
 function Client:getGroupMembershipId(input, options)
-    return self:invokeOperation(input, {
-        name = "GetGroupMembershipId",
-        input_schema = schemas.GetGroupMembershipIdInput,
-        output_schema = schemas.GetGroupMembershipIdOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetGroupMembershipId, input, options)
 end
 
 function Client:getUserId(input, options)
-    return self:invokeOperation(input, {
-        name = "GetUserId",
-        input_schema = schemas.GetUserIdInput,
-        output_schema = schemas.GetUserIdOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetUserId, input, options)
 end
 
 function Client:isMemberInGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "IsMemberInGroups",
-        input_schema = schemas.IsMemberInGroupsInput,
-        output_schema = schemas.IsMemberInGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.IsMemberInGroups, input, options)
 end
 
 function Client:listGroupMemberships(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGroupMemberships",
-        input_schema = schemas.ListGroupMembershipsInput,
-        output_schema = schemas.ListGroupMembershipsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGroupMemberships, input, options)
 end
 
 function Client:listGroupMembershipsForMember(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGroupMembershipsForMember",
-        input_schema = schemas.ListGroupMembershipsForMemberInput,
-        output_schema = schemas.ListGroupMembershipsForMemberOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGroupMembershipsForMember, input, options)
 end
 
 function Client:listGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGroups",
-        input_schema = schemas.ListGroupsInput,
-        output_schema = schemas.ListGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGroups, input, options)
 end
 
 function Client:listUsers(input, options)
-    return self:invokeOperation(input, {
-        name = "ListUsers",
-        input_schema = schemas.ListUsersInput,
-        output_schema = schemas.ListUsersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListUsers, input, options)
 end
 
 function Client:updateGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateGroup",
-        input_schema = schemas.UpdateGroupInput,
-        output_schema = schemas.UpdateGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateGroup, input, options)
 end
 
 function Client:updateUser(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateUser",
-        input_schema = schemas.UpdateUserInput,
-        output_schema = schemas.UpdateUserOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateUser, input, options)
 end
 
 return M

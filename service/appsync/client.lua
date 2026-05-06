@@ -7,6 +7,7 @@ local endpoint_rules = require("appsync.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("appsync.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "appsync", signing_region = cfg.region } }
                 else
@@ -49,965 +52,299 @@ function M.new(cfg)
 end
 
 function Client:associateApi(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateApi",
-        input_schema = schemas.AssociateApiInput,
-        output_schema = schemas.AssociateApiOutput,
-        http_method = "POST",
-        http_path = "/v1/domainnames/{domainName}/apiassociation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateApi, input, options)
 end
 
 function Client:associateMergedGraphqlApi(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateMergedGraphqlApi",
-        input_schema = schemas.AssociateMergedGraphqlApiInput,
-        output_schema = schemas.AssociateMergedGraphqlApiOutput,
-        http_method = "POST",
-        http_path = "/v1/sourceApis/{sourceApiIdentifier}/mergedApiAssociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateMergedGraphqlApi, input, options)
 end
 
 function Client:associateSourceGraphqlApi(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateSourceGraphqlApi",
-        input_schema = schemas.AssociateSourceGraphqlApiInput,
-        output_schema = schemas.AssociateSourceGraphqlApiOutput,
-        http_method = "POST",
-        http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateSourceGraphqlApi, input, options)
 end
 
 function Client:createApi(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateApi",
-        input_schema = schemas.CreateApiInput,
-        output_schema = schemas.CreateApiOutput,
-        http_method = "POST",
-        http_path = "/v2/apis",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateApi, input, options)
 end
 
 function Client:createApiCache(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateApiCache",
-        input_schema = schemas.CreateApiCacheInput,
-        output_schema = schemas.CreateApiCacheOutput,
-        http_method = "POST",
-        http_path = "/v1/apis/{apiId}/ApiCaches",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateApiCache, input, options)
 end
 
 function Client:createApiKey(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateApiKey",
-        input_schema = schemas.CreateApiKeyInput,
-        output_schema = schemas.CreateApiKeyOutput,
-        http_method = "POST",
-        http_path = "/v1/apis/{apiId}/apikeys",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateApiKey, input, options)
 end
 
 function Client:createChannelNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateChannelNamespace",
-        input_schema = schemas.CreateChannelNamespaceInput,
-        output_schema = schemas.CreateChannelNamespaceOutput,
-        http_method = "POST",
-        http_path = "/v2/apis/{apiId}/channelNamespaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateChannelNamespace, input, options)
 end
 
 function Client:createDataSource(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDataSource",
-        input_schema = schemas.CreateDataSourceInput,
-        output_schema = schemas.CreateDataSourceOutput,
-        http_method = "POST",
-        http_path = "/v1/apis/{apiId}/datasources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDataSource, input, options)
 end
 
 function Client:createDomainName(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDomainName",
-        input_schema = schemas.CreateDomainNameInput,
-        output_schema = schemas.CreateDomainNameOutput,
-        http_method = "POST",
-        http_path = "/v1/domainnames",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDomainName, input, options)
 end
 
 function Client:createFunction(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateFunction",
-        input_schema = schemas.CreateFunctionInput,
-        output_schema = schemas.CreateFunctionOutput,
-        http_method = "POST",
-        http_path = "/v1/apis/{apiId}/functions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateFunction, input, options)
 end
 
 function Client:createGraphqlApi(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGraphqlApi",
-        input_schema = schemas.CreateGraphqlApiInput,
-        output_schema = schemas.CreateGraphqlApiOutput,
-        http_method = "POST",
-        http_path = "/v1/apis",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGraphqlApi, input, options)
 end
 
 function Client:createResolver(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateResolver",
-        input_schema = schemas.CreateResolverInput,
-        output_schema = schemas.CreateResolverOutput,
-        http_method = "POST",
-        http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateResolver, input, options)
 end
 
 function Client:createType(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateType",
-        input_schema = schemas.CreateTypeInput,
-        output_schema = schemas.CreateTypeOutput,
-        http_method = "POST",
-        http_path = "/v1/apis/{apiId}/types",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateType, input, options)
 end
 
 function Client:deleteApi(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteApi",
-        input_schema = schemas.DeleteApiInput,
-        output_schema = schemas.DeleteApiOutput,
-        http_method = "DELETE",
-        http_path = "/v2/apis/{apiId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteApi, input, options)
 end
 
 function Client:deleteApiCache(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteApiCache",
-        input_schema = schemas.DeleteApiCacheInput,
-        output_schema = schemas.DeleteApiCacheOutput,
-        http_method = "DELETE",
-        http_path = "/v1/apis/{apiId}/ApiCaches",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteApiCache, input, options)
 end
 
 function Client:deleteApiKey(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteApiKey",
-        input_schema = schemas.DeleteApiKeyInput,
-        output_schema = schemas.DeleteApiKeyOutput,
-        http_method = "DELETE",
-        http_path = "/v1/apis/{apiId}/apikeys/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteApiKey, input, options)
 end
 
 function Client:deleteChannelNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteChannelNamespace",
-        input_schema = schemas.DeleteChannelNamespaceInput,
-        output_schema = schemas.DeleteChannelNamespaceOutput,
-        http_method = "DELETE",
-        http_path = "/v2/apis/{apiId}/channelNamespaces/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteChannelNamespace, input, options)
 end
 
 function Client:deleteDataSource(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDataSource",
-        input_schema = schemas.DeleteDataSourceInput,
-        output_schema = schemas.DeleteDataSourceOutput,
-        http_method = "DELETE",
-        http_path = "/v1/apis/{apiId}/datasources/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDataSource, input, options)
 end
 
 function Client:deleteDomainName(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDomainName",
-        input_schema = schemas.DeleteDomainNameInput,
-        output_schema = schemas.DeleteDomainNameOutput,
-        http_method = "DELETE",
-        http_path = "/v1/domainnames/{domainName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDomainName, input, options)
 end
 
 function Client:deleteFunction(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFunction",
-        input_schema = schemas.DeleteFunctionInput,
-        output_schema = schemas.DeleteFunctionOutput,
-        http_method = "DELETE",
-        http_path = "/v1/apis/{apiId}/functions/{functionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFunction, input, options)
 end
 
 function Client:deleteGraphqlApi(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGraphqlApi",
-        input_schema = schemas.DeleteGraphqlApiInput,
-        output_schema = schemas.DeleteGraphqlApiOutput,
-        http_method = "DELETE",
-        http_path = "/v1/apis/{apiId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGraphqlApi, input, options)
 end
 
 function Client:deleteResolver(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResolver",
-        input_schema = schemas.DeleteResolverInput,
-        output_schema = schemas.DeleteResolverOutput,
-        http_method = "DELETE",
-        http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers/{fieldName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResolver, input, options)
 end
 
 function Client:deleteType(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteType",
-        input_schema = schemas.DeleteTypeInput,
-        output_schema = schemas.DeleteTypeOutput,
-        http_method = "DELETE",
-        http_path = "/v1/apis/{apiId}/types/{typeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteType, input, options)
 end
 
 function Client:disassociateApi(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateApi",
-        input_schema = schemas.DisassociateApiInput,
-        output_schema = schemas.DisassociateApiOutput,
-        http_method = "DELETE",
-        http_path = "/v1/domainnames/{domainName}/apiassociation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateApi, input, options)
 end
 
 function Client:disassociateMergedGraphqlApi(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateMergedGraphqlApi",
-        input_schema = schemas.DisassociateMergedGraphqlApiInput,
-        output_schema = schemas.DisassociateMergedGraphqlApiOutput,
-        http_method = "DELETE",
-        http_path = "/v1/sourceApis/{sourceApiIdentifier}/mergedApiAssociations/{associationId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateMergedGraphqlApi, input, options)
 end
 
 function Client:disassociateSourceGraphqlApi(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateSourceGraphqlApi",
-        input_schema = schemas.DisassociateSourceGraphqlApiInput,
-        output_schema = schemas.DisassociateSourceGraphqlApiOutput,
-        http_method = "DELETE",
-        http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateSourceGraphqlApi, input, options)
 end
 
 function Client:evaluateCode(input, options)
-    return self:invokeOperation(input, {
-        name = "EvaluateCode",
-        input_schema = schemas.EvaluateCodeInput,
-        output_schema = schemas.EvaluateCodeOutput,
-        http_method = "POST",
-        http_path = "/v1/dataplane-evaluatecode",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.EvaluateCode, input, options)
 end
 
 function Client:evaluateMappingTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "EvaluateMappingTemplate",
-        input_schema = schemas.EvaluateMappingTemplateInput,
-        output_schema = schemas.EvaluateMappingTemplateOutput,
-        http_method = "POST",
-        http_path = "/v1/dataplane-evaluatetemplate",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.EvaluateMappingTemplate, input, options)
 end
 
 function Client:flushApiCache(input, options)
-    return self:invokeOperation(input, {
-        name = "FlushApiCache",
-        input_schema = schemas.FlushApiCacheInput,
-        output_schema = schemas.FlushApiCacheOutput,
-        http_method = "DELETE",
-        http_path = "/v1/apis/{apiId}/FlushCache",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.FlushApiCache, input, options)
 end
 
 function Client:getApi(input, options)
-    return self:invokeOperation(input, {
-        name = "GetApi",
-        input_schema = schemas.GetApiInput,
-        output_schema = schemas.GetApiOutput,
-        http_method = "GET",
-        http_path = "/v2/apis/{apiId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetApi, input, options)
 end
 
 function Client:getApiAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetApiAssociation",
-        input_schema = schemas.GetApiAssociationInput,
-        output_schema = schemas.GetApiAssociationOutput,
-        http_method = "GET",
-        http_path = "/v1/domainnames/{domainName}/apiassociation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetApiAssociation, input, options)
 end
 
 function Client:getApiCache(input, options)
-    return self:invokeOperation(input, {
-        name = "GetApiCache",
-        input_schema = schemas.GetApiCacheInput,
-        output_schema = schemas.GetApiCacheOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/ApiCaches",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetApiCache, input, options)
 end
 
 function Client:getChannelNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "GetChannelNamespace",
-        input_schema = schemas.GetChannelNamespaceInput,
-        output_schema = schemas.GetChannelNamespaceOutput,
-        http_method = "GET",
-        http_path = "/v2/apis/{apiId}/channelNamespaces/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetChannelNamespace, input, options)
 end
 
 function Client:getDataSource(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDataSource",
-        input_schema = schemas.GetDataSourceInput,
-        output_schema = schemas.GetDataSourceOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/datasources/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDataSource, input, options)
 end
 
 function Client:getDataSourceIntrospection(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDataSourceIntrospection",
-        input_schema = schemas.GetDataSourceIntrospectionInput,
-        output_schema = schemas.GetDataSourceIntrospectionOutput,
-        http_method = "GET",
-        http_path = "/v1/datasources/introspections/{introspectionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDataSourceIntrospection, input, options)
 end
 
 function Client:getDomainName(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDomainName",
-        input_schema = schemas.GetDomainNameInput,
-        output_schema = schemas.GetDomainNameOutput,
-        http_method = "GET",
-        http_path = "/v1/domainnames/{domainName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDomainName, input, options)
 end
 
 function Client:getFunction(input, options)
-    return self:invokeOperation(input, {
-        name = "GetFunction",
-        input_schema = schemas.GetFunctionInput,
-        output_schema = schemas.GetFunctionOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/functions/{functionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetFunction, input, options)
 end
 
 function Client:getGraphqlApi(input, options)
-    return self:invokeOperation(input, {
-        name = "GetGraphqlApi",
-        input_schema = schemas.GetGraphqlApiInput,
-        output_schema = schemas.GetGraphqlApiOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetGraphqlApi, input, options)
 end
 
 function Client:getGraphqlApiEnvironmentVariables(input, options)
-    return self:invokeOperation(input, {
-        name = "GetGraphqlApiEnvironmentVariables",
-        input_schema = schemas.GetGraphqlApiEnvironmentVariablesInput,
-        output_schema = schemas.GetGraphqlApiEnvironmentVariablesOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/environmentVariables",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetGraphqlApiEnvironmentVariables, input, options)
 end
 
 function Client:getIntrospectionSchema(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIntrospectionSchema",
-        input_schema = schemas.GetIntrospectionSchemaInput,
-        output_schema = schemas.GetIntrospectionSchemaOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/schema",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIntrospectionSchema, input, options)
 end
 
 function Client:getResolver(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResolver",
-        input_schema = schemas.GetResolverInput,
-        output_schema = schemas.GetResolverOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers/{fieldName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResolver, input, options)
 end
 
 function Client:getSchemaCreationStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSchemaCreationStatus",
-        input_schema = schemas.GetSchemaCreationStatusInput,
-        output_schema = schemas.GetSchemaCreationStatusOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/schemacreation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSchemaCreationStatus, input, options)
 end
 
 function Client:getSourceApiAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSourceApiAssociation",
-        input_schema = schemas.GetSourceApiAssociationInput,
-        output_schema = schemas.GetSourceApiAssociationOutput,
-        http_method = "GET",
-        http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSourceApiAssociation, input, options)
 end
 
 function Client:getType(input, options)
-    return self:invokeOperation(input, {
-        name = "GetType",
-        input_schema = schemas.GetTypeInput,
-        output_schema = schemas.GetTypeOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/types/{typeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetType, input, options)
 end
 
 function Client:listApiKeys(input, options)
-    return self:invokeOperation(input, {
-        name = "ListApiKeys",
-        input_schema = schemas.ListApiKeysInput,
-        output_schema = schemas.ListApiKeysOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/apikeys",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListApiKeys, input, options)
 end
 
 function Client:listApis(input, options)
-    return self:invokeOperation(input, {
-        name = "ListApis",
-        input_schema = schemas.ListApisInput,
-        output_schema = schemas.ListApisOutput,
-        http_method = "GET",
-        http_path = "/v2/apis",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListApis, input, options)
 end
 
 function Client:listChannelNamespaces(input, options)
-    return self:invokeOperation(input, {
-        name = "ListChannelNamespaces",
-        input_schema = schemas.ListChannelNamespacesInput,
-        output_schema = schemas.ListChannelNamespacesOutput,
-        http_method = "GET",
-        http_path = "/v2/apis/{apiId}/channelNamespaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListChannelNamespaces, input, options)
 end
 
 function Client:listDataSources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDataSources",
-        input_schema = schemas.ListDataSourcesInput,
-        output_schema = schemas.ListDataSourcesOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/datasources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDataSources, input, options)
 end
 
 function Client:listDomainNames(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDomainNames",
-        input_schema = schemas.ListDomainNamesInput,
-        output_schema = schemas.ListDomainNamesOutput,
-        http_method = "GET",
-        http_path = "/v1/domainnames",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDomainNames, input, options)
 end
 
 function Client:listFunctions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFunctions",
-        input_schema = schemas.ListFunctionsInput,
-        output_schema = schemas.ListFunctionsOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/functions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFunctions, input, options)
 end
 
 function Client:listGraphqlApis(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGraphqlApis",
-        input_schema = schemas.ListGraphqlApisInput,
-        output_schema = schemas.ListGraphqlApisOutput,
-        http_method = "GET",
-        http_path = "/v1/apis",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGraphqlApis, input, options)
 end
 
 function Client:listResolvers(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResolvers",
-        input_schema = schemas.ListResolversInput,
-        output_schema = schemas.ListResolversOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResolvers, input, options)
 end
 
 function Client:listResolversByFunction(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResolversByFunction",
-        input_schema = schemas.ListResolversByFunctionInput,
-        output_schema = schemas.ListResolversByFunctionOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/functions/{functionId}/resolvers",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResolversByFunction, input, options)
 end
 
 function Client:listSourceApiAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSourceApiAssociations",
-        input_schema = schemas.ListSourceApiAssociationsInput,
-        output_schema = schemas.ListSourceApiAssociationsOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/sourceApiAssociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSourceApiAssociations, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/v1/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTypes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTypes",
-        input_schema = schemas.ListTypesInput,
-        output_schema = schemas.ListTypesOutput,
-        http_method = "GET",
-        http_path = "/v1/apis/{apiId}/types",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTypes, input, options)
 end
 
 function Client:listTypesByAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTypesByAssociation",
-        input_schema = schemas.ListTypesByAssociationInput,
-        output_schema = schemas.ListTypesByAssociationOutput,
-        http_method = "GET",
-        http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/types",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTypesByAssociation, input, options)
 end
 
 function Client:putGraphqlApiEnvironmentVariables(input, options)
-    return self:invokeOperation(input, {
-        name = "PutGraphqlApiEnvironmentVariables",
-        input_schema = schemas.PutGraphqlApiEnvironmentVariablesInput,
-        output_schema = schemas.PutGraphqlApiEnvironmentVariablesOutput,
-        http_method = "PUT",
-        http_path = "/v1/apis/{apiId}/environmentVariables",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutGraphqlApiEnvironmentVariables, input, options)
 end
 
 function Client:startDataSourceIntrospection(input, options)
-    return self:invokeOperation(input, {
-        name = "StartDataSourceIntrospection",
-        input_schema = schemas.StartDataSourceIntrospectionInput,
-        output_schema = schemas.StartDataSourceIntrospectionOutput,
-        http_method = "POST",
-        http_path = "/v1/datasources/introspections",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartDataSourceIntrospection, input, options)
 end
 
 function Client:startSchemaCreation(input, options)
-    return self:invokeOperation(input, {
-        name = "StartSchemaCreation",
-        input_schema = schemas.StartSchemaCreationInput,
-        output_schema = schemas.StartSchemaCreationOutput,
-        http_method = "POST",
-        http_path = "/v1/apis/{apiId}/schemacreation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartSchemaCreation, input, options)
 end
 
 function Client:startSchemaMerge(input, options)
-    return self:invokeOperation(input, {
-        name = "StartSchemaMerge",
-        input_schema = schemas.StartSchemaMergeInput,
-        output_schema = schemas.StartSchemaMergeOutput,
-        http_method = "POST",
-        http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/merge",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartSchemaMerge, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/v1/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/v1/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateApi(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateApi",
-        input_schema = schemas.UpdateApiInput,
-        output_schema = schemas.UpdateApiOutput,
-        http_method = "POST",
-        http_path = "/v2/apis/{apiId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateApi, input, options)
 end
 
 function Client:updateApiCache(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateApiCache",
-        input_schema = schemas.UpdateApiCacheInput,
-        output_schema = schemas.UpdateApiCacheOutput,
-        http_method = "POST",
-        http_path = "/v1/apis/{apiId}/ApiCaches/update",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateApiCache, input, options)
 end
 
 function Client:updateApiKey(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateApiKey",
-        input_schema = schemas.UpdateApiKeyInput,
-        output_schema = schemas.UpdateApiKeyOutput,
-        http_method = "POST",
-        http_path = "/v1/apis/{apiId}/apikeys/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateApiKey, input, options)
 end
 
 function Client:updateChannelNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateChannelNamespace",
-        input_schema = schemas.UpdateChannelNamespaceInput,
-        output_schema = schemas.UpdateChannelNamespaceOutput,
-        http_method = "POST",
-        http_path = "/v2/apis/{apiId}/channelNamespaces/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateChannelNamespace, input, options)
 end
 
 function Client:updateDataSource(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDataSource",
-        input_schema = schemas.UpdateDataSourceInput,
-        output_schema = schemas.UpdateDataSourceOutput,
-        http_method = "POST",
-        http_path = "/v1/apis/{apiId}/datasources/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDataSource, input, options)
 end
 
 function Client:updateDomainName(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDomainName",
-        input_schema = schemas.UpdateDomainNameInput,
-        output_schema = schemas.UpdateDomainNameOutput,
-        http_method = "POST",
-        http_path = "/v1/domainnames/{domainName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDomainName, input, options)
 end
 
 function Client:updateFunction(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateFunction",
-        input_schema = schemas.UpdateFunctionInput,
-        output_schema = schemas.UpdateFunctionOutput,
-        http_method = "POST",
-        http_path = "/v1/apis/{apiId}/functions/{functionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateFunction, input, options)
 end
 
 function Client:updateGraphqlApi(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateGraphqlApi",
-        input_schema = schemas.UpdateGraphqlApiInput,
-        output_schema = schemas.UpdateGraphqlApiOutput,
-        http_method = "POST",
-        http_path = "/v1/apis/{apiId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateGraphqlApi, input, options)
 end
 
 function Client:updateResolver(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateResolver",
-        input_schema = schemas.UpdateResolverInput,
-        output_schema = schemas.UpdateResolverOutput,
-        http_method = "POST",
-        http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers/{fieldName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateResolver, input, options)
 end
 
 function Client:updateSourceApiAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSourceApiAssociation",
-        input_schema = schemas.UpdateSourceApiAssociationInput,
-        output_schema = schemas.UpdateSourceApiAssociationOutput,
-        http_method = "POST",
-        http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSourceApiAssociation, input, options)
 end
 
 function Client:updateType(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateType",
-        input_schema = schemas.UpdateTypeInput,
-        output_schema = schemas.UpdateTypeOutput,
-        http_method = "POST",
-        http_path = "/v1/apis/{apiId}/types/{typeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateType, input, options)
 end
 
 return M

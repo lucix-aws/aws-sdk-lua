@@ -2672,4 +2672,314 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.grafana", "AWSGrafanaControlPlane"),
+    version = "2020-08-18",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateLicense = schema.operation({
+    id = id.from("com.amazonaws.grafana", "AssociateLicense"),
+    input = M.AssociateLicenseInput,
+    output = M.AssociateLicenseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/licenses/{licenseType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkspace = schema.operation({
+    id = id.from("com.amazonaws.grafana", "CreateWorkspace"),
+    input = M.CreateWorkspaceInput,
+    output = M.CreateWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkspaceApiKey = schema.operation({
+    id = id.from("com.amazonaws.grafana", "CreateWorkspaceApiKey"),
+    input = M.CreateWorkspaceApiKeyInput,
+    output = M.CreateWorkspaceApiKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/apikeys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkspaceServiceAccount = schema.operation({
+    id = id.from("com.amazonaws.grafana", "CreateWorkspaceServiceAccount"),
+    input = M.CreateWorkspaceServiceAccountInput,
+    output = M.CreateWorkspaceServiceAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/serviceaccounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkspaceServiceAccountToken = schema.operation({
+    id = id.from("com.amazonaws.grafana", "CreateWorkspaceServiceAccountToken"),
+    input = M.CreateWorkspaceServiceAccountTokenInput,
+    output = M.CreateWorkspaceServiceAccountTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}/tokens" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkspace = schema.operation({
+    id = id.from("com.amazonaws.grafana", "DeleteWorkspace"),
+    input = M.DeleteWorkspaceInput,
+    output = M.DeleteWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkspaceApiKey = schema.operation({
+    id = id.from("com.amazonaws.grafana", "DeleteWorkspaceApiKey"),
+    input = M.DeleteWorkspaceApiKeyInput,
+    output = M.DeleteWorkspaceApiKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}/apikeys/{keyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkspaceServiceAccount = schema.operation({
+    id = id.from("com.amazonaws.grafana", "DeleteWorkspaceServiceAccount"),
+    input = M.DeleteWorkspaceServiceAccountInput,
+    output = M.DeleteWorkspaceServiceAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkspaceServiceAccountToken = schema.operation({
+    id = id.from("com.amazonaws.grafana", "DeleteWorkspaceServiceAccountToken"),
+    input = M.DeleteWorkspaceServiceAccountTokenInput,
+    output = M.DeleteWorkspaceServiceAccountTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}/tokens/{tokenId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspace = schema.operation({
+    id = id.from("com.amazonaws.grafana", "DescribeWorkspace"),
+    input = M.DescribeWorkspaceInput,
+    output = M.DescribeWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspaceAuthentication = schema.operation({
+    id = id.from("com.amazonaws.grafana", "DescribeWorkspaceAuthentication"),
+    input = M.DescribeWorkspaceAuthenticationInput,
+    output = M.DescribeWorkspaceAuthenticationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/authentication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspaceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.grafana", "DescribeWorkspaceConfiguration"),
+    input = M.DescribeWorkspaceConfigurationInput,
+    output = M.DescribeWorkspaceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateLicense = schema.operation({
+    id = id.from("com.amazonaws.grafana", "DisassociateLicense"),
+    input = M.DisassociateLicenseInput,
+    output = M.DisassociateLicenseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}/licenses/{licenseType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPermissions = schema.operation({
+    id = id.from("com.amazonaws.grafana", "ListPermissions"),
+    input = M.ListPermissionsInput,
+    output = M.ListPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.grafana", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVersions = schema.operation({
+    id = id.from("com.amazonaws.grafana", "ListVersions"),
+    input = M.ListVersionsInput,
+    output = M.ListVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkspaces = schema.operation({
+    id = id.from("com.amazonaws.grafana", "ListWorkspaces"),
+    input = M.ListWorkspacesInput,
+    output = M.ListWorkspacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkspaceServiceAccounts = schema.operation({
+    id = id.from("com.amazonaws.grafana", "ListWorkspaceServiceAccounts"),
+    input = M.ListWorkspaceServiceAccountsInput,
+    output = M.ListWorkspaceServiceAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/serviceaccounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkspaceServiceAccountTokens = schema.operation({
+    id = id.from("com.amazonaws.grafana", "ListWorkspaceServiceAccountTokens"),
+    input = M.ListWorkspaceServiceAccountTokensInput,
+    output = M.ListWorkspaceServiceAccountTokensOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}/tokens" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.grafana", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.grafana", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePermissions = schema.operation({
+    id = id.from("com.amazonaws.grafana", "UpdatePermissions"),
+    input = M.UpdatePermissionsInput,
+    output = M.UpdatePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/workspaces/{workspaceId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkspace = schema.operation({
+    id = id.from("com.amazonaws.grafana", "UpdateWorkspace"),
+    input = M.UpdateWorkspaceInput,
+    output = M.UpdateWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workspaces/{workspaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkspaceAuthentication = schema.operation({
+    id = id.from("com.amazonaws.grafana", "UpdateWorkspaceAuthentication"),
+    input = M.UpdateWorkspaceAuthenticationInput,
+    output = M.UpdateWorkspaceAuthenticationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/authentication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkspaceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.grafana", "UpdateWorkspaceConfiguration"),
+    input = M.UpdateWorkspaceConfigurationInput,
+    output = M.UpdateWorkspaceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workspaces/{workspaceId}/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

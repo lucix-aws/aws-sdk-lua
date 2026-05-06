@@ -4875,4 +4875,590 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.codeartifact", "CodeArtifactControlPlaneService"),
+    version = "2018-09-22",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateExternalConnection = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "AssociateExternalConnection"),
+    input = M.AssociateExternalConnectionInput,
+    output = M.AssociateExternalConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/repository/external-connection" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyPackageVersions = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "CopyPackageVersions"),
+    input = M.CopyPackageVersionsInput,
+    output = M.CopyPackageVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/package/versions/copy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomain = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "CreateDomain"),
+    input = M.CreateDomainInput,
+    output = M.CreateDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/domain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePackageGroup = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "CreatePackageGroup"),
+    input = M.CreatePackageGroupInput,
+    output = M.CreatePackageGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/package-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRepository = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "CreateRepository"),
+    input = M.CreateRepositoryInput,
+    output = M.CreateRepositoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/repository" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomain = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "DeleteDomain"),
+    input = M.DeleteDomainInput,
+    output = M.DeleteDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/domain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomainPermissionsPolicy = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "DeleteDomainPermissionsPolicy"),
+    input = M.DeleteDomainPermissionsPolicyInput,
+    output = M.DeleteDomainPermissionsPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/domain/permissions/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePackage = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "DeletePackage"),
+    input = M.DeletePackageInput,
+    output = M.DeletePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/package" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePackageGroup = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "DeletePackageGroup"),
+    input = M.DeletePackageGroupInput,
+    output = M.DeletePackageGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/package-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePackageVersions = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "DeletePackageVersions"),
+    input = M.DeletePackageVersionsInput,
+    output = M.DeletePackageVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/package/versions/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRepository = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "DeleteRepository"),
+    input = M.DeleteRepositoryInput,
+    output = M.DeleteRepositoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/repository" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRepositoryPermissionsPolicy = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "DeleteRepositoryPermissionsPolicy"),
+    input = M.DeleteRepositoryPermissionsPolicyInput,
+    output = M.DeleteRepositoryPermissionsPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/repository/permissions/policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomain = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "DescribeDomain"),
+    input = M.DescribeDomainInput,
+    output = M.DescribeDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/domain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePackage = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "DescribePackage"),
+    input = M.DescribePackageInput,
+    output = M.DescribePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/package" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePackageGroup = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "DescribePackageGroup"),
+    input = M.DescribePackageGroupInput,
+    output = M.DescribePackageGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/package-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePackageVersion = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "DescribePackageVersion"),
+    input = M.DescribePackageVersionInput,
+    output = M.DescribePackageVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/package/version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRepository = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "DescribeRepository"),
+    input = M.DescribeRepositoryInput,
+    output = M.DescribeRepositoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/repository" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateExternalConnection = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "DisassociateExternalConnection"),
+    input = M.DisassociateExternalConnectionInput,
+    output = M.DisassociateExternalConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/repository/external-connection" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisposePackageVersions = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "DisposePackageVersions"),
+    input = M.DisposePackageVersionsInput,
+    output = M.DisposePackageVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/package/versions/dispose" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssociatedPackageGroup = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "GetAssociatedPackageGroup"),
+    input = M.GetAssociatedPackageGroupInput,
+    output = M.GetAssociatedPackageGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/get-associated-package-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAuthorizationToken = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "GetAuthorizationToken"),
+    input = M.GetAuthorizationTokenInput,
+    output = M.GetAuthorizationTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/authorization-token" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainPermissionsPolicy = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "GetDomainPermissionsPolicy"),
+    input = M.GetDomainPermissionsPolicyInput,
+    output = M.GetDomainPermissionsPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/domain/permissions/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPackageVersionAsset = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "GetPackageVersionAsset"),
+    input = M.GetPackageVersionAssetInput,
+    output = M.GetPackageVersionAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/package/version/asset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPackageVersionReadme = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "GetPackageVersionReadme"),
+    input = M.GetPackageVersionReadmeInput,
+    output = M.GetPackageVersionReadmeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/package/version/readme" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRepositoryEndpoint = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "GetRepositoryEndpoint"),
+    input = M.GetRepositoryEndpointInput,
+    output = M.GetRepositoryEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/repository/endpoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRepositoryPermissionsPolicy = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "GetRepositoryPermissionsPolicy"),
+    input = M.GetRepositoryPermissionsPolicyInput,
+    output = M.GetRepositoryPermissionsPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/repository/permissions/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAllowedRepositoriesForGroup = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "ListAllowedRepositoriesForGroup"),
+    input = M.ListAllowedRepositoriesForGroupInput,
+    output = M.ListAllowedRepositoriesForGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/package-group-allowed-repositories" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociatedPackages = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "ListAssociatedPackages"),
+    input = M.ListAssociatedPackagesInput,
+    output = M.ListAssociatedPackagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/list-associated-packages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomains = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "ListDomains"),
+    input = M.ListDomainsInput,
+    output = M.ListDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPackageGroups = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "ListPackageGroups"),
+    input = M.ListPackageGroupsInput,
+    output = M.ListPackageGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/package-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPackages = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "ListPackages"),
+    input = M.ListPackagesInput,
+    output = M.ListPackagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/packages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPackageVersionAssets = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "ListPackageVersionAssets"),
+    input = M.ListPackageVersionAssetsInput,
+    output = M.ListPackageVersionAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/package/version/assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPackageVersionDependencies = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "ListPackageVersionDependencies"),
+    input = M.ListPackageVersionDependenciesInput,
+    output = M.ListPackageVersionDependenciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/package/version/dependencies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPackageVersions = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "ListPackageVersions"),
+    input = M.ListPackageVersionsInput,
+    output = M.ListPackageVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/package/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRepositories = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "ListRepositories"),
+    input = M.ListRepositoriesInput,
+    output = M.ListRepositoriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/repositories" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRepositoriesInDomain = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "ListRepositoriesInDomain"),
+    input = M.ListRepositoriesInDomainInput,
+    output = M.ListRepositoriesInDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/domain/repositories" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubPackageGroups = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "ListSubPackageGroups"),
+    input = M.ListSubPackageGroupsInput,
+    output = M.ListSubPackageGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/package-groups/sub-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PublishPackageVersion = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "PublishPackageVersion"),
+    input = M.PublishPackageVersionInput,
+    output = M.PublishPackageVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/package/version/publish" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDomainPermissionsPolicy = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "PutDomainPermissionsPolicy"),
+    input = M.PutDomainPermissionsPolicyInput,
+    output = M.PutDomainPermissionsPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/domain/permissions/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPackageOriginConfiguration = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "PutPackageOriginConfiguration"),
+    input = M.PutPackageOriginConfigurationInput,
+    output = M.PutPackageOriginConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/package" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRepositoryPermissionsPolicy = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "PutRepositoryPermissionsPolicy"),
+    input = M.PutRepositoryPermissionsPolicyInput,
+    output = M.PutRepositoryPermissionsPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/repository/permissions/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tag" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/untag" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePackageGroup = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "UpdatePackageGroup"),
+    input = M.UpdatePackageGroupInput,
+    output = M.UpdatePackageGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/package-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePackageGroupOriginConfiguration = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "UpdatePackageGroupOriginConfiguration"),
+    input = M.UpdatePackageGroupOriginConfigurationInput,
+    output = M.UpdatePackageGroupOriginConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/package-group-origin-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePackageVersionsStatus = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "UpdatePackageVersionsStatus"),
+    input = M.UpdatePackageVersionsStatusInput,
+    output = M.UpdatePackageVersionsStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/package/versions/update_status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRepository = schema.operation({
+    id = id.from("com.amazonaws.codeartifact", "UpdateRepository"),
+    input = M.UpdateRepositoryInput,
+    output = M.UpdateRepositoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/repository" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

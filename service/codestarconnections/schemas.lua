@@ -2310,4 +2310,311 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.codestarconnections", "CodeStar_connections_20191201"),
+    version = "2019-12-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnection = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "CreateConnection"),
+    input = M.CreateConnectionInput,
+    output = M.CreateConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHost = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "CreateHost"),
+    input = M.CreateHostInput,
+    output = M.CreateHostOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRepositoryLink = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "CreateRepositoryLink"),
+    input = M.CreateRepositoryLinkInput,
+    output = M.CreateRepositoryLinkOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSyncConfiguration = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "CreateSyncConfiguration"),
+    input = M.CreateSyncConfigurationInput,
+    output = M.CreateSyncConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnection = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "DeleteConnection"),
+    input = M.DeleteConnectionInput,
+    output = M.DeleteConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHost = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "DeleteHost"),
+    input = M.DeleteHostInput,
+    output = M.DeleteHostOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRepositoryLink = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "DeleteRepositoryLink"),
+    input = M.DeleteRepositoryLinkInput,
+    output = M.DeleteRepositoryLinkOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSyncConfiguration = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "DeleteSyncConfiguration"),
+    input = M.DeleteSyncConfigurationInput,
+    output = M.DeleteSyncConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnection = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "GetConnection"),
+    input = M.GetConnectionInput,
+    output = M.GetConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHost = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "GetHost"),
+    input = M.GetHostInput,
+    output = M.GetHostOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRepositoryLink = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "GetRepositoryLink"),
+    input = M.GetRepositoryLinkInput,
+    output = M.GetRepositoryLinkOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRepositorySyncStatus = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "GetRepositorySyncStatus"),
+    input = M.GetRepositorySyncStatusInput,
+    output = M.GetRepositorySyncStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceSyncStatus = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "GetResourceSyncStatus"),
+    input = M.GetResourceSyncStatusInput,
+    output = M.GetResourceSyncStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSyncBlockerSummary = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "GetSyncBlockerSummary"),
+    input = M.GetSyncBlockerSummaryInput,
+    output = M.GetSyncBlockerSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSyncConfiguration = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "GetSyncConfiguration"),
+    input = M.GetSyncConfigurationInput,
+    output = M.GetSyncConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnections = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "ListConnections"),
+    input = M.ListConnectionsInput,
+    output = M.ListConnectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHosts = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "ListHosts"),
+    input = M.ListHostsInput,
+    output = M.ListHostsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRepositoryLinks = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "ListRepositoryLinks"),
+    input = M.ListRepositoryLinksInput,
+    output = M.ListRepositoryLinksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRepositorySyncDefinitions = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "ListRepositorySyncDefinitions"),
+    input = M.ListRepositorySyncDefinitionsInput,
+    output = M.ListRepositorySyncDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSyncConfigurations = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "ListSyncConfigurations"),
+    input = M.ListSyncConfigurationsInput,
+    output = M.ListSyncConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHost = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "UpdateHost"),
+    input = M.UpdateHostInput,
+    output = M.UpdateHostOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRepositoryLink = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "UpdateRepositoryLink"),
+    input = M.UpdateRepositoryLinkInput,
+    output = M.UpdateRepositoryLinkOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSyncBlocker = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "UpdateSyncBlocker"),
+    input = M.UpdateSyncBlockerInput,
+    output = M.UpdateSyncBlockerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSyncConfiguration = schema.operation({
+    id = id.from("com.amazonaws.codestarconnections", "UpdateSyncConfiguration"),
+    input = M.UpdateSyncConfigurationInput,
+    output = M.UpdateSyncConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

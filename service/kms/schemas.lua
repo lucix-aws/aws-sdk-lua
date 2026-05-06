@@ -4460,4 +4460,608 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.kms", "TrentService"),
+    version = "2014-11-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelKeyDeletion = schema.operation({
+    id = id.from("com.amazonaws.kms", "CancelKeyDeletion"),
+    input = M.CancelKeyDeletionInput,
+    output = M.CancelKeyDeletionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConnectCustomKeyStore = schema.operation({
+    id = id.from("com.amazonaws.kms", "ConnectCustomKeyStore"),
+    input = M.ConnectCustomKeyStoreInput,
+    output = M.ConnectCustomKeyStoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAlias = schema.operation({
+    id = id.from("com.amazonaws.kms", "CreateAlias"),
+    input = M.CreateAliasInput,
+    output = M.CreateAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomKeyStore = schema.operation({
+    id = id.from("com.amazonaws.kms", "CreateCustomKeyStore"),
+    input = M.CreateCustomKeyStoreInput,
+    output = M.CreateCustomKeyStoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGrant = schema.operation({
+    id = id.from("com.amazonaws.kms", "CreateGrant"),
+    input = M.CreateGrantInput,
+    output = M.CreateGrantOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKey = schema.operation({
+    id = id.from("com.amazonaws.kms", "CreateKey"),
+    input = M.CreateKeyInput,
+    output = M.CreateKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Decrypt = schema.operation({
+    id = id.from("com.amazonaws.kms", "Decrypt"),
+    input = M.DecryptInput,
+    output = M.DecryptOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAlias = schema.operation({
+    id = id.from("com.amazonaws.kms", "DeleteAlias"),
+    input = M.DeleteAliasInput,
+    output = M.DeleteAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomKeyStore = schema.operation({
+    id = id.from("com.amazonaws.kms", "DeleteCustomKeyStore"),
+    input = M.DeleteCustomKeyStoreInput,
+    output = M.DeleteCustomKeyStoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteImportedKeyMaterial = schema.operation({
+    id = id.from("com.amazonaws.kms", "DeleteImportedKeyMaterial"),
+    input = M.DeleteImportedKeyMaterialInput,
+    output = M.DeleteImportedKeyMaterialOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeriveSharedSecret = schema.operation({
+    id = id.from("com.amazonaws.kms", "DeriveSharedSecret"),
+    input = M.DeriveSharedSecretInput,
+    output = M.DeriveSharedSecretOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCustomKeyStores = schema.operation({
+    id = id.from("com.amazonaws.kms", "DescribeCustomKeyStores"),
+    input = M.DescribeCustomKeyStoresInput,
+    output = M.DescribeCustomKeyStoresOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeKey = schema.operation({
+    id = id.from("com.amazonaws.kms", "DescribeKey"),
+    input = M.DescribeKeyInput,
+    output = M.DescribeKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableKey = schema.operation({
+    id = id.from("com.amazonaws.kms", "DisableKey"),
+    input = M.DisableKeyInput,
+    output = M.DisableKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableKeyRotation = schema.operation({
+    id = id.from("com.amazonaws.kms", "DisableKeyRotation"),
+    input = M.DisableKeyRotationInput,
+    output = M.DisableKeyRotationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisconnectCustomKeyStore = schema.operation({
+    id = id.from("com.amazonaws.kms", "DisconnectCustomKeyStore"),
+    input = M.DisconnectCustomKeyStoreInput,
+    output = M.DisconnectCustomKeyStoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableKey = schema.operation({
+    id = id.from("com.amazonaws.kms", "EnableKey"),
+    input = M.EnableKeyInput,
+    output = M.EnableKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableKeyRotation = schema.operation({
+    id = id.from("com.amazonaws.kms", "EnableKeyRotation"),
+    input = M.EnableKeyRotationInput,
+    output = M.EnableKeyRotationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Encrypt = schema.operation({
+    id = id.from("com.amazonaws.kms", "Encrypt"),
+    input = M.EncryptInput,
+    output = M.EncryptOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateDataKey = schema.operation({
+    id = id.from("com.amazonaws.kms", "GenerateDataKey"),
+    input = M.GenerateDataKeyInput,
+    output = M.GenerateDataKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateDataKeyPair = schema.operation({
+    id = id.from("com.amazonaws.kms", "GenerateDataKeyPair"),
+    input = M.GenerateDataKeyPairInput,
+    output = M.GenerateDataKeyPairOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateDataKeyPairWithoutPlaintext = schema.operation({
+    id = id.from("com.amazonaws.kms", "GenerateDataKeyPairWithoutPlaintext"),
+    input = M.GenerateDataKeyPairWithoutPlaintextInput,
+    output = M.GenerateDataKeyPairWithoutPlaintextOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateDataKeyWithoutPlaintext = schema.operation({
+    id = id.from("com.amazonaws.kms", "GenerateDataKeyWithoutPlaintext"),
+    input = M.GenerateDataKeyWithoutPlaintextInput,
+    output = M.GenerateDataKeyWithoutPlaintextOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateMac = schema.operation({
+    id = id.from("com.amazonaws.kms", "GenerateMac"),
+    input = M.GenerateMacInput,
+    output = M.GenerateMacOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateRandom = schema.operation({
+    id = id.from("com.amazonaws.kms", "GenerateRandom"),
+    input = M.GenerateRandomInput,
+    output = M.GenerateRandomOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKeyLastUsage = schema.operation({
+    id = id.from("com.amazonaws.kms", "GetKeyLastUsage"),
+    input = M.GetKeyLastUsageInput,
+    output = M.GetKeyLastUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKeyPolicy = schema.operation({
+    id = id.from("com.amazonaws.kms", "GetKeyPolicy"),
+    input = M.GetKeyPolicyInput,
+    output = M.GetKeyPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKeyRotationStatus = schema.operation({
+    id = id.from("com.amazonaws.kms", "GetKeyRotationStatus"),
+    input = M.GetKeyRotationStatusInput,
+    output = M.GetKeyRotationStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetParametersForImport = schema.operation({
+    id = id.from("com.amazonaws.kms", "GetParametersForImport"),
+    input = M.GetParametersForImportInput,
+    output = M.GetParametersForImportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPublicKey = schema.operation({
+    id = id.from("com.amazonaws.kms", "GetPublicKey"),
+    input = M.GetPublicKeyInput,
+    output = M.GetPublicKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportKeyMaterial = schema.operation({
+    id = id.from("com.amazonaws.kms", "ImportKeyMaterial"),
+    input = M.ImportKeyMaterialInput,
+    output = M.ImportKeyMaterialOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAliases = schema.operation({
+    id = id.from("com.amazonaws.kms", "ListAliases"),
+    input = M.ListAliasesInput,
+    output = M.ListAliasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGrants = schema.operation({
+    id = id.from("com.amazonaws.kms", "ListGrants"),
+    input = M.ListGrantsInput,
+    output = M.ListGrantsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKeyPolicies = schema.operation({
+    id = id.from("com.amazonaws.kms", "ListKeyPolicies"),
+    input = M.ListKeyPoliciesInput,
+    output = M.ListKeyPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKeyRotations = schema.operation({
+    id = id.from("com.amazonaws.kms", "ListKeyRotations"),
+    input = M.ListKeyRotationsInput,
+    output = M.ListKeyRotationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKeys = schema.operation({
+    id = id.from("com.amazonaws.kms", "ListKeys"),
+    input = M.ListKeysInput,
+    output = M.ListKeysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceTags = schema.operation({
+    id = id.from("com.amazonaws.kms", "ListResourceTags"),
+    input = M.ListResourceTagsInput,
+    output = M.ListResourceTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRetirableGrants = schema.operation({
+    id = id.from("com.amazonaws.kms", "ListRetirableGrants"),
+    input = M.ListRetirableGrantsInput,
+    output = M.ListRetirableGrantsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutKeyPolicy = schema.operation({
+    id = id.from("com.amazonaws.kms", "PutKeyPolicy"),
+    input = M.PutKeyPolicyInput,
+    output = M.PutKeyPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReEncrypt = schema.operation({
+    id = id.from("com.amazonaws.kms", "ReEncrypt"),
+    input = M.ReEncryptInput,
+    output = M.ReEncryptOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReplicateKey = schema.operation({
+    id = id.from("com.amazonaws.kms", "ReplicateKey"),
+    input = M.ReplicateKeyInput,
+    output = M.ReplicateKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetireGrant = schema.operation({
+    id = id.from("com.amazonaws.kms", "RetireGrant"),
+    input = M.RetireGrantInput,
+    output = M.RetireGrantOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeGrant = schema.operation({
+    id = id.from("com.amazonaws.kms", "RevokeGrant"),
+    input = M.RevokeGrantInput,
+    output = M.RevokeGrantOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RotateKeyOnDemand = schema.operation({
+    id = id.from("com.amazonaws.kms", "RotateKeyOnDemand"),
+    input = M.RotateKeyOnDemandInput,
+    output = M.RotateKeyOnDemandOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ScheduleKeyDeletion = schema.operation({
+    id = id.from("com.amazonaws.kms", "ScheduleKeyDeletion"),
+    input = M.ScheduleKeyDeletionInput,
+    output = M.ScheduleKeyDeletionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Sign = schema.operation({
+    id = id.from("com.amazonaws.kms", "Sign"),
+    input = M.SignInput,
+    output = M.SignOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.kms", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.kms", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAlias = schema.operation({
+    id = id.from("com.amazonaws.kms", "UpdateAlias"),
+    input = M.UpdateAliasInput,
+    output = M.UpdateAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCustomKeyStore = schema.operation({
+    id = id.from("com.amazonaws.kms", "UpdateCustomKeyStore"),
+    input = M.UpdateCustomKeyStoreInput,
+    output = M.UpdateCustomKeyStoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKeyDescription = schema.operation({
+    id = id.from("com.amazonaws.kms", "UpdateKeyDescription"),
+    input = M.UpdateKeyDescriptionInput,
+    output = M.UpdateKeyDescriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePrimaryRegion = schema.operation({
+    id = id.from("com.amazonaws.kms", "UpdatePrimaryRegion"),
+    input = M.UpdatePrimaryRegionInput,
+    output = M.UpdatePrimaryRegionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Verify = schema.operation({
+    id = id.from("com.amazonaws.kms", "Verify"),
+    input = M.VerifyInput,
+    output = M.VerifyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyMac = schema.operation({
+    id = id.from("com.amazonaws.kms", "VerifyMac"),
+    input = M.VerifyMacInput,
+    output = M.VerifyMacOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -818,4 +818,146 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.licensemanagerlinuxsubscriptions", "LicenseManagerLinuxSubscriptions"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterSubscriptionProvider = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerlinuxsubscriptions", "DeregisterSubscriptionProvider"),
+    input = M.DeregisterSubscriptionProviderInput,
+    output = M.DeregisterSubscriptionProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/subscription/DeregisterSubscriptionProvider" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRegisteredSubscriptionProvider = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerlinuxsubscriptions", "GetRegisteredSubscriptionProvider"),
+    input = M.GetRegisteredSubscriptionProviderInput,
+    output = M.GetRegisteredSubscriptionProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/subscription/GetRegisteredSubscriptionProvider" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceSettings = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerlinuxsubscriptions", "GetServiceSettings"),
+    input = M.GetServiceSettingsInput,
+    output = M.GetServiceSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/subscription/GetServiceSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLinuxSubscriptionInstances = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerlinuxsubscriptions", "ListLinuxSubscriptionInstances"),
+    input = M.ListLinuxSubscriptionInstancesInput,
+    output = M.ListLinuxSubscriptionInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/subscription/ListLinuxSubscriptionInstances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLinuxSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerlinuxsubscriptions", "ListLinuxSubscriptions"),
+    input = M.ListLinuxSubscriptionsInput,
+    output = M.ListLinuxSubscriptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/subscription/ListLinuxSubscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRegisteredSubscriptionProviders = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerlinuxsubscriptions", "ListRegisteredSubscriptionProviders"),
+    input = M.ListRegisteredSubscriptionProvidersInput,
+    output = M.ListRegisteredSubscriptionProvidersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/subscription/ListRegisteredSubscriptionProviders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerlinuxsubscriptions", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterSubscriptionProvider = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerlinuxsubscriptions", "RegisterSubscriptionProvider"),
+    input = M.RegisterSubscriptionProviderInput,
+    output = M.RegisterSubscriptionProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/subscription/RegisterSubscriptionProvider" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerlinuxsubscriptions", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerlinuxsubscriptions", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceSettings = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerlinuxsubscriptions", "UpdateServiceSettings"),
+    input = M.UpdateServiceSettingsInput,
+    output = M.UpdateServiceSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/subscription/UpdateServiceSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

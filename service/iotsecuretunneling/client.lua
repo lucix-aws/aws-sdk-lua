@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("iotsecuretunneling.endpoint_rules")
 local schemas = require("iotsecuretunneling.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "IoTSecuredTunneling", signing_region = cfg.region } }
                 else
@@ -49,107 +52,35 @@ function M.new(cfg)
 end
 
 function Client:closeTunnel(input, options)
-    return self:invokeOperation(input, {
-        name = "CloseTunnel",
-        input_schema = schemas.CloseTunnelInput,
-        output_schema = schemas.CloseTunnelOutput,
-        http_method = "DELETE",
-        http_path = "/tunnels/{tunnelId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CloseTunnel, input, options)
 end
 
 function Client:describeTunnel(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTunnel",
-        input_schema = schemas.DescribeTunnelInput,
-        output_schema = schemas.DescribeTunnelOutput,
-        http_method = "GET",
-        http_path = "/tunnels/{tunnelId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTunnel, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTunnels(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTunnels",
-        input_schema = schemas.ListTunnelsInput,
-        output_schema = schemas.ListTunnelsOutput,
-        http_method = "GET",
-        http_path = "/tunnels",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTunnels, input, options)
 end
 
 function Client:openTunnel(input, options)
-    return self:invokeOperation(input, {
-        name = "OpenTunnel",
-        input_schema = schemas.OpenTunnelInput,
-        output_schema = schemas.OpenTunnelOutput,
-        http_method = "POST",
-        http_path = "/tunnels",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.OpenTunnel, input, options)
 end
 
 function Client:rotateTunnelAccessToken(input, options)
-    return self:invokeOperation(input, {
-        name = "RotateTunnelAccessToken",
-        input_schema = schemas.RotateTunnelAccessTokenInput,
-        output_schema = schemas.RotateTunnelAccessTokenOutput,
-        http_method = "POST",
-        http_path = "/tunnel/{tunnelId}/rotate",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RotateTunnelAccessToken, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/untag",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 return M

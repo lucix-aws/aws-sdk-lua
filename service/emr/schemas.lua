@@ -7206,4 +7206,674 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.emr", "ElasticMapReduce"),
+    version = "2009-03-31",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddInstanceFleet = schema.operation({
+    id = id.from("com.amazonaws.emr", "AddInstanceFleet"),
+    input = M.AddInstanceFleetInput,
+    output = M.AddInstanceFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddInstanceGroups = schema.operation({
+    id = id.from("com.amazonaws.emr", "AddInstanceGroups"),
+    input = M.AddInstanceGroupsInput,
+    output = M.AddInstanceGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddJobFlowSteps = schema.operation({
+    id = id.from("com.amazonaws.emr", "AddJobFlowSteps"),
+    input = M.AddJobFlowStepsInput,
+    output = M.AddJobFlowStepsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTags = schema.operation({
+    id = id.from("com.amazonaws.emr", "AddTags"),
+    input = M.AddTagsInput,
+    output = M.AddTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelSteps = schema.operation({
+    id = id.from("com.amazonaws.emr", "CancelSteps"),
+    input = M.CancelStepsInput,
+    output = M.CancelStepsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePersistentAppUI = schema.operation({
+    id = id.from("com.amazonaws.emr", "CreatePersistentAppUI"),
+    input = M.CreatePersistentAppUIInput,
+    output = M.CreatePersistentAppUIOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSecurityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.emr", "CreateSecurityConfiguration"),
+    input = M.CreateSecurityConfigurationInput,
+    output = M.CreateSecurityConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStudio = schema.operation({
+    id = id.from("com.amazonaws.emr", "CreateStudio"),
+    input = M.CreateStudioInput,
+    output = M.CreateStudioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStudioSessionMapping = schema.operation({
+    id = id.from("com.amazonaws.emr", "CreateStudioSessionMapping"),
+    input = M.CreateStudioSessionMappingInput,
+    output = M.CreateStudioSessionMappingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSecurityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.emr", "DeleteSecurityConfiguration"),
+    input = M.DeleteSecurityConfigurationInput,
+    output = M.DeleteSecurityConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStudio = schema.operation({
+    id = id.from("com.amazonaws.emr", "DeleteStudio"),
+    input = M.DeleteStudioInput,
+    output = M.DeleteStudioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStudioSessionMapping = schema.operation({
+    id = id.from("com.amazonaws.emr", "DeleteStudioSessionMapping"),
+    input = M.DeleteStudioSessionMappingInput,
+    output = M.DeleteStudioSessionMappingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCluster = schema.operation({
+    id = id.from("com.amazonaws.emr", "DescribeCluster"),
+    input = M.DescribeClusterInput,
+    output = M.DescribeClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobFlows = schema.operation({
+    id = id.from("com.amazonaws.emr", "DescribeJobFlows"),
+    input = M.DescribeJobFlowsInput,
+    output = M.DescribeJobFlowsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNotebookExecution = schema.operation({
+    id = id.from("com.amazonaws.emr", "DescribeNotebookExecution"),
+    input = M.DescribeNotebookExecutionInput,
+    output = M.DescribeNotebookExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePersistentAppUI = schema.operation({
+    id = id.from("com.amazonaws.emr", "DescribePersistentAppUI"),
+    input = M.DescribePersistentAppUIInput,
+    output = M.DescribePersistentAppUIOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReleaseLabel = schema.operation({
+    id = id.from("com.amazonaws.emr", "DescribeReleaseLabel"),
+    input = M.DescribeReleaseLabelInput,
+    output = M.DescribeReleaseLabelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSecurityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.emr", "DescribeSecurityConfiguration"),
+    input = M.DescribeSecurityConfigurationInput,
+    output = M.DescribeSecurityConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStep = schema.operation({
+    id = id.from("com.amazonaws.emr", "DescribeStep"),
+    input = M.DescribeStepInput,
+    output = M.DescribeStepOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStudio = schema.operation({
+    id = id.from("com.amazonaws.emr", "DescribeStudio"),
+    input = M.DescribeStudioInput,
+    output = M.DescribeStudioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAutoTerminationPolicy = schema.operation({
+    id = id.from("com.amazonaws.emr", "GetAutoTerminationPolicy"),
+    input = M.GetAutoTerminationPolicyInput,
+    output = M.GetAutoTerminationPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBlockPublicAccessConfiguration = schema.operation({
+    id = id.from("com.amazonaws.emr", "GetBlockPublicAccessConfiguration"),
+    input = M.GetBlockPublicAccessConfigurationInput,
+    output = M.GetBlockPublicAccessConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetClusterSessionCredentials = schema.operation({
+    id = id.from("com.amazonaws.emr", "GetClusterSessionCredentials"),
+    input = M.GetClusterSessionCredentialsInput,
+    output = M.GetClusterSessionCredentialsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetManagedScalingPolicy = schema.operation({
+    id = id.from("com.amazonaws.emr", "GetManagedScalingPolicy"),
+    input = M.GetManagedScalingPolicyInput,
+    output = M.GetManagedScalingPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOnClusterAppUIPresignedURL = schema.operation({
+    id = id.from("com.amazonaws.emr", "GetOnClusterAppUIPresignedURL"),
+    input = M.GetOnClusterAppUIPresignedURLInput,
+    output = M.GetOnClusterAppUIPresignedURLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPersistentAppUIPresignedURL = schema.operation({
+    id = id.from("com.amazonaws.emr", "GetPersistentAppUIPresignedURL"),
+    input = M.GetPersistentAppUIPresignedURLInput,
+    output = M.GetPersistentAppUIPresignedURLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStudioSessionMapping = schema.operation({
+    id = id.from("com.amazonaws.emr", "GetStudioSessionMapping"),
+    input = M.GetStudioSessionMappingInput,
+    output = M.GetStudioSessionMappingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBootstrapActions = schema.operation({
+    id = id.from("com.amazonaws.emr", "ListBootstrapActions"),
+    input = M.ListBootstrapActionsInput,
+    output = M.ListBootstrapActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusters = schema.operation({
+    id = id.from("com.amazonaws.emr", "ListClusters"),
+    input = M.ListClustersInput,
+    output = M.ListClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstanceFleets = schema.operation({
+    id = id.from("com.amazonaws.emr", "ListInstanceFleets"),
+    input = M.ListInstanceFleetsInput,
+    output = M.ListInstanceFleetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstanceGroups = schema.operation({
+    id = id.from("com.amazonaws.emr", "ListInstanceGroups"),
+    input = M.ListInstanceGroupsInput,
+    output = M.ListInstanceGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstances = schema.operation({
+    id = id.from("com.amazonaws.emr", "ListInstances"),
+    input = M.ListInstancesInput,
+    output = M.ListInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotebookExecutions = schema.operation({
+    id = id.from("com.amazonaws.emr", "ListNotebookExecutions"),
+    input = M.ListNotebookExecutionsInput,
+    output = M.ListNotebookExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReleaseLabels = schema.operation({
+    id = id.from("com.amazonaws.emr", "ListReleaseLabels"),
+    input = M.ListReleaseLabelsInput,
+    output = M.ListReleaseLabelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityConfigurations = schema.operation({
+    id = id.from("com.amazonaws.emr", "ListSecurityConfigurations"),
+    input = M.ListSecurityConfigurationsInput,
+    output = M.ListSecurityConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSteps = schema.operation({
+    id = id.from("com.amazonaws.emr", "ListSteps"),
+    input = M.ListStepsInput,
+    output = M.ListStepsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStudios = schema.operation({
+    id = id.from("com.amazonaws.emr", "ListStudios"),
+    input = M.ListStudiosInput,
+    output = M.ListStudiosOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStudioSessionMappings = schema.operation({
+    id = id.from("com.amazonaws.emr", "ListStudioSessionMappings"),
+    input = M.ListStudioSessionMappingsInput,
+    output = M.ListStudioSessionMappingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSupportedInstanceTypes = schema.operation({
+    id = id.from("com.amazonaws.emr", "ListSupportedInstanceTypes"),
+    input = M.ListSupportedInstanceTypesInput,
+    output = M.ListSupportedInstanceTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyCluster = schema.operation({
+    id = id.from("com.amazonaws.emr", "ModifyCluster"),
+    input = M.ModifyClusterInput,
+    output = M.ModifyClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyInstanceFleet = schema.operation({
+    id = id.from("com.amazonaws.emr", "ModifyInstanceFleet"),
+    input = M.ModifyInstanceFleetInput,
+    output = M.ModifyInstanceFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyInstanceGroups = schema.operation({
+    id = id.from("com.amazonaws.emr", "ModifyInstanceGroups"),
+    input = M.ModifyInstanceGroupsInput,
+    output = M.ModifyInstanceGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAutoScalingPolicy = schema.operation({
+    id = id.from("com.amazonaws.emr", "PutAutoScalingPolicy"),
+    input = M.PutAutoScalingPolicyInput,
+    output = M.PutAutoScalingPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAutoTerminationPolicy = schema.operation({
+    id = id.from("com.amazonaws.emr", "PutAutoTerminationPolicy"),
+    input = M.PutAutoTerminationPolicyInput,
+    output = M.PutAutoTerminationPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutBlockPublicAccessConfiguration = schema.operation({
+    id = id.from("com.amazonaws.emr", "PutBlockPublicAccessConfiguration"),
+    input = M.PutBlockPublicAccessConfigurationInput,
+    output = M.PutBlockPublicAccessConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutManagedScalingPolicy = schema.operation({
+    id = id.from("com.amazonaws.emr", "PutManagedScalingPolicy"),
+    input = M.PutManagedScalingPolicyInput,
+    output = M.PutManagedScalingPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveAutoScalingPolicy = schema.operation({
+    id = id.from("com.amazonaws.emr", "RemoveAutoScalingPolicy"),
+    input = M.RemoveAutoScalingPolicyInput,
+    output = M.RemoveAutoScalingPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveAutoTerminationPolicy = schema.operation({
+    id = id.from("com.amazonaws.emr", "RemoveAutoTerminationPolicy"),
+    input = M.RemoveAutoTerminationPolicyInput,
+    output = M.RemoveAutoTerminationPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveManagedScalingPolicy = schema.operation({
+    id = id.from("com.amazonaws.emr", "RemoveManagedScalingPolicy"),
+    input = M.RemoveManagedScalingPolicyInput,
+    output = M.RemoveManagedScalingPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTags = schema.operation({
+    id = id.from("com.amazonaws.emr", "RemoveTags"),
+    input = M.RemoveTagsInput,
+    output = M.RemoveTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RunJobFlow = schema.operation({
+    id = id.from("com.amazonaws.emr", "RunJobFlow"),
+    input = M.RunJobFlowInput,
+    output = M.RunJobFlowOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetKeepJobFlowAliveWhenNoSteps = schema.operation({
+    id = id.from("com.amazonaws.emr", "SetKeepJobFlowAliveWhenNoSteps"),
+    input = M.SetKeepJobFlowAliveWhenNoStepsInput,
+    output = M.SetKeepJobFlowAliveWhenNoStepsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetTerminationProtection = schema.operation({
+    id = id.from("com.amazonaws.emr", "SetTerminationProtection"),
+    input = M.SetTerminationProtectionInput,
+    output = M.SetTerminationProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetUnhealthyNodeReplacement = schema.operation({
+    id = id.from("com.amazonaws.emr", "SetUnhealthyNodeReplacement"),
+    input = M.SetUnhealthyNodeReplacementInput,
+    output = M.SetUnhealthyNodeReplacementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetVisibleToAllUsers = schema.operation({
+    id = id.from("com.amazonaws.emr", "SetVisibleToAllUsers"),
+    input = M.SetVisibleToAllUsersInput,
+    output = M.SetVisibleToAllUsersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartNotebookExecution = schema.operation({
+    id = id.from("com.amazonaws.emr", "StartNotebookExecution"),
+    input = M.StartNotebookExecutionInput,
+    output = M.StartNotebookExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopNotebookExecution = schema.operation({
+    id = id.from("com.amazonaws.emr", "StopNotebookExecution"),
+    input = M.StopNotebookExecutionInput,
+    output = M.StopNotebookExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateJobFlows = schema.operation({
+    id = id.from("com.amazonaws.emr", "TerminateJobFlows"),
+    input = M.TerminateJobFlowsInput,
+    output = M.TerminateJobFlowsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStudio = schema.operation({
+    id = id.from("com.amazonaws.emr", "UpdateStudio"),
+    input = M.UpdateStudioInput,
+    output = M.UpdateStudioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStudioSessionMapping = schema.operation({
+    id = id.from("com.amazonaws.emr", "UpdateStudioSessionMapping"),
+    input = M.UpdateStudioSessionMappingInput,
+    output = M.UpdateStudioSessionMappingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

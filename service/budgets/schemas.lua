@@ -2785,4 +2785,300 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.budgets", "AWSBudgetServiceGateway"),
+    version = "2016-10-20",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBudget = schema.operation({
+    id = id.from("com.amazonaws.budgets", "CreateBudget"),
+    input = M.CreateBudgetInput,
+    output = M.CreateBudgetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBudgetAction = schema.operation({
+    id = id.from("com.amazonaws.budgets", "CreateBudgetAction"),
+    input = M.CreateBudgetActionInput,
+    output = M.CreateBudgetActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNotification = schema.operation({
+    id = id.from("com.amazonaws.budgets", "CreateNotification"),
+    input = M.CreateNotificationInput,
+    output = M.CreateNotificationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSubscriber = schema.operation({
+    id = id.from("com.amazonaws.budgets", "CreateSubscriber"),
+    input = M.CreateSubscriberInput,
+    output = M.CreateSubscriberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBudget = schema.operation({
+    id = id.from("com.amazonaws.budgets", "DeleteBudget"),
+    input = M.DeleteBudgetInput,
+    output = M.DeleteBudgetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBudgetAction = schema.operation({
+    id = id.from("com.amazonaws.budgets", "DeleteBudgetAction"),
+    input = M.DeleteBudgetActionInput,
+    output = M.DeleteBudgetActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNotification = schema.operation({
+    id = id.from("com.amazonaws.budgets", "DeleteNotification"),
+    input = M.DeleteNotificationInput,
+    output = M.DeleteNotificationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSubscriber = schema.operation({
+    id = id.from("com.amazonaws.budgets", "DeleteSubscriber"),
+    input = M.DeleteSubscriberInput,
+    output = M.DeleteSubscriberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBudget = schema.operation({
+    id = id.from("com.amazonaws.budgets", "DescribeBudget"),
+    input = M.DescribeBudgetInput,
+    output = M.DescribeBudgetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBudgetAction = schema.operation({
+    id = id.from("com.amazonaws.budgets", "DescribeBudgetAction"),
+    input = M.DescribeBudgetActionInput,
+    output = M.DescribeBudgetActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBudgetActionHistories = schema.operation({
+    id = id.from("com.amazonaws.budgets", "DescribeBudgetActionHistories"),
+    input = M.DescribeBudgetActionHistoriesInput,
+    output = M.DescribeBudgetActionHistoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBudgetActionsForAccount = schema.operation({
+    id = id.from("com.amazonaws.budgets", "DescribeBudgetActionsForAccount"),
+    input = M.DescribeBudgetActionsForAccountInput,
+    output = M.DescribeBudgetActionsForAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBudgetActionsForBudget = schema.operation({
+    id = id.from("com.amazonaws.budgets", "DescribeBudgetActionsForBudget"),
+    input = M.DescribeBudgetActionsForBudgetInput,
+    output = M.DescribeBudgetActionsForBudgetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBudgetNotificationsForAccount = schema.operation({
+    id = id.from("com.amazonaws.budgets", "DescribeBudgetNotificationsForAccount"),
+    input = M.DescribeBudgetNotificationsForAccountInput,
+    output = M.DescribeBudgetNotificationsForAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBudgetPerformanceHistory = schema.operation({
+    id = id.from("com.amazonaws.budgets", "DescribeBudgetPerformanceHistory"),
+    input = M.DescribeBudgetPerformanceHistoryInput,
+    output = M.DescribeBudgetPerformanceHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBudgets = schema.operation({
+    id = id.from("com.amazonaws.budgets", "DescribeBudgets"),
+    input = M.DescribeBudgetsInput,
+    output = M.DescribeBudgetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNotificationsForBudget = schema.operation({
+    id = id.from("com.amazonaws.budgets", "DescribeNotificationsForBudget"),
+    input = M.DescribeNotificationsForBudgetInput,
+    output = M.DescribeNotificationsForBudgetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSubscribersForNotification = schema.operation({
+    id = id.from("com.amazonaws.budgets", "DescribeSubscribersForNotification"),
+    input = M.DescribeSubscribersForNotificationInput,
+    output = M.DescribeSubscribersForNotificationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteBudgetAction = schema.operation({
+    id = id.from("com.amazonaws.budgets", "ExecuteBudgetAction"),
+    input = M.ExecuteBudgetActionInput,
+    output = M.ExecuteBudgetActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.budgets", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.budgets", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.budgets", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBudget = schema.operation({
+    id = id.from("com.amazonaws.budgets", "UpdateBudget"),
+    input = M.UpdateBudgetInput,
+    output = M.UpdateBudgetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBudgetAction = schema.operation({
+    id = id.from("com.amazonaws.budgets", "UpdateBudgetAction"),
+    input = M.UpdateBudgetActionInput,
+    output = M.UpdateBudgetActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNotification = schema.operation({
+    id = id.from("com.amazonaws.budgets", "UpdateNotification"),
+    input = M.UpdateNotificationInput,
+    output = M.UpdateNotificationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSubscriber = schema.operation({
+    id = id.from("com.amazonaws.budgets", "UpdateSubscriber"),
+    input = M.UpdateSubscriberInput,
+    output = M.UpdateSubscriberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

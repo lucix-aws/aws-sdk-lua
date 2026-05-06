@@ -4109,4 +4109,386 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "ChimeSDKMediaPipelinesService"),
+    version = "2021-07-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMediaCapturePipeline = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "CreateMediaCapturePipeline"),
+    input = M.CreateMediaCapturePipelineInput,
+    output = M.CreateMediaCapturePipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sdk-media-capture-pipelines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMediaConcatenationPipeline = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "CreateMediaConcatenationPipeline"),
+    input = M.CreateMediaConcatenationPipelineInput,
+    output = M.CreateMediaConcatenationPipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sdk-media-concatenation-pipelines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMediaInsightsPipeline = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "CreateMediaInsightsPipeline"),
+    input = M.CreateMediaInsightsPipelineInput,
+    output = M.CreateMediaInsightsPipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/media-insights-pipelines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMediaInsightsPipelineConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "CreateMediaInsightsPipelineConfiguration"),
+    input = M.CreateMediaInsightsPipelineConfigurationInput,
+    output = M.CreateMediaInsightsPipelineConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/media-insights-pipeline-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMediaLiveConnectorPipeline = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "CreateMediaLiveConnectorPipeline"),
+    input = M.CreateMediaLiveConnectorPipelineInput,
+    output = M.CreateMediaLiveConnectorPipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sdk-media-live-connector-pipelines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMediaPipelineKinesisVideoStreamPool = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "CreateMediaPipelineKinesisVideoStreamPool"),
+    input = M.CreateMediaPipelineKinesisVideoStreamPoolInput,
+    output = M.CreateMediaPipelineKinesisVideoStreamPoolOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/media-pipeline-kinesis-video-stream-pools" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMediaStreamPipeline = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "CreateMediaStreamPipeline"),
+    input = M.CreateMediaStreamPipelineInput,
+    output = M.CreateMediaStreamPipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sdk-media-stream-pipelines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMediaCapturePipeline = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "DeleteMediaCapturePipeline"),
+    input = M.DeleteMediaCapturePipelineInput,
+    output = M.DeleteMediaCapturePipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sdk-media-capture-pipelines/{MediaPipelineId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMediaInsightsPipelineConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "DeleteMediaInsightsPipelineConfiguration"),
+    input = M.DeleteMediaInsightsPipelineConfigurationInput,
+    output = M.DeleteMediaInsightsPipelineConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/media-insights-pipeline-configurations/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMediaPipeline = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "DeleteMediaPipeline"),
+    input = M.DeleteMediaPipelineInput,
+    output = M.DeleteMediaPipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sdk-media-pipelines/{MediaPipelineId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMediaPipelineKinesisVideoStreamPool = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "DeleteMediaPipelineKinesisVideoStreamPool"),
+    input = M.DeleteMediaPipelineKinesisVideoStreamPoolInput,
+    output = M.DeleteMediaPipelineKinesisVideoStreamPoolOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/media-pipeline-kinesis-video-stream-pools/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMediaCapturePipeline = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "GetMediaCapturePipeline"),
+    input = M.GetMediaCapturePipelineInput,
+    output = M.GetMediaCapturePipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sdk-media-capture-pipelines/{MediaPipelineId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMediaInsightsPipelineConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "GetMediaInsightsPipelineConfiguration"),
+    input = M.GetMediaInsightsPipelineConfigurationInput,
+    output = M.GetMediaInsightsPipelineConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/media-insights-pipeline-configurations/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMediaPipeline = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "GetMediaPipeline"),
+    input = M.GetMediaPipelineInput,
+    output = M.GetMediaPipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sdk-media-pipelines/{MediaPipelineId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMediaPipelineKinesisVideoStreamPool = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "GetMediaPipelineKinesisVideoStreamPool"),
+    input = M.GetMediaPipelineKinesisVideoStreamPoolInput,
+    output = M.GetMediaPipelineKinesisVideoStreamPoolOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/media-pipeline-kinesis-video-stream-pools/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSpeakerSearchTask = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "GetSpeakerSearchTask"),
+    input = M.GetSpeakerSearchTaskInput,
+    output = M.GetSpeakerSearchTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/media-insights-pipelines/{Identifier}/speaker-search-tasks/{SpeakerSearchTaskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceToneAnalysisTask = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "GetVoiceToneAnalysisTask"),
+    input = M.GetVoiceToneAnalysisTaskInput,
+    output = M.GetVoiceToneAnalysisTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/media-insights-pipelines/{Identifier}/voice-tone-analysis-tasks/{VoiceToneAnalysisTaskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMediaCapturePipelines = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "ListMediaCapturePipelines"),
+    input = M.ListMediaCapturePipelinesInput,
+    output = M.ListMediaCapturePipelinesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sdk-media-capture-pipelines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMediaInsightsPipelineConfigurations = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "ListMediaInsightsPipelineConfigurations"),
+    input = M.ListMediaInsightsPipelineConfigurationsInput,
+    output = M.ListMediaInsightsPipelineConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/media-insights-pipeline-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMediaPipelineKinesisVideoStreamPools = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "ListMediaPipelineKinesisVideoStreamPools"),
+    input = M.ListMediaPipelineKinesisVideoStreamPoolsInput,
+    output = M.ListMediaPipelineKinesisVideoStreamPoolsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/media-pipeline-kinesis-video-stream-pools" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMediaPipelines = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "ListMediaPipelines"),
+    input = M.ListMediaPipelinesInput,
+    output = M.ListMediaPipelinesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sdk-media-pipelines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSpeakerSearchTask = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "StartSpeakerSearchTask"),
+    input = M.StartSpeakerSearchTaskInput,
+    output = M.StartSpeakerSearchTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/media-insights-pipelines/{Identifier}/speaker-search-tasks?operation=start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartVoiceToneAnalysisTask = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "StartVoiceToneAnalysisTask"),
+    input = M.StartVoiceToneAnalysisTaskInput,
+    output = M.StartVoiceToneAnalysisTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/media-insights-pipelines/{Identifier}/voice-tone-analysis-tasks?operation=start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopSpeakerSearchTask = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "StopSpeakerSearchTask"),
+    input = M.StopSpeakerSearchTaskInput,
+    output = M.StopSpeakerSearchTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/media-insights-pipelines/{Identifier}/speaker-search-tasks/{SpeakerSearchTaskId}?operation=stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopVoiceToneAnalysisTask = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "StopVoiceToneAnalysisTask"),
+    input = M.StopVoiceToneAnalysisTaskInput,
+    output = M.StopVoiceToneAnalysisTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/media-insights-pipelines/{Identifier}/voice-tone-analysis-tasks/{VoiceToneAnalysisTaskId}?operation=stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags?operation=tag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags?operation=untag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMediaInsightsPipelineConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "UpdateMediaInsightsPipelineConfiguration"),
+    input = M.UpdateMediaInsightsPipelineConfigurationInput,
+    output = M.UpdateMediaInsightsPipelineConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/media-insights-pipeline-configurations/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMediaInsightsPipelineStatus = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "UpdateMediaInsightsPipelineStatus"),
+    input = M.UpdateMediaInsightsPipelineStatusInput,
+    output = M.UpdateMediaInsightsPipelineStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/media-insights-pipeline-status/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMediaPipelineKinesisVideoStreamPool = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmediapipelines", "UpdateMediaPipelineKinesisVideoStreamPool"),
+    input = M.UpdateMediaPipelineKinesisVideoStreamPoolInput,
+    output = M.UpdateMediaPipelineKinesisVideoStreamPoolOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/media-pipeline-kinesis-video-stream-pools/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

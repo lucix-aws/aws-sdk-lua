@@ -7,6 +7,7 @@ local endpoint_rules = require("uxc.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("uxc.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "uxc", signing_region = cfg.region } }
                 else
@@ -49,42 +52,15 @@ function M.new(cfg)
 end
 
 function Client:getAccountCustomizations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccountCustomizations",
-        input_schema = schemas.GetAccountCustomizationsInput,
-        output_schema = schemas.GetAccountCustomizationsOutput,
-        http_method = "GET",
-        http_path = "/v1/account-customizations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccountCustomizations, input, options)
 end
 
 function Client:listServices(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServices",
-        input_schema = schemas.ListServicesInput,
-        output_schema = schemas.ListServicesOutput,
-        http_method = "GET",
-        http_path = "/v1/services",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServices, input, options)
 end
 
 function Client:updateAccountCustomizations(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAccountCustomizations",
-        input_schema = schemas.UpdateAccountCustomizationsInput,
-        output_schema = schemas.UpdateAccountCustomizationsOutput,
-        http_method = "PATCH",
-        http_path = "/v1/account-customizations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAccountCustomizations, input, options)
 end
 
 return M

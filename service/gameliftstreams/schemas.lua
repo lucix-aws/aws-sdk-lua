@@ -2514,4 +2514,302 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.gameliftstreams", "GameLiftStreams"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddStreamGroupLocations = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "AddStreamGroupLocations"),
+    input = M.AddStreamGroupLocationsInput,
+    output = M.AddStreamGroupLocationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/streamgroups/{Identifier}/locations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateApplications = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "AssociateApplications"),
+    input = M.AssociateApplicationsInput,
+    output = M.AssociateApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/streamgroups/{Identifier}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStreamGroup = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "CreateStreamGroup"),
+    input = M.CreateStreamGroupInput,
+    output = M.CreateStreamGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/streamgroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStreamSessionConnection = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "CreateStreamSessionConnection"),
+    input = M.CreateStreamSessionConnectionInput,
+    output = M.CreateStreamSessionConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}/connections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStreamGroup = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "DeleteStreamGroup"),
+    input = M.DeleteStreamGroupInput,
+    output = M.DeleteStreamGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/streamgroups/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateApplications = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "DisassociateApplications"),
+    input = M.DisassociateApplicationsInput,
+    output = M.DisassociateApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/streamgroups/{Identifier}/disassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportStreamSessionFiles = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "ExportStreamSessionFiles"),
+    input = M.ExportStreamSessionFilesInput,
+    output = M.ExportStreamSessionFilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}/exportfiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplication = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "GetApplication"),
+    input = M.GetApplicationInput,
+    output = M.GetApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStreamGroup = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "GetStreamGroup"),
+    input = M.GetStreamGroupInput,
+    output = M.GetStreamGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/streamgroups/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStreamSession = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "GetStreamSession"),
+    input = M.GetStreamSessionInput,
+    output = M.GetStreamSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStreamGroups = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "ListStreamGroups"),
+    input = M.ListStreamGroupsInput,
+    output = M.ListStreamGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/streamgroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStreamSessions = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "ListStreamSessions"),
+    input = M.ListStreamSessionsInput,
+    output = M.ListStreamSessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/streamgroups/{Identifier}/streamsessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStreamSessionsByAccount = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "ListStreamSessionsByAccount"),
+    input = M.ListStreamSessionsByAccountInput,
+    output = M.ListStreamSessionsByAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/streamsessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveStreamGroupLocations = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "RemoveStreamGroupLocations"),
+    input = M.RemoveStreamGroupLocationsInput,
+    output = M.RemoveStreamGroupLocationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/streamgroups/{Identifier}/locations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartStreamSession = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "StartStreamSession"),
+    input = M.StartStreamSessionInput,
+    output = M.StartStreamSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/streamgroups/{Identifier}/streamsessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateStreamSession = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "TerminateStreamSession"),
+    input = M.TerminateStreamSessionInput,
+    output = M.TerminateStreamSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/applications/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStreamGroup = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "UpdateStreamGroup"),
+    input = M.UpdateStreamGroupInput,
+    output = M.UpdateStreamGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/streamgroups/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

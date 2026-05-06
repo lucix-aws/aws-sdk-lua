@@ -6132,4 +6132,443 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.swf", "SimpleWorkflowService"),
+    version = "2012-01-25",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CountClosedWorkflowExecutions = schema.operation({
+    id = id.from("com.amazonaws.swf", "CountClosedWorkflowExecutions"),
+    input = M.CountClosedWorkflowExecutionsInput,
+    output = M.CountClosedWorkflowExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CountOpenWorkflowExecutions = schema.operation({
+    id = id.from("com.amazonaws.swf", "CountOpenWorkflowExecutions"),
+    input = M.CountOpenWorkflowExecutionsInput,
+    output = M.CountOpenWorkflowExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CountPendingActivityTasks = schema.operation({
+    id = id.from("com.amazonaws.swf", "CountPendingActivityTasks"),
+    input = M.CountPendingActivityTasksInput,
+    output = M.CountPendingActivityTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CountPendingDecisionTasks = schema.operation({
+    id = id.from("com.amazonaws.swf", "CountPendingDecisionTasks"),
+    input = M.CountPendingDecisionTasksInput,
+    output = M.CountPendingDecisionTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteActivityType = schema.operation({
+    id = id.from("com.amazonaws.swf", "DeleteActivityType"),
+    input = M.DeleteActivityTypeInput,
+    output = M.DeleteActivityTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkflowType = schema.operation({
+    id = id.from("com.amazonaws.swf", "DeleteWorkflowType"),
+    input = M.DeleteWorkflowTypeInput,
+    output = M.DeleteWorkflowTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeprecateActivityType = schema.operation({
+    id = id.from("com.amazonaws.swf", "DeprecateActivityType"),
+    input = M.DeprecateActivityTypeInput,
+    output = M.DeprecateActivityTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeprecateDomain = schema.operation({
+    id = id.from("com.amazonaws.swf", "DeprecateDomain"),
+    input = M.DeprecateDomainInput,
+    output = M.DeprecateDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeprecateWorkflowType = schema.operation({
+    id = id.from("com.amazonaws.swf", "DeprecateWorkflowType"),
+    input = M.DeprecateWorkflowTypeInput,
+    output = M.DeprecateWorkflowTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeActivityType = schema.operation({
+    id = id.from("com.amazonaws.swf", "DescribeActivityType"),
+    input = M.DescribeActivityTypeInput,
+    output = M.DescribeActivityTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomain = schema.operation({
+    id = id.from("com.amazonaws.swf", "DescribeDomain"),
+    input = M.DescribeDomainInput,
+    output = M.DescribeDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkflowExecution = schema.operation({
+    id = id.from("com.amazonaws.swf", "DescribeWorkflowExecution"),
+    input = M.DescribeWorkflowExecutionInput,
+    output = M.DescribeWorkflowExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkflowType = schema.operation({
+    id = id.from("com.amazonaws.swf", "DescribeWorkflowType"),
+    input = M.DescribeWorkflowTypeInput,
+    output = M.DescribeWorkflowTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflowExecutionHistory = schema.operation({
+    id = id.from("com.amazonaws.swf", "GetWorkflowExecutionHistory"),
+    input = M.GetWorkflowExecutionHistoryInput,
+    output = M.GetWorkflowExecutionHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListActivityTypes = schema.operation({
+    id = id.from("com.amazonaws.swf", "ListActivityTypes"),
+    input = M.ListActivityTypesInput,
+    output = M.ListActivityTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClosedWorkflowExecutions = schema.operation({
+    id = id.from("com.amazonaws.swf", "ListClosedWorkflowExecutions"),
+    input = M.ListClosedWorkflowExecutionsInput,
+    output = M.ListClosedWorkflowExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomains = schema.operation({
+    id = id.from("com.amazonaws.swf", "ListDomains"),
+    input = M.ListDomainsInput,
+    output = M.ListDomainsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOpenWorkflowExecutions = schema.operation({
+    id = id.from("com.amazonaws.swf", "ListOpenWorkflowExecutions"),
+    input = M.ListOpenWorkflowExecutionsInput,
+    output = M.ListOpenWorkflowExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.swf", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflowTypes = schema.operation({
+    id = id.from("com.amazonaws.swf", "ListWorkflowTypes"),
+    input = M.ListWorkflowTypesInput,
+    output = M.ListWorkflowTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PollForActivityTask = schema.operation({
+    id = id.from("com.amazonaws.swf", "PollForActivityTask"),
+    input = M.PollForActivityTaskInput,
+    output = M.PollForActivityTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PollForDecisionTask = schema.operation({
+    id = id.from("com.amazonaws.swf", "PollForDecisionTask"),
+    input = M.PollForDecisionTaskInput,
+    output = M.PollForDecisionTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RecordActivityTaskHeartbeat = schema.operation({
+    id = id.from("com.amazonaws.swf", "RecordActivityTaskHeartbeat"),
+    input = M.RecordActivityTaskHeartbeatInput,
+    output = M.RecordActivityTaskHeartbeatOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterActivityType = schema.operation({
+    id = id.from("com.amazonaws.swf", "RegisterActivityType"),
+    input = M.RegisterActivityTypeInput,
+    output = M.RegisterActivityTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterDomain = schema.operation({
+    id = id.from("com.amazonaws.swf", "RegisterDomain"),
+    input = M.RegisterDomainInput,
+    output = M.RegisterDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterWorkflowType = schema.operation({
+    id = id.from("com.amazonaws.swf", "RegisterWorkflowType"),
+    input = M.RegisterWorkflowTypeInput,
+    output = M.RegisterWorkflowTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RequestCancelWorkflowExecution = schema.operation({
+    id = id.from("com.amazonaws.swf", "RequestCancelWorkflowExecution"),
+    input = M.RequestCancelWorkflowExecutionInput,
+    output = M.RequestCancelWorkflowExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RespondActivityTaskCanceled = schema.operation({
+    id = id.from("com.amazonaws.swf", "RespondActivityTaskCanceled"),
+    input = M.RespondActivityTaskCanceledInput,
+    output = M.RespondActivityTaskCanceledOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RespondActivityTaskCompleted = schema.operation({
+    id = id.from("com.amazonaws.swf", "RespondActivityTaskCompleted"),
+    input = M.RespondActivityTaskCompletedInput,
+    output = M.RespondActivityTaskCompletedOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RespondActivityTaskFailed = schema.operation({
+    id = id.from("com.amazonaws.swf", "RespondActivityTaskFailed"),
+    input = M.RespondActivityTaskFailedInput,
+    output = M.RespondActivityTaskFailedOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RespondDecisionTaskCompleted = schema.operation({
+    id = id.from("com.amazonaws.swf", "RespondDecisionTaskCompleted"),
+    input = M.RespondDecisionTaskCompletedInput,
+    output = M.RespondDecisionTaskCompletedOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SignalWorkflowExecution = schema.operation({
+    id = id.from("com.amazonaws.swf", "SignalWorkflowExecution"),
+    input = M.SignalWorkflowExecutionInput,
+    output = M.SignalWorkflowExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartWorkflowExecution = schema.operation({
+    id = id.from("com.amazonaws.swf", "StartWorkflowExecution"),
+    input = M.StartWorkflowExecutionInput,
+    output = M.StartWorkflowExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.swf", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateWorkflowExecution = schema.operation({
+    id = id.from("com.amazonaws.swf", "TerminateWorkflowExecution"),
+    input = M.TerminateWorkflowExecutionInput,
+    output = M.TerminateWorkflowExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UndeprecateActivityType = schema.operation({
+    id = id.from("com.amazonaws.swf", "UndeprecateActivityType"),
+    input = M.UndeprecateActivityTypeInput,
+    output = M.UndeprecateActivityTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UndeprecateDomain = schema.operation({
+    id = id.from("com.amazonaws.swf", "UndeprecateDomain"),
+    input = M.UndeprecateDomainInput,
+    output = M.UndeprecateDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UndeprecateWorkflowType = schema.operation({
+    id = id.from("com.amazonaws.swf", "UndeprecateWorkflowType"),
+    input = M.UndeprecateWorkflowTypeInput,
+    output = M.UndeprecateWorkflowTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.swf", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

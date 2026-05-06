@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("wafv2.endpoint_rules")
 local schemas = require("wafv2.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "wafv2", signing_region = cfg.region } }
                 else
@@ -49,718 +52,223 @@ function M.new(cfg)
 end
 
 function Client:associateWebACL(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateWebACL",
-        input_schema = schemas.AssociateWebACLInput,
-        output_schema = schemas.AssociateWebACLOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateWebACL, input, options)
 end
 
 function Client:checkCapacity(input, options)
-    return self:invokeOperation(input, {
-        name = "CheckCapacity",
-        input_schema = schemas.CheckCapacityInput,
-        output_schema = schemas.CheckCapacityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CheckCapacity, input, options)
 end
 
 function Client:createAPIKey(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAPIKey",
-        input_schema = schemas.CreateAPIKeyInput,
-        output_schema = schemas.CreateAPIKeyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAPIKey, input, options)
 end
 
 function Client:createIPSet(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateIPSet",
-        input_schema = schemas.CreateIPSetInput,
-        output_schema = schemas.CreateIPSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateIPSet, input, options)
 end
 
 function Client:createRegexPatternSet(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRegexPatternSet",
-        input_schema = schemas.CreateRegexPatternSetInput,
-        output_schema = schemas.CreateRegexPatternSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRegexPatternSet, input, options)
 end
 
 function Client:createRuleGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRuleGroup",
-        input_schema = schemas.CreateRuleGroupInput,
-        output_schema = schemas.CreateRuleGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRuleGroup, input, options)
 end
 
 function Client:createWebACL(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateWebACL",
-        input_schema = schemas.CreateWebACLInput,
-        output_schema = schemas.CreateWebACLOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateWebACL, input, options)
 end
 
 function Client:deleteAPIKey(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAPIKey",
-        input_schema = schemas.DeleteAPIKeyInput,
-        output_schema = schemas.DeleteAPIKeyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAPIKey, input, options)
 end
 
 function Client:deleteFirewallManagerRuleGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFirewallManagerRuleGroups",
-        input_schema = schemas.DeleteFirewallManagerRuleGroupsInput,
-        output_schema = schemas.DeleteFirewallManagerRuleGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFirewallManagerRuleGroups, input, options)
 end
 
 function Client:deleteIPSet(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIPSet",
-        input_schema = schemas.DeleteIPSetInput,
-        output_schema = schemas.DeleteIPSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIPSet, input, options)
 end
 
 function Client:deleteLoggingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteLoggingConfiguration",
-        input_schema = schemas.DeleteLoggingConfigurationInput,
-        output_schema = schemas.DeleteLoggingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteLoggingConfiguration, input, options)
 end
 
 function Client:deletePermissionPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePermissionPolicy",
-        input_schema = schemas.DeletePermissionPolicyInput,
-        output_schema = schemas.DeletePermissionPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePermissionPolicy, input, options)
 end
 
 function Client:deleteRegexPatternSet(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRegexPatternSet",
-        input_schema = schemas.DeleteRegexPatternSetInput,
-        output_schema = schemas.DeleteRegexPatternSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRegexPatternSet, input, options)
 end
 
 function Client:deleteRuleGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRuleGroup",
-        input_schema = schemas.DeleteRuleGroupInput,
-        output_schema = schemas.DeleteRuleGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRuleGroup, input, options)
 end
 
 function Client:deleteWebACL(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWebACL",
-        input_schema = schemas.DeleteWebACLInput,
-        output_schema = schemas.DeleteWebACLOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWebACL, input, options)
 end
 
 function Client:describeAllManagedProducts(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAllManagedProducts",
-        input_schema = schemas.DescribeAllManagedProductsInput,
-        output_schema = schemas.DescribeAllManagedProductsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAllManagedProducts, input, options)
 end
 
 function Client:describeManagedProductsByVendor(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeManagedProductsByVendor",
-        input_schema = schemas.DescribeManagedProductsByVendorInput,
-        output_schema = schemas.DescribeManagedProductsByVendorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeManagedProductsByVendor, input, options)
 end
 
 function Client:describeManagedRuleGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeManagedRuleGroup",
-        input_schema = schemas.DescribeManagedRuleGroupInput,
-        output_schema = schemas.DescribeManagedRuleGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeManagedRuleGroup, input, options)
 end
 
 function Client:disassociateWebACL(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateWebACL",
-        input_schema = schemas.DisassociateWebACLInput,
-        output_schema = schemas.DisassociateWebACLOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateWebACL, input, options)
 end
 
 function Client:generateMobileSdkReleaseUrl(input, options)
-    return self:invokeOperation(input, {
-        name = "GenerateMobileSdkReleaseUrl",
-        input_schema = schemas.GenerateMobileSdkReleaseUrlInput,
-        output_schema = schemas.GenerateMobileSdkReleaseUrlOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GenerateMobileSdkReleaseUrl, input, options)
 end
 
 function Client:getDecryptedAPIKey(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDecryptedAPIKey",
-        input_schema = schemas.GetDecryptedAPIKeyInput,
-        output_schema = schemas.GetDecryptedAPIKeyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDecryptedAPIKey, input, options)
 end
 
 function Client:getIPSet(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIPSet",
-        input_schema = schemas.GetIPSetInput,
-        output_schema = schemas.GetIPSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIPSet, input, options)
 end
 
 function Client:getLoggingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetLoggingConfiguration",
-        input_schema = schemas.GetLoggingConfigurationInput,
-        output_schema = schemas.GetLoggingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetLoggingConfiguration, input, options)
 end
 
 function Client:getManagedRuleSet(input, options)
-    return self:invokeOperation(input, {
-        name = "GetManagedRuleSet",
-        input_schema = schemas.GetManagedRuleSetInput,
-        output_schema = schemas.GetManagedRuleSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetManagedRuleSet, input, options)
 end
 
 function Client:getMobileSdkRelease(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMobileSdkRelease",
-        input_schema = schemas.GetMobileSdkReleaseInput,
-        output_schema = schemas.GetMobileSdkReleaseOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMobileSdkRelease, input, options)
 end
 
 function Client:getPermissionPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPermissionPolicy",
-        input_schema = schemas.GetPermissionPolicyInput,
-        output_schema = schemas.GetPermissionPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPermissionPolicy, input, options)
 end
 
 function Client:getRateBasedStatementManagedKeys(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRateBasedStatementManagedKeys",
-        input_schema = schemas.GetRateBasedStatementManagedKeysInput,
-        output_schema = schemas.GetRateBasedStatementManagedKeysOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRateBasedStatementManagedKeys, input, options)
 end
 
 function Client:getRegexPatternSet(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRegexPatternSet",
-        input_schema = schemas.GetRegexPatternSetInput,
-        output_schema = schemas.GetRegexPatternSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRegexPatternSet, input, options)
 end
 
 function Client:getRuleGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRuleGroup",
-        input_schema = schemas.GetRuleGroupInput,
-        output_schema = schemas.GetRuleGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRuleGroup, input, options)
 end
 
 function Client:getSampledRequests(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSampledRequests",
-        input_schema = schemas.GetSampledRequestsInput,
-        output_schema = schemas.GetSampledRequestsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSampledRequests, input, options)
 end
 
 function Client:getTopPathStatisticsByTraffic(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTopPathStatisticsByTraffic",
-        input_schema = schemas.GetTopPathStatisticsByTrafficInput,
-        output_schema = schemas.GetTopPathStatisticsByTrafficOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTopPathStatisticsByTraffic, input, options)
 end
 
 function Client:getWebACL(input, options)
-    return self:invokeOperation(input, {
-        name = "GetWebACL",
-        input_schema = schemas.GetWebACLInput,
-        output_schema = schemas.GetWebACLOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetWebACL, input, options)
 end
 
 function Client:getWebACLForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "GetWebACLForResource",
-        input_schema = schemas.GetWebACLForResourceInput,
-        output_schema = schemas.GetWebACLForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetWebACLForResource, input, options)
 end
 
 function Client:listAPIKeys(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAPIKeys",
-        input_schema = schemas.ListAPIKeysInput,
-        output_schema = schemas.ListAPIKeysOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAPIKeys, input, options)
 end
 
 function Client:listAvailableManagedRuleGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAvailableManagedRuleGroups",
-        input_schema = schemas.ListAvailableManagedRuleGroupsInput,
-        output_schema = schemas.ListAvailableManagedRuleGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAvailableManagedRuleGroups, input, options)
 end
 
 function Client:listAvailableManagedRuleGroupVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAvailableManagedRuleGroupVersions",
-        input_schema = schemas.ListAvailableManagedRuleGroupVersionsInput,
-        output_schema = schemas.ListAvailableManagedRuleGroupVersionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAvailableManagedRuleGroupVersions, input, options)
 end
 
 function Client:listIPSets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIPSets",
-        input_schema = schemas.ListIPSetsInput,
-        output_schema = schemas.ListIPSetsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIPSets, input, options)
 end
 
 function Client:listLoggingConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListLoggingConfigurations",
-        input_schema = schemas.ListLoggingConfigurationsInput,
-        output_schema = schemas.ListLoggingConfigurationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListLoggingConfigurations, input, options)
 end
 
 function Client:listManagedRuleSets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListManagedRuleSets",
-        input_schema = schemas.ListManagedRuleSetsInput,
-        output_schema = schemas.ListManagedRuleSetsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListManagedRuleSets, input, options)
 end
 
 function Client:listMobileSdkReleases(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMobileSdkReleases",
-        input_schema = schemas.ListMobileSdkReleasesInput,
-        output_schema = schemas.ListMobileSdkReleasesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMobileSdkReleases, input, options)
 end
 
 function Client:listRegexPatternSets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRegexPatternSets",
-        input_schema = schemas.ListRegexPatternSetsInput,
-        output_schema = schemas.ListRegexPatternSetsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRegexPatternSets, input, options)
 end
 
 function Client:listResourcesForWebACL(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResourcesForWebACL",
-        input_schema = schemas.ListResourcesForWebACLInput,
-        output_schema = schemas.ListResourcesForWebACLOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResourcesForWebACL, input, options)
 end
 
 function Client:listRuleGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRuleGroups",
-        input_schema = schemas.ListRuleGroupsInput,
-        output_schema = schemas.ListRuleGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRuleGroups, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listWebACLs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWebACLs",
-        input_schema = schemas.ListWebACLsInput,
-        output_schema = schemas.ListWebACLsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWebACLs, input, options)
 end
 
 function Client:putLoggingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutLoggingConfiguration",
-        input_schema = schemas.PutLoggingConfigurationInput,
-        output_schema = schemas.PutLoggingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutLoggingConfiguration, input, options)
 end
 
 function Client:putManagedRuleSetVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "PutManagedRuleSetVersions",
-        input_schema = schemas.PutManagedRuleSetVersionsInput,
-        output_schema = schemas.PutManagedRuleSetVersionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutManagedRuleSetVersions, input, options)
 end
 
 function Client:putPermissionPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutPermissionPolicy",
-        input_schema = schemas.PutPermissionPolicyInput,
-        output_schema = schemas.PutPermissionPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutPermissionPolicy, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateIPSet(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateIPSet",
-        input_schema = schemas.UpdateIPSetInput,
-        output_schema = schemas.UpdateIPSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateIPSet, input, options)
 end
 
 function Client:updateManagedRuleSetVersionExpiryDate(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateManagedRuleSetVersionExpiryDate",
-        input_schema = schemas.UpdateManagedRuleSetVersionExpiryDateInput,
-        output_schema = schemas.UpdateManagedRuleSetVersionExpiryDateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateManagedRuleSetVersionExpiryDate, input, options)
 end
 
 function Client:updateRegexPatternSet(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRegexPatternSet",
-        input_schema = schemas.UpdateRegexPatternSetInput,
-        output_schema = schemas.UpdateRegexPatternSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRegexPatternSet, input, options)
 end
 
 function Client:updateRuleGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRuleGroup",
-        input_schema = schemas.UpdateRuleGroupInput,
-        output_schema = schemas.UpdateRuleGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRuleGroup, input, options)
 end
 
 function Client:updateWebACL(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateWebACL",
-        input_schema = schemas.UpdateWebACLInput,
-        output_schema = schemas.UpdateWebACLOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateWebACL, input, options)
 end
 
 return M

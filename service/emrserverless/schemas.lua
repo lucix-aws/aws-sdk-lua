@@ -3382,4 +3382,278 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.emrserverless", "AwsToledoWebService"),
+    version = "2021-07-13",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelJobRun = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "CancelJobRun"),
+    input = M.CancelJobRunInput,
+    output = M.CancelJobRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/jobruns/{jobRunId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplication = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "GetApplication"),
+    input = M.GetApplicationInput,
+    output = M.GetApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDashboardForJobRun = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "GetDashboardForJobRun"),
+    input = M.GetDashboardForJobRunInput,
+    output = M.GetDashboardForJobRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/jobruns/{jobRunId}/dashboard" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJobRun = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "GetJobRun"),
+    input = M.GetJobRunInput,
+    output = M.GetJobRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/jobruns/{jobRunId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceDashboard = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "GetResourceDashboard"),
+    input = M.GetResourceDashboardInput,
+    output = M.GetResourceDashboardOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/dashboard" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSession = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "GetSession"),
+    input = M.GetSessionInput,
+    output = M.GetSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/sessions/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSessionEndpoint = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "GetSessionEndpoint"),
+    input = M.GetSessionEndpointInput,
+    output = M.GetSessionEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/sessions/{sessionId}/endpoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobRunAttempts = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "ListJobRunAttempts"),
+    input = M.ListJobRunAttemptsInput,
+    output = M.ListJobRunAttemptsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/jobruns/{jobRunId}/attempts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobRuns = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "ListJobRuns"),
+    input = M.ListJobRunsInput,
+    output = M.ListJobRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/jobruns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessions = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "ListSessions"),
+    input = M.ListSessionsInput,
+    output = M.ListSessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{applicationId}/sessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartApplication = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "StartApplication"),
+    input = M.StartApplicationInput,
+    output = M.StartApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartJobRun = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "StartJobRun"),
+    input = M.StartJobRunInput,
+    output = M.StartJobRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/jobruns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSession = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "StartSession"),
+    input = M.StartSessionInput,
+    output = M.StartSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/sessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopApplication = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "StopApplication"),
+    input = M.StopApplicationInput,
+    output = M.StopApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{applicationId}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateSession = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "TerminateSession"),
+    input = M.TerminateSessionInput,
+    output = M.TerminateSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{applicationId}/sessions/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.emrserverless", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/applications/{applicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

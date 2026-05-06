@@ -7,6 +7,7 @@ local endpoint_rules = require("managedblockchainquery.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("managedblockchainquery.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "managedblockchain-query", signing_region = cfg.region } }
                 else
@@ -49,120 +52,39 @@ function M.new(cfg)
 end
 
 function Client:batchGetTokenBalance(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetTokenBalance",
-        input_schema = schemas.BatchGetTokenBalanceInput,
-        output_schema = schemas.BatchGetTokenBalanceOutput,
-        http_method = "POST",
-        http_path = "/batch-get-token-balance",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetTokenBalance, input, options)
 end
 
 function Client:getAssetContract(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAssetContract",
-        input_schema = schemas.GetAssetContractInput,
-        output_schema = schemas.GetAssetContractOutput,
-        http_method = "POST",
-        http_path = "/get-asset-contract",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAssetContract, input, options)
 end
 
 function Client:getTokenBalance(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTokenBalance",
-        input_schema = schemas.GetTokenBalanceInput,
-        output_schema = schemas.GetTokenBalanceOutput,
-        http_method = "POST",
-        http_path = "/get-token-balance",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTokenBalance, input, options)
 end
 
 function Client:getTransaction(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTransaction",
-        input_schema = schemas.GetTransactionInput,
-        output_schema = schemas.GetTransactionOutput,
-        http_method = "POST",
-        http_path = "/get-transaction",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTransaction, input, options)
 end
 
 function Client:listAssetContracts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAssetContracts",
-        input_schema = schemas.ListAssetContractsInput,
-        output_schema = schemas.ListAssetContractsOutput,
-        http_method = "POST",
-        http_path = "/list-asset-contracts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAssetContracts, input, options)
 end
 
 function Client:listFilteredTransactionEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFilteredTransactionEvents",
-        input_schema = schemas.ListFilteredTransactionEventsInput,
-        output_schema = schemas.ListFilteredTransactionEventsOutput,
-        http_method = "POST",
-        http_path = "/list-filtered-transaction-events",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFilteredTransactionEvents, input, options)
 end
 
 function Client:listTokenBalances(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTokenBalances",
-        input_schema = schemas.ListTokenBalancesInput,
-        output_schema = schemas.ListTokenBalancesOutput,
-        http_method = "POST",
-        http_path = "/list-token-balances",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTokenBalances, input, options)
 end
 
 function Client:listTransactionEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTransactionEvents",
-        input_schema = schemas.ListTransactionEventsInput,
-        output_schema = schemas.ListTransactionEventsOutput,
-        http_method = "POST",
-        http_path = "/list-transaction-events",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTransactionEvents, input, options)
 end
 
 function Client:listTransactions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTransactions",
-        input_schema = schemas.ListTransactionsInput,
-        output_schema = schemas.ListTransactionsOutput,
-        http_method = "POST",
-        http_path = "/list-transactions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTransactions, input, options)
 end
 
 return M

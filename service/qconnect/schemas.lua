@@ -14706,4 +14706,1130 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.qconnect", "WisdomService"),
+    version = "2020-10-19",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ActivateMessageTemplate = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ActivateMessageTemplate"),
+    input = M.ActivateMessageTemplateInput,
+    output = M.ActivateMessageTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/activate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAIAgent = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateAIAgent"),
+    input = M.CreateAIAgentInput,
+    output = M.CreateAIAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/aiagents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAIAgentVersion = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateAIAgentVersion"),
+    input = M.CreateAIAgentVersionInput,
+    output = M.CreateAIAgentVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/aiagents/{aiAgentId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAIGuardrail = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateAIGuardrail"),
+    input = M.CreateAIGuardrailInput,
+    output = M.CreateAIGuardrailOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/aiguardrails" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAIGuardrailVersion = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateAIGuardrailVersion"),
+    input = M.CreateAIGuardrailVersionInput,
+    output = M.CreateAIGuardrailVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/aiguardrails/{aiGuardrailId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAIPrompt = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateAIPrompt"),
+    input = M.CreateAIPromptInput,
+    output = M.CreateAIPromptOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/aiprompts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAIPromptVersion = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateAIPromptVersion"),
+    input = M.CreateAIPromptVersionInput,
+    output = M.CreateAIPromptVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/aiprompts/{aiPromptId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssistant = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateAssistant"),
+    input = M.CreateAssistantInput,
+    output = M.CreateAssistantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssistantAssociation = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateAssistantAssociation"),
+    input = M.CreateAssistantAssociationInput,
+    output = M.CreateAssistantAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContent = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateContent"),
+    input = M.CreateContentInput,
+    output = M.CreateContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/contents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContentAssociation = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateContentAssociation"),
+    input = M.CreateContentAssociationInput,
+    output = M.CreateContentAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateKnowledgeBase"),
+    input = M.CreateKnowledgeBaseInput,
+    output = M.CreateKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMessageTemplate = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateMessageTemplate"),
+    input = M.CreateMessageTemplateInput,
+    output = M.CreateMessageTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMessageTemplateAttachment = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateMessageTemplateAttachment"),
+    input = M.CreateMessageTemplateAttachmentInput,
+    output = M.CreateMessageTemplateAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/attachments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMessageTemplateVersion = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateMessageTemplateVersion"),
+    input = M.CreateMessageTemplateVersionInput,
+    output = M.CreateMessageTemplateVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQuickResponse = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateQuickResponse"),
+    input = M.CreateQuickResponseInput,
+    output = M.CreateQuickResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/quickResponses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSession = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "CreateSession"),
+    input = M.CreateSessionInput,
+    output = M.CreateSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/sessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeactivateMessageTemplate = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeactivateMessageTemplate"),
+    input = M.DeactivateMessageTemplateInput,
+    output = M.DeactivateMessageTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/deactivate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAIAgent = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteAIAgent"),
+    input = M.DeleteAIAgentInput,
+    output = M.DeleteAIAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assistants/{assistantId}/aiagents/{aiAgentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAIAgentVersion = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteAIAgentVersion"),
+    input = M.DeleteAIAgentVersionInput,
+    output = M.DeleteAIAgentVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assistants/{assistantId}/aiagents/{aiAgentId}/versions/{versionNumber}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAIGuardrail = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteAIGuardrail"),
+    input = M.DeleteAIGuardrailInput,
+    output = M.DeleteAIGuardrailOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assistants/{assistantId}/aiguardrails/{aiGuardrailId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAIGuardrailVersion = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteAIGuardrailVersion"),
+    input = M.DeleteAIGuardrailVersionInput,
+    output = M.DeleteAIGuardrailVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assistants/{assistantId}/aiguardrails/{aiGuardrailId}/versions/{versionNumber}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAIPrompt = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteAIPrompt"),
+    input = M.DeleteAIPromptInput,
+    output = M.DeleteAIPromptOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assistants/{assistantId}/aiprompts/{aiPromptId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAIPromptVersion = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteAIPromptVersion"),
+    input = M.DeleteAIPromptVersionInput,
+    output = M.DeleteAIPromptVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assistants/{assistantId}/aiprompts/{aiPromptId}/versions/{versionNumber}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssistant = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteAssistant"),
+    input = M.DeleteAssistantInput,
+    output = M.DeleteAssistantOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assistants/{assistantId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssistantAssociation = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteAssistantAssociation"),
+    input = M.DeleteAssistantAssociationInput,
+    output = M.DeleteAssistantAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assistants/{assistantId}/associations/{assistantAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContent = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteContent"),
+    input = M.DeleteContentInput,
+    output = M.DeleteContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContentAssociation = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteContentAssociation"),
+    input = M.DeleteContentAssociationInput,
+    output = M.DeleteContentAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations/{contentAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteImportJob = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteImportJob"),
+    input = M.DeleteImportJobInput,
+    output = M.DeleteImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgeBases/{knowledgeBaseId}/importJobs/{importJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteKnowledgeBase"),
+    input = M.DeleteKnowledgeBaseInput,
+    output = M.DeleteKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgeBases/{knowledgeBaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMessageTemplate = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteMessageTemplate"),
+    input = M.DeleteMessageTemplateInput,
+    output = M.DeleteMessageTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMessageTemplateAttachment = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteMessageTemplateAttachment"),
+    input = M.DeleteMessageTemplateAttachmentInput,
+    output = M.DeleteMessageTemplateAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/attachments/{attachmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQuickResponse = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "DeleteQuickResponse"),
+    input = M.DeleteQuickResponseInput,
+    output = M.DeleteQuickResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgeBases/{knowledgeBaseId}/quickResponses/{quickResponseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAIAgent = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetAIAgent"),
+    input = M.GetAIAgentInput,
+    output = M.GetAIAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/aiagents/{aiAgentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAIGuardrail = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetAIGuardrail"),
+    input = M.GetAIGuardrailInput,
+    output = M.GetAIGuardrailOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/aiguardrails/{aiGuardrailId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAIPrompt = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetAIPrompt"),
+    input = M.GetAIPromptInput,
+    output = M.GetAIPromptOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/aiprompts/{aiPromptId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssistant = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetAssistant"),
+    input = M.GetAssistantInput,
+    output = M.GetAssistantOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssistantAssociation = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetAssistantAssociation"),
+    input = M.GetAssistantAssociationInput,
+    output = M.GetAssistantAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/associations/{assistantAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContent = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetContent"),
+    input = M.GetContentInput,
+    output = M.GetContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContentAssociation = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetContentAssociation"),
+    input = M.GetContentAssociationInput,
+    output = M.GetContentAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations/{contentAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContentSummary = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetContentSummary"),
+    input = M.GetContentSummaryInput,
+    output = M.GetContentSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/summary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImportJob = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetImportJob"),
+    input = M.GetImportJobInput,
+    output = M.GetImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/importJobs/{importJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetKnowledgeBase"),
+    input = M.GetKnowledgeBaseInput,
+    output = M.GetKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMessageTemplate = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetMessageTemplate"),
+    input = M.GetMessageTemplateInput,
+    output = M.GetMessageTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNextMessage = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetNextMessage"),
+    input = M.GetNextMessageInput,
+    output = M.GetNextMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/sessions/{sessionId}/messages/next" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQuickResponse = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetQuickResponse"),
+    input = M.GetQuickResponseInput,
+    output = M.GetQuickResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/quickResponses/{quickResponseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommendations = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetRecommendations"),
+    input = M.GetRecommendationsInput,
+    output = M.GetRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/sessions/{sessionId}/recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSession = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "GetSession"),
+    input = M.GetSessionInput,
+    output = M.GetSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/sessions/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAIAgents = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListAIAgents"),
+    input = M.ListAIAgentsInput,
+    output = M.ListAIAgentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/aiagents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAIAgentVersions = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListAIAgentVersions"),
+    input = M.ListAIAgentVersionsInput,
+    output = M.ListAIAgentVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/aiagents/{aiAgentId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAIGuardrails = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListAIGuardrails"),
+    input = M.ListAIGuardrailsInput,
+    output = M.ListAIGuardrailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/aiguardrails" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAIGuardrailVersions = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListAIGuardrailVersions"),
+    input = M.ListAIGuardrailVersionsInput,
+    output = M.ListAIGuardrailVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/aiguardrails/{aiGuardrailId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAIPrompts = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListAIPrompts"),
+    input = M.ListAIPromptsInput,
+    output = M.ListAIPromptsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/aiprompts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAIPromptVersions = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListAIPromptVersions"),
+    input = M.ListAIPromptVersionsInput,
+    output = M.ListAIPromptVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/aiprompts/{aiPromptId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssistantAssociations = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListAssistantAssociations"),
+    input = M.ListAssistantAssociationsInput,
+    output = M.ListAssistantAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssistants = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListAssistants"),
+    input = M.ListAssistantsInput,
+    output = M.ListAssistantsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContentAssociations = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListContentAssociations"),
+    input = M.ListContentAssociationsInput,
+    output = M.ListContentAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContents = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListContents"),
+    input = M.ListContentsInput,
+    output = M.ListContentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/contents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImportJobs = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListImportJobs"),
+    input = M.ListImportJobsInput,
+    output = M.ListImportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/importJobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKnowledgeBases = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListKnowledgeBases"),
+    input = M.ListKnowledgeBasesInput,
+    output = M.ListKnowledgeBasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMessages = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListMessages"),
+    input = M.ListMessagesInput,
+    output = M.ListMessagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/sessions/{sessionId}/messages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMessageTemplates = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListMessageTemplates"),
+    input = M.ListMessageTemplatesInput,
+    output = M.ListMessageTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMessageTemplateVersions = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListMessageTemplateVersions"),
+    input = M.ListMessageTemplateVersionsInput,
+    output = M.ListMessageTemplateVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQuickResponses = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListQuickResponses"),
+    input = M.ListQuickResponsesInput,
+    output = M.ListQuickResponsesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/quickResponses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSpans = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListSpans"),
+    input = M.ListSpansInput,
+    output = M.ListSpansOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/sessions/{sessionId}/spans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.NotifyRecommendationsReceived = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "NotifyRecommendationsReceived"),
+    input = M.NotifyRecommendationsReceivedInput,
+    output = M.NotifyRecommendationsReceivedOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/sessions/{sessionId}/recommendations/notify" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFeedback = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "PutFeedback"),
+    input = M.PutFeedbackInput,
+    output = M.PutFeedbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assistants/{assistantId}/feedback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.QueryAssistant = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "QueryAssistant"),
+    input = M.QueryAssistantInput,
+    output = M.QueryAssistantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/query" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveAssistantAIAgent = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "RemoveAssistantAIAgent"),
+    input = M.RemoveAssistantAIAgentInput,
+    output = M.RemoveAssistantAIAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assistants/{assistantId}/aiagentConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveKnowledgeBaseTemplateUri = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "RemoveKnowledgeBaseTemplateUri"),
+    input = M.RemoveKnowledgeBaseTemplateUriInput,
+    output = M.RemoveKnowledgeBaseTemplateUriOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgeBases/{knowledgeBaseId}/templateUri" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RenderMessageTemplate = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "RenderMessageTemplate"),
+    input = M.RenderMessageTemplateInput,
+    output = M.RenderMessageTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/render" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Retrieve = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "Retrieve"),
+    input = M.RetrieveInput,
+    output = M.RetrieveOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/retrieve" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchContent = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "SearchContent"),
+    input = M.SearchContentInput,
+    output = M.SearchContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchMessageTemplates = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "SearchMessageTemplates"),
+    input = M.SearchMessageTemplatesInput,
+    output = M.SearchMessageTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/search/messageTemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchQuickResponses = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "SearchQuickResponses"),
+    input = M.SearchQuickResponsesInput,
+    output = M.SearchQuickResponsesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/search/quickResponses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchSessions = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "SearchSessions"),
+    input = M.SearchSessionsInput,
+    output = M.SearchSessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/searchSessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendMessage = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "SendMessage"),
+    input = M.SendMessageInput,
+    output = M.SendMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/sessions/{sessionId}/message" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartContentUpload = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "StartContentUpload"),
+    input = M.StartContentUploadInput,
+    output = M.StartContentUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/upload" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartImportJob = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "StartImportJob"),
+    input = M.StartImportJobInput,
+    output = M.StartImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/importJobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAIAgent = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "UpdateAIAgent"),
+    input = M.UpdateAIAgentInput,
+    output = M.UpdateAIAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/aiagents/{aiAgentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAIGuardrail = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "UpdateAIGuardrail"),
+    input = M.UpdateAIGuardrailInput,
+    output = M.UpdateAIGuardrailOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/aiguardrails/{aiGuardrailId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAIPrompt = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "UpdateAIPrompt"),
+    input = M.UpdateAIPromptInput,
+    output = M.UpdateAIPromptOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/aiprompts/{aiPromptId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssistantAIAgent = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "UpdateAssistantAIAgent"),
+    input = M.UpdateAssistantAIAgentInput,
+    output = M.UpdateAssistantAIAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/aiagentConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContent = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "UpdateContent"),
+    input = M.UpdateContentInput,
+    output = M.UpdateContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKnowledgeBaseTemplateUri = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "UpdateKnowledgeBaseTemplateUri"),
+    input = M.UpdateKnowledgeBaseTemplateUriInput,
+    output = M.UpdateKnowledgeBaseTemplateUriOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/templateUri" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMessageTemplate = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "UpdateMessageTemplate"),
+    input = M.UpdateMessageTemplateInput,
+    output = M.UpdateMessageTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMessageTemplateMetadata = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "UpdateMessageTemplateMetadata"),
+    input = M.UpdateMessageTemplateMetadataInput,
+    output = M.UpdateMessageTemplateMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQuickResponse = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "UpdateQuickResponse"),
+    input = M.UpdateQuickResponseInput,
+    output = M.UpdateQuickResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/quickResponses/{quickResponseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSession = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "UpdateSession"),
+    input = M.UpdateSessionInput,
+    output = M.UpdateSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/sessions/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSessionData = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "UpdateSessionData"),
+    input = M.UpdateSessionDataInput,
+    output = M.UpdateSessionDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/assistants/{assistantId}/sessions/{sessionId}/data" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

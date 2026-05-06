@@ -1886,4 +1886,179 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.bcmdashboards", "AWSBCMDashboardsService"),
+    version = "2025-08-18",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDashboard = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "CreateDashboard"),
+    input = M.CreateDashboardInput,
+    output = M.CreateDashboardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateScheduledReport = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "CreateScheduledReport"),
+    input = M.CreateScheduledReportInput,
+    output = M.CreateScheduledReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDashboard = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "DeleteDashboard"),
+    input = M.DeleteDashboardInput,
+    output = M.DeleteDashboardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScheduledReport = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "DeleteScheduledReport"),
+    input = M.DeleteScheduledReportInput,
+    output = M.DeleteScheduledReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteScheduledReport = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "ExecuteScheduledReport"),
+    input = M.ExecuteScheduledReportInput,
+    output = M.ExecuteScheduledReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDashboard = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "GetDashboard"),
+    input = M.GetDashboardInput,
+    output = M.GetDashboardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetScheduledReport = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "GetScheduledReport"),
+    input = M.GetScheduledReportInput,
+    output = M.GetScheduledReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDashboards = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "ListDashboards"),
+    input = M.ListDashboardsInput,
+    output = M.ListDashboardsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScheduledReports = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "ListScheduledReports"),
+    input = M.ListScheduledReportsInput,
+    output = M.ListScheduledReportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDashboard = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "UpdateDashboard"),
+    input = M.UpdateDashboardInput,
+    output = M.UpdateDashboardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateScheduledReport = schema.operation({
+    id = id.from("com.amazonaws.bcmdashboards", "UpdateScheduledReport"),
+    input = M.UpdateScheduledReportInput,
+    output = M.UpdateScheduledReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

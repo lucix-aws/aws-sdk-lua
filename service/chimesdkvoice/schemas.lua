@@ -5819,4 +5819,1166 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.chimesdkvoice", "ChimeSDKTelephonyService"),
+    version = "2022-08-03",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociatePhoneNumbersWithVoiceConnector = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "AssociatePhoneNumbersWithVoiceConnector"),
+    input = M.AssociatePhoneNumbersWithVoiceConnectorInput,
+    output = M.AssociatePhoneNumbersWithVoiceConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-connectors/{VoiceConnectorId}?operation=associate-phone-numbers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociatePhoneNumbersWithVoiceConnectorGroup = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "AssociatePhoneNumbersWithVoiceConnectorGroup"),
+    input = M.AssociatePhoneNumbersWithVoiceConnectorGroupInput,
+    output = M.AssociatePhoneNumbersWithVoiceConnectorGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-connector-groups/{VoiceConnectorGroupId}?operation=associate-phone-numbers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeletePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "BatchDeletePhoneNumber"),
+    input = M.BatchDeletePhoneNumberInput,
+    output = M.BatchDeletePhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/phone-numbers?operation=batch-delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdatePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "BatchUpdatePhoneNumber"),
+    input = M.BatchUpdatePhoneNumberInput,
+    output = M.BatchUpdatePhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/phone-numbers?operation=batch-update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePhoneNumberOrder = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "CreatePhoneNumberOrder"),
+    input = M.CreatePhoneNumberOrderInput,
+    output = M.CreatePhoneNumberOrderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/phone-number-orders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProxySession = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "CreateProxySession"),
+    input = M.CreateProxySessionInput,
+    output = M.CreateProxySessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-connectors/{VoiceConnectorId}/proxy-sessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSipMediaApplication = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "CreateSipMediaApplication"),
+    input = M.CreateSipMediaApplicationInput,
+    output = M.CreateSipMediaApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sip-media-applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSipMediaApplicationCall = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "CreateSipMediaApplicationCall"),
+    input = M.CreateSipMediaApplicationCallInput,
+    output = M.CreateSipMediaApplicationCallOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sip-media-applications/{SipMediaApplicationId}/calls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSipRule = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "CreateSipRule"),
+    input = M.CreateSipRuleInput,
+    output = M.CreateSipRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sip-rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVoiceConnector = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "CreateVoiceConnector"),
+    input = M.CreateVoiceConnectorInput,
+    output = M.CreateVoiceConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVoiceConnectorGroup = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "CreateVoiceConnectorGroup"),
+    input = M.CreateVoiceConnectorGroupInput,
+    output = M.CreateVoiceConnectorGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-connector-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVoiceProfile = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "CreateVoiceProfile"),
+    input = M.CreateVoiceProfileInput,
+    output = M.CreateVoiceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVoiceProfileDomain = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "CreateVoiceProfileDomain"),
+    input = M.CreateVoiceProfileDomainInput,
+    output = M.CreateVoiceProfileDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-profile-domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeletePhoneNumber"),
+    input = M.DeletePhoneNumberInput,
+    output = M.DeletePhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/phone-numbers/{PhoneNumberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProxySession = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeleteProxySession"),
+    input = M.DeleteProxySessionInput,
+    output = M.DeleteProxySessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/voice-connectors/{VoiceConnectorId}/proxy-sessions/{ProxySessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSipMediaApplication = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeleteSipMediaApplication"),
+    input = M.DeleteSipMediaApplicationInput,
+    output = M.DeleteSipMediaApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sip-media-applications/{SipMediaApplicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSipRule = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeleteSipRule"),
+    input = M.DeleteSipRuleInput,
+    output = M.DeleteSipRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sip-rules/{SipRuleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVoiceConnector = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeleteVoiceConnector"),
+    input = M.DeleteVoiceConnectorInput,
+    output = M.DeleteVoiceConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/voice-connectors/{VoiceConnectorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVoiceConnectorEmergencyCallingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeleteVoiceConnectorEmergencyCallingConfiguration"),
+    input = M.DeleteVoiceConnectorEmergencyCallingConfigurationInput,
+    output = M.DeleteVoiceConnectorEmergencyCallingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/voice-connectors/{VoiceConnectorId}/emergency-calling-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVoiceConnectorExternalSystemsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeleteVoiceConnectorExternalSystemsConfiguration"),
+    input = M.DeleteVoiceConnectorExternalSystemsConfigurationInput,
+    output = M.DeleteVoiceConnectorExternalSystemsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/voice-connectors/{VoiceConnectorId}/external-systems-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVoiceConnectorGroup = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeleteVoiceConnectorGroup"),
+    input = M.DeleteVoiceConnectorGroupInput,
+    output = M.DeleteVoiceConnectorGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/voice-connector-groups/{VoiceConnectorGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVoiceConnectorOrigination = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeleteVoiceConnectorOrigination"),
+    input = M.DeleteVoiceConnectorOriginationInput,
+    output = M.DeleteVoiceConnectorOriginationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/voice-connectors/{VoiceConnectorId}/origination" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVoiceConnectorProxy = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeleteVoiceConnectorProxy"),
+    input = M.DeleteVoiceConnectorProxyInput,
+    output = M.DeleteVoiceConnectorProxyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/voice-connectors/{VoiceConnectorId}/programmable-numbers/proxy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVoiceConnectorStreamingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeleteVoiceConnectorStreamingConfiguration"),
+    input = M.DeleteVoiceConnectorStreamingConfigurationInput,
+    output = M.DeleteVoiceConnectorStreamingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/voice-connectors/{VoiceConnectorId}/streaming-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVoiceConnectorTermination = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeleteVoiceConnectorTermination"),
+    input = M.DeleteVoiceConnectorTerminationInput,
+    output = M.DeleteVoiceConnectorTerminationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/voice-connectors/{VoiceConnectorId}/termination" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVoiceConnectorTerminationCredentials = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeleteVoiceConnectorTerminationCredentials"),
+    input = M.DeleteVoiceConnectorTerminationCredentialsInput,
+    output = M.DeleteVoiceConnectorTerminationCredentialsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-connectors/{VoiceConnectorId}/termination/credentials?operation=delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVoiceProfile = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeleteVoiceProfile"),
+    input = M.DeleteVoiceProfileInput,
+    output = M.DeleteVoiceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/voice-profiles/{VoiceProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVoiceProfileDomain = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DeleteVoiceProfileDomain"),
+    input = M.DeleteVoiceProfileDomainInput,
+    output = M.DeleteVoiceProfileDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/voice-profile-domains/{VoiceProfileDomainId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociatePhoneNumbersFromVoiceConnector = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DisassociatePhoneNumbersFromVoiceConnector"),
+    input = M.DisassociatePhoneNumbersFromVoiceConnectorInput,
+    output = M.DisassociatePhoneNumbersFromVoiceConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-connectors/{VoiceConnectorId}?operation=disassociate-phone-numbers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociatePhoneNumbersFromVoiceConnectorGroup = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "DisassociatePhoneNumbersFromVoiceConnectorGroup"),
+    input = M.DisassociatePhoneNumbersFromVoiceConnectorGroupInput,
+    output = M.DisassociatePhoneNumbersFromVoiceConnectorGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-connector-groups/{VoiceConnectorGroupId}?operation=disassociate-phone-numbers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGlobalSettings = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetGlobalSettings"),
+    input = M.GetGlobalSettingsInput,
+    output = M.GetGlobalSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetPhoneNumber"),
+    input = M.GetPhoneNumberInput,
+    output = M.GetPhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/phone-numbers/{PhoneNumberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPhoneNumberOrder = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetPhoneNumberOrder"),
+    input = M.GetPhoneNumberOrderInput,
+    output = M.GetPhoneNumberOrderOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/phone-number-orders/{PhoneNumberOrderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPhoneNumberSettings = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetPhoneNumberSettings"),
+    input = M.GetPhoneNumberSettingsInput,
+    output = M.GetPhoneNumberSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/settings/phone-number" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProxySession = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetProxySession"),
+    input = M.GetProxySessionInput,
+    output = M.GetProxySessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors/{VoiceConnectorId}/proxy-sessions/{ProxySessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSipMediaApplication = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetSipMediaApplication"),
+    input = M.GetSipMediaApplicationInput,
+    output = M.GetSipMediaApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sip-media-applications/{SipMediaApplicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSipMediaApplicationAlexaSkillConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetSipMediaApplicationAlexaSkillConfiguration"),
+    input = M.GetSipMediaApplicationAlexaSkillConfigurationInput,
+    output = M.GetSipMediaApplicationAlexaSkillConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sip-media-applications/{SipMediaApplicationId}/alexa-skill-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSipMediaApplicationLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetSipMediaApplicationLoggingConfiguration"),
+    input = M.GetSipMediaApplicationLoggingConfigurationInput,
+    output = M.GetSipMediaApplicationLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sip-media-applications/{SipMediaApplicationId}/logging-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSipRule = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetSipRule"),
+    input = M.GetSipRuleInput,
+    output = M.GetSipRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sip-rules/{SipRuleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSpeakerSearchTask = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetSpeakerSearchTask"),
+    input = M.GetSpeakerSearchTaskInput,
+    output = M.GetSpeakerSearchTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors/{VoiceConnectorId}/speaker-search-tasks/{SpeakerSearchTaskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceConnector = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetVoiceConnector"),
+    input = M.GetVoiceConnectorInput,
+    output = M.GetVoiceConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors/{VoiceConnectorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceConnectorEmergencyCallingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetVoiceConnectorEmergencyCallingConfiguration"),
+    input = M.GetVoiceConnectorEmergencyCallingConfigurationInput,
+    output = M.GetVoiceConnectorEmergencyCallingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors/{VoiceConnectorId}/emergency-calling-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceConnectorExternalSystemsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetVoiceConnectorExternalSystemsConfiguration"),
+    input = M.GetVoiceConnectorExternalSystemsConfigurationInput,
+    output = M.GetVoiceConnectorExternalSystemsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors/{VoiceConnectorId}/external-systems-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceConnectorGroup = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetVoiceConnectorGroup"),
+    input = M.GetVoiceConnectorGroupInput,
+    output = M.GetVoiceConnectorGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connector-groups/{VoiceConnectorGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceConnectorLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetVoiceConnectorLoggingConfiguration"),
+    input = M.GetVoiceConnectorLoggingConfigurationInput,
+    output = M.GetVoiceConnectorLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors/{VoiceConnectorId}/logging-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceConnectorOrigination = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetVoiceConnectorOrigination"),
+    input = M.GetVoiceConnectorOriginationInput,
+    output = M.GetVoiceConnectorOriginationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors/{VoiceConnectorId}/origination" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceConnectorProxy = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetVoiceConnectorProxy"),
+    input = M.GetVoiceConnectorProxyInput,
+    output = M.GetVoiceConnectorProxyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors/{VoiceConnectorId}/programmable-numbers/proxy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceConnectorStreamingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetVoiceConnectorStreamingConfiguration"),
+    input = M.GetVoiceConnectorStreamingConfigurationInput,
+    output = M.GetVoiceConnectorStreamingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors/{VoiceConnectorId}/streaming-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceConnectorTermination = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetVoiceConnectorTermination"),
+    input = M.GetVoiceConnectorTerminationInput,
+    output = M.GetVoiceConnectorTerminationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors/{VoiceConnectorId}/termination" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceConnectorTerminationHealth = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetVoiceConnectorTerminationHealth"),
+    input = M.GetVoiceConnectorTerminationHealthInput,
+    output = M.GetVoiceConnectorTerminationHealthOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors/{VoiceConnectorId}/termination/health" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceProfile = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetVoiceProfile"),
+    input = M.GetVoiceProfileInput,
+    output = M.GetVoiceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-profiles/{VoiceProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceProfileDomain = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetVoiceProfileDomain"),
+    input = M.GetVoiceProfileDomainInput,
+    output = M.GetVoiceProfileDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-profile-domains/{VoiceProfileDomainId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVoiceToneAnalysisTask = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "GetVoiceToneAnalysisTask"),
+    input = M.GetVoiceToneAnalysisTaskInput,
+    output = M.GetVoiceToneAnalysisTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks/{VoiceToneAnalysisTaskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAvailableVoiceConnectorRegions = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "ListAvailableVoiceConnectorRegions"),
+    input = M.ListAvailableVoiceConnectorRegionsInput,
+    output = M.ListAvailableVoiceConnectorRegionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connector-regions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPhoneNumberOrders = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "ListPhoneNumberOrders"),
+    input = M.ListPhoneNumberOrdersInput,
+    output = M.ListPhoneNumberOrdersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/phone-number-orders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPhoneNumbers = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "ListPhoneNumbers"),
+    input = M.ListPhoneNumbersInput,
+    output = M.ListPhoneNumbersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/phone-numbers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProxySessions = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "ListProxySessions"),
+    input = M.ListProxySessionsInput,
+    output = M.ListProxySessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors/{VoiceConnectorId}/proxy-sessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSipMediaApplications = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "ListSipMediaApplications"),
+    input = M.ListSipMediaApplicationsInput,
+    output = M.ListSipMediaApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sip-media-applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSipRules = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "ListSipRules"),
+    input = M.ListSipRulesInput,
+    output = M.ListSipRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sip-rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSupportedPhoneNumberCountries = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "ListSupportedPhoneNumberCountries"),
+    input = M.ListSupportedPhoneNumberCountriesInput,
+    output = M.ListSupportedPhoneNumberCountriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/phone-number-countries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVoiceConnectorGroups = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "ListVoiceConnectorGroups"),
+    input = M.ListVoiceConnectorGroupsInput,
+    output = M.ListVoiceConnectorGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connector-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVoiceConnectors = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "ListVoiceConnectors"),
+    input = M.ListVoiceConnectorsInput,
+    output = M.ListVoiceConnectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVoiceConnectorTerminationCredentials = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "ListVoiceConnectorTerminationCredentials"),
+    input = M.ListVoiceConnectorTerminationCredentialsInput,
+    output = M.ListVoiceConnectorTerminationCredentialsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-connectors/{VoiceConnectorId}/termination/credentials" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVoiceProfileDomains = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "ListVoiceProfileDomains"),
+    input = M.ListVoiceProfileDomainsInput,
+    output = M.ListVoiceProfileDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-profile-domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVoiceProfiles = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "ListVoiceProfiles"),
+    input = M.ListVoiceProfilesInput,
+    output = M.ListVoiceProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/voice-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSipMediaApplicationAlexaSkillConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "PutSipMediaApplicationAlexaSkillConfiguration"),
+    input = M.PutSipMediaApplicationAlexaSkillConfigurationInput,
+    output = M.PutSipMediaApplicationAlexaSkillConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sip-media-applications/{SipMediaApplicationId}/alexa-skill-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSipMediaApplicationLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "PutSipMediaApplicationLoggingConfiguration"),
+    input = M.PutSipMediaApplicationLoggingConfigurationInput,
+    output = M.PutSipMediaApplicationLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sip-media-applications/{SipMediaApplicationId}/logging-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutVoiceConnectorEmergencyCallingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "PutVoiceConnectorEmergencyCallingConfiguration"),
+    input = M.PutVoiceConnectorEmergencyCallingConfigurationInput,
+    output = M.PutVoiceConnectorEmergencyCallingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/voice-connectors/{VoiceConnectorId}/emergency-calling-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutVoiceConnectorExternalSystemsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "PutVoiceConnectorExternalSystemsConfiguration"),
+    input = M.PutVoiceConnectorExternalSystemsConfigurationInput,
+    output = M.PutVoiceConnectorExternalSystemsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/voice-connectors/{VoiceConnectorId}/external-systems-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutVoiceConnectorLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "PutVoiceConnectorLoggingConfiguration"),
+    input = M.PutVoiceConnectorLoggingConfigurationInput,
+    output = M.PutVoiceConnectorLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/voice-connectors/{VoiceConnectorId}/logging-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutVoiceConnectorOrigination = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "PutVoiceConnectorOrigination"),
+    input = M.PutVoiceConnectorOriginationInput,
+    output = M.PutVoiceConnectorOriginationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/voice-connectors/{VoiceConnectorId}/origination" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutVoiceConnectorProxy = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "PutVoiceConnectorProxy"),
+    input = M.PutVoiceConnectorProxyInput,
+    output = M.PutVoiceConnectorProxyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/voice-connectors/{VoiceConnectorId}/programmable-numbers/proxy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutVoiceConnectorStreamingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "PutVoiceConnectorStreamingConfiguration"),
+    input = M.PutVoiceConnectorStreamingConfigurationInput,
+    output = M.PutVoiceConnectorStreamingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/voice-connectors/{VoiceConnectorId}/streaming-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutVoiceConnectorTermination = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "PutVoiceConnectorTermination"),
+    input = M.PutVoiceConnectorTerminationInput,
+    output = M.PutVoiceConnectorTerminationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/voice-connectors/{VoiceConnectorId}/termination" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutVoiceConnectorTerminationCredentials = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "PutVoiceConnectorTerminationCredentials"),
+    input = M.PutVoiceConnectorTerminationCredentialsInput,
+    output = M.PutVoiceConnectorTerminationCredentialsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-connectors/{VoiceConnectorId}/termination/credentials?operation=put" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestorePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "RestorePhoneNumber"),
+    input = M.RestorePhoneNumberInput,
+    output = M.RestorePhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/phone-numbers/{PhoneNumberId}?operation=restore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchAvailablePhoneNumbers = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "SearchAvailablePhoneNumbers"),
+    input = M.SearchAvailablePhoneNumbersInput,
+    output = M.SearchAvailablePhoneNumbersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/search?type=phone-numbers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSpeakerSearchTask = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "StartSpeakerSearchTask"),
+    input = M.StartSpeakerSearchTaskInput,
+    output = M.StartSpeakerSearchTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-connectors/{VoiceConnectorId}/speaker-search-tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartVoiceToneAnalysisTask = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "StartVoiceToneAnalysisTask"),
+    input = M.StartVoiceToneAnalysisTaskInput,
+    output = M.StartVoiceToneAnalysisTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopSpeakerSearchTask = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "StopSpeakerSearchTask"),
+    input = M.StopSpeakerSearchTaskInput,
+    output = M.StopSpeakerSearchTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-connectors/{VoiceConnectorId}/speaker-search-tasks/{SpeakerSearchTaskId}?operation=stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopVoiceToneAnalysisTask = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "StopVoiceToneAnalysisTask"),
+    input = M.StopVoiceToneAnalysisTaskInput,
+    output = M.StopVoiceToneAnalysisTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks/{VoiceToneAnalysisTaskId}?operation=stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags?operation=tag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags?operation=untag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGlobalSettings = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "UpdateGlobalSettings"),
+    input = M.UpdateGlobalSettingsInput,
+    output = M.UpdateGlobalSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "UpdatePhoneNumber"),
+    input = M.UpdatePhoneNumberInput,
+    output = M.UpdatePhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/phone-numbers/{PhoneNumberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePhoneNumberSettings = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "UpdatePhoneNumberSettings"),
+    input = M.UpdatePhoneNumberSettingsInput,
+    output = M.UpdatePhoneNumberSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/settings/phone-number" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProxySession = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "UpdateProxySession"),
+    input = M.UpdateProxySessionInput,
+    output = M.UpdateProxySessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/voice-connectors/{VoiceConnectorId}/proxy-sessions/{ProxySessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSipMediaApplication = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "UpdateSipMediaApplication"),
+    input = M.UpdateSipMediaApplicationInput,
+    output = M.UpdateSipMediaApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sip-media-applications/{SipMediaApplicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSipMediaApplicationCall = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "UpdateSipMediaApplicationCall"),
+    input = M.UpdateSipMediaApplicationCallInput,
+    output = M.UpdateSipMediaApplicationCallOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sip-media-applications/{SipMediaApplicationId}/calls/{TransactionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSipRule = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "UpdateSipRule"),
+    input = M.UpdateSipRuleInput,
+    output = M.UpdateSipRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sip-rules/{SipRuleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVoiceConnector = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "UpdateVoiceConnector"),
+    input = M.UpdateVoiceConnectorInput,
+    output = M.UpdateVoiceConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/voice-connectors/{VoiceConnectorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVoiceConnectorGroup = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "UpdateVoiceConnectorGroup"),
+    input = M.UpdateVoiceConnectorGroupInput,
+    output = M.UpdateVoiceConnectorGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/voice-connector-groups/{VoiceConnectorGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVoiceProfile = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "UpdateVoiceProfile"),
+    input = M.UpdateVoiceProfileInput,
+    output = M.UpdateVoiceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/voice-profiles/{VoiceProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVoiceProfileDomain = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "UpdateVoiceProfileDomain"),
+    input = M.UpdateVoiceProfileDomainInput,
+    output = M.UpdateVoiceProfileDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/voice-profile-domains/{VoiceProfileDomainId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateE911Address = schema.operation({
+    id = id.from("com.amazonaws.chimesdkvoice", "ValidateE911Address"),
+    input = M.ValidateE911AddressInput,
+    output = M.ValidateE911AddressOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/emergency-calling/address" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

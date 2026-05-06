@@ -7,6 +7,7 @@ local endpoint_rules = require("networkflowmonitor.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("networkflowmonitor.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "networkflowmonitor", signing_region = cfg.region } }
                 else
@@ -49,328 +52,103 @@ function M.new(cfg)
 end
 
 function Client:createMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateMonitor",
-        input_schema = schemas.CreateMonitorInput,
-        output_schema = schemas.CreateMonitorOutput,
-        http_method = "POST",
-        http_path = "/monitors",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateMonitor, input, options)
 end
 
 function Client:createScope(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateScope",
-        input_schema = schemas.CreateScopeInput,
-        output_schema = schemas.CreateScopeOutput,
-        http_method = "POST",
-        http_path = "/scopes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateScope, input, options)
 end
 
 function Client:deleteMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMonitor",
-        input_schema = schemas.DeleteMonitorInput,
-        output_schema = schemas.DeleteMonitorOutput,
-        http_method = "DELETE",
-        http_path = "/monitors/{monitorName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMonitor, input, options)
 end
 
 function Client:deleteScope(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteScope",
-        input_schema = schemas.DeleteScopeInput,
-        output_schema = schemas.DeleteScopeOutput,
-        http_method = "DELETE",
-        http_path = "/scopes/{scopeId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteScope, input, options)
 end
 
 function Client:getMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMonitor",
-        input_schema = schemas.GetMonitorInput,
-        output_schema = schemas.GetMonitorOutput,
-        http_method = "GET",
-        http_path = "/monitors/{monitorName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMonitor, input, options)
 end
 
 function Client:getQueryResultsMonitorTopContributors(input, options)
-    return self:invokeOperation(input, {
-        name = "GetQueryResultsMonitorTopContributors",
-        input_schema = schemas.GetQueryResultsMonitorTopContributorsInput,
-        output_schema = schemas.GetQueryResultsMonitorTopContributorsOutput,
-        http_method = "GET",
-        http_path = "/monitors/{monitorName}/topContributorsQueries/{queryId}/results",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetQueryResultsMonitorTopContributors, input, options)
 end
 
 function Client:getQueryResultsWorkloadInsightsTopContributors(input, options)
-    return self:invokeOperation(input, {
-        name = "GetQueryResultsWorkloadInsightsTopContributors",
-        input_schema = schemas.GetQueryResultsWorkloadInsightsTopContributorsInput,
-        output_schema = schemas.GetQueryResultsWorkloadInsightsTopContributorsOutput,
-        http_method = "GET",
-        http_path = "/workloadInsights/{scopeId}/topContributorsQueries/{queryId}/results",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetQueryResultsWorkloadInsightsTopContributors, input, options)
 end
 
 function Client:getQueryResultsWorkloadInsightsTopContributorsData(input, options)
-    return self:invokeOperation(input, {
-        name = "GetQueryResultsWorkloadInsightsTopContributorsData",
-        input_schema = schemas.GetQueryResultsWorkloadInsightsTopContributorsDataInput,
-        output_schema = schemas.GetQueryResultsWorkloadInsightsTopContributorsDataOutput,
-        http_method = "GET",
-        http_path = "/workloadInsights/{scopeId}/topContributorsDataQueries/{queryId}/results",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetQueryResultsWorkloadInsightsTopContributorsData, input, options)
 end
 
 function Client:getQueryStatusMonitorTopContributors(input, options)
-    return self:invokeOperation(input, {
-        name = "GetQueryStatusMonitorTopContributors",
-        input_schema = schemas.GetQueryStatusMonitorTopContributorsInput,
-        output_schema = schemas.GetQueryStatusMonitorTopContributorsOutput,
-        http_method = "GET",
-        http_path = "/monitors/{monitorName}/topContributorsQueries/{queryId}/status",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetQueryStatusMonitorTopContributors, input, options)
 end
 
 function Client:getQueryStatusWorkloadInsightsTopContributors(input, options)
-    return self:invokeOperation(input, {
-        name = "GetQueryStatusWorkloadInsightsTopContributors",
-        input_schema = schemas.GetQueryStatusWorkloadInsightsTopContributorsInput,
-        output_schema = schemas.GetQueryStatusWorkloadInsightsTopContributorsOutput,
-        http_method = "GET",
-        http_path = "/workloadInsights/{scopeId}/topContributorsQueries/{queryId}/status",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetQueryStatusWorkloadInsightsTopContributors, input, options)
 end
 
 function Client:getQueryStatusWorkloadInsightsTopContributorsData(input, options)
-    return self:invokeOperation(input, {
-        name = "GetQueryStatusWorkloadInsightsTopContributorsData",
-        input_schema = schemas.GetQueryStatusWorkloadInsightsTopContributorsDataInput,
-        output_schema = schemas.GetQueryStatusWorkloadInsightsTopContributorsDataOutput,
-        http_method = "GET",
-        http_path = "/workloadInsights/{scopeId}/topContributorsDataQueries/{queryId}/status",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetQueryStatusWorkloadInsightsTopContributorsData, input, options)
 end
 
 function Client:getScope(input, options)
-    return self:invokeOperation(input, {
-        name = "GetScope",
-        input_schema = schemas.GetScopeInput,
-        output_schema = schemas.GetScopeOutput,
-        http_method = "GET",
-        http_path = "/scopes/{scopeId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetScope, input, options)
 end
 
 function Client:listMonitors(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMonitors",
-        input_schema = schemas.ListMonitorsInput,
-        output_schema = schemas.ListMonitorsOutput,
-        http_method = "GET",
-        http_path = "/monitors",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMonitors, input, options)
 end
 
 function Client:listScopes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListScopes",
-        input_schema = schemas.ListScopesInput,
-        output_schema = schemas.ListScopesOutput,
-        http_method = "GET",
-        http_path = "/scopes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListScopes, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:startQueryMonitorTopContributors(input, options)
-    return self:invokeOperation(input, {
-        name = "StartQueryMonitorTopContributors",
-        input_schema = schemas.StartQueryMonitorTopContributorsInput,
-        output_schema = schemas.StartQueryMonitorTopContributorsOutput,
-        http_method = "POST",
-        http_path = "/monitors/{monitorName}/topContributorsQueries",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartQueryMonitorTopContributors, input, options)
 end
 
 function Client:startQueryWorkloadInsightsTopContributors(input, options)
-    return self:invokeOperation(input, {
-        name = "StartQueryWorkloadInsightsTopContributors",
-        input_schema = schemas.StartQueryWorkloadInsightsTopContributorsInput,
-        output_schema = schemas.StartQueryWorkloadInsightsTopContributorsOutput,
-        http_method = "POST",
-        http_path = "/workloadInsights/{scopeId}/topContributorsQueries",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartQueryWorkloadInsightsTopContributors, input, options)
 end
 
 function Client:startQueryWorkloadInsightsTopContributorsData(input, options)
-    return self:invokeOperation(input, {
-        name = "StartQueryWorkloadInsightsTopContributorsData",
-        input_schema = schemas.StartQueryWorkloadInsightsTopContributorsDataInput,
-        output_schema = schemas.StartQueryWorkloadInsightsTopContributorsDataOutput,
-        http_method = "POST",
-        http_path = "/workloadInsights/{scopeId}/topContributorsDataQueries",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartQueryWorkloadInsightsTopContributorsData, input, options)
 end
 
 function Client:stopQueryMonitorTopContributors(input, options)
-    return self:invokeOperation(input, {
-        name = "StopQueryMonitorTopContributors",
-        input_schema = schemas.StopQueryMonitorTopContributorsInput,
-        output_schema = schemas.StopQueryMonitorTopContributorsOutput,
-        http_method = "DELETE",
-        http_path = "/monitors/{monitorName}/topContributorsQueries/{queryId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopQueryMonitorTopContributors, input, options)
 end
 
 function Client:stopQueryWorkloadInsightsTopContributors(input, options)
-    return self:invokeOperation(input, {
-        name = "StopQueryWorkloadInsightsTopContributors",
-        input_schema = schemas.StopQueryWorkloadInsightsTopContributorsInput,
-        output_schema = schemas.StopQueryWorkloadInsightsTopContributorsOutput,
-        http_method = "DELETE",
-        http_path = "/workloadInsights/{scopeId}/topContributorsQueries/{queryId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopQueryWorkloadInsightsTopContributors, input, options)
 end
 
 function Client:stopQueryWorkloadInsightsTopContributorsData(input, options)
-    return self:invokeOperation(input, {
-        name = "StopQueryWorkloadInsightsTopContributorsData",
-        input_schema = schemas.StopQueryWorkloadInsightsTopContributorsDataInput,
-        output_schema = schemas.StopQueryWorkloadInsightsTopContributorsDataOutput,
-        http_method = "DELETE",
-        http_path = "/workloadInsights/{scopeId}/topContributorsDataQueries/{queryId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopQueryWorkloadInsightsTopContributorsData, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateMonitor",
-        input_schema = schemas.UpdateMonitorInput,
-        output_schema = schemas.UpdateMonitorOutput,
-        http_method = "PATCH",
-        http_path = "/monitors/{monitorName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateMonitor, input, options)
 end
 
 function Client:updateScope(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateScope",
-        input_schema = schemas.UpdateScopeInput,
-        output_schema = schemas.UpdateScopeOutput,
-        http_method = "PATCH",
-        http_path = "/scopes/{scopeId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateScope, input, options)
 end
 
 return M

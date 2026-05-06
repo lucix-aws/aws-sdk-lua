@@ -678,4 +678,50 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cloudsearchdomain", "AmazonCloudSearch2013"),
+    version = "2013-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Search = schema.operation({
+    id = id.from("com.amazonaws.cloudsearchdomain", "Search"),
+    input = M.SearchInput,
+    output = M.SearchOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-01-01/search?format=sdk&pretty=true" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Suggest = schema.operation({
+    id = id.from("com.amazonaws.cloudsearchdomain", "Suggest"),
+    input = M.SuggestInput,
+    output = M.SuggestOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-01-01/suggest?format=sdk&pretty=true" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UploadDocuments = schema.operation({
+    id = id.from("com.amazonaws.cloudsearchdomain", "UploadDocuments"),
+    input = M.UploadDocumentsInput,
+    output = M.UploadDocumentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-01-01/documents/batch?format=sdk" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

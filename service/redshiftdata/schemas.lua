@@ -1691,4 +1691,135 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.redshiftdata", "RedshiftData"),
+    version = "2019-12-20",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchExecuteStatement = schema.operation({
+    id = id.from("com.amazonaws.redshiftdata", "BatchExecuteStatement"),
+    input = M.BatchExecuteStatementInput,
+    output = M.BatchExecuteStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelStatement = schema.operation({
+    id = id.from("com.amazonaws.redshiftdata", "CancelStatement"),
+    input = M.CancelStatementInput,
+    output = M.CancelStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStatement = schema.operation({
+    id = id.from("com.amazonaws.redshiftdata", "DescribeStatement"),
+    input = M.DescribeStatementInput,
+    output = M.DescribeStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTable = schema.operation({
+    id = id.from("com.amazonaws.redshiftdata", "DescribeTable"),
+    input = M.DescribeTableInput,
+    output = M.DescribeTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteStatement = schema.operation({
+    id = id.from("com.amazonaws.redshiftdata", "ExecuteStatement"),
+    input = M.ExecuteStatementInput,
+    output = M.ExecuteStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStatementResult = schema.operation({
+    id = id.from("com.amazonaws.redshiftdata", "GetStatementResult"),
+    input = M.GetStatementResultInput,
+    output = M.GetStatementResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStatementResultV2 = schema.operation({
+    id = id.from("com.amazonaws.redshiftdata", "GetStatementResultV2"),
+    input = M.GetStatementResultV2Input,
+    output = M.GetStatementResultV2Output,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatabases = schema.operation({
+    id = id.from("com.amazonaws.redshiftdata", "ListDatabases"),
+    input = M.ListDatabasesInput,
+    output = M.ListDatabasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSchemas = schema.operation({
+    id = id.from("com.amazonaws.redshiftdata", "ListSchemas"),
+    input = M.ListSchemasInput,
+    output = M.ListSchemasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStatements = schema.operation({
+    id = id.from("com.amazonaws.redshiftdata", "ListStatements"),
+    input = M.ListStatementsInput,
+    output = M.ListStatementsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTables = schema.operation({
+    id = id.from("com.amazonaws.redshiftdata", "ListTables"),
+    input = M.ListTablesInput,
+    output = M.ListTablesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

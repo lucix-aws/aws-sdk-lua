@@ -968,4 +968,102 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cloudcontrol", "CloudApiService"),
+    version = "2021-09-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelResourceRequest = schema.operation({
+    id = id.from("com.amazonaws.cloudcontrol", "CancelResourceRequest"),
+    input = M.CancelResourceRequestInput,
+    output = M.CancelResourceRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResource = schema.operation({
+    id = id.from("com.amazonaws.cloudcontrol", "CreateResource"),
+    input = M.CreateResourceInput,
+    output = M.CreateResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResource = schema.operation({
+    id = id.from("com.amazonaws.cloudcontrol", "DeleteResource"),
+    input = M.DeleteResourceInput,
+    output = M.DeleteResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResource = schema.operation({
+    id = id.from("com.amazonaws.cloudcontrol", "GetResource"),
+    input = M.GetResourceInput,
+    output = M.GetResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceRequestStatus = schema.operation({
+    id = id.from("com.amazonaws.cloudcontrol", "GetResourceRequestStatus"),
+    input = M.GetResourceRequestStatusInput,
+    output = M.GetResourceRequestStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceRequests = schema.operation({
+    id = id.from("com.amazonaws.cloudcontrol", "ListResourceRequests"),
+    input = M.ListResourceRequestsInput,
+    output = M.ListResourceRequestsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResources = schema.operation({
+    id = id.from("com.amazonaws.cloudcontrol", "ListResources"),
+    input = M.ListResourcesInput,
+    output = M.ListResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResource = schema.operation({
+    id = id.from("com.amazonaws.cloudcontrol", "UpdateResource"),
+    input = M.UpdateResourceInput,
+    output = M.UpdateResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

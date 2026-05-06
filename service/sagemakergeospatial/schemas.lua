@@ -3306,4 +3306,242 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sagemakergeospatial", "SageMakerGeospatial"),
+    version = "2020-05-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEarthObservationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "DeleteEarthObservationJob"),
+    input = M.DeleteEarthObservationJobInput,
+    output = M.DeleteEarthObservationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/earth-observation-jobs/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVectorEnrichmentJob = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "DeleteVectorEnrichmentJob"),
+    input = M.DeleteVectorEnrichmentJobInput,
+    output = M.DeleteVectorEnrichmentJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/vector-enrichment-jobs/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportEarthObservationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "ExportEarthObservationJob"),
+    input = M.ExportEarthObservationJobInput,
+    output = M.ExportEarthObservationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/export-earth-observation-job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportVectorEnrichmentJob = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "ExportVectorEnrichmentJob"),
+    input = M.ExportVectorEnrichmentJobInput,
+    output = M.ExportVectorEnrichmentJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/export-vector-enrichment-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEarthObservationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "GetEarthObservationJob"),
+    input = M.GetEarthObservationJobInput,
+    output = M.GetEarthObservationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/earth-observation-jobs/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRasterDataCollection = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "GetRasterDataCollection"),
+    input = M.GetRasterDataCollectionInput,
+    output = M.GetRasterDataCollectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/raster-data-collection/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTile = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "GetTile"),
+    input = M.GetTileInput,
+    output = M.GetTileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tile/{z}/{x}/{y}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVectorEnrichmentJob = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "GetVectorEnrichmentJob"),
+    input = M.GetVectorEnrichmentJobInput,
+    output = M.GetVectorEnrichmentJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/vector-enrichment-jobs/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEarthObservationJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "ListEarthObservationJobs"),
+    input = M.ListEarthObservationJobsInput,
+    output = M.ListEarthObservationJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-earth-observation-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRasterDataCollections = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "ListRasterDataCollections"),
+    input = M.ListRasterDataCollectionsInput,
+    output = M.ListRasterDataCollectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/raster-data-collections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVectorEnrichmentJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "ListVectorEnrichmentJobs"),
+    input = M.ListVectorEnrichmentJobsInput,
+    output = M.ListVectorEnrichmentJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-vector-enrichment-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchRasterDataCollection = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "SearchRasterDataCollection"),
+    input = M.SearchRasterDataCollectionInput,
+    output = M.SearchRasterDataCollectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-raster-data-collection" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartEarthObservationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "StartEarthObservationJob"),
+    input = M.StartEarthObservationJobInput,
+    output = M.StartEarthObservationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/earth-observation-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartVectorEnrichmentJob = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "StartVectorEnrichmentJob"),
+    input = M.StartVectorEnrichmentJobInput,
+    output = M.StartVectorEnrichmentJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/vector-enrichment-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopEarthObservationJob = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "StopEarthObservationJob"),
+    input = M.StopEarthObservationJobInput,
+    output = M.StopEarthObservationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/earth-observation-jobs/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopVectorEnrichmentJob = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "StopVectorEnrichmentJob"),
+    input = M.StopVectorEnrichmentJobInput,
+    output = M.StopVectorEnrichmentJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/vector-enrichment-jobs/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.sagemakergeospatial", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

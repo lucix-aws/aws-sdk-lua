@@ -7,6 +7,7 @@ local endpoint_rules = require("launchwizard.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("launchwizard.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "launchwizard", signing_region = cfg.region } }
                 else
@@ -49,198 +52,63 @@ function M.new(cfg)
 end
 
 function Client:createDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDeployment",
-        input_schema = schemas.CreateDeploymentInput,
-        output_schema = schemas.CreateDeploymentOutput,
-        http_method = "POST",
-        http_path = "/createDeployment",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDeployment, input, options)
 end
 
 function Client:deleteDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDeployment",
-        input_schema = schemas.DeleteDeploymentInput,
-        output_schema = schemas.DeleteDeploymentOutput,
-        http_method = "POST",
-        http_path = "/deleteDeployment",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDeployment, input, options)
 end
 
 function Client:getDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDeployment",
-        input_schema = schemas.GetDeploymentInput,
-        output_schema = schemas.GetDeploymentOutput,
-        http_method = "POST",
-        http_path = "/getDeployment",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDeployment, input, options)
 end
 
 function Client:getDeploymentPatternVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDeploymentPatternVersion",
-        input_schema = schemas.GetDeploymentPatternVersionInput,
-        output_schema = schemas.GetDeploymentPatternVersionOutput,
-        http_method = "POST",
-        http_path = "/getDeploymentPatternVersion",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDeploymentPatternVersion, input, options)
 end
 
 function Client:getWorkload(input, options)
-    return self:invokeOperation(input, {
-        name = "GetWorkload",
-        input_schema = schemas.GetWorkloadInput,
-        output_schema = schemas.GetWorkloadOutput,
-        http_method = "POST",
-        http_path = "/getWorkload",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetWorkload, input, options)
 end
 
 function Client:getWorkloadDeploymentPattern(input, options)
-    return self:invokeOperation(input, {
-        name = "GetWorkloadDeploymentPattern",
-        input_schema = schemas.GetWorkloadDeploymentPatternInput,
-        output_schema = schemas.GetWorkloadDeploymentPatternOutput,
-        http_method = "POST",
-        http_path = "/getWorkloadDeploymentPattern",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetWorkloadDeploymentPattern, input, options)
 end
 
 function Client:listDeploymentEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDeploymentEvents",
-        input_schema = schemas.ListDeploymentEventsInput,
-        output_schema = schemas.ListDeploymentEventsOutput,
-        http_method = "POST",
-        http_path = "/listDeploymentEvents",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDeploymentEvents, input, options)
 end
 
 function Client:listDeploymentPatternVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDeploymentPatternVersions",
-        input_schema = schemas.ListDeploymentPatternVersionsInput,
-        output_schema = schemas.ListDeploymentPatternVersionsOutput,
-        http_method = "POST",
-        http_path = "/listDeploymentPatternVersions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDeploymentPatternVersions, input, options)
 end
 
 function Client:listDeployments(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDeployments",
-        input_schema = schemas.ListDeploymentsInput,
-        output_schema = schemas.ListDeploymentsOutput,
-        http_method = "POST",
-        http_path = "/listDeployments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDeployments, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listWorkloadDeploymentPatterns(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkloadDeploymentPatterns",
-        input_schema = schemas.ListWorkloadDeploymentPatternsInput,
-        output_schema = schemas.ListWorkloadDeploymentPatternsOutput,
-        http_method = "POST",
-        http_path = "/listWorkloadDeploymentPatterns",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkloadDeploymentPatterns, input, options)
 end
 
 function Client:listWorkloads(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkloads",
-        input_schema = schemas.ListWorkloadsInput,
-        output_schema = schemas.ListWorkloadsOutput,
-        http_method = "POST",
-        http_path = "/listWorkloads",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkloads, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDeployment",
-        input_schema = schemas.UpdateDeploymentInput,
-        output_schema = schemas.UpdateDeploymentOutput,
-        http_method = "POST",
-        http_path = "/updateDeployment",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDeployment, input, options)
 end
 
 return M

@@ -7,6 +7,7 @@ local endpoint_rules = require("mediaconnect.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("mediaconnect.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mediaconnect", signing_region = cfg.region } }
                 else
@@ -49,1069 +52,331 @@ function M.new(cfg)
 end
 
 function Client:addBridgeOutputs(input, options)
-    return self:invokeOperation(input, {
-        name = "AddBridgeOutputs",
-        input_schema = schemas.AddBridgeOutputsInput,
-        output_schema = schemas.AddBridgeOutputsOutput,
-        http_method = "POST",
-        http_path = "/v1/bridges/{BridgeArn}/outputs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddBridgeOutputs, input, options)
 end
 
 function Client:addBridgeSources(input, options)
-    return self:invokeOperation(input, {
-        name = "AddBridgeSources",
-        input_schema = schemas.AddBridgeSourcesInput,
-        output_schema = schemas.AddBridgeSourcesOutput,
-        http_method = "POST",
-        http_path = "/v1/bridges/{BridgeArn}/sources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddBridgeSources, input, options)
 end
 
 function Client:addFlowMediaStreams(input, options)
-    return self:invokeOperation(input, {
-        name = "AddFlowMediaStreams",
-        input_schema = schemas.AddFlowMediaStreamsInput,
-        output_schema = schemas.AddFlowMediaStreamsOutput,
-        http_method = "POST",
-        http_path = "/v1/flows/{FlowArn}/mediaStreams",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddFlowMediaStreams, input, options)
 end
 
 function Client:addFlowOutputs(input, options)
-    return self:invokeOperation(input, {
-        name = "AddFlowOutputs",
-        input_schema = schemas.AddFlowOutputsInput,
-        output_schema = schemas.AddFlowOutputsOutput,
-        http_method = "POST",
-        http_path = "/v1/flows/{FlowArn}/outputs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddFlowOutputs, input, options)
 end
 
 function Client:addFlowSources(input, options)
-    return self:invokeOperation(input, {
-        name = "AddFlowSources",
-        input_schema = schemas.AddFlowSourcesInput,
-        output_schema = schemas.AddFlowSourcesOutput,
-        http_method = "POST",
-        http_path = "/v1/flows/{FlowArn}/source",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddFlowSources, input, options)
 end
 
 function Client:addFlowVpcInterfaces(input, options)
-    return self:invokeOperation(input, {
-        name = "AddFlowVpcInterfaces",
-        input_schema = schemas.AddFlowVpcInterfacesInput,
-        output_schema = schemas.AddFlowVpcInterfacesOutput,
-        http_method = "POST",
-        http_path = "/v1/flows/{FlowArn}/vpcInterfaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddFlowVpcInterfaces, input, options)
 end
 
 function Client:batchGetRouterInput(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetRouterInput",
-        input_schema = schemas.BatchGetRouterInputInput,
-        output_schema = schemas.BatchGetRouterInputOutput,
-        http_method = "GET",
-        http_path = "/v1/routerInputs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetRouterInput, input, options)
 end
 
 function Client:batchGetRouterNetworkInterface(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetRouterNetworkInterface",
-        input_schema = schemas.BatchGetRouterNetworkInterfaceInput,
-        output_schema = schemas.BatchGetRouterNetworkInterfaceOutput,
-        http_method = "GET",
-        http_path = "/v1/routerNetworkInterfaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetRouterNetworkInterface, input, options)
 end
 
 function Client:batchGetRouterOutput(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetRouterOutput",
-        input_schema = schemas.BatchGetRouterOutputInput,
-        output_schema = schemas.BatchGetRouterOutputOutput,
-        http_method = "GET",
-        http_path = "/v1/routerOutputs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetRouterOutput, input, options)
 end
 
 function Client:createBridge(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateBridge",
-        input_schema = schemas.CreateBridgeInput,
-        output_schema = schemas.CreateBridgeOutput,
-        http_method = "POST",
-        http_path = "/v1/bridges",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateBridge, input, options)
 end
 
 function Client:createFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateFlow",
-        input_schema = schemas.CreateFlowInput,
-        output_schema = schemas.CreateFlowOutput,
-        http_method = "POST",
-        http_path = "/v1/flows",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateFlow, input, options)
 end
 
 function Client:createGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGateway",
-        input_schema = schemas.CreateGatewayInput,
-        output_schema = schemas.CreateGatewayOutput,
-        http_method = "POST",
-        http_path = "/v1/gateways",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGateway, input, options)
 end
 
 function Client:createRouterInput(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRouterInput",
-        input_schema = schemas.CreateRouterInputInput,
-        output_schema = schemas.CreateRouterInputOutput,
-        http_method = "POST",
-        http_path = "/v1/routerInput",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRouterInput, input, options)
 end
 
 function Client:createRouterNetworkInterface(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRouterNetworkInterface",
-        input_schema = schemas.CreateRouterNetworkInterfaceInput,
-        output_schema = schemas.CreateRouterNetworkInterfaceOutput,
-        http_method = "POST",
-        http_path = "/v1/routerNetworkInterface",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRouterNetworkInterface, input, options)
 end
 
 function Client:createRouterOutput(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRouterOutput",
-        input_schema = schemas.CreateRouterOutputInput,
-        output_schema = schemas.CreateRouterOutputOutput,
-        http_method = "POST",
-        http_path = "/v1/routerOutput",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRouterOutput, input, options)
 end
 
 function Client:deleteBridge(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteBridge",
-        input_schema = schemas.DeleteBridgeInput,
-        output_schema = schemas.DeleteBridgeOutput,
-        http_method = "DELETE",
-        http_path = "/v1/bridges/{BridgeArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteBridge, input, options)
 end
 
 function Client:deleteFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFlow",
-        input_schema = schemas.DeleteFlowInput,
-        output_schema = schemas.DeleteFlowOutput,
-        http_method = "DELETE",
-        http_path = "/v1/flows/{FlowArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFlow, input, options)
 end
 
 function Client:deleteGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGateway",
-        input_schema = schemas.DeleteGatewayInput,
-        output_schema = schemas.DeleteGatewayOutput,
-        http_method = "DELETE",
-        http_path = "/v1/gateways/{GatewayArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGateway, input, options)
 end
 
 function Client:deleteRouterInput(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRouterInput",
-        input_schema = schemas.DeleteRouterInputInput,
-        output_schema = schemas.DeleteRouterInputOutput,
-        http_method = "DELETE",
-        http_path = "/v1/routerInput/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRouterInput, input, options)
 end
 
 function Client:deleteRouterNetworkInterface(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRouterNetworkInterface",
-        input_schema = schemas.DeleteRouterNetworkInterfaceInput,
-        output_schema = schemas.DeleteRouterNetworkInterfaceOutput,
-        http_method = "DELETE",
-        http_path = "/v1/routerNetworkInterface/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRouterNetworkInterface, input, options)
 end
 
 function Client:deleteRouterOutput(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRouterOutput",
-        input_schema = schemas.DeleteRouterOutputInput,
-        output_schema = schemas.DeleteRouterOutputOutput,
-        http_method = "DELETE",
-        http_path = "/v1/routerOutput/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRouterOutput, input, options)
 end
 
 function Client:deregisterGatewayInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterGatewayInstance",
-        input_schema = schemas.DeregisterGatewayInstanceInput,
-        output_schema = schemas.DeregisterGatewayInstanceOutput,
-        http_method = "DELETE",
-        http_path = "/v1/gateway-instances/{GatewayInstanceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterGatewayInstance, input, options)
 end
 
 function Client:describeBridge(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeBridge",
-        input_schema = schemas.DescribeBridgeInput,
-        output_schema = schemas.DescribeBridgeOutput,
-        http_method = "GET",
-        http_path = "/v1/bridges/{BridgeArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeBridge, input, options)
 end
 
 function Client:describeFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeFlow",
-        input_schema = schemas.DescribeFlowInput,
-        output_schema = schemas.DescribeFlowOutput,
-        http_method = "GET",
-        http_path = "/v1/flows/{FlowArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeFlow, input, options)
 end
 
 function Client:describeFlowSourceMetadata(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeFlowSourceMetadata",
-        input_schema = schemas.DescribeFlowSourceMetadataInput,
-        output_schema = schemas.DescribeFlowSourceMetadataOutput,
-        http_method = "GET",
-        http_path = "/v1/flows/{FlowArn}/source-metadata",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeFlowSourceMetadata, input, options)
 end
 
 function Client:describeFlowSourceThumbnail(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeFlowSourceThumbnail",
-        input_schema = schemas.DescribeFlowSourceThumbnailInput,
-        output_schema = schemas.DescribeFlowSourceThumbnailOutput,
-        http_method = "GET",
-        http_path = "/v1/flows/{FlowArn}/source-thumbnail",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeFlowSourceThumbnail, input, options)
 end
 
 function Client:describeGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeGateway",
-        input_schema = schemas.DescribeGatewayInput,
-        output_schema = schemas.DescribeGatewayOutput,
-        http_method = "GET",
-        http_path = "/v1/gateways/{GatewayArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeGateway, input, options)
 end
 
 function Client:describeGatewayInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeGatewayInstance",
-        input_schema = schemas.DescribeGatewayInstanceInput,
-        output_schema = schemas.DescribeGatewayInstanceOutput,
-        http_method = "GET",
-        http_path = "/v1/gateway-instances/{GatewayInstanceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeGatewayInstance, input, options)
 end
 
 function Client:describeOffering(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeOffering",
-        input_schema = schemas.DescribeOfferingInput,
-        output_schema = schemas.DescribeOfferingOutput,
-        http_method = "GET",
-        http_path = "/v1/offerings/{OfferingArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeOffering, input, options)
 end
 
 function Client:describeReservation(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeReservation",
-        input_schema = schemas.DescribeReservationInput,
-        output_schema = schemas.DescribeReservationOutput,
-        http_method = "GET",
-        http_path = "/v1/reservations/{ReservationArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeReservation, input, options)
 end
 
 function Client:getRouterInput(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRouterInput",
-        input_schema = schemas.GetRouterInputInput,
-        output_schema = schemas.GetRouterInputOutput,
-        http_method = "GET",
-        http_path = "/v1/routerInput/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRouterInput, input, options)
 end
 
 function Client:getRouterInputSourceMetadata(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRouterInputSourceMetadata",
-        input_schema = schemas.GetRouterInputSourceMetadataInput,
-        output_schema = schemas.GetRouterInputSourceMetadataOutput,
-        http_method = "GET",
-        http_path = "/v1/routerInput/{Arn}/source-metadata",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRouterInputSourceMetadata, input, options)
 end
 
 function Client:getRouterInputThumbnail(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRouterInputThumbnail",
-        input_schema = schemas.GetRouterInputThumbnailInput,
-        output_schema = schemas.GetRouterInputThumbnailOutput,
-        http_method = "GET",
-        http_path = "/v1/routerInput/{Arn}/thumbnail",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRouterInputThumbnail, input, options)
 end
 
 function Client:getRouterNetworkInterface(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRouterNetworkInterface",
-        input_schema = schemas.GetRouterNetworkInterfaceInput,
-        output_schema = schemas.GetRouterNetworkInterfaceOutput,
-        http_method = "GET",
-        http_path = "/v1/routerNetworkInterface/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRouterNetworkInterface, input, options)
 end
 
 function Client:getRouterOutput(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRouterOutput",
-        input_schema = schemas.GetRouterOutputInput,
-        output_schema = schemas.GetRouterOutputOutput,
-        http_method = "GET",
-        http_path = "/v1/routerOutput/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRouterOutput, input, options)
 end
 
 function Client:grantFlowEntitlements(input, options)
-    return self:invokeOperation(input, {
-        name = "GrantFlowEntitlements",
-        input_schema = schemas.GrantFlowEntitlementsInput,
-        output_schema = schemas.GrantFlowEntitlementsOutput,
-        http_method = "POST",
-        http_path = "/v1/flows/{FlowArn}/entitlements",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GrantFlowEntitlements, input, options)
 end
 
 function Client:listBridges(input, options)
-    return self:invokeOperation(input, {
-        name = "ListBridges",
-        input_schema = schemas.ListBridgesInput,
-        output_schema = schemas.ListBridgesOutput,
-        http_method = "GET",
-        http_path = "/v1/bridges",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListBridges, input, options)
 end
 
 function Client:listEntitlements(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEntitlements",
-        input_schema = schemas.ListEntitlementsInput,
-        output_schema = schemas.ListEntitlementsOutput,
-        http_method = "GET",
-        http_path = "/v1/entitlements",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEntitlements, input, options)
 end
 
 function Client:listFlows(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFlows",
-        input_schema = schemas.ListFlowsInput,
-        output_schema = schemas.ListFlowsOutput,
-        http_method = "GET",
-        http_path = "/v1/flows",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFlows, input, options)
 end
 
 function Client:listGatewayInstances(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGatewayInstances",
-        input_schema = schemas.ListGatewayInstancesInput,
-        output_schema = schemas.ListGatewayInstancesOutput,
-        http_method = "GET",
-        http_path = "/v1/gateway-instances",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGatewayInstances, input, options)
 end
 
 function Client:listGateways(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGateways",
-        input_schema = schemas.ListGatewaysInput,
-        output_schema = schemas.ListGatewaysOutput,
-        http_method = "GET",
-        http_path = "/v1/gateways",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGateways, input, options)
 end
 
 function Client:listOfferings(input, options)
-    return self:invokeOperation(input, {
-        name = "ListOfferings",
-        input_schema = schemas.ListOfferingsInput,
-        output_schema = schemas.ListOfferingsOutput,
-        http_method = "GET",
-        http_path = "/v1/offerings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListOfferings, input, options)
 end
 
 function Client:listReservations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReservations",
-        input_schema = schemas.ListReservationsInput,
-        output_schema = schemas.ListReservationsOutput,
-        http_method = "GET",
-        http_path = "/v1/reservations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReservations, input, options)
 end
 
 function Client:listRouterInputs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRouterInputs",
-        input_schema = schemas.ListRouterInputsInput,
-        output_schema = schemas.ListRouterInputsOutput,
-        http_method = "POST",
-        http_path = "/v1/routerInputs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRouterInputs, input, options)
 end
 
 function Client:listRouterNetworkInterfaces(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRouterNetworkInterfaces",
-        input_schema = schemas.ListRouterNetworkInterfacesInput,
-        output_schema = schemas.ListRouterNetworkInterfacesOutput,
-        http_method = "POST",
-        http_path = "/v1/routerNetworkInterfaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRouterNetworkInterfaces, input, options)
 end
 
 function Client:listRouterOutputs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRouterOutputs",
-        input_schema = schemas.ListRouterOutputsInput,
-        output_schema = schemas.ListRouterOutputsOutput,
-        http_method = "POST",
-        http_path = "/v1/routerOutputs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRouterOutputs, input, options)
 end
 
 function Client:listTagsForGlobalResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForGlobalResource",
-        input_schema = schemas.ListTagsForGlobalResourceInput,
-        output_schema = schemas.ListTagsForGlobalResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/global/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForGlobalResource, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:purchaseOffering(input, options)
-    return self:invokeOperation(input, {
-        name = "PurchaseOffering",
-        input_schema = schemas.PurchaseOfferingInput,
-        output_schema = schemas.PurchaseOfferingOutput,
-        http_method = "POST",
-        http_path = "/v1/offerings/{OfferingArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PurchaseOffering, input, options)
 end
 
 function Client:removeBridgeOutput(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveBridgeOutput",
-        input_schema = schemas.RemoveBridgeOutputInput,
-        output_schema = schemas.RemoveBridgeOutputOutput,
-        http_method = "DELETE",
-        http_path = "/v1/bridges/{BridgeArn}/outputs/{OutputName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveBridgeOutput, input, options)
 end
 
 function Client:removeBridgeSource(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveBridgeSource",
-        input_schema = schemas.RemoveBridgeSourceInput,
-        output_schema = schemas.RemoveBridgeSourceOutput,
-        http_method = "DELETE",
-        http_path = "/v1/bridges/{BridgeArn}/sources/{SourceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveBridgeSource, input, options)
 end
 
 function Client:removeFlowMediaStream(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveFlowMediaStream",
-        input_schema = schemas.RemoveFlowMediaStreamInput,
-        output_schema = schemas.RemoveFlowMediaStreamOutput,
-        http_method = "DELETE",
-        http_path = "/v1/flows/{FlowArn}/mediaStreams/{MediaStreamName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveFlowMediaStream, input, options)
 end
 
 function Client:removeFlowOutput(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveFlowOutput",
-        input_schema = schemas.RemoveFlowOutputInput,
-        output_schema = schemas.RemoveFlowOutputOutput,
-        http_method = "DELETE",
-        http_path = "/v1/flows/{FlowArn}/outputs/{OutputArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveFlowOutput, input, options)
 end
 
 function Client:removeFlowSource(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveFlowSource",
-        input_schema = schemas.RemoveFlowSourceInput,
-        output_schema = schemas.RemoveFlowSourceOutput,
-        http_method = "DELETE",
-        http_path = "/v1/flows/{FlowArn}/source/{SourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveFlowSource, input, options)
 end
 
 function Client:removeFlowVpcInterface(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveFlowVpcInterface",
-        input_schema = schemas.RemoveFlowVpcInterfaceInput,
-        output_schema = schemas.RemoveFlowVpcInterfaceOutput,
-        http_method = "DELETE",
-        http_path = "/v1/flows/{FlowArn}/vpcInterfaces/{VpcInterfaceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveFlowVpcInterface, input, options)
 end
 
 function Client:restartRouterInput(input, options)
-    return self:invokeOperation(input, {
-        name = "RestartRouterInput",
-        input_schema = schemas.RestartRouterInputInput,
-        output_schema = schemas.RestartRouterInputOutput,
-        http_method = "POST",
-        http_path = "/v1/routerInput/restart/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RestartRouterInput, input, options)
 end
 
 function Client:restartRouterOutput(input, options)
-    return self:invokeOperation(input, {
-        name = "RestartRouterOutput",
-        input_schema = schemas.RestartRouterOutputInput,
-        output_schema = schemas.RestartRouterOutputOutput,
-        http_method = "POST",
-        http_path = "/v1/routerOutput/restart/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RestartRouterOutput, input, options)
 end
 
 function Client:revokeFlowEntitlement(input, options)
-    return self:invokeOperation(input, {
-        name = "RevokeFlowEntitlement",
-        input_schema = schemas.RevokeFlowEntitlementInput,
-        output_schema = schemas.RevokeFlowEntitlementOutput,
-        http_method = "DELETE",
-        http_path = "/v1/flows/{FlowArn}/entitlements/{EntitlementArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RevokeFlowEntitlement, input, options)
 end
 
 function Client:startFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "StartFlow",
-        input_schema = schemas.StartFlowInput,
-        output_schema = schemas.StartFlowOutput,
-        http_method = "POST",
-        http_path = "/v1/flows/start/{FlowArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartFlow, input, options)
 end
 
 function Client:startRouterInput(input, options)
-    return self:invokeOperation(input, {
-        name = "StartRouterInput",
-        input_schema = schemas.StartRouterInputInput,
-        output_schema = schemas.StartRouterInputOutput,
-        http_method = "POST",
-        http_path = "/v1/routerInput/start/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartRouterInput, input, options)
 end
 
 function Client:startRouterOutput(input, options)
-    return self:invokeOperation(input, {
-        name = "StartRouterOutput",
-        input_schema = schemas.StartRouterOutputInput,
-        output_schema = schemas.StartRouterOutputOutput,
-        http_method = "POST",
-        http_path = "/v1/routerOutput/start/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartRouterOutput, input, options)
 end
 
 function Client:stopFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "StopFlow",
-        input_schema = schemas.StopFlowInput,
-        output_schema = schemas.StopFlowOutput,
-        http_method = "POST",
-        http_path = "/v1/flows/stop/{FlowArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopFlow, input, options)
 end
 
 function Client:stopRouterInput(input, options)
-    return self:invokeOperation(input, {
-        name = "StopRouterInput",
-        input_schema = schemas.StopRouterInputInput,
-        output_schema = schemas.StopRouterInputOutput,
-        http_method = "POST",
-        http_path = "/v1/routerInput/stop/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopRouterInput, input, options)
 end
 
 function Client:stopRouterOutput(input, options)
-    return self:invokeOperation(input, {
-        name = "StopRouterOutput",
-        input_schema = schemas.StopRouterOutputInput,
-        output_schema = schemas.StopRouterOutputOutput,
-        http_method = "POST",
-        http_path = "/v1/routerOutput/stop/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopRouterOutput, input, options)
 end
 
 function Client:tagGlobalResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagGlobalResource",
-        input_schema = schemas.TagGlobalResourceInput,
-        output_schema = schemas.TagGlobalResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/global/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagGlobalResource, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:takeRouterInput(input, options)
-    return self:invokeOperation(input, {
-        name = "TakeRouterInput",
-        input_schema = schemas.TakeRouterInputInput,
-        output_schema = schemas.TakeRouterInputOutput,
-        http_method = "PUT",
-        http_path = "/v1/routerOutput/takeRouterInput/{RouterOutputArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TakeRouterInput, input, options)
 end
 
 function Client:untagGlobalResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagGlobalResource",
-        input_schema = schemas.UntagGlobalResourceInput,
-        output_schema = schemas.UntagGlobalResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/global/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagGlobalResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateBridge(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateBridge",
-        input_schema = schemas.UpdateBridgeInput,
-        output_schema = schemas.UpdateBridgeOperationOutput,
-        http_method = "PUT",
-        http_path = "/v1/bridges/{BridgeArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateBridge, input, options)
 end
 
 function Client:updateBridgeOutput(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateBridgeOutput",
-        input_schema = schemas.UpdateBridgeOutputInput,
-        output_schema = schemas.UpdateBridgeOutputOutput,
-        http_method = "PUT",
-        http_path = "/v1/bridges/{BridgeArn}/outputs/{OutputName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateBridgeOutput, input, options)
 end
 
 function Client:updateBridgeSource(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateBridgeSource",
-        input_schema = schemas.UpdateBridgeSourceInput,
-        output_schema = schemas.UpdateBridgeSourceOutput,
-        http_method = "PUT",
-        http_path = "/v1/bridges/{BridgeArn}/sources/{SourceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateBridgeSource, input, options)
 end
 
 function Client:updateBridgeState(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateBridgeState",
-        input_schema = schemas.UpdateBridgeStateInput,
-        output_schema = schemas.UpdateBridgeStateOutput,
-        http_method = "PUT",
-        http_path = "/v1/bridges/{BridgeArn}/state",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateBridgeState, input, options)
 end
 
 function Client:updateFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateFlow",
-        input_schema = schemas.UpdateFlowInput,
-        output_schema = schemas.UpdateFlowOperationOutput,
-        http_method = "PUT",
-        http_path = "/v1/flows/{FlowArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateFlow, input, options)
 end
 
 function Client:updateFlowEntitlement(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateFlowEntitlement",
-        input_schema = schemas.UpdateFlowEntitlementInput,
-        output_schema = schemas.UpdateFlowEntitlementOutput,
-        http_method = "PUT",
-        http_path = "/v1/flows/{FlowArn}/entitlements/{EntitlementArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateFlowEntitlement, input, options)
 end
 
 function Client:updateFlowMediaStream(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateFlowMediaStream",
-        input_schema = schemas.UpdateFlowMediaStreamInput,
-        output_schema = schemas.UpdateFlowMediaStreamOutput,
-        http_method = "PUT",
-        http_path = "/v1/flows/{FlowArn}/mediaStreams/{MediaStreamName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateFlowMediaStream, input, options)
 end
 
 function Client:updateFlowOutput(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateFlowOutput",
-        input_schema = schemas.UpdateFlowOutputInput,
-        output_schema = schemas.UpdateFlowOutputOutput,
-        http_method = "PUT",
-        http_path = "/v1/flows/{FlowArn}/outputs/{OutputArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateFlowOutput, input, options)
 end
 
 function Client:updateFlowSource(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateFlowSource",
-        input_schema = schemas.UpdateFlowSourceInput,
-        output_schema = schemas.UpdateFlowSourceOutput,
-        http_method = "PUT",
-        http_path = "/v1/flows/{FlowArn}/source/{SourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateFlowSource, input, options)
 end
 
 function Client:updateGatewayInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateGatewayInstance",
-        input_schema = schemas.UpdateGatewayInstanceInput,
-        output_schema = schemas.UpdateGatewayInstanceOutput,
-        http_method = "PUT",
-        http_path = "/v1/gateway-instances/{GatewayInstanceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateGatewayInstance, input, options)
 end
 
 function Client:updateRouterInput(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRouterInput",
-        input_schema = schemas.UpdateRouterInputInput,
-        output_schema = schemas.UpdateRouterInputOutput,
-        http_method = "PUT",
-        http_path = "/v1/routerInput/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRouterInput, input, options)
 end
 
 function Client:updateRouterNetworkInterface(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRouterNetworkInterface",
-        input_schema = schemas.UpdateRouterNetworkInterfaceInput,
-        output_schema = schemas.UpdateRouterNetworkInterfaceOutput,
-        http_method = "PUT",
-        http_path = "/v1/routerNetworkInterface/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRouterNetworkInterface, input, options)
 end
 
 function Client:updateRouterOutput(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRouterOutput",
-        input_schema = schemas.UpdateRouterOutputInput,
-        output_schema = schemas.UpdateRouterOutputOutput,
-        http_method = "PUT",
-        http_path = "/v1/routerOutput/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRouterOutput, input, options)
 end
 
 return M

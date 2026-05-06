@@ -834,4 +834,74 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.geomaps", "MapsService"),
+    version = "2020-11-19",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGlyphs = schema.operation({
+    id = id.from("com.amazonaws.geomaps", "GetGlyphs"),
+    input = M.GetGlyphsInput,
+    output = M.GetGlyphsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/glyphs/{FontStack}/{FontUnicodeRange}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSprites = schema.operation({
+    id = id.from("com.amazonaws.geomaps", "GetSprites"),
+    input = M.GetSpritesInput,
+    output = M.GetSpritesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/styles/{Style}/{ColorScheme}/{Variant}/sprites/{FileName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStaticMap = schema.operation({
+    id = id.from("com.amazonaws.geomaps", "GetStaticMap"),
+    input = M.GetStaticMapInput,
+    output = M.GetStaticMapOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/static/{FileName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStyleDescriptor = schema.operation({
+    id = id.from("com.amazonaws.geomaps", "GetStyleDescriptor"),
+    input = M.GetStyleDescriptorInput,
+    output = M.GetStyleDescriptorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/styles/{Style}/descriptor" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTile = schema.operation({
+    id = id.from("com.amazonaws.geomaps", "GetTile"),
+    input = M.GetTileInput,
+    output = M.GetTileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tiles/{Tileset}/{Z}/{X}/{Y}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

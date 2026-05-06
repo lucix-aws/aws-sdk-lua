@@ -8560,4 +8560,542 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.fsx", "AWSSimbaAPIService_v20180301"),
+    version = "2018-03-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateFileSystemAliases = schema.operation({
+    id = id.from("com.amazonaws.fsx", "AssociateFileSystemAliases"),
+    input = M.AssociateFileSystemAliasesInput,
+    output = M.AssociateFileSystemAliasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelDataRepositoryTask = schema.operation({
+    id = id.from("com.amazonaws.fsx", "CancelDataRepositoryTask"),
+    input = M.CancelDataRepositoryTaskInput,
+    output = M.CancelDataRepositoryTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyBackup = schema.operation({
+    id = id.from("com.amazonaws.fsx", "CopyBackup"),
+    input = M.CopyBackupInput,
+    output = M.CopyBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopySnapshotAndUpdateVolume = schema.operation({
+    id = id.from("com.amazonaws.fsx", "CopySnapshotAndUpdateVolume"),
+    input = M.CopySnapshotAndUpdateVolumeInput,
+    output = M.CopySnapshotAndUpdateVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAndAttachS3AccessPoint = schema.operation({
+    id = id.from("com.amazonaws.fsx", "CreateAndAttachS3AccessPoint"),
+    input = M.CreateAndAttachS3AccessPointInput,
+    output = M.CreateAndAttachS3AccessPointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBackup = schema.operation({
+    id = id.from("com.amazonaws.fsx", "CreateBackup"),
+    input = M.CreateBackupInput,
+    output = M.CreateBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataRepositoryAssociation = schema.operation({
+    id = id.from("com.amazonaws.fsx", "CreateDataRepositoryAssociation"),
+    input = M.CreateDataRepositoryAssociationInput,
+    output = M.CreateDataRepositoryAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataRepositoryTask = schema.operation({
+    id = id.from("com.amazonaws.fsx", "CreateDataRepositoryTask"),
+    input = M.CreateDataRepositoryTaskInput,
+    output = M.CreateDataRepositoryTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFileCache = schema.operation({
+    id = id.from("com.amazonaws.fsx", "CreateFileCache"),
+    input = M.CreateFileCacheInput,
+    output = M.CreateFileCacheOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFileSystem = schema.operation({
+    id = id.from("com.amazonaws.fsx", "CreateFileSystem"),
+    input = M.CreateFileSystemInput,
+    output = M.CreateFileSystemOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFileSystemFromBackup = schema.operation({
+    id = id.from("com.amazonaws.fsx", "CreateFileSystemFromBackup"),
+    input = M.CreateFileSystemFromBackupInput,
+    output = M.CreateFileSystemFromBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSnapshot = schema.operation({
+    id = id.from("com.amazonaws.fsx", "CreateSnapshot"),
+    input = M.CreateSnapshotInput,
+    output = M.CreateSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStorageVirtualMachine = schema.operation({
+    id = id.from("com.amazonaws.fsx", "CreateStorageVirtualMachine"),
+    input = M.CreateStorageVirtualMachineInput,
+    output = M.CreateStorageVirtualMachineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVolume = schema.operation({
+    id = id.from("com.amazonaws.fsx", "CreateVolume"),
+    input = M.CreateVolumeInput,
+    output = M.CreateVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVolumeFromBackup = schema.operation({
+    id = id.from("com.amazonaws.fsx", "CreateVolumeFromBackup"),
+    input = M.CreateVolumeFromBackupInput,
+    output = M.CreateVolumeFromBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBackup = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DeleteBackup"),
+    input = M.DeleteBackupInput,
+    output = M.DeleteBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataRepositoryAssociation = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DeleteDataRepositoryAssociation"),
+    input = M.DeleteDataRepositoryAssociationInput,
+    output = M.DeleteDataRepositoryAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFileCache = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DeleteFileCache"),
+    input = M.DeleteFileCacheInput,
+    output = M.DeleteFileCacheOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFileSystem = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DeleteFileSystem"),
+    input = M.DeleteFileSystemInput,
+    output = M.DeleteFileSystemOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSnapshot = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DeleteSnapshot"),
+    input = M.DeleteSnapshotInput,
+    output = M.DeleteSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStorageVirtualMachine = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DeleteStorageVirtualMachine"),
+    input = M.DeleteStorageVirtualMachineInput,
+    output = M.DeleteStorageVirtualMachineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVolume = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DeleteVolume"),
+    input = M.DeleteVolumeInput,
+    output = M.DeleteVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBackups = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DescribeBackups"),
+    input = M.DescribeBackupsInput,
+    output = M.DescribeBackupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataRepositoryAssociations = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DescribeDataRepositoryAssociations"),
+    input = M.DescribeDataRepositoryAssociationsInput,
+    output = M.DescribeDataRepositoryAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataRepositoryTasks = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DescribeDataRepositoryTasks"),
+    input = M.DescribeDataRepositoryTasksInput,
+    output = M.DescribeDataRepositoryTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFileCaches = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DescribeFileCaches"),
+    input = M.DescribeFileCachesInput,
+    output = M.DescribeFileCachesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFileSystemAliases = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DescribeFileSystemAliases"),
+    input = M.DescribeFileSystemAliasesInput,
+    output = M.DescribeFileSystemAliasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFileSystems = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DescribeFileSystems"),
+    input = M.DescribeFileSystemsInput,
+    output = M.DescribeFileSystemsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeS3AccessPointAttachments = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DescribeS3AccessPointAttachments"),
+    input = M.DescribeS3AccessPointAttachmentsInput,
+    output = M.DescribeS3AccessPointAttachmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSharedVpcConfiguration = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DescribeSharedVpcConfiguration"),
+    input = M.DescribeSharedVpcConfigurationInput,
+    output = M.DescribeSharedVpcConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSnapshots = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DescribeSnapshots"),
+    input = M.DescribeSnapshotsInput,
+    output = M.DescribeSnapshotsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStorageVirtualMachines = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DescribeStorageVirtualMachines"),
+    input = M.DescribeStorageVirtualMachinesInput,
+    output = M.DescribeStorageVirtualMachinesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVolumes = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DescribeVolumes"),
+    input = M.DescribeVolumesInput,
+    output = M.DescribeVolumesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachAndDeleteS3AccessPoint = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DetachAndDeleteS3AccessPoint"),
+    input = M.DetachAndDeleteS3AccessPointInput,
+    output = M.DetachAndDeleteS3AccessPointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFileSystemAliases = schema.operation({
+    id = id.from("com.amazonaws.fsx", "DisassociateFileSystemAliases"),
+    input = M.DisassociateFileSystemAliasesInput,
+    output = M.DisassociateFileSystemAliasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.fsx", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReleaseFileSystemNfsV3Locks = schema.operation({
+    id = id.from("com.amazonaws.fsx", "ReleaseFileSystemNfsV3Locks"),
+    input = M.ReleaseFileSystemNfsV3LocksInput,
+    output = M.ReleaseFileSystemNfsV3LocksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreVolumeFromSnapshot = schema.operation({
+    id = id.from("com.amazonaws.fsx", "RestoreVolumeFromSnapshot"),
+    input = M.RestoreVolumeFromSnapshotInput,
+    output = M.RestoreVolumeFromSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMisconfiguredStateRecovery = schema.operation({
+    id = id.from("com.amazonaws.fsx", "StartMisconfiguredStateRecovery"),
+    input = M.StartMisconfiguredStateRecoveryInput,
+    output = M.StartMisconfiguredStateRecoveryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.fsx", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.fsx", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataRepositoryAssociation = schema.operation({
+    id = id.from("com.amazonaws.fsx", "UpdateDataRepositoryAssociation"),
+    input = M.UpdateDataRepositoryAssociationInput,
+    output = M.UpdateDataRepositoryAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFileCache = schema.operation({
+    id = id.from("com.amazonaws.fsx", "UpdateFileCache"),
+    input = M.UpdateFileCacheInput,
+    output = M.UpdateFileCacheOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFileSystem = schema.operation({
+    id = id.from("com.amazonaws.fsx", "UpdateFileSystem"),
+    input = M.UpdateFileSystemInput,
+    output = M.UpdateFileSystemOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSharedVpcConfiguration = schema.operation({
+    id = id.from("com.amazonaws.fsx", "UpdateSharedVpcConfiguration"),
+    input = M.UpdateSharedVpcConfigurationInput,
+    output = M.UpdateSharedVpcConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSnapshot = schema.operation({
+    id = id.from("com.amazonaws.fsx", "UpdateSnapshot"),
+    input = M.UpdateSnapshotInput,
+    output = M.UpdateSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStorageVirtualMachine = schema.operation({
+    id = id.from("com.amazonaws.fsx", "UpdateStorageVirtualMachine"),
+    input = M.UpdateStorageVirtualMachineInput,
+    output = M.UpdateStorageVirtualMachineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVolume = schema.operation({
+    id = id.from("com.amazonaws.fsx", "UpdateVolume"),
+    input = M.UpdateVolumeInput,
+    output = M.UpdateVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

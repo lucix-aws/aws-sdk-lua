@@ -3516,4 +3516,421 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.inspector", "InspectorService"),
+    version = "2016-02-16",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddAttributesToFindings = schema.operation({
+    id = id.from("com.amazonaws.inspector", "AddAttributesToFindings"),
+    input = M.AddAttributesToFindingsInput,
+    output = M.AddAttributesToFindingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssessmentTarget = schema.operation({
+    id = id.from("com.amazonaws.inspector", "CreateAssessmentTarget"),
+    input = M.CreateAssessmentTargetInput,
+    output = M.CreateAssessmentTargetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssessmentTemplate = schema.operation({
+    id = id.from("com.amazonaws.inspector", "CreateAssessmentTemplate"),
+    input = M.CreateAssessmentTemplateInput,
+    output = M.CreateAssessmentTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExclusionsPreview = schema.operation({
+    id = id.from("com.amazonaws.inspector", "CreateExclusionsPreview"),
+    input = M.CreateExclusionsPreviewInput,
+    output = M.CreateExclusionsPreviewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResourceGroup = schema.operation({
+    id = id.from("com.amazonaws.inspector", "CreateResourceGroup"),
+    input = M.CreateResourceGroupInput,
+    output = M.CreateResourceGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssessmentRun = schema.operation({
+    id = id.from("com.amazonaws.inspector", "DeleteAssessmentRun"),
+    input = M.DeleteAssessmentRunInput,
+    output = M.DeleteAssessmentRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssessmentTarget = schema.operation({
+    id = id.from("com.amazonaws.inspector", "DeleteAssessmentTarget"),
+    input = M.DeleteAssessmentTargetInput,
+    output = M.DeleteAssessmentTargetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssessmentTemplate = schema.operation({
+    id = id.from("com.amazonaws.inspector", "DeleteAssessmentTemplate"),
+    input = M.DeleteAssessmentTemplateInput,
+    output = M.DeleteAssessmentTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAssessmentRuns = schema.operation({
+    id = id.from("com.amazonaws.inspector", "DescribeAssessmentRuns"),
+    input = M.DescribeAssessmentRunsInput,
+    output = M.DescribeAssessmentRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAssessmentTargets = schema.operation({
+    id = id.from("com.amazonaws.inspector", "DescribeAssessmentTargets"),
+    input = M.DescribeAssessmentTargetsInput,
+    output = M.DescribeAssessmentTargetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAssessmentTemplates = schema.operation({
+    id = id.from("com.amazonaws.inspector", "DescribeAssessmentTemplates"),
+    input = M.DescribeAssessmentTemplatesInput,
+    output = M.DescribeAssessmentTemplatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCrossAccountAccessRole = schema.operation({
+    id = id.from("com.amazonaws.inspector", "DescribeCrossAccountAccessRole"),
+    input = M.DescribeCrossAccountAccessRoleInput,
+    output = M.DescribeCrossAccountAccessRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExclusions = schema.operation({
+    id = id.from("com.amazonaws.inspector", "DescribeExclusions"),
+    input = M.DescribeExclusionsInput,
+    output = M.DescribeExclusionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFindings = schema.operation({
+    id = id.from("com.amazonaws.inspector", "DescribeFindings"),
+    input = M.DescribeFindingsInput,
+    output = M.DescribeFindingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResourceGroups = schema.operation({
+    id = id.from("com.amazonaws.inspector", "DescribeResourceGroups"),
+    input = M.DescribeResourceGroupsInput,
+    output = M.DescribeResourceGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRulesPackages = schema.operation({
+    id = id.from("com.amazonaws.inspector", "DescribeRulesPackages"),
+    input = M.DescribeRulesPackagesInput,
+    output = M.DescribeRulesPackagesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssessmentReport = schema.operation({
+    id = id.from("com.amazonaws.inspector", "GetAssessmentReport"),
+    input = M.GetAssessmentReportInput,
+    output = M.GetAssessmentReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExclusionsPreview = schema.operation({
+    id = id.from("com.amazonaws.inspector", "GetExclusionsPreview"),
+    input = M.GetExclusionsPreviewInput,
+    output = M.GetExclusionsPreviewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTelemetryMetadata = schema.operation({
+    id = id.from("com.amazonaws.inspector", "GetTelemetryMetadata"),
+    input = M.GetTelemetryMetadataInput,
+    output = M.GetTelemetryMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssessmentRunAgents = schema.operation({
+    id = id.from("com.amazonaws.inspector", "ListAssessmentRunAgents"),
+    input = M.ListAssessmentRunAgentsInput,
+    output = M.ListAssessmentRunAgentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssessmentRuns = schema.operation({
+    id = id.from("com.amazonaws.inspector", "ListAssessmentRuns"),
+    input = M.ListAssessmentRunsInput,
+    output = M.ListAssessmentRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssessmentTargets = schema.operation({
+    id = id.from("com.amazonaws.inspector", "ListAssessmentTargets"),
+    input = M.ListAssessmentTargetsInput,
+    output = M.ListAssessmentTargetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssessmentTemplates = schema.operation({
+    id = id.from("com.amazonaws.inspector", "ListAssessmentTemplates"),
+    input = M.ListAssessmentTemplatesInput,
+    output = M.ListAssessmentTemplatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.inspector", "ListEventSubscriptions"),
+    input = M.ListEventSubscriptionsInput,
+    output = M.ListEventSubscriptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExclusions = schema.operation({
+    id = id.from("com.amazonaws.inspector", "ListExclusions"),
+    input = M.ListExclusionsInput,
+    output = M.ListExclusionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFindings = schema.operation({
+    id = id.from("com.amazonaws.inspector", "ListFindings"),
+    input = M.ListFindingsInput,
+    output = M.ListFindingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRulesPackages = schema.operation({
+    id = id.from("com.amazonaws.inspector", "ListRulesPackages"),
+    input = M.ListRulesPackagesInput,
+    output = M.ListRulesPackagesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.inspector", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PreviewAgents = schema.operation({
+    id = id.from("com.amazonaws.inspector", "PreviewAgents"),
+    input = M.PreviewAgentsInput,
+    output = M.PreviewAgentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterCrossAccountAccessRole = schema.operation({
+    id = id.from("com.amazonaws.inspector", "RegisterCrossAccountAccessRole"),
+    input = M.RegisterCrossAccountAccessRoleInput,
+    output = M.RegisterCrossAccountAccessRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveAttributesFromFindings = schema.operation({
+    id = id.from("com.amazonaws.inspector", "RemoveAttributesFromFindings"),
+    input = M.RemoveAttributesFromFindingsInput,
+    output = M.RemoveAttributesFromFindingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.inspector", "SetTagsForResource"),
+    input = M.SetTagsForResourceInput,
+    output = M.SetTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAssessmentRun = schema.operation({
+    id = id.from("com.amazonaws.inspector", "StartAssessmentRun"),
+    input = M.StartAssessmentRunInput,
+    output = M.StartAssessmentRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopAssessmentRun = schema.operation({
+    id = id.from("com.amazonaws.inspector", "StopAssessmentRun"),
+    input = M.StopAssessmentRunInput,
+    output = M.StopAssessmentRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SubscribeToEvent = schema.operation({
+    id = id.from("com.amazonaws.inspector", "SubscribeToEvent"),
+    input = M.SubscribeToEventInput,
+    output = M.SubscribeToEventOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UnsubscribeFromEvent = schema.operation({
+    id = id.from("com.amazonaws.inspector", "UnsubscribeFromEvent"),
+    input = M.UnsubscribeFromEventInput,
+    output = M.UnsubscribeFromEventOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssessmentTarget = schema.operation({
+    id = id.from("com.amazonaws.inspector", "UpdateAssessmentTarget"),
+    input = M.UpdateAssessmentTargetInput,
+    output = M.UpdateAssessmentTargetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

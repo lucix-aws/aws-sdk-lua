@@ -2195,4 +2195,223 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.keyspaces", "KeyspacesService"),
+    version = "2022-02-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKeyspace = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "CreateKeyspace"),
+    input = M.CreateKeyspaceInput,
+    output = M.CreateKeyspaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTable = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "CreateTable"),
+    input = M.CreateTableInput,
+    output = M.CreateTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateType = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "CreateType"),
+    input = M.CreateTypeInput,
+    output = M.CreateTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKeyspace = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "DeleteKeyspace"),
+    input = M.DeleteKeyspaceInput,
+    output = M.DeleteKeyspaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTable = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "DeleteTable"),
+    input = M.DeleteTableInput,
+    output = M.DeleteTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteType = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "DeleteType"),
+    input = M.DeleteTypeInput,
+    output = M.DeleteTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKeyspace = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "GetKeyspace"),
+    input = M.GetKeyspaceInput,
+    output = M.GetKeyspaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTable = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "GetTable"),
+    input = M.GetTableInput,
+    output = M.GetTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableAutoScalingSettings = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "GetTableAutoScalingSettings"),
+    input = M.GetTableAutoScalingSettingsInput,
+    output = M.GetTableAutoScalingSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetType = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "GetType"),
+    input = M.GetTypeInput,
+    output = M.GetTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKeyspaces = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "ListKeyspaces"),
+    input = M.ListKeyspacesInput,
+    output = M.ListKeyspacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTables = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "ListTables"),
+    input = M.ListTablesInput,
+    output = M.ListTablesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTypes = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "ListTypes"),
+    input = M.ListTypesInput,
+    output = M.ListTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreTable = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "RestoreTable"),
+    input = M.RestoreTableInput,
+    output = M.RestoreTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKeyspace = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "UpdateKeyspace"),
+    input = M.UpdateKeyspaceInput,
+    output = M.UpdateKeyspaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTable = schema.operation({
+    id = id.from("com.amazonaws.keyspaces", "UpdateTable"),
+    input = M.UpdateTableInput,
+    output = M.UpdateTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

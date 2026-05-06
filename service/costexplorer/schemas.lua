@@ -7328,4 +7328,531 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.costexplorer", "AWSInsightsIndexService"),
+    version = "2017-10-25",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAnomalyMonitor = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "CreateAnomalyMonitor"),
+    input = M.CreateAnomalyMonitorInput,
+    output = M.CreateAnomalyMonitorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAnomalySubscription = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "CreateAnomalySubscription"),
+    input = M.CreateAnomalySubscriptionInput,
+    output = M.CreateAnomalySubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCostCategoryDefinition = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "CreateCostCategoryDefinition"),
+    input = M.CreateCostCategoryDefinitionInput,
+    output = M.CreateCostCategoryDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAnomalyMonitor = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "DeleteAnomalyMonitor"),
+    input = M.DeleteAnomalyMonitorInput,
+    output = M.DeleteAnomalyMonitorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAnomalySubscription = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "DeleteAnomalySubscription"),
+    input = M.DeleteAnomalySubscriptionInput,
+    output = M.DeleteAnomalySubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCostCategoryDefinition = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "DeleteCostCategoryDefinition"),
+    input = M.DeleteCostCategoryDefinitionInput,
+    output = M.DeleteCostCategoryDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCostCategoryDefinition = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "DescribeCostCategoryDefinition"),
+    input = M.DescribeCostCategoryDefinitionInput,
+    output = M.DescribeCostCategoryDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAnomalies = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetAnomalies"),
+    input = M.GetAnomaliesInput,
+    output = M.GetAnomaliesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAnomalyMonitors = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetAnomalyMonitors"),
+    input = M.GetAnomalyMonitorsInput,
+    output = M.GetAnomalyMonitorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAnomalySubscriptions = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetAnomalySubscriptions"),
+    input = M.GetAnomalySubscriptionsInput,
+    output = M.GetAnomalySubscriptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApproximateUsageRecords = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetApproximateUsageRecords"),
+    input = M.GetApproximateUsageRecordsInput,
+    output = M.GetApproximateUsageRecordsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCommitmentPurchaseAnalysis = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetCommitmentPurchaseAnalysis"),
+    input = M.GetCommitmentPurchaseAnalysisInput,
+    output = M.GetCommitmentPurchaseAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCostAndUsage = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetCostAndUsage"),
+    input = M.GetCostAndUsageInput,
+    output = M.GetCostAndUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCostAndUsageComparisons = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetCostAndUsageComparisons"),
+    input = M.GetCostAndUsageComparisonsInput,
+    output = M.GetCostAndUsageComparisonsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCostAndUsageWithResources = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetCostAndUsageWithResources"),
+    input = M.GetCostAndUsageWithResourcesInput,
+    output = M.GetCostAndUsageWithResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCostCategories = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetCostCategories"),
+    input = M.GetCostCategoriesInput,
+    output = M.GetCostCategoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCostComparisonDrivers = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetCostComparisonDrivers"),
+    input = M.GetCostComparisonDriversInput,
+    output = M.GetCostComparisonDriversOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCostForecast = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetCostForecast"),
+    input = M.GetCostForecastInput,
+    output = M.GetCostForecastOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDimensionValues = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetDimensionValues"),
+    input = M.GetDimensionValuesInput,
+    output = M.GetDimensionValuesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReservationCoverage = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetReservationCoverage"),
+    input = M.GetReservationCoverageInput,
+    output = M.GetReservationCoverageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReservationPurchaseRecommendation = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetReservationPurchaseRecommendation"),
+    input = M.GetReservationPurchaseRecommendationInput,
+    output = M.GetReservationPurchaseRecommendationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReservationUtilization = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetReservationUtilization"),
+    input = M.GetReservationUtilizationInput,
+    output = M.GetReservationUtilizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRightsizingRecommendation = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetRightsizingRecommendation"),
+    input = M.GetRightsizingRecommendationInput,
+    output = M.GetRightsizingRecommendationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSavingsPlanPurchaseRecommendationDetails = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetSavingsPlanPurchaseRecommendationDetails"),
+    input = M.GetSavingsPlanPurchaseRecommendationDetailsInput,
+    output = M.GetSavingsPlanPurchaseRecommendationDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSavingsPlansCoverage = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetSavingsPlansCoverage"),
+    input = M.GetSavingsPlansCoverageInput,
+    output = M.GetSavingsPlansCoverageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSavingsPlansPurchaseRecommendation = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetSavingsPlansPurchaseRecommendation"),
+    input = M.GetSavingsPlansPurchaseRecommendationInput,
+    output = M.GetSavingsPlansPurchaseRecommendationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSavingsPlansUtilization = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetSavingsPlansUtilization"),
+    input = M.GetSavingsPlansUtilizationInput,
+    output = M.GetSavingsPlansUtilizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSavingsPlansUtilizationDetails = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetSavingsPlansUtilizationDetails"),
+    input = M.GetSavingsPlansUtilizationDetailsInput,
+    output = M.GetSavingsPlansUtilizationDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTags = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetTags"),
+    input = M.GetTagsInput,
+    output = M.GetTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUsageForecast = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "GetUsageForecast"),
+    input = M.GetUsageForecastInput,
+    output = M.GetUsageForecastOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCommitmentPurchaseAnalyses = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "ListCommitmentPurchaseAnalyses"),
+    input = M.ListCommitmentPurchaseAnalysesInput,
+    output = M.ListCommitmentPurchaseAnalysesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCostAllocationTagBackfillHistory = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "ListCostAllocationTagBackfillHistory"),
+    input = M.ListCostAllocationTagBackfillHistoryInput,
+    output = M.ListCostAllocationTagBackfillHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCostAllocationTags = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "ListCostAllocationTags"),
+    input = M.ListCostAllocationTagsInput,
+    output = M.ListCostAllocationTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCostCategoryDefinitions = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "ListCostCategoryDefinitions"),
+    input = M.ListCostCategoryDefinitionsInput,
+    output = M.ListCostCategoryDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCostCategoryResourceAssociations = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "ListCostCategoryResourceAssociations"),
+    input = M.ListCostCategoryResourceAssociationsInput,
+    output = M.ListCostCategoryResourceAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSavingsPlansPurchaseRecommendationGeneration = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "ListSavingsPlansPurchaseRecommendationGeneration"),
+    input = M.ListSavingsPlansPurchaseRecommendationGenerationInput,
+    output = M.ListSavingsPlansPurchaseRecommendationGenerationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ProvideAnomalyFeedback = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "ProvideAnomalyFeedback"),
+    input = M.ProvideAnomalyFeedbackInput,
+    output = M.ProvideAnomalyFeedbackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCommitmentPurchaseAnalysis = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "StartCommitmentPurchaseAnalysis"),
+    input = M.StartCommitmentPurchaseAnalysisInput,
+    output = M.StartCommitmentPurchaseAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCostAllocationTagBackfill = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "StartCostAllocationTagBackfill"),
+    input = M.StartCostAllocationTagBackfillInput,
+    output = M.StartCostAllocationTagBackfillOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSavingsPlansPurchaseRecommendationGeneration = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "StartSavingsPlansPurchaseRecommendationGeneration"),
+    input = M.StartSavingsPlansPurchaseRecommendationGenerationInput,
+    output = M.StartSavingsPlansPurchaseRecommendationGenerationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAnomalyMonitor = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "UpdateAnomalyMonitor"),
+    input = M.UpdateAnomalyMonitorInput,
+    output = M.UpdateAnomalyMonitorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAnomalySubscription = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "UpdateAnomalySubscription"),
+    input = M.UpdateAnomalySubscriptionInput,
+    output = M.UpdateAnomalySubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCostAllocationTagsStatus = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "UpdateCostAllocationTagsStatus"),
+    input = M.UpdateCostAllocationTagsStatusInput,
+    output = M.UpdateCostAllocationTagsStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCostCategoryDefinition = schema.operation({
+    id = id.from("com.amazonaws.costexplorer", "UpdateCostCategoryDefinition"),
+    input = M.UpdateCostCategoryDefinitionInput,
+    output = M.UpdateCostCategoryDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

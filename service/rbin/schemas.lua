@@ -1019,4 +1019,134 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.rbin", "AmazonRecycleBin"),
+    version = "2021-06-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRule = schema.operation({
+    id = id.from("com.amazonaws.rbin", "CreateRule"),
+    input = M.CreateRuleInput,
+    output = M.CreateRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRule = schema.operation({
+    id = id.from("com.amazonaws.rbin", "DeleteRule"),
+    input = M.DeleteRuleInput,
+    output = M.DeleteRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/rules/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRule = schema.operation({
+    id = id.from("com.amazonaws.rbin", "GetRule"),
+    input = M.GetRuleInput,
+    output = M.GetRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/rules/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRules = schema.operation({
+    id = id.from("com.amazonaws.rbin", "ListRules"),
+    input = M.ListRulesInput,
+    output = M.ListRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.rbin", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.LockRule = schema.operation({
+    id = id.from("com.amazonaws.rbin", "LockRule"),
+    input = M.LockRuleInput,
+    output = M.LockRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/rules/{Identifier}/lock" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.rbin", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UnlockRule = schema.operation({
+    id = id.from("com.amazonaws.rbin", "UnlockRule"),
+    input = M.UnlockRuleInput,
+    output = M.UnlockRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/rules/{Identifier}/unlock" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.rbin", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRule = schema.operation({
+    id = id.from("com.amazonaws.rbin", "UpdateRule"),
+    input = M.UpdateRuleInput,
+    output = M.UpdateRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/rules/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

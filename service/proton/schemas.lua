@@ -8122,4 +8122,971 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.proton", "AwsProton20200720"),
+    version = "2020-07-20",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptEnvironmentAccountConnection = schema.operation({
+    id = id.from("com.amazonaws.proton", "AcceptEnvironmentAccountConnection"),
+    input = M.AcceptEnvironmentAccountConnectionInput,
+    output = M.AcceptEnvironmentAccountConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelComponentDeployment = schema.operation({
+    id = id.from("com.amazonaws.proton", "CancelComponentDeployment"),
+    input = M.CancelComponentDeploymentInput,
+    output = M.CancelComponentDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelEnvironmentDeployment = schema.operation({
+    id = id.from("com.amazonaws.proton", "CancelEnvironmentDeployment"),
+    input = M.CancelEnvironmentDeploymentInput,
+    output = M.CancelEnvironmentDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelServiceInstanceDeployment = schema.operation({
+    id = id.from("com.amazonaws.proton", "CancelServiceInstanceDeployment"),
+    input = M.CancelServiceInstanceDeploymentInput,
+    output = M.CancelServiceInstanceDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelServicePipelineDeployment = schema.operation({
+    id = id.from("com.amazonaws.proton", "CancelServicePipelineDeployment"),
+    input = M.CancelServicePipelineDeploymentInput,
+    output = M.CancelServicePipelineDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateComponent = schema.operation({
+    id = id.from("com.amazonaws.proton", "CreateComponent"),
+    input = M.CreateComponentInput,
+    output = M.CreateComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.proton", "CreateEnvironment"),
+    input = M.CreateEnvironmentInput,
+    output = M.CreateEnvironmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironmentAccountConnection = schema.operation({
+    id = id.from("com.amazonaws.proton", "CreateEnvironmentAccountConnection"),
+    input = M.CreateEnvironmentAccountConnectionInput,
+    output = M.CreateEnvironmentAccountConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironmentTemplate = schema.operation({
+    id = id.from("com.amazonaws.proton", "CreateEnvironmentTemplate"),
+    input = M.CreateEnvironmentTemplateInput,
+    output = M.CreateEnvironmentTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironmentTemplateVersion = schema.operation({
+    id = id.from("com.amazonaws.proton", "CreateEnvironmentTemplateVersion"),
+    input = M.CreateEnvironmentTemplateVersionInput,
+    output = M.CreateEnvironmentTemplateVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRepository = schema.operation({
+    id = id.from("com.amazonaws.proton", "CreateRepository"),
+    input = M.CreateRepositoryInput,
+    output = M.CreateRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateService = schema.operation({
+    id = id.from("com.amazonaws.proton", "CreateService"),
+    input = M.CreateServiceInput,
+    output = M.CreateServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServiceInstance = schema.operation({
+    id = id.from("com.amazonaws.proton", "CreateServiceInstance"),
+    input = M.CreateServiceInstanceInput,
+    output = M.CreateServiceInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServiceSyncConfig = schema.operation({
+    id = id.from("com.amazonaws.proton", "CreateServiceSyncConfig"),
+    input = M.CreateServiceSyncConfigInput,
+    output = M.CreateServiceSyncConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServiceTemplate = schema.operation({
+    id = id.from("com.amazonaws.proton", "CreateServiceTemplate"),
+    input = M.CreateServiceTemplateInput,
+    output = M.CreateServiceTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServiceTemplateVersion = schema.operation({
+    id = id.from("com.amazonaws.proton", "CreateServiceTemplateVersion"),
+    input = M.CreateServiceTemplateVersionInput,
+    output = M.CreateServiceTemplateVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTemplateSyncConfig = schema.operation({
+    id = id.from("com.amazonaws.proton", "CreateTemplateSyncConfig"),
+    input = M.CreateTemplateSyncConfigInput,
+    output = M.CreateTemplateSyncConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteComponent = schema.operation({
+    id = id.from("com.amazonaws.proton", "DeleteComponent"),
+    input = M.DeleteComponentInput,
+    output = M.DeleteComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDeployment = schema.operation({
+    id = id.from("com.amazonaws.proton", "DeleteDeployment"),
+    input = M.DeleteDeploymentInput,
+    output = M.DeleteDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironment = schema.operation({
+    id = id.from("com.amazonaws.proton", "DeleteEnvironment"),
+    input = M.DeleteEnvironmentInput,
+    output = M.DeleteEnvironmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironmentAccountConnection = schema.operation({
+    id = id.from("com.amazonaws.proton", "DeleteEnvironmentAccountConnection"),
+    input = M.DeleteEnvironmentAccountConnectionInput,
+    output = M.DeleteEnvironmentAccountConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironmentTemplate = schema.operation({
+    id = id.from("com.amazonaws.proton", "DeleteEnvironmentTemplate"),
+    input = M.DeleteEnvironmentTemplateInput,
+    output = M.DeleteEnvironmentTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironmentTemplateVersion = schema.operation({
+    id = id.from("com.amazonaws.proton", "DeleteEnvironmentTemplateVersion"),
+    input = M.DeleteEnvironmentTemplateVersionInput,
+    output = M.DeleteEnvironmentTemplateVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRepository = schema.operation({
+    id = id.from("com.amazonaws.proton", "DeleteRepository"),
+    input = M.DeleteRepositoryInput,
+    output = M.DeleteRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteService = schema.operation({
+    id = id.from("com.amazonaws.proton", "DeleteService"),
+    input = M.DeleteServiceInput,
+    output = M.DeleteServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceSyncConfig = schema.operation({
+    id = id.from("com.amazonaws.proton", "DeleteServiceSyncConfig"),
+    input = M.DeleteServiceSyncConfigInput,
+    output = M.DeleteServiceSyncConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceTemplate = schema.operation({
+    id = id.from("com.amazonaws.proton", "DeleteServiceTemplate"),
+    input = M.DeleteServiceTemplateInput,
+    output = M.DeleteServiceTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceTemplateVersion = schema.operation({
+    id = id.from("com.amazonaws.proton", "DeleteServiceTemplateVersion"),
+    input = M.DeleteServiceTemplateVersionInput,
+    output = M.DeleteServiceTemplateVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTemplateSyncConfig = schema.operation({
+    id = id.from("com.amazonaws.proton", "DeleteTemplateSyncConfig"),
+    input = M.DeleteTemplateSyncConfigInput,
+    output = M.DeleteTemplateSyncConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetAccountSettings"),
+    input = M.GetAccountSettingsInput,
+    output = M.GetAccountSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComponent = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetComponent"),
+    input = M.GetComponentInput,
+    output = M.GetComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeployment = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetDeployment"),
+    input = M.GetDeploymentInput,
+    output = M.GetDeploymentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironment = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetEnvironment"),
+    input = M.GetEnvironmentInput,
+    output = M.GetEnvironmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironmentAccountConnection = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetEnvironmentAccountConnection"),
+    input = M.GetEnvironmentAccountConnectionInput,
+    output = M.GetEnvironmentAccountConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironmentTemplate = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetEnvironmentTemplate"),
+    input = M.GetEnvironmentTemplateInput,
+    output = M.GetEnvironmentTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironmentTemplateVersion = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetEnvironmentTemplateVersion"),
+    input = M.GetEnvironmentTemplateVersionInput,
+    output = M.GetEnvironmentTemplateVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRepository = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetRepository"),
+    input = M.GetRepositoryInput,
+    output = M.GetRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRepositorySyncStatus = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetRepositorySyncStatus"),
+    input = M.GetRepositorySyncStatusInput,
+    output = M.GetRepositorySyncStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcesSummary = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetResourcesSummary"),
+    input = M.GetResourcesSummaryInput,
+    output = M.GetResourcesSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetService = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetService"),
+    input = M.GetServiceInput,
+    output = M.GetServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceInstance = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetServiceInstance"),
+    input = M.GetServiceInstanceInput,
+    output = M.GetServiceInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceInstanceSyncStatus = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetServiceInstanceSyncStatus"),
+    input = M.GetServiceInstanceSyncStatusInput,
+    output = M.GetServiceInstanceSyncStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceSyncBlockerSummary = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetServiceSyncBlockerSummary"),
+    input = M.GetServiceSyncBlockerSummaryInput,
+    output = M.GetServiceSyncBlockerSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceSyncConfig = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetServiceSyncConfig"),
+    input = M.GetServiceSyncConfigInput,
+    output = M.GetServiceSyncConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceTemplate = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetServiceTemplate"),
+    input = M.GetServiceTemplateInput,
+    output = M.GetServiceTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceTemplateVersion = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetServiceTemplateVersion"),
+    input = M.GetServiceTemplateVersionInput,
+    output = M.GetServiceTemplateVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemplateSyncConfig = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetTemplateSyncConfig"),
+    input = M.GetTemplateSyncConfigInput,
+    output = M.GetTemplateSyncConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemplateSyncStatus = schema.operation({
+    id = id.from("com.amazonaws.proton", "GetTemplateSyncStatus"),
+    input = M.GetTemplateSyncStatusInput,
+    output = M.GetTemplateSyncStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComponentOutputs = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListComponentOutputs"),
+    input = M.ListComponentOutputsInput,
+    output = M.ListComponentOutputsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComponentProvisionedResources = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListComponentProvisionedResources"),
+    input = M.ListComponentProvisionedResourcesInput,
+    output = M.ListComponentProvisionedResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComponents = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListComponents"),
+    input = M.ListComponentsInput,
+    output = M.ListComponentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeployments = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListDeployments"),
+    input = M.ListDeploymentsInput,
+    output = M.ListDeploymentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironmentAccountConnections = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListEnvironmentAccountConnections"),
+    input = M.ListEnvironmentAccountConnectionsInput,
+    output = M.ListEnvironmentAccountConnectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironmentOutputs = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListEnvironmentOutputs"),
+    input = M.ListEnvironmentOutputsInput,
+    output = M.ListEnvironmentOutputsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironmentProvisionedResources = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListEnvironmentProvisionedResources"),
+    input = M.ListEnvironmentProvisionedResourcesInput,
+    output = M.ListEnvironmentProvisionedResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironments = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListEnvironments"),
+    input = M.ListEnvironmentsInput,
+    output = M.ListEnvironmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironmentTemplates = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListEnvironmentTemplates"),
+    input = M.ListEnvironmentTemplatesInput,
+    output = M.ListEnvironmentTemplatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironmentTemplateVersions = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListEnvironmentTemplateVersions"),
+    input = M.ListEnvironmentTemplateVersionsInput,
+    output = M.ListEnvironmentTemplateVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRepositories = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListRepositories"),
+    input = M.ListRepositoriesInput,
+    output = M.ListRepositoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRepositorySyncDefinitions = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListRepositorySyncDefinitions"),
+    input = M.ListRepositorySyncDefinitionsInput,
+    output = M.ListRepositorySyncDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceInstanceOutputs = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListServiceInstanceOutputs"),
+    input = M.ListServiceInstanceOutputsInput,
+    output = M.ListServiceInstanceOutputsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceInstanceProvisionedResources = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListServiceInstanceProvisionedResources"),
+    input = M.ListServiceInstanceProvisionedResourcesInput,
+    output = M.ListServiceInstanceProvisionedResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceInstances = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListServiceInstances"),
+    input = M.ListServiceInstancesInput,
+    output = M.ListServiceInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServicePipelineOutputs = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListServicePipelineOutputs"),
+    input = M.ListServicePipelineOutputsInput,
+    output = M.ListServicePipelineOutputsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServicePipelineProvisionedResources = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListServicePipelineProvisionedResources"),
+    input = M.ListServicePipelineProvisionedResourcesInput,
+    output = M.ListServicePipelineProvisionedResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServices = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListServices"),
+    input = M.ListServicesInput,
+    output = M.ListServicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceTemplates = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListServiceTemplates"),
+    input = M.ListServiceTemplatesInput,
+    output = M.ListServiceTemplatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceTemplateVersions = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListServiceTemplateVersions"),
+    input = M.ListServiceTemplateVersionsInput,
+    output = M.ListServiceTemplateVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.proton", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.NotifyResourceDeploymentStatusChange = schema.operation({
+    id = id.from("com.amazonaws.proton", "NotifyResourceDeploymentStatusChange"),
+    input = M.NotifyResourceDeploymentStatusChangeInput,
+    output = M.NotifyResourceDeploymentStatusChangeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectEnvironmentAccountConnection = schema.operation({
+    id = id.from("com.amazonaws.proton", "RejectEnvironmentAccountConnection"),
+    input = M.RejectEnvironmentAccountConnectionInput,
+    output = M.RejectEnvironmentAccountConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.proton", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.proton", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.proton", "UpdateAccountSettings"),
+    input = M.UpdateAccountSettingsInput,
+    output = M.UpdateAccountSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateComponent = schema.operation({
+    id = id.from("com.amazonaws.proton", "UpdateComponent"),
+    input = M.UpdateComponentInput,
+    output = M.UpdateComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.proton", "UpdateEnvironment"),
+    input = M.UpdateEnvironmentInput,
+    output = M.UpdateEnvironmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironmentAccountConnection = schema.operation({
+    id = id.from("com.amazonaws.proton", "UpdateEnvironmentAccountConnection"),
+    input = M.UpdateEnvironmentAccountConnectionInput,
+    output = M.UpdateEnvironmentAccountConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironmentTemplate = schema.operation({
+    id = id.from("com.amazonaws.proton", "UpdateEnvironmentTemplate"),
+    input = M.UpdateEnvironmentTemplateInput,
+    output = M.UpdateEnvironmentTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironmentTemplateVersion = schema.operation({
+    id = id.from("com.amazonaws.proton", "UpdateEnvironmentTemplateVersion"),
+    input = M.UpdateEnvironmentTemplateVersionInput,
+    output = M.UpdateEnvironmentTemplateVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateService = schema.operation({
+    id = id.from("com.amazonaws.proton", "UpdateService"),
+    input = M.UpdateServiceInput,
+    output = M.UpdateServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceInstance = schema.operation({
+    id = id.from("com.amazonaws.proton", "UpdateServiceInstance"),
+    input = M.UpdateServiceInstanceInput,
+    output = M.UpdateServiceInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServicePipeline = schema.operation({
+    id = id.from("com.amazonaws.proton", "UpdateServicePipeline"),
+    input = M.UpdateServicePipelineInput,
+    output = M.UpdateServicePipelineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceSyncBlocker = schema.operation({
+    id = id.from("com.amazonaws.proton", "UpdateServiceSyncBlocker"),
+    input = M.UpdateServiceSyncBlockerInput,
+    output = M.UpdateServiceSyncBlockerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceSyncConfig = schema.operation({
+    id = id.from("com.amazonaws.proton", "UpdateServiceSyncConfig"),
+    input = M.UpdateServiceSyncConfigInput,
+    output = M.UpdateServiceSyncConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceTemplate = schema.operation({
+    id = id.from("com.amazonaws.proton", "UpdateServiceTemplate"),
+    input = M.UpdateServiceTemplateInput,
+    output = M.UpdateServiceTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceTemplateVersion = schema.operation({
+    id = id.from("com.amazonaws.proton", "UpdateServiceTemplateVersion"),
+    input = M.UpdateServiceTemplateVersionInput,
+    output = M.UpdateServiceTemplateVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTemplateSyncConfig = schema.operation({
+    id = id.from("com.amazonaws.proton", "UpdateTemplateSyncConfig"),
+    input = M.UpdateTemplateSyncConfigInput,
+    output = M.UpdateTemplateSyncConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -7244,4 +7244,1015 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.workspaces", "WorkspacesService"),
+    version = "2015-04-08",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptAccountLinkInvitation = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "AcceptAccountLinkInvitation"),
+    input = M.AcceptAccountLinkInvitationInput,
+    output = M.AcceptAccountLinkInvitationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateConnectionAlias = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "AssociateConnectionAlias"),
+    input = M.AssociateConnectionAliasInput,
+    output = M.AssociateConnectionAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateIpGroups = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "AssociateIpGroups"),
+    input = M.AssociateIpGroupsInput,
+    output = M.AssociateIpGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateWorkspaceApplication = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "AssociateWorkspaceApplication"),
+    input = M.AssociateWorkspaceApplicationInput,
+    output = M.AssociateWorkspaceApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AuthorizeIpRules = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "AuthorizeIpRules"),
+    input = M.AuthorizeIpRulesInput,
+    output = M.AuthorizeIpRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyWorkspaceImage = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "CopyWorkspaceImage"),
+    input = M.CopyWorkspaceImageInput,
+    output = M.CopyWorkspaceImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccountLinkInvitation = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "CreateAccountLinkInvitation"),
+    input = M.CreateAccountLinkInvitationInput,
+    output = M.CreateAccountLinkInvitationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnectClientAddIn = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "CreateConnectClientAddIn"),
+    input = M.CreateConnectClientAddInInput,
+    output = M.CreateConnectClientAddInOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnectionAlias = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "CreateConnectionAlias"),
+    input = M.CreateConnectionAliasInput,
+    output = M.CreateConnectionAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIpGroup = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "CreateIpGroup"),
+    input = M.CreateIpGroupInput,
+    output = M.CreateIpGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStandbyWorkspaces = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "CreateStandbyWorkspaces"),
+    input = M.CreateStandbyWorkspacesInput,
+    output = M.CreateStandbyWorkspacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTags = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "CreateTags"),
+    input = M.CreateTagsInput,
+    output = M.CreateTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUpdatedWorkspaceImage = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "CreateUpdatedWorkspaceImage"),
+    input = M.CreateUpdatedWorkspaceImageInput,
+    output = M.CreateUpdatedWorkspaceImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkspaceBundle = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "CreateWorkspaceBundle"),
+    input = M.CreateWorkspaceBundleInput,
+    output = M.CreateWorkspaceBundleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkspaceImage = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "CreateWorkspaceImage"),
+    input = M.CreateWorkspaceImageInput,
+    output = M.CreateWorkspaceImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkspaces = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "CreateWorkspaces"),
+    input = M.CreateWorkspacesInput,
+    output = M.CreateWorkspacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkspacesPool = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "CreateWorkspacesPool"),
+    input = M.CreateWorkspacesPoolInput,
+    output = M.CreateWorkspacesPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccountLinkInvitation = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DeleteAccountLinkInvitation"),
+    input = M.DeleteAccountLinkInvitationInput,
+    output = M.DeleteAccountLinkInvitationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteClientBranding = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DeleteClientBranding"),
+    input = M.DeleteClientBrandingInput,
+    output = M.DeleteClientBrandingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnectClientAddIn = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DeleteConnectClientAddIn"),
+    input = M.DeleteConnectClientAddInInput,
+    output = M.DeleteConnectClientAddInOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnectionAlias = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DeleteConnectionAlias"),
+    input = M.DeleteConnectionAliasInput,
+    output = M.DeleteConnectionAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIpGroup = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DeleteIpGroup"),
+    input = M.DeleteIpGroupInput,
+    output = M.DeleteIpGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTags = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DeleteTags"),
+    input = M.DeleteTagsInput,
+    output = M.DeleteTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkspaceBundle = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DeleteWorkspaceBundle"),
+    input = M.DeleteWorkspaceBundleInput,
+    output = M.DeleteWorkspaceBundleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkspaceImage = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DeleteWorkspaceImage"),
+    input = M.DeleteWorkspaceImageInput,
+    output = M.DeleteWorkspaceImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeployWorkspaceApplications = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DeployWorkspaceApplications"),
+    input = M.DeployWorkspaceApplicationsInput,
+    output = M.DeployWorkspaceApplicationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterWorkspaceDirectory = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DeregisterWorkspaceDirectory"),
+    input = M.DeregisterWorkspaceDirectoryInput,
+    output = M.DeregisterWorkspaceDirectoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccount = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeAccount"),
+    input = M.DescribeAccountInput,
+    output = M.DescribeAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountModifications = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeAccountModifications"),
+    input = M.DescribeAccountModificationsInput,
+    output = M.DescribeAccountModificationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicationAssociations = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeApplicationAssociations"),
+    input = M.DescribeApplicationAssociationsInput,
+    output = M.DescribeApplicationAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplications = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeApplications"),
+    input = M.DescribeApplicationsInput,
+    output = M.DescribeApplicationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBundleAssociations = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeBundleAssociations"),
+    input = M.DescribeBundleAssociationsInput,
+    output = M.DescribeBundleAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClientBranding = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeClientBranding"),
+    input = M.DescribeClientBrandingInput,
+    output = M.DescribeClientBrandingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClientProperties = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeClientProperties"),
+    input = M.DescribeClientPropertiesInput,
+    output = M.DescribeClientPropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnectClientAddIns = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeConnectClientAddIns"),
+    input = M.DescribeConnectClientAddInsInput,
+    output = M.DescribeConnectClientAddInsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnectionAliases = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeConnectionAliases"),
+    input = M.DescribeConnectionAliasesInput,
+    output = M.DescribeConnectionAliasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnectionAliasPermissions = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeConnectionAliasPermissions"),
+    input = M.DescribeConnectionAliasPermissionsInput,
+    output = M.DescribeConnectionAliasPermissionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCustomWorkspaceImageImport = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeCustomWorkspaceImageImport"),
+    input = M.DescribeCustomWorkspaceImageImportInput,
+    output = M.DescribeCustomWorkspaceImageImportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImageAssociations = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeImageAssociations"),
+    input = M.DescribeImageAssociationsInput,
+    output = M.DescribeImageAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIpGroups = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeIpGroups"),
+    input = M.DescribeIpGroupsInput,
+    output = M.DescribeIpGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTags = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeTags"),
+    input = M.DescribeTagsInput,
+    output = M.DescribeTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspaceAssociations = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeWorkspaceAssociations"),
+    input = M.DescribeWorkspaceAssociationsInput,
+    output = M.DescribeWorkspaceAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspaceBundles = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeWorkspaceBundles"),
+    input = M.DescribeWorkspaceBundlesInput,
+    output = M.DescribeWorkspaceBundlesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspaceDirectories = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeWorkspaceDirectories"),
+    input = M.DescribeWorkspaceDirectoriesInput,
+    output = M.DescribeWorkspaceDirectoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspaceImagePermissions = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeWorkspaceImagePermissions"),
+    input = M.DescribeWorkspaceImagePermissionsInput,
+    output = M.DescribeWorkspaceImagePermissionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspaceImages = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeWorkspaceImages"),
+    input = M.DescribeWorkspaceImagesInput,
+    output = M.DescribeWorkspaceImagesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspaces = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeWorkspaces"),
+    input = M.DescribeWorkspacesInput,
+    output = M.DescribeWorkspacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspacesConnectionStatus = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeWorkspacesConnectionStatus"),
+    input = M.DescribeWorkspacesConnectionStatusInput,
+    output = M.DescribeWorkspacesConnectionStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspaceSnapshots = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeWorkspaceSnapshots"),
+    input = M.DescribeWorkspaceSnapshotsInput,
+    output = M.DescribeWorkspaceSnapshotsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspacesPools = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeWorkspacesPools"),
+    input = M.DescribeWorkspacesPoolsInput,
+    output = M.DescribeWorkspacesPoolsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspacesPoolSessions = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DescribeWorkspacesPoolSessions"),
+    input = M.DescribeWorkspacesPoolSessionsInput,
+    output = M.DescribeWorkspacesPoolSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateConnectionAlias = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DisassociateConnectionAlias"),
+    input = M.DisassociateConnectionAliasInput,
+    output = M.DisassociateConnectionAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateIpGroups = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DisassociateIpGroups"),
+    input = M.DisassociateIpGroupsInput,
+    output = M.DisassociateIpGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateWorkspaceApplication = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "DisassociateWorkspaceApplication"),
+    input = M.DisassociateWorkspaceApplicationInput,
+    output = M.DisassociateWorkspaceApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountLink = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "GetAccountLink"),
+    input = M.GetAccountLinkInput,
+    output = M.GetAccountLinkOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportClientBranding = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ImportClientBranding"),
+    input = M.ImportClientBrandingInput,
+    output = M.ImportClientBrandingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportCustomWorkspaceImage = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ImportCustomWorkspaceImage"),
+    input = M.ImportCustomWorkspaceImageInput,
+    output = M.ImportCustomWorkspaceImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportWorkspaceImage = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ImportWorkspaceImage"),
+    input = M.ImportWorkspaceImageInput,
+    output = M.ImportWorkspaceImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccountLinks = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ListAccountLinks"),
+    input = M.ListAccountLinksInput,
+    output = M.ListAccountLinksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAvailableManagementCidrRanges = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ListAvailableManagementCidrRanges"),
+    input = M.ListAvailableManagementCidrRangesInput,
+    output = M.ListAvailableManagementCidrRangesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.MigrateWorkspace = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "MigrateWorkspace"),
+    input = M.MigrateWorkspaceInput,
+    output = M.MigrateWorkspaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyAccount = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ModifyAccount"),
+    input = M.ModifyAccountInput,
+    output = M.ModifyAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyCertificateBasedAuthProperties = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ModifyCertificateBasedAuthProperties"),
+    input = M.ModifyCertificateBasedAuthPropertiesInput,
+    output = M.ModifyCertificateBasedAuthPropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyClientProperties = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ModifyClientProperties"),
+    input = M.ModifyClientPropertiesInput,
+    output = M.ModifyClientPropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyEndpointEncryptionMode = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ModifyEndpointEncryptionMode"),
+    input = M.ModifyEndpointEncryptionModeInput,
+    output = M.ModifyEndpointEncryptionModeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifySamlProperties = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ModifySamlProperties"),
+    input = M.ModifySamlPropertiesInput,
+    output = M.ModifySamlPropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifySelfservicePermissions = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ModifySelfservicePermissions"),
+    input = M.ModifySelfservicePermissionsInput,
+    output = M.ModifySelfservicePermissionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyStreamingProperties = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ModifyStreamingProperties"),
+    input = M.ModifyStreamingPropertiesInput,
+    output = M.ModifyStreamingPropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyWorkspaceAccessProperties = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ModifyWorkspaceAccessProperties"),
+    input = M.ModifyWorkspaceAccessPropertiesInput,
+    output = M.ModifyWorkspaceAccessPropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyWorkspaceCreationProperties = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ModifyWorkspaceCreationProperties"),
+    input = M.ModifyWorkspaceCreationPropertiesInput,
+    output = M.ModifyWorkspaceCreationPropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyWorkspaceProperties = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ModifyWorkspaceProperties"),
+    input = M.ModifyWorkspacePropertiesInput,
+    output = M.ModifyWorkspacePropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyWorkspaceState = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "ModifyWorkspaceState"),
+    input = M.ModifyWorkspaceStateInput,
+    output = M.ModifyWorkspaceStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootWorkspaces = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "RebootWorkspaces"),
+    input = M.RebootWorkspacesInput,
+    output = M.RebootWorkspacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebuildWorkspaces = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "RebuildWorkspaces"),
+    input = M.RebuildWorkspacesInput,
+    output = M.RebuildWorkspacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterWorkspaceDirectory = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "RegisterWorkspaceDirectory"),
+    input = M.RegisterWorkspaceDirectoryInput,
+    output = M.RegisterWorkspaceDirectoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectAccountLinkInvitation = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "RejectAccountLinkInvitation"),
+    input = M.RejectAccountLinkInvitationInput,
+    output = M.RejectAccountLinkInvitationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreWorkspace = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "RestoreWorkspace"),
+    input = M.RestoreWorkspaceInput,
+    output = M.RestoreWorkspaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeIpRules = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "RevokeIpRules"),
+    input = M.RevokeIpRulesInput,
+    output = M.RevokeIpRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartWorkspaces = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "StartWorkspaces"),
+    input = M.StartWorkspacesInput,
+    output = M.StartWorkspacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartWorkspacesPool = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "StartWorkspacesPool"),
+    input = M.StartWorkspacesPoolInput,
+    output = M.StartWorkspacesPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopWorkspaces = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "StopWorkspaces"),
+    input = M.StopWorkspacesInput,
+    output = M.StopWorkspacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopWorkspacesPool = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "StopWorkspacesPool"),
+    input = M.StopWorkspacesPoolInput,
+    output = M.StopWorkspacesPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateWorkspaces = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "TerminateWorkspaces"),
+    input = M.TerminateWorkspacesInput,
+    output = M.TerminateWorkspacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateWorkspacesPool = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "TerminateWorkspacesPool"),
+    input = M.TerminateWorkspacesPoolInput,
+    output = M.TerminateWorkspacesPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateWorkspacesPoolSession = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "TerminateWorkspacesPoolSession"),
+    input = M.TerminateWorkspacesPoolSessionInput,
+    output = M.TerminateWorkspacesPoolSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnectClientAddIn = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "UpdateConnectClientAddIn"),
+    input = M.UpdateConnectClientAddInInput,
+    output = M.UpdateConnectClientAddInOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnectionAliasPermission = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "UpdateConnectionAliasPermission"),
+    input = M.UpdateConnectionAliasPermissionInput,
+    output = M.UpdateConnectionAliasPermissionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRulesOfIpGroup = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "UpdateRulesOfIpGroup"),
+    input = M.UpdateRulesOfIpGroupInput,
+    output = M.UpdateRulesOfIpGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkspaceBundle = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "UpdateWorkspaceBundle"),
+    input = M.UpdateWorkspaceBundleInput,
+    output = M.UpdateWorkspaceBundleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkspaceImagePermission = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "UpdateWorkspaceImagePermission"),
+    input = M.UpdateWorkspaceImagePermissionInput,
+    output = M.UpdateWorkspaceImagePermissionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkspacesPool = schema.operation({
+    id = id.from("com.amazonaws.workspaces", "UpdateWorkspacesPool"),
+    input = M.UpdateWorkspacesPoolInput,
+    output = M.UpdateWorkspacesPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

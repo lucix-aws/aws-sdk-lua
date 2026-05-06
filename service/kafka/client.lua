@@ -7,6 +7,7 @@ local endpoint_rules = require("kafka.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("kafka.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kafka", signing_region = cfg.region } }
                 else
@@ -49,770 +52,239 @@ function M.new(cfg)
 end
 
 function Client:batchAssociateScramSecret(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchAssociateScramSecret",
-        input_schema = schemas.BatchAssociateScramSecretInput,
-        output_schema = schemas.BatchAssociateScramSecretOutput,
-        http_method = "POST",
-        http_path = "/v1/clusters/{ClusterArn}/scram-secrets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchAssociateScramSecret, input, options)
 end
 
 function Client:batchDisassociateScramSecret(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDisassociateScramSecret",
-        input_schema = schemas.BatchDisassociateScramSecretInput,
-        output_schema = schemas.BatchDisassociateScramSecretOutput,
-        http_method = "PATCH",
-        http_path = "/v1/clusters/{ClusterArn}/scram-secrets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDisassociateScramSecret, input, options)
 end
 
 function Client:createCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCluster",
-        input_schema = schemas.CreateClusterInput,
-        output_schema = schemas.CreateClusterOutput,
-        http_method = "POST",
-        http_path = "/v1/clusters",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCluster, input, options)
 end
 
 function Client:createClusterV2(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateClusterV2",
-        input_schema = schemas.CreateClusterV2Input,
-        output_schema = schemas.CreateClusterV2Output,
-        http_method = "POST",
-        http_path = "/api/v2/clusters",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateClusterV2, input, options)
 end
 
 function Client:createConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfiguration",
-        input_schema = schemas.CreateConfigurationInput,
-        output_schema = schemas.CreateConfigurationOutput,
-        http_method = "POST",
-        http_path = "/v1/configurations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfiguration, input, options)
 end
 
 function Client:createReplicator(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateReplicator",
-        input_schema = schemas.CreateReplicatorInput,
-        output_schema = schemas.CreateReplicatorOutput,
-        http_method = "POST",
-        http_path = "/replication/v1/replicators",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateReplicator, input, options)
 end
 
 function Client:createTopic(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTopic",
-        input_schema = schemas.CreateTopicInput,
-        output_schema = schemas.CreateTopicOutput,
-        http_method = "POST",
-        http_path = "/v1/clusters/{ClusterArn}/topics",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTopic, input, options)
 end
 
 function Client:createVpcConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateVpcConnection",
-        input_schema = schemas.CreateVpcConnectionInput,
-        output_schema = schemas.CreateVpcConnectionOutput,
-        http_method = "POST",
-        http_path = "/v1/vpc-connection",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateVpcConnection, input, options)
 end
 
 function Client:deleteCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCluster",
-        input_schema = schemas.DeleteClusterInput,
-        output_schema = schemas.DeleteClusterOutput,
-        http_method = "DELETE",
-        http_path = "/v1/clusters/{ClusterArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCluster, input, options)
 end
 
 function Client:deleteClusterPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteClusterPolicy",
-        input_schema = schemas.DeleteClusterPolicyInput,
-        output_schema = schemas.DeleteClusterPolicyOutput,
-        http_method = "DELETE",
-        http_path = "/v1/clusters/{ClusterArn}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteClusterPolicy, input, options)
 end
 
 function Client:deleteConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfiguration",
-        input_schema = schemas.DeleteConfigurationInput,
-        output_schema = schemas.DeleteConfigurationOutput,
-        http_method = "DELETE",
-        http_path = "/v1/configurations/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguration, input, options)
 end
 
 function Client:deleteReplicator(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteReplicator",
-        input_schema = schemas.DeleteReplicatorInput,
-        output_schema = schemas.DeleteReplicatorOutput,
-        http_method = "DELETE",
-        http_path = "/replication/v1/replicators/{ReplicatorArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteReplicator, input, options)
 end
 
 function Client:deleteTopic(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTopic",
-        input_schema = schemas.DeleteTopicInput,
-        output_schema = schemas.DeleteTopicOutput,
-        http_method = "DELETE",
-        http_path = "/v1/clusters/{ClusterArn}/topics/{TopicName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTopic, input, options)
 end
 
 function Client:deleteVpcConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVpcConnection",
-        input_schema = schemas.DeleteVpcConnectionInput,
-        output_schema = schemas.DeleteVpcConnectionOutput,
-        http_method = "DELETE",
-        http_path = "/v1/vpc-connection/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVpcConnection, input, options)
 end
 
 function Client:describeCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCluster",
-        input_schema = schemas.DescribeClusterInput,
-        output_schema = schemas.DescribeClusterOutput,
-        http_method = "GET",
-        http_path = "/v1/clusters/{ClusterArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCluster, input, options)
 end
 
 function Client:describeClusterOperation(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeClusterOperation",
-        input_schema = schemas.DescribeClusterOperationInput,
-        output_schema = schemas.DescribeClusterOperationOutput,
-        http_method = "GET",
-        http_path = "/v1/operations/{ClusterOperationArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeClusterOperation, input, options)
 end
 
 function Client:describeClusterOperationV2(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeClusterOperationV2",
-        input_schema = schemas.DescribeClusterOperationV2Input,
-        output_schema = schemas.DescribeClusterOperationV2Output,
-        http_method = "GET",
-        http_path = "/api/v2/operations/{ClusterOperationArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeClusterOperationV2, input, options)
 end
 
 function Client:describeClusterV2(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeClusterV2",
-        input_schema = schemas.DescribeClusterV2Input,
-        output_schema = schemas.DescribeClusterV2Output,
-        http_method = "GET",
-        http_path = "/api/v2/clusters/{ClusterArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeClusterV2, input, options)
 end
 
 function Client:describeConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeConfiguration",
-        input_schema = schemas.DescribeConfigurationInput,
-        output_schema = schemas.DescribeConfigurationOutput,
-        http_method = "GET",
-        http_path = "/v1/configurations/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeConfiguration, input, options)
 end
 
 function Client:describeConfigurationRevision(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeConfigurationRevision",
-        input_schema = schemas.DescribeConfigurationRevisionInput,
-        output_schema = schemas.DescribeConfigurationRevisionOutput,
-        http_method = "GET",
-        http_path = "/v1/configurations/{Arn}/revisions/{Revision}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeConfigurationRevision, input, options)
 end
 
 function Client:describeReplicator(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeReplicator",
-        input_schema = schemas.DescribeReplicatorInput,
-        output_schema = schemas.DescribeReplicatorOutput,
-        http_method = "GET",
-        http_path = "/replication/v1/replicators/{ReplicatorArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeReplicator, input, options)
 end
 
 function Client:describeTopic(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTopic",
-        input_schema = schemas.DescribeTopicInput,
-        output_schema = schemas.DescribeTopicOutput,
-        http_method = "GET",
-        http_path = "/v1/clusters/{ClusterArn}/topics/{TopicName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTopic, input, options)
 end
 
 function Client:describeTopicPartitions(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTopicPartitions",
-        input_schema = schemas.DescribeTopicPartitionsInput,
-        output_schema = schemas.DescribeTopicPartitionsOutput,
-        http_method = "GET",
-        http_path = "/v1/clusters/{ClusterArn}/topics/{TopicName}/partitions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTopicPartitions, input, options)
 end
 
 function Client:describeVpcConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeVpcConnection",
-        input_schema = schemas.DescribeVpcConnectionInput,
-        output_schema = schemas.DescribeVpcConnectionOutput,
-        http_method = "GET",
-        http_path = "/v1/vpc-connection/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeVpcConnection, input, options)
 end
 
 function Client:getBootstrapBrokers(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBootstrapBrokers",
-        input_schema = schemas.GetBootstrapBrokersInput,
-        output_schema = schemas.GetBootstrapBrokersOutput,
-        http_method = "GET",
-        http_path = "/v1/clusters/{ClusterArn}/bootstrap-brokers",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBootstrapBrokers, input, options)
 end
 
 function Client:getClusterPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetClusterPolicy",
-        input_schema = schemas.GetClusterPolicyInput,
-        output_schema = schemas.GetClusterPolicyOutput,
-        http_method = "GET",
-        http_path = "/v1/clusters/{ClusterArn}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetClusterPolicy, input, options)
 end
 
 function Client:getCompatibleKafkaVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCompatibleKafkaVersions",
-        input_schema = schemas.GetCompatibleKafkaVersionsInput,
-        output_schema = schemas.GetCompatibleKafkaVersionsOutput,
-        http_method = "GET",
-        http_path = "/v1/compatible-kafka-versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCompatibleKafkaVersions, input, options)
 end
 
 function Client:listClientVpcConnections(input, options)
-    return self:invokeOperation(input, {
-        name = "ListClientVpcConnections",
-        input_schema = schemas.ListClientVpcConnectionsInput,
-        output_schema = schemas.ListClientVpcConnectionsOutput,
-        http_method = "GET",
-        http_path = "/v1/clusters/{ClusterArn}/client-vpc-connections",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListClientVpcConnections, input, options)
 end
 
 function Client:listClusterOperations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListClusterOperations",
-        input_schema = schemas.ListClusterOperationsInput,
-        output_schema = schemas.ListClusterOperationsOutput,
-        http_method = "GET",
-        http_path = "/v1/clusters/{ClusterArn}/operations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListClusterOperations, input, options)
 end
 
 function Client:listClusterOperationsV2(input, options)
-    return self:invokeOperation(input, {
-        name = "ListClusterOperationsV2",
-        input_schema = schemas.ListClusterOperationsV2Input,
-        output_schema = schemas.ListClusterOperationsV2Output,
-        http_method = "GET",
-        http_path = "/api/v2/clusters/{ClusterArn}/operations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListClusterOperationsV2, input, options)
 end
 
 function Client:listClusters(input, options)
-    return self:invokeOperation(input, {
-        name = "ListClusters",
-        input_schema = schemas.ListClustersInput,
-        output_schema = schemas.ListClustersOutput,
-        http_method = "GET",
-        http_path = "/v1/clusters",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListClusters, input, options)
 end
 
 function Client:listClustersV2(input, options)
-    return self:invokeOperation(input, {
-        name = "ListClustersV2",
-        input_schema = schemas.ListClustersV2Input,
-        output_schema = schemas.ListClustersV2Output,
-        http_method = "GET",
-        http_path = "/api/v2/clusters",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListClustersV2, input, options)
 end
 
 function Client:listConfigurationRevisions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConfigurationRevisions",
-        input_schema = schemas.ListConfigurationRevisionsInput,
-        output_schema = schemas.ListConfigurationRevisionsOutput,
-        http_method = "GET",
-        http_path = "/v1/configurations/{Arn}/revisions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConfigurationRevisions, input, options)
 end
 
 function Client:listConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConfigurations",
-        input_schema = schemas.ListConfigurationsInput,
-        output_schema = schemas.ListConfigurationsOutput,
-        http_method = "GET",
-        http_path = "/v1/configurations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConfigurations, input, options)
 end
 
 function Client:listKafkaVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListKafkaVersions",
-        input_schema = schemas.ListKafkaVersionsInput,
-        output_schema = schemas.ListKafkaVersionsOutput,
-        http_method = "GET",
-        http_path = "/v1/kafka-versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListKafkaVersions, input, options)
 end
 
 function Client:listNodes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListNodes",
-        input_schema = schemas.ListNodesInput,
-        output_schema = schemas.ListNodesOutput,
-        http_method = "GET",
-        http_path = "/v1/clusters/{ClusterArn}/nodes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListNodes, input, options)
 end
 
 function Client:listReplicators(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReplicators",
-        input_schema = schemas.ListReplicatorsInput,
-        output_schema = schemas.ListReplicatorsOutput,
-        http_method = "GET",
-        http_path = "/replication/v1/replicators",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReplicators, input, options)
 end
 
 function Client:listScramSecrets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListScramSecrets",
-        input_schema = schemas.ListScramSecretsInput,
-        output_schema = schemas.ListScramSecretsOutput,
-        http_method = "GET",
-        http_path = "/v1/clusters/{ClusterArn}/scram-secrets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListScramSecrets, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/v1/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTopics(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTopics",
-        input_schema = schemas.ListTopicsInput,
-        output_schema = schemas.ListTopicsOutput,
-        http_method = "GET",
-        http_path = "/v1/clusters/{ClusterArn}/topics",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTopics, input, options)
 end
 
 function Client:listVpcConnections(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVpcConnections",
-        input_schema = schemas.ListVpcConnectionsInput,
-        output_schema = schemas.ListVpcConnectionsOutput,
-        http_method = "GET",
-        http_path = "/v1/vpc-connections",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVpcConnections, input, options)
 end
 
 function Client:putClusterPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutClusterPolicy",
-        input_schema = schemas.PutClusterPolicyInput,
-        output_schema = schemas.PutClusterPolicyOutput,
-        http_method = "PUT",
-        http_path = "/v1/clusters/{ClusterArn}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutClusterPolicy, input, options)
 end
 
 function Client:rebootBroker(input, options)
-    return self:invokeOperation(input, {
-        name = "RebootBroker",
-        input_schema = schemas.RebootBrokerInput,
-        output_schema = schemas.RebootBrokerOutput,
-        http_method = "PUT",
-        http_path = "/v1/clusters/{ClusterArn}/reboot-broker",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RebootBroker, input, options)
 end
 
 function Client:rejectClientVpcConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "RejectClientVpcConnection",
-        input_schema = schemas.RejectClientVpcConnectionInput,
-        output_schema = schemas.RejectClientVpcConnectionOutput,
-        http_method = "PUT",
-        http_path = "/v1/clusters/{ClusterArn}/client-vpc-connection",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RejectClientVpcConnection, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/v1/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/v1/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateBrokerCount(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateBrokerCount",
-        input_schema = schemas.UpdateBrokerCountInput,
-        output_schema = schemas.UpdateBrokerCountOutput,
-        http_method = "PUT",
-        http_path = "/v1/clusters/{ClusterArn}/nodes/count",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateBrokerCount, input, options)
 end
 
 function Client:updateBrokerStorage(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateBrokerStorage",
-        input_schema = schemas.UpdateBrokerStorageInput,
-        output_schema = schemas.UpdateBrokerStorageOutput,
-        http_method = "PUT",
-        http_path = "/v1/clusters/{ClusterArn}/nodes/storage",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateBrokerStorage, input, options)
 end
 
 function Client:updateBrokerType(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateBrokerType",
-        input_schema = schemas.UpdateBrokerTypeInput,
-        output_schema = schemas.UpdateBrokerTypeOutput,
-        http_method = "PUT",
-        http_path = "/v1/clusters/{ClusterArn}/nodes/type",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateBrokerType, input, options)
 end
 
 function Client:updateClusterConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateClusterConfiguration",
-        input_schema = schemas.UpdateClusterConfigurationInput,
-        output_schema = schemas.UpdateClusterConfigurationOutput,
-        http_method = "PUT",
-        http_path = "/v1/clusters/{ClusterArn}/configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateClusterConfiguration, input, options)
 end
 
 function Client:updateClusterKafkaVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateClusterKafkaVersion",
-        input_schema = schemas.UpdateClusterKafkaVersionInput,
-        output_schema = schemas.UpdateClusterKafkaVersionOutput,
-        http_method = "PUT",
-        http_path = "/v1/clusters/{ClusterArn}/version",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateClusterKafkaVersion, input, options)
 end
 
 function Client:updateConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConfiguration",
-        input_schema = schemas.UpdateConfigurationInput,
-        output_schema = schemas.UpdateConfigurationOutput,
-        http_method = "PUT",
-        http_path = "/v1/configurations/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguration, input, options)
 end
 
 function Client:updateConnectivity(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConnectivity",
-        input_schema = schemas.UpdateConnectivityInput,
-        output_schema = schemas.UpdateConnectivityOutput,
-        http_method = "PUT",
-        http_path = "/v1/clusters/{ClusterArn}/connectivity",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConnectivity, input, options)
 end
 
 function Client:updateMonitoring(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateMonitoring",
-        input_schema = schemas.UpdateMonitoringInput,
-        output_schema = schemas.UpdateMonitoringOutput,
-        http_method = "PUT",
-        http_path = "/v1/clusters/{ClusterArn}/monitoring",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateMonitoring, input, options)
 end
 
 function Client:updateRebalancing(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRebalancing",
-        input_schema = schemas.UpdateRebalancingInput,
-        output_schema = schemas.UpdateRebalancingOutput,
-        http_method = "PUT",
-        http_path = "/v1/clusters/{ClusterArn}/rebalancing",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRebalancing, input, options)
 end
 
 function Client:updateReplicationInfo(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateReplicationInfo",
-        input_schema = schemas.UpdateReplicationInfoInput,
-        output_schema = schemas.UpdateReplicationInfoOutput,
-        http_method = "PUT",
-        http_path = "/replication/v1/replicators/{ReplicatorArn}/replication-info",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateReplicationInfo, input, options)
 end
 
 function Client:updateSecurity(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSecurity",
-        input_schema = schemas.UpdateSecurityInput,
-        output_schema = schemas.UpdateSecurityOutput,
-        http_method = "PATCH",
-        http_path = "/v1/clusters/{ClusterArn}/security",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSecurity, input, options)
 end
 
 function Client:updateStorage(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateStorage",
-        input_schema = schemas.UpdateStorageInput,
-        output_schema = schemas.UpdateStorageOutput,
-        http_method = "PUT",
-        http_path = "/v1/clusters/{ClusterArn}/storage",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateStorage, input, options)
 end
 
 function Client:updateTopic(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTopic",
-        input_schema = schemas.UpdateTopicInput,
-        output_schema = schemas.UpdateTopicOutput,
-        http_method = "PUT",
-        http_path = "/v1/clusters/{ClusterArn}/topics/{TopicName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTopic, input, options)
 end
 
 return M

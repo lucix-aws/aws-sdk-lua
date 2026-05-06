@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("partnercentralchannel.endpoint_rules")
 local schemas = require("partnercentralchannel.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "partnercentral-channel", signing_region = cfg.region } }
                 else
@@ -49,241 +52,71 @@ function M.new(cfg)
 end
 
 function Client:acceptChannelHandshake(input, options)
-    return self:invokeOperation(input, {
-        name = "AcceptChannelHandshake",
-        input_schema = schemas.AcceptChannelHandshakeInput,
-        output_schema = schemas.AcceptChannelHandshakeOutput,
-        http_method = "POST",
-        http_path = "/AcceptChannelHandshake",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AcceptChannelHandshake, input, options)
 end
 
 function Client:cancelChannelHandshake(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelChannelHandshake",
-        input_schema = schemas.CancelChannelHandshakeInput,
-        output_schema = schemas.CancelChannelHandshakeOutput,
-        http_method = "POST",
-        http_path = "/CancelChannelHandshake",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelChannelHandshake, input, options)
 end
 
 function Client:createChannelHandshake(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateChannelHandshake",
-        input_schema = schemas.CreateChannelHandshakeInput,
-        output_schema = schemas.CreateChannelHandshakeOutput,
-        http_method = "POST",
-        http_path = "/CreateChannelHandshake",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateChannelHandshake, input, options)
 end
 
 function Client:createProgramManagementAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateProgramManagementAccount",
-        input_schema = schemas.CreateProgramManagementAccountInput,
-        output_schema = schemas.CreateProgramManagementAccountOutput,
-        http_method = "POST",
-        http_path = "/CreateProgramManagementAccount",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateProgramManagementAccount, input, options)
 end
 
 function Client:createRelationship(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRelationship",
-        input_schema = schemas.CreateRelationshipInput,
-        output_schema = schemas.CreateRelationshipOutput,
-        http_method = "POST",
-        http_path = "/CreateRelationship",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRelationship, input, options)
 end
 
 function Client:deleteProgramManagementAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteProgramManagementAccount",
-        input_schema = schemas.DeleteProgramManagementAccountInput,
-        output_schema = schemas.DeleteProgramManagementAccountOutput,
-        http_method = "POST",
-        http_path = "/DeleteProgramManagementAccount",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteProgramManagementAccount, input, options)
 end
 
 function Client:deleteRelationship(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRelationship",
-        input_schema = schemas.DeleteRelationshipInput,
-        output_schema = schemas.DeleteRelationshipOutput,
-        http_method = "POST",
-        http_path = "/DeleteRelationship",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRelationship, input, options)
 end
 
 function Client:getRelationship(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRelationship",
-        input_schema = schemas.GetRelationshipInput,
-        output_schema = schemas.GetRelationshipOutput,
-        http_method = "POST",
-        http_path = "/GetRelationship",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRelationship, input, options)
 end
 
 function Client:listChannelHandshakes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListChannelHandshakes",
-        input_schema = schemas.ListChannelHandshakesInput,
-        output_schema = schemas.ListChannelHandshakesOutput,
-        http_method = "POST",
-        http_path = "/ListChannelHandshakes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListChannelHandshakes, input, options)
 end
 
 function Client:listProgramManagementAccounts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProgramManagementAccounts",
-        input_schema = schemas.ListProgramManagementAccountsInput,
-        output_schema = schemas.ListProgramManagementAccountsOutput,
-        http_method = "POST",
-        http_path = "/ListProgramManagementAccounts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProgramManagementAccounts, input, options)
 end
 
 function Client:listRelationships(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRelationships",
-        input_schema = schemas.ListRelationshipsInput,
-        output_schema = schemas.ListRelationshipsOutput,
-        http_method = "POST",
-        http_path = "/ListRelationships",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRelationships, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/ListTagsForResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:rejectChannelHandshake(input, options)
-    return self:invokeOperation(input, {
-        name = "RejectChannelHandshake",
-        input_schema = schemas.RejectChannelHandshakeInput,
-        output_schema = schemas.RejectChannelHandshakeOutput,
-        http_method = "POST",
-        http_path = "/RejectChannelHandshake",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RejectChannelHandshake, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/TagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/UntagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateProgramManagementAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateProgramManagementAccount",
-        input_schema = schemas.UpdateProgramManagementAccountInput,
-        output_schema = schemas.UpdateProgramManagementAccountOutput,
-        http_method = "POST",
-        http_path = "/UpdateProgramManagementAccount",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateProgramManagementAccount, input, options)
 end
 
 function Client:updateRelationship(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRelationship",
-        input_schema = schemas.UpdateRelationshipInput,
-        output_schema = schemas.UpdateRelationshipOutput,
-        http_method = "POST",
-        http_path = "/UpdateRelationship",
-        effective_auth_schemes = {
-            "aws.auth#sigv4a",
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRelationship, input, options)
 end
 
 return M

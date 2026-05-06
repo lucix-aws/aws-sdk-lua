@@ -610,4 +610,134 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.supportapp", "SupportApp"),
+    version = "2021-08-20",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSlackChannelConfiguration = schema.operation({
+    id = id.from("com.amazonaws.supportapp", "CreateSlackChannelConfiguration"),
+    input = M.CreateSlackChannelConfigurationInput,
+    output = M.CreateSlackChannelConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/control/create-slack-channel-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccountAlias = schema.operation({
+    id = id.from("com.amazonaws.supportapp", "DeleteAccountAlias"),
+    input = M.DeleteAccountAliasInput,
+    output = M.DeleteAccountAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/control/delete-account-alias" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSlackChannelConfiguration = schema.operation({
+    id = id.from("com.amazonaws.supportapp", "DeleteSlackChannelConfiguration"),
+    input = M.DeleteSlackChannelConfigurationInput,
+    output = M.DeleteSlackChannelConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/control/delete-slack-channel-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSlackWorkspaceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.supportapp", "DeleteSlackWorkspaceConfiguration"),
+    input = M.DeleteSlackWorkspaceConfigurationInput,
+    output = M.DeleteSlackWorkspaceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/control/delete-slack-workspace-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountAlias = schema.operation({
+    id = id.from("com.amazonaws.supportapp", "GetAccountAlias"),
+    input = M.GetAccountAliasInput,
+    output = M.GetAccountAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/control/get-account-alias" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSlackChannelConfigurations = schema.operation({
+    id = id.from("com.amazonaws.supportapp", "ListSlackChannelConfigurations"),
+    input = M.ListSlackChannelConfigurationsInput,
+    output = M.ListSlackChannelConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/control/list-slack-channel-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSlackWorkspaceConfigurations = schema.operation({
+    id = id.from("com.amazonaws.supportapp", "ListSlackWorkspaceConfigurations"),
+    input = M.ListSlackWorkspaceConfigurationsInput,
+    output = M.ListSlackWorkspaceConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/control/list-slack-workspace-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountAlias = schema.operation({
+    id = id.from("com.amazonaws.supportapp", "PutAccountAlias"),
+    input = M.PutAccountAliasInput,
+    output = M.PutAccountAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/control/put-account-alias" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterSlackWorkspaceForOrganization = schema.operation({
+    id = id.from("com.amazonaws.supportapp", "RegisterSlackWorkspaceForOrganization"),
+    input = M.RegisterSlackWorkspaceForOrganizationInput,
+    output = M.RegisterSlackWorkspaceForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/control/register-slack-workspace-for-organization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSlackChannelConfiguration = schema.operation({
+    id = id.from("com.amazonaws.supportapp", "UpdateSlackChannelConfiguration"),
+    input = M.UpdateSlackChannelConfigurationInput,
+    output = M.UpdateSlackChannelConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/control/update-slack-channel-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

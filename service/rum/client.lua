@@ -7,6 +7,7 @@ local endpoint_rules = require("rum.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("rum.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "rum", signing_region = cfg.region } }
                 else
@@ -49,263 +52,83 @@ function M.new(cfg)
 end
 
 function Client:batchCreateRumMetricDefinitions(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchCreateRumMetricDefinitions",
-        input_schema = schemas.BatchCreateRumMetricDefinitionsInput,
-        output_schema = schemas.BatchCreateRumMetricDefinitionsOutput,
-        http_method = "POST",
-        http_path = "/rummetrics/{AppMonitorName}/metrics",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchCreateRumMetricDefinitions, input, options)
 end
 
 function Client:batchDeleteRumMetricDefinitions(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDeleteRumMetricDefinitions",
-        input_schema = schemas.BatchDeleteRumMetricDefinitionsInput,
-        output_schema = schemas.BatchDeleteRumMetricDefinitionsOutput,
-        http_method = "DELETE",
-        http_path = "/rummetrics/{AppMonitorName}/metrics",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDeleteRumMetricDefinitions, input, options)
 end
 
 function Client:batchGetRumMetricDefinitions(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetRumMetricDefinitions",
-        input_schema = schemas.BatchGetRumMetricDefinitionsInput,
-        output_schema = schemas.BatchGetRumMetricDefinitionsOutput,
-        http_method = "GET",
-        http_path = "/rummetrics/{AppMonitorName}/metrics",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetRumMetricDefinitions, input, options)
 end
 
 function Client:createAppMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAppMonitor",
-        input_schema = schemas.CreateAppMonitorInput,
-        output_schema = schemas.CreateAppMonitorOutput,
-        http_method = "POST",
-        http_path = "/appmonitor",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAppMonitor, input, options)
 end
 
 function Client:deleteAppMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAppMonitor",
-        input_schema = schemas.DeleteAppMonitorInput,
-        output_schema = schemas.DeleteAppMonitorOutput,
-        http_method = "DELETE",
-        http_path = "/appmonitor/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAppMonitor, input, options)
 end
 
 function Client:deleteResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResourcePolicy",
-        input_schema = schemas.DeleteResourcePolicyInput,
-        output_schema = schemas.DeleteResourcePolicyOutput,
-        http_method = "DELETE",
-        http_path = "/appmonitor/{Name}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options)
 end
 
 function Client:deleteRumMetricsDestination(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRumMetricsDestination",
-        input_schema = schemas.DeleteRumMetricsDestinationInput,
-        output_schema = schemas.DeleteRumMetricsDestinationOutput,
-        http_method = "DELETE",
-        http_path = "/rummetrics/{AppMonitorName}/metricsdestination",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRumMetricsDestination, input, options)
 end
 
 function Client:getAppMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAppMonitor",
-        input_schema = schemas.GetAppMonitorInput,
-        output_schema = schemas.GetAppMonitorOutput,
-        http_method = "GET",
-        http_path = "/appmonitor/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAppMonitor, input, options)
 end
 
 function Client:getAppMonitorData(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAppMonitorData",
-        input_schema = schemas.GetAppMonitorDataInput,
-        output_schema = schemas.GetAppMonitorDataOutput,
-        http_method = "POST",
-        http_path = "/appmonitor/{Name}/data",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAppMonitorData, input, options)
 end
 
 function Client:getResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourcePolicy",
-        input_schema = schemas.GetResourcePolicyInput,
-        output_schema = schemas.GetResourcePolicyOutput,
-        http_method = "GET",
-        http_path = "/appmonitor/{Name}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options)
 end
 
 function Client:listAppMonitors(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAppMonitors",
-        input_schema = schemas.ListAppMonitorsInput,
-        output_schema = schemas.ListAppMonitorsOutput,
-        http_method = "POST",
-        http_path = "/appmonitors",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAppMonitors, input, options)
 end
 
 function Client:listRumMetricsDestinations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRumMetricsDestinations",
-        input_schema = schemas.ListRumMetricsDestinationsInput,
-        output_schema = schemas.ListRumMetricsDestinationsOutput,
-        http_method = "GET",
-        http_path = "/rummetrics/{AppMonitorName}/metricsdestination",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRumMetricsDestinations, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutResourcePolicy",
-        input_schema = schemas.PutResourcePolicyInput,
-        output_schema = schemas.PutResourcePolicyOutput,
-        http_method = "PUT",
-        http_path = "/appmonitor/{Name}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options)
 end
 
 function Client:putRumEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "PutRumEvents",
-        input_schema = schemas.PutRumEventsInput,
-        output_schema = schemas.PutRumEventsOutput,
-        http_method = "POST",
-        http_path = "/appmonitors/{Id}/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutRumEvents, input, options)
 end
 
 function Client:putRumMetricsDestination(input, options)
-    return self:invokeOperation(input, {
-        name = "PutRumMetricsDestination",
-        input_schema = schemas.PutRumMetricsDestinationInput,
-        output_schema = schemas.PutRumMetricsDestinationOutput,
-        http_method = "POST",
-        http_path = "/rummetrics/{AppMonitorName}/metricsdestination",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutRumMetricsDestination, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAppMonitor(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAppMonitor",
-        input_schema = schemas.UpdateAppMonitorInput,
-        output_schema = schemas.UpdateAppMonitorOutput,
-        http_method = "PATCH",
-        http_path = "/appmonitor/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAppMonitor, input, options)
 end
 
 function Client:updateRumMetricDefinition(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRumMetricDefinition",
-        input_schema = schemas.UpdateRumMetricDefinitionInput,
-        output_schema = schemas.UpdateRumMetricDefinitionOutput,
-        http_method = "PATCH",
-        http_path = "/rummetrics/{AppMonitorName}/metrics",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRumMetricDefinition, input, options)
 end
 
 return M

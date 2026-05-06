@@ -483,4 +483,74 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.mediastoredata", "MediaStoreObject_20170901"),
+    version = "2017-09-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteObject = schema.operation({
+    id = id.from("com.amazonaws.mediastoredata", "DeleteObject"),
+    input = M.DeleteObjectInput,
+    output = M.DeleteObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/{Path+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeObject = schema.operation({
+    id = id.from("com.amazonaws.mediastoredata", "DescribeObject"),
+    input = M.DescribeObjectInput,
+    output = M.DescribeObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "HEAD", path = "/{Path+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetObject = schema.operation({
+    id = id.from("com.amazonaws.mediastoredata", "GetObject"),
+    input = M.GetObjectInput,
+    output = M.GetObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{Path+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListItems = schema.operation({
+    id = id.from("com.amazonaws.mediastoredata", "ListItems"),
+    input = M.ListItemsInput,
+    output = M.ListItemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutObject = schema.operation({
+    id = id.from("com.amazonaws.mediastoredata", "PutObject"),
+    input = M.PutObjectInput,
+    output = M.PutObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{Path+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

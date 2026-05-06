@@ -367,4 +367,26 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.eksauth", "EKSAuthFrontend"),
+    version = "2023-11-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssumeRoleForPodIdentity = schema.operation({
+    id = id.from("com.amazonaws.eksauth", "AssumeRoleForPodIdentity"),
+    input = M.AssumeRoleForPodIdentityInput,
+    output = M.AssumeRoleForPodIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/assume-role-for-pod-identity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -3230,4 +3230,434 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ram", "AmazonResourceSharing"),
+    version = "2018-01-04",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptResourceShareInvitation = schema.operation({
+    id = id.from("com.amazonaws.ram", "AcceptResourceShareInvitation"),
+    input = M.AcceptResourceShareInvitationInput,
+    output = M.AcceptResourceShareInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/acceptresourceshareinvitation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateResourceShare = schema.operation({
+    id = id.from("com.amazonaws.ram", "AssociateResourceShare"),
+    input = M.AssociateResourceShareInput,
+    output = M.AssociateResourceShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/associateresourceshare" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateResourceSharePermission = schema.operation({
+    id = id.from("com.amazonaws.ram", "AssociateResourceSharePermission"),
+    input = M.AssociateResourceSharePermissionInput,
+    output = M.AssociateResourceSharePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/associateresourcesharepermission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePermission = schema.operation({
+    id = id.from("com.amazonaws.ram", "CreatePermission"),
+    input = M.CreatePermissionInput,
+    output = M.CreatePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/createpermission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePermissionVersion = schema.operation({
+    id = id.from("com.amazonaws.ram", "CreatePermissionVersion"),
+    input = M.CreatePermissionVersionInput,
+    output = M.CreatePermissionVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/createpermissionversion" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResourceShare = schema.operation({
+    id = id.from("com.amazonaws.ram", "CreateResourceShare"),
+    input = M.CreateResourceShareInput,
+    output = M.CreateResourceShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/createresourceshare" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePermission = schema.operation({
+    id = id.from("com.amazonaws.ram", "DeletePermission"),
+    input = M.DeletePermissionInput,
+    output = M.DeletePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/deletepermission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePermissionVersion = schema.operation({
+    id = id.from("com.amazonaws.ram", "DeletePermissionVersion"),
+    input = M.DeletePermissionVersionInput,
+    output = M.DeletePermissionVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/deletepermissionversion" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourceShare = schema.operation({
+    id = id.from("com.amazonaws.ram", "DeleteResourceShare"),
+    input = M.DeleteResourceShareInput,
+    output = M.DeleteResourceShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/deleteresourceshare" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateResourceShare = schema.operation({
+    id = id.from("com.amazonaws.ram", "DisassociateResourceShare"),
+    input = M.DisassociateResourceShareInput,
+    output = M.DisassociateResourceShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/disassociateresourceshare" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateResourceSharePermission = schema.operation({
+    id = id.from("com.amazonaws.ram", "DisassociateResourceSharePermission"),
+    input = M.DisassociateResourceSharePermissionInput,
+    output = M.DisassociateResourceSharePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/disassociateresourcesharepermission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableSharingWithAwsOrganization = schema.operation({
+    id = id.from("com.amazonaws.ram", "EnableSharingWithAwsOrganization"),
+    input = M.EnableSharingWithAwsOrganizationInput,
+    output = M.EnableSharingWithAwsOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/enablesharingwithawsorganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPermission = schema.operation({
+    id = id.from("com.amazonaws.ram", "GetPermission"),
+    input = M.GetPermissionInput,
+    output = M.GetPermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getpermission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicies = schema.operation({
+    id = id.from("com.amazonaws.ram", "GetResourcePolicies"),
+    input = M.GetResourcePoliciesInput,
+    output = M.GetResourcePoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getresourcepolicies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceShareAssociations = schema.operation({
+    id = id.from("com.amazonaws.ram", "GetResourceShareAssociations"),
+    input = M.GetResourceShareAssociationsInput,
+    output = M.GetResourceShareAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getresourceshareassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceShareInvitations = schema.operation({
+    id = id.from("com.amazonaws.ram", "GetResourceShareInvitations"),
+    input = M.GetResourceShareInvitationsInput,
+    output = M.GetResourceShareInvitationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getresourceshareinvitations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceShares = schema.operation({
+    id = id.from("com.amazonaws.ram", "GetResourceShares"),
+    input = M.GetResourceSharesInput,
+    output = M.GetResourceSharesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getresourceshares" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPendingInvitationResources = schema.operation({
+    id = id.from("com.amazonaws.ram", "ListPendingInvitationResources"),
+    input = M.ListPendingInvitationResourcesInput,
+    output = M.ListPendingInvitationResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listpendinginvitationresources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPermissionAssociations = schema.operation({
+    id = id.from("com.amazonaws.ram", "ListPermissionAssociations"),
+    input = M.ListPermissionAssociationsInput,
+    output = M.ListPermissionAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listpermissionassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPermissions = schema.operation({
+    id = id.from("com.amazonaws.ram", "ListPermissions"),
+    input = M.ListPermissionsInput,
+    output = M.ListPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listpermissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPermissionVersions = schema.operation({
+    id = id.from("com.amazonaws.ram", "ListPermissionVersions"),
+    input = M.ListPermissionVersionsInput,
+    output = M.ListPermissionVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listpermissionversions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPrincipals = schema.operation({
+    id = id.from("com.amazonaws.ram", "ListPrincipals"),
+    input = M.ListPrincipalsInput,
+    output = M.ListPrincipalsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listprincipals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReplacePermissionAssociationsWork = schema.operation({
+    id = id.from("com.amazonaws.ram", "ListReplacePermissionAssociationsWork"),
+    input = M.ListReplacePermissionAssociationsWorkInput,
+    output = M.ListReplacePermissionAssociationsWorkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listreplacepermissionassociationswork" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResources = schema.operation({
+    id = id.from("com.amazonaws.ram", "ListResources"),
+    input = M.ListResourcesInput,
+    output = M.ListResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listresources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceSharePermissions = schema.operation({
+    id = id.from("com.amazonaws.ram", "ListResourceSharePermissions"),
+    input = M.ListResourceSharePermissionsInput,
+    output = M.ListResourceSharePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listresourcesharepermissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceTypes = schema.operation({
+    id = id.from("com.amazonaws.ram", "ListResourceTypes"),
+    input = M.ListResourceTypesInput,
+    output = M.ListResourceTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listresourcetypes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSourceAssociations = schema.operation({
+    id = id.from("com.amazonaws.ram", "ListSourceAssociations"),
+    input = M.ListSourceAssociationsInput,
+    output = M.ListSourceAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listsourceassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PromotePermissionCreatedFromPolicy = schema.operation({
+    id = id.from("com.amazonaws.ram", "PromotePermissionCreatedFromPolicy"),
+    input = M.PromotePermissionCreatedFromPolicyInput,
+    output = M.PromotePermissionCreatedFromPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/promotepermissioncreatedfrompolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PromoteResourceShareCreatedFromPolicy = schema.operation({
+    id = id.from("com.amazonaws.ram", "PromoteResourceShareCreatedFromPolicy"),
+    input = M.PromoteResourceShareCreatedFromPolicyInput,
+    output = M.PromoteResourceShareCreatedFromPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/promoteresourcesharecreatedfrompolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectResourceShareInvitation = schema.operation({
+    id = id.from("com.amazonaws.ram", "RejectResourceShareInvitation"),
+    input = M.RejectResourceShareInvitationInput,
+    output = M.RejectResourceShareInvitationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/rejectresourceshareinvitation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReplacePermissionAssociations = schema.operation({
+    id = id.from("com.amazonaws.ram", "ReplacePermissionAssociations"),
+    input = M.ReplacePermissionAssociationsInput,
+    output = M.ReplacePermissionAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/replacepermissionassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetDefaultPermissionVersion = schema.operation({
+    id = id.from("com.amazonaws.ram", "SetDefaultPermissionVersion"),
+    input = M.SetDefaultPermissionVersionInput,
+    output = M.SetDefaultPermissionVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/setdefaultpermissionversion" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.ram", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tagresource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.ram", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/untagresource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResourceShare = schema.operation({
+    id = id.from("com.amazonaws.ram", "UpdateResourceShare"),
+    input = M.UpdateResourceShareInput,
+    output = M.UpdateResourceShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateresourceshare" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

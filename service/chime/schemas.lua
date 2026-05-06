@@ -3939,4 +3939,758 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.chime", "UCBuzzConsoleService"),
+    version = "2018-05-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociatePhoneNumberWithUser = schema.operation({
+    id = id.from("com.amazonaws.chime", "AssociatePhoneNumberWithUser"),
+    input = M.AssociatePhoneNumberWithUserInput,
+    output = M.AssociatePhoneNumberWithUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/users/{UserId}?operation=associate-phone-number" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateSigninDelegateGroupsWithAccount = schema.operation({
+    id = id.from("com.amazonaws.chime", "AssociateSigninDelegateGroupsWithAccount"),
+    input = M.AssociateSigninDelegateGroupsWithAccountInput,
+    output = M.AssociateSigninDelegateGroupsWithAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}?operation=associate-signin-delegate-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateRoomMembership = schema.operation({
+    id = id.from("com.amazonaws.chime", "BatchCreateRoomMembership"),
+    input = M.BatchCreateRoomMembershipInput,
+    output = M.BatchCreateRoomMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/rooms/{RoomId}/memberships?operation=batch-create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeletePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.chime", "BatchDeletePhoneNumber"),
+    input = M.BatchDeletePhoneNumberInput,
+    output = M.BatchDeletePhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/phone-numbers?operation=batch-delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchSuspendUser = schema.operation({
+    id = id.from("com.amazonaws.chime", "BatchSuspendUser"),
+    input = M.BatchSuspendUserInput,
+    output = M.BatchSuspendUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/users?operation=suspend" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUnsuspendUser = schema.operation({
+    id = id.from("com.amazonaws.chime", "BatchUnsuspendUser"),
+    input = M.BatchUnsuspendUserInput,
+    output = M.BatchUnsuspendUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/users?operation=unsuspend" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdatePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.chime", "BatchUpdatePhoneNumber"),
+    input = M.BatchUpdatePhoneNumberInput,
+    output = M.BatchUpdatePhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/phone-numbers?operation=batch-update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateUser = schema.operation({
+    id = id.from("com.amazonaws.chime", "BatchUpdateUser"),
+    input = M.BatchUpdateUserInput,
+    output = M.BatchUpdateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccount = schema.operation({
+    id = id.from("com.amazonaws.chime", "CreateAccount"),
+    input = M.CreateAccountInput,
+    output = M.CreateAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBot = schema.operation({
+    id = id.from("com.amazonaws.chime", "CreateBot"),
+    input = M.CreateBotInput,
+    output = M.CreateBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/bots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMeetingDialOut = schema.operation({
+    id = id.from("com.amazonaws.chime", "CreateMeetingDialOut"),
+    input = M.CreateMeetingDialOutInput,
+    output = M.CreateMeetingDialOutOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/meetings/{MeetingId}/dial-outs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePhoneNumberOrder = schema.operation({
+    id = id.from("com.amazonaws.chime", "CreatePhoneNumberOrder"),
+    input = M.CreatePhoneNumberOrderInput,
+    output = M.CreatePhoneNumberOrderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/phone-number-orders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRoom = schema.operation({
+    id = id.from("com.amazonaws.chime", "CreateRoom"),
+    input = M.CreateRoomInput,
+    output = M.CreateRoomOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/rooms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRoomMembership = schema.operation({
+    id = id.from("com.amazonaws.chime", "CreateRoomMembership"),
+    input = M.CreateRoomMembershipInput,
+    output = M.CreateRoomMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/rooms/{RoomId}/memberships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.chime", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/users?operation=create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccount = schema.operation({
+    id = id.from("com.amazonaws.chime", "DeleteAccount"),
+    input = M.DeleteAccountInput,
+    output = M.DeleteAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AccountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chime", "DeleteEventsConfiguration"),
+    input = M.DeleteEventsConfigurationInput,
+    output = M.DeleteEventsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AccountId}/bots/{BotId}/events-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.chime", "DeletePhoneNumber"),
+    input = M.DeletePhoneNumberInput,
+    output = M.DeletePhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/phone-numbers/{PhoneNumberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRoom = schema.operation({
+    id = id.from("com.amazonaws.chime", "DeleteRoom"),
+    input = M.DeleteRoomInput,
+    output = M.DeleteRoomOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AccountId}/rooms/{RoomId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRoomMembership = schema.operation({
+    id = id.from("com.amazonaws.chime", "DeleteRoomMembership"),
+    input = M.DeleteRoomMembershipInput,
+    output = M.DeleteRoomMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AccountId}/rooms/{RoomId}/memberships/{MemberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociatePhoneNumberFromUser = schema.operation({
+    id = id.from("com.amazonaws.chime", "DisassociatePhoneNumberFromUser"),
+    input = M.DisassociatePhoneNumberFromUserInput,
+    output = M.DisassociatePhoneNumberFromUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/users/{UserId}?operation=disassociate-phone-number" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateSigninDelegateGroupsFromAccount = schema.operation({
+    id = id.from("com.amazonaws.chime", "DisassociateSigninDelegateGroupsFromAccount"),
+    input = M.DisassociateSigninDelegateGroupsFromAccountInput,
+    output = M.DisassociateSigninDelegateGroupsFromAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}?operation=disassociate-signin-delegate-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccount = schema.operation({
+    id = id.from("com.amazonaws.chime", "GetAccount"),
+    input = M.GetAccountInput,
+    output = M.GetAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AccountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.chime", "GetAccountSettings"),
+    input = M.GetAccountSettingsInput,
+    output = M.GetAccountSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AccountId}/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBot = schema.operation({
+    id = id.from("com.amazonaws.chime", "GetBot"),
+    input = M.GetBotInput,
+    output = M.GetBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AccountId}/bots/{BotId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chime", "GetEventsConfiguration"),
+    input = M.GetEventsConfigurationInput,
+    output = M.GetEventsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AccountId}/bots/{BotId}/events-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGlobalSettings = schema.operation({
+    id = id.from("com.amazonaws.chime", "GetGlobalSettings"),
+    input = M.GetGlobalSettingsInput,
+    output = M.GetGlobalSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.chime", "GetPhoneNumber"),
+    input = M.GetPhoneNumberInput,
+    output = M.GetPhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/phone-numbers/{PhoneNumberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPhoneNumberOrder = schema.operation({
+    id = id.from("com.amazonaws.chime", "GetPhoneNumberOrder"),
+    input = M.GetPhoneNumberOrderInput,
+    output = M.GetPhoneNumberOrderOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/phone-number-orders/{PhoneNumberOrderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPhoneNumberSettings = schema.operation({
+    id = id.from("com.amazonaws.chime", "GetPhoneNumberSettings"),
+    input = M.GetPhoneNumberSettingsInput,
+    output = M.GetPhoneNumberSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/settings/phone-number" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRetentionSettings = schema.operation({
+    id = id.from("com.amazonaws.chime", "GetRetentionSettings"),
+    input = M.GetRetentionSettingsInput,
+    output = M.GetRetentionSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AccountId}/retention-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRoom = schema.operation({
+    id = id.from("com.amazonaws.chime", "GetRoom"),
+    input = M.GetRoomInput,
+    output = M.GetRoomOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AccountId}/rooms/{RoomId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUser = schema.operation({
+    id = id.from("com.amazonaws.chime", "GetUser"),
+    input = M.GetUserInput,
+    output = M.GetUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AccountId}/users/{UserId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUserSettings = schema.operation({
+    id = id.from("com.amazonaws.chime", "GetUserSettings"),
+    input = M.GetUserSettingsInput,
+    output = M.GetUserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AccountId}/users/{UserId}/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InviteUsers = schema.operation({
+    id = id.from("com.amazonaws.chime", "InviteUsers"),
+    input = M.InviteUsersInput,
+    output = M.InviteUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/users?operation=add" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccounts = schema.operation({
+    id = id.from("com.amazonaws.chime", "ListAccounts"),
+    input = M.ListAccountsInput,
+    output = M.ListAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBots = schema.operation({
+    id = id.from("com.amazonaws.chime", "ListBots"),
+    input = M.ListBotsInput,
+    output = M.ListBotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AccountId}/bots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPhoneNumberOrders = schema.operation({
+    id = id.from("com.amazonaws.chime", "ListPhoneNumberOrders"),
+    input = M.ListPhoneNumberOrdersInput,
+    output = M.ListPhoneNumberOrdersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/phone-number-orders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPhoneNumbers = schema.operation({
+    id = id.from("com.amazonaws.chime", "ListPhoneNumbers"),
+    input = M.ListPhoneNumbersInput,
+    output = M.ListPhoneNumbersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/phone-numbers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRoomMemberships = schema.operation({
+    id = id.from("com.amazonaws.chime", "ListRoomMemberships"),
+    input = M.ListRoomMembershipsInput,
+    output = M.ListRoomMembershipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AccountId}/rooms/{RoomId}/memberships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRooms = schema.operation({
+    id = id.from("com.amazonaws.chime", "ListRooms"),
+    input = M.ListRoomsInput,
+    output = M.ListRoomsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AccountId}/rooms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSupportedPhoneNumberCountries = schema.operation({
+    id = id.from("com.amazonaws.chime", "ListSupportedPhoneNumberCountries"),
+    input = M.ListSupportedPhoneNumberCountriesInput,
+    output = M.ListSupportedPhoneNumberCountriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/phone-number-countries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsers = schema.operation({
+    id = id.from("com.amazonaws.chime", "ListUsers"),
+    input = M.ListUsersInput,
+    output = M.ListUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AccountId}/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.LogoutUser = schema.operation({
+    id = id.from("com.amazonaws.chime", "LogoutUser"),
+    input = M.LogoutUserInput,
+    output = M.LogoutUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/users/{UserId}?operation=logout" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEventsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chime", "PutEventsConfiguration"),
+    input = M.PutEventsConfigurationInput,
+    output = M.PutEventsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AccountId}/bots/{BotId}/events-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRetentionSettings = schema.operation({
+    id = id.from("com.amazonaws.chime", "PutRetentionSettings"),
+    input = M.PutRetentionSettingsInput,
+    output = M.PutRetentionSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AccountId}/retention-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RedactConversationMessage = schema.operation({
+    id = id.from("com.amazonaws.chime", "RedactConversationMessage"),
+    input = M.RedactConversationMessageInput,
+    output = M.RedactConversationMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/conversations/{ConversationId}/messages/{MessageId}?operation=redact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RedactRoomMessage = schema.operation({
+    id = id.from("com.amazonaws.chime", "RedactRoomMessage"),
+    input = M.RedactRoomMessageInput,
+    output = M.RedactRoomMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/rooms/{RoomId}/messages/{MessageId}?operation=redact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegenerateSecurityToken = schema.operation({
+    id = id.from("com.amazonaws.chime", "RegenerateSecurityToken"),
+    input = M.RegenerateSecurityTokenInput,
+    output = M.RegenerateSecurityTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/bots/{BotId}?operation=regenerate-security-token" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetPersonalPIN = schema.operation({
+    id = id.from("com.amazonaws.chime", "ResetPersonalPIN"),
+    input = M.ResetPersonalPINInput,
+    output = M.ResetPersonalPINOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/users/{UserId}?operation=reset-personal-pin" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestorePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.chime", "RestorePhoneNumber"),
+    input = M.RestorePhoneNumberInput,
+    output = M.RestorePhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/phone-numbers/{PhoneNumberId}?operation=restore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchAvailablePhoneNumbers = schema.operation({
+    id = id.from("com.amazonaws.chime", "SearchAvailablePhoneNumbers"),
+    input = M.SearchAvailablePhoneNumbersInput,
+    output = M.SearchAvailablePhoneNumbersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/search?type=phone-numbers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccount = schema.operation({
+    id = id.from("com.amazonaws.chime", "UpdateAccount"),
+    input = M.UpdateAccountInput,
+    output = M.UpdateAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.chime", "UpdateAccountSettings"),
+    input = M.UpdateAccountSettingsInput,
+    output = M.UpdateAccountSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AccountId}/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBot = schema.operation({
+    id = id.from("com.amazonaws.chime", "UpdateBot"),
+    input = M.UpdateBotInput,
+    output = M.UpdateBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/bots/{BotId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGlobalSettings = schema.operation({
+    id = id.from("com.amazonaws.chime", "UpdateGlobalSettings"),
+    input = M.UpdateGlobalSettingsInput,
+    output = M.UpdateGlobalSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.chime", "UpdatePhoneNumber"),
+    input = M.UpdatePhoneNumberInput,
+    output = M.UpdatePhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/phone-numbers/{PhoneNumberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePhoneNumberSettings = schema.operation({
+    id = id.from("com.amazonaws.chime", "UpdatePhoneNumberSettings"),
+    input = M.UpdatePhoneNumberSettingsInput,
+    output = M.UpdatePhoneNumberSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/settings/phone-number" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoom = schema.operation({
+    id = id.from("com.amazonaws.chime", "UpdateRoom"),
+    input = M.UpdateRoomInput,
+    output = M.UpdateRoomOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/rooms/{RoomId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoomMembership = schema.operation({
+    id = id.from("com.amazonaws.chime", "UpdateRoomMembership"),
+    input = M.UpdateRoomMembershipInput,
+    output = M.UpdateRoomMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/rooms/{RoomId}/memberships/{MemberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUser = schema.operation({
+    id = id.from("com.amazonaws.chime", "UpdateUser"),
+    input = M.UpdateUserInput,
+    output = M.UpdateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AccountId}/users/{UserId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserSettings = schema.operation({
+    id = id.from("com.amazonaws.chime", "UpdateUserSettings"),
+    input = M.UpdateUserSettingsInput,
+    output = M.UpdateUserSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AccountId}/users/{UserId}/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

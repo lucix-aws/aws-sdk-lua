@@ -6066,4 +6066,817 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.frauddetector", "AWSHawksNestServiceFacade"),
+    version = "2019-11-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateVariable = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "BatchCreateVariable"),
+    input = M.BatchCreateVariableInput,
+    output = M.BatchCreateVariableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetVariable = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "BatchGetVariable"),
+    input = M.BatchGetVariableInput,
+    output = M.BatchGetVariableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelBatchImportJob = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "CancelBatchImportJob"),
+    input = M.CancelBatchImportJobInput,
+    output = M.CancelBatchImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelBatchPredictionJob = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "CancelBatchPredictionJob"),
+    input = M.CancelBatchPredictionJobInput,
+    output = M.CancelBatchPredictionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBatchImportJob = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "CreateBatchImportJob"),
+    input = M.CreateBatchImportJobInput,
+    output = M.CreateBatchImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBatchPredictionJob = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "CreateBatchPredictionJob"),
+    input = M.CreateBatchPredictionJobInput,
+    output = M.CreateBatchPredictionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDetectorVersion = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "CreateDetectorVersion"),
+    input = M.CreateDetectorVersionInput,
+    output = M.CreateDetectorVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateList = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "CreateList"),
+    input = M.CreateListInput,
+    output = M.CreateListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateModel = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "CreateModel"),
+    input = M.CreateModelInput,
+    output = M.CreateModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateModelVersion = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "CreateModelVersion"),
+    input = M.CreateModelVersionInput,
+    output = M.CreateModelVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRule = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "CreateRule"),
+    input = M.CreateRuleInput,
+    output = M.CreateRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVariable = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "CreateVariable"),
+    input = M.CreateVariableInput,
+    output = M.CreateVariableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBatchImportJob = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteBatchImportJob"),
+    input = M.DeleteBatchImportJobInput,
+    output = M.DeleteBatchImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBatchPredictionJob = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteBatchPredictionJob"),
+    input = M.DeleteBatchPredictionJobInput,
+    output = M.DeleteBatchPredictionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDetector = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteDetector"),
+    input = M.DeleteDetectorInput,
+    output = M.DeleteDetectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDetectorVersion = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteDetectorVersion"),
+    input = M.DeleteDetectorVersionInput,
+    output = M.DeleteDetectorVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEntityType = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteEntityType"),
+    input = M.DeleteEntityTypeInput,
+    output = M.DeleteEntityTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEvent = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteEvent"),
+    input = M.DeleteEventInput,
+    output = M.DeleteEventOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventsByEventType = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteEventsByEventType"),
+    input = M.DeleteEventsByEventTypeInput,
+    output = M.DeleteEventsByEventTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventType = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteEventType"),
+    input = M.DeleteEventTypeInput,
+    output = M.DeleteEventTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteExternalModel = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteExternalModel"),
+    input = M.DeleteExternalModelInput,
+    output = M.DeleteExternalModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLabel = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteLabel"),
+    input = M.DeleteLabelInput,
+    output = M.DeleteLabelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteList = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteList"),
+    input = M.DeleteListInput,
+    output = M.DeleteListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteModel = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteModel"),
+    input = M.DeleteModelInput,
+    output = M.DeleteModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteModelVersion = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteModelVersion"),
+    input = M.DeleteModelVersionInput,
+    output = M.DeleteModelVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOutcome = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteOutcome"),
+    input = M.DeleteOutcomeInput,
+    output = M.DeleteOutcomeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRule = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteRule"),
+    input = M.DeleteRuleInput,
+    output = M.DeleteRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVariable = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DeleteVariable"),
+    input = M.DeleteVariableInput,
+    output = M.DeleteVariableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDetector = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DescribeDetector"),
+    input = M.DescribeDetectorInput,
+    output = M.DescribeDetectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeModelVersions = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "DescribeModelVersions"),
+    input = M.DescribeModelVersionsInput,
+    output = M.DescribeModelVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBatchImportJobs = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetBatchImportJobs"),
+    input = M.GetBatchImportJobsInput,
+    output = M.GetBatchImportJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBatchPredictionJobs = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetBatchPredictionJobs"),
+    input = M.GetBatchPredictionJobsInput,
+    output = M.GetBatchPredictionJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeleteEventsByEventTypeStatus = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetDeleteEventsByEventTypeStatus"),
+    input = M.GetDeleteEventsByEventTypeStatusInput,
+    output = M.GetDeleteEventsByEventTypeStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDetectors = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetDetectors"),
+    input = M.GetDetectorsInput,
+    output = M.GetDetectorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDetectorVersion = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetDetectorVersion"),
+    input = M.GetDetectorVersionInput,
+    output = M.GetDetectorVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEntityTypes = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetEntityTypes"),
+    input = M.GetEntityTypesInput,
+    output = M.GetEntityTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEvent = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetEvent"),
+    input = M.GetEventInput,
+    output = M.GetEventOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventPrediction = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetEventPrediction"),
+    input = M.GetEventPredictionInput,
+    output = M.GetEventPredictionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventPredictionMetadata = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetEventPredictionMetadata"),
+    input = M.GetEventPredictionMetadataInput,
+    output = M.GetEventPredictionMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventTypes = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetEventTypes"),
+    input = M.GetEventTypesInput,
+    output = M.GetEventTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExternalModels = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetExternalModels"),
+    input = M.GetExternalModelsInput,
+    output = M.GetExternalModelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKMSEncryptionKey = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetKMSEncryptionKey"),
+    input = M.GetKMSEncryptionKeyInput,
+    output = M.GetKMSEncryptionKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLabels = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetLabels"),
+    input = M.GetLabelsInput,
+    output = M.GetLabelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetListElements = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetListElements"),
+    input = M.GetListElementsInput,
+    output = M.GetListElementsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetListsMetadata = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetListsMetadata"),
+    input = M.GetListsMetadataInput,
+    output = M.GetListsMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetModels = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetModels"),
+    input = M.GetModelsInput,
+    output = M.GetModelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetModelVersion = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetModelVersion"),
+    input = M.GetModelVersionInput,
+    output = M.GetModelVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOutcomes = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetOutcomes"),
+    input = M.GetOutcomesInput,
+    output = M.GetOutcomesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRules = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetRules"),
+    input = M.GetRulesInput,
+    output = M.GetRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVariables = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "GetVariables"),
+    input = M.GetVariablesInput,
+    output = M.GetVariablesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventPredictions = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "ListEventPredictions"),
+    input = M.ListEventPredictionsInput,
+    output = M.ListEventPredictionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDetector = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "PutDetector"),
+    input = M.PutDetectorInput,
+    output = M.PutDetectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEntityType = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "PutEntityType"),
+    input = M.PutEntityTypeInput,
+    output = M.PutEntityTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEventType = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "PutEventType"),
+    input = M.PutEventTypeInput,
+    output = M.PutEventTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutExternalModel = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "PutExternalModel"),
+    input = M.PutExternalModelInput,
+    output = M.PutExternalModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutKMSEncryptionKey = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "PutKMSEncryptionKey"),
+    input = M.PutKMSEncryptionKeyInput,
+    output = M.PutKMSEncryptionKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLabel = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "PutLabel"),
+    input = M.PutLabelInput,
+    output = M.PutLabelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutOutcome = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "PutOutcome"),
+    input = M.PutOutcomeInput,
+    output = M.PutOutcomeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendEvent = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "SendEvent"),
+    input = M.SendEventInput,
+    output = M.SendEventOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDetectorVersion = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "UpdateDetectorVersion"),
+    input = M.UpdateDetectorVersionInput,
+    output = M.UpdateDetectorVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDetectorVersionMetadata = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "UpdateDetectorVersionMetadata"),
+    input = M.UpdateDetectorVersionMetadataInput,
+    output = M.UpdateDetectorVersionMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDetectorVersionStatus = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "UpdateDetectorVersionStatus"),
+    input = M.UpdateDetectorVersionStatusInput,
+    output = M.UpdateDetectorVersionStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEventLabel = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "UpdateEventLabel"),
+    input = M.UpdateEventLabelInput,
+    output = M.UpdateEventLabelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateList = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "UpdateList"),
+    input = M.UpdateListInput,
+    output = M.UpdateListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateModel = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "UpdateModel"),
+    input = M.UpdateModelInput,
+    output = M.UpdateModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateModelVersion = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "UpdateModelVersion"),
+    input = M.UpdateModelVersionInput,
+    output = M.UpdateModelVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateModelVersionStatus = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "UpdateModelVersionStatus"),
+    input = M.UpdateModelVersionStatusInput,
+    output = M.UpdateModelVersionStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRuleMetadata = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "UpdateRuleMetadata"),
+    input = M.UpdateRuleMetadataInput,
+    output = M.UpdateRuleMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRuleVersion = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "UpdateRuleVersion"),
+    input = M.UpdateRuleVersionInput,
+    output = M.UpdateRuleVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVariable = schema.operation({
+    id = id.from("com.amazonaws.frauddetector", "UpdateVariable"),
+    input = M.UpdateVariableInput,
+    output = M.UpdateVariableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

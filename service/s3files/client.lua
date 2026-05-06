@@ -7,6 +7,7 @@ local endpoint_rules = require("s3files.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("s3files.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "s3files", signing_region = cfg.region } }
                 else
@@ -49,276 +52,87 @@ function M.new(cfg)
 end
 
 function Client:createAccessPoint(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAccessPoint",
-        input_schema = schemas.CreateAccessPointInput,
-        output_schema = schemas.CreateAccessPointOutput,
-        http_method = "PUT",
-        http_path = "/access-points",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAccessPoint, input, options)
 end
 
 function Client:createFileSystem(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateFileSystem",
-        input_schema = schemas.CreateFileSystemInput,
-        output_schema = schemas.CreateFileSystemOutput,
-        http_method = "PUT",
-        http_path = "/file-systems",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateFileSystem, input, options)
 end
 
 function Client:createMountTarget(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateMountTarget",
-        input_schema = schemas.CreateMountTargetInput,
-        output_schema = schemas.CreateMountTargetOutput,
-        http_method = "PUT",
-        http_path = "/mount-targets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateMountTarget, input, options)
 end
 
 function Client:deleteAccessPoint(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAccessPoint",
-        input_schema = schemas.DeleteAccessPointInput,
-        output_schema = schemas.DeleteAccessPointOutput,
-        http_method = "DELETE",
-        http_path = "/access-points/{accessPointId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAccessPoint, input, options)
 end
 
 function Client:deleteFileSystem(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFileSystem",
-        input_schema = schemas.DeleteFileSystemInput,
-        output_schema = schemas.DeleteFileSystemOutput,
-        http_method = "DELETE",
-        http_path = "/file-systems/{fileSystemId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFileSystem, input, options)
 end
 
 function Client:deleteFileSystemPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFileSystemPolicy",
-        input_schema = schemas.DeleteFileSystemPolicyInput,
-        output_schema = schemas.DeleteFileSystemPolicyOutput,
-        http_method = "DELETE",
-        http_path = "/file-systems/{fileSystemId}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFileSystemPolicy, input, options)
 end
 
 function Client:deleteMountTarget(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMountTarget",
-        input_schema = schemas.DeleteMountTargetInput,
-        output_schema = schemas.DeleteMountTargetOutput,
-        http_method = "DELETE",
-        http_path = "/mount-targets/{mountTargetId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMountTarget, input, options)
 end
 
 function Client:getAccessPoint(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccessPoint",
-        input_schema = schemas.GetAccessPointInput,
-        output_schema = schemas.GetAccessPointOutput,
-        http_method = "GET",
-        http_path = "/access-points/{accessPointId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccessPoint, input, options)
 end
 
 function Client:getFileSystem(input, options)
-    return self:invokeOperation(input, {
-        name = "GetFileSystem",
-        input_schema = schemas.GetFileSystemInput,
-        output_schema = schemas.GetFileSystemOutput,
-        http_method = "GET",
-        http_path = "/file-systems/{fileSystemId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetFileSystem, input, options)
 end
 
 function Client:getFileSystemPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetFileSystemPolicy",
-        input_schema = schemas.GetFileSystemPolicyInput,
-        output_schema = schemas.GetFileSystemPolicyOutput,
-        http_method = "GET",
-        http_path = "/file-systems/{fileSystemId}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetFileSystemPolicy, input, options)
 end
 
 function Client:getMountTarget(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMountTarget",
-        input_schema = schemas.GetMountTargetInput,
-        output_schema = schemas.GetMountTargetOutput,
-        http_method = "GET",
-        http_path = "/mount-targets/{mountTargetId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMountTarget, input, options)
 end
 
 function Client:getSynchronizationConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSynchronizationConfiguration",
-        input_schema = schemas.GetSynchronizationConfigurationInput,
-        output_schema = schemas.GetSynchronizationConfigurationOutput,
-        http_method = "GET",
-        http_path = "/file-systems/{fileSystemId}/synchronization-configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSynchronizationConfiguration, input, options)
 end
 
 function Client:listAccessPoints(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAccessPoints",
-        input_schema = schemas.ListAccessPointsInput,
-        output_schema = schemas.ListAccessPointsOutput,
-        http_method = "GET",
-        http_path = "/access-points",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAccessPoints, input, options)
 end
 
 function Client:listFileSystems(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFileSystems",
-        input_schema = schemas.ListFileSystemsInput,
-        output_schema = schemas.ListFileSystemsOutput,
-        http_method = "GET",
-        http_path = "/file-systems",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFileSystems, input, options)
 end
 
 function Client:listMountTargets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMountTargets",
-        input_schema = schemas.ListMountTargetsInput,
-        output_schema = schemas.ListMountTargetsOutput,
-        http_method = "GET",
-        http_path = "/mount-targets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMountTargets, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/resource-tags/{resourceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putFileSystemPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutFileSystemPolicy",
-        input_schema = schemas.PutFileSystemPolicyInput,
-        output_schema = schemas.PutFileSystemPolicyOutput,
-        http_method = "PUT",
-        http_path = "/file-systems/{fileSystemId}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutFileSystemPolicy, input, options)
 end
 
 function Client:putSynchronizationConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutSynchronizationConfiguration",
-        input_schema = schemas.PutSynchronizationConfigurationInput,
-        output_schema = schemas.PutSynchronizationConfigurationOutput,
-        http_method = "PUT",
-        http_path = "/file-systems/{fileSystemId}/synchronization-configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutSynchronizationConfiguration, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/resource-tags/{resourceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/resource-tags/{resourceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateMountTarget(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateMountTarget",
-        input_schema = schemas.UpdateMountTargetInput,
-        output_schema = schemas.UpdateMountTargetOutput,
-        http_method = "PUT",
-        http_path = "/mount-targets/{mountTargetId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateMountTarget, input, options)
 end
 
 return M

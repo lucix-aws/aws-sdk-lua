@@ -2670,4 +2670,223 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.pcs", "AWSParallelComputingService"),
+    version = "2023-02-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCluster = schema.operation({
+    id = id.from("com.amazonaws.pcs", "CreateCluster"),
+    input = M.CreateClusterInput,
+    output = M.CreateClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateComputeNodeGroup = schema.operation({
+    id = id.from("com.amazonaws.pcs", "CreateComputeNodeGroup"),
+    input = M.CreateComputeNodeGroupInput,
+    output = M.CreateComputeNodeGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQueue = schema.operation({
+    id = id.from("com.amazonaws.pcs", "CreateQueue"),
+    input = M.CreateQueueInput,
+    output = M.CreateQueueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCluster = schema.operation({
+    id = id.from("com.amazonaws.pcs", "DeleteCluster"),
+    input = M.DeleteClusterInput,
+    output = M.DeleteClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteComputeNodeGroup = schema.operation({
+    id = id.from("com.amazonaws.pcs", "DeleteComputeNodeGroup"),
+    input = M.DeleteComputeNodeGroupInput,
+    output = M.DeleteComputeNodeGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQueue = schema.operation({
+    id = id.from("com.amazonaws.pcs", "DeleteQueue"),
+    input = M.DeleteQueueInput,
+    output = M.DeleteQueueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCluster = schema.operation({
+    id = id.from("com.amazonaws.pcs", "GetCluster"),
+    input = M.GetClusterInput,
+    output = M.GetClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComputeNodeGroup = schema.operation({
+    id = id.from("com.amazonaws.pcs", "GetComputeNodeGroup"),
+    input = M.GetComputeNodeGroupInput,
+    output = M.GetComputeNodeGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueue = schema.operation({
+    id = id.from("com.amazonaws.pcs", "GetQueue"),
+    input = M.GetQueueInput,
+    output = M.GetQueueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusters = schema.operation({
+    id = id.from("com.amazonaws.pcs", "ListClusters"),
+    input = M.ListClustersInput,
+    output = M.ListClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComputeNodeGroups = schema.operation({
+    id = id.from("com.amazonaws.pcs", "ListComputeNodeGroups"),
+    input = M.ListComputeNodeGroupsInput,
+    output = M.ListComputeNodeGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueues = schema.operation({
+    id = id.from("com.amazonaws.pcs", "ListQueues"),
+    input = M.ListQueuesInput,
+    output = M.ListQueuesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.pcs", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterComputeNodeGroupInstance = schema.operation({
+    id = id.from("com.amazonaws.pcs", "RegisterComputeNodeGroupInstance"),
+    input = M.RegisterComputeNodeGroupInstanceInput,
+    output = M.RegisterComputeNodeGroupInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.pcs", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.pcs", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCluster = schema.operation({
+    id = id.from("com.amazonaws.pcs", "UpdateCluster"),
+    input = M.UpdateClusterInput,
+    output = M.UpdateClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateComputeNodeGroup = schema.operation({
+    id = id.from("com.amazonaws.pcs", "UpdateComputeNodeGroup"),
+    input = M.UpdateComputeNodeGroupInput,
+    output = M.UpdateComputeNodeGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQueue = schema.operation({
+    id = id.from("com.amazonaws.pcs", "UpdateQueue"),
+    input = M.UpdateQueueInput,
+    output = M.UpdateQueueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

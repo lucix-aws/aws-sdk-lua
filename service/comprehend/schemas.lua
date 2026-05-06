@@ -8500,4 +8500,949 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.comprehend", "Comprehend_20171127"),
+    version = "2017-11-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDetectDominantLanguage = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "BatchDetectDominantLanguage"),
+    input = M.BatchDetectDominantLanguageInput,
+    output = M.BatchDetectDominantLanguageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDetectEntities = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "BatchDetectEntities"),
+    input = M.BatchDetectEntitiesInput,
+    output = M.BatchDetectEntitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDetectKeyPhrases = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "BatchDetectKeyPhrases"),
+    input = M.BatchDetectKeyPhrasesInput,
+    output = M.BatchDetectKeyPhrasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDetectSentiment = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "BatchDetectSentiment"),
+    input = M.BatchDetectSentimentInput,
+    output = M.BatchDetectSentimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDetectSyntax = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "BatchDetectSyntax"),
+    input = M.BatchDetectSyntaxInput,
+    output = M.BatchDetectSyntaxOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDetectTargetedSentiment = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "BatchDetectTargetedSentiment"),
+    input = M.BatchDetectTargetedSentimentInput,
+    output = M.BatchDetectTargetedSentimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ClassifyDocument = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ClassifyDocument"),
+    input = M.ClassifyDocumentInput,
+    output = M.ClassifyDocumentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ContainsPiiEntities = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ContainsPiiEntities"),
+    input = M.ContainsPiiEntitiesInput,
+    output = M.ContainsPiiEntitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataset = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "CreateDataset"),
+    input = M.CreateDatasetInput,
+    output = M.CreateDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDocumentClassifier = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "CreateDocumentClassifier"),
+    input = M.CreateDocumentClassifierInput,
+    output = M.CreateDocumentClassifierOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEndpoint = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "CreateEndpoint"),
+    input = M.CreateEndpointInput,
+    output = M.CreateEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEntityRecognizer = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "CreateEntityRecognizer"),
+    input = M.CreateEntityRecognizerInput,
+    output = M.CreateEntityRecognizerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFlywheel = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "CreateFlywheel"),
+    input = M.CreateFlywheelInput,
+    output = M.CreateFlywheelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDocumentClassifier = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DeleteDocumentClassifier"),
+    input = M.DeleteDocumentClassifierInput,
+    output = M.DeleteDocumentClassifierOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEndpoint = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DeleteEndpoint"),
+    input = M.DeleteEndpointInput,
+    output = M.DeleteEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEntityRecognizer = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DeleteEntityRecognizer"),
+    input = M.DeleteEntityRecognizerInput,
+    output = M.DeleteEntityRecognizerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFlywheel = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DeleteFlywheel"),
+    input = M.DeleteFlywheelInput,
+    output = M.DeleteFlywheelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataset = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeDataset"),
+    input = M.DescribeDatasetInput,
+    output = M.DescribeDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDocumentClassificationJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeDocumentClassificationJob"),
+    input = M.DescribeDocumentClassificationJobInput,
+    output = M.DescribeDocumentClassificationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDocumentClassifier = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeDocumentClassifier"),
+    input = M.DescribeDocumentClassifierInput,
+    output = M.DescribeDocumentClassifierOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDominantLanguageDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeDominantLanguageDetectionJob"),
+    input = M.DescribeDominantLanguageDetectionJobInput,
+    output = M.DescribeDominantLanguageDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeEndpoint"),
+    input = M.DescribeEndpointInput,
+    output = M.DescribeEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEntitiesDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeEntitiesDetectionJob"),
+    input = M.DescribeEntitiesDetectionJobInput,
+    output = M.DescribeEntitiesDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEntityRecognizer = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeEntityRecognizer"),
+    input = M.DescribeEntityRecognizerInput,
+    output = M.DescribeEntityRecognizerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventsDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeEventsDetectionJob"),
+    input = M.DescribeEventsDetectionJobInput,
+    output = M.DescribeEventsDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFlywheel = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeFlywheel"),
+    input = M.DescribeFlywheelInput,
+    output = M.DescribeFlywheelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFlywheelIteration = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeFlywheelIteration"),
+    input = M.DescribeFlywheelIterationInput,
+    output = M.DescribeFlywheelIterationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeKeyPhrasesDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeKeyPhrasesDetectionJob"),
+    input = M.DescribeKeyPhrasesDetectionJobInput,
+    output = M.DescribeKeyPhrasesDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePiiEntitiesDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribePiiEntitiesDetectionJob"),
+    input = M.DescribePiiEntitiesDetectionJobInput,
+    output = M.DescribePiiEntitiesDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeResourcePolicy"),
+    input = M.DescribeResourcePolicyInput,
+    output = M.DescribeResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSentimentDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeSentimentDetectionJob"),
+    input = M.DescribeSentimentDetectionJobInput,
+    output = M.DescribeSentimentDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTargetedSentimentDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeTargetedSentimentDetectionJob"),
+    input = M.DescribeTargetedSentimentDetectionJobInput,
+    output = M.DescribeTargetedSentimentDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTopicsDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DescribeTopicsDetectionJob"),
+    input = M.DescribeTopicsDetectionJobInput,
+    output = M.DescribeTopicsDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectDominantLanguage = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DetectDominantLanguage"),
+    input = M.DetectDominantLanguageInput,
+    output = M.DetectDominantLanguageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectEntities = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DetectEntities"),
+    input = M.DetectEntitiesInput,
+    output = M.DetectEntitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectKeyPhrases = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DetectKeyPhrases"),
+    input = M.DetectKeyPhrasesInput,
+    output = M.DetectKeyPhrasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectPiiEntities = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DetectPiiEntities"),
+    input = M.DetectPiiEntitiesInput,
+    output = M.DetectPiiEntitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectSentiment = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DetectSentiment"),
+    input = M.DetectSentimentInput,
+    output = M.DetectSentimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectSyntax = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DetectSyntax"),
+    input = M.DetectSyntaxInput,
+    output = M.DetectSyntaxOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectTargetedSentiment = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DetectTargetedSentiment"),
+    input = M.DetectTargetedSentimentInput,
+    output = M.DetectTargetedSentimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectToxicContent = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "DetectToxicContent"),
+    input = M.DetectToxicContentInput,
+    output = M.DetectToxicContentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportModel = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ImportModel"),
+    input = M.ImportModelInput,
+    output = M.ImportModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasets = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListDatasets"),
+    input = M.ListDatasetsInput,
+    output = M.ListDatasetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDocumentClassificationJobs = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListDocumentClassificationJobs"),
+    input = M.ListDocumentClassificationJobsInput,
+    output = M.ListDocumentClassificationJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDocumentClassifiers = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListDocumentClassifiers"),
+    input = M.ListDocumentClassifiersInput,
+    output = M.ListDocumentClassifiersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDocumentClassifierSummaries = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListDocumentClassifierSummaries"),
+    input = M.ListDocumentClassifierSummariesInput,
+    output = M.ListDocumentClassifierSummariesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDominantLanguageDetectionJobs = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListDominantLanguageDetectionJobs"),
+    input = M.ListDominantLanguageDetectionJobsInput,
+    output = M.ListDominantLanguageDetectionJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEndpoints = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListEndpoints"),
+    input = M.ListEndpointsInput,
+    output = M.ListEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEntitiesDetectionJobs = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListEntitiesDetectionJobs"),
+    input = M.ListEntitiesDetectionJobsInput,
+    output = M.ListEntitiesDetectionJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEntityRecognizers = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListEntityRecognizers"),
+    input = M.ListEntityRecognizersInput,
+    output = M.ListEntityRecognizersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEntityRecognizerSummaries = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListEntityRecognizerSummaries"),
+    input = M.ListEntityRecognizerSummariesInput,
+    output = M.ListEntityRecognizerSummariesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventsDetectionJobs = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListEventsDetectionJobs"),
+    input = M.ListEventsDetectionJobsInput,
+    output = M.ListEventsDetectionJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlywheelIterationHistory = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListFlywheelIterationHistory"),
+    input = M.ListFlywheelIterationHistoryInput,
+    output = M.ListFlywheelIterationHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlywheels = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListFlywheels"),
+    input = M.ListFlywheelsInput,
+    output = M.ListFlywheelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKeyPhrasesDetectionJobs = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListKeyPhrasesDetectionJobs"),
+    input = M.ListKeyPhrasesDetectionJobsInput,
+    output = M.ListKeyPhrasesDetectionJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPiiEntitiesDetectionJobs = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListPiiEntitiesDetectionJobs"),
+    input = M.ListPiiEntitiesDetectionJobsInput,
+    output = M.ListPiiEntitiesDetectionJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSentimentDetectionJobs = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListSentimentDetectionJobs"),
+    input = M.ListSentimentDetectionJobsInput,
+    output = M.ListSentimentDetectionJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTargetedSentimentDetectionJobs = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListTargetedSentimentDetectionJobs"),
+    input = M.ListTargetedSentimentDetectionJobsInput,
+    output = M.ListTargetedSentimentDetectionJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTopicsDetectionJobs = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "ListTopicsDetectionJobs"),
+    input = M.ListTopicsDetectionJobsInput,
+    output = M.ListTopicsDetectionJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDocumentClassificationJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StartDocumentClassificationJob"),
+    input = M.StartDocumentClassificationJobInput,
+    output = M.StartDocumentClassificationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDominantLanguageDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StartDominantLanguageDetectionJob"),
+    input = M.StartDominantLanguageDetectionJobInput,
+    output = M.StartDominantLanguageDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartEntitiesDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StartEntitiesDetectionJob"),
+    input = M.StartEntitiesDetectionJobInput,
+    output = M.StartEntitiesDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartEventsDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StartEventsDetectionJob"),
+    input = M.StartEventsDetectionJobInput,
+    output = M.StartEventsDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFlywheelIteration = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StartFlywheelIteration"),
+    input = M.StartFlywheelIterationInput,
+    output = M.StartFlywheelIterationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartKeyPhrasesDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StartKeyPhrasesDetectionJob"),
+    input = M.StartKeyPhrasesDetectionJobInput,
+    output = M.StartKeyPhrasesDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartPiiEntitiesDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StartPiiEntitiesDetectionJob"),
+    input = M.StartPiiEntitiesDetectionJobInput,
+    output = M.StartPiiEntitiesDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSentimentDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StartSentimentDetectionJob"),
+    input = M.StartSentimentDetectionJobInput,
+    output = M.StartSentimentDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTargetedSentimentDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StartTargetedSentimentDetectionJob"),
+    input = M.StartTargetedSentimentDetectionJobInput,
+    output = M.StartTargetedSentimentDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTopicsDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StartTopicsDetectionJob"),
+    input = M.StartTopicsDetectionJobInput,
+    output = M.StartTopicsDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDominantLanguageDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StopDominantLanguageDetectionJob"),
+    input = M.StopDominantLanguageDetectionJobInput,
+    output = M.StopDominantLanguageDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopEntitiesDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StopEntitiesDetectionJob"),
+    input = M.StopEntitiesDetectionJobInput,
+    output = M.StopEntitiesDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopEventsDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StopEventsDetectionJob"),
+    input = M.StopEventsDetectionJobInput,
+    output = M.StopEventsDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopKeyPhrasesDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StopKeyPhrasesDetectionJob"),
+    input = M.StopKeyPhrasesDetectionJobInput,
+    output = M.StopKeyPhrasesDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopPiiEntitiesDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StopPiiEntitiesDetectionJob"),
+    input = M.StopPiiEntitiesDetectionJobInput,
+    output = M.StopPiiEntitiesDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopSentimentDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StopSentimentDetectionJob"),
+    input = M.StopSentimentDetectionJobInput,
+    output = M.StopSentimentDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopTargetedSentimentDetectionJob = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StopTargetedSentimentDetectionJob"),
+    input = M.StopTargetedSentimentDetectionJobInput,
+    output = M.StopTargetedSentimentDetectionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopTrainingDocumentClassifier = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StopTrainingDocumentClassifier"),
+    input = M.StopTrainingDocumentClassifierInput,
+    output = M.StopTrainingDocumentClassifierOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopTrainingEntityRecognizer = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "StopTrainingEntityRecognizer"),
+    input = M.StopTrainingEntityRecognizerInput,
+    output = M.StopTrainingEntityRecognizerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEndpoint = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "UpdateEndpoint"),
+    input = M.UpdateEndpointInput,
+    output = M.UpdateEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFlywheel = schema.operation({
+    id = id.from("com.amazonaws.comprehend", "UpdateFlywheel"),
+    input = M.UpdateFlywheelInput,
+    output = M.UpdateFlywheelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

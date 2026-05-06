@@ -1570,4 +1570,170 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.codegurusecurity", "AwsCodeGuruSecurity"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetFindings = schema.operation({
+    id = id.from("com.amazonaws.codegurusecurity", "BatchGetFindings"),
+    input = M.BatchGetFindingsInput,
+    output = M.BatchGetFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/batchGetFindings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateScan = schema.operation({
+    id = id.from("com.amazonaws.codegurusecurity", "CreateScan"),
+    input = M.CreateScanInput,
+    output = M.CreateScanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/scans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUploadUrl = schema.operation({
+    id = id.from("com.amazonaws.codegurusecurity", "CreateUploadUrl"),
+    input = M.CreateUploadUrlInput,
+    output = M.CreateUploadUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/uploadUrl" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountConfiguration = schema.operation({
+    id = id.from("com.amazonaws.codegurusecurity", "GetAccountConfiguration"),
+    input = M.GetAccountConfigurationInput,
+    output = M.GetAccountConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accountConfiguration/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindings = schema.operation({
+    id = id.from("com.amazonaws.codegurusecurity", "GetFindings"),
+    input = M.GetFindingsInput,
+    output = M.GetFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/findings/{scanName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMetricsSummary = schema.operation({
+    id = id.from("com.amazonaws.codegurusecurity", "GetMetricsSummary"),
+    input = M.GetMetricsSummaryInput,
+    output = M.GetMetricsSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/metrics/summary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetScan = schema.operation({
+    id = id.from("com.amazonaws.codegurusecurity", "GetScan"),
+    input = M.GetScanInput,
+    output = M.GetScanOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/scans/{scanName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFindingsMetrics = schema.operation({
+    id = id.from("com.amazonaws.codegurusecurity", "ListFindingsMetrics"),
+    input = M.ListFindingsMetricsInput,
+    output = M.ListFindingsMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/metrics/findings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScans = schema.operation({
+    id = id.from("com.amazonaws.codegurusecurity", "ListScans"),
+    input = M.ListScansInput,
+    output = M.ListScansOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/scans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.codegurusecurity", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.codegurusecurity", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.codegurusecurity", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountConfiguration = schema.operation({
+    id = id.from("com.amazonaws.codegurusecurity", "UpdateAccountConfiguration"),
+    input = M.UpdateAccountConfigurationInput,
+    output = M.UpdateAccountConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/updateAccountConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

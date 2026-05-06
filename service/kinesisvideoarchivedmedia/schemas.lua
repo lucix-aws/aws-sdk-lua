@@ -858,4 +858,86 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.kinesisvideoarchivedmedia", "AWSAcuityReader"),
+    version = "2017-09-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetClip = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideoarchivedmedia", "GetClip"),
+    input = M.GetClipInput,
+    output = M.GetClipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getClip" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDASHStreamingSessionURL = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideoarchivedmedia", "GetDASHStreamingSessionURL"),
+    input = M.GetDASHStreamingSessionURLInput,
+    output = M.GetDASHStreamingSessionURLOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getDASHStreamingSessionURL" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHLSStreamingSessionURL = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideoarchivedmedia", "GetHLSStreamingSessionURL"),
+    input = M.GetHLSStreamingSessionURLInput,
+    output = M.GetHLSStreamingSessionURLOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getHLSStreamingSessionURL" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImages = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideoarchivedmedia", "GetImages"),
+    input = M.GetImagesInput,
+    output = M.GetImagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getImages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMediaForFragmentList = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideoarchivedmedia", "GetMediaForFragmentList"),
+    input = M.GetMediaForFragmentListInput,
+    output = M.GetMediaForFragmentListOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getMediaForFragmentList" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFragments = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideoarchivedmedia", "ListFragments"),
+    input = M.ListFragmentsInput,
+    output = M.ListFragmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listFragments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

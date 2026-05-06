@@ -1573,4 +1573,206 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.workspacesthinclient", "ThinClient"),
+    version = "2023-08-22",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "CreateEnvironment"),
+    input = M.CreateEnvironmentInput,
+    output = M.CreateEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/environments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDevice = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "DeleteDevice"),
+    input = M.DeleteDeviceInput,
+    output = M.DeleteDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/devices/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironment = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "DeleteEnvironment"),
+    input = M.DeleteEnvironmentInput,
+    output = M.DeleteEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/environments/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterDevice = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "DeregisterDevice"),
+    input = M.DeregisterDeviceInput,
+    output = M.DeregisterDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deregister-device/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDevice = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "GetDevice"),
+    input = M.GetDeviceInput,
+    output = M.GetDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/devices/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironment = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "GetEnvironment"),
+    input = M.GetEnvironmentInput,
+    output = M.GetEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/environments/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSoftwareSet = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "GetSoftwareSet"),
+    input = M.GetSoftwareSetInput,
+    output = M.GetSoftwareSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/softwaresets/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDevices = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "ListDevices"),
+    input = M.ListDevicesInput,
+    output = M.ListDevicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/devices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironments = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "ListEnvironments"),
+    input = M.ListEnvironmentsInput,
+    output = M.ListEnvironmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/environments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSoftwareSets = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "ListSoftwareSets"),
+    input = M.ListSoftwareSetsInput,
+    output = M.ListSoftwareSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/softwaresets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDevice = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "UpdateDevice"),
+    input = M.UpdateDeviceInput,
+    output = M.UpdateDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/devices/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "UpdateEnvironment"),
+    input = M.UpdateEnvironmentInput,
+    output = M.UpdateEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/environments/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSoftwareSet = schema.operation({
+    id = id.from("com.amazonaws.workspacesthinclient", "UpdateSoftwareSet"),
+    input = M.UpdateSoftwareSetInput,
+    output = M.UpdateSoftwareSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/softwaresets/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

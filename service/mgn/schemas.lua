@@ -12159,4 +12159,1154 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.mgn", "ApplicationMigrationService"),
+    version = "2020-02-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ArchiveApplication = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ArchiveApplication"),
+    input = M.ArchiveApplicationInput,
+    output = M.ArchiveApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ArchiveApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ArchiveWave = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ArchiveWave"),
+    input = M.ArchiveWaveInput,
+    output = M.ArchiveWaveOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ArchiveWave" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateApplications = schema.operation({
+    id = id.from("com.amazonaws.mgn", "AssociateApplications"),
+    input = M.AssociateApplicationsInput,
+    output = M.AssociateApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/AssociateApplications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateSourceServers = schema.operation({
+    id = id.from("com.amazonaws.mgn", "AssociateSourceServers"),
+    input = M.AssociateSourceServersInput,
+    output = M.AssociateSourceServersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/AssociateSourceServers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ChangeServerLifeCycleState = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ChangeServerLifeCycleState"),
+    input = M.ChangeServerLifeCycleStateInput,
+    output = M.ChangeServerLifeCycleStateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ChangeServerLifeCycleState" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.mgn", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnector = schema.operation({
+    id = id.from("com.amazonaws.mgn", "CreateConnector"),
+    input = M.CreateConnectorInput,
+    output = M.CreateConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateConnector" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLaunchConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.mgn", "CreateLaunchConfigurationTemplate"),
+    input = M.CreateLaunchConfigurationTemplateInput,
+    output = M.CreateLaunchConfigurationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateLaunchConfigurationTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNetworkMigrationDefinition = schema.operation({
+    id = id.from("com.amazonaws.mgn", "CreateNetworkMigrationDefinition"),
+    input = M.CreateNetworkMigrationDefinitionInput,
+    output = M.CreateNetworkMigrationDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/CreateNetworkMigrationDefinition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReplicationConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.mgn", "CreateReplicationConfigurationTemplate"),
+    input = M.CreateReplicationConfigurationTemplateInput,
+    output = M.CreateReplicationConfigurationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateReplicationConfigurationTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWave = schema.operation({
+    id = id.from("com.amazonaws.mgn", "CreateWave"),
+    input = M.CreateWaveInput,
+    output = M.CreateWaveOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateWave" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnector = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DeleteConnector"),
+    input = M.DeleteConnectorInput,
+    output = M.DeleteConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteConnector" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteJob = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DeleteJob"),
+    input = M.DeleteJobInput,
+    output = M.DeleteJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteJob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLaunchConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DeleteLaunchConfigurationTemplate"),
+    input = M.DeleteLaunchConfigurationTemplateInput,
+    output = M.DeleteLaunchConfigurationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteLaunchConfigurationTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNetworkMigrationDefinition = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DeleteNetworkMigrationDefinition"),
+    input = M.DeleteNetworkMigrationDefinitionInput,
+    output = M.DeleteNetworkMigrationDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/DeleteNetworkMigrationDefinition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReplicationConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DeleteReplicationConfigurationTemplate"),
+    input = M.DeleteReplicationConfigurationTemplateInput,
+    output = M.DeleteReplicationConfigurationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteReplicationConfigurationTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSourceServer = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DeleteSourceServer"),
+    input = M.DeleteSourceServerInput,
+    output = M.DeleteSourceServerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteSourceServer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVcenterClient = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DeleteVcenterClient"),
+    input = M.DeleteVcenterClientInput,
+    output = M.DeleteVcenterClientOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteVcenterClient" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWave = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DeleteWave"),
+    input = M.DeleteWaveInput,
+    output = M.DeleteWaveOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteWave" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobLogItems = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DescribeJobLogItems"),
+    input = M.DescribeJobLogItemsInput,
+    output = M.DescribeJobLogItemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeJobLogItems" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobs = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DescribeJobs"),
+    input = M.DescribeJobsInput,
+    output = M.DescribeJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeJobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLaunchConfigurationTemplates = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DescribeLaunchConfigurationTemplates"),
+    input = M.DescribeLaunchConfigurationTemplatesInput,
+    output = M.DescribeLaunchConfigurationTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeLaunchConfigurationTemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplicationConfigurationTemplates = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DescribeReplicationConfigurationTemplates"),
+    input = M.DescribeReplicationConfigurationTemplatesInput,
+    output = M.DescribeReplicationConfigurationTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeReplicationConfigurationTemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSourceServers = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DescribeSourceServers"),
+    input = M.DescribeSourceServersInput,
+    output = M.DescribeSourceServersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeSourceServers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVcenterClients = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DescribeVcenterClients"),
+    input = M.DescribeVcenterClientsInput,
+    output = M.DescribeVcenterClientsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/DescribeVcenterClients" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateApplications = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DisassociateApplications"),
+    input = M.DisassociateApplicationsInput,
+    output = M.DisassociateApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DisassociateApplications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateSourceServers = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DisassociateSourceServers"),
+    input = M.DisassociateSourceServersInput,
+    output = M.DisassociateSourceServersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DisassociateSourceServers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisconnectFromService = schema.operation({
+    id = id.from("com.amazonaws.mgn", "DisconnectFromService"),
+    input = M.DisconnectFromServiceInput,
+    output = M.DisconnectFromServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DisconnectFromService" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FinalizeCutover = schema.operation({
+    id = id.from("com.amazonaws.mgn", "FinalizeCutover"),
+    input = M.FinalizeCutoverInput,
+    output = M.FinalizeCutoverOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/FinalizeCutover" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLaunchConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mgn", "GetLaunchConfiguration"),
+    input = M.GetLaunchConfigurationInput,
+    output = M.GetLaunchConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetLaunchConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNetworkMigrationDefinition = schema.operation({
+    id = id.from("com.amazonaws.mgn", "GetNetworkMigrationDefinition"),
+    input = M.GetNetworkMigrationDefinitionInput,
+    output = M.GetNetworkMigrationDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/GetNetworkMigrationDefinition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNetworkMigrationMapperSegmentConstruct = schema.operation({
+    id = id.from("com.amazonaws.mgn", "GetNetworkMigrationMapperSegmentConstruct"),
+    input = M.GetNetworkMigrationMapperSegmentConstructInput,
+    output = M.GetNetworkMigrationMapperSegmentConstructOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/GetNetworkMigrationMapperSegmentConstruct" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReplicationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mgn", "GetReplicationConfiguration"),
+    input = M.GetReplicationConfigurationInput,
+    output = M.GetReplicationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetReplicationConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InitializeService = schema.operation({
+    id = id.from("com.amazonaws.mgn", "InitializeService"),
+    input = M.InitializeServiceInput,
+    output = M.InitializeServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/InitializeService" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListApplications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectors = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListConnectors"),
+    input = M.ListConnectorsInput,
+    output = M.ListConnectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListConnectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExportErrors = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListExportErrors"),
+    input = M.ListExportErrorsInput,
+    output = M.ListExportErrorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListExportErrors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExports = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListExports"),
+    input = M.ListExportsInput,
+    output = M.ListExportsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListExports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImportErrors = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListImportErrors"),
+    input = M.ListImportErrorsInput,
+    output = M.ListImportErrorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListImportErrors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImportFileEnrichments = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListImportFileEnrichments"),
+    input = M.ListImportFileEnrichmentsInput,
+    output = M.ListImportFileEnrichmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/ListImportFileEnrichments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImports = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListImports"),
+    input = M.ListImportsInput,
+    output = M.ListImportsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListImports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedAccounts = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListManagedAccounts"),
+    input = M.ListManagedAccountsInput,
+    output = M.ListManagedAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListManagedAccounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkMigrationAnalyses = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListNetworkMigrationAnalyses"),
+    input = M.ListNetworkMigrationAnalysesInput,
+    output = M.ListNetworkMigrationAnalysesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/ListNetworkMigrationAnalyses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkMigrationAnalysisResults = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListNetworkMigrationAnalysisResults"),
+    input = M.ListNetworkMigrationAnalysisResultsInput,
+    output = M.ListNetworkMigrationAnalysisResultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/ListNetworkMigrationAnalysisResults" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkMigrationCodeGenerations = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListNetworkMigrationCodeGenerations"),
+    input = M.ListNetworkMigrationCodeGenerationsInput,
+    output = M.ListNetworkMigrationCodeGenerationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/ListNetworkMigrationCodeGenerations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkMigrationCodeGenerationSegments = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListNetworkMigrationCodeGenerationSegments"),
+    input = M.ListNetworkMigrationCodeGenerationSegmentsInput,
+    output = M.ListNetworkMigrationCodeGenerationSegmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/ListNetworkMigrationCodeGenerationSegments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkMigrationDefinitions = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListNetworkMigrationDefinitions"),
+    input = M.ListNetworkMigrationDefinitionsInput,
+    output = M.ListNetworkMigrationDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/ListNetworkMigrationDefinitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkMigrationDeployedStacks = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListNetworkMigrationDeployedStacks"),
+    input = M.ListNetworkMigrationDeployedStacksInput,
+    output = M.ListNetworkMigrationDeployedStacksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/ListNetworkMigrationDeployedStacks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkMigrationDeployments = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListNetworkMigrationDeployments"),
+    input = M.ListNetworkMigrationDeploymentsInput,
+    output = M.ListNetworkMigrationDeploymentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/ListNetworkMigrationDeployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkMigrationExecutions = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListNetworkMigrationExecutions"),
+    input = M.ListNetworkMigrationExecutionsInput,
+    output = M.ListNetworkMigrationExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/ListNetworkMigrationExecutions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkMigrationMapperSegmentConstructs = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListNetworkMigrationMapperSegmentConstructs"),
+    input = M.ListNetworkMigrationMapperSegmentConstructsInput,
+    output = M.ListNetworkMigrationMapperSegmentConstructsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/ListNetworkMigrationMapperSegmentConstructs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkMigrationMapperSegments = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListNetworkMigrationMapperSegments"),
+    input = M.ListNetworkMigrationMapperSegmentsInput,
+    output = M.ListNetworkMigrationMapperSegmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/ListNetworkMigrationMapperSegments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkMigrationMappings = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListNetworkMigrationMappings"),
+    input = M.ListNetworkMigrationMappingsInput,
+    output = M.ListNetworkMigrationMappingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/ListNetworkMigrationMappings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkMigrationMappingUpdates = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListNetworkMigrationMappingUpdates"),
+    input = M.ListNetworkMigrationMappingUpdatesInput,
+    output = M.ListNetworkMigrationMappingUpdatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/ListNetworkMigrationMappingUpdates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSourceServerActions = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListSourceServerActions"),
+    input = M.ListSourceServerActionsInput,
+    output = M.ListSourceServerActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListSourceServerActions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTemplateActions = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListTemplateActions"),
+    input = M.ListTemplateActionsInput,
+    output = M.ListTemplateActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTemplateActions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWaves = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ListWaves"),
+    input = M.ListWavesInput,
+    output = M.ListWavesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListWaves" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.MarkAsArchived = schema.operation({
+    id = id.from("com.amazonaws.mgn", "MarkAsArchived"),
+    input = M.MarkAsArchivedInput,
+    output = M.MarkAsArchivedOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/MarkAsArchived" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PauseReplication = schema.operation({
+    id = id.from("com.amazonaws.mgn", "PauseReplication"),
+    input = M.PauseReplicationInput,
+    output = M.PauseReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PauseReplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSourceServerAction = schema.operation({
+    id = id.from("com.amazonaws.mgn", "PutSourceServerAction"),
+    input = M.PutSourceServerActionInput,
+    output = M.PutSourceServerActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutSourceServerAction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTemplateAction = schema.operation({
+    id = id.from("com.amazonaws.mgn", "PutTemplateAction"),
+    input = M.PutTemplateActionInput,
+    output = M.PutTemplateActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutTemplateAction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveSourceServerAction = schema.operation({
+    id = id.from("com.amazonaws.mgn", "RemoveSourceServerAction"),
+    input = M.RemoveSourceServerActionInput,
+    output = M.RemoveSourceServerActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/RemoveSourceServerAction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTemplateAction = schema.operation({
+    id = id.from("com.amazonaws.mgn", "RemoveTemplateAction"),
+    input = M.RemoveTemplateActionInput,
+    output = M.RemoveTemplateActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/RemoveTemplateAction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResumeReplication = schema.operation({
+    id = id.from("com.amazonaws.mgn", "ResumeReplication"),
+    input = M.ResumeReplicationInput,
+    output = M.ResumeReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ResumeReplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetryDataReplication = schema.operation({
+    id = id.from("com.amazonaws.mgn", "RetryDataReplication"),
+    input = M.RetryDataReplicationInput,
+    output = M.RetryDataReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/RetryDataReplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCutover = schema.operation({
+    id = id.from("com.amazonaws.mgn", "StartCutover"),
+    input = M.StartCutoverInput,
+    output = M.StartCutoverOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartCutover" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartExport = schema.operation({
+    id = id.from("com.amazonaws.mgn", "StartExport"),
+    input = M.StartExportInput,
+    output = M.StartExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartExport" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartImport = schema.operation({
+    id = id.from("com.amazonaws.mgn", "StartImport"),
+    input = M.StartImportInput,
+    output = M.StartImportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartImport" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartImportFileEnrichment = schema.operation({
+    id = id.from("com.amazonaws.mgn", "StartImportFileEnrichment"),
+    input = M.StartImportFileEnrichmentInput,
+    output = M.StartImportFileEnrichmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/StartImportFileEnrichment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartNetworkMigrationAnalysis = schema.operation({
+    id = id.from("com.amazonaws.mgn", "StartNetworkMigrationAnalysis"),
+    input = M.StartNetworkMigrationAnalysisInput,
+    output = M.StartNetworkMigrationAnalysisOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/StartNetworkMigrationAnalysis" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartNetworkMigrationCodeGeneration = schema.operation({
+    id = id.from("com.amazonaws.mgn", "StartNetworkMigrationCodeGeneration"),
+    input = M.StartNetworkMigrationCodeGenerationInput,
+    output = M.StartNetworkMigrationCodeGenerationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/StartNetworkMigrationCodeGeneration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartNetworkMigrationDeployment = schema.operation({
+    id = id.from("com.amazonaws.mgn", "StartNetworkMigrationDeployment"),
+    input = M.StartNetworkMigrationDeploymentInput,
+    output = M.StartNetworkMigrationDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/StartNetworkMigrationDeployment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartNetworkMigrationMapping = schema.operation({
+    id = id.from("com.amazonaws.mgn", "StartNetworkMigrationMapping"),
+    input = M.StartNetworkMigrationMappingInput,
+    output = M.StartNetworkMigrationMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/StartNetworkMigrationMapping" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartNetworkMigrationMappingUpdate = schema.operation({
+    id = id.from("com.amazonaws.mgn", "StartNetworkMigrationMappingUpdate"),
+    input = M.StartNetworkMigrationMappingUpdateInput,
+    output = M.StartNetworkMigrationMappingUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/StartNetworkMigrationMappingUpdate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReplication = schema.operation({
+    id = id.from("com.amazonaws.mgn", "StartReplication"),
+    input = M.StartReplicationInput,
+    output = M.StartReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartReplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTest = schema.operation({
+    id = id.from("com.amazonaws.mgn", "StartTest"),
+    input = M.StartTestInput,
+    output = M.StartTestOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartTest" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopReplication = schema.operation({
+    id = id.from("com.amazonaws.mgn", "StopReplication"),
+    input = M.StopReplicationInput,
+    output = M.StopReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StopReplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.mgn", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateTargetInstances = schema.operation({
+    id = id.from("com.amazonaws.mgn", "TerminateTargetInstances"),
+    input = M.TerminateTargetInstancesInput,
+    output = M.TerminateTargetInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TerminateTargetInstances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UnarchiveApplication = schema.operation({
+    id = id.from("com.amazonaws.mgn", "UnarchiveApplication"),
+    input = M.UnarchiveApplicationInput,
+    output = M.UnarchiveApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UnarchiveApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UnarchiveWave = schema.operation({
+    id = id.from("com.amazonaws.mgn", "UnarchiveWave"),
+    input = M.UnarchiveWaveInput,
+    output = M.UnarchiveWaveOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UnarchiveWave" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.mgn", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.mgn", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnector = schema.operation({
+    id = id.from("com.amazonaws.mgn", "UpdateConnector"),
+    input = M.UpdateConnectorInput,
+    output = M.UpdateConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateConnector" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLaunchConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mgn", "UpdateLaunchConfiguration"),
+    input = M.UpdateLaunchConfigurationInput,
+    output = M.UpdateLaunchConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateLaunchConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLaunchConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.mgn", "UpdateLaunchConfigurationTemplate"),
+    input = M.UpdateLaunchConfigurationTemplateInput,
+    output = M.UpdateLaunchConfigurationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateLaunchConfigurationTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNetworkMigrationDefinition = schema.operation({
+    id = id.from("com.amazonaws.mgn", "UpdateNetworkMigrationDefinition"),
+    input = M.UpdateNetworkMigrationDefinitionInput,
+    output = M.UpdateNetworkMigrationDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/UpdateNetworkMigrationDefinition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNetworkMigrationMapperSegment = schema.operation({
+    id = id.from("com.amazonaws.mgn", "UpdateNetworkMigrationMapperSegment"),
+    input = M.UpdateNetworkMigrationMapperSegmentInput,
+    output = M.UpdateNetworkMigrationMapperSegmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-migration/UpdateNetworkMigrationMapperSegment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReplicationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.mgn", "UpdateReplicationConfiguration"),
+    input = M.UpdateReplicationConfigurationInput,
+    output = M.UpdateReplicationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateReplicationConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReplicationConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.mgn", "UpdateReplicationConfigurationTemplate"),
+    input = M.UpdateReplicationConfigurationTemplateInput,
+    output = M.UpdateReplicationConfigurationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateReplicationConfigurationTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSourceServer = schema.operation({
+    id = id.from("com.amazonaws.mgn", "UpdateSourceServer"),
+    input = M.UpdateSourceServerInput,
+    output = M.UpdateSourceServerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateSourceServer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSourceServerReplicationType = schema.operation({
+    id = id.from("com.amazonaws.mgn", "UpdateSourceServerReplicationType"),
+    input = M.UpdateSourceServerReplicationTypeInput,
+    output = M.UpdateSourceServerReplicationTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateSourceServerReplicationType" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWave = schema.operation({
+    id = id.from("com.amazonaws.mgn", "UpdateWave"),
+    input = M.UpdateWaveInput,
+    output = M.UpdateWaveOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateWave" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

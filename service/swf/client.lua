@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("swf.endpoint_rules")
 local schemas = require("swf.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "swf", signing_region = cfg.region } }
                 else
@@ -49,510 +52,159 @@ function M.new(cfg)
 end
 
 function Client:countClosedWorkflowExecutions(input, options)
-    return self:invokeOperation(input, {
-        name = "CountClosedWorkflowExecutions",
-        input_schema = schemas.CountClosedWorkflowExecutionsInput,
-        output_schema = schemas.CountClosedWorkflowExecutionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CountClosedWorkflowExecutions, input, options)
 end
 
 function Client:countOpenWorkflowExecutions(input, options)
-    return self:invokeOperation(input, {
-        name = "CountOpenWorkflowExecutions",
-        input_schema = schemas.CountOpenWorkflowExecutionsInput,
-        output_schema = schemas.CountOpenWorkflowExecutionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CountOpenWorkflowExecutions, input, options)
 end
 
 function Client:countPendingActivityTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "CountPendingActivityTasks",
-        input_schema = schemas.CountPendingActivityTasksInput,
-        output_schema = schemas.CountPendingActivityTasksOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CountPendingActivityTasks, input, options)
 end
 
 function Client:countPendingDecisionTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "CountPendingDecisionTasks",
-        input_schema = schemas.CountPendingDecisionTasksInput,
-        output_schema = schemas.CountPendingDecisionTasksOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CountPendingDecisionTasks, input, options)
 end
 
 function Client:deleteActivityType(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteActivityType",
-        input_schema = schemas.DeleteActivityTypeInput,
-        output_schema = schemas.DeleteActivityTypeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteActivityType, input, options)
 end
 
 function Client:deleteWorkflowType(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWorkflowType",
-        input_schema = schemas.DeleteWorkflowTypeInput,
-        output_schema = schemas.DeleteWorkflowTypeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflowType, input, options)
 end
 
 function Client:deprecateActivityType(input, options)
-    return self:invokeOperation(input, {
-        name = "DeprecateActivityType",
-        input_schema = schemas.DeprecateActivityTypeInput,
-        output_schema = schemas.DeprecateActivityTypeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeprecateActivityType, input, options)
 end
 
 function Client:deprecateDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "DeprecateDomain",
-        input_schema = schemas.DeprecateDomainInput,
-        output_schema = schemas.DeprecateDomainOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeprecateDomain, input, options)
 end
 
 function Client:deprecateWorkflowType(input, options)
-    return self:invokeOperation(input, {
-        name = "DeprecateWorkflowType",
-        input_schema = schemas.DeprecateWorkflowTypeInput,
-        output_schema = schemas.DeprecateWorkflowTypeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeprecateWorkflowType, input, options)
 end
 
 function Client:describeActivityType(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeActivityType",
-        input_schema = schemas.DescribeActivityTypeInput,
-        output_schema = schemas.DescribeActivityTypeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeActivityType, input, options)
 end
 
 function Client:describeDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDomain",
-        input_schema = schemas.DescribeDomainInput,
-        output_schema = schemas.DescribeDomainOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDomain, input, options)
 end
 
 function Client:describeWorkflowExecution(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeWorkflowExecution",
-        input_schema = schemas.DescribeWorkflowExecutionInput,
-        output_schema = schemas.DescribeWorkflowExecutionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeWorkflowExecution, input, options)
 end
 
 function Client:describeWorkflowType(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeWorkflowType",
-        input_schema = schemas.DescribeWorkflowTypeInput,
-        output_schema = schemas.DescribeWorkflowTypeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeWorkflowType, input, options)
 end
 
 function Client:getWorkflowExecutionHistory(input, options)
-    return self:invokeOperation(input, {
-        name = "GetWorkflowExecutionHistory",
-        input_schema = schemas.GetWorkflowExecutionHistoryInput,
-        output_schema = schemas.GetWorkflowExecutionHistoryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetWorkflowExecutionHistory, input, options)
 end
 
 function Client:listActivityTypes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListActivityTypes",
-        input_schema = schemas.ListActivityTypesInput,
-        output_schema = schemas.ListActivityTypesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListActivityTypes, input, options)
 end
 
 function Client:listClosedWorkflowExecutions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListClosedWorkflowExecutions",
-        input_schema = schemas.ListClosedWorkflowExecutionsInput,
-        output_schema = schemas.ListClosedWorkflowExecutionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListClosedWorkflowExecutions, input, options)
 end
 
 function Client:listDomains(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDomains",
-        input_schema = schemas.ListDomainsInput,
-        output_schema = schemas.ListDomainsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDomains, input, options)
 end
 
 function Client:listOpenWorkflowExecutions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListOpenWorkflowExecutions",
-        input_schema = schemas.ListOpenWorkflowExecutionsInput,
-        output_schema = schemas.ListOpenWorkflowExecutionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListOpenWorkflowExecutions, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listWorkflowTypes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkflowTypes",
-        input_schema = schemas.ListWorkflowTypesInput,
-        output_schema = schemas.ListWorkflowTypesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkflowTypes, input, options)
 end
 
 function Client:pollForActivityTask(input, options)
-    return self:invokeOperation(input, {
-        name = "PollForActivityTask",
-        input_schema = schemas.PollForActivityTaskInput,
-        output_schema = schemas.PollForActivityTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PollForActivityTask, input, options)
 end
 
 function Client:pollForDecisionTask(input, options)
-    return self:invokeOperation(input, {
-        name = "PollForDecisionTask",
-        input_schema = schemas.PollForDecisionTaskInput,
-        output_schema = schemas.PollForDecisionTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PollForDecisionTask, input, options)
 end
 
 function Client:recordActivityTaskHeartbeat(input, options)
-    return self:invokeOperation(input, {
-        name = "RecordActivityTaskHeartbeat",
-        input_schema = schemas.RecordActivityTaskHeartbeatInput,
-        output_schema = schemas.RecordActivityTaskHeartbeatOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RecordActivityTaskHeartbeat, input, options)
 end
 
 function Client:registerActivityType(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterActivityType",
-        input_schema = schemas.RegisterActivityTypeInput,
-        output_schema = schemas.RegisterActivityTypeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterActivityType, input, options)
 end
 
 function Client:registerDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterDomain",
-        input_schema = schemas.RegisterDomainInput,
-        output_schema = schemas.RegisterDomainOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterDomain, input, options)
 end
 
 function Client:registerWorkflowType(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterWorkflowType",
-        input_schema = schemas.RegisterWorkflowTypeInput,
-        output_schema = schemas.RegisterWorkflowTypeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterWorkflowType, input, options)
 end
 
 function Client:requestCancelWorkflowExecution(input, options)
-    return self:invokeOperation(input, {
-        name = "RequestCancelWorkflowExecution",
-        input_schema = schemas.RequestCancelWorkflowExecutionInput,
-        output_schema = schemas.RequestCancelWorkflowExecutionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RequestCancelWorkflowExecution, input, options)
 end
 
 function Client:respondActivityTaskCanceled(input, options)
-    return self:invokeOperation(input, {
-        name = "RespondActivityTaskCanceled",
-        input_schema = schemas.RespondActivityTaskCanceledInput,
-        output_schema = schemas.RespondActivityTaskCanceledOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RespondActivityTaskCanceled, input, options)
 end
 
 function Client:respondActivityTaskCompleted(input, options)
-    return self:invokeOperation(input, {
-        name = "RespondActivityTaskCompleted",
-        input_schema = schemas.RespondActivityTaskCompletedInput,
-        output_schema = schemas.RespondActivityTaskCompletedOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RespondActivityTaskCompleted, input, options)
 end
 
 function Client:respondActivityTaskFailed(input, options)
-    return self:invokeOperation(input, {
-        name = "RespondActivityTaskFailed",
-        input_schema = schemas.RespondActivityTaskFailedInput,
-        output_schema = schemas.RespondActivityTaskFailedOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RespondActivityTaskFailed, input, options)
 end
 
 function Client:respondDecisionTaskCompleted(input, options)
-    return self:invokeOperation(input, {
-        name = "RespondDecisionTaskCompleted",
-        input_schema = schemas.RespondDecisionTaskCompletedInput,
-        output_schema = schemas.RespondDecisionTaskCompletedOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RespondDecisionTaskCompleted, input, options)
 end
 
 function Client:signalWorkflowExecution(input, options)
-    return self:invokeOperation(input, {
-        name = "SignalWorkflowExecution",
-        input_schema = schemas.SignalWorkflowExecutionInput,
-        output_schema = schemas.SignalWorkflowExecutionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SignalWorkflowExecution, input, options)
 end
 
 function Client:startWorkflowExecution(input, options)
-    return self:invokeOperation(input, {
-        name = "StartWorkflowExecution",
-        input_schema = schemas.StartWorkflowExecutionInput,
-        output_schema = schemas.StartWorkflowExecutionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartWorkflowExecution, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:terminateWorkflowExecution(input, options)
-    return self:invokeOperation(input, {
-        name = "TerminateWorkflowExecution",
-        input_schema = schemas.TerminateWorkflowExecutionInput,
-        output_schema = schemas.TerminateWorkflowExecutionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TerminateWorkflowExecution, input, options)
 end
 
 function Client:undeprecateActivityType(input, options)
-    return self:invokeOperation(input, {
-        name = "UndeprecateActivityType",
-        input_schema = schemas.UndeprecateActivityTypeInput,
-        output_schema = schemas.UndeprecateActivityTypeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UndeprecateActivityType, input, options)
 end
 
 function Client:undeprecateDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "UndeprecateDomain",
-        input_schema = schemas.UndeprecateDomainInput,
-        output_schema = schemas.UndeprecateDomainOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UndeprecateDomain, input, options)
 end
 
 function Client:undeprecateWorkflowType(input, options)
-    return self:invokeOperation(input, {
-        name = "UndeprecateWorkflowType",
-        input_schema = schemas.UndeprecateWorkflowTypeInput,
-        output_schema = schemas.UndeprecateWorkflowTypeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UndeprecateWorkflowType, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 return M

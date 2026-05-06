@@ -9664,4 +9664,1358 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.iotwireless", "iotwireless"),
+    version = "2020-11-22",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAwsAccountWithPartnerAccount = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "AssociateAwsAccountWithPartnerAccount"),
+    input = M.AssociateAwsAccountWithPartnerAccountInput,
+    output = M.AssociateAwsAccountWithPartnerAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/partner-accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateMulticastGroupWithFuotaTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "AssociateMulticastGroupWithFuotaTask"),
+    input = M.AssociateMulticastGroupWithFuotaTaskInput,
+    output = M.AssociateMulticastGroupWithFuotaTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/fuota-tasks/{Id}/multicast-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateWirelessDeviceWithFuotaTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "AssociateWirelessDeviceWithFuotaTask"),
+    input = M.AssociateWirelessDeviceWithFuotaTaskInput,
+    output = M.AssociateWirelessDeviceWithFuotaTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/fuota-tasks/{Id}/wireless-device" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateWirelessDeviceWithMulticastGroup = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "AssociateWirelessDeviceWithMulticastGroup"),
+    input = M.AssociateWirelessDeviceWithMulticastGroupInput,
+    output = M.AssociateWirelessDeviceWithMulticastGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/multicast-groups/{Id}/wireless-device" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateWirelessDeviceWithThing = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "AssociateWirelessDeviceWithThing"),
+    input = M.AssociateWirelessDeviceWithThingInput,
+    output = M.AssociateWirelessDeviceWithThingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/wireless-devices/{Id}/thing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateWirelessGatewayWithCertificate = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "AssociateWirelessGatewayWithCertificate"),
+    input = M.AssociateWirelessGatewayWithCertificateInput,
+    output = M.AssociateWirelessGatewayWithCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/wireless-gateways/{Id}/certificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateWirelessGatewayWithThing = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "AssociateWirelessGatewayWithThing"),
+    input = M.AssociateWirelessGatewayWithThingInput,
+    output = M.AssociateWirelessGatewayWithThingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/wireless-gateways/{Id}/thing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelMulticastGroupSession = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "CancelMulticastGroupSession"),
+    input = M.CancelMulticastGroupSessionInput,
+    output = M.CancelMulticastGroupSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/multicast-groups/{Id}/session" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDestination = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "CreateDestination"),
+    input = M.CreateDestinationInput,
+    output = M.CreateDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/destinations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDeviceProfile = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "CreateDeviceProfile"),
+    input = M.CreateDeviceProfileInput,
+    output = M.CreateDeviceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/device-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFuotaTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "CreateFuotaTask"),
+    input = M.CreateFuotaTaskInput,
+    output = M.CreateFuotaTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/fuota-tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMulticastGroup = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "CreateMulticastGroup"),
+    input = M.CreateMulticastGroupInput,
+    output = M.CreateMulticastGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/multicast-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNetworkAnalyzerConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "CreateNetworkAnalyzerConfiguration"),
+    input = M.CreateNetworkAnalyzerConfigurationInput,
+    output = M.CreateNetworkAnalyzerConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/network-analyzer-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServiceProfile = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "CreateServiceProfile"),
+    input = M.CreateServiceProfileInput,
+    output = M.CreateServiceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/service-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWirelessDevice = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "CreateWirelessDevice"),
+    input = M.CreateWirelessDeviceInput,
+    output = M.CreateWirelessDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/wireless-devices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWirelessGateway = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "CreateWirelessGateway"),
+    input = M.CreateWirelessGatewayInput,
+    output = M.CreateWirelessGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/wireless-gateways" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWirelessGatewayTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "CreateWirelessGatewayTask"),
+    input = M.CreateWirelessGatewayTaskInput,
+    output = M.CreateWirelessGatewayTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/wireless-gateways/{Id}/tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWirelessGatewayTaskDefinition = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "CreateWirelessGatewayTaskDefinition"),
+    input = M.CreateWirelessGatewayTaskDefinitionInput,
+    output = M.CreateWirelessGatewayTaskDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/wireless-gateway-task-definitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDestination = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DeleteDestination"),
+    input = M.DeleteDestinationInput,
+    output = M.DeleteDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/destinations/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDeviceProfile = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DeleteDeviceProfile"),
+    input = M.DeleteDeviceProfileInput,
+    output = M.DeleteDeviceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/device-profiles/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFuotaTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DeleteFuotaTask"),
+    input = M.DeleteFuotaTaskInput,
+    output = M.DeleteFuotaTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/fuota-tasks/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMulticastGroup = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DeleteMulticastGroup"),
+    input = M.DeleteMulticastGroupInput,
+    output = M.DeleteMulticastGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/multicast-groups/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNetworkAnalyzerConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DeleteNetworkAnalyzerConfiguration"),
+    input = M.DeleteNetworkAnalyzerConfigurationInput,
+    output = M.DeleteNetworkAnalyzerConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/network-analyzer-configurations/{ConfigurationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQueuedMessages = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DeleteQueuedMessages"),
+    input = M.DeleteQueuedMessagesInput,
+    output = M.DeleteQueuedMessagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/wireless-devices/{Id}/data" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceProfile = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DeleteServiceProfile"),
+    input = M.DeleteServiceProfileInput,
+    output = M.DeleteServiceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/service-profiles/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWirelessDevice = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DeleteWirelessDevice"),
+    input = M.DeleteWirelessDeviceInput,
+    output = M.DeleteWirelessDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/wireless-devices/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWirelessDeviceImportTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DeleteWirelessDeviceImportTask"),
+    input = M.DeleteWirelessDeviceImportTaskInput,
+    output = M.DeleteWirelessDeviceImportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/wireless_device_import_task/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWirelessGateway = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DeleteWirelessGateway"),
+    input = M.DeleteWirelessGatewayInput,
+    output = M.DeleteWirelessGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/wireless-gateways/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWirelessGatewayTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DeleteWirelessGatewayTask"),
+    input = M.DeleteWirelessGatewayTaskInput,
+    output = M.DeleteWirelessGatewayTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/wireless-gateways/{Id}/tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWirelessGatewayTaskDefinition = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DeleteWirelessGatewayTaskDefinition"),
+    input = M.DeleteWirelessGatewayTaskDefinitionInput,
+    output = M.DeleteWirelessGatewayTaskDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/wireless-gateway-task-definitions/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterWirelessDevice = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DeregisterWirelessDevice"),
+    input = M.DeregisterWirelessDeviceInput,
+    output = M.DeregisterWirelessDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/wireless-devices/{Identifier}/deregister" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateAwsAccountFromPartnerAccount = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DisassociateAwsAccountFromPartnerAccount"),
+    input = M.DisassociateAwsAccountFromPartnerAccountInput,
+    output = M.DisassociateAwsAccountFromPartnerAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/partner-accounts/{PartnerAccountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateMulticastGroupFromFuotaTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DisassociateMulticastGroupFromFuotaTask"),
+    input = M.DisassociateMulticastGroupFromFuotaTaskInput,
+    output = M.DisassociateMulticastGroupFromFuotaTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/fuota-tasks/{Id}/multicast-groups/{MulticastGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateWirelessDeviceFromFuotaTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DisassociateWirelessDeviceFromFuotaTask"),
+    input = M.DisassociateWirelessDeviceFromFuotaTaskInput,
+    output = M.DisassociateWirelessDeviceFromFuotaTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/fuota-tasks/{Id}/wireless-devices/{WirelessDeviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateWirelessDeviceFromMulticastGroup = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DisassociateWirelessDeviceFromMulticastGroup"),
+    input = M.DisassociateWirelessDeviceFromMulticastGroupInput,
+    output = M.DisassociateWirelessDeviceFromMulticastGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/multicast-groups/{Id}/wireless-devices/{WirelessDeviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateWirelessDeviceFromThing = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DisassociateWirelessDeviceFromThing"),
+    input = M.DisassociateWirelessDeviceFromThingInput,
+    output = M.DisassociateWirelessDeviceFromThingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/wireless-devices/{Id}/thing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateWirelessGatewayFromCertificate = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DisassociateWirelessGatewayFromCertificate"),
+    input = M.DisassociateWirelessGatewayFromCertificateInput,
+    output = M.DisassociateWirelessGatewayFromCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/wireless-gateways/{Id}/certificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateWirelessGatewayFromThing = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "DisassociateWirelessGatewayFromThing"),
+    input = M.DisassociateWirelessGatewayFromThingInput,
+    output = M.DisassociateWirelessGatewayFromThingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/wireless-gateways/{Id}/thing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDestination = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetDestination"),
+    input = M.GetDestinationInput,
+    output = M.GetDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/destinations/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeviceProfile = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetDeviceProfile"),
+    input = M.GetDeviceProfileInput,
+    output = M.GetDeviceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/device-profiles/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventConfigurationByResourceTypes = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetEventConfigurationByResourceTypes"),
+    input = M.GetEventConfigurationByResourceTypesInput,
+    output = M.GetEventConfigurationByResourceTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/event-configurations-resource-types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFuotaTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetFuotaTask"),
+    input = M.GetFuotaTaskInput,
+    output = M.GetFuotaTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/fuota-tasks/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLogLevelsByResourceTypes = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetLogLevelsByResourceTypes"),
+    input = M.GetLogLevelsByResourceTypesInput,
+    output = M.GetLogLevelsByResourceTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/log-levels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMetricConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetMetricConfiguration"),
+    input = M.GetMetricConfigurationInput,
+    output = M.GetMetricConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/metric-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMetrics = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetMetrics"),
+    input = M.GetMetricsInput,
+    output = M.GetMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMulticastGroup = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetMulticastGroup"),
+    input = M.GetMulticastGroupInput,
+    output = M.GetMulticastGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/multicast-groups/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMulticastGroupSession = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetMulticastGroupSession"),
+    input = M.GetMulticastGroupSessionInput,
+    output = M.GetMulticastGroupSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/multicast-groups/{Id}/session" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNetworkAnalyzerConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetNetworkAnalyzerConfiguration"),
+    input = M.GetNetworkAnalyzerConfigurationInput,
+    output = M.GetNetworkAnalyzerConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/network-analyzer-configurations/{ConfigurationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPartnerAccount = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetPartnerAccount"),
+    input = M.GetPartnerAccountInput,
+    output = M.GetPartnerAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/partner-accounts/{PartnerAccountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPosition = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetPosition"),
+    input = M.GetPositionInput,
+    output = M.GetPositionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/positions/{ResourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPositionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetPositionConfiguration"),
+    input = M.GetPositionConfigurationInput,
+    output = M.GetPositionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/position-configurations/{ResourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPositionEstimate = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetPositionEstimate"),
+    input = M.GetPositionEstimateInput,
+    output = M.GetPositionEstimateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/position-estimate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceEventConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetResourceEventConfiguration"),
+    input = M.GetResourceEventConfigurationInput,
+    output = M.GetResourceEventConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/event-configurations/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceLogLevel = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetResourceLogLevel"),
+    input = M.GetResourceLogLevelInput,
+    output = M.GetResourceLogLevelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/log-levels/{ResourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePosition = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetResourcePosition"),
+    input = M.GetResourcePositionInput,
+    output = M.GetResourcePositionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resource-positions/{ResourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceEndpoint = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetServiceEndpoint"),
+    input = M.GetServiceEndpointInput,
+    output = M.GetServiceEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/service-endpoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceProfile = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetServiceProfile"),
+    input = M.GetServiceProfileInput,
+    output = M.GetServiceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/service-profiles/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWirelessDevice = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetWirelessDevice"),
+    input = M.GetWirelessDeviceInput,
+    output = M.GetWirelessDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless-devices/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWirelessDeviceImportTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetWirelessDeviceImportTask"),
+    input = M.GetWirelessDeviceImportTaskInput,
+    output = M.GetWirelessDeviceImportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless_device_import_task/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWirelessDeviceStatistics = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetWirelessDeviceStatistics"),
+    input = M.GetWirelessDeviceStatisticsInput,
+    output = M.GetWirelessDeviceStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless-devices/{WirelessDeviceId}/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWirelessGateway = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetWirelessGateway"),
+    input = M.GetWirelessGatewayInput,
+    output = M.GetWirelessGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless-gateways/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWirelessGatewayCertificate = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetWirelessGatewayCertificate"),
+    input = M.GetWirelessGatewayCertificateInput,
+    output = M.GetWirelessGatewayCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless-gateways/{Id}/certificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWirelessGatewayFirmwareInformation = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetWirelessGatewayFirmwareInformation"),
+    input = M.GetWirelessGatewayFirmwareInformationInput,
+    output = M.GetWirelessGatewayFirmwareInformationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless-gateways/{Id}/firmware-information" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWirelessGatewayStatistics = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetWirelessGatewayStatistics"),
+    input = M.GetWirelessGatewayStatisticsInput,
+    output = M.GetWirelessGatewayStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless-gateways/{WirelessGatewayId}/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWirelessGatewayTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetWirelessGatewayTask"),
+    input = M.GetWirelessGatewayTaskInput,
+    output = M.GetWirelessGatewayTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless-gateways/{Id}/tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWirelessGatewayTaskDefinition = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "GetWirelessGatewayTaskDefinition"),
+    input = M.GetWirelessGatewayTaskDefinitionInput,
+    output = M.GetWirelessGatewayTaskDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless-gateway-task-definitions/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDestinations = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListDestinations"),
+    input = M.ListDestinationsInput,
+    output = M.ListDestinationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/destinations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeviceProfiles = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListDeviceProfiles"),
+    input = M.ListDeviceProfilesInput,
+    output = M.ListDeviceProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/device-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDevicesForWirelessDeviceImportTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListDevicesForWirelessDeviceImportTask"),
+    input = M.ListDevicesForWirelessDeviceImportTaskInput,
+    output = M.ListDevicesForWirelessDeviceImportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless_device_import_task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventConfigurations = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListEventConfigurations"),
+    input = M.ListEventConfigurationsInput,
+    output = M.ListEventConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/event-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFuotaTasks = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListFuotaTasks"),
+    input = M.ListFuotaTasksInput,
+    output = M.ListFuotaTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/fuota-tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMulticastGroups = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListMulticastGroups"),
+    input = M.ListMulticastGroupsInput,
+    output = M.ListMulticastGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/multicast-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMulticastGroupsByFuotaTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListMulticastGroupsByFuotaTask"),
+    input = M.ListMulticastGroupsByFuotaTaskInput,
+    output = M.ListMulticastGroupsByFuotaTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/fuota-tasks/{Id}/multicast-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkAnalyzerConfigurations = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListNetworkAnalyzerConfigurations"),
+    input = M.ListNetworkAnalyzerConfigurationsInput,
+    output = M.ListNetworkAnalyzerConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/network-analyzer-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPartnerAccounts = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListPartnerAccounts"),
+    input = M.ListPartnerAccountsInput,
+    output = M.ListPartnerAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/partner-accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPositionConfigurations = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListPositionConfigurations"),
+    input = M.ListPositionConfigurationsInput,
+    output = M.ListPositionConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/position-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueuedMessages = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListQueuedMessages"),
+    input = M.ListQueuedMessagesInput,
+    output = M.ListQueuedMessagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless-devices/{Id}/data" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceProfiles = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListServiceProfiles"),
+    input = M.ListServiceProfilesInput,
+    output = M.ListServiceProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/service-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWirelessDeviceImportTasks = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListWirelessDeviceImportTasks"),
+    input = M.ListWirelessDeviceImportTasksInput,
+    output = M.ListWirelessDeviceImportTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless_device_import_tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWirelessDevices = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListWirelessDevices"),
+    input = M.ListWirelessDevicesInput,
+    output = M.ListWirelessDevicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless-devices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWirelessGateways = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListWirelessGateways"),
+    input = M.ListWirelessGatewaysInput,
+    output = M.ListWirelessGatewaysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless-gateways" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWirelessGatewayTaskDefinitions = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ListWirelessGatewayTaskDefinitions"),
+    input = M.ListWirelessGatewayTaskDefinitionsInput,
+    output = M.ListWirelessGatewayTaskDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/wireless-gateway-task-definitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPositionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "PutPositionConfiguration"),
+    input = M.PutPositionConfigurationInput,
+    output = M.PutPositionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/position-configurations/{ResourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourceLogLevel = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "PutResourceLogLevel"),
+    input = M.PutResourceLogLevelInput,
+    output = M.PutResourceLogLevelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/log-levels/{ResourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetAllResourceLogLevels = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ResetAllResourceLogLevels"),
+    input = M.ResetAllResourceLogLevelsInput,
+    output = M.ResetAllResourceLogLevelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/log-levels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetResourceLogLevel = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "ResetResourceLogLevel"),
+    input = M.ResetResourceLogLevelInput,
+    output = M.ResetResourceLogLevelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/log-levels/{ResourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendDataToMulticastGroup = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "SendDataToMulticastGroup"),
+    input = M.SendDataToMulticastGroupInput,
+    output = M.SendDataToMulticastGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/multicast-groups/{Id}/data" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendDataToWirelessDevice = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "SendDataToWirelessDevice"),
+    input = M.SendDataToWirelessDeviceInput,
+    output = M.SendDataToWirelessDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/wireless-devices/{Id}/data" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartBulkAssociateWirelessDeviceWithMulticastGroup = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "StartBulkAssociateWirelessDeviceWithMulticastGroup"),
+    input = M.StartBulkAssociateWirelessDeviceWithMulticastGroupInput,
+    output = M.StartBulkAssociateWirelessDeviceWithMulticastGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/multicast-groups/{Id}/bulk" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartBulkDisassociateWirelessDeviceFromMulticastGroup = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "StartBulkDisassociateWirelessDeviceFromMulticastGroup"),
+    input = M.StartBulkDisassociateWirelessDeviceFromMulticastGroupInput,
+    output = M.StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/multicast-groups/{Id}/bulk" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFuotaTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "StartFuotaTask"),
+    input = M.StartFuotaTaskInput,
+    output = M.StartFuotaTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/fuota-tasks/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMulticastGroupSession = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "StartMulticastGroupSession"),
+    input = M.StartMulticastGroupSessionInput,
+    output = M.StartMulticastGroupSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/multicast-groups/{Id}/session" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSingleWirelessDeviceImportTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "StartSingleWirelessDeviceImportTask"),
+    input = M.StartSingleWirelessDeviceImportTaskInput,
+    output = M.StartSingleWirelessDeviceImportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/wireless_single_device_import_task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartWirelessDeviceImportTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "StartWirelessDeviceImportTask"),
+    input = M.StartWirelessDeviceImportTaskInput,
+    output = M.StartWirelessDeviceImportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/wireless_device_import_task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestWirelessDevice = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "TestWirelessDevice"),
+    input = M.TestWirelessDeviceInput,
+    output = M.TestWirelessDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/wireless-devices/{Id}/test" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDestination = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UpdateDestination"),
+    input = M.UpdateDestinationInput,
+    output = M.UpdateDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/destinations/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEventConfigurationByResourceTypes = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UpdateEventConfigurationByResourceTypes"),
+    input = M.UpdateEventConfigurationByResourceTypesInput,
+    output = M.UpdateEventConfigurationByResourceTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/event-configurations-resource-types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFuotaTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UpdateFuotaTask"),
+    input = M.UpdateFuotaTaskInput,
+    output = M.UpdateFuotaTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/fuota-tasks/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLogLevelsByResourceTypes = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UpdateLogLevelsByResourceTypes"),
+    input = M.UpdateLogLevelsByResourceTypesInput,
+    output = M.UpdateLogLevelsByResourceTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/log-levels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMetricConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UpdateMetricConfiguration"),
+    input = M.UpdateMetricConfigurationInput,
+    output = M.UpdateMetricConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/metric-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMulticastGroup = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UpdateMulticastGroup"),
+    input = M.UpdateMulticastGroupInput,
+    output = M.UpdateMulticastGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/multicast-groups/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNetworkAnalyzerConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UpdateNetworkAnalyzerConfiguration"),
+    input = M.UpdateNetworkAnalyzerConfigurationInput,
+    output = M.UpdateNetworkAnalyzerConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/network-analyzer-configurations/{ConfigurationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePartnerAccount = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UpdatePartnerAccount"),
+    input = M.UpdatePartnerAccountInput,
+    output = M.UpdatePartnerAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/partner-accounts/{PartnerAccountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePosition = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UpdatePosition"),
+    input = M.UpdatePositionInput,
+    output = M.UpdatePositionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/positions/{ResourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResourceEventConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UpdateResourceEventConfiguration"),
+    input = M.UpdateResourceEventConfigurationInput,
+    output = M.UpdateResourceEventConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/event-configurations/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResourcePosition = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UpdateResourcePosition"),
+    input = M.UpdateResourcePositionInput,
+    output = M.UpdateResourcePositionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/resource-positions/{ResourceIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWirelessDevice = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UpdateWirelessDevice"),
+    input = M.UpdateWirelessDeviceInput,
+    output = M.UpdateWirelessDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/wireless-devices/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWirelessDeviceImportTask = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UpdateWirelessDeviceImportTask"),
+    input = M.UpdateWirelessDeviceImportTaskInput,
+    output = M.UpdateWirelessDeviceImportTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/wireless_device_import_task/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWirelessGateway = schema.operation({
+    id = id.from("com.amazonaws.iotwireless", "UpdateWirelessGateway"),
+    input = M.UpdateWirelessGatewayInput,
+    output = M.UpdateWirelessGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/wireless-gateways/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

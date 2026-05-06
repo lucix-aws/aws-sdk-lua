@@ -4569,4 +4569,795 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ses", "SimpleEmailService"),
+    version = "2010-12-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CloneReceiptRuleSet = schema.operation({
+    id = id.from("com.amazonaws.ses", "CloneReceiptRuleSet"),
+    input = M.CloneReceiptRuleSetInput,
+    output = M.CloneReceiptRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfigurationSet = schema.operation({
+    id = id.from("com.amazonaws.ses", "CreateConfigurationSet"),
+    input = M.CreateConfigurationSetInput,
+    output = M.CreateConfigurationSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfigurationSetEventDestination = schema.operation({
+    id = id.from("com.amazonaws.ses", "CreateConfigurationSetEventDestination"),
+    input = M.CreateConfigurationSetEventDestinationInput,
+    output = M.CreateConfigurationSetEventDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfigurationSetTrackingOptions = schema.operation({
+    id = id.from("com.amazonaws.ses", "CreateConfigurationSetTrackingOptions"),
+    input = M.CreateConfigurationSetTrackingOptionsInput,
+    output = M.CreateConfigurationSetTrackingOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomVerificationEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.ses", "CreateCustomVerificationEmailTemplate"),
+    input = M.CreateCustomVerificationEmailTemplateInput,
+    output = M.CreateCustomVerificationEmailTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReceiptFilter = schema.operation({
+    id = id.from("com.amazonaws.ses", "CreateReceiptFilter"),
+    input = M.CreateReceiptFilterInput,
+    output = M.CreateReceiptFilterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReceiptRule = schema.operation({
+    id = id.from("com.amazonaws.ses", "CreateReceiptRule"),
+    input = M.CreateReceiptRuleInput,
+    output = M.CreateReceiptRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReceiptRuleSet = schema.operation({
+    id = id.from("com.amazonaws.ses", "CreateReceiptRuleSet"),
+    input = M.CreateReceiptRuleSetInput,
+    output = M.CreateReceiptRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTemplate = schema.operation({
+    id = id.from("com.amazonaws.ses", "CreateTemplate"),
+    input = M.CreateTemplateInput,
+    output = M.CreateTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationSet = schema.operation({
+    id = id.from("com.amazonaws.ses", "DeleteConfigurationSet"),
+    input = M.DeleteConfigurationSetInput,
+    output = M.DeleteConfigurationSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationSetEventDestination = schema.operation({
+    id = id.from("com.amazonaws.ses", "DeleteConfigurationSetEventDestination"),
+    input = M.DeleteConfigurationSetEventDestinationInput,
+    output = M.DeleteConfigurationSetEventDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationSetTrackingOptions = schema.operation({
+    id = id.from("com.amazonaws.ses", "DeleteConfigurationSetTrackingOptions"),
+    input = M.DeleteConfigurationSetTrackingOptionsInput,
+    output = M.DeleteConfigurationSetTrackingOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomVerificationEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.ses", "DeleteCustomVerificationEmailTemplate"),
+    input = M.DeleteCustomVerificationEmailTemplateInput,
+    output = M.DeleteCustomVerificationEmailTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdentity = schema.operation({
+    id = id.from("com.amazonaws.ses", "DeleteIdentity"),
+    input = M.DeleteIdentityInput,
+    output = M.DeleteIdentityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdentityPolicy = schema.operation({
+    id = id.from("com.amazonaws.ses", "DeleteIdentityPolicy"),
+    input = M.DeleteIdentityPolicyInput,
+    output = M.DeleteIdentityPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReceiptFilter = schema.operation({
+    id = id.from("com.amazonaws.ses", "DeleteReceiptFilter"),
+    input = M.DeleteReceiptFilterInput,
+    output = M.DeleteReceiptFilterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReceiptRule = schema.operation({
+    id = id.from("com.amazonaws.ses", "DeleteReceiptRule"),
+    input = M.DeleteReceiptRuleInput,
+    output = M.DeleteReceiptRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReceiptRuleSet = schema.operation({
+    id = id.from("com.amazonaws.ses", "DeleteReceiptRuleSet"),
+    input = M.DeleteReceiptRuleSetInput,
+    output = M.DeleteReceiptRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTemplate = schema.operation({
+    id = id.from("com.amazonaws.ses", "DeleteTemplate"),
+    input = M.DeleteTemplateInput,
+    output = M.DeleteTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVerifiedEmailAddress = schema.operation({
+    id = id.from("com.amazonaws.ses", "DeleteVerifiedEmailAddress"),
+    input = M.DeleteVerifiedEmailAddressInput,
+    output = M.DeleteVerifiedEmailAddressOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeActiveReceiptRuleSet = schema.operation({
+    id = id.from("com.amazonaws.ses", "DescribeActiveReceiptRuleSet"),
+    input = M.DescribeActiveReceiptRuleSetInput,
+    output = M.DescribeActiveReceiptRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfigurationSet = schema.operation({
+    id = id.from("com.amazonaws.ses", "DescribeConfigurationSet"),
+    input = M.DescribeConfigurationSetInput,
+    output = M.DescribeConfigurationSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReceiptRule = schema.operation({
+    id = id.from("com.amazonaws.ses", "DescribeReceiptRule"),
+    input = M.DescribeReceiptRuleInput,
+    output = M.DescribeReceiptRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReceiptRuleSet = schema.operation({
+    id = id.from("com.amazonaws.ses", "DescribeReceiptRuleSet"),
+    input = M.DescribeReceiptRuleSetInput,
+    output = M.DescribeReceiptRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountSendingEnabled = schema.operation({
+    id = id.from("com.amazonaws.ses", "GetAccountSendingEnabled"),
+    input = M.GetAccountSendingEnabledInput,
+    output = M.GetAccountSendingEnabledOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCustomVerificationEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.ses", "GetCustomVerificationEmailTemplate"),
+    input = M.GetCustomVerificationEmailTemplateInput,
+    output = M.GetCustomVerificationEmailTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdentityDkimAttributes = schema.operation({
+    id = id.from("com.amazonaws.ses", "GetIdentityDkimAttributes"),
+    input = M.GetIdentityDkimAttributesInput,
+    output = M.GetIdentityDkimAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdentityMailFromDomainAttributes = schema.operation({
+    id = id.from("com.amazonaws.ses", "GetIdentityMailFromDomainAttributes"),
+    input = M.GetIdentityMailFromDomainAttributesInput,
+    output = M.GetIdentityMailFromDomainAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdentityNotificationAttributes = schema.operation({
+    id = id.from("com.amazonaws.ses", "GetIdentityNotificationAttributes"),
+    input = M.GetIdentityNotificationAttributesInput,
+    output = M.GetIdentityNotificationAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdentityPolicies = schema.operation({
+    id = id.from("com.amazonaws.ses", "GetIdentityPolicies"),
+    input = M.GetIdentityPoliciesInput,
+    output = M.GetIdentityPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdentityVerificationAttributes = schema.operation({
+    id = id.from("com.amazonaws.ses", "GetIdentityVerificationAttributes"),
+    input = M.GetIdentityVerificationAttributesInput,
+    output = M.GetIdentityVerificationAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSendQuota = schema.operation({
+    id = id.from("com.amazonaws.ses", "GetSendQuota"),
+    input = M.GetSendQuotaInput,
+    output = M.GetSendQuotaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSendStatistics = schema.operation({
+    id = id.from("com.amazonaws.ses", "GetSendStatistics"),
+    input = M.GetSendStatisticsInput,
+    output = M.GetSendStatisticsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemplate = schema.operation({
+    id = id.from("com.amazonaws.ses", "GetTemplate"),
+    input = M.GetTemplateInput,
+    output = M.GetTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationSets = schema.operation({
+    id = id.from("com.amazonaws.ses", "ListConfigurationSets"),
+    input = M.ListConfigurationSetsInput,
+    output = M.ListConfigurationSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomVerificationEmailTemplates = schema.operation({
+    id = id.from("com.amazonaws.ses", "ListCustomVerificationEmailTemplates"),
+    input = M.ListCustomVerificationEmailTemplatesInput,
+    output = M.ListCustomVerificationEmailTemplatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdentities = schema.operation({
+    id = id.from("com.amazonaws.ses", "ListIdentities"),
+    input = M.ListIdentitiesInput,
+    output = M.ListIdentitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdentityPolicies = schema.operation({
+    id = id.from("com.amazonaws.ses", "ListIdentityPolicies"),
+    input = M.ListIdentityPoliciesInput,
+    output = M.ListIdentityPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReceiptFilters = schema.operation({
+    id = id.from("com.amazonaws.ses", "ListReceiptFilters"),
+    input = M.ListReceiptFiltersInput,
+    output = M.ListReceiptFiltersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReceiptRuleSets = schema.operation({
+    id = id.from("com.amazonaws.ses", "ListReceiptRuleSets"),
+    input = M.ListReceiptRuleSetsInput,
+    output = M.ListReceiptRuleSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTemplates = schema.operation({
+    id = id.from("com.amazonaws.ses", "ListTemplates"),
+    input = M.ListTemplatesInput,
+    output = M.ListTemplatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVerifiedEmailAddresses = schema.operation({
+    id = id.from("com.amazonaws.ses", "ListVerifiedEmailAddresses"),
+    input = M.ListVerifiedEmailAddressesInput,
+    output = M.ListVerifiedEmailAddressesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConfigurationSetDeliveryOptions = schema.operation({
+    id = id.from("com.amazonaws.ses", "PutConfigurationSetDeliveryOptions"),
+    input = M.PutConfigurationSetDeliveryOptionsInput,
+    output = M.PutConfigurationSetDeliveryOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutIdentityPolicy = schema.operation({
+    id = id.from("com.amazonaws.ses", "PutIdentityPolicy"),
+    input = M.PutIdentityPolicyInput,
+    output = M.PutIdentityPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReorderReceiptRuleSet = schema.operation({
+    id = id.from("com.amazonaws.ses", "ReorderReceiptRuleSet"),
+    input = M.ReorderReceiptRuleSetInput,
+    output = M.ReorderReceiptRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendBounce = schema.operation({
+    id = id.from("com.amazonaws.ses", "SendBounce"),
+    input = M.SendBounceInput,
+    output = M.SendBounceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendBulkTemplatedEmail = schema.operation({
+    id = id.from("com.amazonaws.ses", "SendBulkTemplatedEmail"),
+    input = M.SendBulkTemplatedEmailInput,
+    output = M.SendBulkTemplatedEmailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendCustomVerificationEmail = schema.operation({
+    id = id.from("com.amazonaws.ses", "SendCustomVerificationEmail"),
+    input = M.SendCustomVerificationEmailInput,
+    output = M.SendCustomVerificationEmailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendEmail = schema.operation({
+    id = id.from("com.amazonaws.ses", "SendEmail"),
+    input = M.SendEmailInput,
+    output = M.SendEmailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendRawEmail = schema.operation({
+    id = id.from("com.amazonaws.ses", "SendRawEmail"),
+    input = M.SendRawEmailInput,
+    output = M.SendRawEmailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendTemplatedEmail = schema.operation({
+    id = id.from("com.amazonaws.ses", "SendTemplatedEmail"),
+    input = M.SendTemplatedEmailInput,
+    output = M.SendTemplatedEmailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetActiveReceiptRuleSet = schema.operation({
+    id = id.from("com.amazonaws.ses", "SetActiveReceiptRuleSet"),
+    input = M.SetActiveReceiptRuleSetInput,
+    output = M.SetActiveReceiptRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetIdentityDkimEnabled = schema.operation({
+    id = id.from("com.amazonaws.ses", "SetIdentityDkimEnabled"),
+    input = M.SetIdentityDkimEnabledInput,
+    output = M.SetIdentityDkimEnabledOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetIdentityFeedbackForwardingEnabled = schema.operation({
+    id = id.from("com.amazonaws.ses", "SetIdentityFeedbackForwardingEnabled"),
+    input = M.SetIdentityFeedbackForwardingEnabledInput,
+    output = M.SetIdentityFeedbackForwardingEnabledOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetIdentityHeadersInNotificationsEnabled = schema.operation({
+    id = id.from("com.amazonaws.ses", "SetIdentityHeadersInNotificationsEnabled"),
+    input = M.SetIdentityHeadersInNotificationsEnabledInput,
+    output = M.SetIdentityHeadersInNotificationsEnabledOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetIdentityMailFromDomain = schema.operation({
+    id = id.from("com.amazonaws.ses", "SetIdentityMailFromDomain"),
+    input = M.SetIdentityMailFromDomainInput,
+    output = M.SetIdentityMailFromDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetIdentityNotificationTopic = schema.operation({
+    id = id.from("com.amazonaws.ses", "SetIdentityNotificationTopic"),
+    input = M.SetIdentityNotificationTopicInput,
+    output = M.SetIdentityNotificationTopicOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetReceiptRulePosition = schema.operation({
+    id = id.from("com.amazonaws.ses", "SetReceiptRulePosition"),
+    input = M.SetReceiptRulePositionInput,
+    output = M.SetReceiptRulePositionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestRenderTemplate = schema.operation({
+    id = id.from("com.amazonaws.ses", "TestRenderTemplate"),
+    input = M.TestRenderTemplateInput,
+    output = M.TestRenderTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountSendingEnabled = schema.operation({
+    id = id.from("com.amazonaws.ses", "UpdateAccountSendingEnabled"),
+    input = M.UpdateAccountSendingEnabledInput,
+    output = M.UpdateAccountSendingEnabledOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfigurationSetEventDestination = schema.operation({
+    id = id.from("com.amazonaws.ses", "UpdateConfigurationSetEventDestination"),
+    input = M.UpdateConfigurationSetEventDestinationInput,
+    output = M.UpdateConfigurationSetEventDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfigurationSetReputationMetricsEnabled = schema.operation({
+    id = id.from("com.amazonaws.ses", "UpdateConfigurationSetReputationMetricsEnabled"),
+    input = M.UpdateConfigurationSetReputationMetricsEnabledInput,
+    output = M.UpdateConfigurationSetReputationMetricsEnabledOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfigurationSetSendingEnabled = schema.operation({
+    id = id.from("com.amazonaws.ses", "UpdateConfigurationSetSendingEnabled"),
+    input = M.UpdateConfigurationSetSendingEnabledInput,
+    output = M.UpdateConfigurationSetSendingEnabledOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfigurationSetTrackingOptions = schema.operation({
+    id = id.from("com.amazonaws.ses", "UpdateConfigurationSetTrackingOptions"),
+    input = M.UpdateConfigurationSetTrackingOptionsInput,
+    output = M.UpdateConfigurationSetTrackingOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCustomVerificationEmailTemplate = schema.operation({
+    id = id.from("com.amazonaws.ses", "UpdateCustomVerificationEmailTemplate"),
+    input = M.UpdateCustomVerificationEmailTemplateInput,
+    output = M.UpdateCustomVerificationEmailTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReceiptRule = schema.operation({
+    id = id.from("com.amazonaws.ses", "UpdateReceiptRule"),
+    input = M.UpdateReceiptRuleInput,
+    output = M.UpdateReceiptRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTemplate = schema.operation({
+    id = id.from("com.amazonaws.ses", "UpdateTemplate"),
+    input = M.UpdateTemplateInput,
+    output = M.UpdateTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyDomainDkim = schema.operation({
+    id = id.from("com.amazonaws.ses", "VerifyDomainDkim"),
+    input = M.VerifyDomainDkimInput,
+    output = M.VerifyDomainDkimOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyDomainIdentity = schema.operation({
+    id = id.from("com.amazonaws.ses", "VerifyDomainIdentity"),
+    input = M.VerifyDomainIdentityInput,
+    output = M.VerifyDomainIdentityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyEmailAddress = schema.operation({
+    id = id.from("com.amazonaws.ses", "VerifyEmailAddress"),
+    input = M.VerifyEmailAddressInput,
+    output = M.VerifyEmailAddressOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyEmailIdentity = schema.operation({
+    id = id.from("com.amazonaws.ses", "VerifyEmailIdentity"),
+    input = M.VerifyEmailIdentityInput,
+    output = M.VerifyEmailIdentityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

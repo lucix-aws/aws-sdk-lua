@@ -7830,4 +7830,784 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.neptune", "AmazonRDSv19"),
+    version = "2014-10-31",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddRoleToDBCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "AddRoleToDBCluster"),
+    input = M.AddRoleToDBClusterInput,
+    output = M.AddRoleToDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddSourceIdentifierToSubscription = schema.operation({
+    id = id.from("com.amazonaws.neptune", "AddSourceIdentifierToSubscription"),
+    input = M.AddSourceIdentifierToSubscriptionInput,
+    output = M.AddSourceIdentifierToSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTagsToResource = schema.operation({
+    id = id.from("com.amazonaws.neptune", "AddTagsToResource"),
+    input = M.AddTagsToResourceInput,
+    output = M.AddTagsToResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ApplyPendingMaintenanceAction = schema.operation({
+    id = id.from("com.amazonaws.neptune", "ApplyPendingMaintenanceAction"),
+    input = M.ApplyPendingMaintenanceActionInput,
+    output = M.ApplyPendingMaintenanceActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.neptune", "CopyDBClusterParameterGroup"),
+    input = M.CopyDBClusterParameterGroupInput,
+    output = M.CopyDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyDBClusterSnapshot = schema.operation({
+    id = id.from("com.amazonaws.neptune", "CopyDBClusterSnapshot"),
+    input = M.CopyDBClusterSnapshotInput,
+    output = M.CopyDBClusterSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyDBParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.neptune", "CopyDBParameterGroup"),
+    input = M.CopyDBParameterGroupInput,
+    output = M.CopyDBParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "CreateDBCluster"),
+    input = M.CreateDBClusterInput,
+    output = M.CreateDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBClusterEndpoint = schema.operation({
+    id = id.from("com.amazonaws.neptune", "CreateDBClusterEndpoint"),
+    input = M.CreateDBClusterEndpointInput,
+    output = M.CreateDBClusterEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.neptune", "CreateDBClusterParameterGroup"),
+    input = M.CreateDBClusterParameterGroupInput,
+    output = M.CreateDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBClusterSnapshot = schema.operation({
+    id = id.from("com.amazonaws.neptune", "CreateDBClusterSnapshot"),
+    input = M.CreateDBClusterSnapshotInput,
+    output = M.CreateDBClusterSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBInstance = schema.operation({
+    id = id.from("com.amazonaws.neptune", "CreateDBInstance"),
+    input = M.CreateDBInstanceInput,
+    output = M.CreateDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.neptune", "CreateDBParameterGroup"),
+    input = M.CreateDBParameterGroupInput,
+    output = M.CreateDBParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.neptune", "CreateDBSubnetGroup"),
+    input = M.CreateDBSubnetGroupInput,
+    output = M.CreateDBSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventSubscription = schema.operation({
+    id = id.from("com.amazonaws.neptune", "CreateEventSubscription"),
+    input = M.CreateEventSubscriptionInput,
+    output = M.CreateEventSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "CreateGlobalCluster"),
+    input = M.CreateGlobalClusterInput,
+    output = M.CreateGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DeleteDBCluster"),
+    input = M.DeleteDBClusterInput,
+    output = M.DeleteDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBClusterEndpoint = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DeleteDBClusterEndpoint"),
+    input = M.DeleteDBClusterEndpointInput,
+    output = M.DeleteDBClusterEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DeleteDBClusterParameterGroup"),
+    input = M.DeleteDBClusterParameterGroupInput,
+    output = M.DeleteDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBClusterSnapshot = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DeleteDBClusterSnapshot"),
+    input = M.DeleteDBClusterSnapshotInput,
+    output = M.DeleteDBClusterSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBInstance = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DeleteDBInstance"),
+    input = M.DeleteDBInstanceInput,
+    output = M.DeleteDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DeleteDBParameterGroup"),
+    input = M.DeleteDBParameterGroupInput,
+    output = M.DeleteDBParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDBSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DeleteDBSubnetGroup"),
+    input = M.DeleteDBSubnetGroupInput,
+    output = M.DeleteDBSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventSubscription = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DeleteEventSubscription"),
+    input = M.DeleteEventSubscriptionInput,
+    output = M.DeleteEventSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DeleteGlobalCluster"),
+    input = M.DeleteGlobalClusterInput,
+    output = M.DeleteGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterEndpoints = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeDBClusterEndpoints"),
+    input = M.DescribeDBClusterEndpointsInput,
+    output = M.DescribeDBClusterEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterParameterGroups = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeDBClusterParameterGroups"),
+    input = M.DescribeDBClusterParameterGroupsInput,
+    output = M.DescribeDBClusterParameterGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterParameters = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeDBClusterParameters"),
+    input = M.DescribeDBClusterParametersInput,
+    output = M.DescribeDBClusterParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusters = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeDBClusters"),
+    input = M.DescribeDBClustersInput,
+    output = M.DescribeDBClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterSnapshotAttributes = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeDBClusterSnapshotAttributes"),
+    input = M.DescribeDBClusterSnapshotAttributesInput,
+    output = M.DescribeDBClusterSnapshotAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBClusterSnapshots = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeDBClusterSnapshots"),
+    input = M.DescribeDBClusterSnapshotsInput,
+    output = M.DescribeDBClusterSnapshotsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBEngineVersions = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeDBEngineVersions"),
+    input = M.DescribeDBEngineVersionsInput,
+    output = M.DescribeDBEngineVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBInstances = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeDBInstances"),
+    input = M.DescribeDBInstancesInput,
+    output = M.DescribeDBInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBParameterGroups = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeDBParameterGroups"),
+    input = M.DescribeDBParameterGroupsInput,
+    output = M.DescribeDBParameterGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBParameters = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeDBParameters"),
+    input = M.DescribeDBParametersInput,
+    output = M.DescribeDBParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBSubnetGroups = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeDBSubnetGroups"),
+    input = M.DescribeDBSubnetGroupsInput,
+    output = M.DescribeDBSubnetGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEngineDefaultClusterParameters = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeEngineDefaultClusterParameters"),
+    input = M.DescribeEngineDefaultClusterParametersInput,
+    output = M.DescribeEngineDefaultClusterParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEngineDefaultParameters = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeEngineDefaultParameters"),
+    input = M.DescribeEngineDefaultParametersInput,
+    output = M.DescribeEngineDefaultParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventCategories = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeEventCategories"),
+    input = M.DescribeEventCategoriesInput,
+    output = M.DescribeEventCategoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEvents = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeEvents"),
+    input = M.DescribeEventsInput,
+    output = M.DescribeEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeEventSubscriptions"),
+    input = M.DescribeEventSubscriptionsInput,
+    output = M.DescribeEventSubscriptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGlobalClusters = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeGlobalClusters"),
+    input = M.DescribeGlobalClustersInput,
+    output = M.DescribeGlobalClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrderableDBInstanceOptions = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeOrderableDBInstanceOptions"),
+    input = M.DescribeOrderableDBInstanceOptionsInput,
+    output = M.DescribeOrderableDBInstanceOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePendingMaintenanceActions = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribePendingMaintenanceActions"),
+    input = M.DescribePendingMaintenanceActionsInput,
+    output = M.DescribePendingMaintenanceActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeValidDBInstanceModifications = schema.operation({
+    id = id.from("com.amazonaws.neptune", "DescribeValidDBInstanceModifications"),
+    input = M.DescribeValidDBInstanceModificationsInput,
+    output = M.DescribeValidDBInstanceModificationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FailoverDBCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "FailoverDBCluster"),
+    input = M.FailoverDBClusterInput,
+    output = M.FailoverDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FailoverGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "FailoverGlobalCluster"),
+    input = M.FailoverGlobalClusterInput,
+    output = M.FailoverGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.neptune", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "ModifyDBCluster"),
+    input = M.ModifyDBClusterInput,
+    output = M.ModifyDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBClusterEndpoint = schema.operation({
+    id = id.from("com.amazonaws.neptune", "ModifyDBClusterEndpoint"),
+    input = M.ModifyDBClusterEndpointInput,
+    output = M.ModifyDBClusterEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.neptune", "ModifyDBClusterParameterGroup"),
+    input = M.ModifyDBClusterParameterGroupInput,
+    output = M.ModifyDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBClusterSnapshotAttribute = schema.operation({
+    id = id.from("com.amazonaws.neptune", "ModifyDBClusterSnapshotAttribute"),
+    input = M.ModifyDBClusterSnapshotAttributeInput,
+    output = M.ModifyDBClusterSnapshotAttributeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBInstance = schema.operation({
+    id = id.from("com.amazonaws.neptune", "ModifyDBInstance"),
+    input = M.ModifyDBInstanceInput,
+    output = M.ModifyDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.neptune", "ModifyDBParameterGroup"),
+    input = M.ModifyDBParameterGroupInput,
+    output = M.ModifyDBParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.neptune", "ModifyDBSubnetGroup"),
+    input = M.ModifyDBSubnetGroupInput,
+    output = M.ModifyDBSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyEventSubscription = schema.operation({
+    id = id.from("com.amazonaws.neptune", "ModifyEventSubscription"),
+    input = M.ModifyEventSubscriptionInput,
+    output = M.ModifyEventSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "ModifyGlobalCluster"),
+    input = M.ModifyGlobalClusterInput,
+    output = M.ModifyGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PromoteReadReplicaDBCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "PromoteReadReplicaDBCluster"),
+    input = M.PromoteReadReplicaDBClusterInput,
+    output = M.PromoteReadReplicaDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootDBInstance = schema.operation({
+    id = id.from("com.amazonaws.neptune", "RebootDBInstance"),
+    input = M.RebootDBInstanceInput,
+    output = M.RebootDBInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveFromGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "RemoveFromGlobalCluster"),
+    input = M.RemoveFromGlobalClusterInput,
+    output = M.RemoveFromGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveRoleFromDBCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "RemoveRoleFromDBCluster"),
+    input = M.RemoveRoleFromDBClusterInput,
+    output = M.RemoveRoleFromDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveSourceIdentifierFromSubscription = schema.operation({
+    id = id.from("com.amazonaws.neptune", "RemoveSourceIdentifierFromSubscription"),
+    input = M.RemoveSourceIdentifierFromSubscriptionInput,
+    output = M.RemoveSourceIdentifierFromSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTagsFromResource = schema.operation({
+    id = id.from("com.amazonaws.neptune", "RemoveTagsFromResource"),
+    input = M.RemoveTagsFromResourceInput,
+    output = M.RemoveTagsFromResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetDBClusterParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.neptune", "ResetDBClusterParameterGroup"),
+    input = M.ResetDBClusterParameterGroupInput,
+    output = M.ResetDBClusterParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetDBParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.neptune", "ResetDBParameterGroup"),
+    input = M.ResetDBParameterGroupInput,
+    output = M.ResetDBParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreDBClusterFromSnapshot = schema.operation({
+    id = id.from("com.amazonaws.neptune", "RestoreDBClusterFromSnapshot"),
+    input = M.RestoreDBClusterFromSnapshotInput,
+    output = M.RestoreDBClusterFromSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreDBClusterToPointInTime = schema.operation({
+    id = id.from("com.amazonaws.neptune", "RestoreDBClusterToPointInTime"),
+    input = M.RestoreDBClusterToPointInTimeInput,
+    output = M.RestoreDBClusterToPointInTimeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDBCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "StartDBCluster"),
+    input = M.StartDBClusterInput,
+    output = M.StartDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDBCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "StopDBCluster"),
+    input = M.StopDBClusterInput,
+    output = M.StopDBClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SwitchoverGlobalCluster = schema.operation({
+    id = id.from("com.amazonaws.neptune", "SwitchoverGlobalCluster"),
+    input = M.SwitchoverGlobalClusterInput,
+    output = M.SwitchoverGlobalClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

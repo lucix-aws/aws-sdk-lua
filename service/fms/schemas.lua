@@ -5234,4 +5234,476 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.fms", "AWSFMS_20180101"),
+    version = "2018-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.fms", "AssociateAdminAccount"),
+    input = M.AssociateAdminAccountInput,
+    output = M.AssociateAdminAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateThirdPartyFirewall = schema.operation({
+    id = id.from("com.amazonaws.fms", "AssociateThirdPartyFirewall"),
+    input = M.AssociateThirdPartyFirewallInput,
+    output = M.AssociateThirdPartyFirewallOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAssociateResource = schema.operation({
+    id = id.from("com.amazonaws.fms", "BatchAssociateResource"),
+    input = M.BatchAssociateResourceInput,
+    output = M.BatchAssociateResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDisassociateResource = schema.operation({
+    id = id.from("com.amazonaws.fms", "BatchDisassociateResource"),
+    input = M.BatchDisassociateResourceInput,
+    output = M.BatchDisassociateResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppsList = schema.operation({
+    id = id.from("com.amazonaws.fms", "DeleteAppsList"),
+    input = M.DeleteAppsListInput,
+    output = M.DeleteAppsListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNotificationChannel = schema.operation({
+    id = id.from("com.amazonaws.fms", "DeleteNotificationChannel"),
+    input = M.DeleteNotificationChannelInput,
+    output = M.DeleteNotificationChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePolicy = schema.operation({
+    id = id.from("com.amazonaws.fms", "DeletePolicy"),
+    input = M.DeletePolicyInput,
+    output = M.DeletePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProtocolsList = schema.operation({
+    id = id.from("com.amazonaws.fms", "DeleteProtocolsList"),
+    input = M.DeleteProtocolsListInput,
+    output = M.DeleteProtocolsListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourceSet = schema.operation({
+    id = id.from("com.amazonaws.fms", "DeleteResourceSet"),
+    input = M.DeleteResourceSetInput,
+    output = M.DeleteResourceSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.fms", "DisassociateAdminAccount"),
+    input = M.DisassociateAdminAccountInput,
+    output = M.DisassociateAdminAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateThirdPartyFirewall = schema.operation({
+    id = id.from("com.amazonaws.fms", "DisassociateThirdPartyFirewall"),
+    input = M.DisassociateThirdPartyFirewallInput,
+    output = M.DisassociateThirdPartyFirewallOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.fms", "GetAdminAccount"),
+    input = M.GetAdminAccountInput,
+    output = M.GetAdminAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAdminScope = schema.operation({
+    id = id.from("com.amazonaws.fms", "GetAdminScope"),
+    input = M.GetAdminScopeInput,
+    output = M.GetAdminScopeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAppsList = schema.operation({
+    id = id.from("com.amazonaws.fms", "GetAppsList"),
+    input = M.GetAppsListInput,
+    output = M.GetAppsListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComplianceDetail = schema.operation({
+    id = id.from("com.amazonaws.fms", "GetComplianceDetail"),
+    input = M.GetComplianceDetailInput,
+    output = M.GetComplianceDetailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNotificationChannel = schema.operation({
+    id = id.from("com.amazonaws.fms", "GetNotificationChannel"),
+    input = M.GetNotificationChannelInput,
+    output = M.GetNotificationChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicy = schema.operation({
+    id = id.from("com.amazonaws.fms", "GetPolicy"),
+    input = M.GetPolicyInput,
+    output = M.GetPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProtectionStatus = schema.operation({
+    id = id.from("com.amazonaws.fms", "GetProtectionStatus"),
+    input = M.GetProtectionStatusInput,
+    output = M.GetProtectionStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProtocolsList = schema.operation({
+    id = id.from("com.amazonaws.fms", "GetProtocolsList"),
+    input = M.GetProtocolsListInput,
+    output = M.GetProtocolsListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceSet = schema.operation({
+    id = id.from("com.amazonaws.fms", "GetResourceSet"),
+    input = M.GetResourceSetInput,
+    output = M.GetResourceSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetThirdPartyFirewallAssociationStatus = schema.operation({
+    id = id.from("com.amazonaws.fms", "GetThirdPartyFirewallAssociationStatus"),
+    input = M.GetThirdPartyFirewallAssociationStatusInput,
+    output = M.GetThirdPartyFirewallAssociationStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetViolationDetails = schema.operation({
+    id = id.from("com.amazonaws.fms", "GetViolationDetails"),
+    input = M.GetViolationDetailsInput,
+    output = M.GetViolationDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAdminAccountsForOrganization = schema.operation({
+    id = id.from("com.amazonaws.fms", "ListAdminAccountsForOrganization"),
+    input = M.ListAdminAccountsForOrganizationInput,
+    output = M.ListAdminAccountsForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAdminsManagingAccount = schema.operation({
+    id = id.from("com.amazonaws.fms", "ListAdminsManagingAccount"),
+    input = M.ListAdminsManagingAccountInput,
+    output = M.ListAdminsManagingAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppsLists = schema.operation({
+    id = id.from("com.amazonaws.fms", "ListAppsLists"),
+    input = M.ListAppsListsInput,
+    output = M.ListAppsListsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComplianceStatus = schema.operation({
+    id = id.from("com.amazonaws.fms", "ListComplianceStatus"),
+    input = M.ListComplianceStatusInput,
+    output = M.ListComplianceStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDiscoveredResources = schema.operation({
+    id = id.from("com.amazonaws.fms", "ListDiscoveredResources"),
+    input = M.ListDiscoveredResourcesInput,
+    output = M.ListDiscoveredResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMemberAccounts = schema.operation({
+    id = id.from("com.amazonaws.fms", "ListMemberAccounts"),
+    input = M.ListMemberAccountsInput,
+    output = M.ListMemberAccountsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicies = schema.operation({
+    id = id.from("com.amazonaws.fms", "ListPolicies"),
+    input = M.ListPoliciesInput,
+    output = M.ListPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProtocolsLists = schema.operation({
+    id = id.from("com.amazonaws.fms", "ListProtocolsLists"),
+    input = M.ListProtocolsListsInput,
+    output = M.ListProtocolsListsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceSetResources = schema.operation({
+    id = id.from("com.amazonaws.fms", "ListResourceSetResources"),
+    input = M.ListResourceSetResourcesInput,
+    output = M.ListResourceSetResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceSets = schema.operation({
+    id = id.from("com.amazonaws.fms", "ListResourceSets"),
+    input = M.ListResourceSetsInput,
+    output = M.ListResourceSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.fms", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThirdPartyFirewallFirewallPolicies = schema.operation({
+    id = id.from("com.amazonaws.fms", "ListThirdPartyFirewallFirewallPolicies"),
+    input = M.ListThirdPartyFirewallFirewallPoliciesInput,
+    output = M.ListThirdPartyFirewallFirewallPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAdminAccount = schema.operation({
+    id = id.from("com.amazonaws.fms", "PutAdminAccount"),
+    input = M.PutAdminAccountInput,
+    output = M.PutAdminAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAppsList = schema.operation({
+    id = id.from("com.amazonaws.fms", "PutAppsList"),
+    input = M.PutAppsListInput,
+    output = M.PutAppsListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutNotificationChannel = schema.operation({
+    id = id.from("com.amazonaws.fms", "PutNotificationChannel"),
+    input = M.PutNotificationChannelInput,
+    output = M.PutNotificationChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPolicy = schema.operation({
+    id = id.from("com.amazonaws.fms", "PutPolicy"),
+    input = M.PutPolicyInput,
+    output = M.PutPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutProtocolsList = schema.operation({
+    id = id.from("com.amazonaws.fms", "PutProtocolsList"),
+    input = M.PutProtocolsListInput,
+    output = M.PutProtocolsListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourceSet = schema.operation({
+    id = id.from("com.amazonaws.fms", "PutResourceSet"),
+    input = M.PutResourceSetInput,
+    output = M.PutResourceSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.fms", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.fms", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

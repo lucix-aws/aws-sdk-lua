@@ -7,6 +7,7 @@ local endpoint_rules = require("geomaps.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("geomaps.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "geo-maps", signing_region = cfg.region } }
                 else
@@ -49,68 +52,23 @@ function M.new(cfg)
 end
 
 function Client:getGlyphs(input, options)
-    return self:invokeOperation(input, {
-        name = "GetGlyphs",
-        input_schema = schemas.GetGlyphsInput,
-        output_schema = schemas.GetGlyphsOutput,
-        http_method = "GET",
-        http_path = "/glyphs/{FontStack}/{FontUnicodeRange}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetGlyphs, input, options)
 end
 
 function Client:getSprites(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSprites",
-        input_schema = schemas.GetSpritesInput,
-        output_schema = schemas.GetSpritesOutput,
-        http_method = "GET",
-        http_path = "/styles/{Style}/{ColorScheme}/{Variant}/sprites/{FileName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSprites, input, options)
 end
 
 function Client:getStaticMap(input, options)
-    return self:invokeOperation(input, {
-        name = "GetStaticMap",
-        input_schema = schemas.GetStaticMapInput,
-        output_schema = schemas.GetStaticMapOutput,
-        http_method = "GET",
-        http_path = "/static/{FileName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetStaticMap, input, options)
 end
 
 function Client:getStyleDescriptor(input, options)
-    return self:invokeOperation(input, {
-        name = "GetStyleDescriptor",
-        input_schema = schemas.GetStyleDescriptorInput,
-        output_schema = schemas.GetStyleDescriptorOutput,
-        http_method = "GET",
-        http_path = "/styles/{Style}/descriptor",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetStyleDescriptor, input, options)
 end
 
 function Client:getTile(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTile",
-        input_schema = schemas.GetTileInput,
-        output_schema = schemas.GetTileOutput,
-        http_method = "GET",
-        http_path = "/tiles/{Tileset}/{Z}/{X}/{Y}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTile, input, options)
 end
 
 return M

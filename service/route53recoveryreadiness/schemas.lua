@@ -2621,4 +2621,398 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "Route53RecoveryReadiness"),
+    version = "2019-12-02",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCell = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "CreateCell"),
+    input = M.CreateCellInput,
+    output = M.CreateCellOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cells" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCrossAccountAuthorization = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "CreateCrossAccountAuthorization"),
+    input = M.CreateCrossAccountAuthorizationInput,
+    output = M.CreateCrossAccountAuthorizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/crossaccountauthorizations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReadinessCheck = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "CreateReadinessCheck"),
+    input = M.CreateReadinessCheckInput,
+    output = M.CreateReadinessCheckOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/readinesschecks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRecoveryGroup = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "CreateRecoveryGroup"),
+    input = M.CreateRecoveryGroupInput,
+    output = M.CreateRecoveryGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/recoverygroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResourceSet = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "CreateResourceSet"),
+    input = M.CreateResourceSetInput,
+    output = M.CreateResourceSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resourcesets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCell = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "DeleteCell"),
+    input = M.DeleteCellInput,
+    output = M.DeleteCellOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/cells/{CellName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCrossAccountAuthorization = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "DeleteCrossAccountAuthorization"),
+    input = M.DeleteCrossAccountAuthorizationInput,
+    output = M.DeleteCrossAccountAuthorizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/crossaccountauthorizations/{CrossAccountAuthorization}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReadinessCheck = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "DeleteReadinessCheck"),
+    input = M.DeleteReadinessCheckInput,
+    output = M.DeleteReadinessCheckOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/readinesschecks/{ReadinessCheckName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecoveryGroup = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "DeleteRecoveryGroup"),
+    input = M.DeleteRecoveryGroupInput,
+    output = M.DeleteRecoveryGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/recoverygroups/{RecoveryGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourceSet = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "DeleteResourceSet"),
+    input = M.DeleteResourceSetInput,
+    output = M.DeleteResourceSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/resourcesets/{ResourceSetName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetArchitectureRecommendations = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "GetArchitectureRecommendations"),
+    input = M.GetArchitectureRecommendationsInput,
+    output = M.GetArchitectureRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/recoverygroups/{RecoveryGroupName}/architectureRecommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCell = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "GetCell"),
+    input = M.GetCellInput,
+    output = M.GetCellOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cells/{CellName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCellReadinessSummary = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "GetCellReadinessSummary"),
+    input = M.GetCellReadinessSummaryInput,
+    output = M.GetCellReadinessSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cellreadiness/{CellName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReadinessCheck = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "GetReadinessCheck"),
+    input = M.GetReadinessCheckInput,
+    output = M.GetReadinessCheckOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/readinesschecks/{ReadinessCheckName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReadinessCheckResourceStatus = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "GetReadinessCheckResourceStatus"),
+    input = M.GetReadinessCheckResourceStatusInput,
+    output = M.GetReadinessCheckResourceStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/readinesschecks/{ReadinessCheckName}/resource/{ResourceIdentifier}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReadinessCheckStatus = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "GetReadinessCheckStatus"),
+    input = M.GetReadinessCheckStatusInput,
+    output = M.GetReadinessCheckStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/readinesschecks/{ReadinessCheckName}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecoveryGroup = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "GetRecoveryGroup"),
+    input = M.GetRecoveryGroupInput,
+    output = M.GetRecoveryGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/recoverygroups/{RecoveryGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecoveryGroupReadinessSummary = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "GetRecoveryGroupReadinessSummary"),
+    input = M.GetRecoveryGroupReadinessSummaryInput,
+    output = M.GetRecoveryGroupReadinessSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/recoverygroupreadiness/{RecoveryGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceSet = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "GetResourceSet"),
+    input = M.GetResourceSetInput,
+    output = M.GetResourceSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resourcesets/{ResourceSetName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCells = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "ListCells"),
+    input = M.ListCellsInput,
+    output = M.ListCellsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cells" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCrossAccountAuthorizations = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "ListCrossAccountAuthorizations"),
+    input = M.ListCrossAccountAuthorizationsInput,
+    output = M.ListCrossAccountAuthorizationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/crossaccountauthorizations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReadinessChecks = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "ListReadinessChecks"),
+    input = M.ListReadinessChecksInput,
+    output = M.ListReadinessChecksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/readinesschecks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecoveryGroups = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "ListRecoveryGroups"),
+    input = M.ListRecoveryGroupsInput,
+    output = M.ListRecoveryGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/recoverygroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceSets = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "ListResourceSets"),
+    input = M.ListResourceSetsInput,
+    output = M.ListResourceSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resourcesets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRules = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "ListRules"),
+    input = M.ListRulesInput,
+    output = M.ListRulesOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResources = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "ListTagsForResources"),
+    input = M.ListTagsForResourcesInput,
+    output = M.ListTagsForResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCell = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "UpdateCell"),
+    input = M.UpdateCellInput,
+    output = M.UpdateCellOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/cells/{CellName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReadinessCheck = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "UpdateReadinessCheck"),
+    input = M.UpdateReadinessCheckInput,
+    output = M.UpdateReadinessCheckOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/readinesschecks/{ReadinessCheckName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecoveryGroup = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "UpdateRecoveryGroup"),
+    input = M.UpdateRecoveryGroupInput,
+    output = M.UpdateRecoveryGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/recoverygroups/{RecoveryGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResourceSet = schema.operation({
+    id = id.from("com.amazonaws.route53recoveryreadiness", "UpdateResourceSet"),
+    input = M.UpdateResourceSetInput,
+    output = M.UpdateResourceSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/resourcesets/{ResourceSetName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

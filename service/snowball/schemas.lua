@@ -2624,4 +2624,311 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.snowball", "AWSIESnowballJobManagementService"),
+    version = "2016-06-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelCluster = schema.operation({
+    id = id.from("com.amazonaws.snowball", "CancelCluster"),
+    input = M.CancelClusterInput,
+    output = M.CancelClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelJob = schema.operation({
+    id = id.from("com.amazonaws.snowball", "CancelJob"),
+    input = M.CancelJobInput,
+    output = M.CancelJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAddress = schema.operation({
+    id = id.from("com.amazonaws.snowball", "CreateAddress"),
+    input = M.CreateAddressInput,
+    output = M.CreateAddressOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCluster = schema.operation({
+    id = id.from("com.amazonaws.snowball", "CreateCluster"),
+    input = M.CreateClusterInput,
+    output = M.CreateClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateJob = schema.operation({
+    id = id.from("com.amazonaws.snowball", "CreateJob"),
+    input = M.CreateJobInput,
+    output = M.CreateJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLongTermPricing = schema.operation({
+    id = id.from("com.amazonaws.snowball", "CreateLongTermPricing"),
+    input = M.CreateLongTermPricingInput,
+    output = M.CreateLongTermPricingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReturnShippingLabel = schema.operation({
+    id = id.from("com.amazonaws.snowball", "CreateReturnShippingLabel"),
+    input = M.CreateReturnShippingLabelInput,
+    output = M.CreateReturnShippingLabelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAddress = schema.operation({
+    id = id.from("com.amazonaws.snowball", "DescribeAddress"),
+    input = M.DescribeAddressInput,
+    output = M.DescribeAddressOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAddresses = schema.operation({
+    id = id.from("com.amazonaws.snowball", "DescribeAddresses"),
+    input = M.DescribeAddressesInput,
+    output = M.DescribeAddressesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCluster = schema.operation({
+    id = id.from("com.amazonaws.snowball", "DescribeCluster"),
+    input = M.DescribeClusterInput,
+    output = M.DescribeClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJob = schema.operation({
+    id = id.from("com.amazonaws.snowball", "DescribeJob"),
+    input = M.DescribeJobInput,
+    output = M.DescribeJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReturnShippingLabel = schema.operation({
+    id = id.from("com.amazonaws.snowball", "DescribeReturnShippingLabel"),
+    input = M.DescribeReturnShippingLabelInput,
+    output = M.DescribeReturnShippingLabelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJobManifest = schema.operation({
+    id = id.from("com.amazonaws.snowball", "GetJobManifest"),
+    input = M.GetJobManifestInput,
+    output = M.GetJobManifestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJobUnlockCode = schema.operation({
+    id = id.from("com.amazonaws.snowball", "GetJobUnlockCode"),
+    input = M.GetJobUnlockCodeInput,
+    output = M.GetJobUnlockCodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSnowballUsage = schema.operation({
+    id = id.from("com.amazonaws.snowball", "GetSnowballUsage"),
+    input = M.GetSnowballUsageInput,
+    output = M.GetSnowballUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSoftwareUpdates = schema.operation({
+    id = id.from("com.amazonaws.snowball", "GetSoftwareUpdates"),
+    input = M.GetSoftwareUpdatesInput,
+    output = M.GetSoftwareUpdatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusterJobs = schema.operation({
+    id = id.from("com.amazonaws.snowball", "ListClusterJobs"),
+    input = M.ListClusterJobsInput,
+    output = M.ListClusterJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusters = schema.operation({
+    id = id.from("com.amazonaws.snowball", "ListClusters"),
+    input = M.ListClustersInput,
+    output = M.ListClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCompatibleImages = schema.operation({
+    id = id.from("com.amazonaws.snowball", "ListCompatibleImages"),
+    input = M.ListCompatibleImagesInput,
+    output = M.ListCompatibleImagesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobs = schema.operation({
+    id = id.from("com.amazonaws.snowball", "ListJobs"),
+    input = M.ListJobsInput,
+    output = M.ListJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLongTermPricing = schema.operation({
+    id = id.from("com.amazonaws.snowball", "ListLongTermPricing"),
+    input = M.ListLongTermPricingInput,
+    output = M.ListLongTermPricingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPickupLocations = schema.operation({
+    id = id.from("com.amazonaws.snowball", "ListPickupLocations"),
+    input = M.ListPickupLocationsInput,
+    output = M.ListPickupLocationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceVersions = schema.operation({
+    id = id.from("com.amazonaws.snowball", "ListServiceVersions"),
+    input = M.ListServiceVersionsInput,
+    output = M.ListServiceVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCluster = schema.operation({
+    id = id.from("com.amazonaws.snowball", "UpdateCluster"),
+    input = M.UpdateClusterInput,
+    output = M.UpdateClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateJob = schema.operation({
+    id = id.from("com.amazonaws.snowball", "UpdateJob"),
+    input = M.UpdateJobInput,
+    output = M.UpdateJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateJobShipmentState = schema.operation({
+    id = id.from("com.amazonaws.snowball", "UpdateJobShipmentState"),
+    input = M.UpdateJobShipmentStateInput,
+    output = M.UpdateJobShipmentStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLongTermPricing = schema.operation({
+    id = id.from("com.amazonaws.snowball", "UpdateLongTermPricing"),
+    input = M.UpdateLongTermPricingInput,
+    output = M.UpdateLongTermPricingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -7,6 +7,7 @@ local endpoint_rules = require("tnb.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("tnb.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "tnb", signing_region = cfg.region } }
                 else
@@ -49,432 +52,135 @@ function M.new(cfg)
 end
 
 function Client:cancelSolNetworkOperation(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelSolNetworkOperation",
-        input_schema = schemas.CancelSolNetworkOperationInput,
-        output_schema = schemas.CancelSolNetworkOperationOutput,
-        http_method = "POST",
-        http_path = "/sol/nslcm/v1/ns_lcm_op_occs/{nsLcmOpOccId}/cancel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelSolNetworkOperation, input, options)
 end
 
 function Client:createSolFunctionPackage(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSolFunctionPackage",
-        input_schema = schemas.CreateSolFunctionPackageInput,
-        output_schema = schemas.CreateSolFunctionPackageOutput,
-        http_method = "POST",
-        http_path = "/sol/vnfpkgm/v1/vnf_packages",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSolFunctionPackage, input, options)
 end
 
 function Client:createSolNetworkInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSolNetworkInstance",
-        input_schema = schemas.CreateSolNetworkInstanceInput,
-        output_schema = schemas.CreateSolNetworkInstanceOutput,
-        http_method = "POST",
-        http_path = "/sol/nslcm/v1/ns_instances",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSolNetworkInstance, input, options)
 end
 
 function Client:createSolNetworkPackage(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSolNetworkPackage",
-        input_schema = schemas.CreateSolNetworkPackageInput,
-        output_schema = schemas.CreateSolNetworkPackageOutput,
-        http_method = "POST",
-        http_path = "/sol/nsd/v1/ns_descriptors",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSolNetworkPackage, input, options)
 end
 
 function Client:deleteSolFunctionPackage(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSolFunctionPackage",
-        input_schema = schemas.DeleteSolFunctionPackageInput,
-        output_schema = schemas.DeleteSolFunctionPackageOutput,
-        http_method = "DELETE",
-        http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSolFunctionPackage, input, options)
 end
 
 function Client:deleteSolNetworkInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSolNetworkInstance",
-        input_schema = schemas.DeleteSolNetworkInstanceInput,
-        output_schema = schemas.DeleteSolNetworkInstanceOutput,
-        http_method = "DELETE",
-        http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSolNetworkInstance, input, options)
 end
 
 function Client:deleteSolNetworkPackage(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSolNetworkPackage",
-        input_schema = schemas.DeleteSolNetworkPackageInput,
-        output_schema = schemas.DeleteSolNetworkPackageOutput,
-        http_method = "DELETE",
-        http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSolNetworkPackage, input, options)
 end
 
 function Client:getSolFunctionInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSolFunctionInstance",
-        input_schema = schemas.GetSolFunctionInstanceInput,
-        output_schema = schemas.GetSolFunctionInstanceOutput,
-        http_method = "GET",
-        http_path = "/sol/vnflcm/v1/vnf_instances/{vnfInstanceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSolFunctionInstance, input, options)
 end
 
 function Client:getSolFunctionPackage(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSolFunctionPackage",
-        input_schema = schemas.GetSolFunctionPackageInput,
-        output_schema = schemas.GetSolFunctionPackageOutput,
-        http_method = "GET",
-        http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSolFunctionPackage, input, options)
 end
 
 function Client:getSolFunctionPackageContent(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSolFunctionPackageContent",
-        input_schema = schemas.GetSolFunctionPackageContentInput,
-        output_schema = schemas.GetSolFunctionPackageContentOutput,
-        http_method = "GET",
-        http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/package_content",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSolFunctionPackageContent, input, options)
 end
 
 function Client:getSolFunctionPackageDescriptor(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSolFunctionPackageDescriptor",
-        input_schema = schemas.GetSolFunctionPackageDescriptorInput,
-        output_schema = schemas.GetSolFunctionPackageDescriptorOutput,
-        http_method = "GET",
-        http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/vnfd",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSolFunctionPackageDescriptor, input, options)
 end
 
 function Client:getSolNetworkInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSolNetworkInstance",
-        input_schema = schemas.GetSolNetworkInstanceInput,
-        output_schema = schemas.GetSolNetworkInstanceOutput,
-        http_method = "GET",
-        http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSolNetworkInstance, input, options)
 end
 
 function Client:getSolNetworkOperation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSolNetworkOperation",
-        input_schema = schemas.GetSolNetworkOperationInput,
-        output_schema = schemas.GetSolNetworkOperationOutput,
-        http_method = "GET",
-        http_path = "/sol/nslcm/v1/ns_lcm_op_occs/{nsLcmOpOccId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSolNetworkOperation, input, options)
 end
 
 function Client:getSolNetworkPackage(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSolNetworkPackage",
-        input_schema = schemas.GetSolNetworkPackageInput,
-        output_schema = schemas.GetSolNetworkPackageOutput,
-        http_method = "GET",
-        http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSolNetworkPackage, input, options)
 end
 
 function Client:getSolNetworkPackageContent(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSolNetworkPackageContent",
-        input_schema = schemas.GetSolNetworkPackageContentInput,
-        output_schema = schemas.GetSolNetworkPackageContentOutput,
-        http_method = "GET",
-        http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd_content",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSolNetworkPackageContent, input, options)
 end
 
 function Client:getSolNetworkPackageDescriptor(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSolNetworkPackageDescriptor",
-        input_schema = schemas.GetSolNetworkPackageDescriptorInput,
-        output_schema = schemas.GetSolNetworkPackageDescriptorOutput,
-        http_method = "GET",
-        http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSolNetworkPackageDescriptor, input, options)
 end
 
 function Client:instantiateSolNetworkInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "InstantiateSolNetworkInstance",
-        input_schema = schemas.InstantiateSolNetworkInstanceInput,
-        output_schema = schemas.InstantiateSolNetworkInstanceOutput,
-        http_method = "POST",
-        http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}/instantiate",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.InstantiateSolNetworkInstance, input, options)
 end
 
 function Client:listSolFunctionInstances(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSolFunctionInstances",
-        input_schema = schemas.ListSolFunctionInstancesInput,
-        output_schema = schemas.ListSolFunctionInstancesOutput,
-        http_method = "GET",
-        http_path = "/sol/vnflcm/v1/vnf_instances",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSolFunctionInstances, input, options)
 end
 
 function Client:listSolFunctionPackages(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSolFunctionPackages",
-        input_schema = schemas.ListSolFunctionPackagesInput,
-        output_schema = schemas.ListSolFunctionPackagesOutput,
-        http_method = "GET",
-        http_path = "/sol/vnfpkgm/v1/vnf_packages",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSolFunctionPackages, input, options)
 end
 
 function Client:listSolNetworkInstances(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSolNetworkInstances",
-        input_schema = schemas.ListSolNetworkInstancesInput,
-        output_schema = schemas.ListSolNetworkInstancesOutput,
-        http_method = "GET",
-        http_path = "/sol/nslcm/v1/ns_instances",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSolNetworkInstances, input, options)
 end
 
 function Client:listSolNetworkOperations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSolNetworkOperations",
-        input_schema = schemas.ListSolNetworkOperationsInput,
-        output_schema = schemas.ListSolNetworkOperationsOutput,
-        http_method = "GET",
-        http_path = "/sol/nslcm/v1/ns_lcm_op_occs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSolNetworkOperations, input, options)
 end
 
 function Client:listSolNetworkPackages(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSolNetworkPackages",
-        input_schema = schemas.ListSolNetworkPackagesInput,
-        output_schema = schemas.ListSolNetworkPackagesOutput,
-        http_method = "GET",
-        http_path = "/sol/nsd/v1/ns_descriptors",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSolNetworkPackages, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putSolFunctionPackageContent(input, options)
-    return self:invokeOperation(input, {
-        name = "PutSolFunctionPackageContent",
-        input_schema = schemas.PutSolFunctionPackageContentInput,
-        output_schema = schemas.PutSolFunctionPackageContentOutput,
-        http_method = "PUT",
-        http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/package_content",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutSolFunctionPackageContent, input, options)
 end
 
 function Client:putSolNetworkPackageContent(input, options)
-    return self:invokeOperation(input, {
-        name = "PutSolNetworkPackageContent",
-        input_schema = schemas.PutSolNetworkPackageContentInput,
-        output_schema = schemas.PutSolNetworkPackageContentOutput,
-        http_method = "PUT",
-        http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd_content",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutSolNetworkPackageContent, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:terminateSolNetworkInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "TerminateSolNetworkInstance",
-        input_schema = schemas.TerminateSolNetworkInstanceInput,
-        output_schema = schemas.TerminateSolNetworkInstanceOutput,
-        http_method = "POST",
-        http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}/terminate",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TerminateSolNetworkInstance, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateSolFunctionPackage(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSolFunctionPackage",
-        input_schema = schemas.UpdateSolFunctionPackageInput,
-        output_schema = schemas.UpdateSolFunctionPackageOutput,
-        http_method = "PATCH",
-        http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSolFunctionPackage, input, options)
 end
 
 function Client:updateSolNetworkInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSolNetworkInstance",
-        input_schema = schemas.UpdateSolNetworkInstanceInput,
-        output_schema = schemas.UpdateSolNetworkInstanceOutput,
-        http_method = "POST",
-        http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}/update",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSolNetworkInstance, input, options)
 end
 
 function Client:updateSolNetworkPackage(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSolNetworkPackage",
-        input_schema = schemas.UpdateSolNetworkPackageInput,
-        output_schema = schemas.UpdateSolNetworkPackageOutput,
-        http_method = "PATCH",
-        http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSolNetworkPackage, input, options)
 end
 
 function Client:validateSolFunctionPackageContent(input, options)
-    return self:invokeOperation(input, {
-        name = "ValidateSolFunctionPackageContent",
-        input_schema = schemas.ValidateSolFunctionPackageContentInput,
-        output_schema = schemas.ValidateSolFunctionPackageContentOutput,
-        http_method = "PUT",
-        http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/package_content/validate",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ValidateSolFunctionPackageContent, input, options)
 end
 
 function Client:validateSolNetworkPackageContent(input, options)
-    return self:invokeOperation(input, {
-        name = "ValidateSolNetworkPackageContent",
-        input_schema = schemas.ValidateSolNetworkPackageContentInput,
-        output_schema = schemas.ValidateSolNetworkPackageContentOutput,
-        http_method = "PUT",
-        http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd_content/validate",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ValidateSolNetworkPackageContent, input, options)
 end
 
 return M

@@ -5258,4 +5258,530 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.connectcases", "AmazonConnectCases"),
+    version = "2022-10-03",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetCaseRule = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "BatchGetCaseRule"),
+    input = M.BatchGetCaseRuleInput,
+    output = M.BatchGetCaseRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/rules-batch" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetField = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "BatchGetField"),
+    input = M.BatchGetFieldInput,
+    output = M.BatchGetFieldOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/fields-batch" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchPutFieldOptions = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "BatchPutFieldOptions"),
+    input = M.BatchPutFieldOptionsInput,
+    output = M.BatchPutFieldOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{domainId}/fields/{fieldId}/options" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCase = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "CreateCase"),
+    input = M.CreateCaseInput,
+    output = M.CreateCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/cases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCaseRule = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "CreateCaseRule"),
+    input = M.CreateCaseRuleInput,
+    output = M.CreateCaseRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/case-rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomain = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "CreateDomain"),
+    input = M.CreateDomainInput,
+    output = M.CreateDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateField = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "CreateField"),
+    input = M.CreateFieldInput,
+    output = M.CreateFieldOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/fields" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLayout = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "CreateLayout"),
+    input = M.CreateLayoutInput,
+    output = M.CreateLayoutOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/layouts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRelatedItem = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "CreateRelatedItem"),
+    input = M.CreateRelatedItemInput,
+    output = M.CreateRelatedItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/cases/{caseId}/related-items/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTemplate = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "CreateTemplate"),
+    input = M.CreateTemplateInput,
+    output = M.CreateTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCase = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "DeleteCase"),
+    input = M.DeleteCaseInput,
+    output = M.DeleteCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{domainId}/cases/{caseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCaseRule = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "DeleteCaseRule"),
+    input = M.DeleteCaseRuleInput,
+    output = M.DeleteCaseRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{domainId}/case-rules/{caseRuleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomain = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "DeleteDomain"),
+    input = M.DeleteDomainInput,
+    output = M.DeleteDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{domainId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteField = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "DeleteField"),
+    input = M.DeleteFieldInput,
+    output = M.DeleteFieldOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{domainId}/fields/{fieldId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLayout = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "DeleteLayout"),
+    input = M.DeleteLayoutInput,
+    output = M.DeleteLayoutOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{domainId}/layouts/{layoutId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRelatedItem = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "DeleteRelatedItem"),
+    input = M.DeleteRelatedItemInput,
+    output = M.DeleteRelatedItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{domainId}/cases/{caseId}/related-items/{relatedItemId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTemplate = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "DeleteTemplate"),
+    input = M.DeleteTemplateInput,
+    output = M.DeleteTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{domainId}/templates/{templateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCase = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "GetCase"),
+    input = M.GetCaseInput,
+    output = M.GetCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/cases/{caseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCaseAuditEvents = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "GetCaseAuditEvents"),
+    input = M.GetCaseAuditEventsInput,
+    output = M.GetCaseAuditEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/cases/{caseId}/audit-history" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCaseEventConfiguration = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "GetCaseEventConfiguration"),
+    input = M.GetCaseEventConfigurationInput,
+    output = M.GetCaseEventConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/case-event-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomain = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "GetDomain"),
+    input = M.GetDomainInput,
+    output = M.GetDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLayout = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "GetLayout"),
+    input = M.GetLayoutInput,
+    output = M.GetLayoutOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/layouts/{layoutId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemplate = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "GetTemplate"),
+    input = M.GetTemplateInput,
+    output = M.GetTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/templates/{templateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCaseRules = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "ListCaseRules"),
+    input = M.ListCaseRulesInput,
+    output = M.ListCaseRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/rules-list/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCasesForContact = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "ListCasesForContact"),
+    input = M.ListCasesForContactInput,
+    output = M.ListCasesForContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/list-cases-for-contact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomains = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "ListDomains"),
+    input = M.ListDomainsInput,
+    output = M.ListDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFieldOptions = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "ListFieldOptions"),
+    input = M.ListFieldOptionsInput,
+    output = M.ListFieldOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/fields/{fieldId}/options-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFields = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "ListFields"),
+    input = M.ListFieldsInput,
+    output = M.ListFieldsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/fields-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLayouts = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "ListLayouts"),
+    input = M.ListLayoutsInput,
+    output = M.ListLayoutsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/layouts-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTemplates = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "ListTemplates"),
+    input = M.ListTemplatesInput,
+    output = M.ListTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/templates-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutCaseEventConfiguration = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "PutCaseEventConfiguration"),
+    input = M.PutCaseEventConfigurationInput,
+    output = M.PutCaseEventConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{domainId}/case-event-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchAllRelatedItems = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "SearchAllRelatedItems"),
+    input = M.SearchAllRelatedItemsInput,
+    output = M.SearchAllRelatedItemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/related-items-search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchCases = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "SearchCases"),
+    input = M.SearchCasesInput,
+    output = M.SearchCasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/cases-search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchRelatedItems = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "SearchRelatedItems"),
+    input = M.SearchRelatedItemsInput,
+    output = M.SearchRelatedItemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/cases/{caseId}/related-items-search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCase = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "UpdateCase"),
+    input = M.UpdateCaseInput,
+    output = M.UpdateCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{domainId}/cases/{caseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCaseRule = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "UpdateCaseRule"),
+    input = M.UpdateCaseRuleInput,
+    output = M.UpdateCaseRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{domainId}/case-rules/{caseRuleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateField = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "UpdateField"),
+    input = M.UpdateFieldInput,
+    output = M.UpdateFieldOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{domainId}/fields/{fieldId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLayout = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "UpdateLayout"),
+    input = M.UpdateLayoutInput,
+    output = M.UpdateLayoutOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{domainId}/layouts/{layoutId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRelatedItem = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "UpdateRelatedItem"),
+    input = M.UpdateRelatedItemInput,
+    output = M.UpdateRelatedItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{domainId}/cases/{caseId}/related-items/{relatedItemId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTemplate = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "UpdateTemplate"),
+    input = M.UpdateTemplateInput,
+    output = M.UpdateTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{domainId}/templates/{templateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

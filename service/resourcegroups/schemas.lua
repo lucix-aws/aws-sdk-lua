@@ -1878,4 +1878,290 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.resourcegroups", "Ardi"),
+    version = "2017-11-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelTagSyncTask = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "CancelTagSyncTask"),
+    input = M.CancelTagSyncTaskInput,
+    output = M.CancelTagSyncTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cancel-tag-sync-task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGroup = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "CreateGroup"),
+    input = M.CreateGroupInput,
+    output = M.CreateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGroup = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "DeleteGroup"),
+    input = M.DeleteGroupInput,
+    output = M.DeleteGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "GetAccountSettings"),
+    input = M.GetAccountSettingsInput,
+    output = M.GetAccountSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-account-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGroup = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "GetGroup"),
+    input = M.GetGroupInput,
+    output = M.GetGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGroupConfiguration = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "GetGroupConfiguration"),
+    input = M.GetGroupConfigurationInput,
+    output = M.GetGroupConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-group-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGroupQuery = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "GetGroupQuery"),
+    input = M.GetGroupQueryInput,
+    output = M.GetGroupQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-group-query" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTags = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "GetTags"),
+    input = M.GetTagsInput,
+    output = M.GetTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resources/{Arn}/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTagSyncTask = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "GetTagSyncTask"),
+    input = M.GetTagSyncTaskInput,
+    output = M.GetTagSyncTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-tag-sync-task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GroupResources = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "GroupResources"),
+    input = M.GroupResourcesInput,
+    output = M.GroupResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/group-resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroupingStatuses = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "ListGroupingStatuses"),
+    input = M.ListGroupingStatusesInput,
+    output = M.ListGroupingStatusesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-grouping-statuses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroupResources = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "ListGroupResources"),
+    input = M.ListGroupResourcesInput,
+    output = M.ListGroupResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-group-resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroups = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "ListGroups"),
+    input = M.ListGroupsInput,
+    output = M.ListGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/groups-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagSyncTasks = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "ListTagSyncTasks"),
+    input = M.ListTagSyncTasksInput,
+    output = M.ListTagSyncTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-tag-sync-tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutGroupConfiguration = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "PutGroupConfiguration"),
+    input = M.PutGroupConfigurationInput,
+    output = M.PutGroupConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/put-group-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchResources = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "SearchResources"),
+    input = M.SearchResourcesInput,
+    output = M.SearchResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resources/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTagSyncTask = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "StartTagSyncTask"),
+    input = M.StartTagSyncTaskInput,
+    output = M.StartTagSyncTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/start-tag-sync-task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Tag = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "Tag"),
+    input = M.TagInput,
+    output = M.TagOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/resources/{Arn}/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UngroupResources = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "UngroupResources"),
+    input = M.UngroupResourcesInput,
+    output = M.UngroupResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ungroup-resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Untag = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "Untag"),
+    input = M.UntagInput,
+    output = M.UntagOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/resources/{Arn}/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "UpdateAccountSettings"),
+    input = M.UpdateAccountSettingsInput,
+    output = M.UpdateAccountSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-account-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGroup = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "UpdateGroup"),
+    input = M.UpdateGroupInput,
+    output = M.UpdateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGroupQuery = schema.operation({
+    id = id.from("com.amazonaws.resourcegroups", "UpdateGroupQuery"),
+    input = M.UpdateGroupQueryInput,
+    output = M.UpdateGroupQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-group-query" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("resourcegroupstaggingapi.endpoint_rules")
 local schemas = require("resourcegroupstaggingapi.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "tagging", signing_region = cfg.region } }
                 else
@@ -49,120 +52,39 @@ function M.new(cfg)
 end
 
 function Client:describeReportCreation(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeReportCreation",
-        input_schema = schemas.DescribeReportCreationInput,
-        output_schema = schemas.DescribeReportCreationOutput,
-        http_method = "POST",
-        http_path = "/DescribeReportCreation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeReportCreation, input, options)
 end
 
 function Client:getComplianceSummary(input, options)
-    return self:invokeOperation(input, {
-        name = "GetComplianceSummary",
-        input_schema = schemas.GetComplianceSummaryInput,
-        output_schema = schemas.GetComplianceSummaryOutput,
-        http_method = "POST",
-        http_path = "/GetComplianceSummary",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetComplianceSummary, input, options)
 end
 
 function Client:getResources(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResources",
-        input_schema = schemas.GetResourcesInput,
-        output_schema = schemas.GetResourcesOutput,
-        http_method = "POST",
-        http_path = "/GetResources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResources, input, options)
 end
 
 function Client:getTagKeys(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTagKeys",
-        input_schema = schemas.GetTagKeysInput,
-        output_schema = schemas.GetTagKeysOutput,
-        http_method = "POST",
-        http_path = "/GetTagKeys",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTagKeys, input, options)
 end
 
 function Client:getTagValues(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTagValues",
-        input_schema = schemas.GetTagValuesInput,
-        output_schema = schemas.GetTagValuesOutput,
-        http_method = "POST",
-        http_path = "/GetTagValues",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTagValues, input, options)
 end
 
 function Client:listRequiredTags(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRequiredTags",
-        input_schema = schemas.ListRequiredTagsInput,
-        output_schema = schemas.ListRequiredTagsOutput,
-        http_method = "POST",
-        http_path = "/ListRequiredTags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRequiredTags, input, options)
 end
 
 function Client:startReportCreation(input, options)
-    return self:invokeOperation(input, {
-        name = "StartReportCreation",
-        input_schema = schemas.StartReportCreationInput,
-        output_schema = schemas.StartReportCreationOutput,
-        http_method = "POST",
-        http_path = "/StartReportCreation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartReportCreation, input, options)
 end
 
 function Client:tagResources(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResources",
-        input_schema = schemas.TagResourcesInput,
-        output_schema = schemas.TagResourcesOutput,
-        http_method = "POST",
-        http_path = "/TagResources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResources, input, options)
 end
 
 function Client:untagResources(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResources",
-        input_schema = schemas.UntagResourcesInput,
-        output_schema = schemas.UntagResourcesOutput,
-        http_method = "POST",
-        http_path = "/UntagResources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResources, input, options)
 end
 
 return M

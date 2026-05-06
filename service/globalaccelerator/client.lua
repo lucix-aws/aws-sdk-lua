@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("globalaccelerator.endpoint_rules")
 local schemas = require("globalaccelerator.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "globalaccelerator", signing_region = cfg.region } }
                 else
@@ -49,731 +52,227 @@ function M.new(cfg)
 end
 
 function Client:addCustomRoutingEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "AddCustomRoutingEndpoints",
-        input_schema = schemas.AddCustomRoutingEndpointsInput,
-        output_schema = schemas.AddCustomRoutingEndpointsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddCustomRoutingEndpoints, input, options)
 end
 
 function Client:addEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "AddEndpoints",
-        input_schema = schemas.AddEndpointsInput,
-        output_schema = schemas.AddEndpointsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddEndpoints, input, options)
 end
 
 function Client:advertiseByoipCidr(input, options)
-    return self:invokeOperation(input, {
-        name = "AdvertiseByoipCidr",
-        input_schema = schemas.AdvertiseByoipCidrInput,
-        output_schema = schemas.AdvertiseByoipCidrOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AdvertiseByoipCidr, input, options)
 end
 
 function Client:allowCustomRoutingTraffic(input, options)
-    return self:invokeOperation(input, {
-        name = "AllowCustomRoutingTraffic",
-        input_schema = schemas.AllowCustomRoutingTrafficInput,
-        output_schema = schemas.AllowCustomRoutingTrafficOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AllowCustomRoutingTraffic, input, options)
 end
 
 function Client:createAccelerator(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAccelerator",
-        input_schema = schemas.CreateAcceleratorInput,
-        output_schema = schemas.CreateAcceleratorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAccelerator, input, options)
 end
 
 function Client:createCrossAccountAttachment(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCrossAccountAttachment",
-        input_schema = schemas.CreateCrossAccountAttachmentInput,
-        output_schema = schemas.CreateCrossAccountAttachmentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCrossAccountAttachment, input, options)
 end
 
 function Client:createCustomRoutingAccelerator(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCustomRoutingAccelerator",
-        input_schema = schemas.CreateCustomRoutingAcceleratorInput,
-        output_schema = schemas.CreateCustomRoutingAcceleratorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCustomRoutingAccelerator, input, options)
 end
 
 function Client:createCustomRoutingEndpointGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCustomRoutingEndpointGroup",
-        input_schema = schemas.CreateCustomRoutingEndpointGroupInput,
-        output_schema = schemas.CreateCustomRoutingEndpointGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCustomRoutingEndpointGroup, input, options)
 end
 
 function Client:createCustomRoutingListener(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCustomRoutingListener",
-        input_schema = schemas.CreateCustomRoutingListenerInput,
-        output_schema = schemas.CreateCustomRoutingListenerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCustomRoutingListener, input, options)
 end
 
 function Client:createEndpointGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEndpointGroup",
-        input_schema = schemas.CreateEndpointGroupInput,
-        output_schema = schemas.CreateEndpointGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEndpointGroup, input, options)
 end
 
 function Client:createListener(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateListener",
-        input_schema = schemas.CreateListenerInput,
-        output_schema = schemas.CreateListenerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateListener, input, options)
 end
 
 function Client:deleteAccelerator(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAccelerator",
-        input_schema = schemas.DeleteAcceleratorInput,
-        output_schema = schemas.DeleteAcceleratorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAccelerator, input, options)
 end
 
 function Client:deleteCrossAccountAttachment(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCrossAccountAttachment",
-        input_schema = schemas.DeleteCrossAccountAttachmentInput,
-        output_schema = schemas.DeleteCrossAccountAttachmentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCrossAccountAttachment, input, options)
 end
 
 function Client:deleteCustomRoutingAccelerator(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCustomRoutingAccelerator",
-        input_schema = schemas.DeleteCustomRoutingAcceleratorInput,
-        output_schema = schemas.DeleteCustomRoutingAcceleratorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCustomRoutingAccelerator, input, options)
 end
 
 function Client:deleteCustomRoutingEndpointGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCustomRoutingEndpointGroup",
-        input_schema = schemas.DeleteCustomRoutingEndpointGroupInput,
-        output_schema = schemas.DeleteCustomRoutingEndpointGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCustomRoutingEndpointGroup, input, options)
 end
 
 function Client:deleteCustomRoutingListener(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCustomRoutingListener",
-        input_schema = schemas.DeleteCustomRoutingListenerInput,
-        output_schema = schemas.DeleteCustomRoutingListenerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCustomRoutingListener, input, options)
 end
 
 function Client:deleteEndpointGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEndpointGroup",
-        input_schema = schemas.DeleteEndpointGroupInput,
-        output_schema = schemas.DeleteEndpointGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEndpointGroup, input, options)
 end
 
 function Client:deleteListener(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteListener",
-        input_schema = schemas.DeleteListenerInput,
-        output_schema = schemas.DeleteListenerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteListener, input, options)
 end
 
 function Client:denyCustomRoutingTraffic(input, options)
-    return self:invokeOperation(input, {
-        name = "DenyCustomRoutingTraffic",
-        input_schema = schemas.DenyCustomRoutingTrafficInput,
-        output_schema = schemas.DenyCustomRoutingTrafficOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DenyCustomRoutingTraffic, input, options)
 end
 
 function Client:deprovisionByoipCidr(input, options)
-    return self:invokeOperation(input, {
-        name = "DeprovisionByoipCidr",
-        input_schema = schemas.DeprovisionByoipCidrInput,
-        output_schema = schemas.DeprovisionByoipCidrOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeprovisionByoipCidr, input, options)
 end
 
 function Client:describeAccelerator(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAccelerator",
-        input_schema = schemas.DescribeAcceleratorInput,
-        output_schema = schemas.DescribeAcceleratorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAccelerator, input, options)
 end
 
 function Client:describeAcceleratorAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAcceleratorAttributes",
-        input_schema = schemas.DescribeAcceleratorAttributesInput,
-        output_schema = schemas.DescribeAcceleratorAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAcceleratorAttributes, input, options)
 end
 
 function Client:describeCrossAccountAttachment(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCrossAccountAttachment",
-        input_schema = schemas.DescribeCrossAccountAttachmentInput,
-        output_schema = schemas.DescribeCrossAccountAttachmentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCrossAccountAttachment, input, options)
 end
 
 function Client:describeCustomRoutingAccelerator(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCustomRoutingAccelerator",
-        input_schema = schemas.DescribeCustomRoutingAcceleratorInput,
-        output_schema = schemas.DescribeCustomRoutingAcceleratorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCustomRoutingAccelerator, input, options)
 end
 
 function Client:describeCustomRoutingAcceleratorAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCustomRoutingAcceleratorAttributes",
-        input_schema = schemas.DescribeCustomRoutingAcceleratorAttributesInput,
-        output_schema = schemas.DescribeCustomRoutingAcceleratorAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCustomRoutingAcceleratorAttributes, input, options)
 end
 
 function Client:describeCustomRoutingEndpointGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCustomRoutingEndpointGroup",
-        input_schema = schemas.DescribeCustomRoutingEndpointGroupInput,
-        output_schema = schemas.DescribeCustomRoutingEndpointGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCustomRoutingEndpointGroup, input, options)
 end
 
 function Client:describeCustomRoutingListener(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCustomRoutingListener",
-        input_schema = schemas.DescribeCustomRoutingListenerInput,
-        output_schema = schemas.DescribeCustomRoutingListenerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCustomRoutingListener, input, options)
 end
 
 function Client:describeEndpointGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEndpointGroup",
-        input_schema = schemas.DescribeEndpointGroupInput,
-        output_schema = schemas.DescribeEndpointGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEndpointGroup, input, options)
 end
 
 function Client:describeListener(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeListener",
-        input_schema = schemas.DescribeListenerInput,
-        output_schema = schemas.DescribeListenerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeListener, input, options)
 end
 
 function Client:listAccelerators(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAccelerators",
-        input_schema = schemas.ListAcceleratorsInput,
-        output_schema = schemas.ListAcceleratorsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAccelerators, input, options)
 end
 
 function Client:listByoipCidrs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListByoipCidrs",
-        input_schema = schemas.ListByoipCidrsInput,
-        output_schema = schemas.ListByoipCidrsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListByoipCidrs, input, options)
 end
 
 function Client:listCrossAccountAttachments(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCrossAccountAttachments",
-        input_schema = schemas.ListCrossAccountAttachmentsInput,
-        output_schema = schemas.ListCrossAccountAttachmentsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCrossAccountAttachments, input, options)
 end
 
 function Client:listCrossAccountResourceAccounts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCrossAccountResourceAccounts",
-        input_schema = schemas.ListCrossAccountResourceAccountsInput,
-        output_schema = schemas.ListCrossAccountResourceAccountsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCrossAccountResourceAccounts, input, options)
 end
 
 function Client:listCrossAccountResources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCrossAccountResources",
-        input_schema = schemas.ListCrossAccountResourcesInput,
-        output_schema = schemas.ListCrossAccountResourcesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCrossAccountResources, input, options)
 end
 
 function Client:listCustomRoutingAccelerators(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCustomRoutingAccelerators",
-        input_schema = schemas.ListCustomRoutingAcceleratorsInput,
-        output_schema = schemas.ListCustomRoutingAcceleratorsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCustomRoutingAccelerators, input, options)
 end
 
 function Client:listCustomRoutingEndpointGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCustomRoutingEndpointGroups",
-        input_schema = schemas.ListCustomRoutingEndpointGroupsInput,
-        output_schema = schemas.ListCustomRoutingEndpointGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCustomRoutingEndpointGroups, input, options)
 end
 
 function Client:listCustomRoutingListeners(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCustomRoutingListeners",
-        input_schema = schemas.ListCustomRoutingListenersInput,
-        output_schema = schemas.ListCustomRoutingListenersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCustomRoutingListeners, input, options)
 end
 
 function Client:listCustomRoutingPortMappings(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCustomRoutingPortMappings",
-        input_schema = schemas.ListCustomRoutingPortMappingsInput,
-        output_schema = schemas.ListCustomRoutingPortMappingsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCustomRoutingPortMappings, input, options)
 end
 
 function Client:listCustomRoutingPortMappingsByDestination(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCustomRoutingPortMappingsByDestination",
-        input_schema = schemas.ListCustomRoutingPortMappingsByDestinationInput,
-        output_schema = schemas.ListCustomRoutingPortMappingsByDestinationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCustomRoutingPortMappingsByDestination, input, options)
 end
 
 function Client:listEndpointGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEndpointGroups",
-        input_schema = schemas.ListEndpointGroupsInput,
-        output_schema = schemas.ListEndpointGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEndpointGroups, input, options)
 end
 
 function Client:listListeners(input, options)
-    return self:invokeOperation(input, {
-        name = "ListListeners",
-        input_schema = schemas.ListListenersInput,
-        output_schema = schemas.ListListenersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListListeners, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:provisionByoipCidr(input, options)
-    return self:invokeOperation(input, {
-        name = "ProvisionByoipCidr",
-        input_schema = schemas.ProvisionByoipCidrInput,
-        output_schema = schemas.ProvisionByoipCidrOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ProvisionByoipCidr, input, options)
 end
 
 function Client:removeCustomRoutingEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveCustomRoutingEndpoints",
-        input_schema = schemas.RemoveCustomRoutingEndpointsInput,
-        output_schema = schemas.RemoveCustomRoutingEndpointsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveCustomRoutingEndpoints, input, options)
 end
 
 function Client:removeEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveEndpoints",
-        input_schema = schemas.RemoveEndpointsInput,
-        output_schema = schemas.RemoveEndpointsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveEndpoints, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAccelerator(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAccelerator",
-        input_schema = schemas.UpdateAcceleratorInput,
-        output_schema = schemas.UpdateAcceleratorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAccelerator, input, options)
 end
 
 function Client:updateAcceleratorAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAcceleratorAttributes",
-        input_schema = schemas.UpdateAcceleratorAttributesInput,
-        output_schema = schemas.UpdateAcceleratorAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAcceleratorAttributes, input, options)
 end
 
 function Client:updateCrossAccountAttachment(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCrossAccountAttachment",
-        input_schema = schemas.UpdateCrossAccountAttachmentInput,
-        output_schema = schemas.UpdateCrossAccountAttachmentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCrossAccountAttachment, input, options)
 end
 
 function Client:updateCustomRoutingAccelerator(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCustomRoutingAccelerator",
-        input_schema = schemas.UpdateCustomRoutingAcceleratorInput,
-        output_schema = schemas.UpdateCustomRoutingAcceleratorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCustomRoutingAccelerator, input, options)
 end
 
 function Client:updateCustomRoutingAcceleratorAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCustomRoutingAcceleratorAttributes",
-        input_schema = schemas.UpdateCustomRoutingAcceleratorAttributesInput,
-        output_schema = schemas.UpdateCustomRoutingAcceleratorAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCustomRoutingAcceleratorAttributes, input, options)
 end
 
 function Client:updateCustomRoutingListener(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCustomRoutingListener",
-        input_schema = schemas.UpdateCustomRoutingListenerInput,
-        output_schema = schemas.UpdateCustomRoutingListenerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCustomRoutingListener, input, options)
 end
 
 function Client:updateEndpointGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateEndpointGroup",
-        input_schema = schemas.UpdateEndpointGroupInput,
-        output_schema = schemas.UpdateEndpointGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateEndpointGroup, input, options)
 end
 
 function Client:updateListener(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateListener",
-        input_schema = schemas.UpdateListenerInput,
-        output_schema = schemas.UpdateListenerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateListener, input, options)
 end
 
 function Client:withdrawByoipCidr(input, options)
-    return self:invokeOperation(input, {
-        name = "WithdrawByoipCidr",
-        input_schema = schemas.WithdrawByoipCidrInput,
-        output_schema = schemas.WithdrawByoipCidrOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.WithdrawByoipCidr, input, options)
 end
 
 return M

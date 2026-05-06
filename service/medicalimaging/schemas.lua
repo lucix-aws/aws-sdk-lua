@@ -2480,4 +2480,230 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.medicalimaging", "AHIGatewayService"),
+    version = "2023-07-19",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyImageSet = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "CopyImageSet"),
+    input = M.CopyImageSetInput,
+    output = M.CopyImageSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datastore/{datastoreId}/imageSet/{sourceImageSetId}/copyImageSet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDatastore = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "CreateDatastore"),
+    input = M.CreateDatastoreInput,
+    output = M.CreateDatastoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datastore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDatastore = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "DeleteDatastore"),
+    input = M.DeleteDatastoreInput,
+    output = M.DeleteDatastoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/datastore/{datastoreId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteImageSet = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "DeleteImageSet"),
+    input = M.DeleteImageSetInput,
+    output = M.DeleteImageSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datastore/{datastoreId}/imageSet/{imageSetId}/deleteImageSet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDatastore = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "GetDatastore"),
+    input = M.GetDatastoreInput,
+    output = M.GetDatastoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/datastore/{datastoreId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDICOMImportJob = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "GetDICOMImportJob"),
+    input = M.GetDICOMImportJobInput,
+    output = M.GetDICOMImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/getDICOMImportJob/datastore/{datastoreId}/job/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImageFrame = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "GetImageFrame"),
+    input = M.GetImageFrameInput,
+    output = M.GetImageFrameOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datastore/{datastoreId}/imageSet/{imageSetId}/getImageFrame" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImageSet = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "GetImageSet"),
+    input = M.GetImageSetInput,
+    output = M.GetImageSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datastore/{datastoreId}/imageSet/{imageSetId}/getImageSet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImageSetMetadata = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "GetImageSetMetadata"),
+    input = M.GetImageSetMetadataInput,
+    output = M.GetImageSetMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datastore/{datastoreId}/imageSet/{imageSetId}/getImageSetMetadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatastores = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "ListDatastores"),
+    input = M.ListDatastoresInput,
+    output = M.ListDatastoresOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/datastore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDICOMImportJobs = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "ListDICOMImportJobs"),
+    input = M.ListDICOMImportJobsInput,
+    output = M.ListDICOMImportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/listDICOMImportJobs/datastore/{datastoreId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImageSetVersions = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "ListImageSetVersions"),
+    input = M.ListImageSetVersionsInput,
+    output = M.ListImageSetVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datastore/{datastoreId}/imageSet/{imageSetId}/listImageSetVersions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchImageSets = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "SearchImageSets"),
+    input = M.SearchImageSetsInput,
+    output = M.SearchImageSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datastore/{datastoreId}/searchImageSets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDICOMImportJob = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "StartDICOMImportJob"),
+    input = M.StartDICOMImportJobInput,
+    output = M.StartDICOMImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/startDICOMImportJob/datastore/{datastoreId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateImageSetMetadata = schema.operation({
+    id = id.from("com.amazonaws.medicalimaging", "UpdateImageSetMetadata"),
+    input = M.UpdateImageSetMetadataInput,
+    output = M.UpdateImageSetMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datastore/{datastoreId}/imageSet/{imageSetId}/updateImageSetMetadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

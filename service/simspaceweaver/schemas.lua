@@ -1217,4 +1217,206 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.simspaceweaver", "SimSpaceWeaver"),
+    version = "2022-10-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSnapshot = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "CreateSnapshot"),
+    input = M.CreateSnapshotInput,
+    output = M.CreateSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/createsnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApp = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "DeleteApp"),
+    input = M.DeleteAppInput,
+    output = M.DeleteAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/deleteapp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSimulation = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "DeleteSimulation"),
+    input = M.DeleteSimulationInput,
+    output = M.DeleteSimulationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/deletesimulation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApp = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "DescribeApp"),
+    input = M.DescribeAppInput,
+    output = M.DescribeAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/describeapp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSimulation = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "DescribeSimulation"),
+    input = M.DescribeSimulationInput,
+    output = M.DescribeSimulationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/describesimulation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApps = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "ListApps"),
+    input = M.ListAppsInput,
+    output = M.ListAppsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/listapps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSimulations = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "ListSimulations"),
+    input = M.ListSimulationsInput,
+    output = M.ListSimulationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/listsimulations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartApp = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "StartApp"),
+    input = M.StartAppInput,
+    output = M.StartAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/startapp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartClock = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "StartClock"),
+    input = M.StartClockInput,
+    output = M.StartClockOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/startclock" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSimulation = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "StartSimulation"),
+    input = M.StartSimulationInput,
+    output = M.StartSimulationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/startsimulation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopApp = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "StopApp"),
+    input = M.StopAppInput,
+    output = M.StopAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/stopapp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopClock = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "StopClock"),
+    input = M.StopClockInput,
+    output = M.StopClockOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/stopclock" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopSimulation = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "StopSimulation"),
+    input = M.StopSimulationInput,
+    output = M.StopSimulationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/stopsimulation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.simspaceweaver", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

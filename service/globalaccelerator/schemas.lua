@@ -3631,4 +3631,630 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.globalaccelerator", "GlobalAccelerator_V20180706"),
+    version = "2018-08-08",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddCustomRoutingEndpoints = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "AddCustomRoutingEndpoints"),
+    input = M.AddCustomRoutingEndpointsInput,
+    output = M.AddCustomRoutingEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddEndpoints = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "AddEndpoints"),
+    input = M.AddEndpointsInput,
+    output = M.AddEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdvertiseByoipCidr = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "AdvertiseByoipCidr"),
+    input = M.AdvertiseByoipCidrInput,
+    output = M.AdvertiseByoipCidrOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AllowCustomRoutingTraffic = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "AllowCustomRoutingTraffic"),
+    input = M.AllowCustomRoutingTrafficInput,
+    output = M.AllowCustomRoutingTrafficOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccelerator = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "CreateAccelerator"),
+    input = M.CreateAcceleratorInput,
+    output = M.CreateAcceleratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCrossAccountAttachment = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "CreateCrossAccountAttachment"),
+    input = M.CreateCrossAccountAttachmentInput,
+    output = M.CreateCrossAccountAttachmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomRoutingAccelerator = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "CreateCustomRoutingAccelerator"),
+    input = M.CreateCustomRoutingAcceleratorInput,
+    output = M.CreateCustomRoutingAcceleratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomRoutingEndpointGroup = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "CreateCustomRoutingEndpointGroup"),
+    input = M.CreateCustomRoutingEndpointGroupInput,
+    output = M.CreateCustomRoutingEndpointGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomRoutingListener = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "CreateCustomRoutingListener"),
+    input = M.CreateCustomRoutingListenerInput,
+    output = M.CreateCustomRoutingListenerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEndpointGroup = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "CreateEndpointGroup"),
+    input = M.CreateEndpointGroupInput,
+    output = M.CreateEndpointGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateListener = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "CreateListener"),
+    input = M.CreateListenerInput,
+    output = M.CreateListenerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccelerator = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DeleteAccelerator"),
+    input = M.DeleteAcceleratorInput,
+    output = M.DeleteAcceleratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCrossAccountAttachment = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DeleteCrossAccountAttachment"),
+    input = M.DeleteCrossAccountAttachmentInput,
+    output = M.DeleteCrossAccountAttachmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomRoutingAccelerator = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DeleteCustomRoutingAccelerator"),
+    input = M.DeleteCustomRoutingAcceleratorInput,
+    output = M.DeleteCustomRoutingAcceleratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomRoutingEndpointGroup = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DeleteCustomRoutingEndpointGroup"),
+    input = M.DeleteCustomRoutingEndpointGroupInput,
+    output = M.DeleteCustomRoutingEndpointGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomRoutingListener = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DeleteCustomRoutingListener"),
+    input = M.DeleteCustomRoutingListenerInput,
+    output = M.DeleteCustomRoutingListenerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEndpointGroup = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DeleteEndpointGroup"),
+    input = M.DeleteEndpointGroupInput,
+    output = M.DeleteEndpointGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteListener = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DeleteListener"),
+    input = M.DeleteListenerInput,
+    output = M.DeleteListenerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DenyCustomRoutingTraffic = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DenyCustomRoutingTraffic"),
+    input = M.DenyCustomRoutingTrafficInput,
+    output = M.DenyCustomRoutingTrafficOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeprovisionByoipCidr = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DeprovisionByoipCidr"),
+    input = M.DeprovisionByoipCidrInput,
+    output = M.DeprovisionByoipCidrOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccelerator = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DescribeAccelerator"),
+    input = M.DescribeAcceleratorInput,
+    output = M.DescribeAcceleratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAcceleratorAttributes = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DescribeAcceleratorAttributes"),
+    input = M.DescribeAcceleratorAttributesInput,
+    output = M.DescribeAcceleratorAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCrossAccountAttachment = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DescribeCrossAccountAttachment"),
+    input = M.DescribeCrossAccountAttachmentInput,
+    output = M.DescribeCrossAccountAttachmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCustomRoutingAccelerator = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DescribeCustomRoutingAccelerator"),
+    input = M.DescribeCustomRoutingAcceleratorInput,
+    output = M.DescribeCustomRoutingAcceleratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCustomRoutingAcceleratorAttributes = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DescribeCustomRoutingAcceleratorAttributes"),
+    input = M.DescribeCustomRoutingAcceleratorAttributesInput,
+    output = M.DescribeCustomRoutingAcceleratorAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCustomRoutingEndpointGroup = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DescribeCustomRoutingEndpointGroup"),
+    input = M.DescribeCustomRoutingEndpointGroupInput,
+    output = M.DescribeCustomRoutingEndpointGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCustomRoutingListener = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DescribeCustomRoutingListener"),
+    input = M.DescribeCustomRoutingListenerInput,
+    output = M.DescribeCustomRoutingListenerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEndpointGroup = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DescribeEndpointGroup"),
+    input = M.DescribeEndpointGroupInput,
+    output = M.DescribeEndpointGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeListener = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "DescribeListener"),
+    input = M.DescribeListenerInput,
+    output = M.DescribeListenerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccelerators = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "ListAccelerators"),
+    input = M.ListAcceleratorsInput,
+    output = M.ListAcceleratorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListByoipCidrs = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "ListByoipCidrs"),
+    input = M.ListByoipCidrsInput,
+    output = M.ListByoipCidrsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCrossAccountAttachments = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "ListCrossAccountAttachments"),
+    input = M.ListCrossAccountAttachmentsInput,
+    output = M.ListCrossAccountAttachmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCrossAccountResourceAccounts = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "ListCrossAccountResourceAccounts"),
+    input = M.ListCrossAccountResourceAccountsInput,
+    output = M.ListCrossAccountResourceAccountsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCrossAccountResources = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "ListCrossAccountResources"),
+    input = M.ListCrossAccountResourcesInput,
+    output = M.ListCrossAccountResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomRoutingAccelerators = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "ListCustomRoutingAccelerators"),
+    input = M.ListCustomRoutingAcceleratorsInput,
+    output = M.ListCustomRoutingAcceleratorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomRoutingEndpointGroups = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "ListCustomRoutingEndpointGroups"),
+    input = M.ListCustomRoutingEndpointGroupsInput,
+    output = M.ListCustomRoutingEndpointGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomRoutingListeners = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "ListCustomRoutingListeners"),
+    input = M.ListCustomRoutingListenersInput,
+    output = M.ListCustomRoutingListenersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomRoutingPortMappings = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "ListCustomRoutingPortMappings"),
+    input = M.ListCustomRoutingPortMappingsInput,
+    output = M.ListCustomRoutingPortMappingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomRoutingPortMappingsByDestination = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "ListCustomRoutingPortMappingsByDestination"),
+    input = M.ListCustomRoutingPortMappingsByDestinationInput,
+    output = M.ListCustomRoutingPortMappingsByDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEndpointGroups = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "ListEndpointGroups"),
+    input = M.ListEndpointGroupsInput,
+    output = M.ListEndpointGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListListeners = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "ListListeners"),
+    input = M.ListListenersInput,
+    output = M.ListListenersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ProvisionByoipCidr = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "ProvisionByoipCidr"),
+    input = M.ProvisionByoipCidrInput,
+    output = M.ProvisionByoipCidrOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveCustomRoutingEndpoints = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "RemoveCustomRoutingEndpoints"),
+    input = M.RemoveCustomRoutingEndpointsInput,
+    output = M.RemoveCustomRoutingEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveEndpoints = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "RemoveEndpoints"),
+    input = M.RemoveEndpointsInput,
+    output = M.RemoveEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccelerator = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "UpdateAccelerator"),
+    input = M.UpdateAcceleratorInput,
+    output = M.UpdateAcceleratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAcceleratorAttributes = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "UpdateAcceleratorAttributes"),
+    input = M.UpdateAcceleratorAttributesInput,
+    output = M.UpdateAcceleratorAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCrossAccountAttachment = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "UpdateCrossAccountAttachment"),
+    input = M.UpdateCrossAccountAttachmentInput,
+    output = M.UpdateCrossAccountAttachmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCustomRoutingAccelerator = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "UpdateCustomRoutingAccelerator"),
+    input = M.UpdateCustomRoutingAcceleratorInput,
+    output = M.UpdateCustomRoutingAcceleratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCustomRoutingAcceleratorAttributes = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "UpdateCustomRoutingAcceleratorAttributes"),
+    input = M.UpdateCustomRoutingAcceleratorAttributesInput,
+    output = M.UpdateCustomRoutingAcceleratorAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCustomRoutingListener = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "UpdateCustomRoutingListener"),
+    input = M.UpdateCustomRoutingListenerInput,
+    output = M.UpdateCustomRoutingListenerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEndpointGroup = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "UpdateEndpointGroup"),
+    input = M.UpdateEndpointGroupInput,
+    output = M.UpdateEndpointGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateListener = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "UpdateListener"),
+    input = M.UpdateListenerInput,
+    output = M.UpdateListenerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.WithdrawByoipCidr = schema.operation({
+    id = id.from("com.amazonaws.globalaccelerator", "WithdrawByoipCidr"),
+    input = M.WithdrawByoipCidrInput,
+    output = M.WithdrawByoipCidrOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

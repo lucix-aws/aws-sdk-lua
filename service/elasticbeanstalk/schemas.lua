@@ -5056,4 +5056,531 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.elasticbeanstalk", "AWSElasticBeanstalkService"),
+    version = "2010-12-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AbortEnvironmentUpdate = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "AbortEnvironmentUpdate"),
+    input = M.AbortEnvironmentUpdateInput,
+    output = M.AbortEnvironmentUpdateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ApplyEnvironmentManagedAction = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "ApplyEnvironmentManagedAction"),
+    input = M.ApplyEnvironmentManagedActionInput,
+    output = M.ApplyEnvironmentManagedActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateEnvironmentOperationsRole = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "AssociateEnvironmentOperationsRole"),
+    input = M.AssociateEnvironmentOperationsRoleInput,
+    output = M.AssociateEnvironmentOperationsRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckDNSAvailability = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "CheckDNSAvailability"),
+    input = M.CheckDNSAvailabilityInput,
+    output = M.CheckDNSAvailabilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ComposeEnvironments = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "ComposeEnvironments"),
+    input = M.ComposeEnvironmentsInput,
+    output = M.ComposeEnvironmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplicationVersion = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "CreateApplicationVersion"),
+    input = M.CreateApplicationVersionInput,
+    output = M.CreateApplicationVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "CreateConfigurationTemplate"),
+    input = M.CreateConfigurationTemplateInput,
+    output = M.CreateConfigurationTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "CreateEnvironment"),
+    input = M.CreateEnvironmentInput,
+    output = M.CreateEnvironmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePlatformVersion = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "CreatePlatformVersion"),
+    input = M.CreatePlatformVersionInput,
+    output = M.CreatePlatformVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStorageLocation = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "CreateStorageLocation"),
+    input = M.CreateStorageLocationInput,
+    output = M.CreateStorageLocationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplicationVersion = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DeleteApplicationVersion"),
+    input = M.DeleteApplicationVersionInput,
+    output = M.DeleteApplicationVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DeleteConfigurationTemplate"),
+    input = M.DeleteConfigurationTemplateInput,
+    output = M.DeleteConfigurationTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironmentConfiguration = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DeleteEnvironmentConfiguration"),
+    input = M.DeleteEnvironmentConfigurationInput,
+    output = M.DeleteEnvironmentConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePlatformVersion = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DeletePlatformVersion"),
+    input = M.DeletePlatformVersionInput,
+    output = M.DeletePlatformVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountAttributes = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DescribeAccountAttributes"),
+    input = M.DescribeAccountAttributesInput,
+    output = M.DescribeAccountAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplications = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DescribeApplications"),
+    input = M.DescribeApplicationsInput,
+    output = M.DescribeApplicationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicationVersions = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DescribeApplicationVersions"),
+    input = M.DescribeApplicationVersionsInput,
+    output = M.DescribeApplicationVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfigurationOptions = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DescribeConfigurationOptions"),
+    input = M.DescribeConfigurationOptionsInput,
+    output = M.DescribeConfigurationOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfigurationSettings = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DescribeConfigurationSettings"),
+    input = M.DescribeConfigurationSettingsInput,
+    output = M.DescribeConfigurationSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEnvironmentHealth = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DescribeEnvironmentHealth"),
+    input = M.DescribeEnvironmentHealthInput,
+    output = M.DescribeEnvironmentHealthOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEnvironmentManagedActionHistory = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DescribeEnvironmentManagedActionHistory"),
+    input = M.DescribeEnvironmentManagedActionHistoryInput,
+    output = M.DescribeEnvironmentManagedActionHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEnvironmentManagedActions = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DescribeEnvironmentManagedActions"),
+    input = M.DescribeEnvironmentManagedActionsInput,
+    output = M.DescribeEnvironmentManagedActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEnvironmentResources = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DescribeEnvironmentResources"),
+    input = M.DescribeEnvironmentResourcesInput,
+    output = M.DescribeEnvironmentResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEnvironments = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DescribeEnvironments"),
+    input = M.DescribeEnvironmentsInput,
+    output = M.DescribeEnvironmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEvents = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DescribeEvents"),
+    input = M.DescribeEventsInput,
+    output = M.DescribeEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInstancesHealth = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DescribeInstancesHealth"),
+    input = M.DescribeInstancesHealthInput,
+    output = M.DescribeInstancesHealthOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePlatformVersion = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DescribePlatformVersion"),
+    input = M.DescribePlatformVersionInput,
+    output = M.DescribePlatformVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateEnvironmentOperationsRole = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "DisassociateEnvironmentOperationsRole"),
+    input = M.DisassociateEnvironmentOperationsRoleInput,
+    output = M.DisassociateEnvironmentOperationsRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAvailableSolutionStacks = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "ListAvailableSolutionStacks"),
+    input = M.ListAvailableSolutionStacksInput,
+    output = M.ListAvailableSolutionStacksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPlatformBranches = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "ListPlatformBranches"),
+    input = M.ListPlatformBranchesInput,
+    output = M.ListPlatformBranchesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPlatformVersions = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "ListPlatformVersions"),
+    input = M.ListPlatformVersionsInput,
+    output = M.ListPlatformVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebuildEnvironment = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "RebuildEnvironment"),
+    input = M.RebuildEnvironmentInput,
+    output = M.RebuildEnvironmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RequestEnvironmentInfo = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "RequestEnvironmentInfo"),
+    input = M.RequestEnvironmentInfoInput,
+    output = M.RequestEnvironmentInfoOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestartAppServer = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "RestartAppServer"),
+    input = M.RestartAppServerInput,
+    output = M.RestartAppServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetrieveEnvironmentInfo = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "RetrieveEnvironmentInfo"),
+    input = M.RetrieveEnvironmentInfoInput,
+    output = M.RetrieveEnvironmentInfoOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SwapEnvironmentCNAMEs = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "SwapEnvironmentCNAMEs"),
+    input = M.SwapEnvironmentCNAMEsInput,
+    output = M.SwapEnvironmentCNAMEsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "TerminateEnvironment"),
+    input = M.TerminateEnvironmentInput,
+    output = M.TerminateEnvironmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplicationResourceLifecycle = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "UpdateApplicationResourceLifecycle"),
+    input = M.UpdateApplicationResourceLifecycleInput,
+    output = M.UpdateApplicationResourceLifecycleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplicationVersion = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "UpdateApplicationVersion"),
+    input = M.UpdateApplicationVersionInput,
+    output = M.UpdateApplicationVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "UpdateConfigurationTemplate"),
+    input = M.UpdateConfigurationTemplateInput,
+    output = M.UpdateConfigurationTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "UpdateEnvironment"),
+    input = M.UpdateEnvironmentInput,
+    output = M.UpdateEnvironmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "UpdateTagsForResource"),
+    input = M.UpdateTagsForResourceInput,
+    output = M.UpdateTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateConfigurationSettings = schema.operation({
+    id = id.from("com.amazonaws.elasticbeanstalk", "ValidateConfigurationSettings"),
+    input = M.ValidateConfigurationSettingsInput,
+    output = M.ValidateConfigurationSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -2087,4 +2087,398 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.resourceexplorer2", "ResourceExplorer"),
+    version = "2022-07-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateDefaultView = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "AssociateDefaultView"),
+    input = M.AssociateDefaultViewInput,
+    output = M.AssociateDefaultViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/AssociateDefaultView" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetView = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "BatchGetView"),
+    input = M.BatchGetViewInput,
+    output = M.BatchGetViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetView" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIndex = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "CreateIndex"),
+    input = M.CreateIndexInput,
+    output = M.CreateIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateIndex" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResourceExplorerSetup = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "CreateResourceExplorerSetup"),
+    input = M.CreateResourceExplorerSetupInput,
+    output = M.CreateResourceExplorerSetupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateResourceExplorerSetup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateView = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "CreateView"),
+    input = M.CreateViewInput,
+    output = M.CreateViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateView" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIndex = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "DeleteIndex"),
+    input = M.DeleteIndexInput,
+    output = M.DeleteIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteIndex" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourceExplorerSetup = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "DeleteResourceExplorerSetup"),
+    input = M.DeleteResourceExplorerSetupInput,
+    output = M.DeleteResourceExplorerSetupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteResourceExplorerSetup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteView = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "DeleteView"),
+    input = M.DeleteViewInput,
+    output = M.DeleteViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteView" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateDefaultView = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "DisassociateDefaultView"),
+    input = M.DisassociateDefaultViewInput,
+    output = M.DisassociateDefaultViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DisassociateDefaultView" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountLevelServiceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "GetAccountLevelServiceConfiguration"),
+    input = M.GetAccountLevelServiceConfigurationInput,
+    output = M.GetAccountLevelServiceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetAccountLevelServiceConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDefaultView = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "GetDefaultView"),
+    input = M.GetDefaultViewInput,
+    output = M.GetDefaultViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetDefaultView" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIndex = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "GetIndex"),
+    input = M.GetIndexInput,
+    output = M.GetIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetIndex" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetManagedView = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "GetManagedView"),
+    input = M.GetManagedViewInput,
+    output = M.GetManagedViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetManagedView" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceExplorerSetup = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "GetResourceExplorerSetup"),
+    input = M.GetResourceExplorerSetupInput,
+    output = M.GetResourceExplorerSetupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetResourceExplorerSetup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceIndex = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "GetServiceIndex"),
+    input = M.GetServiceIndexInput,
+    output = M.GetServiceIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetServiceIndex" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceView = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "GetServiceView"),
+    input = M.GetServiceViewInput,
+    output = M.GetServiceViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetServiceView" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetView = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "GetView"),
+    input = M.GetViewInput,
+    output = M.GetViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetView" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIndexes = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "ListIndexes"),
+    input = M.ListIndexesInput,
+    output = M.ListIndexesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListIndexes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIndexesForMembers = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "ListIndexesForMembers"),
+    input = M.ListIndexesForMembersInput,
+    output = M.ListIndexesForMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListIndexesForMembers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedViews = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "ListManagedViews"),
+    input = M.ListManagedViewsInput,
+    output = M.ListManagedViewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListManagedViews" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResources = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "ListResources"),
+    input = M.ListResourcesInput,
+    output = M.ListResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListResources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceIndexes = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "ListServiceIndexes"),
+    input = M.ListServiceIndexesInput,
+    output = M.ListServiceIndexesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListServiceIndexes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceViews = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "ListServiceViews"),
+    input = M.ListServiceViewsInput,
+    output = M.ListServiceViewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListServiceViews" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStreamingAccessForServices = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "ListStreamingAccessForServices"),
+    input = M.ListStreamingAccessForServicesInput,
+    output = M.ListStreamingAccessForServicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListStreamingAccessForServices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSupportedResourceTypes = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "ListSupportedResourceTypes"),
+    input = M.ListSupportedResourceTypesInput,
+    output = M.ListSupportedResourceTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListSupportedResourceTypes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListViews = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "ListViews"),
+    input = M.ListViewsInput,
+    output = M.ListViewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListViews" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Search = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "Search"),
+    input = M.SearchInput,
+    output = M.SearchOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/Search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIndexType = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "UpdateIndexType"),
+    input = M.UpdateIndexTypeInput,
+    output = M.UpdateIndexTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateIndexType" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateView = schema.operation({
+    id = id.from("com.amazonaws.resourceexplorer2", "UpdateView"),
+    input = M.UpdateViewInput,
+    output = M.UpdateViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateView" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -1896,4 +1896,206 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.novaact", "AmazonNovaAgentsDataPlane"),
+    version = "2025-08-22",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAct = schema.operation({
+    id = id.from("com.amazonaws.novaact", "CreateAct"),
+    input = M.CreateActInput,
+    output = M.CreateActOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions/{sessionId}/acts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSession = schema.operation({
+    id = id.from("com.amazonaws.novaact", "CreateSession"),
+    input = M.CreateSessionInput,
+    output = M.CreateSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkflowDefinition = schema.operation({
+    id = id.from("com.amazonaws.novaact", "CreateWorkflowDefinition"),
+    input = M.CreateWorkflowDefinitionInput,
+    output = M.CreateWorkflowDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workflow-definitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkflowRun = schema.operation({
+    id = id.from("com.amazonaws.novaact", "CreateWorkflowRun"),
+    input = M.CreateWorkflowRunInput,
+    output = M.CreateWorkflowRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkflowDefinition = schema.operation({
+    id = id.from("com.amazonaws.novaact", "DeleteWorkflowDefinition"),
+    input = M.DeleteWorkflowDefinitionInput,
+    output = M.DeleteWorkflowDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workflow-definitions/{workflowDefinitionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkflowRun = schema.operation({
+    id = id.from("com.amazonaws.novaact", "DeleteWorkflowRun"),
+    input = M.DeleteWorkflowRunInput,
+    output = M.DeleteWorkflowRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflowDefinition = schema.operation({
+    id = id.from("com.amazonaws.novaact", "GetWorkflowDefinition"),
+    input = M.GetWorkflowDefinitionInput,
+    output = M.GetWorkflowDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflow-definitions/{workflowDefinitionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflowRun = schema.operation({
+    id = id.from("com.amazonaws.novaact", "GetWorkflowRun"),
+    input = M.GetWorkflowRunInput,
+    output = M.GetWorkflowRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InvokeActStep = schema.operation({
+    id = id.from("com.amazonaws.novaact", "InvokeActStep"),
+    input = M.InvokeActStepInput,
+    output = M.InvokeActStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions/{sessionId}/acts/{actId}/invoke-step/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListActs = schema.operation({
+    id = id.from("com.amazonaws.novaact", "ListActs"),
+    input = M.ListActsInput,
+    output = M.ListActsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workflow-definitions/{workflowDefinitionName}/acts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModels = schema.operation({
+    id = id.from("com.amazonaws.novaact", "ListModels"),
+    input = M.ListModelsInput,
+    output = M.ListModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessions = schema.operation({
+    id = id.from("com.amazonaws.novaact", "ListSessions"),
+    input = M.ListSessionsInput,
+    output = M.ListSessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflowDefinitions = schema.operation({
+    id = id.from("com.amazonaws.novaact", "ListWorkflowDefinitions"),
+    input = M.ListWorkflowDefinitionsInput,
+    output = M.ListWorkflowDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workflow-definitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflowRuns = schema.operation({
+    id = id.from("com.amazonaws.novaact", "ListWorkflowRuns"),
+    input = M.ListWorkflowRunsInput,
+    output = M.ListWorkflowRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAct = schema.operation({
+    id = id.from("com.amazonaws.novaact", "UpdateAct"),
+    input = M.UpdateActInput,
+    output = M.UpdateActOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions/{sessionId}/acts/{actId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkflowRun = schema.operation({
+    id = id.from("com.amazonaws.novaact", "UpdateWorkflowRun"),
+    input = M.UpdateWorkflowRunInput,
+    output = M.UpdateWorkflowRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

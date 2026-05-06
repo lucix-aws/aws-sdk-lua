@@ -206,4 +206,38 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.workmailmessageflow", "GiraffeMessageInTransitService"),
+    version = "2019-05-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRawMessageContent = schema.operation({
+    id = id.from("com.amazonaws.workmailmessageflow", "GetRawMessageContent"),
+    input = M.GetRawMessageContentInput,
+    output = M.GetRawMessageContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/messages/{messageId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRawMessageContent = schema.operation({
+    id = id.from("com.amazonaws.workmailmessageflow", "PutRawMessageContent"),
+    input = M.PutRawMessageContentInput,
+    output = M.PutRawMessageContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/messages/{messageId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

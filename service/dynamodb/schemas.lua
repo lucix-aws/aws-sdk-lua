@@ -8178,4 +8178,776 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.dynamodb", "DynamoDB_20120810"),
+    version = "2012-08-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchExecuteStatement = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "BatchExecuteStatement"),
+    input = M.BatchExecuteStatementInput,
+    output = M.BatchExecuteStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetItem = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "BatchGetItem"),
+    input = M.BatchGetItemInput,
+    output = M.BatchGetItemOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchWriteItem = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "BatchWriteItem"),
+    input = M.BatchWriteItemInput,
+    output = M.BatchWriteItemOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBackup = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "CreateBackup"),
+    input = M.CreateBackupInput,
+    output = M.CreateBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.CreateGlobalTable = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "CreateGlobalTable"),
+    input = M.CreateGlobalTableInput,
+    output = M.CreateGlobalTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "GlobalTableName",
+        },
+    },
+})
+
+M.CreateTable = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "CreateTable"),
+    input = M.CreateTableInput,
+    output = M.CreateTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.DeleteBackup = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DeleteBackup"),
+    input = M.DeleteBackupInput,
+    output = M.DeleteBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "BackupArn",
+        },
+    },
+})
+
+M.DeleteItem = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DeleteItem"),
+    input = M.DeleteItemInput,
+    output = M.DeleteItemOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "ResourceArn",
+        },
+    },
+})
+
+M.DeleteTable = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DeleteTable"),
+    input = M.DeleteTableInput,
+    output = M.DeleteTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.DescribeBackup = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DescribeBackup"),
+    input = M.DescribeBackupInput,
+    output = M.DescribeBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "BackupArn",
+        },
+    },
+})
+
+M.DescribeContinuousBackups = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DescribeContinuousBackups"),
+    input = M.DescribeContinuousBackupsInput,
+    output = M.DescribeContinuousBackupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.DescribeContributorInsights = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DescribeContributorInsights"),
+    input = M.DescribeContributorInsightsInput,
+    output = M.DescribeContributorInsightsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.DescribeEndpoints = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DescribeEndpoints"),
+    input = M.DescribeEndpointsInput,
+    output = M.DescribeEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExport = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DescribeExport"),
+    input = M.DescribeExportInput,
+    output = M.DescribeExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "ExportArn",
+        },
+    },
+})
+
+M.DescribeGlobalTable = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DescribeGlobalTable"),
+    input = M.DescribeGlobalTableInput,
+    output = M.DescribeGlobalTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "GlobalTableName",
+        },
+    },
+})
+
+M.DescribeGlobalTableSettings = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DescribeGlobalTableSettings"),
+    input = M.DescribeGlobalTableSettingsInput,
+    output = M.DescribeGlobalTableSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "GlobalTableName",
+        },
+    },
+})
+
+M.DescribeImport = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DescribeImport"),
+    input = M.DescribeImportInput,
+    output = M.DescribeImportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "ImportArn",
+        },
+    },
+})
+
+M.DescribeKinesisStreamingDestination = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DescribeKinesisStreamingDestination"),
+    input = M.DescribeKinesisStreamingDestinationInput,
+    output = M.DescribeKinesisStreamingDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.DescribeLimits = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DescribeLimits"),
+    input = M.DescribeLimitsInput,
+    output = M.DescribeLimitsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTable = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DescribeTable"),
+    input = M.DescribeTableInput,
+    output = M.DescribeTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.DescribeTableReplicaAutoScaling = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DescribeTableReplicaAutoScaling"),
+    input = M.DescribeTableReplicaAutoScalingInput,
+    output = M.DescribeTableReplicaAutoScalingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.DescribeTimeToLive = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DescribeTimeToLive"),
+    input = M.DescribeTimeToLiveInput,
+    output = M.DescribeTimeToLiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.DisableKinesisStreamingDestination = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DisableKinesisStreamingDestination"),
+    input = M.DisableKinesisStreamingDestinationInput,
+    output = M.DisableKinesisStreamingDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.EnableKinesisStreamingDestination = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "EnableKinesisStreamingDestination"),
+    input = M.EnableKinesisStreamingDestinationInput,
+    output = M.EnableKinesisStreamingDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.ExecuteStatement = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "ExecuteStatement"),
+    input = M.ExecuteStatementInput,
+    output = M.ExecuteStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteTransaction = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "ExecuteTransaction"),
+    input = M.ExecuteTransactionInput,
+    output = M.ExecuteTransactionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportTableToPointInTime = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "ExportTableToPointInTime"),
+    input = M.ExportTableToPointInTimeInput,
+    output = M.ExportTableToPointInTimeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableArn",
+        },
+    },
+})
+
+M.GetItem = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "GetItem"),
+    input = M.GetItemInput,
+    output = M.GetItemOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "ResourceArn",
+        },
+    },
+})
+
+M.ImportTable = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "ImportTable"),
+    input = M.ImportTableInput,
+    output = M.ImportTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBackups = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "ListBackups"),
+    input = M.ListBackupsInput,
+    output = M.ListBackupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.ListContributorInsights = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "ListContributorInsights"),
+    input = M.ListContributorInsightsInput,
+    output = M.ListContributorInsightsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.ListExports = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "ListExports"),
+    input = M.ListExportsInput,
+    output = M.ListExportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableArn",
+        },
+    },
+})
+
+M.ListGlobalTables = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "ListGlobalTables"),
+    input = M.ListGlobalTablesInput,
+    output = M.ListGlobalTablesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImports = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "ListImports"),
+    input = M.ListImportsInput,
+    output = M.ListImportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableArn",
+        },
+    },
+})
+
+M.ListTables = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "ListTables"),
+    input = M.ListTablesInput,
+    output = M.ListTablesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsOfResource = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "ListTagsOfResource"),
+    input = M.ListTagsOfResourceInput,
+    output = M.ListTagsOfResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "ResourceArn",
+        },
+    },
+})
+
+M.PutItem = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "PutItem"),
+    input = M.PutItemInput,
+    output = M.PutItemOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "ResourceArn",
+        },
+    },
+})
+
+M.Query = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "Query"),
+    input = M.QueryInput,
+    output = M.QueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.RestoreTableFromBackup = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "RestoreTableFromBackup"),
+    input = M.RestoreTableFromBackupInput,
+    output = M.RestoreTableFromBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TargetTableName",
+        },
+    },
+})
+
+M.RestoreTableToPointInTime = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "RestoreTableToPointInTime"),
+    input = M.RestoreTableToPointInTimeInput,
+    output = M.RestoreTableToPointInTimeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TargetTableName",
+        },
+    },
+})
+
+M.Scan = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "Scan"),
+    input = M.ScanInput,
+    output = M.ScanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "ResourceArn",
+        },
+    },
+})
+
+M.TransactGetItems = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "TransactGetItems"),
+    input = M.TransactGetItemsInput,
+    output = M.TransactGetItemsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TransactWriteItems = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "TransactWriteItems"),
+    input = M.TransactWriteItemsInput,
+    output = M.TransactWriteItemsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "ResourceArn",
+        },
+    },
+})
+
+M.UpdateContinuousBackups = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "UpdateContinuousBackups"),
+    input = M.UpdateContinuousBackupsInput,
+    output = M.UpdateContinuousBackupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.UpdateContributorInsights = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "UpdateContributorInsights"),
+    input = M.UpdateContributorInsightsInput,
+    output = M.UpdateContributorInsightsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.UpdateGlobalTable = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "UpdateGlobalTable"),
+    input = M.UpdateGlobalTableInput,
+    output = M.UpdateGlobalTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "GlobalTableName",
+        },
+    },
+})
+
+M.UpdateGlobalTableSettings = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "UpdateGlobalTableSettings"),
+    input = M.UpdateGlobalTableSettingsInput,
+    output = M.UpdateGlobalTableSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "GlobalTableName",
+        },
+    },
+})
+
+M.UpdateItem = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "UpdateItem"),
+    input = M.UpdateItemInput,
+    output = M.UpdateItemOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.UpdateKinesisStreamingDestination = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "UpdateKinesisStreamingDestination"),
+    input = M.UpdateKinesisStreamingDestinationInput,
+    output = M.UpdateKinesisStreamingDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.UpdateTable = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "UpdateTable"),
+    input = M.UpdateTableInput,
+    output = M.UpdateTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.UpdateTableReplicaAutoScaling = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "UpdateTableReplicaAutoScaling"),
+    input = M.UpdateTableReplicaAutoScalingInput,
+    output = M.UpdateTableReplicaAutoScalingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
+M.UpdateTimeToLive = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "UpdateTimeToLive"),
+    input = M.UpdateTimeToLiveInput,
+    output = M.UpdateTimeToLiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+    },
+})
+
 return M

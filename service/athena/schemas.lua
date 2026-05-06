@@ -5609,4 +5609,784 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.athena", "AmazonAthena"),
+    version = "2017-05-18",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetNamedQuery = schema.operation({
+    id = id.from("com.amazonaws.athena", "BatchGetNamedQuery"),
+    input = M.BatchGetNamedQueryInput,
+    output = M.BatchGetNamedQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetPreparedStatement = schema.operation({
+    id = id.from("com.amazonaws.athena", "BatchGetPreparedStatement"),
+    input = M.BatchGetPreparedStatementInput,
+    output = M.BatchGetPreparedStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetQueryExecution = schema.operation({
+    id = id.from("com.amazonaws.athena", "BatchGetQueryExecution"),
+    input = M.BatchGetQueryExecutionInput,
+    output = M.BatchGetQueryExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelCapacityReservation = schema.operation({
+    id = id.from("com.amazonaws.athena", "CancelCapacityReservation"),
+    input = M.CancelCapacityReservationInput,
+    output = M.CancelCapacityReservationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCapacityReservation = schema.operation({
+    id = id.from("com.amazonaws.athena", "CreateCapacityReservation"),
+    input = M.CreateCapacityReservationInput,
+    output = M.CreateCapacityReservationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataCatalog = schema.operation({
+    id = id.from("com.amazonaws.athena", "CreateDataCatalog"),
+    input = M.CreateDataCatalogInput,
+    output = M.CreateDataCatalogOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNamedQuery = schema.operation({
+    id = id.from("com.amazonaws.athena", "CreateNamedQuery"),
+    input = M.CreateNamedQueryInput,
+    output = M.CreateNamedQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNotebook = schema.operation({
+    id = id.from("com.amazonaws.athena", "CreateNotebook"),
+    input = M.CreateNotebookInput,
+    output = M.CreateNotebookOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePreparedStatement = schema.operation({
+    id = id.from("com.amazonaws.athena", "CreatePreparedStatement"),
+    input = M.CreatePreparedStatementInput,
+    output = M.CreatePreparedStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePresignedNotebookUrl = schema.operation({
+    id = id.from("com.amazonaws.athena", "CreatePresignedNotebookUrl"),
+    input = M.CreatePresignedNotebookUrlInput,
+    output = M.CreatePresignedNotebookUrlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkGroup = schema.operation({
+    id = id.from("com.amazonaws.athena", "CreateWorkGroup"),
+    input = M.CreateWorkGroupInput,
+    output = M.CreateWorkGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCapacityReservation = schema.operation({
+    id = id.from("com.amazonaws.athena", "DeleteCapacityReservation"),
+    input = M.DeleteCapacityReservationInput,
+    output = M.DeleteCapacityReservationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataCatalog = schema.operation({
+    id = id.from("com.amazonaws.athena", "DeleteDataCatalog"),
+    input = M.DeleteDataCatalogInput,
+    output = M.DeleteDataCatalogOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNamedQuery = schema.operation({
+    id = id.from("com.amazonaws.athena", "DeleteNamedQuery"),
+    input = M.DeleteNamedQueryInput,
+    output = M.DeleteNamedQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNotebook = schema.operation({
+    id = id.from("com.amazonaws.athena", "DeleteNotebook"),
+    input = M.DeleteNotebookInput,
+    output = M.DeleteNotebookOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePreparedStatement = schema.operation({
+    id = id.from("com.amazonaws.athena", "DeletePreparedStatement"),
+    input = M.DeletePreparedStatementInput,
+    output = M.DeletePreparedStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkGroup = schema.operation({
+    id = id.from("com.amazonaws.athena", "DeleteWorkGroup"),
+    input = M.DeleteWorkGroupInput,
+    output = M.DeleteWorkGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportNotebook = schema.operation({
+    id = id.from("com.amazonaws.athena", "ExportNotebook"),
+    input = M.ExportNotebookInput,
+    output = M.ExportNotebookOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCalculationExecution = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetCalculationExecution"),
+    input = M.GetCalculationExecutionInput,
+    output = M.GetCalculationExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCalculationExecutionCode = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetCalculationExecutionCode"),
+    input = M.GetCalculationExecutionCodeInput,
+    output = M.GetCalculationExecutionCodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCalculationExecutionStatus = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetCalculationExecutionStatus"),
+    input = M.GetCalculationExecutionStatusInput,
+    output = M.GetCalculationExecutionStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCapacityAssignmentConfiguration = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetCapacityAssignmentConfiguration"),
+    input = M.GetCapacityAssignmentConfigurationInput,
+    output = M.GetCapacityAssignmentConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCapacityReservation = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetCapacityReservation"),
+    input = M.GetCapacityReservationInput,
+    output = M.GetCapacityReservationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDatabase = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetDatabase"),
+    input = M.GetDatabaseInput,
+    output = M.GetDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataCatalog = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetDataCatalog"),
+    input = M.GetDataCatalogInput,
+    output = M.GetDataCatalogOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNamedQuery = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetNamedQuery"),
+    input = M.GetNamedQueryInput,
+    output = M.GetNamedQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNotebookMetadata = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetNotebookMetadata"),
+    input = M.GetNotebookMetadataInput,
+    output = M.GetNotebookMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPreparedStatement = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetPreparedStatement"),
+    input = M.GetPreparedStatementInput,
+    output = M.GetPreparedStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryExecution = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetQueryExecution"),
+    input = M.GetQueryExecutionInput,
+    output = M.GetQueryExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryResults = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetQueryResults"),
+    input = M.GetQueryResultsInput,
+    output = M.GetQueryResultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryRuntimeStatistics = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetQueryRuntimeStatistics"),
+    input = M.GetQueryRuntimeStatisticsInput,
+    output = M.GetQueryRuntimeStatisticsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceDashboard = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetResourceDashboard"),
+    input = M.GetResourceDashboardInput,
+    output = M.GetResourceDashboardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSession = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetSession"),
+    input = M.GetSessionInput,
+    output = M.GetSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSessionEndpoint = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetSessionEndpoint"),
+    input = M.GetSessionEndpointInput,
+    output = M.GetSessionEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSessionStatus = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetSessionStatus"),
+    input = M.GetSessionStatusInput,
+    output = M.GetSessionStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableMetadata = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetTableMetadata"),
+    input = M.GetTableMetadataInput,
+    output = M.GetTableMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkGroup = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetWorkGroup"),
+    input = M.GetWorkGroupInput,
+    output = M.GetWorkGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportNotebook = schema.operation({
+    id = id.from("com.amazonaws.athena", "ImportNotebook"),
+    input = M.ImportNotebookInput,
+    output = M.ImportNotebookOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationDPUSizes = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListApplicationDPUSizes"),
+    input = M.ListApplicationDPUSizesInput,
+    output = M.ListApplicationDPUSizesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCalculationExecutions = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListCalculationExecutions"),
+    input = M.ListCalculationExecutionsInput,
+    output = M.ListCalculationExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCapacityReservations = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListCapacityReservations"),
+    input = M.ListCapacityReservationsInput,
+    output = M.ListCapacityReservationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatabases = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListDatabases"),
+    input = M.ListDatabasesInput,
+    output = M.ListDatabasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataCatalogs = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListDataCatalogs"),
+    input = M.ListDataCatalogsInput,
+    output = M.ListDataCatalogsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEngineVersions = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListEngineVersions"),
+    input = M.ListEngineVersionsInput,
+    output = M.ListEngineVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExecutors = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListExecutors"),
+    input = M.ListExecutorsInput,
+    output = M.ListExecutorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNamedQueries = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListNamedQueries"),
+    input = M.ListNamedQueriesInput,
+    output = M.ListNamedQueriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotebookMetadata = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListNotebookMetadata"),
+    input = M.ListNotebookMetadataInput,
+    output = M.ListNotebookMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotebookSessions = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListNotebookSessions"),
+    input = M.ListNotebookSessionsInput,
+    output = M.ListNotebookSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPreparedStatements = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListPreparedStatements"),
+    input = M.ListPreparedStatementsInput,
+    output = M.ListPreparedStatementsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueryExecutions = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListQueryExecutions"),
+    input = M.ListQueryExecutionsInput,
+    output = M.ListQueryExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessions = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListSessions"),
+    input = M.ListSessionsInput,
+    output = M.ListSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTableMetadata = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListTableMetadata"),
+    input = M.ListTableMetadataInput,
+    output = M.ListTableMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkGroups = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListWorkGroups"),
+    input = M.ListWorkGroupsInput,
+    output = M.ListWorkGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutCapacityAssignmentConfiguration = schema.operation({
+    id = id.from("com.amazonaws.athena", "PutCapacityAssignmentConfiguration"),
+    input = M.PutCapacityAssignmentConfigurationInput,
+    output = M.PutCapacityAssignmentConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCalculationExecution = schema.operation({
+    id = id.from("com.amazonaws.athena", "StartCalculationExecution"),
+    input = M.StartCalculationExecutionInput,
+    output = M.StartCalculationExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartQueryExecution = schema.operation({
+    id = id.from("com.amazonaws.athena", "StartQueryExecution"),
+    input = M.StartQueryExecutionInput,
+    output = M.StartQueryExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSession = schema.operation({
+    id = id.from("com.amazonaws.athena", "StartSession"),
+    input = M.StartSessionInput,
+    output = M.StartSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopCalculationExecution = schema.operation({
+    id = id.from("com.amazonaws.athena", "StopCalculationExecution"),
+    input = M.StopCalculationExecutionInput,
+    output = M.StopCalculationExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopQueryExecution = schema.operation({
+    id = id.from("com.amazonaws.athena", "StopQueryExecution"),
+    input = M.StopQueryExecutionInput,
+    output = M.StopQueryExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.athena", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateSession = schema.operation({
+    id = id.from("com.amazonaws.athena", "TerminateSession"),
+    input = M.TerminateSessionInput,
+    output = M.TerminateSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.athena", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCapacityReservation = schema.operation({
+    id = id.from("com.amazonaws.athena", "UpdateCapacityReservation"),
+    input = M.UpdateCapacityReservationInput,
+    output = M.UpdateCapacityReservationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataCatalog = schema.operation({
+    id = id.from("com.amazonaws.athena", "UpdateDataCatalog"),
+    input = M.UpdateDataCatalogInput,
+    output = M.UpdateDataCatalogOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNamedQuery = schema.operation({
+    id = id.from("com.amazonaws.athena", "UpdateNamedQuery"),
+    input = M.UpdateNamedQueryInput,
+    output = M.UpdateNamedQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNotebook = schema.operation({
+    id = id.from("com.amazonaws.athena", "UpdateNotebook"),
+    input = M.UpdateNotebookInput,
+    output = M.UpdateNotebookOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNotebookMetadata = schema.operation({
+    id = id.from("com.amazonaws.athena", "UpdateNotebookMetadata"),
+    input = M.UpdateNotebookMetadataInput,
+    output = M.UpdateNotebookMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePreparedStatement = schema.operation({
+    id = id.from("com.amazonaws.athena", "UpdatePreparedStatement"),
+    input = M.UpdatePreparedStatementInput,
+    output = M.UpdatePreparedStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkGroup = schema.operation({
+    id = id.from("com.amazonaws.athena", "UpdateWorkGroup"),
+    input = M.UpdateWorkGroupInput,
+    output = M.UpdateWorkGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

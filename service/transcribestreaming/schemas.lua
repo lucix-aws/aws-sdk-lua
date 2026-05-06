@@ -3027,4 +3027,78 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.transcribestreaming", "Transcribe"),
+    version = "2017-10-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMedicalScribeStream = schema.operation({
+    id = id.from("com.amazonaws.transcribestreaming", "GetMedicalScribeStream"),
+    input = M.GetMedicalScribeStreamInput,
+    output = M.GetMedicalScribeStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/medical-scribe-stream/{SessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCallAnalyticsStreamTranscription = schema.operation({
+    id = id.from("com.amazonaws.transcribestreaming", "StartCallAnalyticsStreamTranscription"),
+    input = M.StartCallAnalyticsStreamTranscriptionInput,
+    output = M.StartCallAnalyticsStreamTranscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/call-analytics-stream-transcription" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.CallAnalyticsTranscriptResultStream,
+    },
+})
+
+M.StartMedicalScribeStream = schema.operation({
+    id = id.from("com.amazonaws.transcribestreaming", "StartMedicalScribeStream"),
+    input = M.StartMedicalScribeStreamInput,
+    output = M.StartMedicalScribeStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/medical-scribe-stream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.MedicalScribeResultStream,
+    },
+})
+
+M.StartMedicalStreamTranscription = schema.operation({
+    id = id.from("com.amazonaws.transcribestreaming", "StartMedicalStreamTranscription"),
+    input = M.StartMedicalStreamTranscriptionInput,
+    output = M.StartMedicalStreamTranscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/medical-stream-transcription" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.MedicalTranscriptResultStream,
+    },
+})
+
+M.StartStreamTranscription = schema.operation({
+    id = id.from("com.amazonaws.transcribestreaming", "StartStreamTranscription"),
+    input = M.StartStreamTranscriptionInput,
+    output = M.StartStreamTranscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/stream-transcription" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.TranscriptResultStream,
+    },
+})
+
 return M

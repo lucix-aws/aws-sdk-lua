@@ -6524,4 +6524,698 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.iotfleetwise", "IoTAutobahnControlPlane"),
+    version = "2021-06-17",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateVehicleFleet = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "AssociateVehicleFleet"),
+    input = M.AssociateVehicleFleetInput,
+    output = M.AssociateVehicleFleetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/vehicles/{vehicleName}/associate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateVehicle = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "BatchCreateVehicle"),
+    input = M.BatchCreateVehicleInput,
+    output = M.BatchCreateVehicleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/vehicles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateVehicle = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "BatchUpdateVehicle"),
+    input = M.BatchUpdateVehicleInput,
+    output = M.BatchUpdateVehicleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/vehicles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCampaign = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "CreateCampaign"),
+    input = M.CreateCampaignInput,
+    output = M.CreateCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/campaigns/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDecoderManifest = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "CreateDecoderManifest"),
+    input = M.CreateDecoderManifestInput,
+    output = M.CreateDecoderManifestOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/decoder-manifests/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFleet = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "CreateFleet"),
+    input = M.CreateFleetInput,
+    output = M.CreateFleetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/fleets/{fleetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateModelManifest = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "CreateModelManifest"),
+    input = M.CreateModelManifestInput,
+    output = M.CreateModelManifestOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/model-manifests/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSignalCatalog = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "CreateSignalCatalog"),
+    input = M.CreateSignalCatalogInput,
+    output = M.CreateSignalCatalogOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/signal-catalogs/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStateTemplate = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "CreateStateTemplate"),
+    input = M.CreateStateTemplateInput,
+    output = M.CreateStateTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/state-templates/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVehicle = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "CreateVehicle"),
+    input = M.CreateVehicleInput,
+    output = M.CreateVehicleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/vehicles/{vehicleName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCampaign = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "DeleteCampaign"),
+    input = M.DeleteCampaignInput,
+    output = M.DeleteCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/campaigns/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDecoderManifest = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "DeleteDecoderManifest"),
+    input = M.DeleteDecoderManifestInput,
+    output = M.DeleteDecoderManifestOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/decoder-manifests/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFleet = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "DeleteFleet"),
+    input = M.DeleteFleetInput,
+    output = M.DeleteFleetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/fleets/{fleetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteModelManifest = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "DeleteModelManifest"),
+    input = M.DeleteModelManifestInput,
+    output = M.DeleteModelManifestOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/model-manifests/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSignalCatalog = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "DeleteSignalCatalog"),
+    input = M.DeleteSignalCatalogInput,
+    output = M.DeleteSignalCatalogOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/signal-catalogs/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStateTemplate = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "DeleteStateTemplate"),
+    input = M.DeleteStateTemplateInput,
+    output = M.DeleteStateTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/state-templates/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVehicle = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "DeleteVehicle"),
+    input = M.DeleteVehicleInput,
+    output = M.DeleteVehicleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/vehicles/{vehicleName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateVehicleFleet = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "DisassociateVehicleFleet"),
+    input = M.DisassociateVehicleFleetInput,
+    output = M.DisassociateVehicleFleetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/vehicles/{vehicleName}/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCampaign = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "GetCampaign"),
+    input = M.GetCampaignInput,
+    output = M.GetCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/campaigns/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDecoderManifest = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "GetDecoderManifest"),
+    input = M.GetDecoderManifestInput,
+    output = M.GetDecoderManifestOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/decoder-manifests/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEncryptionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "GetEncryptionConfiguration"),
+    input = M.GetEncryptionConfigurationInput,
+    output = M.GetEncryptionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/encryptionConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFleet = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "GetFleet"),
+    input = M.GetFleetInput,
+    output = M.GetFleetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/fleets/{fleetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLoggingOptions = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "GetLoggingOptions"),
+    input = M.GetLoggingOptionsInput,
+    output = M.GetLoggingOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/loggingOptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetModelManifest = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "GetModelManifest"),
+    input = M.GetModelManifestInput,
+    output = M.GetModelManifestOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/model-manifests/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRegisterAccountStatus = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "GetRegisterAccountStatus"),
+    input = M.GetRegisterAccountStatusInput,
+    output = M.GetRegisterAccountStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/account/registration_status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSignalCatalog = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "GetSignalCatalog"),
+    input = M.GetSignalCatalogInput,
+    output = M.GetSignalCatalogOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/signal-catalogs/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStateTemplate = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "GetStateTemplate"),
+    input = M.GetStateTemplateInput,
+    output = M.GetStateTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/state-templates/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVehicle = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "GetVehicle"),
+    input = M.GetVehicleInput,
+    output = M.GetVehicleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/vehicles/{vehicleName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVehicleStatus = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "GetVehicleStatus"),
+    input = M.GetVehicleStatusInput,
+    output = M.GetVehicleStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/vehicles/{vehicleName}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportDecoderManifest = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ImportDecoderManifest"),
+    input = M.ImportDecoderManifestInput,
+    output = M.ImportDecoderManifestOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/decoder-manifests/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportSignalCatalog = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ImportSignalCatalog"),
+    input = M.ImportSignalCatalogInput,
+    output = M.ImportSignalCatalogOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/signal-catalogs/{name}/nodes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCampaigns = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ListCampaigns"),
+    input = M.ListCampaignsInput,
+    output = M.ListCampaignsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/campaigns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDecoderManifestNetworkInterfaces = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ListDecoderManifestNetworkInterfaces"),
+    input = M.ListDecoderManifestNetworkInterfacesInput,
+    output = M.ListDecoderManifestNetworkInterfacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/decoder-manifests/{name}/network-interfaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDecoderManifests = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ListDecoderManifests"),
+    input = M.ListDecoderManifestsInput,
+    output = M.ListDecoderManifestsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/decoder-manifests" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDecoderManifestSignals = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ListDecoderManifestSignals"),
+    input = M.ListDecoderManifestSignalsInput,
+    output = M.ListDecoderManifestSignalsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/decoder-manifests/{name}/signals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFleets = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ListFleets"),
+    input = M.ListFleetsInput,
+    output = M.ListFleetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/fleets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFleetsForVehicle = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ListFleetsForVehicle"),
+    input = M.ListFleetsForVehicleInput,
+    output = M.ListFleetsForVehicleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/vehicles/{vehicleName}/fleets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModelManifestNodes = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ListModelManifestNodes"),
+    input = M.ListModelManifestNodesInput,
+    output = M.ListModelManifestNodesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/model-manifests/{name}/nodes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModelManifests = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ListModelManifests"),
+    input = M.ListModelManifestsInput,
+    output = M.ListModelManifestsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/model-manifests" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSignalCatalogNodes = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ListSignalCatalogNodes"),
+    input = M.ListSignalCatalogNodesInput,
+    output = M.ListSignalCatalogNodesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/signal-catalogs/{name}/nodes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSignalCatalogs = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ListSignalCatalogs"),
+    input = M.ListSignalCatalogsInput,
+    output = M.ListSignalCatalogsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/signal-catalogs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStateTemplates = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ListStateTemplates"),
+    input = M.ListStateTemplatesInput,
+    output = M.ListStateTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/state-templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVehicles = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ListVehicles"),
+    input = M.ListVehiclesInput,
+    output = M.ListVehiclesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/vehicles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVehiclesInFleet = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "ListVehiclesInFleet"),
+    input = M.ListVehiclesInFleetInput,
+    output = M.ListVehiclesInFleetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/fleets/{fleetId}/vehicles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEncryptionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "PutEncryptionConfiguration"),
+    input = M.PutEncryptionConfigurationInput,
+    output = M.PutEncryptionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/encryptionConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLoggingOptions = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "PutLoggingOptions"),
+    input = M.PutLoggingOptionsInput,
+    output = M.PutLoggingOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/loggingOptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterAccount = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "RegisterAccount"),
+    input = M.RegisterAccountInput,
+    output = M.RegisterAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/account/registration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCampaign = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "UpdateCampaign"),
+    input = M.UpdateCampaignInput,
+    output = M.UpdateCampaignOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/campaigns/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDecoderManifest = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "UpdateDecoderManifest"),
+    input = M.UpdateDecoderManifestInput,
+    output = M.UpdateDecoderManifestOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/decoder-manifests/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFleet = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "UpdateFleet"),
+    input = M.UpdateFleetInput,
+    output = M.UpdateFleetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/fleets/{fleetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateModelManifest = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "UpdateModelManifest"),
+    input = M.UpdateModelManifestInput,
+    output = M.UpdateModelManifestOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/model-manifests/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSignalCatalog = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "UpdateSignalCatalog"),
+    input = M.UpdateSignalCatalogInput,
+    output = M.UpdateSignalCatalogOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/signal-catalogs/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStateTemplate = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "UpdateStateTemplate"),
+    input = M.UpdateStateTemplateInput,
+    output = M.UpdateStateTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/state-templates/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVehicle = schema.operation({
+    id = id.from("com.amazonaws.iotfleetwise", "UpdateVehicle"),
+    input = M.UpdateVehicleInput,
+    output = M.UpdateVehicleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/vehicles/{vehicleName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

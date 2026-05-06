@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cloudtrail.endpoint_rules")
 local schemas = require("cloudtrail.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cloudtrail", signing_region = cfg.region } }
                 else
@@ -49,783 +52,243 @@ function M.new(cfg)
 end
 
 function Client:addTags(input, options)
-    return self:invokeOperation(input, {
-        name = "AddTags",
-        input_schema = schemas.AddTagsInput,
-        output_schema = schemas.AddTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddTags, input, options)
 end
 
 function Client:cancelQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelQuery",
-        input_schema = schemas.CancelQueryInput,
-        output_schema = schemas.CancelQueryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelQuery, input, options)
 end
 
 function Client:createChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateChannel",
-        input_schema = schemas.CreateChannelInput,
-        output_schema = schemas.CreateChannelOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateChannel, input, options)
 end
 
 function Client:createDashboard(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDashboard",
-        input_schema = schemas.CreateDashboardInput,
-        output_schema = schemas.CreateDashboardOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDashboard, input, options)
 end
 
 function Client:createEventDataStore(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEventDataStore",
-        input_schema = schemas.CreateEventDataStoreInput,
-        output_schema = schemas.CreateEventDataStoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEventDataStore, input, options)
 end
 
 function Client:createTrail(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTrail",
-        input_schema = schemas.CreateTrailInput,
-        output_schema = schemas.CreateTrailOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTrail, input, options)
 end
 
 function Client:deleteChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteChannel",
-        input_schema = schemas.DeleteChannelInput,
-        output_schema = schemas.DeleteChannelOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteChannel, input, options)
 end
 
 function Client:deleteDashboard(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDashboard",
-        input_schema = schemas.DeleteDashboardInput,
-        output_schema = schemas.DeleteDashboardOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDashboard, input, options)
 end
 
 function Client:deleteEventDataStore(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEventDataStore",
-        input_schema = schemas.DeleteEventDataStoreInput,
-        output_schema = schemas.DeleteEventDataStoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEventDataStore, input, options)
 end
 
 function Client:deleteResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResourcePolicy",
-        input_schema = schemas.DeleteResourcePolicyInput,
-        output_schema = schemas.DeleteResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options)
 end
 
 function Client:deleteTrail(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTrail",
-        input_schema = schemas.DeleteTrailInput,
-        output_schema = schemas.DeleteTrailOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTrail, input, options)
 end
 
 function Client:deregisterOrganizationDelegatedAdmin(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterOrganizationDelegatedAdmin",
-        input_schema = schemas.DeregisterOrganizationDelegatedAdminInput,
-        output_schema = schemas.DeregisterOrganizationDelegatedAdminOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterOrganizationDelegatedAdmin, input, options)
 end
 
 function Client:describeQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeQuery",
-        input_schema = schemas.DescribeQueryInput,
-        output_schema = schemas.DescribeQueryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeQuery, input, options)
 end
 
 function Client:describeTrails(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTrails",
-        input_schema = schemas.DescribeTrailsInput,
-        output_schema = schemas.DescribeTrailsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTrails, input, options)
 end
 
 function Client:disableFederation(input, options)
-    return self:invokeOperation(input, {
-        name = "DisableFederation",
-        input_schema = schemas.DisableFederationInput,
-        output_schema = schemas.DisableFederationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisableFederation, input, options)
 end
 
 function Client:enableFederation(input, options)
-    return self:invokeOperation(input, {
-        name = "EnableFederation",
-        input_schema = schemas.EnableFederationInput,
-        output_schema = schemas.EnableFederationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.EnableFederation, input, options)
 end
 
 function Client:generateQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "GenerateQuery",
-        input_schema = schemas.GenerateQueryInput,
-        output_schema = schemas.GenerateQueryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GenerateQuery, input, options)
 end
 
 function Client:getChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "GetChannel",
-        input_schema = schemas.GetChannelInput,
-        output_schema = schemas.GetChannelOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetChannel, input, options)
 end
 
 function Client:getDashboard(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDashboard",
-        input_schema = schemas.GetDashboardInput,
-        output_schema = schemas.GetDashboardOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDashboard, input, options)
 end
 
 function Client:getEventConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEventConfiguration",
-        input_schema = schemas.GetEventConfigurationInput,
-        output_schema = schemas.GetEventConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEventConfiguration, input, options)
 end
 
 function Client:getEventDataStore(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEventDataStore",
-        input_schema = schemas.GetEventDataStoreInput,
-        output_schema = schemas.GetEventDataStoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEventDataStore, input, options)
 end
 
 function Client:getEventSelectors(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEventSelectors",
-        input_schema = schemas.GetEventSelectorsInput,
-        output_schema = schemas.GetEventSelectorsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEventSelectors, input, options)
 end
 
 function Client:getImport(input, options)
-    return self:invokeOperation(input, {
-        name = "GetImport",
-        input_schema = schemas.GetImportInput,
-        output_schema = schemas.GetImportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetImport, input, options)
 end
 
 function Client:getInsightSelectors(input, options)
-    return self:invokeOperation(input, {
-        name = "GetInsightSelectors",
-        input_schema = schemas.GetInsightSelectorsInput,
-        output_schema = schemas.GetInsightSelectorsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetInsightSelectors, input, options)
 end
 
 function Client:getQueryResults(input, options)
-    return self:invokeOperation(input, {
-        name = "GetQueryResults",
-        input_schema = schemas.GetQueryResultsInput,
-        output_schema = schemas.GetQueryResultsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetQueryResults, input, options)
 end
 
 function Client:getResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourcePolicy",
-        input_schema = schemas.GetResourcePolicyInput,
-        output_schema = schemas.GetResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options)
 end
 
 function Client:getTrail(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTrail",
-        input_schema = schemas.GetTrailInput,
-        output_schema = schemas.GetTrailOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTrail, input, options)
 end
 
 function Client:getTrailStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTrailStatus",
-        input_schema = schemas.GetTrailStatusInput,
-        output_schema = schemas.GetTrailStatusOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTrailStatus, input, options)
 end
 
 function Client:listChannels(input, options)
-    return self:invokeOperation(input, {
-        name = "ListChannels",
-        input_schema = schemas.ListChannelsInput,
-        output_schema = schemas.ListChannelsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListChannels, input, options)
 end
 
 function Client:listDashboards(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDashboards",
-        input_schema = schemas.ListDashboardsInput,
-        output_schema = schemas.ListDashboardsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDashboards, input, options)
 end
 
 function Client:listEventDataStores(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEventDataStores",
-        input_schema = schemas.ListEventDataStoresInput,
-        output_schema = schemas.ListEventDataStoresOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEventDataStores, input, options)
 end
 
 function Client:listImportFailures(input, options)
-    return self:invokeOperation(input, {
-        name = "ListImportFailures",
-        input_schema = schemas.ListImportFailuresInput,
-        output_schema = schemas.ListImportFailuresOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListImportFailures, input, options)
 end
 
 function Client:listImports(input, options)
-    return self:invokeOperation(input, {
-        name = "ListImports",
-        input_schema = schemas.ListImportsInput,
-        output_schema = schemas.ListImportsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListImports, input, options)
 end
 
 function Client:listInsightsData(input, options)
-    return self:invokeOperation(input, {
-        name = "ListInsightsData",
-        input_schema = schemas.ListInsightsDataInput,
-        output_schema = schemas.ListInsightsDataOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListInsightsData, input, options)
 end
 
 function Client:listInsightsMetricData(input, options)
-    return self:invokeOperation(input, {
-        name = "ListInsightsMetricData",
-        input_schema = schemas.ListInsightsMetricDataInput,
-        output_schema = schemas.ListInsightsMetricDataOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListInsightsMetricData, input, options)
 end
 
 function Client:listPublicKeys(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPublicKeys",
-        input_schema = schemas.ListPublicKeysInput,
-        output_schema = schemas.ListPublicKeysOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPublicKeys, input, options)
 end
 
 function Client:listQueries(input, options)
-    return self:invokeOperation(input, {
-        name = "ListQueries",
-        input_schema = schemas.ListQueriesInput,
-        output_schema = schemas.ListQueriesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListQueries, input, options)
 end
 
 function Client:listTags(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTags",
-        input_schema = schemas.ListTagsInput,
-        output_schema = schemas.ListTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTags, input, options)
 end
 
 function Client:listTrails(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTrails",
-        input_schema = schemas.ListTrailsInput,
-        output_schema = schemas.ListTrailsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTrails, input, options)
 end
 
 function Client:lookupEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "LookupEvents",
-        input_schema = schemas.LookupEventsInput,
-        output_schema = schemas.LookupEventsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.LookupEvents, input, options)
 end
 
 function Client:putEventConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutEventConfiguration",
-        input_schema = schemas.PutEventConfigurationInput,
-        output_schema = schemas.PutEventConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutEventConfiguration, input, options)
 end
 
 function Client:putEventSelectors(input, options)
-    return self:invokeOperation(input, {
-        name = "PutEventSelectors",
-        input_schema = schemas.PutEventSelectorsInput,
-        output_schema = schemas.PutEventSelectorsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutEventSelectors, input, options)
 end
 
 function Client:putInsightSelectors(input, options)
-    return self:invokeOperation(input, {
-        name = "PutInsightSelectors",
-        input_schema = schemas.PutInsightSelectorsInput,
-        output_schema = schemas.PutInsightSelectorsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutInsightSelectors, input, options)
 end
 
 function Client:putResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutResourcePolicy",
-        input_schema = schemas.PutResourcePolicyInput,
-        output_schema = schemas.PutResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options)
 end
 
 function Client:registerOrganizationDelegatedAdmin(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterOrganizationDelegatedAdmin",
-        input_schema = schemas.RegisterOrganizationDelegatedAdminInput,
-        output_schema = schemas.RegisterOrganizationDelegatedAdminOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterOrganizationDelegatedAdmin, input, options)
 end
 
 function Client:removeTags(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveTags",
-        input_schema = schemas.RemoveTagsInput,
-        output_schema = schemas.RemoveTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveTags, input, options)
 end
 
 function Client:restoreEventDataStore(input, options)
-    return self:invokeOperation(input, {
-        name = "RestoreEventDataStore",
-        input_schema = schemas.RestoreEventDataStoreInput,
-        output_schema = schemas.RestoreEventDataStoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RestoreEventDataStore, input, options)
 end
 
 function Client:searchSampleQueries(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchSampleQueries",
-        input_schema = schemas.SearchSampleQueriesInput,
-        output_schema = schemas.SearchSampleQueriesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchSampleQueries, input, options)
 end
 
 function Client:startDashboardRefresh(input, options)
-    return self:invokeOperation(input, {
-        name = "StartDashboardRefresh",
-        input_schema = schemas.StartDashboardRefreshInput,
-        output_schema = schemas.StartDashboardRefreshOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartDashboardRefresh, input, options)
 end
 
 function Client:startEventDataStoreIngestion(input, options)
-    return self:invokeOperation(input, {
-        name = "StartEventDataStoreIngestion",
-        input_schema = schemas.StartEventDataStoreIngestionInput,
-        output_schema = schemas.StartEventDataStoreIngestionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartEventDataStoreIngestion, input, options)
 end
 
 function Client:startImport(input, options)
-    return self:invokeOperation(input, {
-        name = "StartImport",
-        input_schema = schemas.StartImportInput,
-        output_schema = schemas.StartImportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartImport, input, options)
 end
 
 function Client:startLogging(input, options)
-    return self:invokeOperation(input, {
-        name = "StartLogging",
-        input_schema = schemas.StartLoggingInput,
-        output_schema = schemas.StartLoggingOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartLogging, input, options)
 end
 
 function Client:startQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "StartQuery",
-        input_schema = schemas.StartQueryInput,
-        output_schema = schemas.StartQueryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartQuery, input, options)
 end
 
 function Client:stopEventDataStoreIngestion(input, options)
-    return self:invokeOperation(input, {
-        name = "StopEventDataStoreIngestion",
-        input_schema = schemas.StopEventDataStoreIngestionInput,
-        output_schema = schemas.StopEventDataStoreIngestionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopEventDataStoreIngestion, input, options)
 end
 
 function Client:stopImport(input, options)
-    return self:invokeOperation(input, {
-        name = "StopImport",
-        input_schema = schemas.StopImportInput,
-        output_schema = schemas.StopImportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopImport, input, options)
 end
 
 function Client:stopLogging(input, options)
-    return self:invokeOperation(input, {
-        name = "StopLogging",
-        input_schema = schemas.StopLoggingInput,
-        output_schema = schemas.StopLoggingOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopLogging, input, options)
 end
 
 function Client:updateChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateChannel",
-        input_schema = schemas.UpdateChannelInput,
-        output_schema = schemas.UpdateChannelOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateChannel, input, options)
 end
 
 function Client:updateDashboard(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDashboard",
-        input_schema = schemas.UpdateDashboardInput,
-        output_schema = schemas.UpdateDashboardOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDashboard, input, options)
 end
 
 function Client:updateEventDataStore(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateEventDataStore",
-        input_schema = schemas.UpdateEventDataStoreInput,
-        output_schema = schemas.UpdateEventDataStoreOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateEventDataStore, input, options)
 end
 
 function Client:updateTrail(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTrail",
-        input_schema = schemas.UpdateTrailInput,
-        output_schema = schemas.UpdateTrailOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTrail, input, options)
 end
 
 return M

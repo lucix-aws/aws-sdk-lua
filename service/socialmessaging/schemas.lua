@@ -2002,4 +2002,266 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.socialmessaging", "SocialMessaging"),
+    version = "2024-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateWhatsAppBusinessAccount = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "AssociateWhatsAppBusinessAccount"),
+    input = M.AssociateWhatsAppBusinessAccountInput,
+    output = M.AssociateWhatsAppBusinessAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/signup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWhatsAppMessageTemplate = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "CreateWhatsAppMessageTemplate"),
+    input = M.CreateWhatsAppMessageTemplateInput,
+    output = M.CreateWhatsAppMessageTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/template/put" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWhatsAppMessageTemplateFromLibrary = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "CreateWhatsAppMessageTemplateFromLibrary"),
+    input = M.CreateWhatsAppMessageTemplateFromLibraryInput,
+    output = M.CreateWhatsAppMessageTemplateFromLibraryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/template/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWhatsAppMessageTemplateMedia = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "CreateWhatsAppMessageTemplateMedia"),
+    input = M.CreateWhatsAppMessageTemplateMediaInput,
+    output = M.CreateWhatsAppMessageTemplateMediaOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/template/media" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWhatsAppMessageMedia = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "DeleteWhatsAppMessageMedia"),
+    input = M.DeleteWhatsAppMessageMediaInput,
+    output = M.DeleteWhatsAppMessageMediaOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/whatsapp/media" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWhatsAppMessageTemplate = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "DeleteWhatsAppMessageTemplate"),
+    input = M.DeleteWhatsAppMessageTemplateInput,
+    output = M.DeleteWhatsAppMessageTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/whatsapp/template" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateWhatsAppBusinessAccount = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "DisassociateWhatsAppBusinessAccount"),
+    input = M.DisassociateWhatsAppBusinessAccountInput,
+    output = M.DisassociateWhatsAppBusinessAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/whatsapp/waba/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLinkedWhatsAppBusinessAccount = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "GetLinkedWhatsAppBusinessAccount"),
+    input = M.GetLinkedWhatsAppBusinessAccountInput,
+    output = M.GetLinkedWhatsAppBusinessAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/whatsapp/waba/details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLinkedWhatsAppBusinessAccountPhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "GetLinkedWhatsAppBusinessAccountPhoneNumber"),
+    input = M.GetLinkedWhatsAppBusinessAccountPhoneNumberInput,
+    output = M.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/whatsapp/waba/phone/details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWhatsAppMessageMedia = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "GetWhatsAppMessageMedia"),
+    input = M.GetWhatsAppMessageMediaInput,
+    output = M.GetWhatsAppMessageMediaOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/media/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWhatsAppMessageTemplate = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "GetWhatsAppMessageTemplate"),
+    input = M.GetWhatsAppMessageTemplateInput,
+    output = M.GetWhatsAppMessageTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/whatsapp/template" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLinkedWhatsAppBusinessAccounts = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "ListLinkedWhatsAppBusinessAccounts"),
+    input = M.ListLinkedWhatsAppBusinessAccountsInput,
+    output = M.ListLinkedWhatsAppBusinessAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/whatsapp/waba/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/tags/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWhatsAppMessageTemplates = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "ListWhatsAppMessageTemplates"),
+    input = M.ListWhatsAppMessageTemplatesInput,
+    output = M.ListWhatsAppMessageTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/whatsapp/template/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWhatsAppTemplateLibrary = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "ListWhatsAppTemplateLibrary"),
+    input = M.ListWhatsAppTemplateLibraryInput,
+    output = M.ListWhatsAppTemplateLibraryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/template/library" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PostWhatsAppMessageMedia = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "PostWhatsAppMessageMedia"),
+    input = M.PostWhatsAppMessageMediaInput,
+    output = M.PostWhatsAppMessageMediaOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/media" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutWhatsAppBusinessAccountEventDestinations = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "PutWhatsAppBusinessAccountEventDestinations"),
+    input = M.PutWhatsAppBusinessAccountEventDestinationsInput,
+    output = M.PutWhatsAppBusinessAccountEventDestinationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/whatsapp/waba/eventdestinations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendWhatsAppMessage = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "SendWhatsAppMessage"),
+    input = M.SendWhatsAppMessageInput,
+    output = M.SendWhatsAppMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/send" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tags/tag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tags/untag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWhatsAppMessageTemplate = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "UpdateWhatsAppMessageTemplate"),
+    input = M.UpdateWhatsAppMessageTemplateInput,
+    output = M.UpdateWhatsAppMessageTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/template" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

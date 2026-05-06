@@ -536,4 +536,58 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.route53recoverycluster", "ToggleCustomerAPI"),
+    version = "2019-12-02",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRoutingControlState = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycluster", "GetRoutingControlState"),
+    input = M.GetRoutingControlStateInput,
+    output = M.GetRoutingControlStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRoutingControls = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycluster", "ListRoutingControls"),
+    input = M.ListRoutingControlsInput,
+    output = M.ListRoutingControlsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoutingControlState = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycluster", "UpdateRoutingControlState"),
+    input = M.UpdateRoutingControlStateInput,
+    output = M.UpdateRoutingControlStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoutingControlStates = schema.operation({
+    id = id.from("com.amazonaws.route53recoverycluster", "UpdateRoutingControlStates"),
+    input = M.UpdateRoutingControlStatesInput,
+    output = M.UpdateRoutingControlStatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

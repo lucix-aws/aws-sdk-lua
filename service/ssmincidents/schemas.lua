@@ -3127,4 +3127,386 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ssmincidents", "SSMIncidents"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetIncidentFindings = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "BatchGetIncidentFindings"),
+    input = M.BatchGetIncidentFindingsInput,
+    output = M.BatchGetIncidentFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/batchGetIncidentFindings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReplicationSet = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "CreateReplicationSet"),
+    input = M.CreateReplicationSetInput,
+    output = M.CreateReplicationSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/createReplicationSet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResponsePlan = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "CreateResponsePlan"),
+    input = M.CreateResponsePlanInput,
+    output = M.CreateResponsePlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/createResponsePlan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTimelineEvent = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "CreateTimelineEvent"),
+    input = M.CreateTimelineEventInput,
+    output = M.CreateTimelineEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/createTimelineEvent" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIncidentRecord = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "DeleteIncidentRecord"),
+    input = M.DeleteIncidentRecordInput,
+    output = M.DeleteIncidentRecordOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deleteIncidentRecord" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReplicationSet = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "DeleteReplicationSet"),
+    input = M.DeleteReplicationSetInput,
+    output = M.DeleteReplicationSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deleteReplicationSet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deleteResourcePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResponsePlan = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "DeleteResponsePlan"),
+    input = M.DeleteResponsePlanInput,
+    output = M.DeleteResponsePlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deleteResponsePlan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTimelineEvent = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "DeleteTimelineEvent"),
+    input = M.DeleteTimelineEventInput,
+    output = M.DeleteTimelineEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deleteTimelineEvent" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIncidentRecord = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "GetIncidentRecord"),
+    input = M.GetIncidentRecordInput,
+    output = M.GetIncidentRecordOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/getIncidentRecord" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReplicationSet = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "GetReplicationSet"),
+    input = M.GetReplicationSetInput,
+    output = M.GetReplicationSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/getReplicationSet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicies = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "GetResourcePolicies"),
+    input = M.GetResourcePoliciesInput,
+    output = M.GetResourcePoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getResourcePolicies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResponsePlan = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "GetResponsePlan"),
+    input = M.GetResponsePlanInput,
+    output = M.GetResponsePlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/getResponsePlan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTimelineEvent = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "GetTimelineEvent"),
+    input = M.GetTimelineEventInput,
+    output = M.GetTimelineEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/getTimelineEvent" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIncidentFindings = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "ListIncidentFindings"),
+    input = M.ListIncidentFindingsInput,
+    output = M.ListIncidentFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listIncidentFindings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIncidentRecords = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "ListIncidentRecords"),
+    input = M.ListIncidentRecordsInput,
+    output = M.ListIncidentRecordsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listIncidentRecords" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRelatedItems = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "ListRelatedItems"),
+    input = M.ListRelatedItemsInput,
+    output = M.ListRelatedItemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listRelatedItems" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReplicationSets = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "ListReplicationSets"),
+    input = M.ListReplicationSetsInput,
+    output = M.ListReplicationSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listReplicationSets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResponsePlans = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "ListResponsePlans"),
+    input = M.ListResponsePlansInput,
+    output = M.ListResponsePlansOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listResponsePlans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTimelineEvents = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "ListTimelineEvents"),
+    input = M.ListTimelineEventsInput,
+    output = M.ListTimelineEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listTimelineEvents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/putResourcePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartIncident = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "StartIncident"),
+    input = M.StartIncidentInput,
+    output = M.StartIncidentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/startIncident" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDeletionProtection = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "UpdateDeletionProtection"),
+    input = M.UpdateDeletionProtectionInput,
+    output = M.UpdateDeletionProtectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateDeletionProtection" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIncidentRecord = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "UpdateIncidentRecord"),
+    input = M.UpdateIncidentRecordInput,
+    output = M.UpdateIncidentRecordOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateIncidentRecord" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRelatedItems = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "UpdateRelatedItems"),
+    input = M.UpdateRelatedItemsInput,
+    output = M.UpdateRelatedItemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateRelatedItems" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReplicationSet = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "UpdateReplicationSet"),
+    input = M.UpdateReplicationSetInput,
+    output = M.UpdateReplicationSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateReplicationSet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResponsePlan = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "UpdateResponsePlan"),
+    input = M.UpdateResponsePlanInput,
+    output = M.UpdateResponsePlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateResponsePlan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTimelineEvent = schema.operation({
+    id = id.from("com.amazonaws.ssmincidents", "UpdateTimelineEvent"),
+    input = M.UpdateTimelineEventInput,
+    output = M.UpdateTimelineEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateTimelineEvent" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

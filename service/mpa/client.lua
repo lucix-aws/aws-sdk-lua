@@ -7,6 +7,7 @@ local endpoint_rules = require("mpa.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("mpa.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mpa", signing_region = cfg.region } }
                 else
@@ -49,289 +52,91 @@ function M.new(cfg)
 end
 
 function Client:cancelSession(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelSession",
-        input_schema = schemas.CancelSessionInput,
-        output_schema = schemas.CancelSessionOutput,
-        http_method = "PUT",
-        http_path = "/sessions/{SessionArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelSession, input, options)
 end
 
 function Client:createApprovalTeam(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateApprovalTeam",
-        input_schema = schemas.CreateApprovalTeamInput,
-        output_schema = schemas.CreateApprovalTeamOutput,
-        http_method = "POST",
-        http_path = "/approval-teams",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateApprovalTeam, input, options)
 end
 
 function Client:createIdentitySource(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateIdentitySource",
-        input_schema = schemas.CreateIdentitySourceInput,
-        output_schema = schemas.CreateIdentitySourceOutput,
-        http_method = "POST",
-        http_path = "/identity-sources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateIdentitySource, input, options)
 end
 
 function Client:deleteIdentitySource(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIdentitySource",
-        input_schema = schemas.DeleteIdentitySourceInput,
-        output_schema = schemas.DeleteIdentitySourceOutput,
-        http_method = "DELETE",
-        http_path = "/identity-sources/{IdentitySourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIdentitySource, input, options)
 end
 
 function Client:deleteInactiveApprovalTeamVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteInactiveApprovalTeamVersion",
-        input_schema = schemas.DeleteInactiveApprovalTeamVersionInput,
-        output_schema = schemas.DeleteInactiveApprovalTeamVersionOutput,
-        http_method = "DELETE",
-        http_path = "/approval-teams/{Arn}/{VersionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteInactiveApprovalTeamVersion, input, options)
 end
 
 function Client:getApprovalTeam(input, options)
-    return self:invokeOperation(input, {
-        name = "GetApprovalTeam",
-        input_schema = schemas.GetApprovalTeamInput,
-        output_schema = schemas.GetApprovalTeamOutput,
-        http_method = "GET",
-        http_path = "/approval-teams/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetApprovalTeam, input, options)
 end
 
 function Client:getIdentitySource(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdentitySource",
-        input_schema = schemas.GetIdentitySourceInput,
-        output_schema = schemas.GetIdentitySourceOutput,
-        http_method = "GET",
-        http_path = "/identity-sources/{IdentitySourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdentitySource, input, options)
 end
 
 function Client:getPolicyVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPolicyVersion",
-        input_schema = schemas.GetPolicyVersionInput,
-        output_schema = schemas.GetPolicyVersionOutput,
-        http_method = "GET",
-        http_path = "/policy-versions/{PolicyVersionArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPolicyVersion, input, options)
 end
 
 function Client:getResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourcePolicy",
-        input_schema = schemas.GetResourcePolicyInput,
-        output_schema = schemas.GetResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/GetResourcePolicy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options)
 end
 
 function Client:getSession(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSession",
-        input_schema = schemas.GetSessionInput,
-        output_schema = schemas.GetSessionOutput,
-        http_method = "GET",
-        http_path = "/sessions/{SessionArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSession, input, options)
 end
 
 function Client:listApprovalTeams(input, options)
-    return self:invokeOperation(input, {
-        name = "ListApprovalTeams",
-        input_schema = schemas.ListApprovalTeamsInput,
-        output_schema = schemas.ListApprovalTeamsOutput,
-        http_method = "POST",
-        http_path = "/approval-teams/?List",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListApprovalTeams, input, options)
 end
 
 function Client:listIdentitySources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIdentitySources",
-        input_schema = schemas.ListIdentitySourcesInput,
-        output_schema = schemas.ListIdentitySourcesOutput,
-        http_method = "POST",
-        http_path = "/identity-sources/?List",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIdentitySources, input, options)
 end
 
 function Client:listPolicies(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPolicies",
-        input_schema = schemas.ListPoliciesInput,
-        output_schema = schemas.ListPoliciesOutput,
-        http_method = "POST",
-        http_path = "/policies/?List",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPolicies, input, options)
 end
 
 function Client:listPolicyVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPolicyVersions",
-        input_schema = schemas.ListPolicyVersionsInput,
-        output_schema = schemas.ListPolicyVersionsOutput,
-        http_method = "POST",
-        http_path = "/policies/{PolicyArn}/?List",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPolicyVersions, input, options)
 end
 
 function Client:listResourcePolicies(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResourcePolicies",
-        input_schema = schemas.ListResourcePoliciesInput,
-        output_schema = schemas.ListResourcePoliciesOutput,
-        http_method = "POST",
-        http_path = "/resource-policies/{ResourceArn}/?List",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResourcePolicies, input, options)
 end
 
 function Client:listSessions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSessions",
-        input_schema = schemas.ListSessionsInput,
-        output_schema = schemas.ListSessionsOutput,
-        http_method = "POST",
-        http_path = "/approval-teams/{ApprovalTeamArn}/sessions/?List",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSessions, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:startActiveApprovalTeamDeletion(input, options)
-    return self:invokeOperation(input, {
-        name = "StartActiveApprovalTeamDeletion",
-        input_schema = schemas.StartActiveApprovalTeamDeletionInput,
-        output_schema = schemas.StartActiveApprovalTeamDeletionOutput,
-        http_method = "POST",
-        http_path = "/approval-teams/{Arn}?Delete",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartActiveApprovalTeamDeletion, input, options)
 end
 
 function Client:startApprovalTeamBaseline(input, options)
-    return self:invokeOperation(input, {
-        name = "StartApprovalTeamBaseline",
-        input_schema = schemas.StartApprovalTeamBaselineInput,
-        output_schema = schemas.StartApprovalTeamBaselineOutput,
-        http_method = "POST",
-        http_path = "/approval-teams/{Arn}/baseline",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartApprovalTeamBaseline, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "PUT",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateApprovalTeam(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateApprovalTeam",
-        input_schema = schemas.UpdateApprovalTeamInput,
-        output_schema = schemas.UpdateApprovalTeamOutput,
-        http_method = "PATCH",
-        http_path = "/approval-teams/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateApprovalTeam, input, options)
 end
 
 return M

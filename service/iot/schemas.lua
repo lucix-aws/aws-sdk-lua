@@ -23075,4 +23075,3278 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.iot", "AWSIotService"),
+    version = "2015-05-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptCertificateTransfer = schema.operation({
+    id = id.from("com.amazonaws.iot", "AcceptCertificateTransfer"),
+    input = M.AcceptCertificateTransferInput,
+    output = M.AcceptCertificateTransferOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/accept-certificate-transfer/{certificateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddThingToBillingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "AddThingToBillingGroup"),
+    input = M.AddThingToBillingGroupInput,
+    output = M.AddThingToBillingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/billing-groups/addThingToBillingGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddThingToThingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "AddThingToThingGroup"),
+    input = M.AddThingToThingGroupInput,
+    output = M.AddThingToThingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/thing-groups/addThingToThingGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateSbomWithPackageVersion = schema.operation({
+    id = id.from("com.amazonaws.iot", "AssociateSbomWithPackageVersion"),
+    input = M.AssociateSbomWithPackageVersionInput,
+    output = M.AssociateSbomWithPackageVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/packages/{packageName}/versions/{versionName}/sbom" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateTargetsWithJob = schema.operation({
+    id = id.from("com.amazonaws.iot", "AssociateTargetsWithJob"),
+    input = M.AssociateTargetsWithJobInput,
+    output = M.AssociateTargetsWithJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/jobs/{jobId}/targets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachPolicy = schema.operation({
+    id = id.from("com.amazonaws.iot", "AttachPolicy"),
+    input = M.AttachPolicyInput,
+    output = M.AttachPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/target-policies/{policyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachPrincipalPolicy = schema.operation({
+    id = id.from("com.amazonaws.iot", "AttachPrincipalPolicy"),
+    input = M.AttachPrincipalPolicyInput,
+    output = M.AttachPrincipalPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/principal-policies/{policyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachSecurityProfile = schema.operation({
+    id = id.from("com.amazonaws.iot", "AttachSecurityProfile"),
+    input = M.AttachSecurityProfileInput,
+    output = M.AttachSecurityProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/security-profiles/{securityProfileName}/targets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachThingPrincipal = schema.operation({
+    id = id.from("com.amazonaws.iot", "AttachThingPrincipal"),
+    input = M.AttachThingPrincipalInput,
+    output = M.AttachThingPrincipalOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/things/{thingName}/principals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelAuditMitigationActionsTask = schema.operation({
+    id = id.from("com.amazonaws.iot", "CancelAuditMitigationActionsTask"),
+    input = M.CancelAuditMitigationActionsTaskInput,
+    output = M.CancelAuditMitigationActionsTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/audit/mitigationactions/tasks/{taskId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelAuditTask = schema.operation({
+    id = id.from("com.amazonaws.iot", "CancelAuditTask"),
+    input = M.CancelAuditTaskInput,
+    output = M.CancelAuditTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/audit/tasks/{taskId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelCertificateTransfer = schema.operation({
+    id = id.from("com.amazonaws.iot", "CancelCertificateTransfer"),
+    input = M.CancelCertificateTransferInput,
+    output = M.CancelCertificateTransferOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/cancel-certificate-transfer/{certificateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelDetectMitigationActionsTask = schema.operation({
+    id = id.from("com.amazonaws.iot", "CancelDetectMitigationActionsTask"),
+    input = M.CancelDetectMitigationActionsTaskInput,
+    output = M.CancelDetectMitigationActionsTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/detect/mitigationactions/tasks/{taskId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelJob = schema.operation({
+    id = id.from("com.amazonaws.iot", "CancelJob"),
+    input = M.CancelJobInput,
+    output = M.CancelJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/jobs/{jobId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelJobExecution = schema.operation({
+    id = id.from("com.amazonaws.iot", "CancelJobExecution"),
+    input = M.CancelJobExecutionInput,
+    output = M.CancelJobExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/things/{thingName}/jobs/{jobId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ClearDefaultAuthorizer = schema.operation({
+    id = id.from("com.amazonaws.iot", "ClearDefaultAuthorizer"),
+    input = M.ClearDefaultAuthorizerInput,
+    output = M.ClearDefaultAuthorizerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/default-authorizer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfirmTopicRuleDestination = schema.operation({
+    id = id.from("com.amazonaws.iot", "ConfirmTopicRuleDestination"),
+    input = M.ConfirmTopicRuleDestinationInput,
+    output = M.ConfirmTopicRuleDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/confirmdestination/{confirmationToken+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAuditSuppression = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateAuditSuppression"),
+    input = M.CreateAuditSuppressionInput,
+    output = M.CreateAuditSuppressionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/audit/suppressions/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAuthorizer = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateAuthorizer"),
+    input = M.CreateAuthorizerInput,
+    output = M.CreateAuthorizerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/authorizer/{authorizerName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBillingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateBillingGroup"),
+    input = M.CreateBillingGroupInput,
+    output = M.CreateBillingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/billing-groups/{billingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCertificateFromCsr = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateCertificateFromCsr"),
+    input = M.CreateCertificateFromCsrInput,
+    output = M.CreateCertificateFromCsrOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/certificates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCertificateProvider = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateCertificateProvider"),
+    input = M.CreateCertificateProviderInput,
+    output = M.CreateCertificateProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/certificate-providers/{certificateProviderName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCommand = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateCommand"),
+    input = M.CreateCommandInput,
+    output = M.CreateCommandOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/commands/{commandId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomMetric = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateCustomMetric"),
+    input = M.CreateCustomMetricInput,
+    output = M.CreateCustomMetricOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/custom-metric/{metricName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDimension = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateDimension"),
+    input = M.CreateDimensionInput,
+    output = M.CreateDimensionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/dimensions/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomainConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateDomainConfiguration"),
+    input = M.CreateDomainConfigurationInput,
+    output = M.CreateDomainConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domainConfigurations/{domainConfigurationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDynamicThingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateDynamicThingGroup"),
+    input = M.CreateDynamicThingGroupInput,
+    output = M.CreateDynamicThingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/dynamic-thing-groups/{thingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFleetMetric = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateFleetMetric"),
+    input = M.CreateFleetMetricInput,
+    output = M.CreateFleetMetricOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/fleet-metric/{metricName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateJob = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateJob"),
+    input = M.CreateJobInput,
+    output = M.CreateJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateJobTemplate = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateJobTemplate"),
+    input = M.CreateJobTemplateInput,
+    output = M.CreateJobTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/job-templates/{jobTemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKeysAndCertificate = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateKeysAndCertificate"),
+    input = M.CreateKeysAndCertificateInput,
+    output = M.CreateKeysAndCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/keys-and-certificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMitigationAction = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateMitigationAction"),
+    input = M.CreateMitigationActionInput,
+    output = M.CreateMitigationActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/mitigationactions/actions/{actionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOTAUpdate = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateOTAUpdate"),
+    input = M.CreateOTAUpdateInput,
+    output = M.CreateOTAUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/otaUpdates/{otaUpdateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePackage = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreatePackage"),
+    input = M.CreatePackageInput,
+    output = M.CreatePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/packages/{packageName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePackageVersion = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreatePackageVersion"),
+    input = M.CreatePackageVersionInput,
+    output = M.CreatePackageVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/packages/{packageName}/versions/{versionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePolicy = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreatePolicy"),
+    input = M.CreatePolicyInput,
+    output = M.CreatePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policies/{policyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePolicyVersion = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreatePolicyVersion"),
+    input = M.CreatePolicyVersionInput,
+    output = M.CreatePolicyVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policies/{policyName}/version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProvisioningClaim = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateProvisioningClaim"),
+    input = M.CreateProvisioningClaimInput,
+    output = M.CreateProvisioningClaimOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/provisioning-templates/{templateName}/provisioning-claim" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProvisioningTemplate = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateProvisioningTemplate"),
+    input = M.CreateProvisioningTemplateInput,
+    output = M.CreateProvisioningTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/provisioning-templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProvisioningTemplateVersion = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateProvisioningTemplateVersion"),
+    input = M.CreateProvisioningTemplateVersionInput,
+    output = M.CreateProvisioningTemplateVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/provisioning-templates/{templateName}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRoleAlias = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateRoleAlias"),
+    input = M.CreateRoleAliasInput,
+    output = M.CreateRoleAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/role-aliases/{roleAlias}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateScheduledAudit = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateScheduledAudit"),
+    input = M.CreateScheduledAuditInput,
+    output = M.CreateScheduledAuditOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/audit/scheduledaudits/{scheduledAuditName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSecurityProfile = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateSecurityProfile"),
+    input = M.CreateSecurityProfileInput,
+    output = M.CreateSecurityProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/security-profiles/{securityProfileName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStream = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateStream"),
+    input = M.CreateStreamInput,
+    output = M.CreateStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/streams/{streamId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateThing = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateThing"),
+    input = M.CreateThingInput,
+    output = M.CreateThingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/things/{thingName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateThingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateThingGroup"),
+    input = M.CreateThingGroupInput,
+    output = M.CreateThingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/thing-groups/{thingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateThingType = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateThingType"),
+    input = M.CreateThingTypeInput,
+    output = M.CreateThingTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/thing-types/{thingTypeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTopicRule = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateTopicRule"),
+    input = M.CreateTopicRuleInput,
+    output = M.CreateTopicRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/rules/{ruleName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTopicRuleDestination = schema.operation({
+    id = id.from("com.amazonaws.iot", "CreateTopicRuleDestination"),
+    input = M.CreateTopicRuleDestinationInput,
+    output = M.CreateTopicRuleDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/destinations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccountAuditConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteAccountAuditConfiguration"),
+    input = M.DeleteAccountAuditConfigurationInput,
+    output = M.DeleteAccountAuditConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/audit/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAuditSuppression = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteAuditSuppression"),
+    input = M.DeleteAuditSuppressionInput,
+    output = M.DeleteAuditSuppressionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/audit/suppressions/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAuthorizer = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteAuthorizer"),
+    input = M.DeleteAuthorizerInput,
+    output = M.DeleteAuthorizerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/authorizer/{authorizerName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBillingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteBillingGroup"),
+    input = M.DeleteBillingGroupInput,
+    output = M.DeleteBillingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/billing-groups/{billingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCACertificate = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteCACertificate"),
+    input = M.DeleteCACertificateInput,
+    output = M.DeleteCACertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/cacertificate/{certificateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCertificate = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteCertificate"),
+    input = M.DeleteCertificateInput,
+    output = M.DeleteCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/certificates/{certificateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCertificateProvider = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteCertificateProvider"),
+    input = M.DeleteCertificateProviderInput,
+    output = M.DeleteCertificateProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/certificate-providers/{certificateProviderName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCommand = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteCommand"),
+    input = M.DeleteCommandInput,
+    output = M.DeleteCommandOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/commands/{commandId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCommandExecution = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteCommandExecution"),
+    input = M.DeleteCommandExecutionInput,
+    output = M.DeleteCommandExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/command-executions/{executionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomMetric = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteCustomMetric"),
+    input = M.DeleteCustomMetricInput,
+    output = M.DeleteCustomMetricOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/custom-metric/{metricName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDimension = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteDimension"),
+    input = M.DeleteDimensionInput,
+    output = M.DeleteDimensionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/dimensions/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomainConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteDomainConfiguration"),
+    input = M.DeleteDomainConfigurationInput,
+    output = M.DeleteDomainConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domainConfigurations/{domainConfigurationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDynamicThingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteDynamicThingGroup"),
+    input = M.DeleteDynamicThingGroupInput,
+    output = M.DeleteDynamicThingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/dynamic-thing-groups/{thingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFleetMetric = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteFleetMetric"),
+    input = M.DeleteFleetMetricInput,
+    output = M.DeleteFleetMetricOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/fleet-metric/{metricName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteJob = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteJob"),
+    input = M.DeleteJobInput,
+    output = M.DeleteJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteJobExecution = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteJobExecution"),
+    input = M.DeleteJobExecutionInput,
+    output = M.DeleteJobExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/things/{thingName}/jobs/{jobId}/executionNumber/{executionNumber}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteJobTemplate = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteJobTemplate"),
+    input = M.DeleteJobTemplateInput,
+    output = M.DeleteJobTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/job-templates/{jobTemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMitigationAction = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteMitigationAction"),
+    input = M.DeleteMitigationActionInput,
+    output = M.DeleteMitigationActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/mitigationactions/actions/{actionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOTAUpdate = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteOTAUpdate"),
+    input = M.DeleteOTAUpdateInput,
+    output = M.DeleteOTAUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/otaUpdates/{otaUpdateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePackage = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeletePackage"),
+    input = M.DeletePackageInput,
+    output = M.DeletePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/packages/{packageName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePackageVersion = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeletePackageVersion"),
+    input = M.DeletePackageVersionInput,
+    output = M.DeletePackageVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/packages/{packageName}/versions/{versionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePolicy = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeletePolicy"),
+    input = M.DeletePolicyInput,
+    output = M.DeletePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/policies/{policyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePolicyVersion = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeletePolicyVersion"),
+    input = M.DeletePolicyVersionInput,
+    output = M.DeletePolicyVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/policies/{policyName}/version/{policyVersionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProvisioningTemplate = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteProvisioningTemplate"),
+    input = M.DeleteProvisioningTemplateInput,
+    output = M.DeleteProvisioningTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/provisioning-templates/{templateName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProvisioningTemplateVersion = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteProvisioningTemplateVersion"),
+    input = M.DeleteProvisioningTemplateVersionInput,
+    output = M.DeleteProvisioningTemplateVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/provisioning-templates/{templateName}/versions/{versionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRegistrationCode = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteRegistrationCode"),
+    input = M.DeleteRegistrationCodeInput,
+    output = M.DeleteRegistrationCodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/registrationcode" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRoleAlias = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteRoleAlias"),
+    input = M.DeleteRoleAliasInput,
+    output = M.DeleteRoleAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/role-aliases/{roleAlias}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScheduledAudit = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteScheduledAudit"),
+    input = M.DeleteScheduledAuditInput,
+    output = M.DeleteScheduledAuditOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/audit/scheduledaudits/{scheduledAuditName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSecurityProfile = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteSecurityProfile"),
+    input = M.DeleteSecurityProfileInput,
+    output = M.DeleteSecurityProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/security-profiles/{securityProfileName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStream = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteStream"),
+    input = M.DeleteStreamInput,
+    output = M.DeleteStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/streams/{streamId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteThing = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteThing"),
+    input = M.DeleteThingInput,
+    output = M.DeleteThingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/things/{thingName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteThingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteThingGroup"),
+    input = M.DeleteThingGroupInput,
+    output = M.DeleteThingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/thing-groups/{thingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteThingType = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteThingType"),
+    input = M.DeleteThingTypeInput,
+    output = M.DeleteThingTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/thing-types/{thingTypeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTopicRule = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteTopicRule"),
+    input = M.DeleteTopicRuleInput,
+    output = M.DeleteTopicRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/rules/{ruleName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTopicRuleDestination = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteTopicRuleDestination"),
+    input = M.DeleteTopicRuleDestinationInput,
+    output = M.DeleteTopicRuleDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/destinations/{arn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteV2LoggingLevel = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeleteV2LoggingLevel"),
+    input = M.DeleteV2LoggingLevelInput,
+    output = M.DeleteV2LoggingLevelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2LoggingLevel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeprecateThingType = schema.operation({
+    id = id.from("com.amazonaws.iot", "DeprecateThingType"),
+    input = M.DeprecateThingTypeInput,
+    output = M.DeprecateThingTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/thing-types/{thingTypeName}/deprecate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountAuditConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeAccountAuditConfiguration"),
+    input = M.DescribeAccountAuditConfigurationInput,
+    output = M.DescribeAccountAuditConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAuditFinding = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeAuditFinding"),
+    input = M.DescribeAuditFindingInput,
+    output = M.DescribeAuditFindingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/findings/{findingId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAuditMitigationActionsTask = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeAuditMitigationActionsTask"),
+    input = M.DescribeAuditMitigationActionsTaskInput,
+    output = M.DescribeAuditMitigationActionsTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/mitigationactions/tasks/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAuditSuppression = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeAuditSuppression"),
+    input = M.DescribeAuditSuppressionInput,
+    output = M.DescribeAuditSuppressionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/audit/suppressions/describe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAuditTask = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeAuditTask"),
+    input = M.DescribeAuditTaskInput,
+    output = M.DescribeAuditTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/tasks/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAuthorizer = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeAuthorizer"),
+    input = M.DescribeAuthorizerInput,
+    output = M.DescribeAuthorizerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/authorizer/{authorizerName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBillingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeBillingGroup"),
+    input = M.DescribeBillingGroupInput,
+    output = M.DescribeBillingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/billing-groups/{billingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCACertificate = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeCACertificate"),
+    input = M.DescribeCACertificateInput,
+    output = M.DescribeCACertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cacertificate/{certificateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCertificate = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeCertificate"),
+    input = M.DescribeCertificateInput,
+    output = M.DescribeCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/certificates/{certificateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCertificateProvider = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeCertificateProvider"),
+    input = M.DescribeCertificateProviderInput,
+    output = M.DescribeCertificateProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/certificate-providers/{certificateProviderName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCustomMetric = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeCustomMetric"),
+    input = M.DescribeCustomMetricInput,
+    output = M.DescribeCustomMetricOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/custom-metric/{metricName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDefaultAuthorizer = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeDefaultAuthorizer"),
+    input = M.DescribeDefaultAuthorizerInput,
+    output = M.DescribeDefaultAuthorizerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/default-authorizer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDetectMitigationActionsTask = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeDetectMitigationActionsTask"),
+    input = M.DescribeDetectMitigationActionsTaskInput,
+    output = M.DescribeDetectMitigationActionsTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detect/mitigationactions/tasks/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDimension = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeDimension"),
+    input = M.DescribeDimensionInput,
+    output = M.DescribeDimensionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/dimensions/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomainConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeDomainConfiguration"),
+    input = M.DescribeDomainConfigurationInput,
+    output = M.DescribeDomainConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domainConfigurations/{domainConfigurationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEncryptionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeEncryptionConfiguration"),
+    input = M.DescribeEncryptionConfigurationInput,
+    output = M.DescribeEncryptionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/encryption-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeEndpoint"),
+    input = M.DescribeEndpointInput,
+    output = M.DescribeEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/endpoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventConfigurations = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeEventConfigurations"),
+    input = M.DescribeEventConfigurationsInput,
+    output = M.DescribeEventConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/event-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetMetric = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeFleetMetric"),
+    input = M.DescribeFleetMetricInput,
+    output = M.DescribeFleetMetricOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/fleet-metric/{metricName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIndex = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeIndex"),
+    input = M.DescribeIndexInput,
+    output = M.DescribeIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/indices/{indexName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJob = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeJob"),
+    input = M.DescribeJobInput,
+    output = M.DescribeJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobExecution = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeJobExecution"),
+    input = M.DescribeJobExecutionInput,
+    output = M.DescribeJobExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/things/{thingName}/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobTemplate = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeJobTemplate"),
+    input = M.DescribeJobTemplateInput,
+    output = M.DescribeJobTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/job-templates/{jobTemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeManagedJobTemplate = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeManagedJobTemplate"),
+    input = M.DescribeManagedJobTemplateInput,
+    output = M.DescribeManagedJobTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/managed-job-templates/{templateName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMitigationAction = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeMitigationAction"),
+    input = M.DescribeMitigationActionInput,
+    output = M.DescribeMitigationActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/mitigationactions/actions/{actionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProvisioningTemplate = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeProvisioningTemplate"),
+    input = M.DescribeProvisioningTemplateInput,
+    output = M.DescribeProvisioningTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/provisioning-templates/{templateName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProvisioningTemplateVersion = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeProvisioningTemplateVersion"),
+    input = M.DescribeProvisioningTemplateVersionInput,
+    output = M.DescribeProvisioningTemplateVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/provisioning-templates/{templateName}/versions/{versionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRoleAlias = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeRoleAlias"),
+    input = M.DescribeRoleAliasInput,
+    output = M.DescribeRoleAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/role-aliases/{roleAlias}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScheduledAudit = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeScheduledAudit"),
+    input = M.DescribeScheduledAuditInput,
+    output = M.DescribeScheduledAuditOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/scheduledaudits/{scheduledAuditName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSecurityProfile = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeSecurityProfile"),
+    input = M.DescribeSecurityProfileInput,
+    output = M.DescribeSecurityProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/security-profiles/{securityProfileName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStream = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeStream"),
+    input = M.DescribeStreamInput,
+    output = M.DescribeStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/streams/{streamId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeThing = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeThing"),
+    input = M.DescribeThingInput,
+    output = M.DescribeThingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/things/{thingName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeThingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeThingGroup"),
+    input = M.DescribeThingGroupInput,
+    output = M.DescribeThingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/thing-groups/{thingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeThingRegistrationTask = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeThingRegistrationTask"),
+    input = M.DescribeThingRegistrationTaskInput,
+    output = M.DescribeThingRegistrationTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/thing-registration-tasks/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeThingType = schema.operation({
+    id = id.from("com.amazonaws.iot", "DescribeThingType"),
+    input = M.DescribeThingTypeInput,
+    output = M.DescribeThingTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/thing-types/{thingTypeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachPolicy = schema.operation({
+    id = id.from("com.amazonaws.iot", "DetachPolicy"),
+    input = M.DetachPolicyInput,
+    output = M.DetachPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/target-policies/{policyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachPrincipalPolicy = schema.operation({
+    id = id.from("com.amazonaws.iot", "DetachPrincipalPolicy"),
+    input = M.DetachPrincipalPolicyInput,
+    output = M.DetachPrincipalPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/principal-policies/{policyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachSecurityProfile = schema.operation({
+    id = id.from("com.amazonaws.iot", "DetachSecurityProfile"),
+    input = M.DetachSecurityProfileInput,
+    output = M.DetachSecurityProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/security-profiles/{securityProfileName}/targets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachThingPrincipal = schema.operation({
+    id = id.from("com.amazonaws.iot", "DetachThingPrincipal"),
+    input = M.DetachThingPrincipalInput,
+    output = M.DetachThingPrincipalOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/things/{thingName}/principals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableTopicRule = schema.operation({
+    id = id.from("com.amazonaws.iot", "DisableTopicRule"),
+    input = M.DisableTopicRuleInput,
+    output = M.DisableTopicRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/rules/{ruleName}/disable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateSbomFromPackageVersion = schema.operation({
+    id = id.from("com.amazonaws.iot", "DisassociateSbomFromPackageVersion"),
+    input = M.DisassociateSbomFromPackageVersionInput,
+    output = M.DisassociateSbomFromPackageVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/packages/{packageName}/versions/{versionName}/sbom" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableTopicRule = schema.operation({
+    id = id.from("com.amazonaws.iot", "EnableTopicRule"),
+    input = M.EnableTopicRuleInput,
+    output = M.EnableTopicRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/rules/{ruleName}/enable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBehaviorModelTrainingSummaries = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetBehaviorModelTrainingSummaries"),
+    input = M.GetBehaviorModelTrainingSummariesInput,
+    output = M.GetBehaviorModelTrainingSummariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/behavior-model-training/summaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBucketsAggregation = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetBucketsAggregation"),
+    input = M.GetBucketsAggregationInput,
+    output = M.GetBucketsAggregationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/indices/buckets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCardinality = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetCardinality"),
+    input = M.GetCardinalityInput,
+    output = M.GetCardinalityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/indices/cardinality" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCommand = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetCommand"),
+    input = M.GetCommandInput,
+    output = M.GetCommandOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/commands/{commandId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCommandExecution = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetCommandExecution"),
+    input = M.GetCommandExecutionInput,
+    output = M.GetCommandExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/command-executions/{executionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEffectivePolicies = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetEffectivePolicies"),
+    input = M.GetEffectivePoliciesInput,
+    output = M.GetEffectivePoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/effective-policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIndexingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetIndexingConfiguration"),
+    input = M.GetIndexingConfigurationInput,
+    output = M.GetIndexingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/indexing/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJobDocument = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetJobDocument"),
+    input = M.GetJobDocumentInput,
+    output = M.GetJobDocumentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobs/{jobId}/job-document" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLoggingOptions = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetLoggingOptions"),
+    input = M.GetLoggingOptionsInput,
+    output = M.GetLoggingOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/loggingOptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOTAUpdate = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetOTAUpdate"),
+    input = M.GetOTAUpdateInput,
+    output = M.GetOTAUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/otaUpdates/{otaUpdateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPackage = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetPackage"),
+    input = M.GetPackageInput,
+    output = M.GetPackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packages/{packageName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPackageConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetPackageConfiguration"),
+    input = M.GetPackageConfigurationInput,
+    output = M.GetPackageConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/package-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPackageVersion = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetPackageVersion"),
+    input = M.GetPackageVersionInput,
+    output = M.GetPackageVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packages/{packageName}/versions/{versionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPercentiles = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetPercentiles"),
+    input = M.GetPercentilesInput,
+    output = M.GetPercentilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/indices/percentiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicy = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetPolicy"),
+    input = M.GetPolicyInput,
+    output = M.GetPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policies/{policyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicyVersion = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetPolicyVersion"),
+    input = M.GetPolicyVersionInput,
+    output = M.GetPolicyVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policies/{policyName}/version/{policyVersionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRegistrationCode = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetRegistrationCode"),
+    input = M.GetRegistrationCodeInput,
+    output = M.GetRegistrationCodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/registrationcode" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStatistics = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetStatistics"),
+    input = M.GetStatisticsInput,
+    output = M.GetStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/indices/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetThingConnectivityData = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetThingConnectivityData"),
+    input = M.GetThingConnectivityDataInput,
+    output = M.GetThingConnectivityDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/things/{thingName}/connectivity-data" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTopicRule = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetTopicRule"),
+    input = M.GetTopicRuleInput,
+    output = M.GetTopicRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/rules/{ruleName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTopicRuleDestination = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetTopicRuleDestination"),
+    input = M.GetTopicRuleDestinationInput,
+    output = M.GetTopicRuleDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/destinations/{arn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetV2LoggingOptions = schema.operation({
+    id = id.from("com.amazonaws.iot", "GetV2LoggingOptions"),
+    input = M.GetV2LoggingOptionsInput,
+    output = M.GetV2LoggingOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2LoggingOptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListActiveViolations = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListActiveViolations"),
+    input = M.ListActiveViolationsInput,
+    output = M.ListActiveViolationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/active-violations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttachedPolicies = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListAttachedPolicies"),
+    input = M.ListAttachedPoliciesInput,
+    output = M.ListAttachedPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/attached-policies/{target}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAuditFindings = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListAuditFindings"),
+    input = M.ListAuditFindingsInput,
+    output = M.ListAuditFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/audit/findings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAuditMitigationActionsExecutions = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListAuditMitigationActionsExecutions"),
+    input = M.ListAuditMitigationActionsExecutionsInput,
+    output = M.ListAuditMitigationActionsExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/mitigationactions/executions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAuditMitigationActionsTasks = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListAuditMitigationActionsTasks"),
+    input = M.ListAuditMitigationActionsTasksInput,
+    output = M.ListAuditMitigationActionsTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/mitigationactions/tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAuditSuppressions = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListAuditSuppressions"),
+    input = M.ListAuditSuppressionsInput,
+    output = M.ListAuditSuppressionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/audit/suppressions/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAuditTasks = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListAuditTasks"),
+    input = M.ListAuditTasksInput,
+    output = M.ListAuditTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAuthorizers = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListAuthorizers"),
+    input = M.ListAuthorizersInput,
+    output = M.ListAuthorizersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/authorizers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBillingGroups = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListBillingGroups"),
+    input = M.ListBillingGroupsInput,
+    output = M.ListBillingGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/billing-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCACertificates = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListCACertificates"),
+    input = M.ListCACertificatesInput,
+    output = M.ListCACertificatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cacertificates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCertificateProviders = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListCertificateProviders"),
+    input = M.ListCertificateProvidersInput,
+    output = M.ListCertificateProvidersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/certificate-providers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCertificates = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListCertificates"),
+    input = M.ListCertificatesInput,
+    output = M.ListCertificatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/certificates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCertificatesByCA = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListCertificatesByCA"),
+    input = M.ListCertificatesByCAInput,
+    output = M.ListCertificatesByCAOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/certificates-by-ca/{caCertificateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCommandExecutions = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListCommandExecutions"),
+    input = M.ListCommandExecutionsInput,
+    output = M.ListCommandExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/command-executions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCommands = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListCommands"),
+    input = M.ListCommandsInput,
+    output = M.ListCommandsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/commands" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomMetrics = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListCustomMetrics"),
+    input = M.ListCustomMetricsInput,
+    output = M.ListCustomMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/custom-metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDetectMitigationActionsExecutions = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListDetectMitigationActionsExecutions"),
+    input = M.ListDetectMitigationActionsExecutionsInput,
+    output = M.ListDetectMitigationActionsExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detect/mitigationactions/executions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDetectMitigationActionsTasks = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListDetectMitigationActionsTasks"),
+    input = M.ListDetectMitigationActionsTasksInput,
+    output = M.ListDetectMitigationActionsTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detect/mitigationactions/tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDimensions = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListDimensions"),
+    input = M.ListDimensionsInput,
+    output = M.ListDimensionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/dimensions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainConfigurations = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListDomainConfigurations"),
+    input = M.ListDomainConfigurationsInput,
+    output = M.ListDomainConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domainConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFleetMetrics = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListFleetMetrics"),
+    input = M.ListFleetMetricsInput,
+    output = M.ListFleetMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/fleet-metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIndices = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListIndices"),
+    input = M.ListIndicesInput,
+    output = M.ListIndicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/indices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobExecutionsForJob = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListJobExecutionsForJob"),
+    input = M.ListJobExecutionsForJobInput,
+    output = M.ListJobExecutionsForJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobs/{jobId}/things" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobExecutionsForThing = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListJobExecutionsForThing"),
+    input = M.ListJobExecutionsForThingInput,
+    output = M.ListJobExecutionsForThingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/things/{thingName}/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobs = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListJobs"),
+    input = M.ListJobsInput,
+    output = M.ListJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobTemplates = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListJobTemplates"),
+    input = M.ListJobTemplatesInput,
+    output = M.ListJobTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/job-templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedJobTemplates = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListManagedJobTemplates"),
+    input = M.ListManagedJobTemplatesInput,
+    output = M.ListManagedJobTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/managed-job-templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMetricValues = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListMetricValues"),
+    input = M.ListMetricValuesInput,
+    output = M.ListMetricValuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/metric-values" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMitigationActions = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListMitigationActions"),
+    input = M.ListMitigationActionsInput,
+    output = M.ListMitigationActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/mitigationactions/actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOTAUpdates = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListOTAUpdates"),
+    input = M.ListOTAUpdatesInput,
+    output = M.ListOTAUpdatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/otaUpdates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOutgoingCertificates = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListOutgoingCertificates"),
+    input = M.ListOutgoingCertificatesInput,
+    output = M.ListOutgoingCertificatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/certificates-out-going" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPackages = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListPackages"),
+    input = M.ListPackagesInput,
+    output = M.ListPackagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPackageVersions = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListPackageVersions"),
+    input = M.ListPackageVersionsInput,
+    output = M.ListPackageVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packages/{packageName}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicies = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListPolicies"),
+    input = M.ListPoliciesInput,
+    output = M.ListPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyPrincipals = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListPolicyPrincipals"),
+    input = M.ListPolicyPrincipalsInput,
+    output = M.ListPolicyPrincipalsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-principals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyVersions = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListPolicyVersions"),
+    input = M.ListPolicyVersionsInput,
+    output = M.ListPolicyVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policies/{policyName}/version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPrincipalPolicies = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListPrincipalPolicies"),
+    input = M.ListPrincipalPoliciesInput,
+    output = M.ListPrincipalPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/principal-policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPrincipalThings = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListPrincipalThings"),
+    input = M.ListPrincipalThingsInput,
+    output = M.ListPrincipalThingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/principals/things" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPrincipalThingsV2 = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListPrincipalThingsV2"),
+    input = M.ListPrincipalThingsV2Input,
+    output = M.ListPrincipalThingsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/principals/things-v2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProvisioningTemplates = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListProvisioningTemplates"),
+    input = M.ListProvisioningTemplatesInput,
+    output = M.ListProvisioningTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/provisioning-templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProvisioningTemplateVersions = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListProvisioningTemplateVersions"),
+    input = M.ListProvisioningTemplateVersionsInput,
+    output = M.ListProvisioningTemplateVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/provisioning-templates/{templateName}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRelatedResourcesForAuditFinding = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListRelatedResourcesForAuditFinding"),
+    input = M.ListRelatedResourcesForAuditFindingInput,
+    output = M.ListRelatedResourcesForAuditFindingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/relatedResources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRoleAliases = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListRoleAliases"),
+    input = M.ListRoleAliasesInput,
+    output = M.ListRoleAliasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/role-aliases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSbomValidationResults = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListSbomValidationResults"),
+    input = M.ListSbomValidationResultsInput,
+    output = M.ListSbomValidationResultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packages/{packageName}/versions/{versionName}/sbom-validation-results" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScheduledAudits = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListScheduledAudits"),
+    input = M.ListScheduledAuditsInput,
+    output = M.ListScheduledAuditsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/audit/scheduledaudits" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityProfiles = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListSecurityProfiles"),
+    input = M.ListSecurityProfilesInput,
+    output = M.ListSecurityProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/security-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityProfilesForTarget = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListSecurityProfilesForTarget"),
+    input = M.ListSecurityProfilesForTargetInput,
+    output = M.ListSecurityProfilesForTargetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/security-profiles-for-target" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStreams = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListStreams"),
+    input = M.ListStreamsInput,
+    output = M.ListStreamsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/streams" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTargetsForPolicy = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListTargetsForPolicy"),
+    input = M.ListTargetsForPolicyInput,
+    output = M.ListTargetsForPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policy-targets/{policyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTargetsForSecurityProfile = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListTargetsForSecurityProfile"),
+    input = M.ListTargetsForSecurityProfileInput,
+    output = M.ListTargetsForSecurityProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/security-profiles/{securityProfileName}/targets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThingGroups = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListThingGroups"),
+    input = M.ListThingGroupsInput,
+    output = M.ListThingGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/thing-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThingGroupsForThing = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListThingGroupsForThing"),
+    input = M.ListThingGroupsForThingInput,
+    output = M.ListThingGroupsForThingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/things/{thingName}/thing-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThingPrincipals = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListThingPrincipals"),
+    input = M.ListThingPrincipalsInput,
+    output = M.ListThingPrincipalsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/things/{thingName}/principals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThingPrincipalsV2 = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListThingPrincipalsV2"),
+    input = M.ListThingPrincipalsV2Input,
+    output = M.ListThingPrincipalsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/things/{thingName}/principals-v2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThingRegistrationTaskReports = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListThingRegistrationTaskReports"),
+    input = M.ListThingRegistrationTaskReportsInput,
+    output = M.ListThingRegistrationTaskReportsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/thing-registration-tasks/{taskId}/reports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThingRegistrationTasks = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListThingRegistrationTasks"),
+    input = M.ListThingRegistrationTasksInput,
+    output = M.ListThingRegistrationTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/thing-registration-tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThings = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListThings"),
+    input = M.ListThingsInput,
+    output = M.ListThingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/things" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThingsInBillingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListThingsInBillingGroup"),
+    input = M.ListThingsInBillingGroupInput,
+    output = M.ListThingsInBillingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/billing-groups/{billingGroupName}/things" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThingsInThingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListThingsInThingGroup"),
+    input = M.ListThingsInThingGroupInput,
+    output = M.ListThingsInThingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/thing-groups/{thingGroupName}/things" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThingTypes = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListThingTypes"),
+    input = M.ListThingTypesInput,
+    output = M.ListThingTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/thing-types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTopicRuleDestinations = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListTopicRuleDestinations"),
+    input = M.ListTopicRuleDestinationsInput,
+    output = M.ListTopicRuleDestinationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/destinations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTopicRules = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListTopicRules"),
+    input = M.ListTopicRulesInput,
+    output = M.ListTopicRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListV2LoggingLevels = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListV2LoggingLevels"),
+    input = M.ListV2LoggingLevelsInput,
+    output = M.ListV2LoggingLevelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2LoggingLevel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListViolationEvents = schema.operation({
+    id = id.from("com.amazonaws.iot", "ListViolationEvents"),
+    input = M.ListViolationEventsInput,
+    output = M.ListViolationEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/violation-events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutVerificationStateOnViolation = schema.operation({
+    id = id.from("com.amazonaws.iot", "PutVerificationStateOnViolation"),
+    input = M.PutVerificationStateOnViolationInput,
+    output = M.PutVerificationStateOnViolationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/violations/verification-state/{violationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterCACertificate = schema.operation({
+    id = id.from("com.amazonaws.iot", "RegisterCACertificate"),
+    input = M.RegisterCACertificateInput,
+    output = M.RegisterCACertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cacertificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterCertificate = schema.operation({
+    id = id.from("com.amazonaws.iot", "RegisterCertificate"),
+    input = M.RegisterCertificateInput,
+    output = M.RegisterCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/certificate/register" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterCertificateWithoutCA = schema.operation({
+    id = id.from("com.amazonaws.iot", "RegisterCertificateWithoutCA"),
+    input = M.RegisterCertificateWithoutCAInput,
+    output = M.RegisterCertificateWithoutCAOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/certificate/register-no-ca" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterThing = schema.operation({
+    id = id.from("com.amazonaws.iot", "RegisterThing"),
+    input = M.RegisterThingInput,
+    output = M.RegisterThingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/things" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectCertificateTransfer = schema.operation({
+    id = id.from("com.amazonaws.iot", "RejectCertificateTransfer"),
+    input = M.RejectCertificateTransferInput,
+    output = M.RejectCertificateTransferOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/reject-certificate-transfer/{certificateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveThingFromBillingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "RemoveThingFromBillingGroup"),
+    input = M.RemoveThingFromBillingGroupInput,
+    output = M.RemoveThingFromBillingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/billing-groups/removeThingFromBillingGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveThingFromThingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "RemoveThingFromThingGroup"),
+    input = M.RemoveThingFromThingGroupInput,
+    output = M.RemoveThingFromThingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/thing-groups/removeThingFromThingGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReplaceTopicRule = schema.operation({
+    id = id.from("com.amazonaws.iot", "ReplaceTopicRule"),
+    input = M.ReplaceTopicRuleInput,
+    output = M.ReplaceTopicRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/rules/{ruleName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchIndex = schema.operation({
+    id = id.from("com.amazonaws.iot", "SearchIndex"),
+    input = M.SearchIndexInput,
+    output = M.SearchIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/indices/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetDefaultAuthorizer = schema.operation({
+    id = id.from("com.amazonaws.iot", "SetDefaultAuthorizer"),
+    input = M.SetDefaultAuthorizerInput,
+    output = M.SetDefaultAuthorizerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/default-authorizer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetDefaultPolicyVersion = schema.operation({
+    id = id.from("com.amazonaws.iot", "SetDefaultPolicyVersion"),
+    input = M.SetDefaultPolicyVersionInput,
+    output = M.SetDefaultPolicyVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/policies/{policyName}/version/{policyVersionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetLoggingOptions = schema.operation({
+    id = id.from("com.amazonaws.iot", "SetLoggingOptions"),
+    input = M.SetLoggingOptionsInput,
+    output = M.SetLoggingOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/loggingOptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetV2LoggingLevel = schema.operation({
+    id = id.from("com.amazonaws.iot", "SetV2LoggingLevel"),
+    input = M.SetV2LoggingLevelInput,
+    output = M.SetV2LoggingLevelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2LoggingLevel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetV2LoggingOptions = schema.operation({
+    id = id.from("com.amazonaws.iot", "SetV2LoggingOptions"),
+    input = M.SetV2LoggingOptionsInput,
+    output = M.SetV2LoggingOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2LoggingOptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAuditMitigationActionsTask = schema.operation({
+    id = id.from("com.amazonaws.iot", "StartAuditMitigationActionsTask"),
+    input = M.StartAuditMitigationActionsTaskInput,
+    output = M.StartAuditMitigationActionsTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/audit/mitigationactions/tasks/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDetectMitigationActionsTask = schema.operation({
+    id = id.from("com.amazonaws.iot", "StartDetectMitigationActionsTask"),
+    input = M.StartDetectMitigationActionsTaskInput,
+    output = M.StartDetectMitigationActionsTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/detect/mitigationactions/tasks/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartOnDemandAuditTask = schema.operation({
+    id = id.from("com.amazonaws.iot", "StartOnDemandAuditTask"),
+    input = M.StartOnDemandAuditTaskInput,
+    output = M.StartOnDemandAuditTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/audit/tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartThingRegistrationTask = schema.operation({
+    id = id.from("com.amazonaws.iot", "StartThingRegistrationTask"),
+    input = M.StartThingRegistrationTaskInput,
+    output = M.StartThingRegistrationTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/thing-registration-tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopThingRegistrationTask = schema.operation({
+    id = id.from("com.amazonaws.iot", "StopThingRegistrationTask"),
+    input = M.StopThingRegistrationTaskInput,
+    output = M.StopThingRegistrationTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/thing-registration-tasks/{taskId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.iot", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestAuthorization = schema.operation({
+    id = id.from("com.amazonaws.iot", "TestAuthorization"),
+    input = M.TestAuthorizationInput,
+    output = M.TestAuthorizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/test-authorization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestInvokeAuthorizer = schema.operation({
+    id = id.from("com.amazonaws.iot", "TestInvokeAuthorizer"),
+    input = M.TestInvokeAuthorizerInput,
+    output = M.TestInvokeAuthorizerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/authorizer/{authorizerName}/test" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TransferCertificate = schema.operation({
+    id = id.from("com.amazonaws.iot", "TransferCertificate"),
+    input = M.TransferCertificateInput,
+    output = M.TransferCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/transfer-certificate/{certificateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.iot", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/untag" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountAuditConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateAccountAuditConfiguration"),
+    input = M.UpdateAccountAuditConfigurationInput,
+    output = M.UpdateAccountAuditConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/audit/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAuditSuppression = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateAuditSuppression"),
+    input = M.UpdateAuditSuppressionInput,
+    output = M.UpdateAuditSuppressionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/audit/suppressions/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAuthorizer = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateAuthorizer"),
+    input = M.UpdateAuthorizerInput,
+    output = M.UpdateAuthorizerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/authorizer/{authorizerName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBillingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateBillingGroup"),
+    input = M.UpdateBillingGroupInput,
+    output = M.UpdateBillingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/billing-groups/{billingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCACertificate = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateCACertificate"),
+    input = M.UpdateCACertificateInput,
+    output = M.UpdateCACertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/cacertificate/{certificateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCertificate = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateCertificate"),
+    input = M.UpdateCertificateInput,
+    output = M.UpdateCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/certificates/{certificateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCertificateProvider = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateCertificateProvider"),
+    input = M.UpdateCertificateProviderInput,
+    output = M.UpdateCertificateProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/certificate-providers/{certificateProviderName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCommand = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateCommand"),
+    input = M.UpdateCommandInput,
+    output = M.UpdateCommandOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/commands/{commandId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCustomMetric = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateCustomMetric"),
+    input = M.UpdateCustomMetricInput,
+    output = M.UpdateCustomMetricOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/custom-metric/{metricName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDimension = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateDimension"),
+    input = M.UpdateDimensionInput,
+    output = M.UpdateDimensionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/dimensions/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomainConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateDomainConfiguration"),
+    input = M.UpdateDomainConfigurationInput,
+    output = M.UpdateDomainConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domainConfigurations/{domainConfigurationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDynamicThingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateDynamicThingGroup"),
+    input = M.UpdateDynamicThingGroupInput,
+    output = M.UpdateDynamicThingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/dynamic-thing-groups/{thingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEncryptionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateEncryptionConfiguration"),
+    input = M.UpdateEncryptionConfigurationInput,
+    output = M.UpdateEncryptionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/encryption-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEventConfigurations = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateEventConfigurations"),
+    input = M.UpdateEventConfigurationsInput,
+    output = M.UpdateEventConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/event-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFleetMetric = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateFleetMetric"),
+    input = M.UpdateFleetMetricInput,
+    output = M.UpdateFleetMetricOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/fleet-metric/{metricName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIndexingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateIndexingConfiguration"),
+    input = M.UpdateIndexingConfigurationInput,
+    output = M.UpdateIndexingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/indexing/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateJob = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateJob"),
+    input = M.UpdateJobInput,
+    output = M.UpdateJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMitigationAction = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateMitigationAction"),
+    input = M.UpdateMitigationActionInput,
+    output = M.UpdateMitigationActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/mitigationactions/actions/{actionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePackage = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdatePackage"),
+    input = M.UpdatePackageInput,
+    output = M.UpdatePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/packages/{packageName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePackageConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdatePackageConfiguration"),
+    input = M.UpdatePackageConfigurationInput,
+    output = M.UpdatePackageConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/package-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePackageVersion = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdatePackageVersion"),
+    input = M.UpdatePackageVersionInput,
+    output = M.UpdatePackageVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/packages/{packageName}/versions/{versionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProvisioningTemplate = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateProvisioningTemplate"),
+    input = M.UpdateProvisioningTemplateInput,
+    output = M.UpdateProvisioningTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/provisioning-templates/{templateName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoleAlias = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateRoleAlias"),
+    input = M.UpdateRoleAliasInput,
+    output = M.UpdateRoleAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/role-aliases/{roleAlias}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateScheduledAudit = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateScheduledAudit"),
+    input = M.UpdateScheduledAuditInput,
+    output = M.UpdateScheduledAuditOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/audit/scheduledaudits/{scheduledAuditName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSecurityProfile = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateSecurityProfile"),
+    input = M.UpdateSecurityProfileInput,
+    output = M.UpdateSecurityProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/security-profiles/{securityProfileName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStream = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateStream"),
+    input = M.UpdateStreamInput,
+    output = M.UpdateStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/streams/{streamId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateThing = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateThing"),
+    input = M.UpdateThingInput,
+    output = M.UpdateThingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/things/{thingName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateThingGroup = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateThingGroup"),
+    input = M.UpdateThingGroupInput,
+    output = M.UpdateThingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/thing-groups/{thingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateThingGroupsForThing = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateThingGroupsForThing"),
+    input = M.UpdateThingGroupsForThingInput,
+    output = M.UpdateThingGroupsForThingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/thing-groups/updateThingGroupsForThing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateThingType = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateThingType"),
+    input = M.UpdateThingTypeInput,
+    output = M.UpdateThingTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/thing-types/{thingTypeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTopicRuleDestination = schema.operation({
+    id = id.from("com.amazonaws.iot", "UpdateTopicRuleDestination"),
+    input = M.UpdateTopicRuleDestinationInput,
+    output = M.UpdateTopicRuleDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/destinations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateSecurityProfileBehaviors = schema.operation({
+    id = id.from("com.amazonaws.iot", "ValidateSecurityProfileBehaviors"),
+    input = M.ValidateSecurityProfileBehaviorsInput,
+    output = M.ValidateSecurityProfileBehaviorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/security-profile-behaviors/validate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

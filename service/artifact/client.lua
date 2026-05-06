@@ -7,6 +7,7 @@ local endpoint_rules = require("artifact.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("artifact.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "artifact", signing_region = cfg.region } }
                 else
@@ -49,107 +52,35 @@ function M.new(cfg)
 end
 
 function Client:getAccountSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccountSettings",
-        input_schema = schemas.GetAccountSettingsInput,
-        output_schema = schemas.GetAccountSettingsOutput,
-        http_method = "GET",
-        http_path = "/v1/account-settings/get",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccountSettings, input, options)
 end
 
 function Client:getReport(input, options)
-    return self:invokeOperation(input, {
-        name = "GetReport",
-        input_schema = schemas.GetReportInput,
-        output_schema = schemas.GetReportOutput,
-        http_method = "GET",
-        http_path = "/v1/report/get",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetReport, input, options)
 end
 
 function Client:getReportMetadata(input, options)
-    return self:invokeOperation(input, {
-        name = "GetReportMetadata",
-        input_schema = schemas.GetReportMetadataInput,
-        output_schema = schemas.GetReportMetadataOutput,
-        http_method = "GET",
-        http_path = "/v1/report/getMetadata",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetReportMetadata, input, options)
 end
 
 function Client:getTermForReport(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTermForReport",
-        input_schema = schemas.GetTermForReportInput,
-        output_schema = schemas.GetTermForReportOutput,
-        http_method = "GET",
-        http_path = "/v1/report/getTermForReport",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTermForReport, input, options)
 end
 
 function Client:listCustomerAgreements(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCustomerAgreements",
-        input_schema = schemas.ListCustomerAgreementsInput,
-        output_schema = schemas.ListCustomerAgreementsOutput,
-        http_method = "GET",
-        http_path = "/v1/customer-agreement/list",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCustomerAgreements, input, options)
 end
 
 function Client:listReports(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReports",
-        input_schema = schemas.ListReportsInput,
-        output_schema = schemas.ListReportsOutput,
-        http_method = "GET",
-        http_path = "/v1/report/list",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReports, input, options)
 end
 
 function Client:listReportVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReportVersions",
-        input_schema = schemas.ListReportVersionsInput,
-        output_schema = schemas.ListReportVersionsOutput,
-        http_method = "GET",
-        http_path = "/v1/report/listVersions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReportVersions, input, options)
 end
 
 function Client:putAccountSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "PutAccountSettings",
-        input_schema = schemas.PutAccountSettingsInput,
-        output_schema = schemas.PutAccountSettingsOutput,
-        http_method = "PUT",
-        http_path = "/v1/account-settings/put",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutAccountSettings, input, options)
 end
 
 return M

@@ -6022,4 +6022,458 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.dataexchange", "DataExchange"),
+    version = "2017-07-25",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptDataGrant = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "AcceptDataGrant"),
+    input = M.AcceptDataGrantInput,
+    output = M.AcceptDataGrantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/data-grants/{DataGrantArn}/accept" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelJob = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "CancelJob"),
+    input = M.CancelJobInput,
+    output = M.CancelJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/jobs/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataGrant = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "CreateDataGrant"),
+    input = M.CreateDataGrantInput,
+    output = M.CreateDataGrantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/data-grants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataSet = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "CreateDataSet"),
+    input = M.CreateDataSetInput,
+    output = M.CreateDataSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/data-sets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventAction = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "CreateEventAction"),
+    input = M.CreateEventActionInput,
+    output = M.CreateEventActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/event-actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateJob = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "CreateJob"),
+    input = M.CreateJobInput,
+    output = M.CreateJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRevision = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "CreateRevision"),
+    input = M.CreateRevisionInput,
+    output = M.CreateRevisionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/data-sets/{DataSetId}/revisions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAsset = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "DeleteAsset"),
+    input = M.DeleteAssetInput,
+    output = M.DeleteAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets/{AssetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataGrant = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "DeleteDataGrant"),
+    input = M.DeleteDataGrantInput,
+    output = M.DeleteDataGrantOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/data-grants/{DataGrantId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataSet = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "DeleteDataSet"),
+    input = M.DeleteDataSetInput,
+    output = M.DeleteDataSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/data-sets/{DataSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventAction = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "DeleteEventAction"),
+    input = M.DeleteEventActionInput,
+    output = M.DeleteEventActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/event-actions/{EventActionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRevision = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "DeleteRevision"),
+    input = M.DeleteRevisionInput,
+    output = M.DeleteRevisionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAsset = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "GetAsset"),
+    input = M.GetAssetInput,
+    output = M.GetAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets/{AssetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataGrant = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "GetDataGrant"),
+    input = M.GetDataGrantInput,
+    output = M.GetDataGrantOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/data-grants/{DataGrantId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataSet = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "GetDataSet"),
+    input = M.GetDataSetInput,
+    output = M.GetDataSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/data-sets/{DataSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventAction = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "GetEventAction"),
+    input = M.GetEventActionInput,
+    output = M.GetEventActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/event-actions/{EventActionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJob = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "GetJob"),
+    input = M.GetJobInput,
+    output = M.GetJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/jobs/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReceivedDataGrant = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "GetReceivedDataGrant"),
+    input = M.GetReceivedDataGrantInput,
+    output = M.GetReceivedDataGrantOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/received-data-grants/{DataGrantArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRevision = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "GetRevision"),
+    input = M.GetRevisionInput,
+    output = M.GetRevisionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataGrants = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "ListDataGrants"),
+    input = M.ListDataGrantsInput,
+    output = M.ListDataGrantsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/data-grants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSetRevisions = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "ListDataSetRevisions"),
+    input = M.ListDataSetRevisionsInput,
+    output = M.ListDataSetRevisionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/data-sets/{DataSetId}/revisions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSets = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "ListDataSets"),
+    input = M.ListDataSetsInput,
+    output = M.ListDataSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/data-sets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventActions = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "ListEventActions"),
+    input = M.ListEventActionsInput,
+    output = M.ListEventActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/event-actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobs = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "ListJobs"),
+    input = M.ListJobsInput,
+    output = M.ListJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReceivedDataGrants = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "ListReceivedDataGrants"),
+    input = M.ListReceivedDataGrantsInput,
+    output = M.ListReceivedDataGrantsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/received-data-grants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRevisionAssets = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "ListRevisionAssets"),
+    input = M.ListRevisionAssetsInput,
+    output = M.ListRevisionAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeRevision = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "RevokeRevision"),
+    input = M.RevokeRevisionInput,
+    output = M.RevokeRevisionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}/revoke" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendApiAsset = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "SendApiAsset"),
+    input = M.SendApiAssetInput,
+    output = M.SendApiAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendDataSetNotification = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "SendDataSetNotification"),
+    input = M.SendDataSetNotificationInput,
+    output = M.SendDataSetNotificationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/data-sets/{DataSetId}/notification" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartJob = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "StartJob"),
+    input = M.StartJobInput,
+    output = M.StartJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/jobs/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAsset = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "UpdateAsset"),
+    input = M.UpdateAssetInput,
+    output = M.UpdateAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets/{AssetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataSet = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "UpdateDataSet"),
+    input = M.UpdateDataSetInput,
+    output = M.UpdateDataSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/data-sets/{DataSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEventAction = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "UpdateEventAction"),
+    input = M.UpdateEventActionInput,
+    output = M.UpdateEventActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/event-actions/{EventActionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRevision = schema.operation({
+    id = id.from("com.amazonaws.dataexchange", "UpdateRevision"),
+    input = M.UpdateRevisionInput,
+    output = M.UpdateRevisionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

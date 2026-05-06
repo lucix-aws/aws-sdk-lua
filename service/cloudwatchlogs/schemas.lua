@@ -9969,4 +9969,1259 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cloudwatchlogs", "Logs_20140328"),
+    version = "2014-03-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateKmsKey = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "AssociateKmsKey"),
+    input = M.AssociateKmsKeyInput,
+    output = M.AssociateKmsKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateSourceToS3TableIntegration = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "AssociateSourceToS3TableIntegration"),
+    input = M.AssociateSourceToS3TableIntegrationInput,
+    output = M.AssociateSourceToS3TableIntegrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelExportTask = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "CancelExportTask"),
+    input = M.CancelExportTaskInput,
+    output = M.CancelExportTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelImportTask = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "CancelImportTask"),
+    input = M.CancelImportTaskInput,
+    output = M.CancelImportTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDelivery = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "CreateDelivery"),
+    input = M.CreateDeliveryInput,
+    output = M.CreateDeliveryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExportTask = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "CreateExportTask"),
+    input = M.CreateExportTaskInput,
+    output = M.CreateExportTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateImportTask = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "CreateImportTask"),
+    input = M.CreateImportTaskInput,
+    output = M.CreateImportTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLogAnomalyDetector = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "CreateLogAnomalyDetector"),
+    input = M.CreateLogAnomalyDetectorInput,
+    output = M.CreateLogAnomalyDetectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLogGroup = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "CreateLogGroup"),
+    input = M.CreateLogGroupInput,
+    output = M.CreateLogGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLogStream = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "CreateLogStream"),
+    input = M.CreateLogStreamInput,
+    output = M.CreateLogStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLookupTable = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "CreateLookupTable"),
+    input = M.CreateLookupTableInput,
+    output = M.CreateLookupTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateScheduledQuery = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "CreateScheduledQuery"),
+    input = M.CreateScheduledQueryInput,
+    output = M.CreateScheduledQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccountPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteAccountPolicy"),
+    input = M.DeleteAccountPolicyInput,
+    output = M.DeleteAccountPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataProtectionPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteDataProtectionPolicy"),
+    input = M.DeleteDataProtectionPolicyInput,
+    output = M.DeleteDataProtectionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDelivery = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteDelivery"),
+    input = M.DeleteDeliveryInput,
+    output = M.DeleteDeliveryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDeliveryDestination = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteDeliveryDestination"),
+    input = M.DeleteDeliveryDestinationInput,
+    output = M.DeleteDeliveryDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDeliveryDestinationPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteDeliveryDestinationPolicy"),
+    input = M.DeleteDeliveryDestinationPolicyInput,
+    output = M.DeleteDeliveryDestinationPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDeliverySource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteDeliverySource"),
+    input = M.DeleteDeliverySourceInput,
+    output = M.DeleteDeliverySourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDestination = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteDestination"),
+    input = M.DeleteDestinationInput,
+    output = M.DeleteDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIndexPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteIndexPolicy"),
+    input = M.DeleteIndexPolicyInput,
+    output = M.DeleteIndexPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIntegration = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteIntegration"),
+    input = M.DeleteIntegrationInput,
+    output = M.DeleteIntegrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLogAnomalyDetector = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteLogAnomalyDetector"),
+    input = M.DeleteLogAnomalyDetectorInput,
+    output = M.DeleteLogAnomalyDetectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLogGroup = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteLogGroup"),
+    input = M.DeleteLogGroupInput,
+    output = M.DeleteLogGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLogStream = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteLogStream"),
+    input = M.DeleteLogStreamInput,
+    output = M.DeleteLogStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLookupTable = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteLookupTable"),
+    input = M.DeleteLookupTableInput,
+    output = M.DeleteLookupTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMetricFilter = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteMetricFilter"),
+    input = M.DeleteMetricFilterInput,
+    output = M.DeleteMetricFilterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQueryDefinition = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteQueryDefinition"),
+    input = M.DeleteQueryDefinitionInput,
+    output = M.DeleteQueryDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRetentionPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteRetentionPolicy"),
+    input = M.DeleteRetentionPolicyInput,
+    output = M.DeleteRetentionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScheduledQuery = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteScheduledQuery"),
+    input = M.DeleteScheduledQueryInput,
+    output = M.DeleteScheduledQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSubscriptionFilter = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteSubscriptionFilter"),
+    input = M.DeleteSubscriptionFilterInput,
+    output = M.DeleteSubscriptionFilterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTransformer = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteTransformer"),
+    input = M.DeleteTransformerInput,
+    output = M.DeleteTransformerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountPolicies = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeAccountPolicies"),
+    input = M.DescribeAccountPoliciesInput,
+    output = M.DescribeAccountPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConfigurationTemplates = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeConfigurationTemplates"),
+    input = M.DescribeConfigurationTemplatesInput,
+    output = M.DescribeConfigurationTemplatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDeliveries = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeDeliveries"),
+    input = M.DescribeDeliveriesInput,
+    output = M.DescribeDeliveriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDeliveryDestinations = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeDeliveryDestinations"),
+    input = M.DescribeDeliveryDestinationsInput,
+    output = M.DescribeDeliveryDestinationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDeliverySources = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeDeliverySources"),
+    input = M.DescribeDeliverySourcesInput,
+    output = M.DescribeDeliverySourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDestinations = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeDestinations"),
+    input = M.DescribeDestinationsInput,
+    output = M.DescribeDestinationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExportTasks = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeExportTasks"),
+    input = M.DescribeExportTasksInput,
+    output = M.DescribeExportTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFieldIndexes = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeFieldIndexes"),
+    input = M.DescribeFieldIndexesInput,
+    output = M.DescribeFieldIndexesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImportTaskBatches = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeImportTaskBatches"),
+    input = M.DescribeImportTaskBatchesInput,
+    output = M.DescribeImportTaskBatchesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImportTasks = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeImportTasks"),
+    input = M.DescribeImportTasksInput,
+    output = M.DescribeImportTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIndexPolicies = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeIndexPolicies"),
+    input = M.DescribeIndexPoliciesInput,
+    output = M.DescribeIndexPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLogGroups = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeLogGroups"),
+    input = M.DescribeLogGroupsInput,
+    output = M.DescribeLogGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLogStreams = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeLogStreams"),
+    input = M.DescribeLogStreamsInput,
+    output = M.DescribeLogStreamsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLookupTables = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeLookupTables"),
+    input = M.DescribeLookupTablesInput,
+    output = M.DescribeLookupTablesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMetricFilters = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeMetricFilters"),
+    input = M.DescribeMetricFiltersInput,
+    output = M.DescribeMetricFiltersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeQueries = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeQueries"),
+    input = M.DescribeQueriesInput,
+    output = M.DescribeQueriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeQueryDefinitions = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeQueryDefinitions"),
+    input = M.DescribeQueryDefinitionsInput,
+    output = M.DescribeQueryDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResourcePolicies = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeResourcePolicies"),
+    input = M.DescribeResourcePoliciesInput,
+    output = M.DescribeResourcePoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSubscriptionFilters = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DescribeSubscriptionFilters"),
+    input = M.DescribeSubscriptionFiltersInput,
+    output = M.DescribeSubscriptionFiltersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateKmsKey = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DisassociateKmsKey"),
+    input = M.DisassociateKmsKeyInput,
+    output = M.DisassociateKmsKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateSourceFromS3TableIntegration = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DisassociateSourceFromS3TableIntegration"),
+    input = M.DisassociateSourceFromS3TableIntegrationInput,
+    output = M.DisassociateSourceFromS3TableIntegrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FilterLogEvents = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "FilterLogEvents"),
+    input = M.FilterLogEventsInput,
+    output = M.FilterLogEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataProtectionPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetDataProtectionPolicy"),
+    input = M.GetDataProtectionPolicyInput,
+    output = M.GetDataProtectionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDelivery = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetDelivery"),
+    input = M.GetDeliveryInput,
+    output = M.GetDeliveryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeliveryDestination = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetDeliveryDestination"),
+    input = M.GetDeliveryDestinationInput,
+    output = M.GetDeliveryDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeliveryDestinationPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetDeliveryDestinationPolicy"),
+    input = M.GetDeliveryDestinationPolicyInput,
+    output = M.GetDeliveryDestinationPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeliverySource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetDeliverySource"),
+    input = M.GetDeliverySourceInput,
+    output = M.GetDeliverySourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIntegration = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetIntegration"),
+    input = M.GetIntegrationInput,
+    output = M.GetIntegrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLogAnomalyDetector = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetLogAnomalyDetector"),
+    input = M.GetLogAnomalyDetectorInput,
+    output = M.GetLogAnomalyDetectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLogEvents = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetLogEvents"),
+    input = M.GetLogEventsInput,
+    output = M.GetLogEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLogFields = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetLogFields"),
+    input = M.GetLogFieldsInput,
+    output = M.GetLogFieldsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLogGroupFields = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetLogGroupFields"),
+    input = M.GetLogGroupFieldsInput,
+    output = M.GetLogGroupFieldsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLogObject = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetLogObject"),
+    input = M.GetLogObjectInput,
+    output = M.GetLogObjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.GetLogObjectResponseStream,
+    },
+})
+
+M.GetLogRecord = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetLogRecord"),
+    input = M.GetLogRecordInput,
+    output = M.GetLogRecordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLookupTable = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetLookupTable"),
+    input = M.GetLookupTableInput,
+    output = M.GetLookupTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryResults = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetQueryResults"),
+    input = M.GetQueryResultsInput,
+    output = M.GetQueryResultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetScheduledQuery = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetScheduledQuery"),
+    input = M.GetScheduledQueryInput,
+    output = M.GetScheduledQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetScheduledQueryHistory = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetScheduledQueryHistory"),
+    input = M.GetScheduledQueryHistoryInput,
+    output = M.GetScheduledQueryHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTransformer = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetTransformer"),
+    input = M.GetTransformerInput,
+    output = M.GetTransformerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAggregateLogGroupSummaries = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "ListAggregateLogGroupSummaries"),
+    input = M.ListAggregateLogGroupSummariesInput,
+    output = M.ListAggregateLogGroupSummariesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnomalies = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "ListAnomalies"),
+    input = M.ListAnomaliesInput,
+    output = M.ListAnomaliesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIntegrations = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "ListIntegrations"),
+    input = M.ListIntegrationsInput,
+    output = M.ListIntegrationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLogAnomalyDetectors = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "ListLogAnomalyDetectors"),
+    input = M.ListLogAnomalyDetectorsInput,
+    output = M.ListLogAnomalyDetectorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLogGroups = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "ListLogGroups"),
+    input = M.ListLogGroupsInput,
+    output = M.ListLogGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLogGroupsForQuery = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "ListLogGroupsForQuery"),
+    input = M.ListLogGroupsForQueryInput,
+    output = M.ListLogGroupsForQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScheduledQueries = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "ListScheduledQueries"),
+    input = M.ListScheduledQueriesInput,
+    output = M.ListScheduledQueriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSourcesForS3TableIntegration = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "ListSourcesForS3TableIntegration"),
+    input = M.ListSourcesForS3TableIntegrationInput,
+    output = M.ListSourcesForS3TableIntegrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsLogGroup = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "ListTagsLogGroup"),
+    input = M.ListTagsLogGroupInput,
+    output = M.ListTagsLogGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutAccountPolicy"),
+    input = M.PutAccountPolicyInput,
+    output = M.PutAccountPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutBearerTokenAuthentication = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutBearerTokenAuthentication"),
+    input = M.PutBearerTokenAuthenticationInput,
+    output = M.PutBearerTokenAuthenticationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDataProtectionPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutDataProtectionPolicy"),
+    input = M.PutDataProtectionPolicyInput,
+    output = M.PutDataProtectionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDeliveryDestination = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutDeliveryDestination"),
+    input = M.PutDeliveryDestinationInput,
+    output = M.PutDeliveryDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDeliveryDestinationPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutDeliveryDestinationPolicy"),
+    input = M.PutDeliveryDestinationPolicyInput,
+    output = M.PutDeliveryDestinationPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDeliverySource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutDeliverySource"),
+    input = M.PutDeliverySourceInput,
+    output = M.PutDeliverySourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDestination = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutDestination"),
+    input = M.PutDestinationInput,
+    output = M.PutDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDestinationPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutDestinationPolicy"),
+    input = M.PutDestinationPolicyInput,
+    output = M.PutDestinationPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutIndexPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutIndexPolicy"),
+    input = M.PutIndexPolicyInput,
+    output = M.PutIndexPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutIntegration = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutIntegration"),
+    input = M.PutIntegrationInput,
+    output = M.PutIntegrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLogEvents = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutLogEvents"),
+    input = M.PutLogEventsInput,
+    output = M.PutLogEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLogGroupDeletionProtection = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutLogGroupDeletionProtection"),
+    input = M.PutLogGroupDeletionProtectionInput,
+    output = M.PutLogGroupDeletionProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMetricFilter = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutMetricFilter"),
+    input = M.PutMetricFilterInput,
+    output = M.PutMetricFilterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutQueryDefinition = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutQueryDefinition"),
+    input = M.PutQueryDefinitionInput,
+    output = M.PutQueryDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRetentionPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutRetentionPolicy"),
+    input = M.PutRetentionPolicyInput,
+    output = M.PutRetentionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSubscriptionFilter = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutSubscriptionFilter"),
+    input = M.PutSubscriptionFilterInput,
+    output = M.PutSubscriptionFilterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTransformer = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutTransformer"),
+    input = M.PutTransformerInput,
+    output = M.PutTransformerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartLiveTail = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "StartLiveTail"),
+    input = M.StartLiveTailInput,
+    output = M.StartLiveTailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.StartLiveTailResponseStream,
+    },
+})
+
+M.StartQuery = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "StartQuery"),
+    input = M.StartQueryInput,
+    output = M.StartQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopQuery = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "StopQuery"),
+    input = M.StopQueryInput,
+    output = M.StopQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagLogGroup = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "TagLogGroup"),
+    input = M.TagLogGroupInput,
+    output = M.TagLogGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestMetricFilter = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "TestMetricFilter"),
+    input = M.TestMetricFilterInput,
+    output = M.TestMetricFilterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestTransformer = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "TestTransformer"),
+    input = M.TestTransformerInput,
+    output = M.TestTransformerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagLogGroup = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "UntagLogGroup"),
+    input = M.UntagLogGroupInput,
+    output = M.UntagLogGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAnomaly = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "UpdateAnomaly"),
+    input = M.UpdateAnomalyInput,
+    output = M.UpdateAnomalyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDeliveryConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "UpdateDeliveryConfiguration"),
+    input = M.UpdateDeliveryConfigurationInput,
+    output = M.UpdateDeliveryConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLogAnomalyDetector = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "UpdateLogAnomalyDetector"),
+    input = M.UpdateLogAnomalyDetectorInput,
+    output = M.UpdateLogAnomalyDetectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLookupTable = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "UpdateLookupTable"),
+    input = M.UpdateLookupTableInput,
+    output = M.UpdateLookupTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateScheduledQuery = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "UpdateScheduledQuery"),
+    input = M.UpdateScheduledQueryInput,
+    output = M.UpdateScheduledQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -2082,4 +2082,267 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.secretsmanager", "secretsmanager"),
+    version = "2017-10-17",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetSecretValue = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "BatchGetSecretValue"),
+    input = M.BatchGetSecretValueInput,
+    output = M.BatchGetSecretValueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelRotateSecret = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "CancelRotateSecret"),
+    input = M.CancelRotateSecretInput,
+    output = M.CancelRotateSecretOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSecret = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "CreateSecret"),
+    input = M.CreateSecretInput,
+    output = M.CreateSecretOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSecret = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "DeleteSecret"),
+    input = M.DeleteSecretInput,
+    output = M.DeleteSecretOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSecret = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "DescribeSecret"),
+    input = M.DescribeSecretInput,
+    output = M.DescribeSecretOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRandomPassword = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "GetRandomPassword"),
+    input = M.GetRandomPasswordInput,
+    output = M.GetRandomPasswordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSecretValue = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "GetSecretValue"),
+    input = M.GetSecretValueInput,
+    output = M.GetSecretValueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecrets = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "ListSecrets"),
+    input = M.ListSecretsInput,
+    output = M.ListSecretsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecretVersionIds = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "ListSecretVersionIds"),
+    input = M.ListSecretVersionIdsInput,
+    output = M.ListSecretVersionIdsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSecretValue = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "PutSecretValue"),
+    input = M.PutSecretValueInput,
+    output = M.PutSecretValueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveRegionsFromReplication = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "RemoveRegionsFromReplication"),
+    input = M.RemoveRegionsFromReplicationInput,
+    output = M.RemoveRegionsFromReplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReplicateSecretToRegions = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "ReplicateSecretToRegions"),
+    input = M.ReplicateSecretToRegionsInput,
+    output = M.ReplicateSecretToRegionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreSecret = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "RestoreSecret"),
+    input = M.RestoreSecretInput,
+    output = M.RestoreSecretOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RotateSecret = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "RotateSecret"),
+    input = M.RotateSecretInput,
+    output = M.RotateSecretOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopReplicationToReplica = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "StopReplicationToReplica"),
+    input = M.StopReplicationToReplicaInput,
+    output = M.StopReplicationToReplicaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSecret = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "UpdateSecret"),
+    input = M.UpdateSecretInput,
+    output = M.UpdateSecretOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSecretVersionStage = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "UpdateSecretVersionStage"),
+    input = M.UpdateSecretVersionStageInput,
+    output = M.UpdateSecretVersionStageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "ValidateResourcePolicy"),
+    input = M.ValidateResourcePolicyInput,
+    output = M.ValidateResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -2005,4 +2005,267 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sqs", "AmazonSQS"),
+    version = "2012-11-05",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddPermission = schema.operation({
+    id = id.from("com.amazonaws.sqs", "AddPermission"),
+    input = M.AddPermissionInput,
+    output = M.AddPermissionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelMessageMoveTask = schema.operation({
+    id = id.from("com.amazonaws.sqs", "CancelMessageMoveTask"),
+    input = M.CancelMessageMoveTaskInput,
+    output = M.CancelMessageMoveTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ChangeMessageVisibility = schema.operation({
+    id = id.from("com.amazonaws.sqs", "ChangeMessageVisibility"),
+    input = M.ChangeMessageVisibilityInput,
+    output = M.ChangeMessageVisibilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ChangeMessageVisibilityBatch = schema.operation({
+    id = id.from("com.amazonaws.sqs", "ChangeMessageVisibilityBatch"),
+    input = M.ChangeMessageVisibilityBatchInput,
+    output = M.ChangeMessageVisibilityBatchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQueue = schema.operation({
+    id = id.from("com.amazonaws.sqs", "CreateQueue"),
+    input = M.CreateQueueInput,
+    output = M.CreateQueueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMessage = schema.operation({
+    id = id.from("com.amazonaws.sqs", "DeleteMessage"),
+    input = M.DeleteMessageInput,
+    output = M.DeleteMessageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMessageBatch = schema.operation({
+    id = id.from("com.amazonaws.sqs", "DeleteMessageBatch"),
+    input = M.DeleteMessageBatchInput,
+    output = M.DeleteMessageBatchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQueue = schema.operation({
+    id = id.from("com.amazonaws.sqs", "DeleteQueue"),
+    input = M.DeleteQueueInput,
+    output = M.DeleteQueueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueueAttributes = schema.operation({
+    id = id.from("com.amazonaws.sqs", "GetQueueAttributes"),
+    input = M.GetQueueAttributesInput,
+    output = M.GetQueueAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueueUrl = schema.operation({
+    id = id.from("com.amazonaws.sqs", "GetQueueUrl"),
+    input = M.GetQueueUrlInput,
+    output = M.GetQueueUrlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeadLetterSourceQueues = schema.operation({
+    id = id.from("com.amazonaws.sqs", "ListDeadLetterSourceQueues"),
+    input = M.ListDeadLetterSourceQueuesInput,
+    output = M.ListDeadLetterSourceQueuesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMessageMoveTasks = schema.operation({
+    id = id.from("com.amazonaws.sqs", "ListMessageMoveTasks"),
+    input = M.ListMessageMoveTasksInput,
+    output = M.ListMessageMoveTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueues = schema.operation({
+    id = id.from("com.amazonaws.sqs", "ListQueues"),
+    input = M.ListQueuesInput,
+    output = M.ListQueuesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueueTags = schema.operation({
+    id = id.from("com.amazonaws.sqs", "ListQueueTags"),
+    input = M.ListQueueTagsInput,
+    output = M.ListQueueTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PurgeQueue = schema.operation({
+    id = id.from("com.amazonaws.sqs", "PurgeQueue"),
+    input = M.PurgeQueueInput,
+    output = M.PurgeQueueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReceiveMessage = schema.operation({
+    id = id.from("com.amazonaws.sqs", "ReceiveMessage"),
+    input = M.ReceiveMessageInput,
+    output = M.ReceiveMessageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemovePermission = schema.operation({
+    id = id.from("com.amazonaws.sqs", "RemovePermission"),
+    input = M.RemovePermissionInput,
+    output = M.RemovePermissionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendMessage = schema.operation({
+    id = id.from("com.amazonaws.sqs", "SendMessage"),
+    input = M.SendMessageInput,
+    output = M.SendMessageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendMessageBatch = schema.operation({
+    id = id.from("com.amazonaws.sqs", "SendMessageBatch"),
+    input = M.SendMessageBatchInput,
+    output = M.SendMessageBatchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetQueueAttributes = schema.operation({
+    id = id.from("com.amazonaws.sqs", "SetQueueAttributes"),
+    input = M.SetQueueAttributesInput,
+    output = M.SetQueueAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMessageMoveTask = schema.operation({
+    id = id.from("com.amazonaws.sqs", "StartMessageMoveTask"),
+    input = M.StartMessageMoveTaskInput,
+    output = M.StartMessageMoveTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagQueue = schema.operation({
+    id = id.from("com.amazonaws.sqs", "TagQueue"),
+    input = M.TagQueueInput,
+    output = M.TagQueueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagQueue = schema.operation({
+    id = id.from("com.amazonaws.sqs", "UntagQueue"),
+    input = M.UntagQueueInput,
+    output = M.UntagQueueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

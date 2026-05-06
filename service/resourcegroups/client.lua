@@ -7,6 +7,7 @@ local endpoint_rules = require("resourcegroups.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("resourcegroups.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "resource-groups", signing_region = cfg.region } }
                 else
@@ -49,302 +52,95 @@ function M.new(cfg)
 end
 
 function Client:cancelTagSyncTask(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelTagSyncTask",
-        input_schema = schemas.CancelTagSyncTaskInput,
-        output_schema = schemas.CancelTagSyncTaskOutput,
-        http_method = "POST",
-        http_path = "/cancel-tag-sync-task",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelTagSyncTask, input, options)
 end
 
 function Client:createGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGroup",
-        input_schema = schemas.CreateGroupInput,
-        output_schema = schemas.CreateGroupOutput,
-        http_method = "POST",
-        http_path = "/groups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGroup, input, options)
 end
 
 function Client:deleteGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGroup",
-        input_schema = schemas.DeleteGroupInput,
-        output_schema = schemas.DeleteGroupOutput,
-        http_method = "POST",
-        http_path = "/delete-group",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGroup, input, options)
 end
 
 function Client:getAccountSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccountSettings",
-        input_schema = schemas.GetAccountSettingsInput,
-        output_schema = schemas.GetAccountSettingsOutput,
-        http_method = "POST",
-        http_path = "/get-account-settings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccountSettings, input, options)
 end
 
 function Client:getGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "GetGroup",
-        input_schema = schemas.GetGroupInput,
-        output_schema = schemas.GetGroupOutput,
-        http_method = "POST",
-        http_path = "/get-group",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetGroup, input, options)
 end
 
 function Client:getGroupConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetGroupConfiguration",
-        input_schema = schemas.GetGroupConfigurationInput,
-        output_schema = schemas.GetGroupConfigurationOutput,
-        http_method = "POST",
-        http_path = "/get-group-configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetGroupConfiguration, input, options)
 end
 
 function Client:getGroupQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "GetGroupQuery",
-        input_schema = schemas.GetGroupQueryInput,
-        output_schema = schemas.GetGroupQueryOutput,
-        http_method = "POST",
-        http_path = "/get-group-query",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetGroupQuery, input, options)
 end
 
 function Client:getTags(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTags",
-        input_schema = schemas.GetTagsInput,
-        output_schema = schemas.GetTagsOutput,
-        http_method = "GET",
-        http_path = "/resources/{Arn}/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTags, input, options)
 end
 
 function Client:getTagSyncTask(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTagSyncTask",
-        input_schema = schemas.GetTagSyncTaskInput,
-        output_schema = schemas.GetTagSyncTaskOutput,
-        http_method = "POST",
-        http_path = "/get-tag-sync-task",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTagSyncTask, input, options)
 end
 
 function Client:groupResources(input, options)
-    return self:invokeOperation(input, {
-        name = "GroupResources",
-        input_schema = schemas.GroupResourcesInput,
-        output_schema = schemas.GroupResourcesOutput,
-        http_method = "POST",
-        http_path = "/group-resources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GroupResources, input, options)
 end
 
 function Client:listGroupingStatuses(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGroupingStatuses",
-        input_schema = schemas.ListGroupingStatusesInput,
-        output_schema = schemas.ListGroupingStatusesOutput,
-        http_method = "POST",
-        http_path = "/list-grouping-statuses",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGroupingStatuses, input, options)
 end
 
 function Client:listGroupResources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGroupResources",
-        input_schema = schemas.ListGroupResourcesInput,
-        output_schema = schemas.ListGroupResourcesOutput,
-        http_method = "POST",
-        http_path = "/list-group-resources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGroupResources, input, options)
 end
 
 function Client:listGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGroups",
-        input_schema = schemas.ListGroupsInput,
-        output_schema = schemas.ListGroupsOutput,
-        http_method = "POST",
-        http_path = "/groups-list",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGroups, input, options)
 end
 
 function Client:listTagSyncTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagSyncTasks",
-        input_schema = schemas.ListTagSyncTasksInput,
-        output_schema = schemas.ListTagSyncTasksOutput,
-        http_method = "POST",
-        http_path = "/list-tag-sync-tasks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagSyncTasks, input, options)
 end
 
 function Client:putGroupConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutGroupConfiguration",
-        input_schema = schemas.PutGroupConfigurationInput,
-        output_schema = schemas.PutGroupConfigurationOutput,
-        http_method = "POST",
-        http_path = "/put-group-configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutGroupConfiguration, input, options)
 end
 
 function Client:searchResources(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchResources",
-        input_schema = schemas.SearchResourcesInput,
-        output_schema = schemas.SearchResourcesOutput,
-        http_method = "POST",
-        http_path = "/resources/search",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchResources, input, options)
 end
 
 function Client:startTagSyncTask(input, options)
-    return self:invokeOperation(input, {
-        name = "StartTagSyncTask",
-        input_schema = schemas.StartTagSyncTaskInput,
-        output_schema = schemas.StartTagSyncTaskOutput,
-        http_method = "POST",
-        http_path = "/start-tag-sync-task",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartTagSyncTask, input, options)
 end
 
 function Client:tag(input, options)
-    return self:invokeOperation(input, {
-        name = "Tag",
-        input_schema = schemas.TagInput,
-        output_schema = schemas.TagOutput,
-        http_method = "PUT",
-        http_path = "/resources/{Arn}/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Tag, input, options)
 end
 
 function Client:ungroupResources(input, options)
-    return self:invokeOperation(input, {
-        name = "UngroupResources",
-        input_schema = schemas.UngroupResourcesInput,
-        output_schema = schemas.UngroupResourcesOutput,
-        http_method = "POST",
-        http_path = "/ungroup-resources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UngroupResources, input, options)
 end
 
 function Client:untag(input, options)
-    return self:invokeOperation(input, {
-        name = "Untag",
-        input_schema = schemas.UntagInput,
-        output_schema = schemas.UntagOutput,
-        http_method = "PATCH",
-        http_path = "/resources/{Arn}/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Untag, input, options)
 end
 
 function Client:updateAccountSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAccountSettings",
-        input_schema = schemas.UpdateAccountSettingsInput,
-        output_schema = schemas.UpdateAccountSettingsOutput,
-        http_method = "POST",
-        http_path = "/update-account-settings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAccountSettings, input, options)
 end
 
 function Client:updateGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateGroup",
-        input_schema = schemas.UpdateGroupInput,
-        output_schema = schemas.UpdateGroupOutput,
-        http_method = "POST",
-        http_path = "/update-group",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateGroup, input, options)
 end
 
 function Client:updateGroupQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateGroupQuery",
-        input_schema = schemas.UpdateGroupQueryInput,
-        output_schema = schemas.UpdateGroupQueryOutput,
-        http_method = "POST",
-        http_path = "/update-group-query",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateGroupQuery, input, options)
 end
 
 return M

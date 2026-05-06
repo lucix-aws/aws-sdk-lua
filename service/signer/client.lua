@@ -7,6 +7,7 @@ local endpoint_rules = require("signer.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("signer.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "signer", signing_region = cfg.region } }
                 else
@@ -49,250 +52,79 @@ function M.new(cfg)
 end
 
 function Client:addProfilePermission(input, options)
-    return self:invokeOperation(input, {
-        name = "AddProfilePermission",
-        input_schema = schemas.AddProfilePermissionInput,
-        output_schema = schemas.AddProfilePermissionOutput,
-        http_method = "POST",
-        http_path = "/signing-profiles/{profileName}/permissions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddProfilePermission, input, options)
 end
 
 function Client:cancelSigningProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelSigningProfile",
-        input_schema = schemas.CancelSigningProfileInput,
-        output_schema = schemas.CancelSigningProfileOutput,
-        http_method = "DELETE",
-        http_path = "/signing-profiles/{profileName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelSigningProfile, input, options)
 end
 
 function Client:describeSigningJob(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeSigningJob",
-        input_schema = schemas.DescribeSigningJobInput,
-        output_schema = schemas.DescribeSigningJobOutput,
-        http_method = "GET",
-        http_path = "/signing-jobs/{jobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeSigningJob, input, options)
 end
 
 function Client:getRevocationStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRevocationStatus",
-        input_schema = schemas.GetRevocationStatusInput,
-        output_schema = schemas.GetRevocationStatusOutput,
-        http_method = "GET",
-        http_path = "/revocations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRevocationStatus, input, options)
 end
 
 function Client:getSigningPlatform(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSigningPlatform",
-        input_schema = schemas.GetSigningPlatformInput,
-        output_schema = schemas.GetSigningPlatformOutput,
-        http_method = "GET",
-        http_path = "/signing-platforms/{platformId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSigningPlatform, input, options)
 end
 
 function Client:getSigningProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSigningProfile",
-        input_schema = schemas.GetSigningProfileInput,
-        output_schema = schemas.GetSigningProfileOutput,
-        http_method = "GET",
-        http_path = "/signing-profiles/{profileName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSigningProfile, input, options)
 end
 
 function Client:listProfilePermissions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProfilePermissions",
-        input_schema = schemas.ListProfilePermissionsInput,
-        output_schema = schemas.ListProfilePermissionsOutput,
-        http_method = "GET",
-        http_path = "/signing-profiles/{profileName}/permissions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProfilePermissions, input, options)
 end
 
 function Client:listSigningJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSigningJobs",
-        input_schema = schemas.ListSigningJobsInput,
-        output_schema = schemas.ListSigningJobsOutput,
-        http_method = "GET",
-        http_path = "/signing-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSigningJobs, input, options)
 end
 
 function Client:listSigningPlatforms(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSigningPlatforms",
-        input_schema = schemas.ListSigningPlatformsInput,
-        output_schema = schemas.ListSigningPlatformsOutput,
-        http_method = "GET",
-        http_path = "/signing-platforms",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSigningPlatforms, input, options)
 end
 
 function Client:listSigningProfiles(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSigningProfiles",
-        input_schema = schemas.ListSigningProfilesInput,
-        output_schema = schemas.ListSigningProfilesOutput,
-        http_method = "GET",
-        http_path = "/signing-profiles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSigningProfiles, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putSigningProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "PutSigningProfile",
-        input_schema = schemas.PutSigningProfileInput,
-        output_schema = schemas.PutSigningProfileOutput,
-        http_method = "PUT",
-        http_path = "/signing-profiles/{profileName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutSigningProfile, input, options)
 end
 
 function Client:removeProfilePermission(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveProfilePermission",
-        input_schema = schemas.RemoveProfilePermissionInput,
-        output_schema = schemas.RemoveProfilePermissionOutput,
-        http_method = "DELETE",
-        http_path = "/signing-profiles/{profileName}/permissions/{statementId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveProfilePermission, input, options)
 end
 
 function Client:revokeSignature(input, options)
-    return self:invokeOperation(input, {
-        name = "RevokeSignature",
-        input_schema = schemas.RevokeSignatureInput,
-        output_schema = schemas.RevokeSignatureOutput,
-        http_method = "PUT",
-        http_path = "/signing-jobs/{jobId}/revoke",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RevokeSignature, input, options)
 end
 
 function Client:revokeSigningProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "RevokeSigningProfile",
-        input_schema = schemas.RevokeSigningProfileInput,
-        output_schema = schemas.RevokeSigningProfileOutput,
-        http_method = "PUT",
-        http_path = "/signing-profiles/{profileName}/revoke",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RevokeSigningProfile, input, options)
 end
 
 function Client:signPayload(input, options)
-    return self:invokeOperation(input, {
-        name = "SignPayload",
-        input_schema = schemas.SignPayloadInput,
-        output_schema = schemas.SignPayloadOutput,
-        http_method = "POST",
-        http_path = "/signing-jobs/with-payload",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SignPayload, input, options)
 end
 
 function Client:startSigningJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartSigningJob",
-        input_schema = schemas.StartSigningJobInput,
-        output_schema = schemas.StartSigningJobOutput,
-        http_method = "POST",
-        http_path = "/signing-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartSigningJob, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 return M

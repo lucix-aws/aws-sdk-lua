@@ -2907,4 +2907,366 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.paymentcryptography", "PaymentCryptographyControlPlane"),
+    version = "2021-09-14",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddKeyReplicationRegions = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "AddKeyReplicationRegions"),
+    input = M.AddKeyReplicationRegionsInput,
+    output = M.AddKeyReplicationRegionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateMpaTeam = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "AssociateMpaTeam"),
+    input = M.AssociateMpaTeamInput,
+    output = M.AssociateMpaTeamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAlias = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "CreateAlias"),
+    input = M.CreateAliasInput,
+    output = M.CreateAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKey = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "CreateKey"),
+    input = M.CreateKeyInput,
+    output = M.CreateKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAlias = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "DeleteAlias"),
+    input = M.DeleteAliasInput,
+    output = M.DeleteAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKey = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "DeleteKey"),
+    input = M.DeleteKeyInput,
+    output = M.DeleteKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableDefaultKeyReplicationRegions = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "DisableDefaultKeyReplicationRegions"),
+    input = M.DisableDefaultKeyReplicationRegionsInput,
+    output = M.DisableDefaultKeyReplicationRegionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateMpaTeam = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "DisassociateMpaTeam"),
+    input = M.DisassociateMpaTeamInput,
+    output = M.DisassociateMpaTeamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableDefaultKeyReplicationRegions = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "EnableDefaultKeyReplicationRegions"),
+    input = M.EnableDefaultKeyReplicationRegionsInput,
+    output = M.EnableDefaultKeyReplicationRegionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportKey = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "ExportKey"),
+    input = M.ExportKeyInput,
+    output = M.ExportKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAlias = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "GetAlias"),
+    input = M.GetAliasInput,
+    output = M.GetAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCertificateSigningRequest = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "GetCertificateSigningRequest"),
+    input = M.GetCertificateSigningRequestInput,
+    output = M.GetCertificateSigningRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDefaultKeyReplicationRegions = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "GetDefaultKeyReplicationRegions"),
+    input = M.GetDefaultKeyReplicationRegionsInput,
+    output = M.GetDefaultKeyReplicationRegionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKey = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "GetKey"),
+    input = M.GetKeyInput,
+    output = M.GetKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMpaTeamAssociation = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "GetMpaTeamAssociation"),
+    input = M.GetMpaTeamAssociationInput,
+    output = M.GetMpaTeamAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetParametersForExport = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "GetParametersForExport"),
+    input = M.GetParametersForExportInput,
+    output = M.GetParametersForExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetParametersForImport = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "GetParametersForImport"),
+    input = M.GetParametersForImportInput,
+    output = M.GetParametersForImportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPublicKeyCertificate = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "GetPublicKeyCertificate"),
+    input = M.GetPublicKeyCertificateInput,
+    output = M.GetPublicKeyCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportKey = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "ImportKey"),
+    input = M.ImportKeyInput,
+    output = M.ImportKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAliases = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "ListAliases"),
+    input = M.ListAliasesInput,
+    output = M.ListAliasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKeys = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "ListKeys"),
+    input = M.ListKeysInput,
+    output = M.ListKeysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveKeyReplicationRegions = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "RemoveKeyReplicationRegions"),
+    input = M.RemoveKeyReplicationRegionsInput,
+    output = M.RemoveKeyReplicationRegionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreKey = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "RestoreKey"),
+    input = M.RestoreKeyInput,
+    output = M.RestoreKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartKeyUsage = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "StartKeyUsage"),
+    input = M.StartKeyUsageInput,
+    output = M.StartKeyUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopKeyUsage = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "StopKeyUsage"),
+    input = M.StopKeyUsageInput,
+    output = M.StopKeyUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAlias = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptography", "UpdateAlias"),
+    input = M.UpdateAliasInput,
+    output = M.UpdateAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

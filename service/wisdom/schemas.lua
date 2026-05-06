@@ -4621,4 +4621,506 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.wisdom", "WisdomService"),
+    version = "2020-10-19",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssistant = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "CreateAssistant"),
+    input = M.CreateAssistantInput,
+    output = M.CreateAssistantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssistantAssociation = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "CreateAssistantAssociation"),
+    input = M.CreateAssistantAssociationInput,
+    output = M.CreateAssistantAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContent = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "CreateContent"),
+    input = M.CreateContentInput,
+    output = M.CreateContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/contents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "CreateKnowledgeBase"),
+    input = M.CreateKnowledgeBaseInput,
+    output = M.CreateKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQuickResponse = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "CreateQuickResponse"),
+    input = M.CreateQuickResponseInput,
+    output = M.CreateQuickResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/quickResponses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSession = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "CreateSession"),
+    input = M.CreateSessionInput,
+    output = M.CreateSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/sessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssistant = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "DeleteAssistant"),
+    input = M.DeleteAssistantInput,
+    output = M.DeleteAssistantOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assistants/{assistantId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssistantAssociation = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "DeleteAssistantAssociation"),
+    input = M.DeleteAssistantAssociationInput,
+    output = M.DeleteAssistantAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assistants/{assistantId}/associations/{assistantAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContent = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "DeleteContent"),
+    input = M.DeleteContentInput,
+    output = M.DeleteContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteImportJob = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "DeleteImportJob"),
+    input = M.DeleteImportJobInput,
+    output = M.DeleteImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgeBases/{knowledgeBaseId}/importJobs/{importJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "DeleteKnowledgeBase"),
+    input = M.DeleteKnowledgeBaseInput,
+    output = M.DeleteKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgeBases/{knowledgeBaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQuickResponse = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "DeleteQuickResponse"),
+    input = M.DeleteQuickResponseInput,
+    output = M.DeleteQuickResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgeBases/{knowledgeBaseId}/quickResponses/{quickResponseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssistant = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "GetAssistant"),
+    input = M.GetAssistantInput,
+    output = M.GetAssistantOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssistantAssociation = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "GetAssistantAssociation"),
+    input = M.GetAssistantAssociationInput,
+    output = M.GetAssistantAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/associations/{assistantAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContent = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "GetContent"),
+    input = M.GetContentInput,
+    output = M.GetContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContentSummary = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "GetContentSummary"),
+    input = M.GetContentSummaryInput,
+    output = M.GetContentSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/summary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImportJob = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "GetImportJob"),
+    input = M.GetImportJobInput,
+    output = M.GetImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/importJobs/{importJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "GetKnowledgeBase"),
+    input = M.GetKnowledgeBaseInput,
+    output = M.GetKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQuickResponse = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "GetQuickResponse"),
+    input = M.GetQuickResponseInput,
+    output = M.GetQuickResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/quickResponses/{quickResponseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommendations = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "GetRecommendations"),
+    input = M.GetRecommendationsInput,
+    output = M.GetRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/sessions/{sessionId}/recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSession = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "GetSession"),
+    input = M.GetSessionInput,
+    output = M.GetSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/sessions/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssistantAssociations = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "ListAssistantAssociations"),
+    input = M.ListAssistantAssociationsInput,
+    output = M.ListAssistantAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssistants = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "ListAssistants"),
+    input = M.ListAssistantsInput,
+    output = M.ListAssistantsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContents = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "ListContents"),
+    input = M.ListContentsInput,
+    output = M.ListContentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/contents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImportJobs = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "ListImportJobs"),
+    input = M.ListImportJobsInput,
+    output = M.ListImportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/importJobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKnowledgeBases = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "ListKnowledgeBases"),
+    input = M.ListKnowledgeBasesInput,
+    output = M.ListKnowledgeBasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQuickResponses = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "ListQuickResponses"),
+    input = M.ListQuickResponsesInput,
+    output = M.ListQuickResponsesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/quickResponses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.NotifyRecommendationsReceived = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "NotifyRecommendationsReceived"),
+    input = M.NotifyRecommendationsReceivedInput,
+    output = M.NotifyRecommendationsReceivedOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/sessions/{sessionId}/recommendations/notify" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.QueryAssistant = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "QueryAssistant"),
+    input = M.QueryAssistantInput,
+    output = M.QueryAssistantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/query" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveKnowledgeBaseTemplateUri = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "RemoveKnowledgeBaseTemplateUri"),
+    input = M.RemoveKnowledgeBaseTemplateUriInput,
+    output = M.RemoveKnowledgeBaseTemplateUriOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgeBases/{knowledgeBaseId}/templateUri" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchContent = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "SearchContent"),
+    input = M.SearchContentInput,
+    output = M.SearchContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchQuickResponses = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "SearchQuickResponses"),
+    input = M.SearchQuickResponsesInput,
+    output = M.SearchQuickResponsesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/search/quickResponses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchSessions = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "SearchSessions"),
+    input = M.SearchSessionsInput,
+    output = M.SearchSessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/searchSessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartContentUpload = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "StartContentUpload"),
+    input = M.StartContentUploadInput,
+    output = M.StartContentUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/upload" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartImportJob = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "StartImportJob"),
+    input = M.StartImportJobInput,
+    output = M.StartImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/importJobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContent = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "UpdateContent"),
+    input = M.UpdateContentInput,
+    output = M.UpdateContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKnowledgeBaseTemplateUri = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "UpdateKnowledgeBaseTemplateUri"),
+    input = M.UpdateKnowledgeBaseTemplateUriInput,
+    output = M.UpdateKnowledgeBaseTemplateUriOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/templateUri" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQuickResponse = schema.operation({
+    id = id.from("com.amazonaws.wisdom", "UpdateQuickResponse"),
+    input = M.UpdateQuickResponseInput,
+    output = M.UpdateQuickResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgeBases/{knowledgeBaseId}/quickResponses/{quickResponseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

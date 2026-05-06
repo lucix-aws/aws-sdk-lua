@@ -7,6 +7,7 @@ local endpoint_rules = require("pipes.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("pipes.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "pipes", signing_region = cfg.region } }
                 else
@@ -49,133 +52,43 @@ function M.new(cfg)
 end
 
 function Client:createPipe(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePipe",
-        input_schema = schemas.CreatePipeInput,
-        output_schema = schemas.CreatePipeOutput,
-        http_method = "POST",
-        http_path = "/v1/pipes/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePipe, input, options)
 end
 
 function Client:deletePipe(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePipe",
-        input_schema = schemas.DeletePipeInput,
-        output_schema = schemas.DeletePipeOutput,
-        http_method = "DELETE",
-        http_path = "/v1/pipes/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePipe, input, options)
 end
 
 function Client:describePipe(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribePipe",
-        input_schema = schemas.DescribePipeInput,
-        output_schema = schemas.DescribePipeOutput,
-        http_method = "GET",
-        http_path = "/v1/pipes/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribePipe, input, options)
 end
 
 function Client:listPipes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPipes",
-        input_schema = schemas.ListPipesInput,
-        output_schema = schemas.ListPipesOutput,
-        http_method = "GET",
-        http_path = "/v1/pipes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPipes, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:startPipe(input, options)
-    return self:invokeOperation(input, {
-        name = "StartPipe",
-        input_schema = schemas.StartPipeInput,
-        output_schema = schemas.StartPipeOutput,
-        http_method = "POST",
-        http_path = "/v1/pipes/{Name}/start",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartPipe, input, options)
 end
 
 function Client:stopPipe(input, options)
-    return self:invokeOperation(input, {
-        name = "StopPipe",
-        input_schema = schemas.StopPipeInput,
-        output_schema = schemas.StopPipeOutput,
-        http_method = "POST",
-        http_path = "/v1/pipes/{Name}/stop",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopPipe, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updatePipe(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePipe",
-        input_schema = schemas.UpdatePipeInput,
-        output_schema = schemas.UpdatePipeOutput,
-        http_method = "PUT",
-        http_path = "/v1/pipes/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePipe, input, options)
 end
 
 return M

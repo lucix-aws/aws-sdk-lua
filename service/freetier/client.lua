@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("freetier.endpoint_rules")
 local schemas = require("freetier.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "freetier", signing_region = cfg.region } }
                 else
@@ -49,68 +52,23 @@ function M.new(cfg)
 end
 
 function Client:getAccountActivity(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccountActivity",
-        input_schema = schemas.GetAccountActivityInput,
-        output_schema = schemas.GetAccountActivityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccountActivity, input, options)
 end
 
 function Client:getAccountPlanState(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccountPlanState",
-        input_schema = schemas.GetAccountPlanStateInput,
-        output_schema = schemas.GetAccountPlanStateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccountPlanState, input, options)
 end
 
 function Client:getFreeTierUsage(input, options)
-    return self:invokeOperation(input, {
-        name = "GetFreeTierUsage",
-        input_schema = schemas.GetFreeTierUsageInput,
-        output_schema = schemas.GetFreeTierUsageOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetFreeTierUsage, input, options)
 end
 
 function Client:listAccountActivities(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAccountActivities",
-        input_schema = schemas.ListAccountActivitiesInput,
-        output_schema = schemas.ListAccountActivitiesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAccountActivities, input, options)
 end
 
 function Client:upgradeAccountPlan(input, options)
-    return self:invokeOperation(input, {
-        name = "UpgradeAccountPlan",
-        input_schema = schemas.UpgradeAccountPlanInput,
-        output_schema = schemas.UpgradeAccountPlanOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpgradeAccountPlan, input, options)
 end
 
 return M

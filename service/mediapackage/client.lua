@@ -7,6 +7,7 @@ local endpoint_rules = require("mediapackage.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("mediapackage.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mediapackage", signing_region = cfg.region } }
                 else
@@ -49,250 +52,79 @@ function M.new(cfg)
 end
 
 function Client:configureLogs(input, options)
-    return self:invokeOperation(input, {
-        name = "ConfigureLogs",
-        input_schema = schemas.ConfigureLogsInput,
-        output_schema = schemas.ConfigureLogsOutput,
-        http_method = "PUT",
-        http_path = "/channels/{Id}/configure_logs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ConfigureLogs, input, options)
 end
 
 function Client:createChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateChannel",
-        input_schema = schemas.CreateChannelInput,
-        output_schema = schemas.CreateChannelOutput,
-        http_method = "POST",
-        http_path = "/channels",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateChannel, input, options)
 end
 
 function Client:createHarvestJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateHarvestJob",
-        input_schema = schemas.CreateHarvestJobInput,
-        output_schema = schemas.CreateHarvestJobOutput,
-        http_method = "POST",
-        http_path = "/harvest_jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateHarvestJob, input, options)
 end
 
 function Client:createOriginEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateOriginEndpoint",
-        input_schema = schemas.CreateOriginEndpointInput,
-        output_schema = schemas.CreateOriginEndpointOutput,
-        http_method = "POST",
-        http_path = "/origin_endpoints",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateOriginEndpoint, input, options)
 end
 
 function Client:deleteChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteChannel",
-        input_schema = schemas.DeleteChannelInput,
-        output_schema = schemas.DeleteChannelOutput,
-        http_method = "DELETE",
-        http_path = "/channels/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteChannel, input, options)
 end
 
 function Client:deleteOriginEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteOriginEndpoint",
-        input_schema = schemas.DeleteOriginEndpointInput,
-        output_schema = schemas.DeleteOriginEndpointOutput,
-        http_method = "DELETE",
-        http_path = "/origin_endpoints/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteOriginEndpoint, input, options)
 end
 
 function Client:describeChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeChannel",
-        input_schema = schemas.DescribeChannelInput,
-        output_schema = schemas.DescribeChannelOutput,
-        http_method = "GET",
-        http_path = "/channels/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeChannel, input, options)
 end
 
 function Client:describeHarvestJob(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeHarvestJob",
-        input_schema = schemas.DescribeHarvestJobInput,
-        output_schema = schemas.DescribeHarvestJobOutput,
-        http_method = "GET",
-        http_path = "/harvest_jobs/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeHarvestJob, input, options)
 end
 
 function Client:describeOriginEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeOriginEndpoint",
-        input_schema = schemas.DescribeOriginEndpointInput,
-        output_schema = schemas.DescribeOriginEndpointOutput,
-        http_method = "GET",
-        http_path = "/origin_endpoints/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeOriginEndpoint, input, options)
 end
 
 function Client:listChannels(input, options)
-    return self:invokeOperation(input, {
-        name = "ListChannels",
-        input_schema = schemas.ListChannelsInput,
-        output_schema = schemas.ListChannelsOutput,
-        http_method = "GET",
-        http_path = "/channels",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListChannels, input, options)
 end
 
 function Client:listHarvestJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListHarvestJobs",
-        input_schema = schemas.ListHarvestJobsInput,
-        output_schema = schemas.ListHarvestJobsOutput,
-        http_method = "GET",
-        http_path = "/harvest_jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListHarvestJobs, input, options)
 end
 
 function Client:listOriginEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "ListOriginEndpoints",
-        input_schema = schemas.ListOriginEndpointsInput,
-        output_schema = schemas.ListOriginEndpointsOutput,
-        http_method = "GET",
-        http_path = "/origin_endpoints",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListOriginEndpoints, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:rotateChannelCredentials(input, options)
-    return self:invokeOperation(input, {
-        name = "RotateChannelCredentials",
-        input_schema = schemas.RotateChannelCredentialsInput,
-        output_schema = schemas.RotateChannelCredentialsOutput,
-        http_method = "PUT",
-        http_path = "/channels/{Id}/credentials",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RotateChannelCredentials, input, options)
 end
 
 function Client:rotateIngestEndpointCredentials(input, options)
-    return self:invokeOperation(input, {
-        name = "RotateIngestEndpointCredentials",
-        input_schema = schemas.RotateIngestEndpointCredentialsInput,
-        output_schema = schemas.RotateIngestEndpointCredentialsOutput,
-        http_method = "PUT",
-        http_path = "/channels/{Id}/ingest_endpoints/{IngestEndpointId}/credentials",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RotateIngestEndpointCredentials, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateChannel",
-        input_schema = schemas.UpdateChannelInput,
-        output_schema = schemas.UpdateChannelOutput,
-        http_method = "PUT",
-        http_path = "/channels/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateChannel, input, options)
 end
 
 function Client:updateOriginEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateOriginEndpoint",
-        input_schema = schemas.UpdateOriginEndpointInput,
-        output_schema = schemas.UpdateOriginEndpointOutput,
-        http_method = "PUT",
-        http_path = "/origin_endpoints/{Id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateOriginEndpoint, input, options)
 end
 
 return M

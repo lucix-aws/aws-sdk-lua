@@ -5691,4 +5691,614 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.drs", "ElasticDisasterRecoveryService"),
+    version = "2020-02-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateSourceNetworkStack = schema.operation({
+    id = id.from("com.amazonaws.drs", "AssociateSourceNetworkStack"),
+    input = M.AssociateSourceNetworkStackInput,
+    output = M.AssociateSourceNetworkStackOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/AssociateSourceNetworkStack" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExtendedSourceServer = schema.operation({
+    id = id.from("com.amazonaws.drs", "CreateExtendedSourceServer"),
+    input = M.CreateExtendedSourceServerInput,
+    output = M.CreateExtendedSourceServerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateExtendedSourceServer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLaunchConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.drs", "CreateLaunchConfigurationTemplate"),
+    input = M.CreateLaunchConfigurationTemplateInput,
+    output = M.CreateLaunchConfigurationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateLaunchConfigurationTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReplicationConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.drs", "CreateReplicationConfigurationTemplate"),
+    input = M.CreateReplicationConfigurationTemplateInput,
+    output = M.CreateReplicationConfigurationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateReplicationConfigurationTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSourceNetwork = schema.operation({
+    id = id.from("com.amazonaws.drs", "CreateSourceNetwork"),
+    input = M.CreateSourceNetworkInput,
+    output = M.CreateSourceNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateSourceNetwork" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteJob = schema.operation({
+    id = id.from("com.amazonaws.drs", "DeleteJob"),
+    input = M.DeleteJobInput,
+    output = M.DeleteJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteJob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLaunchAction = schema.operation({
+    id = id.from("com.amazonaws.drs", "DeleteLaunchAction"),
+    input = M.DeleteLaunchActionInput,
+    output = M.DeleteLaunchActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteLaunchAction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLaunchConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.drs", "DeleteLaunchConfigurationTemplate"),
+    input = M.DeleteLaunchConfigurationTemplateInput,
+    output = M.DeleteLaunchConfigurationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteLaunchConfigurationTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecoveryInstance = schema.operation({
+    id = id.from("com.amazonaws.drs", "DeleteRecoveryInstance"),
+    input = M.DeleteRecoveryInstanceInput,
+    output = M.DeleteRecoveryInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteRecoveryInstance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReplicationConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.drs", "DeleteReplicationConfigurationTemplate"),
+    input = M.DeleteReplicationConfigurationTemplateInput,
+    output = M.DeleteReplicationConfigurationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteReplicationConfigurationTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSourceNetwork = schema.operation({
+    id = id.from("com.amazonaws.drs", "DeleteSourceNetwork"),
+    input = M.DeleteSourceNetworkInput,
+    output = M.DeleteSourceNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteSourceNetwork" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSourceServer = schema.operation({
+    id = id.from("com.amazonaws.drs", "DeleteSourceServer"),
+    input = M.DeleteSourceServerInput,
+    output = M.DeleteSourceServerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteSourceServer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobLogItems = schema.operation({
+    id = id.from("com.amazonaws.drs", "DescribeJobLogItems"),
+    input = M.DescribeJobLogItemsInput,
+    output = M.DescribeJobLogItemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeJobLogItems" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobs = schema.operation({
+    id = id.from("com.amazonaws.drs", "DescribeJobs"),
+    input = M.DescribeJobsInput,
+    output = M.DescribeJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeJobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLaunchConfigurationTemplates = schema.operation({
+    id = id.from("com.amazonaws.drs", "DescribeLaunchConfigurationTemplates"),
+    input = M.DescribeLaunchConfigurationTemplatesInput,
+    output = M.DescribeLaunchConfigurationTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeLaunchConfigurationTemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRecoveryInstances = schema.operation({
+    id = id.from("com.amazonaws.drs", "DescribeRecoveryInstances"),
+    input = M.DescribeRecoveryInstancesInput,
+    output = M.DescribeRecoveryInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeRecoveryInstances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRecoverySnapshots = schema.operation({
+    id = id.from("com.amazonaws.drs", "DescribeRecoverySnapshots"),
+    input = M.DescribeRecoverySnapshotsInput,
+    output = M.DescribeRecoverySnapshotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeRecoverySnapshots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplicationConfigurationTemplates = schema.operation({
+    id = id.from("com.amazonaws.drs", "DescribeReplicationConfigurationTemplates"),
+    input = M.DescribeReplicationConfigurationTemplatesInput,
+    output = M.DescribeReplicationConfigurationTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeReplicationConfigurationTemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSourceNetworks = schema.operation({
+    id = id.from("com.amazonaws.drs", "DescribeSourceNetworks"),
+    input = M.DescribeSourceNetworksInput,
+    output = M.DescribeSourceNetworksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeSourceNetworks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSourceServers = schema.operation({
+    id = id.from("com.amazonaws.drs", "DescribeSourceServers"),
+    input = M.DescribeSourceServersInput,
+    output = M.DescribeSourceServersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeSourceServers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisconnectRecoveryInstance = schema.operation({
+    id = id.from("com.amazonaws.drs", "DisconnectRecoveryInstance"),
+    input = M.DisconnectRecoveryInstanceInput,
+    output = M.DisconnectRecoveryInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DisconnectRecoveryInstance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisconnectSourceServer = schema.operation({
+    id = id.from("com.amazonaws.drs", "DisconnectSourceServer"),
+    input = M.DisconnectSourceServerInput,
+    output = M.DisconnectSourceServerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DisconnectSourceServer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportSourceNetworkCfnTemplate = schema.operation({
+    id = id.from("com.amazonaws.drs", "ExportSourceNetworkCfnTemplate"),
+    input = M.ExportSourceNetworkCfnTemplateInput,
+    output = M.ExportSourceNetworkCfnTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ExportSourceNetworkCfnTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFailbackReplicationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.drs", "GetFailbackReplicationConfiguration"),
+    input = M.GetFailbackReplicationConfigurationInput,
+    output = M.GetFailbackReplicationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetFailbackReplicationConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLaunchConfiguration = schema.operation({
+    id = id.from("com.amazonaws.drs", "GetLaunchConfiguration"),
+    input = M.GetLaunchConfigurationInput,
+    output = M.GetLaunchConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetLaunchConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReplicationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.drs", "GetReplicationConfiguration"),
+    input = M.GetReplicationConfigurationInput,
+    output = M.GetReplicationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetReplicationConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InitializeService = schema.operation({
+    id = id.from("com.amazonaws.drs", "InitializeService"),
+    input = M.InitializeServiceInput,
+    output = M.InitializeServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/InitializeService" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExtensibleSourceServers = schema.operation({
+    id = id.from("com.amazonaws.drs", "ListExtensibleSourceServers"),
+    input = M.ListExtensibleSourceServersInput,
+    output = M.ListExtensibleSourceServersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListExtensibleSourceServers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLaunchActions = schema.operation({
+    id = id.from("com.amazonaws.drs", "ListLaunchActions"),
+    input = M.ListLaunchActionsInput,
+    output = M.ListLaunchActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListLaunchActions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStagingAccounts = schema.operation({
+    id = id.from("com.amazonaws.drs", "ListStagingAccounts"),
+    input = M.ListStagingAccountsInput,
+    output = M.ListStagingAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ListStagingAccounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.drs", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLaunchAction = schema.operation({
+    id = id.from("com.amazonaws.drs", "PutLaunchAction"),
+    input = M.PutLaunchActionInput,
+    output = M.PutLaunchActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutLaunchAction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetryDataReplication = schema.operation({
+    id = id.from("com.amazonaws.drs", "RetryDataReplication"),
+    input = M.RetryDataReplicationInput,
+    output = M.RetryDataReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/RetryDataReplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReverseReplication = schema.operation({
+    id = id.from("com.amazonaws.drs", "ReverseReplication"),
+    input = M.ReverseReplicationInput,
+    output = M.ReverseReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ReverseReplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFailbackLaunch = schema.operation({
+    id = id.from("com.amazonaws.drs", "StartFailbackLaunch"),
+    input = M.StartFailbackLaunchInput,
+    output = M.StartFailbackLaunchOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartFailbackLaunch" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRecovery = schema.operation({
+    id = id.from("com.amazonaws.drs", "StartRecovery"),
+    input = M.StartRecoveryInput,
+    output = M.StartRecoveryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartRecovery" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReplication = schema.operation({
+    id = id.from("com.amazonaws.drs", "StartReplication"),
+    input = M.StartReplicationInput,
+    output = M.StartReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartReplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSourceNetworkRecovery = schema.operation({
+    id = id.from("com.amazonaws.drs", "StartSourceNetworkRecovery"),
+    input = M.StartSourceNetworkRecoveryInput,
+    output = M.StartSourceNetworkRecoveryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartSourceNetworkRecovery" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSourceNetworkReplication = schema.operation({
+    id = id.from("com.amazonaws.drs", "StartSourceNetworkReplication"),
+    input = M.StartSourceNetworkReplicationInput,
+    output = M.StartSourceNetworkReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartSourceNetworkReplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopFailback = schema.operation({
+    id = id.from("com.amazonaws.drs", "StopFailback"),
+    input = M.StopFailbackInput,
+    output = M.StopFailbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StopFailback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopReplication = schema.operation({
+    id = id.from("com.amazonaws.drs", "StopReplication"),
+    input = M.StopReplicationInput,
+    output = M.StopReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StopReplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopSourceNetworkReplication = schema.operation({
+    id = id.from("com.amazonaws.drs", "StopSourceNetworkReplication"),
+    input = M.StopSourceNetworkReplicationInput,
+    output = M.StopSourceNetworkReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StopSourceNetworkReplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.drs", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateRecoveryInstances = schema.operation({
+    id = id.from("com.amazonaws.drs", "TerminateRecoveryInstances"),
+    input = M.TerminateRecoveryInstancesInput,
+    output = M.TerminateRecoveryInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TerminateRecoveryInstances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.drs", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFailbackReplicationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.drs", "UpdateFailbackReplicationConfiguration"),
+    input = M.UpdateFailbackReplicationConfigurationInput,
+    output = M.UpdateFailbackReplicationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateFailbackReplicationConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLaunchConfiguration = schema.operation({
+    id = id.from("com.amazonaws.drs", "UpdateLaunchConfiguration"),
+    input = M.UpdateLaunchConfigurationInput,
+    output = M.UpdateLaunchConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateLaunchConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLaunchConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.drs", "UpdateLaunchConfigurationTemplate"),
+    input = M.UpdateLaunchConfigurationTemplateInput,
+    output = M.UpdateLaunchConfigurationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateLaunchConfigurationTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReplicationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.drs", "UpdateReplicationConfiguration"),
+    input = M.UpdateReplicationConfigurationInput,
+    output = M.UpdateReplicationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateReplicationConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReplicationConfigurationTemplate = schema.operation({
+    id = id.from("com.amazonaws.drs", "UpdateReplicationConfigurationTemplate"),
+    input = M.UpdateReplicationConfigurationTemplateInput,
+    output = M.UpdateReplicationConfigurationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateReplicationConfigurationTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

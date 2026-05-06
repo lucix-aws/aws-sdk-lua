@@ -5517,4 +5517,377 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "KinesisAnalytics_20180523"),
+    version = "2018-05-23",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddApplicationCloudWatchLoggingOption = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "AddApplicationCloudWatchLoggingOption"),
+    input = M.AddApplicationCloudWatchLoggingOptionInput,
+    output = M.AddApplicationCloudWatchLoggingOptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddApplicationInput = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "AddApplicationInput"),
+    input = M.AddApplicationInputInput,
+    output = M.AddApplicationInputOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddApplicationInputProcessingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "AddApplicationInputProcessingConfiguration"),
+    input = M.AddApplicationInputProcessingConfigurationInput,
+    output = M.AddApplicationInputProcessingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddApplicationOutput = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "AddApplicationOutput"),
+    input = M.AddApplicationOutputInput,
+    output = M.AddApplicationOutputOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddApplicationReferenceDataSource = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "AddApplicationReferenceDataSource"),
+    input = M.AddApplicationReferenceDataSourceInput,
+    output = M.AddApplicationReferenceDataSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddApplicationVpcConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "AddApplicationVpcConfiguration"),
+    input = M.AddApplicationVpcConfigurationInput,
+    output = M.AddApplicationVpcConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplicationPresignedUrl = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "CreateApplicationPresignedUrl"),
+    input = M.CreateApplicationPresignedUrlInput,
+    output = M.CreateApplicationPresignedUrlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplicationSnapshot = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "CreateApplicationSnapshot"),
+    input = M.CreateApplicationSnapshotInput,
+    output = M.CreateApplicationSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOperationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplicationCloudWatchLoggingOption = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DeleteApplicationCloudWatchLoggingOption"),
+    input = M.DeleteApplicationCloudWatchLoggingOptionInput,
+    output = M.DeleteApplicationCloudWatchLoggingOptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplicationInputProcessingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DeleteApplicationInputProcessingConfiguration"),
+    input = M.DeleteApplicationInputProcessingConfigurationInput,
+    output = M.DeleteApplicationInputProcessingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplicationOutput = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DeleteApplicationOutput"),
+    input = M.DeleteApplicationOutputInput,
+    output = M.DeleteApplicationOutputOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplicationReferenceDataSource = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DeleteApplicationReferenceDataSource"),
+    input = M.DeleteApplicationReferenceDataSourceInput,
+    output = M.DeleteApplicationReferenceDataSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplicationSnapshot = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DeleteApplicationSnapshot"),
+    input = M.DeleteApplicationSnapshotInput,
+    output = M.DeleteApplicationSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplicationVpcConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DeleteApplicationVpcConfiguration"),
+    input = M.DeleteApplicationVpcConfigurationInput,
+    output = M.DeleteApplicationVpcConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplication = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DescribeApplication"),
+    input = M.DescribeApplicationInput,
+    output = M.DescribeApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicationOperation = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DescribeApplicationOperation"),
+    input = M.DescribeApplicationOperationInput,
+    output = M.DescribeApplicationOperationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicationSnapshot = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DescribeApplicationSnapshot"),
+    input = M.DescribeApplicationSnapshotInput,
+    output = M.DescribeApplicationSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicationVersion = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DescribeApplicationVersion"),
+    input = M.DescribeApplicationVersionInput,
+    output = M.DescribeApplicationVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DiscoverInputSchema = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DiscoverInputSchema"),
+    input = M.DiscoverInputSchemaInput,
+    output = M.DiscoverInputSchemaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationOperations = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "ListApplicationOperations"),
+    input = M.ListApplicationOperationsInput,
+    output = M.ListApplicationOperationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationSnapshots = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "ListApplicationSnapshots"),
+    input = M.ListApplicationSnapshotsInput,
+    output = M.ListApplicationSnapshotsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationVersions = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "ListApplicationVersions"),
+    input = M.ListApplicationVersionsInput,
+    output = M.ListApplicationVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RollbackApplication = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "RollbackApplication"),
+    input = M.RollbackApplicationInput,
+    output = M.RollbackApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartApplication = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "StartApplication"),
+    input = M.StartApplicationInput,
+    output = M.StartApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopApplication = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "StopApplication"),
+    input = M.StopApplicationInput,
+    output = M.StopApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplicationMaintenanceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "UpdateApplicationMaintenanceConfiguration"),
+    input = M.UpdateApplicationMaintenanceConfigurationInput,
+    output = M.UpdateApplicationMaintenanceConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

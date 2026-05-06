@@ -7,6 +7,7 @@ local endpoint_rules = require("greengrassv2.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("greengrassv2.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "greengrass", signing_region = cfg.region } }
                 else
@@ -49,380 +52,119 @@ function M.new(cfg)
 end
 
 function Client:associateServiceRoleToAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateServiceRoleToAccount",
-        input_schema = schemas.AssociateServiceRoleToAccountInput,
-        output_schema = schemas.AssociateServiceRoleToAccountOutput,
-        http_method = "PUT",
-        http_path = "/greengrass/servicerole",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateServiceRoleToAccount, input, options)
 end
 
 function Client:batchAssociateClientDeviceWithCoreDevice(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchAssociateClientDeviceWithCoreDevice",
-        input_schema = schemas.BatchAssociateClientDeviceWithCoreDeviceInput,
-        output_schema = schemas.BatchAssociateClientDeviceWithCoreDeviceOutput,
-        http_method = "POST",
-        http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/associateClientDevices",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchAssociateClientDeviceWithCoreDevice, input, options)
 end
 
 function Client:batchDisassociateClientDeviceFromCoreDevice(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDisassociateClientDeviceFromCoreDevice",
-        input_schema = schemas.BatchDisassociateClientDeviceFromCoreDeviceInput,
-        output_schema = schemas.BatchDisassociateClientDeviceFromCoreDeviceOutput,
-        http_method = "POST",
-        http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/disassociateClientDevices",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDisassociateClientDeviceFromCoreDevice, input, options)
 end
 
 function Client:cancelDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelDeployment",
-        input_schema = schemas.CancelDeploymentInput,
-        output_schema = schemas.CancelDeploymentOutput,
-        http_method = "POST",
-        http_path = "/greengrass/v2/deployments/{deploymentId}/cancel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelDeployment, input, options)
 end
 
 function Client:createComponentVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateComponentVersion",
-        input_schema = schemas.CreateComponentVersionInput,
-        output_schema = schemas.CreateComponentVersionOutput,
-        http_method = "POST",
-        http_path = "/greengrass/v2/createComponentVersion",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateComponentVersion, input, options)
 end
 
 function Client:createDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDeployment",
-        input_schema = schemas.CreateDeploymentInput,
-        output_schema = schemas.CreateDeploymentOutput,
-        http_method = "POST",
-        http_path = "/greengrass/v2/deployments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDeployment, input, options)
 end
 
 function Client:deleteComponent(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteComponent",
-        input_schema = schemas.DeleteComponentInput,
-        output_schema = schemas.DeleteComponentOutput,
-        http_method = "DELETE",
-        http_path = "/greengrass/v2/components/{arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteComponent, input, options)
 end
 
 function Client:deleteCoreDevice(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCoreDevice",
-        input_schema = schemas.DeleteCoreDeviceInput,
-        output_schema = schemas.DeleteCoreDeviceOutput,
-        http_method = "DELETE",
-        http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCoreDevice, input, options)
 end
 
 function Client:deleteDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDeployment",
-        input_schema = schemas.DeleteDeploymentInput,
-        output_schema = schemas.DeleteDeploymentOutput,
-        http_method = "DELETE",
-        http_path = "/greengrass/v2/deployments/{deploymentId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDeployment, input, options)
 end
 
 function Client:describeComponent(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeComponent",
-        input_schema = schemas.DescribeComponentInput,
-        output_schema = schemas.DescribeComponentOutput,
-        http_method = "GET",
-        http_path = "/greengrass/v2/components/{arn}/metadata",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeComponent, input, options)
 end
 
 function Client:disassociateServiceRoleFromAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateServiceRoleFromAccount",
-        input_schema = schemas.DisassociateServiceRoleFromAccountInput,
-        output_schema = schemas.DisassociateServiceRoleFromAccountOutput,
-        http_method = "DELETE",
-        http_path = "/greengrass/servicerole",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateServiceRoleFromAccount, input, options)
 end
 
 function Client:getComponent(input, options)
-    return self:invokeOperation(input, {
-        name = "GetComponent",
-        input_schema = schemas.GetComponentInput,
-        output_schema = schemas.GetComponentOutput,
-        http_method = "GET",
-        http_path = "/greengrass/v2/components/{arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetComponent, input, options)
 end
 
 function Client:getComponentVersionArtifact(input, options)
-    return self:invokeOperation(input, {
-        name = "GetComponentVersionArtifact",
-        input_schema = schemas.GetComponentVersionArtifactInput,
-        output_schema = schemas.GetComponentVersionArtifactOutput,
-        http_method = "GET",
-        http_path = "/greengrass/v2/components/{arn}/artifacts/{artifactName+}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetComponentVersionArtifact, input, options)
 end
 
 function Client:getConnectivityInfo(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConnectivityInfo",
-        input_schema = schemas.GetConnectivityInfoInput,
-        output_schema = schemas.GetConnectivityInfoOutput,
-        http_method = "GET",
-        http_path = "/greengrass/things/{thingName}/connectivityInfo",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConnectivityInfo, input, options)
 end
 
 function Client:getCoreDevice(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCoreDevice",
-        input_schema = schemas.GetCoreDeviceInput,
-        output_schema = schemas.GetCoreDeviceOutput,
-        http_method = "GET",
-        http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCoreDevice, input, options)
 end
 
 function Client:getDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDeployment",
-        input_schema = schemas.GetDeploymentInput,
-        output_schema = schemas.GetDeploymentOutput,
-        http_method = "GET",
-        http_path = "/greengrass/v2/deployments/{deploymentId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDeployment, input, options)
 end
 
 function Client:getServiceRoleForAccount(input, options)
-    return self:invokeOperation(input, {
-        name = "GetServiceRoleForAccount",
-        input_schema = schemas.GetServiceRoleForAccountInput,
-        output_schema = schemas.GetServiceRoleForAccountOutput,
-        http_method = "GET",
-        http_path = "/greengrass/servicerole",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetServiceRoleForAccount, input, options)
 end
 
 function Client:listClientDevicesAssociatedWithCoreDevice(input, options)
-    return self:invokeOperation(input, {
-        name = "ListClientDevicesAssociatedWithCoreDevice",
-        input_schema = schemas.ListClientDevicesAssociatedWithCoreDeviceInput,
-        output_schema = schemas.ListClientDevicesAssociatedWithCoreDeviceOutput,
-        http_method = "GET",
-        http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/associatedClientDevices",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListClientDevicesAssociatedWithCoreDevice, input, options)
 end
 
 function Client:listComponents(input, options)
-    return self:invokeOperation(input, {
-        name = "ListComponents",
-        input_schema = schemas.ListComponentsInput,
-        output_schema = schemas.ListComponentsOutput,
-        http_method = "GET",
-        http_path = "/greengrass/v2/components",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListComponents, input, options)
 end
 
 function Client:listComponentVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListComponentVersions",
-        input_schema = schemas.ListComponentVersionsInput,
-        output_schema = schemas.ListComponentVersionsOutput,
-        http_method = "GET",
-        http_path = "/greengrass/v2/components/{arn}/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListComponentVersions, input, options)
 end
 
 function Client:listCoreDevices(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCoreDevices",
-        input_schema = schemas.ListCoreDevicesInput,
-        output_schema = schemas.ListCoreDevicesOutput,
-        http_method = "GET",
-        http_path = "/greengrass/v2/coreDevices",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCoreDevices, input, options)
 end
 
 function Client:listDeployments(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDeployments",
-        input_schema = schemas.ListDeploymentsInput,
-        output_schema = schemas.ListDeploymentsOutput,
-        http_method = "GET",
-        http_path = "/greengrass/v2/deployments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDeployments, input, options)
 end
 
 function Client:listEffectiveDeployments(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEffectiveDeployments",
-        input_schema = schemas.ListEffectiveDeploymentsInput,
-        output_schema = schemas.ListEffectiveDeploymentsOutput,
-        http_method = "GET",
-        http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/effectiveDeployments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEffectiveDeployments, input, options)
 end
 
 function Client:listInstalledComponents(input, options)
-    return self:invokeOperation(input, {
-        name = "ListInstalledComponents",
-        input_schema = schemas.ListInstalledComponentsInput,
-        output_schema = schemas.ListInstalledComponentsOutput,
-        http_method = "GET",
-        http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/installedComponents",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListInstalledComponents, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:resolveComponentCandidates(input, options)
-    return self:invokeOperation(input, {
-        name = "ResolveComponentCandidates",
-        input_schema = schemas.ResolveComponentCandidatesInput,
-        output_schema = schemas.ResolveComponentCandidatesOutput,
-        http_method = "POST",
-        http_path = "/greengrass/v2/resolveComponentCandidates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ResolveComponentCandidates, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateConnectivityInfo(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConnectivityInfo",
-        input_schema = schemas.UpdateConnectivityInfoInput,
-        output_schema = schemas.UpdateConnectivityInfoOutput,
-        http_method = "PUT",
-        http_path = "/greengrass/things/{thingName}/connectivityInfo",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConnectivityInfo, input, options)
 end
 
 return M

@@ -9862,4 +9862,1070 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.opensearch", "AmazonOpenSearchService"),
+    version = "2021-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptInboundConnection = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "AcceptInboundConnection"),
+    input = M.AcceptInboundConnectionInput,
+    output = M.AcceptInboundConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2021-01-01/opensearch/cc/inboundConnection/{ConnectionId}/accept" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddDataSource = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "AddDataSource"),
+    input = M.AddDataSourceInput,
+    output = M.AddDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddDirectQueryDataSource = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "AddDirectQueryDataSource"),
+    input = M.AddDirectQueryDataSourceInput,
+    output = M.AddDirectQueryDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/directQueryDataSource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTags = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "AddTags"),
+    input = M.AddTagsInput,
+    output = M.AddTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociatePackage = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "AssociatePackage"),
+    input = M.AssociatePackageInput,
+    output = M.AssociatePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/packages/associate/{PackageID}/{DomainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociatePackages = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "AssociatePackages"),
+    input = M.AssociatePackagesInput,
+    output = M.AssociatePackagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/packages/associateMultiple" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AuthorizeVpcEndpointAccess = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "AuthorizeVpcEndpointAccess"),
+    input = M.AuthorizeVpcEndpointAccessInput,
+    output = M.AuthorizeVpcEndpointAccessOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/domain/{DomainName}/authorizeVpcEndpointAccess" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelDomainConfigChange = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "CancelDomainConfigChange"),
+    input = M.CancelDomainConfigChangeInput,
+    output = M.CancelDomainConfigChangeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/domain/{DomainName}/config/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelServiceSoftwareUpdate = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "CancelServiceSoftwareUpdate"),
+    input = M.CancelServiceSoftwareUpdateInput,
+    output = M.CancelServiceSoftwareUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/serviceSoftwareUpdate/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/application" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomain = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "CreateDomain"),
+    input = M.CreateDomainInput,
+    output = M.CreateDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/domain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIndex = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "CreateIndex"),
+    input = M.CreateIndexInput,
+    output = M.CreateIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/domain/{DomainName}/index" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOutboundConnection = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "CreateOutboundConnection"),
+    input = M.CreateOutboundConnectionInput,
+    output = M.CreateOutboundConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/cc/outboundConnection" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePackage = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "CreatePackage"),
+    input = M.CreatePackageInput,
+    output = M.CreatePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/packages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVpcEndpoint = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "CreateVpcEndpoint"),
+    input = M.CreateVpcEndpointInput,
+    output = M.CreateVpcEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/vpcEndpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2021-01-01/opensearch/application/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataSource = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DeleteDataSource"),
+    input = M.DeleteDataSourceInput,
+    output = M.DeleteDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDirectQueryDataSource = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DeleteDirectQueryDataSource"),
+    input = M.DeleteDirectQueryDataSourceInput,
+    output = M.DeleteDirectQueryDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomain = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DeleteDomain"),
+    input = M.DeleteDomainInput,
+    output = M.DeleteDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2021-01-01/opensearch/domain/{DomainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInboundConnection = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DeleteInboundConnection"),
+    input = M.DeleteInboundConnectionInput,
+    output = M.DeleteInboundConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2021-01-01/opensearch/cc/inboundConnection/{ConnectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIndex = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DeleteIndex"),
+    input = M.DeleteIndexInput,
+    output = M.DeleteIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2021-01-01/opensearch/domain/{DomainName}/index/{IndexName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOutboundConnection = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DeleteOutboundConnection"),
+    input = M.DeleteOutboundConnectionInput,
+    output = M.DeleteOutboundConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2021-01-01/opensearch/cc/outboundConnection/{ConnectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePackage = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DeletePackage"),
+    input = M.DeletePackageInput,
+    output = M.DeletePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2021-01-01/packages/{PackageID}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVpcEndpoint = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DeleteVpcEndpoint"),
+    input = M.DeleteVpcEndpointInput,
+    output = M.DeleteVpcEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2021-01-01/opensearch/vpcEndpoints/{VpcEndpointId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterCapability = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DeregisterCapability"),
+    input = M.DeregisterCapabilityInput,
+    output = M.DeregisterCapabilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2021-01-01/opensearch/application/{applicationId}/capability/deregister/{capabilityName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomain = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeDomain"),
+    input = M.DescribeDomainInput,
+    output = M.DescribeDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomainAutoTunes = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeDomainAutoTunes"),
+    input = M.DescribeDomainAutoTunesInput,
+    output = M.DescribeDomainAutoTunesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/autoTunes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomainChangeProgress = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeDomainChangeProgress"),
+    input = M.DescribeDomainChangeProgressInput,
+    output = M.DescribeDomainChangeProgressOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/progress" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomainConfig = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeDomainConfig"),
+    input = M.DescribeDomainConfigInput,
+    output = M.DescribeDomainConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomainHealth = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeDomainHealth"),
+    input = M.DescribeDomainHealthInput,
+    output = M.DescribeDomainHealthOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/health" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomainNodes = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeDomainNodes"),
+    input = M.DescribeDomainNodesInput,
+    output = M.DescribeDomainNodesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/nodes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomains = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeDomains"),
+    input = M.DescribeDomainsInput,
+    output = M.DescribeDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/domain-info" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDryRunProgress = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeDryRunProgress"),
+    input = M.DescribeDryRunProgressInput,
+    output = M.DescribeDryRunProgressOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/dryRun" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInboundConnections = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeInboundConnections"),
+    input = M.DescribeInboundConnectionsInput,
+    output = M.DescribeInboundConnectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/cc/inboundConnection/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInsightDetails = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeInsightDetails"),
+    input = M.DescribeInsightDetailsInput,
+    output = M.DescribeInsightDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/insight-details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInstanceTypeLimits = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeInstanceTypeLimits"),
+    input = M.DescribeInstanceTypeLimitsInput,
+    output = M.DescribeInstanceTypeLimitsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/instanceTypeLimits/{EngineVersion}/{InstanceType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOutboundConnections = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeOutboundConnections"),
+    input = M.DescribeOutboundConnectionsInput,
+    output = M.DescribeOutboundConnectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/cc/outboundConnection/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePackages = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribePackages"),
+    input = M.DescribePackagesInput,
+    output = M.DescribePackagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/packages/describe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReservedInstanceOfferings = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeReservedInstanceOfferings"),
+    input = M.DescribeReservedInstanceOfferingsInput,
+    output = M.DescribeReservedInstanceOfferingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/reservedInstanceOfferings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReservedInstances = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeReservedInstances"),
+    input = M.DescribeReservedInstancesInput,
+    output = M.DescribeReservedInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/reservedInstances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVpcEndpoints = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeVpcEndpoints"),
+    input = M.DescribeVpcEndpointsInput,
+    output = M.DescribeVpcEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/vpcEndpoints/describe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DissociatePackage = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DissociatePackage"),
+    input = M.DissociatePackageInput,
+    output = M.DissociatePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/packages/dissociate/{PackageID}/{DomainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DissociatePackages = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DissociatePackages"),
+    input = M.DissociatePackagesInput,
+    output = M.DissociatePackagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/packages/dissociateMultiple" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplication = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "GetApplication"),
+    input = M.GetApplicationInput,
+    output = M.GetApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/application/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCapability = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "GetCapability"),
+    input = M.GetCapabilityInput,
+    output = M.GetCapabilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/application/{applicationId}/capability/{capabilityName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCompatibleVersions = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "GetCompatibleVersions"),
+    input = M.GetCompatibleVersionsInput,
+    output = M.GetCompatibleVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/compatibleVersions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataSource = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "GetDataSource"),
+    input = M.GetDataSourceInput,
+    output = M.GetDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDefaultApplicationSetting = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "GetDefaultApplicationSetting"),
+    input = M.GetDefaultApplicationSettingInput,
+    output = M.GetDefaultApplicationSettingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/defaultApplicationSetting" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDirectQueryDataSource = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "GetDirectQueryDataSource"),
+    input = M.GetDirectQueryDataSourceInput,
+    output = M.GetDirectQueryDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainMaintenanceStatus = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "GetDomainMaintenanceStatus"),
+    input = M.GetDomainMaintenanceStatusInput,
+    output = M.GetDomainMaintenanceStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/domainMaintenance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIndex = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "GetIndex"),
+    input = M.GetIndexInput,
+    output = M.GetIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/index/{IndexName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPackageVersionHistory = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "GetPackageVersionHistory"),
+    input = M.GetPackageVersionHistoryInput,
+    output = M.GetPackageVersionHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/packages/{PackageID}/history" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUpgradeHistory = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "GetUpgradeHistory"),
+    input = M.GetUpgradeHistoryInput,
+    output = M.GetUpgradeHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/upgradeDomain/{DomainName}/history" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUpgradeStatus = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "GetUpgradeStatus"),
+    input = M.GetUpgradeStatusInput,
+    output = M.GetUpgradeStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/upgradeDomain/{DomainName}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/list-applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSources = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListDataSources"),
+    input = M.ListDataSourcesInput,
+    output = M.ListDataSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDirectQueryDataSources = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListDirectQueryDataSources"),
+    input = M.ListDirectQueryDataSourcesInput,
+    output = M.ListDirectQueryDataSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/directQueryDataSource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainMaintenances = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListDomainMaintenances"),
+    input = M.ListDomainMaintenancesInput,
+    output = M.ListDomainMaintenancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/domainMaintenances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainNames = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListDomainNames"),
+    input = M.ListDomainNamesInput,
+    output = M.ListDomainNamesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/domain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainsForPackage = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListDomainsForPackage"),
+    input = M.ListDomainsForPackageInput,
+    output = M.ListDomainsForPackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/packages/{PackageID}/domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInsights = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListInsights"),
+    input = M.ListInsightsInput,
+    output = M.ListInsightsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/insights" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstanceTypeDetails = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListInstanceTypeDetails"),
+    input = M.ListInstanceTypeDetailsInput,
+    output = M.ListInstanceTypeDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/instanceTypeDetails/{EngineVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPackagesForDomain = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListPackagesForDomain"),
+    input = M.ListPackagesForDomainInput,
+    output = M.ListPackagesForDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/domain/{DomainName}/packages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScheduledActions = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListScheduledActions"),
+    input = M.ListScheduledActionsInput,
+    output = M.ListScheduledActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/scheduledActions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTags = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListTags"),
+    input = M.ListTagsInput,
+    output = M.ListTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVersions = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListVersions"),
+    input = M.ListVersionsInput,
+    output = M.ListVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVpcEndpointAccess = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListVpcEndpointAccess"),
+    input = M.ListVpcEndpointAccessInput,
+    output = M.ListVpcEndpointAccessOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/listVpcEndpointAccess" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVpcEndpoints = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListVpcEndpoints"),
+    input = M.ListVpcEndpointsInput,
+    output = M.ListVpcEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/vpcEndpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVpcEndpointsForDomain = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListVpcEndpointsForDomain"),
+    input = M.ListVpcEndpointsForDomainInput,
+    output = M.ListVpcEndpointsForDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/vpcEndpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PurchaseReservedInstanceOffering = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "PurchaseReservedInstanceOffering"),
+    input = M.PurchaseReservedInstanceOfferingInput,
+    output = M.PurchaseReservedInstanceOfferingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/purchaseReservedInstanceOffering" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDefaultApplicationSetting = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "PutDefaultApplicationSetting"),
+    input = M.PutDefaultApplicationSettingInput,
+    output = M.PutDefaultApplicationSettingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2021-01-01/opensearch/defaultApplicationSetting" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterCapability = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "RegisterCapability"),
+    input = M.RegisterCapabilityInput,
+    output = M.RegisterCapabilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/application/{applicationId}/capability/register" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectInboundConnection = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "RejectInboundConnection"),
+    input = M.RejectInboundConnectionInput,
+    output = M.RejectInboundConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2021-01-01/opensearch/cc/inboundConnection/{ConnectionId}/reject" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTags = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "RemoveTags"),
+    input = M.RemoveTagsInput,
+    output = M.RemoveTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/tags-removal" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeVpcEndpointAccess = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "RevokeVpcEndpointAccess"),
+    input = M.RevokeVpcEndpointAccessInput,
+    output = M.RevokeVpcEndpointAccessOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/domain/{DomainName}/revokeVpcEndpointAccess" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RollbackServiceSoftwareUpdate = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "RollbackServiceSoftwareUpdate"),
+    input = M.RollbackServiceSoftwareUpdateInput,
+    output = M.RollbackServiceSoftwareUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/serviceSoftwareUpdate/rollback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDomainMaintenance = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "StartDomainMaintenance"),
+    input = M.StartDomainMaintenanceInput,
+    output = M.StartDomainMaintenanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/domain/{DomainName}/domainMaintenance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartServiceSoftwareUpdate = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "StartServiceSoftwareUpdate"),
+    input = M.StartServiceSoftwareUpdateInput,
+    output = M.StartServiceSoftwareUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/serviceSoftwareUpdate/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2021-01-01/opensearch/application/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataSource = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "UpdateDataSource"),
+    input = M.UpdateDataSourceInput,
+    output = M.UpdateDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDirectQueryDataSource = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "UpdateDirectQueryDataSource"),
+    input = M.UpdateDirectQueryDataSourceInput,
+    output = M.UpdateDirectQueryDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomainConfig = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "UpdateDomainConfig"),
+    input = M.UpdateDomainConfigInput,
+    output = M.UpdateDomainConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/domain/{DomainName}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIndex = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "UpdateIndex"),
+    input = M.UpdateIndexInput,
+    output = M.UpdateIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2021-01-01/opensearch/domain/{DomainName}/index/{IndexName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePackage = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "UpdatePackage"),
+    input = M.UpdatePackageInput,
+    output = M.UpdatePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/packages/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePackageScope = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "UpdatePackageScope"),
+    input = M.UpdatePackageScopeInput,
+    output = M.UpdatePackageScopeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/packages/updateScope" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateScheduledAction = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "UpdateScheduledAction"),
+    input = M.UpdateScheduledActionInput,
+    output = M.UpdateScheduledActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2021-01-01/opensearch/domain/{DomainName}/scheduledAction/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVpcEndpoint = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "UpdateVpcEndpoint"),
+    input = M.UpdateVpcEndpointInput,
+    output = M.UpdateVpcEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/vpcEndpoints/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpgradeDomain = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "UpgradeDomain"),
+    input = M.UpgradeDomainInput,
+    output = M.UpgradeDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/upgradeDomain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

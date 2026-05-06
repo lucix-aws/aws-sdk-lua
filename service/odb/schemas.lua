@@ -6468,4 +6468,487 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.odb", "Odb"),
+    version = "2024-08-20",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptMarketplaceRegistration = schema.operation({
+    id = id.from("com.amazonaws.odb", "AcceptMarketplaceRegistration"),
+    input = M.AcceptMarketplaceRegistrationInput,
+    output = M.AcceptMarketplaceRegistrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateIamRoleToResource = schema.operation({
+    id = id.from("com.amazonaws.odb", "AssociateIamRoleToResource"),
+    input = M.AssociateIamRoleToResourceInput,
+    output = M.AssociateIamRoleToResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCloudAutonomousVmCluster = schema.operation({
+    id = id.from("com.amazonaws.odb", "CreateCloudAutonomousVmCluster"),
+    input = M.CreateCloudAutonomousVmClusterInput,
+    output = M.CreateCloudAutonomousVmClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCloudExadataInfrastructure = schema.operation({
+    id = id.from("com.amazonaws.odb", "CreateCloudExadataInfrastructure"),
+    input = M.CreateCloudExadataInfrastructureInput,
+    output = M.CreateCloudExadataInfrastructureOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCloudVmCluster = schema.operation({
+    id = id.from("com.amazonaws.odb", "CreateCloudVmCluster"),
+    input = M.CreateCloudVmClusterInput,
+    output = M.CreateCloudVmClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOdbNetwork = schema.operation({
+    id = id.from("com.amazonaws.odb", "CreateOdbNetwork"),
+    input = M.CreateOdbNetworkInput,
+    output = M.CreateOdbNetworkOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOdbPeeringConnection = schema.operation({
+    id = id.from("com.amazonaws.odb", "CreateOdbPeeringConnection"),
+    input = M.CreateOdbPeeringConnectionInput,
+    output = M.CreateOdbPeeringConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCloudAutonomousVmCluster = schema.operation({
+    id = id.from("com.amazonaws.odb", "DeleteCloudAutonomousVmCluster"),
+    input = M.DeleteCloudAutonomousVmClusterInput,
+    output = M.DeleteCloudAutonomousVmClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCloudExadataInfrastructure = schema.operation({
+    id = id.from("com.amazonaws.odb", "DeleteCloudExadataInfrastructure"),
+    input = M.DeleteCloudExadataInfrastructureInput,
+    output = M.DeleteCloudExadataInfrastructureOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCloudVmCluster = schema.operation({
+    id = id.from("com.amazonaws.odb", "DeleteCloudVmCluster"),
+    input = M.DeleteCloudVmClusterInput,
+    output = M.DeleteCloudVmClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOdbNetwork = schema.operation({
+    id = id.from("com.amazonaws.odb", "DeleteOdbNetwork"),
+    input = M.DeleteOdbNetworkInput,
+    output = M.DeleteOdbNetworkOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOdbPeeringConnection = schema.operation({
+    id = id.from("com.amazonaws.odb", "DeleteOdbPeeringConnection"),
+    input = M.DeleteOdbPeeringConnectionInput,
+    output = M.DeleteOdbPeeringConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateIamRoleFromResource = schema.operation({
+    id = id.from("com.amazonaws.odb", "DisassociateIamRoleFromResource"),
+    input = M.DisassociateIamRoleFromResourceInput,
+    output = M.DisassociateIamRoleFromResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCloudAutonomousVmCluster = schema.operation({
+    id = id.from("com.amazonaws.odb", "GetCloudAutonomousVmCluster"),
+    input = M.GetCloudAutonomousVmClusterInput,
+    output = M.GetCloudAutonomousVmClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCloudExadataInfrastructure = schema.operation({
+    id = id.from("com.amazonaws.odb", "GetCloudExadataInfrastructure"),
+    input = M.GetCloudExadataInfrastructureInput,
+    output = M.GetCloudExadataInfrastructureOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCloudExadataInfrastructureUnallocatedResources = schema.operation({
+    id = id.from("com.amazonaws.odb", "GetCloudExadataInfrastructureUnallocatedResources"),
+    input = M.GetCloudExadataInfrastructureUnallocatedResourcesInput,
+    output = M.GetCloudExadataInfrastructureUnallocatedResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCloudVmCluster = schema.operation({
+    id = id.from("com.amazonaws.odb", "GetCloudVmCluster"),
+    input = M.GetCloudVmClusterInput,
+    output = M.GetCloudVmClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDbNode = schema.operation({
+    id = id.from("com.amazonaws.odb", "GetDbNode"),
+    input = M.GetDbNodeInput,
+    output = M.GetDbNodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDbServer = schema.operation({
+    id = id.from("com.amazonaws.odb", "GetDbServer"),
+    input = M.GetDbServerInput,
+    output = M.GetDbServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOciOnboardingStatus = schema.operation({
+    id = id.from("com.amazonaws.odb", "GetOciOnboardingStatus"),
+    input = M.GetOciOnboardingStatusInput,
+    output = M.GetOciOnboardingStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOdbNetwork = schema.operation({
+    id = id.from("com.amazonaws.odb", "GetOdbNetwork"),
+    input = M.GetOdbNetworkInput,
+    output = M.GetOdbNetworkOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOdbPeeringConnection = schema.operation({
+    id = id.from("com.amazonaws.odb", "GetOdbPeeringConnection"),
+    input = M.GetOdbPeeringConnectionInput,
+    output = M.GetOdbPeeringConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InitializeService = schema.operation({
+    id = id.from("com.amazonaws.odb", "InitializeService"),
+    input = M.InitializeServiceInput,
+    output = M.InitializeServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutonomousVirtualMachines = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListAutonomousVirtualMachines"),
+    input = M.ListAutonomousVirtualMachinesInput,
+    output = M.ListAutonomousVirtualMachinesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCloudAutonomousVmClusters = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListCloudAutonomousVmClusters"),
+    input = M.ListCloudAutonomousVmClustersInput,
+    output = M.ListCloudAutonomousVmClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCloudExadataInfrastructures = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListCloudExadataInfrastructures"),
+    input = M.ListCloudExadataInfrastructuresInput,
+    output = M.ListCloudExadataInfrastructuresOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCloudVmClusters = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListCloudVmClusters"),
+    input = M.ListCloudVmClustersInput,
+    output = M.ListCloudVmClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDbNodes = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListDbNodes"),
+    input = M.ListDbNodesInput,
+    output = M.ListDbNodesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDbServers = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListDbServers"),
+    input = M.ListDbServersInput,
+    output = M.ListDbServersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDbSystemShapes = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListDbSystemShapes"),
+    input = M.ListDbSystemShapesInput,
+    output = M.ListDbSystemShapesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGiVersions = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListGiVersions"),
+    input = M.ListGiVersionsInput,
+    output = M.ListGiVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOdbNetworks = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListOdbNetworks"),
+    input = M.ListOdbNetworksInput,
+    output = M.ListOdbNetworksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOdbPeeringConnections = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListOdbPeeringConnections"),
+    input = M.ListOdbPeeringConnectionsInput,
+    output = M.ListOdbPeeringConnectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSystemVersions = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListSystemVersions"),
+    input = M.ListSystemVersionsInput,
+    output = M.ListSystemVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootDbNode = schema.operation({
+    id = id.from("com.amazonaws.odb", "RebootDbNode"),
+    input = M.RebootDbNodeInput,
+    output = M.RebootDbNodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDbNode = schema.operation({
+    id = id.from("com.amazonaws.odb", "StartDbNode"),
+    input = M.StartDbNodeInput,
+    output = M.StartDbNodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDbNode = schema.operation({
+    id = id.from("com.amazonaws.odb", "StopDbNode"),
+    input = M.StopDbNodeInput,
+    output = M.StopDbNodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.odb", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.odb", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCloudExadataInfrastructure = schema.operation({
+    id = id.from("com.amazonaws.odb", "UpdateCloudExadataInfrastructure"),
+    input = M.UpdateCloudExadataInfrastructureInput,
+    output = M.UpdateCloudExadataInfrastructureOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOdbNetwork = schema.operation({
+    id = id.from("com.amazonaws.odb", "UpdateOdbNetwork"),
+    input = M.UpdateOdbNetworkInput,
+    output = M.UpdateOdbNetworkOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOdbPeeringConnection = schema.operation({
+    id = id.from("com.amazonaws.odb", "UpdateOdbPeeringConnection"),
+    input = M.UpdateOdbPeeringConnectionInput,
+    output = M.UpdateOdbPeeringConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

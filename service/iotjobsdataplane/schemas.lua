@@ -729,4 +729,74 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.iotjobsdataplane", "IotLaserThingJobManagerExternalService"),
+    version = "2017-09-29",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobExecution = schema.operation({
+    id = id.from("com.amazonaws.iotjobsdataplane", "DescribeJobExecution"),
+    input = M.DescribeJobExecutionInput,
+    output = M.DescribeJobExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/things/{thingName}/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPendingJobExecutions = schema.operation({
+    id = id.from("com.amazonaws.iotjobsdataplane", "GetPendingJobExecutions"),
+    input = M.GetPendingJobExecutionsInput,
+    output = M.GetPendingJobExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/things/{thingName}/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCommandExecution = schema.operation({
+    id = id.from("com.amazonaws.iotjobsdataplane", "StartCommandExecution"),
+    input = M.StartCommandExecutionInput,
+    output = M.StartCommandExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/command-executions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartNextPendingJobExecution = schema.operation({
+    id = id.from("com.amazonaws.iotjobsdataplane", "StartNextPendingJobExecution"),
+    input = M.StartNextPendingJobExecutionInput,
+    output = M.StartNextPendingJobExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/things/{thingName}/jobs/$next" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateJobExecution = schema.operation({
+    id = id.from("com.amazonaws.iotjobsdataplane", "UpdateJobExecution"),
+    input = M.UpdateJobExecutionInput,
+    output = M.UpdateJobExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/things/{thingName}/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

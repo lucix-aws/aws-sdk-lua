@@ -1138,4 +1138,194 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.oam", "oamservice"),
+    version = "2022-06-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLink = schema.operation({
+    id = id.from("com.amazonaws.oam", "CreateLink"),
+    input = M.CreateLinkInput,
+    output = M.CreateLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateLink" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSink = schema.operation({
+    id = id.from("com.amazonaws.oam", "CreateSink"),
+    input = M.CreateSinkInput,
+    output = M.CreateSinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateSink" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLink = schema.operation({
+    id = id.from("com.amazonaws.oam", "DeleteLink"),
+    input = M.DeleteLinkInput,
+    output = M.DeleteLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteLink" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSink = schema.operation({
+    id = id.from("com.amazonaws.oam", "DeleteSink"),
+    input = M.DeleteSinkInput,
+    output = M.DeleteSinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteSink" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLink = schema.operation({
+    id = id.from("com.amazonaws.oam", "GetLink"),
+    input = M.GetLinkInput,
+    output = M.GetLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetLink" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSink = schema.operation({
+    id = id.from("com.amazonaws.oam", "GetSink"),
+    input = M.GetSinkInput,
+    output = M.GetSinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetSink" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSinkPolicy = schema.operation({
+    id = id.from("com.amazonaws.oam", "GetSinkPolicy"),
+    input = M.GetSinkPolicyInput,
+    output = M.GetSinkPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetSinkPolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttachedLinks = schema.operation({
+    id = id.from("com.amazonaws.oam", "ListAttachedLinks"),
+    input = M.ListAttachedLinksInput,
+    output = M.ListAttachedLinksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListAttachedLinks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLinks = schema.operation({
+    id = id.from("com.amazonaws.oam", "ListLinks"),
+    input = M.ListLinksInput,
+    output = M.ListLinksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListLinks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSinks = schema.operation({
+    id = id.from("com.amazonaws.oam", "ListSinks"),
+    input = M.ListSinksInput,
+    output = M.ListSinksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListSinks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.oam", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSinkPolicy = schema.operation({
+    id = id.from("com.amazonaws.oam", "PutSinkPolicy"),
+    input = M.PutSinkPolicyInput,
+    output = M.PutSinkPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutSinkPolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.oam", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.oam", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLink = schema.operation({
+    id = id.from("com.amazonaws.oam", "UpdateLink"),
+    input = M.UpdateLinkInput,
+    output = M.UpdateLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateLink" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

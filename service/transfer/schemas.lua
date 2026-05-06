@@ -6684,4 +6684,806 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.transfer", "TransferService"),
+    version = "2018-11-05",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccess = schema.operation({
+    id = id.from("com.amazonaws.transfer", "CreateAccess"),
+    input = M.CreateAccessInput,
+    output = M.CreateAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAgreement = schema.operation({
+    id = id.from("com.amazonaws.transfer", "CreateAgreement"),
+    input = M.CreateAgreementInput,
+    output = M.CreateAgreementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnector = schema.operation({
+    id = id.from("com.amazonaws.transfer", "CreateConnector"),
+    input = M.CreateConnectorInput,
+    output = M.CreateConnectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProfile = schema.operation({
+    id = id.from("com.amazonaws.transfer", "CreateProfile"),
+    input = M.CreateProfileInput,
+    output = M.CreateProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServer = schema.operation({
+    id = id.from("com.amazonaws.transfer", "CreateServer"),
+    input = M.CreateServerInput,
+    output = M.CreateServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.transfer", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWebApp = schema.operation({
+    id = id.from("com.amazonaws.transfer", "CreateWebApp"),
+    input = M.CreateWebAppInput,
+    output = M.CreateWebAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/createWebApp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkflow = schema.operation({
+    id = id.from("com.amazonaws.transfer", "CreateWorkflow"),
+    input = M.CreateWorkflowInput,
+    output = M.CreateWorkflowOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccess = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DeleteAccess"),
+    input = M.DeleteAccessInput,
+    output = M.DeleteAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAgreement = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DeleteAgreement"),
+    input = M.DeleteAgreementInput,
+    output = M.DeleteAgreementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCertificate = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DeleteCertificate"),
+    input = M.DeleteCertificateInput,
+    output = M.DeleteCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnector = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DeleteConnector"),
+    input = M.DeleteConnectorInput,
+    output = M.DeleteConnectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHostKey = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DeleteHostKey"),
+    input = M.DeleteHostKeyInput,
+    output = M.DeleteHostKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProfile = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DeleteProfile"),
+    input = M.DeleteProfileInput,
+    output = M.DeleteProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServer = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DeleteServer"),
+    input = M.DeleteServerInput,
+    output = M.DeleteServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSshPublicKey = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DeleteSshPublicKey"),
+    input = M.DeleteSshPublicKeyInput,
+    output = M.DeleteSshPublicKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWebApp = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DeleteWebApp"),
+    input = M.DeleteWebAppInput,
+    output = M.DeleteWebAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deleteWebApp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWebAppCustomization = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DeleteWebAppCustomization"),
+    input = M.DeleteWebAppCustomizationInput,
+    output = M.DeleteWebAppCustomizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deleteWebAppCustomization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkflow = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DeleteWorkflow"),
+    input = M.DeleteWorkflowInput,
+    output = M.DeleteWorkflowOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccess = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DescribeAccess"),
+    input = M.DescribeAccessInput,
+    output = M.DescribeAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAgreement = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DescribeAgreement"),
+    input = M.DescribeAgreementInput,
+    output = M.DescribeAgreementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCertificate = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DescribeCertificate"),
+    input = M.DescribeCertificateInput,
+    output = M.DescribeCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnector = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DescribeConnector"),
+    input = M.DescribeConnectorInput,
+    output = M.DescribeConnectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExecution = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DescribeExecution"),
+    input = M.DescribeExecutionInput,
+    output = M.DescribeExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHostKey = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DescribeHostKey"),
+    input = M.DescribeHostKeyInput,
+    output = M.DescribeHostKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProfile = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DescribeProfile"),
+    input = M.DescribeProfileInput,
+    output = M.DescribeProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSecurityPolicy = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DescribeSecurityPolicy"),
+    input = M.DescribeSecurityPolicyInput,
+    output = M.DescribeSecurityPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServer = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DescribeServer"),
+    input = M.DescribeServerInput,
+    output = M.DescribeServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUser = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DescribeUser"),
+    input = M.DescribeUserInput,
+    output = M.DescribeUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWebApp = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DescribeWebApp"),
+    input = M.DescribeWebAppInput,
+    output = M.DescribeWebAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describeWebApp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWebAppCustomization = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DescribeWebAppCustomization"),
+    input = M.DescribeWebAppCustomizationInput,
+    output = M.DescribeWebAppCustomizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describeWebAppCustomization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkflow = schema.operation({
+    id = id.from("com.amazonaws.transfer", "DescribeWorkflow"),
+    input = M.DescribeWorkflowInput,
+    output = M.DescribeWorkflowOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportCertificate = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ImportCertificate"),
+    input = M.ImportCertificateInput,
+    output = M.ImportCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportHostKey = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ImportHostKey"),
+    input = M.ImportHostKeyInput,
+    output = M.ImportHostKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportSshPublicKey = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ImportSshPublicKey"),
+    input = M.ImportSshPublicKeyInput,
+    output = M.ImportSshPublicKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccesses = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ListAccesses"),
+    input = M.ListAccessesInput,
+    output = M.ListAccessesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgreements = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ListAgreements"),
+    input = M.ListAgreementsInput,
+    output = M.ListAgreementsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCertificates = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ListCertificates"),
+    input = M.ListCertificatesInput,
+    output = M.ListCertificatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectors = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ListConnectors"),
+    input = M.ListConnectorsInput,
+    output = M.ListConnectorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExecutions = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ListExecutions"),
+    input = M.ListExecutionsInput,
+    output = M.ListExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFileTransferResults = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ListFileTransferResults"),
+    input = M.ListFileTransferResultsInput,
+    output = M.ListFileTransferResultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listFileTransferResults" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHostKeys = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ListHostKeys"),
+    input = M.ListHostKeysInput,
+    output = M.ListHostKeysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfiles = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ListProfiles"),
+    input = M.ListProfilesInput,
+    output = M.ListProfilesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityPolicies = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ListSecurityPolicies"),
+    input = M.ListSecurityPoliciesInput,
+    output = M.ListSecurityPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServers = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ListServers"),
+    input = M.ListServersInput,
+    output = M.ListServersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsers = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ListUsers"),
+    input = M.ListUsersInput,
+    output = M.ListUsersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWebApps = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ListWebApps"),
+    input = M.ListWebAppsInput,
+    output = M.ListWebAppsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listWebApps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflows = schema.operation({
+    id = id.from("com.amazonaws.transfer", "ListWorkflows"),
+    input = M.ListWorkflowsInput,
+    output = M.ListWorkflowsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendWorkflowStepState = schema.operation({
+    id = id.from("com.amazonaws.transfer", "SendWorkflowStepState"),
+    input = M.SendWorkflowStepStateInput,
+    output = M.SendWorkflowStepStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDirectoryListing = schema.operation({
+    id = id.from("com.amazonaws.transfer", "StartDirectoryListing"),
+    input = M.StartDirectoryListingInput,
+    output = M.StartDirectoryListingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFileTransfer = schema.operation({
+    id = id.from("com.amazonaws.transfer", "StartFileTransfer"),
+    input = M.StartFileTransferInput,
+    output = M.StartFileTransferOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRemoteDelete = schema.operation({
+    id = id.from("com.amazonaws.transfer", "StartRemoteDelete"),
+    input = M.StartRemoteDeleteInput,
+    output = M.StartRemoteDeleteOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/startRemoteDelete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRemoteMove = schema.operation({
+    id = id.from("com.amazonaws.transfer", "StartRemoteMove"),
+    input = M.StartRemoteMoveInput,
+    output = M.StartRemoteMoveOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/startRemoteMove" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartServer = schema.operation({
+    id = id.from("com.amazonaws.transfer", "StartServer"),
+    input = M.StartServerInput,
+    output = M.StartServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopServer = schema.operation({
+    id = id.from("com.amazonaws.transfer", "StopServer"),
+    input = M.StopServerInput,
+    output = M.StopServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.transfer", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestConnection = schema.operation({
+    id = id.from("com.amazonaws.transfer", "TestConnection"),
+    input = M.TestConnectionInput,
+    output = M.TestConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestIdentityProvider = schema.operation({
+    id = id.from("com.amazonaws.transfer", "TestIdentityProvider"),
+    input = M.TestIdentityProviderInput,
+    output = M.TestIdentityProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.transfer", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccess = schema.operation({
+    id = id.from("com.amazonaws.transfer", "UpdateAccess"),
+    input = M.UpdateAccessInput,
+    output = M.UpdateAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgreement = schema.operation({
+    id = id.from("com.amazonaws.transfer", "UpdateAgreement"),
+    input = M.UpdateAgreementInput,
+    output = M.UpdateAgreementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCertificate = schema.operation({
+    id = id.from("com.amazonaws.transfer", "UpdateCertificate"),
+    input = M.UpdateCertificateInput,
+    output = M.UpdateCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnector = schema.operation({
+    id = id.from("com.amazonaws.transfer", "UpdateConnector"),
+    input = M.UpdateConnectorInput,
+    output = M.UpdateConnectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHostKey = schema.operation({
+    id = id.from("com.amazonaws.transfer", "UpdateHostKey"),
+    input = M.UpdateHostKeyInput,
+    output = M.UpdateHostKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProfile = schema.operation({
+    id = id.from("com.amazonaws.transfer", "UpdateProfile"),
+    input = M.UpdateProfileInput,
+    output = M.UpdateProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServer = schema.operation({
+    id = id.from("com.amazonaws.transfer", "UpdateServer"),
+    input = M.UpdateServerInput,
+    output = M.UpdateServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUser = schema.operation({
+    id = id.from("com.amazonaws.transfer", "UpdateUser"),
+    input = M.UpdateUserInput,
+    output = M.UpdateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWebApp = schema.operation({
+    id = id.from("com.amazonaws.transfer", "UpdateWebApp"),
+    input = M.UpdateWebAppInput,
+    output = M.UpdateWebAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateWebApp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWebAppCustomization = schema.operation({
+    id = id.from("com.amazonaws.transfer", "UpdateWebAppCustomization"),
+    input = M.UpdateWebAppCustomizationInput,
+    output = M.UpdateWebAppCustomizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updateWebAppCustomization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

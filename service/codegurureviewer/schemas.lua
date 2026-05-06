@@ -1822,4 +1822,182 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.codegurureviewer", "AWSGuruFrontendService"),
+    version = "2019-09-19",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateRepository = schema.operation({
+    id = id.from("com.amazonaws.codegurureviewer", "AssociateRepository"),
+    input = M.AssociateRepositoryInput,
+    output = M.AssociateRepositoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCodeReview = schema.operation({
+    id = id.from("com.amazonaws.codegurureviewer", "CreateCodeReview"),
+    input = M.CreateCodeReviewInput,
+    output = M.CreateCodeReviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/codereviews" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCodeReview = schema.operation({
+    id = id.from("com.amazonaws.codegurureviewer", "DescribeCodeReview"),
+    input = M.DescribeCodeReviewInput,
+    output = M.DescribeCodeReviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/codereviews/{CodeReviewArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRecommendationFeedback = schema.operation({
+    id = id.from("com.amazonaws.codegurureviewer", "DescribeRecommendationFeedback"),
+    input = M.DescribeRecommendationFeedbackInput,
+    output = M.DescribeRecommendationFeedbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/feedback/{CodeReviewArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRepositoryAssociation = schema.operation({
+    id = id.from("com.amazonaws.codegurureviewer", "DescribeRepositoryAssociation"),
+    input = M.DescribeRepositoryAssociationInput,
+    output = M.DescribeRepositoryAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/associations/{AssociationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateRepository = schema.operation({
+    id = id.from("com.amazonaws.codegurureviewer", "DisassociateRepository"),
+    input = M.DisassociateRepositoryInput,
+    output = M.DisassociateRepositoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/associations/{AssociationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCodeReviews = schema.operation({
+    id = id.from("com.amazonaws.codegurureviewer", "ListCodeReviews"),
+    input = M.ListCodeReviewsInput,
+    output = M.ListCodeReviewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/codereviews" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommendationFeedback = schema.operation({
+    id = id.from("com.amazonaws.codegurureviewer", "ListRecommendationFeedback"),
+    input = M.ListRecommendationFeedbackInput,
+    output = M.ListRecommendationFeedbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/feedback/{CodeReviewArn}/RecommendationFeedback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommendations = schema.operation({
+    id = id.from("com.amazonaws.codegurureviewer", "ListRecommendations"),
+    input = M.ListRecommendationsInput,
+    output = M.ListRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/codereviews/{CodeReviewArn}/Recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRepositoryAssociations = schema.operation({
+    id = id.from("com.amazonaws.codegurureviewer", "ListRepositoryAssociations"),
+    input = M.ListRepositoryAssociationsInput,
+    output = M.ListRepositoryAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.codegurureviewer", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRecommendationFeedback = schema.operation({
+    id = id.from("com.amazonaws.codegurureviewer", "PutRecommendationFeedback"),
+    input = M.PutRecommendationFeedbackInput,
+    output = M.PutRecommendationFeedbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/feedback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.codegurureviewer", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.codegurureviewer", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

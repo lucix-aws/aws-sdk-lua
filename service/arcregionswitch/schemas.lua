@@ -3262,4 +3262,245 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.arcregionswitch", "ArcRegionSwitch"),
+    version = "2022-07-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ApprovePlanExecutionStep = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "ApprovePlanExecutionStep"),
+    input = M.ApprovePlanExecutionStepInput,
+    output = M.ApprovePlanExecutionStepOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelPlanExecution = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "CancelPlanExecution"),
+    input = M.CancelPlanExecutionInput,
+    output = M.CancelPlanExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePlan = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "CreatePlan"),
+    input = M.CreatePlanInput,
+    output = M.CreatePlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePlan = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "DeletePlan"),
+    input = M.DeletePlanInput,
+    output = M.DeletePlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPlan = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "GetPlan"),
+    input = M.GetPlanInput,
+    output = M.GetPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPlanEvaluationStatus = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "GetPlanEvaluationStatus"),
+    input = M.GetPlanEvaluationStatusInput,
+    output = M.GetPlanEvaluationStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPlanExecution = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "GetPlanExecution"),
+    input = M.GetPlanExecutionInput,
+    output = M.GetPlanExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPlanInRegion = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "GetPlanInRegion"),
+    input = M.GetPlanInRegionInput,
+    output = M.GetPlanInRegionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPlanExecutionEvents = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "ListPlanExecutionEvents"),
+    input = M.ListPlanExecutionEventsInput,
+    output = M.ListPlanExecutionEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPlanExecutions = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "ListPlanExecutions"),
+    input = M.ListPlanExecutionsInput,
+    output = M.ListPlanExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPlans = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "ListPlans"),
+    input = M.ListPlansInput,
+    output = M.ListPlansOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPlansInRegion = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "ListPlansInRegion"),
+    input = M.ListPlansInRegionInput,
+    output = M.ListPlansInRegionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRoute53HealthChecks = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "ListRoute53HealthChecks"),
+    input = M.ListRoute53HealthChecksInput,
+    output = M.ListRoute53HealthChecksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRoute53HealthChecksInRegion = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "ListRoute53HealthChecksInRegion"),
+    input = M.ListRoute53HealthChecksInRegionInput,
+    output = M.ListRoute53HealthChecksInRegionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartPlanExecution = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "StartPlanExecution"),
+    input = M.StartPlanExecutionInput,
+    output = M.StartPlanExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePlan = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "UpdatePlan"),
+    input = M.UpdatePlanInput,
+    output = M.UpdatePlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePlanExecution = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "UpdatePlanExecution"),
+    input = M.UpdatePlanExecutionInput,
+    output = M.UpdatePlanExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePlanExecutionStep = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "UpdatePlanExecutionStep"),
+    input = M.UpdatePlanExecutionStepInput,
+    output = M.UpdatePlanExecutionStepOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cloudcontrol.endpoint_rules")
 local schemas = require("cloudcontrol.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cloudcontrolapi", signing_region = cfg.region } }
                 else
@@ -49,107 +52,35 @@ function M.new(cfg)
 end
 
 function Client:cancelResourceRequest(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelResourceRequest",
-        input_schema = schemas.CancelResourceRequestInput,
-        output_schema = schemas.CancelResourceRequestOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelResourceRequest, input, options)
 end
 
 function Client:createResource(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateResource",
-        input_schema = schemas.CreateResourceInput,
-        output_schema = schemas.CreateResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateResource, input, options)
 end
 
 function Client:deleteResource(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResource",
-        input_schema = schemas.DeleteResourceInput,
-        output_schema = schemas.DeleteResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResource, input, options)
 end
 
 function Client:getResource(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResource",
-        input_schema = schemas.GetResourceInput,
-        output_schema = schemas.GetResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResource, input, options)
 end
 
 function Client:getResourceRequestStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourceRequestStatus",
-        input_schema = schemas.GetResourceRequestStatusInput,
-        output_schema = schemas.GetResourceRequestStatusOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourceRequestStatus, input, options)
 end
 
 function Client:listResourceRequests(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResourceRequests",
-        input_schema = schemas.ListResourceRequestsInput,
-        output_schema = schemas.ListResourceRequestsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResourceRequests, input, options)
 end
 
 function Client:listResources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListResources",
-        input_schema = schemas.ListResourcesInput,
-        output_schema = schemas.ListResourcesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListResources, input, options)
 end
 
 function Client:updateResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateResource",
-        input_schema = schemas.UpdateResourceInput,
-        output_schema = schemas.UpdateResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateResource, input, options)
 end
 
 return M

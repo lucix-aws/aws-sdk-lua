@@ -7,6 +7,7 @@ local endpoint_rules = require("elementalinference.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("elementalinference.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "elemental-inference", signing_region = cfg.region } }
                 else
@@ -49,133 +52,43 @@ function M.new(cfg)
 end
 
 function Client:associateFeed(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateFeed",
-        input_schema = schemas.AssociateFeedInput,
-        output_schema = schemas.AssociateFeedOutput,
-        http_method = "POST",
-        http_path = "/v1/feed/{id}/associate",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateFeed, input, options)
 end
 
 function Client:createFeed(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateFeed",
-        input_schema = schemas.CreateFeedInput,
-        output_schema = schemas.CreateFeedOutput,
-        http_method = "POST",
-        http_path = "/v1/feed",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateFeed, input, options)
 end
 
 function Client:deleteFeed(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFeed",
-        input_schema = schemas.DeleteFeedInput,
-        output_schema = schemas.DeleteFeedOutput,
-        http_method = "DELETE",
-        http_path = "/v1/feed/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFeed, input, options)
 end
 
 function Client:disassociateFeed(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateFeed",
-        input_schema = schemas.DisassociateFeedInput,
-        output_schema = schemas.DisassociateFeedOutput,
-        http_method = "POST",
-        http_path = "/v1/feed/{id}/disassociate",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateFeed, input, options)
 end
 
 function Client:getFeed(input, options)
-    return self:invokeOperation(input, {
-        name = "GetFeed",
-        input_schema = schemas.GetFeedInput,
-        output_schema = schemas.GetFeedOutput,
-        http_method = "GET",
-        http_path = "/v1/feed/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetFeed, input, options)
 end
 
 function Client:listFeeds(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFeeds",
-        input_schema = schemas.ListFeedsInput,
-        output_schema = schemas.ListFeedsOutput,
-        http_method = "GET",
-        http_path = "/v1/feeds",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFeeds, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/v1/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/v1/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/v1/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateFeed(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateFeed",
-        input_schema = schemas.UpdateFeedInput,
-        output_schema = schemas.UpdateFeedOutput,
-        http_method = "PUT",
-        http_path = "/v1/feed/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateFeed, input, options)
 end
 
 return M

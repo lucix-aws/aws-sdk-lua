@@ -3806,4 +3806,458 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.amplify", "Amplify"),
+    version = "2017-07-25",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApp = schema.operation({
+    id = id.from("com.amazonaws.amplify", "CreateApp"),
+    input = M.CreateAppInput,
+    output = M.CreateAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBackendEnvironment = schema.operation({
+    id = id.from("com.amazonaws.amplify", "CreateBackendEnvironment"),
+    input = M.CreateBackendEnvironmentInput,
+    output = M.CreateBackendEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps/{appId}/backendenvironments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBranch = schema.operation({
+    id = id.from("com.amazonaws.amplify", "CreateBranch"),
+    input = M.CreateBranchInput,
+    output = M.CreateBranchOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps/{appId}/branches" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDeployment = schema.operation({
+    id = id.from("com.amazonaws.amplify", "CreateDeployment"),
+    input = M.CreateDeploymentInput,
+    output = M.CreateDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps/{appId}/branches/{branchName}/deployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomainAssociation = schema.operation({
+    id = id.from("com.amazonaws.amplify", "CreateDomainAssociation"),
+    input = M.CreateDomainAssociationInput,
+    output = M.CreateDomainAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps/{appId}/domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWebhook = schema.operation({
+    id = id.from("com.amazonaws.amplify", "CreateWebhook"),
+    input = M.CreateWebhookInput,
+    output = M.CreateWebhookOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps/{appId}/webhooks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApp = schema.operation({
+    id = id.from("com.amazonaws.amplify", "DeleteApp"),
+    input = M.DeleteAppInput,
+    output = M.DeleteAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/apps/{appId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBackendEnvironment = schema.operation({
+    id = id.from("com.amazonaws.amplify", "DeleteBackendEnvironment"),
+    input = M.DeleteBackendEnvironmentInput,
+    output = M.DeleteBackendEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/apps/{appId}/backendenvironments/{environmentName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBranch = schema.operation({
+    id = id.from("com.amazonaws.amplify", "DeleteBranch"),
+    input = M.DeleteBranchInput,
+    output = M.DeleteBranchOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/apps/{appId}/branches/{branchName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomainAssociation = schema.operation({
+    id = id.from("com.amazonaws.amplify", "DeleteDomainAssociation"),
+    input = M.DeleteDomainAssociationInput,
+    output = M.DeleteDomainAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/apps/{appId}/domains/{domainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteJob = schema.operation({
+    id = id.from("com.amazonaws.amplify", "DeleteJob"),
+    input = M.DeleteJobInput,
+    output = M.DeleteJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/apps/{appId}/branches/{branchName}/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWebhook = schema.operation({
+    id = id.from("com.amazonaws.amplify", "DeleteWebhook"),
+    input = M.DeleteWebhookInput,
+    output = M.DeleteWebhookOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/webhooks/{webhookId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateAccessLogs = schema.operation({
+    id = id.from("com.amazonaws.amplify", "GenerateAccessLogs"),
+    input = M.GenerateAccessLogsInput,
+    output = M.GenerateAccessLogsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps/{appId}/accesslogs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApp = schema.operation({
+    id = id.from("com.amazonaws.amplify", "GetApp"),
+    input = M.GetAppInput,
+    output = M.GetAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps/{appId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetArtifactUrl = schema.operation({
+    id = id.from("com.amazonaws.amplify", "GetArtifactUrl"),
+    input = M.GetArtifactUrlInput,
+    output = M.GetArtifactUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/artifacts/{artifactId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBackendEnvironment = schema.operation({
+    id = id.from("com.amazonaws.amplify", "GetBackendEnvironment"),
+    input = M.GetBackendEnvironmentInput,
+    output = M.GetBackendEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps/{appId}/backendenvironments/{environmentName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBranch = schema.operation({
+    id = id.from("com.amazonaws.amplify", "GetBranch"),
+    input = M.GetBranchInput,
+    output = M.GetBranchOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps/{appId}/branches/{branchName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainAssociation = schema.operation({
+    id = id.from("com.amazonaws.amplify", "GetDomainAssociation"),
+    input = M.GetDomainAssociationInput,
+    output = M.GetDomainAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps/{appId}/domains/{domainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJob = schema.operation({
+    id = id.from("com.amazonaws.amplify", "GetJob"),
+    input = M.GetJobInput,
+    output = M.GetJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps/{appId}/branches/{branchName}/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWebhook = schema.operation({
+    id = id.from("com.amazonaws.amplify", "GetWebhook"),
+    input = M.GetWebhookInput,
+    output = M.GetWebhookOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/webhooks/{webhookId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApps = schema.operation({
+    id = id.from("com.amazonaws.amplify", "ListApps"),
+    input = M.ListAppsInput,
+    output = M.ListAppsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListArtifacts = schema.operation({
+    id = id.from("com.amazonaws.amplify", "ListArtifacts"),
+    input = M.ListArtifactsInput,
+    output = M.ListArtifactsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps/{appId}/branches/{branchName}/jobs/{jobId}/artifacts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBackendEnvironments = schema.operation({
+    id = id.from("com.amazonaws.amplify", "ListBackendEnvironments"),
+    input = M.ListBackendEnvironmentsInput,
+    output = M.ListBackendEnvironmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps/{appId}/backendenvironments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBranches = schema.operation({
+    id = id.from("com.amazonaws.amplify", "ListBranches"),
+    input = M.ListBranchesInput,
+    output = M.ListBranchesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps/{appId}/branches" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainAssociations = schema.operation({
+    id = id.from("com.amazonaws.amplify", "ListDomainAssociations"),
+    input = M.ListDomainAssociationsInput,
+    output = M.ListDomainAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps/{appId}/domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobs = schema.operation({
+    id = id.from("com.amazonaws.amplify", "ListJobs"),
+    input = M.ListJobsInput,
+    output = M.ListJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps/{appId}/branches/{branchName}/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.amplify", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWebhooks = schema.operation({
+    id = id.from("com.amazonaws.amplify", "ListWebhooks"),
+    input = M.ListWebhooksInput,
+    output = M.ListWebhooksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps/{appId}/webhooks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDeployment = schema.operation({
+    id = id.from("com.amazonaws.amplify", "StartDeployment"),
+    input = M.StartDeploymentInput,
+    output = M.StartDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps/{appId}/branches/{branchName}/deployments/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartJob = schema.operation({
+    id = id.from("com.amazonaws.amplify", "StartJob"),
+    input = M.StartJobInput,
+    output = M.StartJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps/{appId}/branches/{branchName}/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopJob = schema.operation({
+    id = id.from("com.amazonaws.amplify", "StopJob"),
+    input = M.StopJobInput,
+    output = M.StopJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/apps/{appId}/branches/{branchName}/jobs/{jobId}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.amplify", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.amplify", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApp = schema.operation({
+    id = id.from("com.amazonaws.amplify", "UpdateApp"),
+    input = M.UpdateAppInput,
+    output = M.UpdateAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps/{appId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBranch = schema.operation({
+    id = id.from("com.amazonaws.amplify", "UpdateBranch"),
+    input = M.UpdateBranchInput,
+    output = M.UpdateBranchOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps/{appId}/branches/{branchName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomainAssociation = schema.operation({
+    id = id.from("com.amazonaws.amplify", "UpdateDomainAssociation"),
+    input = M.UpdateDomainAssociationInput,
+    output = M.UpdateDomainAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps/{appId}/domains/{domainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWebhook = schema.operation({
+    id = id.from("com.amazonaws.amplify", "UpdateWebhook"),
+    input = M.UpdateWebhookInput,
+    output = M.UpdateWebhookOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/webhooks/{webhookId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

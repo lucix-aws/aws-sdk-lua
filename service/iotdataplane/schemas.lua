@@ -695,4 +695,110 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.iotdataplane", "IotMoonrakerService"),
+    version = "2015-05-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnection = schema.operation({
+    id = id.from("com.amazonaws.iotdataplane", "DeleteConnection"),
+    input = M.DeleteConnectionInput,
+    output = M.DeleteConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/connections/{clientId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteThingShadow = schema.operation({
+    id = id.from("com.amazonaws.iotdataplane", "DeleteThingShadow"),
+    input = M.DeleteThingShadowInput,
+    output = M.DeleteThingShadowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/things/{thingName}/shadow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRetainedMessage = schema.operation({
+    id = id.from("com.amazonaws.iotdataplane", "GetRetainedMessage"),
+    input = M.GetRetainedMessageInput,
+    output = M.GetRetainedMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/retainedMessage/{topic}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetThingShadow = schema.operation({
+    id = id.from("com.amazonaws.iotdataplane", "GetThingShadow"),
+    input = M.GetThingShadowInput,
+    output = M.GetThingShadowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/things/{thingName}/shadow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNamedShadowsForThing = schema.operation({
+    id = id.from("com.amazonaws.iotdataplane", "ListNamedShadowsForThing"),
+    input = M.ListNamedShadowsForThingInput,
+    output = M.ListNamedShadowsForThingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/things/shadow/ListNamedShadowsForThing/{thingName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRetainedMessages = schema.operation({
+    id = id.from("com.amazonaws.iotdataplane", "ListRetainedMessages"),
+    input = M.ListRetainedMessagesInput,
+    output = M.ListRetainedMessagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/retainedMessage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Publish = schema.operation({
+    id = id.from("com.amazonaws.iotdataplane", "Publish"),
+    input = M.PublishInput,
+    output = M.PublishOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/topics/{topic}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateThingShadow = schema.operation({
+    id = id.from("com.amazonaws.iotdataplane", "UpdateThingShadow"),
+    input = M.UpdateThingShadowInput,
+    output = M.UpdateThingShadowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/things/{thingName}/shadow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

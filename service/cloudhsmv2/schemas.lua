@@ -1301,4 +1301,212 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cloudhsmv2", "BaldrApiService"),
+    version = "2017-04-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyBackupToRegion = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "CopyBackupToRegion"),
+    input = M.CopyBackupToRegionInput,
+    output = M.CopyBackupToRegionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCluster = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "CreateCluster"),
+    input = M.CreateClusterInput,
+    output = M.CreateClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHsm = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "CreateHsm"),
+    input = M.CreateHsmInput,
+    output = M.CreateHsmOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBackup = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "DeleteBackup"),
+    input = M.DeleteBackupInput,
+    output = M.DeleteBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCluster = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "DeleteCluster"),
+    input = M.DeleteClusterInput,
+    output = M.DeleteClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHsm = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "DeleteHsm"),
+    input = M.DeleteHsmInput,
+    output = M.DeleteHsmOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBackups = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "DescribeBackups"),
+    input = M.DescribeBackupsInput,
+    output = M.DescribeBackupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClusters = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "DescribeClusters"),
+    input = M.DescribeClustersInput,
+    output = M.DescribeClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InitializeCluster = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "InitializeCluster"),
+    input = M.InitializeClusterInput,
+    output = M.InitializeClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTags = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "ListTags"),
+    input = M.ListTagsInput,
+    output = M.ListTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyBackupAttributes = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "ModifyBackupAttributes"),
+    input = M.ModifyBackupAttributesInput,
+    output = M.ModifyBackupAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyCluster = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "ModifyCluster"),
+    input = M.ModifyClusterInput,
+    output = M.ModifyClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreBackup = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "RestoreBackup"),
+    input = M.RestoreBackupInput,
+    output = M.RestoreBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.cloudhsmv2", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

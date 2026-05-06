@@ -2355,4 +2355,388 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.route53domains", "Route53Domains_v20140515"),
+    version = "2014-05-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptDomainTransferFromAnotherAwsAccount = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "AcceptDomainTransferFromAnotherAwsAccount"),
+    input = M.AcceptDomainTransferFromAnotherAwsAccountInput,
+    output = M.AcceptDomainTransferFromAnotherAwsAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateDelegationSignerToDomain = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "AssociateDelegationSignerToDomain"),
+    input = M.AssociateDelegationSignerToDomainInput,
+    output = M.AssociateDelegationSignerToDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelDomainTransferToAnotherAwsAccount = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "CancelDomainTransferToAnotherAwsAccount"),
+    input = M.CancelDomainTransferToAnotherAwsAccountInput,
+    output = M.CancelDomainTransferToAnotherAwsAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckDomainAvailability = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "CheckDomainAvailability"),
+    input = M.CheckDomainAvailabilityInput,
+    output = M.CheckDomainAvailabilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckDomainTransferability = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "CheckDomainTransferability"),
+    input = M.CheckDomainTransferabilityInput,
+    output = M.CheckDomainTransferabilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomain = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "DeleteDomain"),
+    input = M.DeleteDomainInput,
+    output = M.DeleteDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTagsForDomain = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "DeleteTagsForDomain"),
+    input = M.DeleteTagsForDomainInput,
+    output = M.DeleteTagsForDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableDomainAutoRenew = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "DisableDomainAutoRenew"),
+    input = M.DisableDomainAutoRenewInput,
+    output = M.DisableDomainAutoRenewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableDomainTransferLock = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "DisableDomainTransferLock"),
+    input = M.DisableDomainTransferLockInput,
+    output = M.DisableDomainTransferLockOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateDelegationSignerFromDomain = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "DisassociateDelegationSignerFromDomain"),
+    input = M.DisassociateDelegationSignerFromDomainInput,
+    output = M.DisassociateDelegationSignerFromDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableDomainAutoRenew = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "EnableDomainAutoRenew"),
+    input = M.EnableDomainAutoRenewInput,
+    output = M.EnableDomainAutoRenewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableDomainTransferLock = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "EnableDomainTransferLock"),
+    input = M.EnableDomainTransferLockInput,
+    output = M.EnableDomainTransferLockOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContactReachabilityStatus = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "GetContactReachabilityStatus"),
+    input = M.GetContactReachabilityStatusInput,
+    output = M.GetContactReachabilityStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainDetail = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "GetDomainDetail"),
+    input = M.GetDomainDetailInput,
+    output = M.GetDomainDetailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainSuggestions = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "GetDomainSuggestions"),
+    input = M.GetDomainSuggestionsInput,
+    output = M.GetDomainSuggestionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOperationDetail = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "GetOperationDetail"),
+    input = M.GetOperationDetailInput,
+    output = M.GetOperationDetailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomains = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "ListDomains"),
+    input = M.ListDomainsInput,
+    output = M.ListDomainsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOperations = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "ListOperations"),
+    input = M.ListOperationsInput,
+    output = M.ListOperationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPrices = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "ListPrices"),
+    input = M.ListPricesInput,
+    output = M.ListPricesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForDomain = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "ListTagsForDomain"),
+    input = M.ListTagsForDomainInput,
+    output = M.ListTagsForDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PushDomain = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "PushDomain"),
+    input = M.PushDomainInput,
+    output = M.PushDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterDomain = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "RegisterDomain"),
+    input = M.RegisterDomainInput,
+    output = M.RegisterDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectDomainTransferFromAnotherAwsAccount = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "RejectDomainTransferFromAnotherAwsAccount"),
+    input = M.RejectDomainTransferFromAnotherAwsAccountInput,
+    output = M.RejectDomainTransferFromAnotherAwsAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RenewDomain = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "RenewDomain"),
+    input = M.RenewDomainInput,
+    output = M.RenewDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResendContactReachabilityEmail = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "ResendContactReachabilityEmail"),
+    input = M.ResendContactReachabilityEmailInput,
+    output = M.ResendContactReachabilityEmailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResendOperationAuthorization = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "ResendOperationAuthorization"),
+    input = M.ResendOperationAuthorizationInput,
+    output = M.ResendOperationAuthorizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetrieveDomainAuthCode = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "RetrieveDomainAuthCode"),
+    input = M.RetrieveDomainAuthCodeInput,
+    output = M.RetrieveDomainAuthCodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TransferDomain = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "TransferDomain"),
+    input = M.TransferDomainInput,
+    output = M.TransferDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TransferDomainToAnotherAwsAccount = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "TransferDomainToAnotherAwsAccount"),
+    input = M.TransferDomainToAnotherAwsAccountInput,
+    output = M.TransferDomainToAnotherAwsAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomainContact = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "UpdateDomainContact"),
+    input = M.UpdateDomainContactInput,
+    output = M.UpdateDomainContactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomainContactPrivacy = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "UpdateDomainContactPrivacy"),
+    input = M.UpdateDomainContactPrivacyInput,
+    output = M.UpdateDomainContactPrivacyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomainNameservers = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "UpdateDomainNameservers"),
+    input = M.UpdateDomainNameserversInput,
+    output = M.UpdateDomainNameserversOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTagsForDomain = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "UpdateTagsForDomain"),
+    input = M.UpdateTagsForDomainInput,
+    output = M.UpdateTagsForDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ViewBilling = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "ViewBilling"),
+    input = M.ViewBillingInput,
+    output = M.ViewBillingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

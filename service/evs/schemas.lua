@@ -2484,4 +2484,245 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.evs", "AmazonElasticVMwareService"),
+    version = "2023-07-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateEipToVlan = schema.operation({
+    id = id.from("com.amazonaws.evs", "AssociateEipToVlan"),
+    input = M.AssociateEipToVlanInput,
+    output = M.AssociateEipToVlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEntitlement = schema.operation({
+    id = id.from("com.amazonaws.evs", "CreateEntitlement"),
+    input = M.CreateEntitlementInput,
+    output = M.CreateEntitlementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.evs", "CreateEnvironment"),
+    input = M.CreateEnvironmentInput,
+    output = M.CreateEnvironmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironmentConnector = schema.operation({
+    id = id.from("com.amazonaws.evs", "CreateEnvironmentConnector"),
+    input = M.CreateEnvironmentConnectorInput,
+    output = M.CreateEnvironmentConnectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironmentHost = schema.operation({
+    id = id.from("com.amazonaws.evs", "CreateEnvironmentHost"),
+    input = M.CreateEnvironmentHostInput,
+    output = M.CreateEnvironmentHostOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEntitlement = schema.operation({
+    id = id.from("com.amazonaws.evs", "DeleteEntitlement"),
+    input = M.DeleteEntitlementInput,
+    output = M.DeleteEntitlementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironment = schema.operation({
+    id = id.from("com.amazonaws.evs", "DeleteEnvironment"),
+    input = M.DeleteEnvironmentInput,
+    output = M.DeleteEnvironmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironmentConnector = schema.operation({
+    id = id.from("com.amazonaws.evs", "DeleteEnvironmentConnector"),
+    input = M.DeleteEnvironmentConnectorInput,
+    output = M.DeleteEnvironmentConnectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironmentHost = schema.operation({
+    id = id.from("com.amazonaws.evs", "DeleteEnvironmentHost"),
+    input = M.DeleteEnvironmentHostInput,
+    output = M.DeleteEnvironmentHostOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateEipFromVlan = schema.operation({
+    id = id.from("com.amazonaws.evs", "DisassociateEipFromVlan"),
+    input = M.DisassociateEipFromVlanInput,
+    output = M.DisassociateEipFromVlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironment = schema.operation({
+    id = id.from("com.amazonaws.evs", "GetEnvironment"),
+    input = M.GetEnvironmentInput,
+    output = M.GetEnvironmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVersions = schema.operation({
+    id = id.from("com.amazonaws.evs", "GetVersions"),
+    input = M.GetVersionsInput,
+    output = M.GetVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironmentConnectors = schema.operation({
+    id = id.from("com.amazonaws.evs", "ListEnvironmentConnectors"),
+    input = M.ListEnvironmentConnectorsInput,
+    output = M.ListEnvironmentConnectorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironmentHosts = schema.operation({
+    id = id.from("com.amazonaws.evs", "ListEnvironmentHosts"),
+    input = M.ListEnvironmentHostsInput,
+    output = M.ListEnvironmentHostsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironments = schema.operation({
+    id = id.from("com.amazonaws.evs", "ListEnvironments"),
+    input = M.ListEnvironmentsInput,
+    output = M.ListEnvironmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironmentVlans = schema.operation({
+    id = id.from("com.amazonaws.evs", "ListEnvironmentVlans"),
+    input = M.ListEnvironmentVlansInput,
+    output = M.ListEnvironmentVlansOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.evs", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVmEntitlements = schema.operation({
+    id = id.from("com.amazonaws.evs", "ListVmEntitlements"),
+    input = M.ListVmEntitlementsInput,
+    output = M.ListVmEntitlementsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.evs", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.evs", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironmentConnector = schema.operation({
+    id = id.from("com.amazonaws.evs", "UpdateEnvironmentConnector"),
+    input = M.UpdateEnvironmentConnectorInput,
+    output = M.UpdateEnvironmentConnectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

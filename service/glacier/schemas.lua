@@ -2972,4 +2972,410 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.glacier", "Glacier"),
+    version = "2012-06-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AbortMultipartUpload = schema.operation({
+    id = id.from("com.amazonaws.glacier", "AbortMultipartUpload"),
+    input = M.AbortMultipartUploadInput,
+    output = M.AbortMultipartUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AbortVaultLock = schema.operation({
+    id = id.from("com.amazonaws.glacier", "AbortVaultLock"),
+    input = M.AbortVaultLockInput,
+    output = M.AbortVaultLockOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/{accountId}/vaults/{vaultName}/lock-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTagsToVault = schema.operation({
+    id = id.from("com.amazonaws.glacier", "AddTagsToVault"),
+    input = M.AddTagsToVaultInput,
+    output = M.AddTagsToVaultOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/{accountId}/vaults/{vaultName}/tags?operation=add" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CompleteMultipartUpload = schema.operation({
+    id = id.from("com.amazonaws.glacier", "CompleteMultipartUpload"),
+    input = M.CompleteMultipartUploadInput,
+    output = M.CompleteMultipartUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CompleteVaultLock = schema.operation({
+    id = id.from("com.amazonaws.glacier", "CompleteVaultLock"),
+    input = M.CompleteVaultLockInput,
+    output = M.CompleteVaultLockOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/{accountId}/vaults/{vaultName}/lock-policy/{lockId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVault = schema.operation({
+    id = id.from("com.amazonaws.glacier", "CreateVault"),
+    input = M.CreateVaultInput,
+    output = M.CreateVaultOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{accountId}/vaults/{vaultName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteArchive = schema.operation({
+    id = id.from("com.amazonaws.glacier", "DeleteArchive"),
+    input = M.DeleteArchiveInput,
+    output = M.DeleteArchiveOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/{accountId}/vaults/{vaultName}/archives/{archiveId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVault = schema.operation({
+    id = id.from("com.amazonaws.glacier", "DeleteVault"),
+    input = M.DeleteVaultInput,
+    output = M.DeleteVaultOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/{accountId}/vaults/{vaultName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVaultAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.glacier", "DeleteVaultAccessPolicy"),
+    input = M.DeleteVaultAccessPolicyInput,
+    output = M.DeleteVaultAccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/{accountId}/vaults/{vaultName}/access-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVaultNotifications = schema.operation({
+    id = id.from("com.amazonaws.glacier", "DeleteVaultNotifications"),
+    input = M.DeleteVaultNotificationsInput,
+    output = M.DeleteVaultNotificationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/{accountId}/vaults/{vaultName}/notification-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJob = schema.operation({
+    id = id.from("com.amazonaws.glacier", "DescribeJob"),
+    input = M.DescribeJobInput,
+    output = M.DescribeJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{accountId}/vaults/{vaultName}/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVault = schema.operation({
+    id = id.from("com.amazonaws.glacier", "DescribeVault"),
+    input = M.DescribeVaultInput,
+    output = M.DescribeVaultOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{accountId}/vaults/{vaultName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataRetrievalPolicy = schema.operation({
+    id = id.from("com.amazonaws.glacier", "GetDataRetrievalPolicy"),
+    input = M.GetDataRetrievalPolicyInput,
+    output = M.GetDataRetrievalPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{accountId}/policies/data-retrieval" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJobOutput = schema.operation({
+    id = id.from("com.amazonaws.glacier", "GetJobOutput"),
+    input = M.GetJobOutputInput,
+    output = M.GetJobOutputOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{accountId}/vaults/{vaultName}/jobs/{jobId}/output" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVaultAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.glacier", "GetVaultAccessPolicy"),
+    input = M.GetVaultAccessPolicyInput,
+    output = M.GetVaultAccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{accountId}/vaults/{vaultName}/access-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVaultLock = schema.operation({
+    id = id.from("com.amazonaws.glacier", "GetVaultLock"),
+    input = M.GetVaultLockInput,
+    output = M.GetVaultLockOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{accountId}/vaults/{vaultName}/lock-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVaultNotifications = schema.operation({
+    id = id.from("com.amazonaws.glacier", "GetVaultNotifications"),
+    input = M.GetVaultNotificationsInput,
+    output = M.GetVaultNotificationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{accountId}/vaults/{vaultName}/notification-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InitiateJob = schema.operation({
+    id = id.from("com.amazonaws.glacier", "InitiateJob"),
+    input = M.InitiateJobInput,
+    output = M.InitiateJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/{accountId}/vaults/{vaultName}/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InitiateMultipartUpload = schema.operation({
+    id = id.from("com.amazonaws.glacier", "InitiateMultipartUpload"),
+    input = M.InitiateMultipartUploadInput,
+    output = M.InitiateMultipartUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/{accountId}/vaults/{vaultName}/multipart-uploads" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InitiateVaultLock = schema.operation({
+    id = id.from("com.amazonaws.glacier", "InitiateVaultLock"),
+    input = M.InitiateVaultLockInput,
+    output = M.InitiateVaultLockOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/{accountId}/vaults/{vaultName}/lock-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobs = schema.operation({
+    id = id.from("com.amazonaws.glacier", "ListJobs"),
+    input = M.ListJobsInput,
+    output = M.ListJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{accountId}/vaults/{vaultName}/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMultipartUploads = schema.operation({
+    id = id.from("com.amazonaws.glacier", "ListMultipartUploads"),
+    input = M.ListMultipartUploadsInput,
+    output = M.ListMultipartUploadsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{accountId}/vaults/{vaultName}/multipart-uploads" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListParts = schema.operation({
+    id = id.from("com.amazonaws.glacier", "ListParts"),
+    input = M.ListPartsInput,
+    output = M.ListPartsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProvisionedCapacity = schema.operation({
+    id = id.from("com.amazonaws.glacier", "ListProvisionedCapacity"),
+    input = M.ListProvisionedCapacityInput,
+    output = M.ListProvisionedCapacityOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{accountId}/provisioned-capacity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForVault = schema.operation({
+    id = id.from("com.amazonaws.glacier", "ListTagsForVault"),
+    input = M.ListTagsForVaultInput,
+    output = M.ListTagsForVaultOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{accountId}/vaults/{vaultName}/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVaults = schema.operation({
+    id = id.from("com.amazonaws.glacier", "ListVaults"),
+    input = M.ListVaultsInput,
+    output = M.ListVaultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{accountId}/vaults" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PurchaseProvisionedCapacity = schema.operation({
+    id = id.from("com.amazonaws.glacier", "PurchaseProvisionedCapacity"),
+    input = M.PurchaseProvisionedCapacityInput,
+    output = M.PurchaseProvisionedCapacityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/{accountId}/provisioned-capacity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTagsFromVault = schema.operation({
+    id = id.from("com.amazonaws.glacier", "RemoveTagsFromVault"),
+    input = M.RemoveTagsFromVaultInput,
+    output = M.RemoveTagsFromVaultOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/{accountId}/vaults/{vaultName}/tags?operation=remove" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetDataRetrievalPolicy = schema.operation({
+    id = id.from("com.amazonaws.glacier", "SetDataRetrievalPolicy"),
+    input = M.SetDataRetrievalPolicyInput,
+    output = M.SetDataRetrievalPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{accountId}/policies/data-retrieval" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetVaultAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.glacier", "SetVaultAccessPolicy"),
+    input = M.SetVaultAccessPolicyInput,
+    output = M.SetVaultAccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{accountId}/vaults/{vaultName}/access-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetVaultNotifications = schema.operation({
+    id = id.from("com.amazonaws.glacier", "SetVaultNotifications"),
+    input = M.SetVaultNotificationsInput,
+    output = M.SetVaultNotificationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{accountId}/vaults/{vaultName}/notification-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UploadArchive = schema.operation({
+    id = id.from("com.amazonaws.glacier", "UploadArchive"),
+    input = M.UploadArchiveInput,
+    output = M.UploadArchiveOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/{accountId}/vaults/{vaultName}/archives" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UploadMultipartPart = schema.operation({
+    id = id.from("com.amazonaws.glacier", "UploadMultipartPart"),
+    input = M.UploadMultipartPartInput,
+    output = M.UploadMultipartPartOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

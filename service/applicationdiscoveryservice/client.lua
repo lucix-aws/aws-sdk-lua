@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("applicationdiscoveryservice.endpoint_rules")
 local schemas = require("applicationdiscoveryservice.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "discovery", signing_region = cfg.region } }
                 else
@@ -49,367 +52,115 @@ function M.new(cfg)
 end
 
 function Client:associateConfigurationItemsToApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateConfigurationItemsToApplication",
-        input_schema = schemas.AssociateConfigurationItemsToApplicationInput,
-        output_schema = schemas.AssociateConfigurationItemsToApplicationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateConfigurationItemsToApplication, input, options)
 end
 
 function Client:batchDeleteAgents(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDeleteAgents",
-        input_schema = schemas.BatchDeleteAgentsInput,
-        output_schema = schemas.BatchDeleteAgentsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDeleteAgents, input, options)
 end
 
 function Client:batchDeleteImportData(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDeleteImportData",
-        input_schema = schemas.BatchDeleteImportDataInput,
-        output_schema = schemas.BatchDeleteImportDataOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDeleteImportData, input, options)
 end
 
 function Client:createApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateApplication",
-        input_schema = schemas.CreateApplicationInput,
-        output_schema = schemas.CreateApplicationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options)
 end
 
 function Client:createTags(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTags",
-        input_schema = schemas.CreateTagsInput,
-        output_schema = schemas.CreateTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTags, input, options)
 end
 
 function Client:deleteApplications(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteApplications",
-        input_schema = schemas.DeleteApplicationsInput,
-        output_schema = schemas.DeleteApplicationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteApplications, input, options)
 end
 
 function Client:deleteTags(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTags",
-        input_schema = schemas.DeleteTagsInput,
-        output_schema = schemas.DeleteTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTags, input, options)
 end
 
 function Client:describeAgents(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAgents",
-        input_schema = schemas.DescribeAgentsInput,
-        output_schema = schemas.DescribeAgentsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAgents, input, options)
 end
 
 function Client:describeBatchDeleteConfigurationTask(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeBatchDeleteConfigurationTask",
-        input_schema = schemas.DescribeBatchDeleteConfigurationTaskInput,
-        output_schema = schemas.DescribeBatchDeleteConfigurationTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeBatchDeleteConfigurationTask, input, options)
 end
 
 function Client:describeConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeConfigurations",
-        input_schema = schemas.DescribeConfigurationsInput,
-        output_schema = schemas.DescribeConfigurationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeConfigurations, input, options)
 end
 
 function Client:describeContinuousExports(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeContinuousExports",
-        input_schema = schemas.DescribeContinuousExportsInput,
-        output_schema = schemas.DescribeContinuousExportsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeContinuousExports, input, options)
 end
 
 function Client:describeExportConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeExportConfigurations",
-        input_schema = schemas.DescribeExportConfigurationsInput,
-        output_schema = schemas.DescribeExportConfigurationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeExportConfigurations, input, options)
 end
 
 function Client:describeExportTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeExportTasks",
-        input_schema = schemas.DescribeExportTasksInput,
-        output_schema = schemas.DescribeExportTasksOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeExportTasks, input, options)
 end
 
 function Client:describeImportTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeImportTasks",
-        input_schema = schemas.DescribeImportTasksInput,
-        output_schema = schemas.DescribeImportTasksOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeImportTasks, input, options)
 end
 
 function Client:describeTags(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTags",
-        input_schema = schemas.DescribeTagsInput,
-        output_schema = schemas.DescribeTagsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTags, input, options)
 end
 
 function Client:disassociateConfigurationItemsFromApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateConfigurationItemsFromApplication",
-        input_schema = schemas.DisassociateConfigurationItemsFromApplicationInput,
-        output_schema = schemas.DisassociateConfigurationItemsFromApplicationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateConfigurationItemsFromApplication, input, options)
 end
 
 function Client:exportConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ExportConfigurations",
-        input_schema = schemas.ExportConfigurationsInput,
-        output_schema = schemas.ExportConfigurationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExportConfigurations, input, options)
 end
 
 function Client:getDiscoverySummary(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDiscoverySummary",
-        input_schema = schemas.GetDiscoverySummaryInput,
-        output_schema = schemas.GetDiscoverySummaryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDiscoverySummary, input, options)
 end
 
 function Client:listConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConfigurations",
-        input_schema = schemas.ListConfigurationsInput,
-        output_schema = schemas.ListConfigurationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConfigurations, input, options)
 end
 
 function Client:listServerNeighbors(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServerNeighbors",
-        input_schema = schemas.ListServerNeighborsInput,
-        output_schema = schemas.ListServerNeighborsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServerNeighbors, input, options)
 end
 
 function Client:startBatchDeleteConfigurationTask(input, options)
-    return self:invokeOperation(input, {
-        name = "StartBatchDeleteConfigurationTask",
-        input_schema = schemas.StartBatchDeleteConfigurationTaskInput,
-        output_schema = schemas.StartBatchDeleteConfigurationTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartBatchDeleteConfigurationTask, input, options)
 end
 
 function Client:startContinuousExport(input, options)
-    return self:invokeOperation(input, {
-        name = "StartContinuousExport",
-        input_schema = schemas.StartContinuousExportInput,
-        output_schema = schemas.StartContinuousExportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartContinuousExport, input, options)
 end
 
 function Client:startDataCollectionByAgentIds(input, options)
-    return self:invokeOperation(input, {
-        name = "StartDataCollectionByAgentIds",
-        input_schema = schemas.StartDataCollectionByAgentIdsInput,
-        output_schema = schemas.StartDataCollectionByAgentIdsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartDataCollectionByAgentIds, input, options)
 end
 
 function Client:startExportTask(input, options)
-    return self:invokeOperation(input, {
-        name = "StartExportTask",
-        input_schema = schemas.StartExportTaskInput,
-        output_schema = schemas.StartExportTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartExportTask, input, options)
 end
 
 function Client:startImportTask(input, options)
-    return self:invokeOperation(input, {
-        name = "StartImportTask",
-        input_schema = schemas.StartImportTaskInput,
-        output_schema = schemas.StartImportTaskOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartImportTask, input, options)
 end
 
 function Client:stopContinuousExport(input, options)
-    return self:invokeOperation(input, {
-        name = "StopContinuousExport",
-        input_schema = schemas.StopContinuousExportInput,
-        output_schema = schemas.StopContinuousExportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopContinuousExport, input, options)
 end
 
 function Client:stopDataCollectionByAgentIds(input, options)
-    return self:invokeOperation(input, {
-        name = "StopDataCollectionByAgentIds",
-        input_schema = schemas.StopDataCollectionByAgentIdsInput,
-        output_schema = schemas.StopDataCollectionByAgentIdsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopDataCollectionByAgentIds, input, options)
 end
 
 function Client:updateApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateApplication",
-        input_schema = schemas.UpdateApplicationInput,
-        output_schema = schemas.UpdateApplicationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options)
 end
 
 return M

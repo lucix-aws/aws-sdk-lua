@@ -1505,4 +1505,135 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.polly", "Parrot_v1"),
+    version = "2016-06-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLexicon = schema.operation({
+    id = id.from("com.amazonaws.polly", "DeleteLexicon"),
+    input = M.DeleteLexiconInput,
+    output = M.DeleteLexiconOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/lexicons/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVoices = schema.operation({
+    id = id.from("com.amazonaws.polly", "DescribeVoices"),
+    input = M.DescribeVoicesInput,
+    output = M.DescribeVoicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/voices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLexicon = schema.operation({
+    id = id.from("com.amazonaws.polly", "GetLexicon"),
+    input = M.GetLexiconInput,
+    output = M.GetLexiconOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/lexicons/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSpeechSynthesisTask = schema.operation({
+    id = id.from("com.amazonaws.polly", "GetSpeechSynthesisTask"),
+    input = M.GetSpeechSynthesisTaskInput,
+    output = M.GetSpeechSynthesisTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/synthesisTasks/{TaskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLexicons = schema.operation({
+    id = id.from("com.amazonaws.polly", "ListLexicons"),
+    input = M.ListLexiconsInput,
+    output = M.ListLexiconsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/lexicons" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSpeechSynthesisTasks = schema.operation({
+    id = id.from("com.amazonaws.polly", "ListSpeechSynthesisTasks"),
+    input = M.ListSpeechSynthesisTasksInput,
+    output = M.ListSpeechSynthesisTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/synthesisTasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLexicon = schema.operation({
+    id = id.from("com.amazonaws.polly", "PutLexicon"),
+    input = M.PutLexiconInput,
+    output = M.PutLexiconOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/lexicons/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSpeechSynthesisStream = schema.operation({
+    id = id.from("com.amazonaws.polly", "StartSpeechSynthesisStream"),
+    input = M.StartSpeechSynthesisStreamInput,
+    output = M.StartSpeechSynthesisStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/synthesisStream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.StartSpeechSynthesisStreamEventStream,
+    },
+})
+
+M.StartSpeechSynthesisTask = schema.operation({
+    id = id.from("com.amazonaws.polly", "StartSpeechSynthesisTask"),
+    input = M.StartSpeechSynthesisTaskInput,
+    output = M.StartSpeechSynthesisTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/synthesisTasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SynthesizeSpeech = schema.operation({
+    id = id.from("com.amazonaws.polly", "SynthesizeSpeech"),
+    input = M.SynthesizeSpeechInput,
+    output = M.SynthesizeSpeechOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/speech" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -7,6 +7,7 @@ local endpoint_rules = require("account.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("account.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "account", signing_region = cfg.region } }
                 else
@@ -49,198 +52,63 @@ function M.new(cfg)
 end
 
 function Client:acceptPrimaryEmailUpdate(input, options)
-    return self:invokeOperation(input, {
-        name = "AcceptPrimaryEmailUpdate",
-        input_schema = schemas.AcceptPrimaryEmailUpdateInput,
-        output_schema = schemas.AcceptPrimaryEmailUpdateOutput,
-        http_method = "POST",
-        http_path = "/acceptPrimaryEmailUpdate",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AcceptPrimaryEmailUpdate, input, options)
 end
 
 function Client:deleteAlternateContact(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAlternateContact",
-        input_schema = schemas.DeleteAlternateContactInput,
-        output_schema = schemas.DeleteAlternateContactOutput,
-        http_method = "POST",
-        http_path = "/deleteAlternateContact",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAlternateContact, input, options)
 end
 
 function Client:disableRegion(input, options)
-    return self:invokeOperation(input, {
-        name = "DisableRegion",
-        input_schema = schemas.DisableRegionInput,
-        output_schema = schemas.DisableRegionOutput,
-        http_method = "POST",
-        http_path = "/disableRegion",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisableRegion, input, options)
 end
 
 function Client:enableRegion(input, options)
-    return self:invokeOperation(input, {
-        name = "EnableRegion",
-        input_schema = schemas.EnableRegionInput,
-        output_schema = schemas.EnableRegionOutput,
-        http_method = "POST",
-        http_path = "/enableRegion",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.EnableRegion, input, options)
 end
 
 function Client:getAccountInformation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAccountInformation",
-        input_schema = schemas.GetAccountInformationInput,
-        output_schema = schemas.GetAccountInformationOutput,
-        http_method = "POST",
-        http_path = "/getAccountInformation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAccountInformation, input, options)
 end
 
 function Client:getAlternateContact(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAlternateContact",
-        input_schema = schemas.GetAlternateContactInput,
-        output_schema = schemas.GetAlternateContactOutput,
-        http_method = "POST",
-        http_path = "/getAlternateContact",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAlternateContact, input, options)
 end
 
 function Client:getContactInformation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetContactInformation",
-        input_schema = schemas.GetContactInformationInput,
-        output_schema = schemas.GetContactInformationOutput,
-        http_method = "POST",
-        http_path = "/getContactInformation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetContactInformation, input, options)
 end
 
 function Client:getGovCloudAccountInformation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetGovCloudAccountInformation",
-        input_schema = schemas.GetGovCloudAccountInformationInput,
-        output_schema = schemas.GetGovCloudAccountInformationOutput,
-        http_method = "POST",
-        http_path = "/getGovCloudAccountInformation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetGovCloudAccountInformation, input, options)
 end
 
 function Client:getPrimaryEmail(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPrimaryEmail",
-        input_schema = schemas.GetPrimaryEmailInput,
-        output_schema = schemas.GetPrimaryEmailOutput,
-        http_method = "POST",
-        http_path = "/getPrimaryEmail",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPrimaryEmail, input, options)
 end
 
 function Client:getRegionOptStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRegionOptStatus",
-        input_schema = schemas.GetRegionOptStatusInput,
-        output_schema = schemas.GetRegionOptStatusOutput,
-        http_method = "POST",
-        http_path = "/getRegionOptStatus",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRegionOptStatus, input, options)
 end
 
 function Client:listRegions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRegions",
-        input_schema = schemas.ListRegionsInput,
-        output_schema = schemas.ListRegionsOutput,
-        http_method = "POST",
-        http_path = "/listRegions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRegions, input, options)
 end
 
 function Client:putAccountName(input, options)
-    return self:invokeOperation(input, {
-        name = "PutAccountName",
-        input_schema = schemas.PutAccountNameInput,
-        output_schema = schemas.PutAccountNameOutput,
-        http_method = "POST",
-        http_path = "/putAccountName",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutAccountName, input, options)
 end
 
 function Client:putAlternateContact(input, options)
-    return self:invokeOperation(input, {
-        name = "PutAlternateContact",
-        input_schema = schemas.PutAlternateContactInput,
-        output_schema = schemas.PutAlternateContactOutput,
-        http_method = "POST",
-        http_path = "/putAlternateContact",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutAlternateContact, input, options)
 end
 
 function Client:putContactInformation(input, options)
-    return self:invokeOperation(input, {
-        name = "PutContactInformation",
-        input_schema = schemas.PutContactInformationInput,
-        output_schema = schemas.PutContactInformationOutput,
-        http_method = "POST",
-        http_path = "/putContactInformation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutContactInformation, input, options)
 end
 
 function Client:startPrimaryEmailUpdate(input, options)
-    return self:invokeOperation(input, {
-        name = "StartPrimaryEmailUpdate",
-        input_schema = schemas.StartPrimaryEmailUpdateInput,
-        output_schema = schemas.StartPrimaryEmailUpdateOutput,
-        http_method = "POST",
-        http_path = "/startPrimaryEmailUpdate",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartPrimaryEmailUpdate, input, options)
 end
 
 return M

@@ -12360,4 +12360,1035 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.lambda", "AWSGirApiService"),
+    version = "2015-03-31",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddLayerVersionPermission = schema.operation({
+    id = id.from("com.amazonaws.lambda", "AddLayerVersionPermission"),
+    input = M.AddLayerVersionPermissionInput,
+    output = M.AddLayerVersionPermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2018-10-31/layers/{LayerName}/versions/{VersionNumber}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddPermission = schema.operation({
+    id = id.from("com.amazonaws.lambda", "AddPermission"),
+    input = M.AddPermissionInput,
+    output = M.AddPermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-03-31/functions/{FunctionName}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckpointDurableExecution = schema.operation({
+    id = id.from("com.amazonaws.lambda", "CheckpointDurableExecution"),
+    input = M.CheckpointDurableExecutionInput,
+    output = M.CheckpointDurableExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2025-12-01/durable-executions/{DurableExecutionArn}/checkpoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAlias = schema.operation({
+    id = id.from("com.amazonaws.lambda", "CreateAlias"),
+    input = M.CreateAliasInput,
+    output = M.CreateAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-03-31/functions/{FunctionName}/aliases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCapacityProvider = schema.operation({
+    id = id.from("com.amazonaws.lambda", "CreateCapacityProvider"),
+    input = M.CreateCapacityProviderInput,
+    output = M.CreateCapacityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2025-11-30/capacity-providers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCodeSigningConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "CreateCodeSigningConfig"),
+    input = M.CreateCodeSigningConfigInput,
+    output = M.CreateCodeSigningConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2020-04-22/code-signing-configs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventSourceMapping = schema.operation({
+    id = id.from("com.amazonaws.lambda", "CreateEventSourceMapping"),
+    input = M.CreateEventSourceMappingInput,
+    output = M.CreateEventSourceMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-03-31/event-source-mappings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFunction = schema.operation({
+    id = id.from("com.amazonaws.lambda", "CreateFunction"),
+    input = M.CreateFunctionInput,
+    output = M.CreateFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-03-31/functions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFunctionUrlConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "CreateFunctionUrlConfig"),
+    input = M.CreateFunctionUrlConfigInput,
+    output = M.CreateFunctionUrlConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-10-31/functions/{FunctionName}/url" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAlias = schema.operation({
+    id = id.from("com.amazonaws.lambda", "DeleteAlias"),
+    input = M.DeleteAliasInput,
+    output = M.DeleteAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-03-31/functions/{FunctionName}/aliases/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCapacityProvider = schema.operation({
+    id = id.from("com.amazonaws.lambda", "DeleteCapacityProvider"),
+    input = M.DeleteCapacityProviderInput,
+    output = M.DeleteCapacityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2025-11-30/capacity-providers/{CapacityProviderName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCodeSigningConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "DeleteCodeSigningConfig"),
+    input = M.DeleteCodeSigningConfigInput,
+    output = M.DeleteCodeSigningConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-04-22/code-signing-configs/{CodeSigningConfigArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventSourceMapping = schema.operation({
+    id = id.from("com.amazonaws.lambda", "DeleteEventSourceMapping"),
+    input = M.DeleteEventSourceMappingInput,
+    output = M.DeleteEventSourceMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-03-31/event-source-mappings/{UUID}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFunction = schema.operation({
+    id = id.from("com.amazonaws.lambda", "DeleteFunction"),
+    input = M.DeleteFunctionInput,
+    output = M.DeleteFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-03-31/functions/{FunctionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFunctionCodeSigningConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "DeleteFunctionCodeSigningConfig"),
+    input = M.DeleteFunctionCodeSigningConfigInput,
+    output = M.DeleteFunctionCodeSigningConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2020-06-30/functions/{FunctionName}/code-signing-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFunctionConcurrency = schema.operation({
+    id = id.from("com.amazonaws.lambda", "DeleteFunctionConcurrency"),
+    input = M.DeleteFunctionConcurrencyInput,
+    output = M.DeleteFunctionConcurrencyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2017-10-31/functions/{FunctionName}/concurrency" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFunctionEventInvokeConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "DeleteFunctionEventInvokeConfig"),
+    input = M.DeleteFunctionEventInvokeConfigInput,
+    output = M.DeleteFunctionEventInvokeConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2019-09-25/functions/{FunctionName}/event-invoke-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFunctionUrlConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "DeleteFunctionUrlConfig"),
+    input = M.DeleteFunctionUrlConfigInput,
+    output = M.DeleteFunctionUrlConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2021-10-31/functions/{FunctionName}/url" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLayerVersion = schema.operation({
+    id = id.from("com.amazonaws.lambda", "DeleteLayerVersion"),
+    input = M.DeleteLayerVersionInput,
+    output = M.DeleteLayerVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2018-10-31/layers/{LayerName}/versions/{VersionNumber}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProvisionedConcurrencyConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "DeleteProvisionedConcurrencyConfig"),
+    input = M.DeleteProvisionedConcurrencyConfigInput,
+    output = M.DeleteProvisionedConcurrencyConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2019-09-30/functions/{FunctionName}/provisioned-concurrency" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetAccountSettings"),
+    input = M.GetAccountSettingsInput,
+    output = M.GetAccountSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2016-08-19/account-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAlias = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetAlias"),
+    input = M.GetAliasInput,
+    output = M.GetAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-03-31/functions/{FunctionName}/aliases/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCapacityProvider = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetCapacityProvider"),
+    input = M.GetCapacityProviderInput,
+    output = M.GetCapacityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2025-11-30/capacity-providers/{CapacityProviderName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCodeSigningConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetCodeSigningConfig"),
+    input = M.GetCodeSigningConfigInput,
+    output = M.GetCodeSigningConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-04-22/code-signing-configs/{CodeSigningConfigArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDurableExecution = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetDurableExecution"),
+    input = M.GetDurableExecutionInput,
+    output = M.GetDurableExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2025-12-01/durable-executions/{DurableExecutionArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDurableExecutionHistory = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetDurableExecutionHistory"),
+    input = M.GetDurableExecutionHistoryInput,
+    output = M.GetDurableExecutionHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2025-12-01/durable-executions/{DurableExecutionArn}/history" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDurableExecutionState = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetDurableExecutionState"),
+    input = M.GetDurableExecutionStateInput,
+    output = M.GetDurableExecutionStateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2025-12-01/durable-executions/{DurableExecutionArn}/state" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventSourceMapping = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetEventSourceMapping"),
+    input = M.GetEventSourceMappingInput,
+    output = M.GetEventSourceMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-03-31/event-source-mappings/{UUID}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFunction = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetFunction"),
+    input = M.GetFunctionInput,
+    output = M.GetFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-03-31/functions/{FunctionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFunctionCodeSigningConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetFunctionCodeSigningConfig"),
+    input = M.GetFunctionCodeSigningConfigInput,
+    output = M.GetFunctionCodeSigningConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-06-30/functions/{FunctionName}/code-signing-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFunctionConcurrency = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetFunctionConcurrency"),
+    input = M.GetFunctionConcurrencyInput,
+    output = M.GetFunctionConcurrencyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2019-09-30/functions/{FunctionName}/concurrency" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFunctionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetFunctionConfiguration"),
+    input = M.GetFunctionConfigurationInput,
+    output = M.GetFunctionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-03-31/functions/{FunctionName}/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFunctionEventInvokeConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetFunctionEventInvokeConfig"),
+    input = M.GetFunctionEventInvokeConfigInput,
+    output = M.GetFunctionEventInvokeConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2019-09-25/functions/{FunctionName}/event-invoke-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFunctionRecursionConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetFunctionRecursionConfig"),
+    input = M.GetFunctionRecursionConfigInput,
+    output = M.GetFunctionRecursionConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2024-08-31/functions/{FunctionName}/recursion-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFunctionScalingConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetFunctionScalingConfig"),
+    input = M.GetFunctionScalingConfigInput,
+    output = M.GetFunctionScalingConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2025-11-30/functions/{FunctionName}/function-scaling-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFunctionUrlConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetFunctionUrlConfig"),
+    input = M.GetFunctionUrlConfigInput,
+    output = M.GetFunctionUrlConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-10-31/functions/{FunctionName}/url" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLayerVersion = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetLayerVersion"),
+    input = M.GetLayerVersionInput,
+    output = M.GetLayerVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2018-10-31/layers/{LayerName}/versions/{VersionNumber}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLayerVersionByArn = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetLayerVersionByArn"),
+    input = M.GetLayerVersionByArnInput,
+    output = M.GetLayerVersionByArnOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2018-10-31/layers?find=LayerVersion" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLayerVersionPolicy = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetLayerVersionPolicy"),
+    input = M.GetLayerVersionPolicyInput,
+    output = M.GetLayerVersionPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2018-10-31/layers/{LayerName}/versions/{VersionNumber}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicy = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetPolicy"),
+    input = M.GetPolicyInput,
+    output = M.GetPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-03-31/functions/{FunctionName}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProvisionedConcurrencyConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetProvisionedConcurrencyConfig"),
+    input = M.GetProvisionedConcurrencyConfigInput,
+    output = M.GetProvisionedConcurrencyConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2019-09-30/functions/{FunctionName}/provisioned-concurrency" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRuntimeManagementConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetRuntimeManagementConfig"),
+    input = M.GetRuntimeManagementConfigInput,
+    output = M.GetRuntimeManagementConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-07-20/functions/{FunctionName}/runtime-management-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Invoke = schema.operation({
+    id = id.from("com.amazonaws.lambda", "Invoke"),
+    input = M.InvokeInput,
+    output = M.InvokeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-03-31/functions/{FunctionName}/invocations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InvokeAsync = schema.operation({
+    id = id.from("com.amazonaws.lambda", "InvokeAsync"),
+    input = M.InvokeAsyncInput,
+    output = M.InvokeAsyncOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2014-11-13/functions/{FunctionName}/invoke-async" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InvokeWithResponseStream = schema.operation({
+    id = id.from("com.amazonaws.lambda", "InvokeWithResponseStream"),
+    input = M.InvokeWithResponseStreamInput,
+    output = M.InvokeWithResponseStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-11-15/functions/{FunctionName}/response-streaming-invocations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.InvokeWithResponseStreamResponseEvent,
+    },
+})
+
+M.ListAliases = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListAliases"),
+    input = M.ListAliasesInput,
+    output = M.ListAliasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-03-31/functions/{FunctionName}/aliases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCapacityProviders = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListCapacityProviders"),
+    input = M.ListCapacityProvidersInput,
+    output = M.ListCapacityProvidersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2025-11-30/capacity-providers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCodeSigningConfigs = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListCodeSigningConfigs"),
+    input = M.ListCodeSigningConfigsInput,
+    output = M.ListCodeSigningConfigsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-04-22/code-signing-configs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDurableExecutionsByFunction = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListDurableExecutionsByFunction"),
+    input = M.ListDurableExecutionsByFunctionInput,
+    output = M.ListDurableExecutionsByFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2025-12-01/functions/{FunctionName}/durable-executions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventSourceMappings = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListEventSourceMappings"),
+    input = M.ListEventSourceMappingsInput,
+    output = M.ListEventSourceMappingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-03-31/event-source-mappings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFunctionEventInvokeConfigs = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListFunctionEventInvokeConfigs"),
+    input = M.ListFunctionEventInvokeConfigsInput,
+    output = M.ListFunctionEventInvokeConfigsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2019-09-25/functions/{FunctionName}/event-invoke-config/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFunctions = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListFunctions"),
+    input = M.ListFunctionsInput,
+    output = M.ListFunctionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-03-31/functions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFunctionsByCodeSigningConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListFunctionsByCodeSigningConfig"),
+    input = M.ListFunctionsByCodeSigningConfigInput,
+    output = M.ListFunctionsByCodeSigningConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2020-04-22/code-signing-configs/{CodeSigningConfigArn}/functions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFunctionUrlConfigs = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListFunctionUrlConfigs"),
+    input = M.ListFunctionUrlConfigsInput,
+    output = M.ListFunctionUrlConfigsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-10-31/functions/{FunctionName}/urls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFunctionVersionsByCapacityProvider = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListFunctionVersionsByCapacityProvider"),
+    input = M.ListFunctionVersionsByCapacityProviderInput,
+    output = M.ListFunctionVersionsByCapacityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2025-11-30/capacity-providers/{CapacityProviderName}/function-versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLayers = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListLayers"),
+    input = M.ListLayersInput,
+    output = M.ListLayersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2018-10-31/layers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLayerVersions = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListLayerVersions"),
+    input = M.ListLayerVersionsInput,
+    output = M.ListLayerVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2018-10-31/layers/{LayerName}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProvisionedConcurrencyConfigs = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListProvisionedConcurrencyConfigs"),
+    input = M.ListProvisionedConcurrencyConfigsInput,
+    output = M.ListProvisionedConcurrencyConfigsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2019-09-30/functions/{FunctionName}/provisioned-concurrency?List=ALL" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTags = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListTags"),
+    input = M.ListTagsInput,
+    output = M.ListTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2017-03-31/tags/{Resource}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVersionsByFunction = schema.operation({
+    id = id.from("com.amazonaws.lambda", "ListVersionsByFunction"),
+    input = M.ListVersionsByFunctionInput,
+    output = M.ListVersionsByFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-03-31/functions/{FunctionName}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PublishLayerVersion = schema.operation({
+    id = id.from("com.amazonaws.lambda", "PublishLayerVersion"),
+    input = M.PublishLayerVersionInput,
+    output = M.PublishLayerVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2018-10-31/layers/{LayerName}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PublishVersion = schema.operation({
+    id = id.from("com.amazonaws.lambda", "PublishVersion"),
+    input = M.PublishVersionInput,
+    output = M.PublishVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-03-31/functions/{FunctionName}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFunctionCodeSigningConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "PutFunctionCodeSigningConfig"),
+    input = M.PutFunctionCodeSigningConfigInput,
+    output = M.PutFunctionCodeSigningConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-06-30/functions/{FunctionName}/code-signing-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFunctionConcurrency = schema.operation({
+    id = id.from("com.amazonaws.lambda", "PutFunctionConcurrency"),
+    input = M.PutFunctionConcurrencyInput,
+    output = M.PutFunctionConcurrencyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2017-10-31/functions/{FunctionName}/concurrency" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFunctionEventInvokeConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "PutFunctionEventInvokeConfig"),
+    input = M.PutFunctionEventInvokeConfigInput,
+    output = M.PutFunctionEventInvokeConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2019-09-25/functions/{FunctionName}/event-invoke-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFunctionRecursionConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "PutFunctionRecursionConfig"),
+    input = M.PutFunctionRecursionConfigInput,
+    output = M.PutFunctionRecursionConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2024-08-31/functions/{FunctionName}/recursion-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFunctionScalingConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "PutFunctionScalingConfig"),
+    input = M.PutFunctionScalingConfigInput,
+    output = M.PutFunctionScalingConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2025-11-30/functions/{FunctionName}/function-scaling-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutProvisionedConcurrencyConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "PutProvisionedConcurrencyConfig"),
+    input = M.PutProvisionedConcurrencyConfigInput,
+    output = M.PutProvisionedConcurrencyConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2019-09-30/functions/{FunctionName}/provisioned-concurrency" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRuntimeManagementConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "PutRuntimeManagementConfig"),
+    input = M.PutRuntimeManagementConfigInput,
+    output = M.PutRuntimeManagementConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2021-07-20/functions/{FunctionName}/runtime-management-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveLayerVersionPermission = schema.operation({
+    id = id.from("com.amazonaws.lambda", "RemoveLayerVersionPermission"),
+    input = M.RemoveLayerVersionPermissionInput,
+    output = M.RemoveLayerVersionPermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2018-10-31/layers/{LayerName}/versions/{VersionNumber}/policy/{StatementId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemovePermission = schema.operation({
+    id = id.from("com.amazonaws.lambda", "RemovePermission"),
+    input = M.RemovePermissionInput,
+    output = M.RemovePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-03-31/functions/{FunctionName}/policy/{StatementId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendDurableExecutionCallbackFailure = schema.operation({
+    id = id.from("com.amazonaws.lambda", "SendDurableExecutionCallbackFailure"),
+    input = M.SendDurableExecutionCallbackFailureInput,
+    output = M.SendDurableExecutionCallbackFailureOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2025-12-01/durable-execution-callbacks/{CallbackId}/fail" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendDurableExecutionCallbackHeartbeat = schema.operation({
+    id = id.from("com.amazonaws.lambda", "SendDurableExecutionCallbackHeartbeat"),
+    input = M.SendDurableExecutionCallbackHeartbeatInput,
+    output = M.SendDurableExecutionCallbackHeartbeatOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2025-12-01/durable-execution-callbacks/{CallbackId}/heartbeat" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendDurableExecutionCallbackSuccess = schema.operation({
+    id = id.from("com.amazonaws.lambda", "SendDurableExecutionCallbackSuccess"),
+    input = M.SendDurableExecutionCallbackSuccessInput,
+    output = M.SendDurableExecutionCallbackSuccessOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2025-12-01/durable-execution-callbacks/{CallbackId}/succeed" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDurableExecution = schema.operation({
+    id = id.from("com.amazonaws.lambda", "StopDurableExecution"),
+    input = M.StopDurableExecutionInput,
+    output = M.StopDurableExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2025-12-01/durable-executions/{DurableExecutionArn}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.lambda", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2017-03-31/tags/{Resource}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.lambda", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2017-03-31/tags/{Resource}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAlias = schema.operation({
+    id = id.from("com.amazonaws.lambda", "UpdateAlias"),
+    input = M.UpdateAliasInput,
+    output = M.UpdateAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2015-03-31/functions/{FunctionName}/aliases/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCapacityProvider = schema.operation({
+    id = id.from("com.amazonaws.lambda", "UpdateCapacityProvider"),
+    input = M.UpdateCapacityProviderInput,
+    output = M.UpdateCapacityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2025-11-30/capacity-providers/{CapacityProviderName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCodeSigningConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "UpdateCodeSigningConfig"),
+    input = M.UpdateCodeSigningConfigInput,
+    output = M.UpdateCodeSigningConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2020-04-22/code-signing-configs/{CodeSigningConfigArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEventSourceMapping = schema.operation({
+    id = id.from("com.amazonaws.lambda", "UpdateEventSourceMapping"),
+    input = M.UpdateEventSourceMappingInput,
+    output = M.UpdateEventSourceMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2015-03-31/event-source-mappings/{UUID}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFunctionCode = schema.operation({
+    id = id.from("com.amazonaws.lambda", "UpdateFunctionCode"),
+    input = M.UpdateFunctionCodeInput,
+    output = M.UpdateFunctionCodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2015-03-31/functions/{FunctionName}/code" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFunctionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.lambda", "UpdateFunctionConfiguration"),
+    input = M.UpdateFunctionConfigurationInput,
+    output = M.UpdateFunctionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2015-03-31/functions/{FunctionName}/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFunctionEventInvokeConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "UpdateFunctionEventInvokeConfig"),
+    input = M.UpdateFunctionEventInvokeConfigInput,
+    output = M.UpdateFunctionEventInvokeConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2019-09-25/functions/{FunctionName}/event-invoke-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFunctionUrlConfig = schema.operation({
+    id = id.from("com.amazonaws.lambda", "UpdateFunctionUrlConfig"),
+    input = M.UpdateFunctionUrlConfigInput,
+    output = M.UpdateFunctionUrlConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2021-10-31/functions/{FunctionName}/url" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

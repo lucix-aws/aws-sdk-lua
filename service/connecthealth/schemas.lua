@@ -2307,4 +2307,207 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.connecthealth", "ConnectHealth"),
+    version = "2025-01-29",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ActivateSubscription = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "ActivateSubscription"),
+    input = M.ActivateSubscriptionInput,
+    output = M.ActivateSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/subscriptions/{subscriptionId}/activate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomain = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "CreateDomain"),
+    input = M.CreateDomainInput,
+    output = M.CreateDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSubscription = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "CreateSubscription"),
+    input = M.CreateSubscriptionInput,
+    output = M.CreateSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/subscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeactivateSubscription = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "DeactivateSubscription"),
+    input = M.DeactivateSubscriptionInput,
+    output = M.DeactivateSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/subscriptions/{subscriptionId}/deactivate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomain = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "DeleteDomain"),
+    input = M.DeleteDomainInput,
+    output = M.DeleteDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domain/{domainId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomain = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "GetDomain"),
+    input = M.GetDomainInput,
+    output = M.GetDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domain/{domainId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMedicalScribeListeningSession = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "GetMedicalScribeListeningSession"),
+    input = M.GetMedicalScribeListeningSessionInput,
+    output = M.GetMedicalScribeListeningSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/medical-scribe-stream/domain/{domainId}/subscription/{subscriptionId}/session/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPatientInsightsJob = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "GetPatientInsightsJob"),
+    input = M.GetPatientInsightsJobInput,
+    output = M.GetPatientInsightsJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domain/{domainId}/patient-insights-job/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSubscription = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "GetSubscription"),
+    input = M.GetSubscriptionInput,
+    output = M.GetSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{domainId}/subscriptions/{subscriptionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomains = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "ListDomains"),
+    input = M.ListDomainsInput,
+    output = M.ListDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "ListSubscriptions"),
+    input = M.ListSubscriptionsInput,
+    output = M.ListSubscriptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{domainId}/subscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMedicalScribeListeningSession = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "StartMedicalScribeListeningSession"),
+    input = M.StartMedicalScribeListeningSessionInput,
+    output = M.StartMedicalScribeListeningSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/medical-scribe-stream/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.MedicalScribeOutputStream,
+    },
+})
+
+M.StartPatientInsightsJob = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "StartPatientInsightsJob"),
+    input = M.StartPatientInsightsJobInput,
+    output = M.StartPatientInsightsJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domain/{domainId}/patient-insights-job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.connecthealth", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

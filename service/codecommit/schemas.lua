@@ -9587,4 +9587,883 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.codecommit", "CodeCommit_20150413"),
+    version = "2015-04-13",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateApprovalRuleTemplateWithRepository = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "AssociateApprovalRuleTemplateWithRepository"),
+    input = M.AssociateApprovalRuleTemplateWithRepositoryInput,
+    output = M.AssociateApprovalRuleTemplateWithRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAssociateApprovalRuleTemplateWithRepositories = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "BatchAssociateApprovalRuleTemplateWithRepositories"),
+    input = M.BatchAssociateApprovalRuleTemplateWithRepositoriesInput,
+    output = M.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDescribeMergeConflicts = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "BatchDescribeMergeConflicts"),
+    input = M.BatchDescribeMergeConflictsInput,
+    output = M.BatchDescribeMergeConflictsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDisassociateApprovalRuleTemplateFromRepositories = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "BatchDisassociateApprovalRuleTemplateFromRepositories"),
+    input = M.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput,
+    output = M.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetCommits = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "BatchGetCommits"),
+    input = M.BatchGetCommitsInput,
+    output = M.BatchGetCommitsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetRepositories = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "BatchGetRepositories"),
+    input = M.BatchGetRepositoriesInput,
+    output = M.BatchGetRepositoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApprovalRuleTemplate = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "CreateApprovalRuleTemplate"),
+    input = M.CreateApprovalRuleTemplateInput,
+    output = M.CreateApprovalRuleTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBranch = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "CreateBranch"),
+    input = M.CreateBranchInput,
+    output = M.CreateBranchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCommit = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "CreateCommit"),
+    input = M.CreateCommitInput,
+    output = M.CreateCommitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePullRequest = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "CreatePullRequest"),
+    input = M.CreatePullRequestInput,
+    output = M.CreatePullRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePullRequestApprovalRule = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "CreatePullRequestApprovalRule"),
+    input = M.CreatePullRequestApprovalRuleInput,
+    output = M.CreatePullRequestApprovalRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRepository = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "CreateRepository"),
+    input = M.CreateRepositoryInput,
+    output = M.CreateRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUnreferencedMergeCommit = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "CreateUnreferencedMergeCommit"),
+    input = M.CreateUnreferencedMergeCommitInput,
+    output = M.CreateUnreferencedMergeCommitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApprovalRuleTemplate = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "DeleteApprovalRuleTemplate"),
+    input = M.DeleteApprovalRuleTemplateInput,
+    output = M.DeleteApprovalRuleTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBranch = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "DeleteBranch"),
+    input = M.DeleteBranchInput,
+    output = M.DeleteBranchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCommentContent = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "DeleteCommentContent"),
+    input = M.DeleteCommentContentInput,
+    output = M.DeleteCommentContentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFile = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "DeleteFile"),
+    input = M.DeleteFileInput,
+    output = M.DeleteFileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePullRequestApprovalRule = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "DeletePullRequestApprovalRule"),
+    input = M.DeletePullRequestApprovalRuleInput,
+    output = M.DeletePullRequestApprovalRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRepository = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "DeleteRepository"),
+    input = M.DeleteRepositoryInput,
+    output = M.DeleteRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMergeConflicts = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "DescribeMergeConflicts"),
+    input = M.DescribeMergeConflictsInput,
+    output = M.DescribeMergeConflictsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePullRequestEvents = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "DescribePullRequestEvents"),
+    input = M.DescribePullRequestEventsInput,
+    output = M.DescribePullRequestEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateApprovalRuleTemplateFromRepository = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "DisassociateApprovalRuleTemplateFromRepository"),
+    input = M.DisassociateApprovalRuleTemplateFromRepositoryInput,
+    output = M.DisassociateApprovalRuleTemplateFromRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EvaluatePullRequestApprovalRules = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "EvaluatePullRequestApprovalRules"),
+    input = M.EvaluatePullRequestApprovalRulesInput,
+    output = M.EvaluatePullRequestApprovalRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApprovalRuleTemplate = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetApprovalRuleTemplate"),
+    input = M.GetApprovalRuleTemplateInput,
+    output = M.GetApprovalRuleTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBlob = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetBlob"),
+    input = M.GetBlobInput,
+    output = M.GetBlobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBranch = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetBranch"),
+    input = M.GetBranchInput,
+    output = M.GetBranchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComment = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetComment"),
+    input = M.GetCommentInput,
+    output = M.GetCommentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCommentReactions = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetCommentReactions"),
+    input = M.GetCommentReactionsInput,
+    output = M.GetCommentReactionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCommentsForComparedCommit = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetCommentsForComparedCommit"),
+    input = M.GetCommentsForComparedCommitInput,
+    output = M.GetCommentsForComparedCommitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCommentsForPullRequest = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetCommentsForPullRequest"),
+    input = M.GetCommentsForPullRequestInput,
+    output = M.GetCommentsForPullRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCommit = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetCommit"),
+    input = M.GetCommitInput,
+    output = M.GetCommitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDifferences = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetDifferences"),
+    input = M.GetDifferencesInput,
+    output = M.GetDifferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFile = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetFile"),
+    input = M.GetFileInput,
+    output = M.GetFileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFolder = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetFolder"),
+    input = M.GetFolderInput,
+    output = M.GetFolderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMergeCommit = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetMergeCommit"),
+    input = M.GetMergeCommitInput,
+    output = M.GetMergeCommitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMergeConflicts = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetMergeConflicts"),
+    input = M.GetMergeConflictsInput,
+    output = M.GetMergeConflictsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMergeOptions = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetMergeOptions"),
+    input = M.GetMergeOptionsInput,
+    output = M.GetMergeOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPullRequest = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetPullRequest"),
+    input = M.GetPullRequestInput,
+    output = M.GetPullRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPullRequestApprovalStates = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetPullRequestApprovalStates"),
+    input = M.GetPullRequestApprovalStatesInput,
+    output = M.GetPullRequestApprovalStatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPullRequestOverrideState = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetPullRequestOverrideState"),
+    input = M.GetPullRequestOverrideStateInput,
+    output = M.GetPullRequestOverrideStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRepository = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetRepository"),
+    input = M.GetRepositoryInput,
+    output = M.GetRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRepositoryTriggers = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetRepositoryTriggers"),
+    input = M.GetRepositoryTriggersInput,
+    output = M.GetRepositoryTriggersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApprovalRuleTemplates = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "ListApprovalRuleTemplates"),
+    input = M.ListApprovalRuleTemplatesInput,
+    output = M.ListApprovalRuleTemplatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociatedApprovalRuleTemplatesForRepository = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "ListAssociatedApprovalRuleTemplatesForRepository"),
+    input = M.ListAssociatedApprovalRuleTemplatesForRepositoryInput,
+    output = M.ListAssociatedApprovalRuleTemplatesForRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBranches = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "ListBranches"),
+    input = M.ListBranchesInput,
+    output = M.ListBranchesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFileCommitHistory = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "ListFileCommitHistory"),
+    input = M.ListFileCommitHistoryInput,
+    output = M.ListFileCommitHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPullRequests = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "ListPullRequests"),
+    input = M.ListPullRequestsInput,
+    output = M.ListPullRequestsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRepositories = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "ListRepositories"),
+    input = M.ListRepositoriesInput,
+    output = M.ListRepositoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRepositoriesForApprovalRuleTemplate = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "ListRepositoriesForApprovalRuleTemplate"),
+    input = M.ListRepositoriesForApprovalRuleTemplateInput,
+    output = M.ListRepositoriesForApprovalRuleTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.MergeBranchesByFastForward = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "MergeBranchesByFastForward"),
+    input = M.MergeBranchesByFastForwardInput,
+    output = M.MergeBranchesByFastForwardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.MergeBranchesBySquash = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "MergeBranchesBySquash"),
+    input = M.MergeBranchesBySquashInput,
+    output = M.MergeBranchesBySquashOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.MergeBranchesByThreeWay = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "MergeBranchesByThreeWay"),
+    input = M.MergeBranchesByThreeWayInput,
+    output = M.MergeBranchesByThreeWayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.MergePullRequestByFastForward = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "MergePullRequestByFastForward"),
+    input = M.MergePullRequestByFastForwardInput,
+    output = M.MergePullRequestByFastForwardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.MergePullRequestBySquash = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "MergePullRequestBySquash"),
+    input = M.MergePullRequestBySquashInput,
+    output = M.MergePullRequestBySquashOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.MergePullRequestByThreeWay = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "MergePullRequestByThreeWay"),
+    input = M.MergePullRequestByThreeWayInput,
+    output = M.MergePullRequestByThreeWayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.OverridePullRequestApprovalRules = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "OverridePullRequestApprovalRules"),
+    input = M.OverridePullRequestApprovalRulesInput,
+    output = M.OverridePullRequestApprovalRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PostCommentForComparedCommit = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "PostCommentForComparedCommit"),
+    input = M.PostCommentForComparedCommitInput,
+    output = M.PostCommentForComparedCommitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PostCommentForPullRequest = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "PostCommentForPullRequest"),
+    input = M.PostCommentForPullRequestInput,
+    output = M.PostCommentForPullRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PostCommentReply = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "PostCommentReply"),
+    input = M.PostCommentReplyInput,
+    output = M.PostCommentReplyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutCommentReaction = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "PutCommentReaction"),
+    input = M.PutCommentReactionInput,
+    output = M.PutCommentReactionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFile = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "PutFile"),
+    input = M.PutFileInput,
+    output = M.PutFileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRepositoryTriggers = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "PutRepositoryTriggers"),
+    input = M.PutRepositoryTriggersInput,
+    output = M.PutRepositoryTriggersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestRepositoryTriggers = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "TestRepositoryTriggers"),
+    input = M.TestRepositoryTriggersInput,
+    output = M.TestRepositoryTriggersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApprovalRuleTemplateContent = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "UpdateApprovalRuleTemplateContent"),
+    input = M.UpdateApprovalRuleTemplateContentInput,
+    output = M.UpdateApprovalRuleTemplateContentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApprovalRuleTemplateDescription = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "UpdateApprovalRuleTemplateDescription"),
+    input = M.UpdateApprovalRuleTemplateDescriptionInput,
+    output = M.UpdateApprovalRuleTemplateDescriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApprovalRuleTemplateName = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "UpdateApprovalRuleTemplateName"),
+    input = M.UpdateApprovalRuleTemplateNameInput,
+    output = M.UpdateApprovalRuleTemplateNameOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateComment = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "UpdateComment"),
+    input = M.UpdateCommentInput,
+    output = M.UpdateCommentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDefaultBranch = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "UpdateDefaultBranch"),
+    input = M.UpdateDefaultBranchInput,
+    output = M.UpdateDefaultBranchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePullRequestApprovalRuleContent = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "UpdatePullRequestApprovalRuleContent"),
+    input = M.UpdatePullRequestApprovalRuleContentInput,
+    output = M.UpdatePullRequestApprovalRuleContentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePullRequestApprovalState = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "UpdatePullRequestApprovalState"),
+    input = M.UpdatePullRequestApprovalStateInput,
+    output = M.UpdatePullRequestApprovalStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePullRequestDescription = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "UpdatePullRequestDescription"),
+    input = M.UpdatePullRequestDescriptionInput,
+    output = M.UpdatePullRequestDescriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePullRequestStatus = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "UpdatePullRequestStatus"),
+    input = M.UpdatePullRequestStatusInput,
+    output = M.UpdatePullRequestStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePullRequestTitle = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "UpdatePullRequestTitle"),
+    input = M.UpdatePullRequestTitleInput,
+    output = M.UpdatePullRequestTitleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRepositoryDescription = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "UpdateRepositoryDescription"),
+    input = M.UpdateRepositoryDescriptionInput,
+    output = M.UpdateRepositoryDescriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRepositoryEncryptionKey = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "UpdateRepositoryEncryptionKey"),
+    input = M.UpdateRepositoryEncryptionKeyInput,
+    output = M.UpdateRepositoryEncryptionKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRepositoryName = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "UpdateRepositoryName"),
+    input = M.UpdateRepositoryNameInput,
+    output = M.UpdateRepositoryNameOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

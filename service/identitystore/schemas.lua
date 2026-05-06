@@ -2251,4 +2251,223 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.identitystore", "AWSIdentityStore"),
+    version = "2020-06-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGroup = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "CreateGroup"),
+    input = M.CreateGroupInput,
+    output = M.CreateGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGroupMembership = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "CreateGroupMembership"),
+    input = M.CreateGroupMembershipInput,
+    output = M.CreateGroupMembershipOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGroup = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "DeleteGroup"),
+    input = M.DeleteGroupInput,
+    output = M.DeleteGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGroupMembership = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "DeleteGroupMembership"),
+    input = M.DeleteGroupMembershipInput,
+    output = M.DeleteGroupMembershipOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGroup = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "DescribeGroup"),
+    input = M.DescribeGroupInput,
+    output = M.DescribeGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGroupMembership = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "DescribeGroupMembership"),
+    input = M.DescribeGroupMembershipInput,
+    output = M.DescribeGroupMembershipOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUser = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "DescribeUser"),
+    input = M.DescribeUserInput,
+    output = M.DescribeUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGroupId = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "GetGroupId"),
+    input = M.GetGroupIdInput,
+    output = M.GetGroupIdOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGroupMembershipId = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "GetGroupMembershipId"),
+    input = M.GetGroupMembershipIdInput,
+    output = M.GetGroupMembershipIdOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUserId = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "GetUserId"),
+    input = M.GetUserIdInput,
+    output = M.GetUserIdOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.IsMemberInGroups = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "IsMemberInGroups"),
+    input = M.IsMemberInGroupsInput,
+    output = M.IsMemberInGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroupMemberships = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "ListGroupMemberships"),
+    input = M.ListGroupMembershipsInput,
+    output = M.ListGroupMembershipsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroupMembershipsForMember = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "ListGroupMembershipsForMember"),
+    input = M.ListGroupMembershipsForMemberInput,
+    output = M.ListGroupMembershipsForMemberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroups = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "ListGroups"),
+    input = M.ListGroupsInput,
+    output = M.ListGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsers = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "ListUsers"),
+    input = M.ListUsersInput,
+    output = M.ListUsersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGroup = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "UpdateGroup"),
+    input = M.UpdateGroupInput,
+    output = M.UpdateGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUser = schema.operation({
+    id = id.from("com.amazonaws.identitystore", "UpdateUser"),
+    input = M.UpdateUserInput,
+    output = M.UpdateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

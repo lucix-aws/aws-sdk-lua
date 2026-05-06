@@ -9823,4 +9823,1004 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cloudformation", "CloudFormation"),
+    version = "2010-05-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ActivateOrganizationsAccess = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ActivateOrganizationsAccess"),
+    input = M.ActivateOrganizationsAccessInput,
+    output = M.ActivateOrganizationsAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ActivateType = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ActivateType"),
+    input = M.ActivateTypeInput,
+    output = M.ActivateTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDescribeTypeConfigurations = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "BatchDescribeTypeConfigurations"),
+    input = M.BatchDescribeTypeConfigurationsInput,
+    output = M.BatchDescribeTypeConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelUpdateStack = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "CancelUpdateStack"),
+    input = M.CancelUpdateStackInput,
+    output = M.CancelUpdateStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ContinueUpdateRollback = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ContinueUpdateRollback"),
+    input = M.ContinueUpdateRollbackInput,
+    output = M.ContinueUpdateRollbackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChangeSet = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "CreateChangeSet"),
+    input = M.CreateChangeSetInput,
+    output = M.CreateChangeSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGeneratedTemplate = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "CreateGeneratedTemplate"),
+    input = M.CreateGeneratedTemplateInput,
+    output = M.CreateGeneratedTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStack = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "CreateStack"),
+    input = M.CreateStackInput,
+    output = M.CreateStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStackInstances = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "CreateStackInstances"),
+    input = M.CreateStackInstancesInput,
+    output = M.CreateStackInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStackRefactor = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "CreateStackRefactor"),
+    input = M.CreateStackRefactorInput,
+    output = M.CreateStackRefactorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStackSet = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "CreateStackSet"),
+    input = M.CreateStackSetInput,
+    output = M.CreateStackSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeactivateOrganizationsAccess = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DeactivateOrganizationsAccess"),
+    input = M.DeactivateOrganizationsAccessInput,
+    output = M.DeactivateOrganizationsAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeactivateType = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DeactivateType"),
+    input = M.DeactivateTypeInput,
+    output = M.DeactivateTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChangeSet = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DeleteChangeSet"),
+    input = M.DeleteChangeSetInput,
+    output = M.DeleteChangeSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGeneratedTemplate = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DeleteGeneratedTemplate"),
+    input = M.DeleteGeneratedTemplateInput,
+    output = M.DeleteGeneratedTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStack = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DeleteStack"),
+    input = M.DeleteStackInput,
+    output = M.DeleteStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStackInstances = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DeleteStackInstances"),
+    input = M.DeleteStackInstancesInput,
+    output = M.DeleteStackInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStackSet = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DeleteStackSet"),
+    input = M.DeleteStackSetInput,
+    output = M.DeleteStackSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterType = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DeregisterType"),
+    input = M.DeregisterTypeInput,
+    output = M.DeregisterTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountLimits = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeAccountLimits"),
+    input = M.DescribeAccountLimitsInput,
+    output = M.DescribeAccountLimitsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChangeSet = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeChangeSet"),
+    input = M.DescribeChangeSetInput,
+    output = M.DescribeChangeSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChangeSetHooks = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeChangeSetHooks"),
+    input = M.DescribeChangeSetHooksInput,
+    output = M.DescribeChangeSetHooksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEvents = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeEvents"),
+    input = M.DescribeEventsInput,
+    output = M.DescribeEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGeneratedTemplate = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeGeneratedTemplate"),
+    input = M.DescribeGeneratedTemplateInput,
+    output = M.DescribeGeneratedTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrganizationsAccess = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeOrganizationsAccess"),
+    input = M.DescribeOrganizationsAccessInput,
+    output = M.DescribeOrganizationsAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePublisher = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribePublisher"),
+    input = M.DescribePublisherInput,
+    output = M.DescribePublisherOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResourceScan = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeResourceScan"),
+    input = M.DescribeResourceScanInput,
+    output = M.DescribeResourceScanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStackDriftDetectionStatus = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeStackDriftDetectionStatus"),
+    input = M.DescribeStackDriftDetectionStatusInput,
+    output = M.DescribeStackDriftDetectionStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStackEvents = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeStackEvents"),
+    input = M.DescribeStackEventsInput,
+    output = M.DescribeStackEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStackInstance = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeStackInstance"),
+    input = M.DescribeStackInstanceInput,
+    output = M.DescribeStackInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStackRefactor = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeStackRefactor"),
+    input = M.DescribeStackRefactorInput,
+    output = M.DescribeStackRefactorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStackResource = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeStackResource"),
+    input = M.DescribeStackResourceInput,
+    output = M.DescribeStackResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStackResourceDrifts = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeStackResourceDrifts"),
+    input = M.DescribeStackResourceDriftsInput,
+    output = M.DescribeStackResourceDriftsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStackResources = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeStackResources"),
+    input = M.DescribeStackResourcesInput,
+    output = M.DescribeStackResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStacks = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeStacks"),
+    input = M.DescribeStacksInput,
+    output = M.DescribeStacksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStackSet = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeStackSet"),
+    input = M.DescribeStackSetInput,
+    output = M.DescribeStackSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStackSetOperation = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeStackSetOperation"),
+    input = M.DescribeStackSetOperationInput,
+    output = M.DescribeStackSetOperationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeType = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeType"),
+    input = M.DescribeTypeInput,
+    output = M.DescribeTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTypeRegistration = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DescribeTypeRegistration"),
+    input = M.DescribeTypeRegistrationInput,
+    output = M.DescribeTypeRegistrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectStackDrift = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DetectStackDrift"),
+    input = M.DetectStackDriftInput,
+    output = M.DetectStackDriftOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectStackResourceDrift = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DetectStackResourceDrift"),
+    input = M.DetectStackResourceDriftInput,
+    output = M.DetectStackResourceDriftOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectStackSetDrift = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "DetectStackSetDrift"),
+    input = M.DetectStackSetDriftInput,
+    output = M.DetectStackSetDriftOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EstimateTemplateCost = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "EstimateTemplateCost"),
+    input = M.EstimateTemplateCostInput,
+    output = M.EstimateTemplateCostOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteChangeSet = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ExecuteChangeSet"),
+    input = M.ExecuteChangeSetInput,
+    output = M.ExecuteChangeSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteStackRefactor = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ExecuteStackRefactor"),
+    input = M.ExecuteStackRefactorInput,
+    output = M.ExecuteStackRefactorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGeneratedTemplate = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "GetGeneratedTemplate"),
+    input = M.GetGeneratedTemplateInput,
+    output = M.GetGeneratedTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHookResult = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "GetHookResult"),
+    input = M.GetHookResultInput,
+    output = M.GetHookResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStackPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "GetStackPolicy"),
+    input = M.GetStackPolicyInput,
+    output = M.GetStackPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemplate = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "GetTemplate"),
+    input = M.GetTemplateInput,
+    output = M.GetTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemplateSummary = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "GetTemplateSummary"),
+    input = M.GetTemplateSummaryInput,
+    output = M.GetTemplateSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportStacksToStackSet = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ImportStacksToStackSet"),
+    input = M.ImportStacksToStackSetInput,
+    output = M.ImportStacksToStackSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChangeSets = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListChangeSets"),
+    input = M.ListChangeSetsInput,
+    output = M.ListChangeSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExports = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListExports"),
+    input = M.ListExportsInput,
+    output = M.ListExportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGeneratedTemplates = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListGeneratedTemplates"),
+    input = M.ListGeneratedTemplatesInput,
+    output = M.ListGeneratedTemplatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHookResults = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListHookResults"),
+    input = M.ListHookResultsInput,
+    output = M.ListHookResultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImports = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListImports"),
+    input = M.ListImportsInput,
+    output = M.ListImportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceScanRelatedResources = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListResourceScanRelatedResources"),
+    input = M.ListResourceScanRelatedResourcesInput,
+    output = M.ListResourceScanRelatedResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceScanResources = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListResourceScanResources"),
+    input = M.ListResourceScanResourcesInput,
+    output = M.ListResourceScanResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceScans = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListResourceScans"),
+    input = M.ListResourceScansInput,
+    output = M.ListResourceScansOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStackInstanceResourceDrifts = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListStackInstanceResourceDrifts"),
+    input = M.ListStackInstanceResourceDriftsInput,
+    output = M.ListStackInstanceResourceDriftsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStackInstances = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListStackInstances"),
+    input = M.ListStackInstancesInput,
+    output = M.ListStackInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStackRefactorActions = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListStackRefactorActions"),
+    input = M.ListStackRefactorActionsInput,
+    output = M.ListStackRefactorActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStackRefactors = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListStackRefactors"),
+    input = M.ListStackRefactorsInput,
+    output = M.ListStackRefactorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStackResources = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListStackResources"),
+    input = M.ListStackResourcesInput,
+    output = M.ListStackResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStacks = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListStacks"),
+    input = M.ListStacksInput,
+    output = M.ListStacksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStackSetAutoDeploymentTargets = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListStackSetAutoDeploymentTargets"),
+    input = M.ListStackSetAutoDeploymentTargetsInput,
+    output = M.ListStackSetAutoDeploymentTargetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStackSetOperationResults = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListStackSetOperationResults"),
+    input = M.ListStackSetOperationResultsInput,
+    output = M.ListStackSetOperationResultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStackSetOperations = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListStackSetOperations"),
+    input = M.ListStackSetOperationsInput,
+    output = M.ListStackSetOperationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStackSets = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListStackSets"),
+    input = M.ListStackSetsInput,
+    output = M.ListStackSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTypeRegistrations = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListTypeRegistrations"),
+    input = M.ListTypeRegistrationsInput,
+    output = M.ListTypeRegistrationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTypes = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListTypes"),
+    input = M.ListTypesInput,
+    output = M.ListTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTypeVersions = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ListTypeVersions"),
+    input = M.ListTypeVersionsInput,
+    output = M.ListTypeVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PublishType = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "PublishType"),
+    input = M.PublishTypeInput,
+    output = M.PublishTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RecordHandlerProgress = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "RecordHandlerProgress"),
+    input = M.RecordHandlerProgressInput,
+    output = M.RecordHandlerProgressOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterPublisher = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "RegisterPublisher"),
+    input = M.RegisterPublisherInput,
+    output = M.RegisterPublisherOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterType = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "RegisterType"),
+    input = M.RegisterTypeInput,
+    output = M.RegisterTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RollbackStack = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "RollbackStack"),
+    input = M.RollbackStackInput,
+    output = M.RollbackStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetStackPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "SetStackPolicy"),
+    input = M.SetStackPolicyInput,
+    output = M.SetStackPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetTypeConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "SetTypeConfiguration"),
+    input = M.SetTypeConfigurationInput,
+    output = M.SetTypeConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetTypeDefaultVersion = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "SetTypeDefaultVersion"),
+    input = M.SetTypeDefaultVersionInput,
+    output = M.SetTypeDefaultVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SignalResource = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "SignalResource"),
+    input = M.SignalResourceInput,
+    output = M.SignalResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartResourceScan = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "StartResourceScan"),
+    input = M.StartResourceScanInput,
+    output = M.StartResourceScanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopStackSetOperation = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "StopStackSetOperation"),
+    input = M.StopStackSetOperationInput,
+    output = M.StopStackSetOperationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestType = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "TestType"),
+    input = M.TestTypeInput,
+    output = M.TestTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGeneratedTemplate = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "UpdateGeneratedTemplate"),
+    input = M.UpdateGeneratedTemplateInput,
+    output = M.UpdateGeneratedTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStack = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "UpdateStack"),
+    input = M.UpdateStackInput,
+    output = M.UpdateStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStackInstances = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "UpdateStackInstances"),
+    input = M.UpdateStackInstancesInput,
+    output = M.UpdateStackInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStackSet = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "UpdateStackSet"),
+    input = M.UpdateStackSetInput,
+    output = M.UpdateStackSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTerminationProtection = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "UpdateTerminationProtection"),
+    input = M.UpdateTerminationProtectionInput,
+    output = M.UpdateTerminationProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateTemplate = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "ValidateTemplate"),
+    input = M.ValidateTemplateInput,
+    output = M.ValidateTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

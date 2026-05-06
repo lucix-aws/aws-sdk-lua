@@ -7,6 +7,7 @@ local endpoint_rules = require("kinesisvideoarchivedmedia.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("kinesisvideoarchivedmedia.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kinesisvideo", signing_region = cfg.region } }
                 else
@@ -49,81 +52,27 @@ function M.new(cfg)
 end
 
 function Client:getClip(input, options)
-    return self:invokeOperation(input, {
-        name = "GetClip",
-        input_schema = schemas.GetClipInput,
-        output_schema = schemas.GetClipOutput,
-        http_method = "POST",
-        http_path = "/getClip",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetClip, input, options)
 end
 
 function Client:getDASHStreamingSessionURL(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDASHStreamingSessionURL",
-        input_schema = schemas.GetDASHStreamingSessionURLInput,
-        output_schema = schemas.GetDASHStreamingSessionURLOutput,
-        http_method = "POST",
-        http_path = "/getDASHStreamingSessionURL",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDASHStreamingSessionURL, input, options)
 end
 
 function Client:getHLSStreamingSessionURL(input, options)
-    return self:invokeOperation(input, {
-        name = "GetHLSStreamingSessionURL",
-        input_schema = schemas.GetHLSStreamingSessionURLInput,
-        output_schema = schemas.GetHLSStreamingSessionURLOutput,
-        http_method = "POST",
-        http_path = "/getHLSStreamingSessionURL",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetHLSStreamingSessionURL, input, options)
 end
 
 function Client:getImages(input, options)
-    return self:invokeOperation(input, {
-        name = "GetImages",
-        input_schema = schemas.GetImagesInput,
-        output_schema = schemas.GetImagesOutput,
-        http_method = "POST",
-        http_path = "/getImages",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetImages, input, options)
 end
 
 function Client:getMediaForFragmentList(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMediaForFragmentList",
-        input_schema = schemas.GetMediaForFragmentListInput,
-        output_schema = schemas.GetMediaForFragmentListOutput,
-        http_method = "POST",
-        http_path = "/getMediaForFragmentList",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMediaForFragmentList, input, options)
 end
 
 function Client:listFragments(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFragments",
-        input_schema = schemas.ListFragmentsInput,
-        output_schema = schemas.ListFragmentsOutput,
-        http_method = "POST",
-        http_path = "/listFragments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFragments, input, options)
 end
 
 return M

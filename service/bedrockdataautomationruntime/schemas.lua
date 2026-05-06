@@ -775,4 +775,80 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.bedrockdataautomationruntime", "AmazonBedrockKeystoneRuntimeService"),
+    version = "2024-06-13",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataAutomationStatus = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomationruntime", "GetDataAutomationStatus"),
+    input = M.GetDataAutomationStatusInput,
+    output = M.GetDataAutomationStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InvokeDataAutomation = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomationruntime", "InvokeDataAutomation"),
+    input = M.InvokeDataAutomationInput,
+    output = M.InvokeDataAutomationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InvokeDataAutomationAsync = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomationruntime", "InvokeDataAutomationAsync"),
+    input = M.InvokeDataAutomationAsyncInput,
+    output = M.InvokeDataAutomationAsyncOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomationruntime", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomationruntime", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockdataautomationruntime", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

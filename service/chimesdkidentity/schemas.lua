@@ -2140,4 +2140,374 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.chimesdkidentity", "ChimeIdentityService"),
+    version = "2021-04-20",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAppInstance = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "CreateAppInstance"),
+    input = M.CreateAppInstanceInput,
+    output = M.CreateAppInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/app-instances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAppInstanceAdmin = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "CreateAppInstanceAdmin"),
+    input = M.CreateAppInstanceAdminInput,
+    output = M.CreateAppInstanceAdminOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/app-instances/{AppInstanceArn}/admins" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAppInstanceBot = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "CreateAppInstanceBot"),
+    input = M.CreateAppInstanceBotInput,
+    output = M.CreateAppInstanceBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/app-instance-bots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAppInstanceUser = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "CreateAppInstanceUser"),
+    input = M.CreateAppInstanceUserInput,
+    output = M.CreateAppInstanceUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/app-instance-users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppInstance = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "DeleteAppInstance"),
+    input = M.DeleteAppInstanceInput,
+    output = M.DeleteAppInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/app-instances/{AppInstanceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppInstanceAdmin = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "DeleteAppInstanceAdmin"),
+    input = M.DeleteAppInstanceAdminInput,
+    output = M.DeleteAppInstanceAdminOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/app-instances/{AppInstanceArn}/admins/{AppInstanceAdminArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppInstanceBot = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "DeleteAppInstanceBot"),
+    input = M.DeleteAppInstanceBotInput,
+    output = M.DeleteAppInstanceBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/app-instance-bots/{AppInstanceBotArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppInstanceUser = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "DeleteAppInstanceUser"),
+    input = M.DeleteAppInstanceUserInput,
+    output = M.DeleteAppInstanceUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/app-instance-users/{AppInstanceUserArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterAppInstanceUserEndpoint = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "DeregisterAppInstanceUserEndpoint"),
+    input = M.DeregisterAppInstanceUserEndpointInput,
+    output = M.DeregisterAppInstanceUserEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/app-instance-users/{AppInstanceUserArn}/endpoints/{EndpointId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppInstance = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "DescribeAppInstance"),
+    input = M.DescribeAppInstanceInput,
+    output = M.DescribeAppInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app-instances/{AppInstanceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppInstanceAdmin = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "DescribeAppInstanceAdmin"),
+    input = M.DescribeAppInstanceAdminInput,
+    output = M.DescribeAppInstanceAdminOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app-instances/{AppInstanceArn}/admins/{AppInstanceAdminArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppInstanceBot = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "DescribeAppInstanceBot"),
+    input = M.DescribeAppInstanceBotInput,
+    output = M.DescribeAppInstanceBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app-instance-bots/{AppInstanceBotArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppInstanceUser = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "DescribeAppInstanceUser"),
+    input = M.DescribeAppInstanceUserInput,
+    output = M.DescribeAppInstanceUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app-instance-users/{AppInstanceUserArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppInstanceUserEndpoint = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "DescribeAppInstanceUserEndpoint"),
+    input = M.DescribeAppInstanceUserEndpointInput,
+    output = M.DescribeAppInstanceUserEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app-instance-users/{AppInstanceUserArn}/endpoints/{EndpointId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAppInstanceRetentionSettings = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "GetAppInstanceRetentionSettings"),
+    input = M.GetAppInstanceRetentionSettingsInput,
+    output = M.GetAppInstanceRetentionSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app-instances/{AppInstanceArn}/retention-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppInstanceAdmins = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "ListAppInstanceAdmins"),
+    input = M.ListAppInstanceAdminsInput,
+    output = M.ListAppInstanceAdminsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app-instances/{AppInstanceArn}/admins" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppInstanceBots = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "ListAppInstanceBots"),
+    input = M.ListAppInstanceBotsInput,
+    output = M.ListAppInstanceBotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app-instance-bots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppInstances = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "ListAppInstances"),
+    input = M.ListAppInstancesInput,
+    output = M.ListAppInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app-instances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppInstanceUserEndpoints = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "ListAppInstanceUserEndpoints"),
+    input = M.ListAppInstanceUserEndpointsInput,
+    output = M.ListAppInstanceUserEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app-instance-users/{AppInstanceUserArn}/endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppInstanceUsers = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "ListAppInstanceUsers"),
+    input = M.ListAppInstanceUsersInput,
+    output = M.ListAppInstanceUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app-instance-users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAppInstanceRetentionSettings = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "PutAppInstanceRetentionSettings"),
+    input = M.PutAppInstanceRetentionSettingsInput,
+    output = M.PutAppInstanceRetentionSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/app-instances/{AppInstanceArn}/retention-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAppInstanceUserExpirationSettings = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "PutAppInstanceUserExpirationSettings"),
+    input = M.PutAppInstanceUserExpirationSettingsInput,
+    output = M.PutAppInstanceUserExpirationSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/app-instance-users/{AppInstanceUserArn}/expiration-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterAppInstanceUserEndpoint = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "RegisterAppInstanceUserEndpoint"),
+    input = M.RegisterAppInstanceUserEndpointInput,
+    output = M.RegisterAppInstanceUserEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/app-instance-users/{AppInstanceUserArn}/endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags?operation=tag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags?operation=untag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAppInstance = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "UpdateAppInstance"),
+    input = M.UpdateAppInstanceInput,
+    output = M.UpdateAppInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/app-instances/{AppInstanceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAppInstanceBot = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "UpdateAppInstanceBot"),
+    input = M.UpdateAppInstanceBotInput,
+    output = M.UpdateAppInstanceBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/app-instance-bots/{AppInstanceBotArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAppInstanceUser = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "UpdateAppInstanceUser"),
+    input = M.UpdateAppInstanceUserInput,
+    output = M.UpdateAppInstanceUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/app-instance-users/{AppInstanceUserArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAppInstanceUserEndpoint = schema.operation({
+    id = id.from("com.amazonaws.chimesdkidentity", "UpdateAppInstanceUserEndpoint"),
+    input = M.UpdateAppInstanceUserEndpointInput,
+    output = M.UpdateAppInstanceUserEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/app-instance-users/{AppInstanceUserArn}/endpoints/{EndpointId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

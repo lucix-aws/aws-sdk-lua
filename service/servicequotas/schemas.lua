@@ -1859,4 +1859,300 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.servicequotas", "ServiceQuotasV20190624"),
+    version = "2019-06-24",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateServiceQuotaTemplate = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "AssociateServiceQuotaTemplate"),
+    input = M.AssociateServiceQuotaTemplateInput,
+    output = M.AssociateServiceQuotaTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSupportCase = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "CreateSupportCase"),
+    input = M.CreateSupportCaseInput,
+    output = M.CreateSupportCaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceQuotaIncreaseRequestFromTemplate = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "DeleteServiceQuotaIncreaseRequestFromTemplate"),
+    input = M.DeleteServiceQuotaIncreaseRequestFromTemplateInput,
+    output = M.DeleteServiceQuotaIncreaseRequestFromTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateServiceQuotaTemplate = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "DisassociateServiceQuotaTemplate"),
+    input = M.DisassociateServiceQuotaTemplateInput,
+    output = M.DisassociateServiceQuotaTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssociationForServiceQuotaTemplate = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "GetAssociationForServiceQuotaTemplate"),
+    input = M.GetAssociationForServiceQuotaTemplateInput,
+    output = M.GetAssociationForServiceQuotaTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAutoManagementConfiguration = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "GetAutoManagementConfiguration"),
+    input = M.GetAutoManagementConfigurationInput,
+    output = M.GetAutoManagementConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAWSDefaultServiceQuota = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "GetAWSDefaultServiceQuota"),
+    input = M.GetAWSDefaultServiceQuotaInput,
+    output = M.GetAWSDefaultServiceQuotaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQuotaUtilizationReport = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "GetQuotaUtilizationReport"),
+    input = M.GetQuotaUtilizationReportInput,
+    output = M.GetQuotaUtilizationReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRequestedServiceQuotaChange = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "GetRequestedServiceQuotaChange"),
+    input = M.GetRequestedServiceQuotaChangeInput,
+    output = M.GetRequestedServiceQuotaChangeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceQuota = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "GetServiceQuota"),
+    input = M.GetServiceQuotaInput,
+    output = M.GetServiceQuotaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceQuotaIncreaseRequestFromTemplate = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "GetServiceQuotaIncreaseRequestFromTemplate"),
+    input = M.GetServiceQuotaIncreaseRequestFromTemplateInput,
+    output = M.GetServiceQuotaIncreaseRequestFromTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAWSDefaultServiceQuotas = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "ListAWSDefaultServiceQuotas"),
+    input = M.ListAWSDefaultServiceQuotasInput,
+    output = M.ListAWSDefaultServiceQuotasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRequestedServiceQuotaChangeHistory = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "ListRequestedServiceQuotaChangeHistory"),
+    input = M.ListRequestedServiceQuotaChangeHistoryInput,
+    output = M.ListRequestedServiceQuotaChangeHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRequestedServiceQuotaChangeHistoryByQuota = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "ListRequestedServiceQuotaChangeHistoryByQuota"),
+    input = M.ListRequestedServiceQuotaChangeHistoryByQuotaInput,
+    output = M.ListRequestedServiceQuotaChangeHistoryByQuotaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceQuotaIncreaseRequestsInTemplate = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "ListServiceQuotaIncreaseRequestsInTemplate"),
+    input = M.ListServiceQuotaIncreaseRequestsInTemplateInput,
+    output = M.ListServiceQuotaIncreaseRequestsInTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceQuotas = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "ListServiceQuotas"),
+    input = M.ListServiceQuotasInput,
+    output = M.ListServiceQuotasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServices = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "ListServices"),
+    input = M.ListServicesInput,
+    output = M.ListServicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutServiceQuotaIncreaseRequestIntoTemplate = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "PutServiceQuotaIncreaseRequestIntoTemplate"),
+    input = M.PutServiceQuotaIncreaseRequestIntoTemplateInput,
+    output = M.PutServiceQuotaIncreaseRequestIntoTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RequestServiceQuotaIncrease = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "RequestServiceQuotaIncrease"),
+    input = M.RequestServiceQuotaIncreaseInput,
+    output = M.RequestServiceQuotaIncreaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAutoManagement = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "StartAutoManagement"),
+    input = M.StartAutoManagementInput,
+    output = M.StartAutoManagementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartQuotaUtilizationReport = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "StartQuotaUtilizationReport"),
+    input = M.StartQuotaUtilizationReportInput,
+    output = M.StartQuotaUtilizationReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopAutoManagement = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "StopAutoManagement"),
+    input = M.StopAutoManagementInput,
+    output = M.StopAutoManagementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAutoManagement = schema.operation({
+    id = id.from("com.amazonaws.servicequotas", "UpdateAutoManagement"),
+    input = M.UpdateAutoManagementInput,
+    output = M.UpdateAutoManagementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

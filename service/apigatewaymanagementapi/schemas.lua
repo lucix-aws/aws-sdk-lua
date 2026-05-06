@@ -201,4 +201,50 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.apigatewaymanagementapi", "ApiGatewayManagementApi"),
+    version = "2018-11-29",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnection = schema.operation({
+    id = id.from("com.amazonaws.apigatewaymanagementapi", "DeleteConnection"),
+    input = M.DeleteConnectionInput,
+    output = M.DeleteConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/@connections/{ConnectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnection = schema.operation({
+    id = id.from("com.amazonaws.apigatewaymanagementapi", "GetConnection"),
+    input = M.GetConnectionInput,
+    output = M.GetConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/@connections/{ConnectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PostToConnection = schema.operation({
+    id = id.from("com.amazonaws.apigatewaymanagementapi", "PostToConnection"),
+    input = M.PostToConnectionInput,
+    output = M.PostToConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/@connections/{ConnectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

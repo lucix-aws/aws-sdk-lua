@@ -9660,4 +9660,391 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.bedrockagentruntime", "AmazonBedrockAgentRunTimeService"),
+    version = "2023-07-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInvocation = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "CreateInvocation"),
+    input = M.CreateInvocationInput,
+    output = M.CreateInvocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sessions/{sessionIdentifier}/invocations/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSession = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "CreateSession"),
+    input = M.CreateSessionInput,
+    output = M.CreateSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sessions/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAgentMemory = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "DeleteAgentMemory"),
+    input = M.DeleteAgentMemoryInput,
+    output = M.DeleteAgentMemoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/agents/{agentId}/agentAliases/{agentAliasId}/memories" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSession = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "DeleteSession"),
+    input = M.DeleteSessionInput,
+    output = M.DeleteSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sessions/{sessionIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EndSession = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "EndSession"),
+    input = M.EndSessionInput,
+    output = M.EndSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/sessions/{sessionIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateQuery = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "GenerateQuery"),
+    input = M.GenerateQueryInput,
+    output = M.GenerateQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/generateQuery" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentMemory = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "GetAgentMemory"),
+    input = M.GetAgentMemoryInput,
+    output = M.GetAgentMemoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/agents/{agentId}/agentAliases/{agentAliasId}/memories" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExecutionFlowSnapshot = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "GetExecutionFlowSnapshot"),
+    input = M.GetExecutionFlowSnapshotInput,
+    output = M.GetExecutionFlowSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions/{executionIdentifier}/flowsnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFlowExecution = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "GetFlowExecution"),
+    input = M.GetFlowExecutionInput,
+    output = M.GetFlowExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions/{executionIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInvocationStep = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "GetInvocationStep"),
+    input = M.GetInvocationStepInput,
+    output = M.GetInvocationStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sessions/{sessionIdentifier}/invocationSteps/{invocationStepId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSession = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "GetSession"),
+    input = M.GetSessionInput,
+    output = M.GetSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sessions/{sessionIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InvokeAgent = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "InvokeAgent"),
+    input = M.InvokeAgentInput,
+    output = M.InvokeAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agents/{agentId}/agentAliases/{agentAliasId}/sessions/{sessionId}/text" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.ResponseStream,
+    },
+})
+
+M.InvokeFlow = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "InvokeFlow"),
+    input = M.InvokeFlowInput,
+    output = M.InvokeFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.FlowResponseStream,
+    },
+})
+
+M.InvokeInlineAgent = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "InvokeInlineAgent"),
+    input = M.InvokeInlineAgentInput,
+    output = M.InvokeInlineAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agents/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.InlineAgentResponseStream,
+    },
+})
+
+M.ListFlowExecutionEvents = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "ListFlowExecutionEvents"),
+    input = M.ListFlowExecutionEventsInput,
+    output = M.ListFlowExecutionEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions/{executionIdentifier}/events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlowExecutions = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "ListFlowExecutions"),
+    input = M.ListFlowExecutionsInput,
+    output = M.ListFlowExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/flows/{flowIdentifier}/executions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvocations = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "ListInvocations"),
+    input = M.ListInvocationsInput,
+    output = M.ListInvocationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sessions/{sessionIdentifier}/invocations/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvocationSteps = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "ListInvocationSteps"),
+    input = M.ListInvocationStepsInput,
+    output = M.ListInvocationStepsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sessions/{sessionIdentifier}/invocationSteps/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessions = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "ListSessions"),
+    input = M.ListSessionsInput,
+    output = M.ListSessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sessions/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.OptimizePrompt = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "OptimizePrompt"),
+    input = M.OptimizePromptInput,
+    output = M.OptimizePromptOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/optimize-prompt" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.OptimizedPromptStream,
+    },
+})
+
+M.PutInvocationStep = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "PutInvocationStep"),
+    input = M.PutInvocationStepInput,
+    output = M.PutInvocationStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sessions/{sessionIdentifier}/invocationSteps/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Rerank = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "Rerank"),
+    input = M.RerankInput,
+    output = M.RerankOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/rerank" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Retrieve = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "Retrieve"),
+    input = M.RetrieveInput,
+    output = M.RetrieveOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgebases/{knowledgeBaseId}/retrieve" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetrieveAndGenerate = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "RetrieveAndGenerate"),
+    input = M.RetrieveAndGenerateOperationInput,
+    output = M.RetrieveAndGenerateOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/retrieveAndGenerate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetrieveAndGenerateStream = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "RetrieveAndGenerateStream"),
+    input = M.RetrieveAndGenerateStreamInput,
+    output = M.RetrieveAndGenerateStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/retrieveAndGenerateStream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.RetrieveAndGenerateStreamResponseOutput,
+    },
+})
+
+M.StartFlowExecution = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "StartFlowExecution"),
+    input = M.StartFlowExecutionInput,
+    output = M.StartFlowExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopFlowExecution = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "StopFlowExecution"),
+    input = M.StopFlowExecutionInput,
+    output = M.StopFlowExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions/{executionIdentifier}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSession = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "UpdateSession"),
+    input = M.UpdateSessionInput,
+    output = M.UpdateSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/sessions/{sessionIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

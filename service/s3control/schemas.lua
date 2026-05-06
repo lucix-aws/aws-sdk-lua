@@ -9223,4 +9223,1502 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.s3control", "AWSS3ControlServiceV20180820"),
+    version = "2018-08-20",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAccessGrantsIdentityCenter = schema.operation({
+    id = id.from("com.amazonaws.s3control", "AssociateAccessGrantsIdentityCenter"),
+    input = M.AssociateAccessGrantsIdentityCenterInput,
+    output = M.AssociateAccessGrantsIdentityCenterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v20180820/accessgrantsinstance/identitycenter" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.CreateAccessGrant = schema.operation({
+    id = id.from("com.amazonaws.s3control", "CreateAccessGrant"),
+    input = M.CreateAccessGrantInput,
+    output = M.CreateAccessGrantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v20180820/accessgrantsinstance/grant" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.CreateAccessGrantsInstance = schema.operation({
+    id = id.from("com.amazonaws.s3control", "CreateAccessGrantsInstance"),
+    input = M.CreateAccessGrantsInstanceInput,
+    output = M.CreateAccessGrantsInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v20180820/accessgrantsinstance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.CreateAccessGrantsLocation = schema.operation({
+    id = id.from("com.amazonaws.s3control", "CreateAccessGrantsLocation"),
+    input = M.CreateAccessGrantsLocationInput,
+    output = M.CreateAccessGrantsLocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v20180820/accessgrantsinstance/location" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.CreateAccessPoint = schema.operation({
+    id = id.from("com.amazonaws.s3control", "CreateAccessPoint"),
+    input = M.CreateAccessPointInput,
+    output = M.CreateAccessPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/accesspoint/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccessPointName = "Name",
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.CreateAccessPointForObjectLambda = schema.operation({
+    id = id.from("com.amazonaws.s3control", "CreateAccessPointForObjectLambda"),
+    input = M.CreateAccessPointForObjectLambdaInput,
+    output = M.CreateAccessPointForObjectLambdaOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/accesspointforobjectlambda/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.CreateBucket = schema.operation({
+    id = id.from("com.amazonaws.s3control", "CreateBucket"),
+    input = M.CreateBucketInput,
+    output = M.CreateBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/bucket/{Bucket}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            OutpostId = "OutpostId",
+        },
+    },
+})
+
+M.CreateJob = schema.operation({
+    id = id.from("com.amazonaws.s3control", "CreateJob"),
+    input = M.CreateJobInput,
+    output = M.CreateJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v20180820/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.CreateMultiRegionAccessPoint = schema.operation({
+    id = id.from("com.amazonaws.s3control", "CreateMultiRegionAccessPoint"),
+    input = M.CreateMultiRegionAccessPointOperationInput,
+    output = M.CreateMultiRegionAccessPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v20180820/async-requests/mrap/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.CreateStorageLensGroup = schema.operation({
+    id = id.from("com.amazonaws.s3control", "CreateStorageLensGroup"),
+    input = M.CreateStorageLensGroupInput,
+    output = M.CreateStorageLensGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v20180820/storagelensgroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeleteAccessGrant = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteAccessGrant"),
+    input = M.DeleteAccessGrantInput,
+    output = M.DeleteAccessGrantOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/accessgrantsinstance/grant/{AccessGrantId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeleteAccessGrantsInstance = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteAccessGrantsInstance"),
+    input = M.DeleteAccessGrantsInstanceInput,
+    output = M.DeleteAccessGrantsInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/accessgrantsinstance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeleteAccessGrantsInstanceResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteAccessGrantsInstanceResourcePolicy"),
+    input = M.DeleteAccessGrantsInstanceResourcePolicyInput,
+    output = M.DeleteAccessGrantsInstanceResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/accessgrantsinstance/resourcepolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeleteAccessGrantsLocation = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteAccessGrantsLocation"),
+    input = M.DeleteAccessGrantsLocationInput,
+    output = M.DeleteAccessGrantsLocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/accessgrantsinstance/location/{AccessGrantsLocationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeleteAccessPoint = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteAccessPoint"),
+    input = M.DeleteAccessPointInput,
+    output = M.DeleteAccessPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/accesspoint/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccessPointName = "Name",
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeleteAccessPointForObjectLambda = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteAccessPointForObjectLambda"),
+    input = M.DeleteAccessPointForObjectLambdaInput,
+    output = M.DeleteAccessPointForObjectLambdaOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/accesspointforobjectlambda/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeleteAccessPointPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteAccessPointPolicy"),
+    input = M.DeleteAccessPointPolicyInput,
+    output = M.DeleteAccessPointPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/accesspoint/{Name}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccessPointName = "Name",
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeleteAccessPointPolicyForObjectLambda = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteAccessPointPolicyForObjectLambda"),
+    input = M.DeleteAccessPointPolicyForObjectLambdaInput,
+    output = M.DeleteAccessPointPolicyForObjectLambdaOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/accesspointforobjectlambda/{Name}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeleteAccessPointScope = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteAccessPointScope"),
+    input = M.DeleteAccessPointScopeInput,
+    output = M.DeleteAccessPointScopeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/accesspoint/{Name}/scope" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccessPointName = "Name",
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeleteBucket = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteBucket"),
+    input = M.DeleteBucketInput,
+    output = M.DeleteBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/bucket/{Bucket}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketLifecycleConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteBucketLifecycleConfiguration"),
+    input = M.DeleteBucketLifecycleConfigurationInput,
+    output = M.DeleteBucketLifecycleConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/bucket/{Bucket}/lifecycleconfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteBucketPolicy"),
+    input = M.DeleteBucketPolicyInput,
+    output = M.DeleteBucketPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/bucket/{Bucket}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketReplication = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteBucketReplication"),
+    input = M.DeleteBucketReplicationInput,
+    output = M.DeleteBucketReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/bucket/{Bucket}/replication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketTagging = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteBucketTagging"),
+    input = M.DeleteBucketTaggingInput,
+    output = M.DeleteBucketTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/bucket/{Bucket}/tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteJobTagging = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteJobTagging"),
+    input = M.DeleteJobTaggingInput,
+    output = M.DeleteJobTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/jobs/{JobId}/tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeleteMultiRegionAccessPoint = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteMultiRegionAccessPoint"),
+    input = M.DeleteMultiRegionAccessPointOperationInput,
+    output = M.DeleteMultiRegionAccessPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v20180820/async-requests/mrap/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeletePublicAccessBlock = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeletePublicAccessBlock"),
+    input = M.DeletePublicAccessBlockInput,
+    output = M.DeletePublicAccessBlockOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/configuration/publicAccessBlock" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeleteStorageLensConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteStorageLensConfiguration"),
+    input = M.DeleteStorageLensConfigurationInput,
+    output = M.DeleteStorageLensConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/storagelens/{ConfigId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeleteStorageLensConfigurationTagging = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteStorageLensConfigurationTagging"),
+    input = M.DeleteStorageLensConfigurationTaggingInput,
+    output = M.DeleteStorageLensConfigurationTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/storagelens/{ConfigId}/tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DeleteStorageLensGroup = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DeleteStorageLensGroup"),
+    input = M.DeleteStorageLensGroupInput,
+    output = M.DeleteStorageLensGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/storagelensgroup/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DescribeJob = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DescribeJob"),
+    input = M.DescribeJobInput,
+    output = M.DescribeJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/jobs/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DescribeMultiRegionAccessPointOperation = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DescribeMultiRegionAccessPointOperation"),
+    input = M.DescribeMultiRegionAccessPointOperationInput,
+    output = M.DescribeMultiRegionAccessPointOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/async-requests/mrap/{RequestTokenARN+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.DissociateAccessGrantsIdentityCenter = schema.operation({
+    id = id.from("com.amazonaws.s3control", "DissociateAccessGrantsIdentityCenter"),
+    input = M.DissociateAccessGrantsIdentityCenterInput,
+    output = M.DissociateAccessGrantsIdentityCenterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/accessgrantsinstance/identitycenter" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetAccessGrant = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetAccessGrant"),
+    input = M.GetAccessGrantInput,
+    output = M.GetAccessGrantOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accessgrantsinstance/grant/{AccessGrantId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetAccessGrantsInstance = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetAccessGrantsInstance"),
+    input = M.GetAccessGrantsInstanceInput,
+    output = M.GetAccessGrantsInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accessgrantsinstance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetAccessGrantsInstanceForPrefix = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetAccessGrantsInstanceForPrefix"),
+    input = M.GetAccessGrantsInstanceForPrefixInput,
+    output = M.GetAccessGrantsInstanceForPrefixOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accessgrantsinstance/prefix" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetAccessGrantsInstanceResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetAccessGrantsInstanceResourcePolicy"),
+    input = M.GetAccessGrantsInstanceResourcePolicyInput,
+    output = M.GetAccessGrantsInstanceResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accessgrantsinstance/resourcepolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetAccessGrantsLocation = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetAccessGrantsLocation"),
+    input = M.GetAccessGrantsLocationInput,
+    output = M.GetAccessGrantsLocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accessgrantsinstance/location/{AccessGrantsLocationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetAccessPoint = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetAccessPoint"),
+    input = M.GetAccessPointInput,
+    output = M.GetAccessPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accesspoint/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccessPointName = "Name",
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetAccessPointConfigurationForObjectLambda = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetAccessPointConfigurationForObjectLambda"),
+    input = M.GetAccessPointConfigurationForObjectLambdaInput,
+    output = M.GetAccessPointConfigurationForObjectLambdaOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accesspointforobjectlambda/{Name}/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetAccessPointForObjectLambda = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetAccessPointForObjectLambda"),
+    input = M.GetAccessPointForObjectLambdaInput,
+    output = M.GetAccessPointForObjectLambdaOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accesspointforobjectlambda/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetAccessPointPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetAccessPointPolicy"),
+    input = M.GetAccessPointPolicyInput,
+    output = M.GetAccessPointPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accesspoint/{Name}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccessPointName = "Name",
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetAccessPointPolicyForObjectLambda = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetAccessPointPolicyForObjectLambda"),
+    input = M.GetAccessPointPolicyForObjectLambdaInput,
+    output = M.GetAccessPointPolicyForObjectLambdaOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accesspointforobjectlambda/{Name}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetAccessPointPolicyStatus = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetAccessPointPolicyStatus"),
+    input = M.GetAccessPointPolicyStatusInput,
+    output = M.GetAccessPointPolicyStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accesspoint/{Name}/policyStatus" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccessPointName = "Name",
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetAccessPointPolicyStatusForObjectLambda = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetAccessPointPolicyStatusForObjectLambda"),
+    input = M.GetAccessPointPolicyStatusForObjectLambdaInput,
+    output = M.GetAccessPointPolicyStatusForObjectLambdaOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accesspointforobjectlambda/{Name}/policyStatus" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetAccessPointScope = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetAccessPointScope"),
+    input = M.GetAccessPointScopeInput,
+    output = M.GetAccessPointScopeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accesspoint/{Name}/scope" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccessPointName = "Name",
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetBucket = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetBucket"),
+    input = M.GetBucketInput,
+    output = M.GetBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/bucket/{Bucket}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketLifecycleConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetBucketLifecycleConfiguration"),
+    input = M.GetBucketLifecycleConfigurationInput,
+    output = M.GetBucketLifecycleConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/bucket/{Bucket}/lifecycleconfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetBucketPolicy"),
+    input = M.GetBucketPolicyInput,
+    output = M.GetBucketPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/bucket/{Bucket}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketReplication = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetBucketReplication"),
+    input = M.GetBucketReplicationInput,
+    output = M.GetBucketReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/bucket/{Bucket}/replication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketTagging = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetBucketTagging"),
+    input = M.GetBucketTaggingInput,
+    output = M.GetBucketTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/bucket/{Bucket}/tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketVersioning = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetBucketVersioning"),
+    input = M.GetBucketVersioningInput,
+    output = M.GetBucketVersioningOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/bucket/{Bucket}/versioning" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetDataAccess = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetDataAccess"),
+    input = M.GetDataAccessInput,
+    output = M.GetDataAccessOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accessgrantsinstance/dataaccess" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetJobTagging = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetJobTagging"),
+    input = M.GetJobTaggingInput,
+    output = M.GetJobTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/jobs/{JobId}/tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetMultiRegionAccessPoint = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetMultiRegionAccessPoint"),
+    input = M.GetMultiRegionAccessPointInput,
+    output = M.GetMultiRegionAccessPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/mrap/instances/{Name+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetMultiRegionAccessPointPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetMultiRegionAccessPointPolicy"),
+    input = M.GetMultiRegionAccessPointPolicyInput,
+    output = M.GetMultiRegionAccessPointPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/mrap/instances/{Name+}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetMultiRegionAccessPointPolicyStatus = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetMultiRegionAccessPointPolicyStatus"),
+    input = M.GetMultiRegionAccessPointPolicyStatusInput,
+    output = M.GetMultiRegionAccessPointPolicyStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/mrap/instances/{Name+}/policystatus" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetMultiRegionAccessPointRoutes = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetMultiRegionAccessPointRoutes"),
+    input = M.GetMultiRegionAccessPointRoutesInput,
+    output = M.GetMultiRegionAccessPointRoutesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/mrap/instances/{Mrap+}/routes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetPublicAccessBlock = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetPublicAccessBlock"),
+    input = M.GetPublicAccessBlockInput,
+    output = M.GetPublicAccessBlockOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/configuration/publicAccessBlock" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetStorageLensConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetStorageLensConfiguration"),
+    input = M.GetStorageLensConfigurationInput,
+    output = M.GetStorageLensConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/storagelens/{ConfigId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetStorageLensConfigurationTagging = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetStorageLensConfigurationTagging"),
+    input = M.GetStorageLensConfigurationTaggingInput,
+    output = M.GetStorageLensConfigurationTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/storagelens/{ConfigId}/tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.GetStorageLensGroup = schema.operation({
+    id = id.from("com.amazonaws.s3control", "GetStorageLensGroup"),
+    input = M.GetStorageLensGroupInput,
+    output = M.GetStorageLensGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/storagelensgroup/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.ListAccessGrants = schema.operation({
+    id = id.from("com.amazonaws.s3control", "ListAccessGrants"),
+    input = M.ListAccessGrantsInput,
+    output = M.ListAccessGrantsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accessgrantsinstance/grants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.ListAccessGrantsInstances = schema.operation({
+    id = id.from("com.amazonaws.s3control", "ListAccessGrantsInstances"),
+    input = M.ListAccessGrantsInstancesInput,
+    output = M.ListAccessGrantsInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accessgrantsinstances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.ListAccessGrantsLocations = schema.operation({
+    id = id.from("com.amazonaws.s3control", "ListAccessGrantsLocations"),
+    input = M.ListAccessGrantsLocationsInput,
+    output = M.ListAccessGrantsLocationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accessgrantsinstance/locations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.ListAccessPoints = schema.operation({
+    id = id.from("com.amazonaws.s3control", "ListAccessPoints"),
+    input = M.ListAccessPointsInput,
+    output = M.ListAccessPointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accesspoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.ListAccessPointsForDirectoryBuckets = schema.operation({
+    id = id.from("com.amazonaws.s3control", "ListAccessPointsForDirectoryBuckets"),
+    input = M.ListAccessPointsForDirectoryBucketsInput,
+    output = M.ListAccessPointsForDirectoryBucketsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accesspointfordirectory" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.ListAccessPointsForObjectLambda = schema.operation({
+    id = id.from("com.amazonaws.s3control", "ListAccessPointsForObjectLambda"),
+    input = M.ListAccessPointsForObjectLambdaInput,
+    output = M.ListAccessPointsForObjectLambdaOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accesspointforobjectlambda" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.ListCallerAccessGrants = schema.operation({
+    id = id.from("com.amazonaws.s3control", "ListCallerAccessGrants"),
+    input = M.ListCallerAccessGrantsInput,
+    output = M.ListCallerAccessGrantsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/accessgrantsinstance/caller/grants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.ListJobs = schema.operation({
+    id = id.from("com.amazonaws.s3control", "ListJobs"),
+    input = M.ListJobsInput,
+    output = M.ListJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.ListMultiRegionAccessPoints = schema.operation({
+    id = id.from("com.amazonaws.s3control", "ListMultiRegionAccessPoints"),
+    input = M.ListMultiRegionAccessPointsInput,
+    output = M.ListMultiRegionAccessPointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/mrap/instances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.ListRegionalBuckets = schema.operation({
+    id = id.from("com.amazonaws.s3control", "ListRegionalBuckets"),
+    input = M.ListRegionalBucketsInput,
+    output = M.ListRegionalBucketsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/bucket" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            OutpostId = "OutpostId",
+        },
+    },
+})
+
+M.ListStorageLensConfigurations = schema.operation({
+    id = id.from("com.amazonaws.s3control", "ListStorageLensConfigurations"),
+    input = M.ListStorageLensConfigurationsInput,
+    output = M.ListStorageLensConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/storagelens" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.ListStorageLensGroups = schema.operation({
+    id = id.from("com.amazonaws.s3control", "ListStorageLensGroups"),
+    input = M.ListStorageLensGroupsInput,
+    output = M.ListStorageLensGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/storagelensgroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.s3control", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v20180820/tags/{ResourceArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            ResourceArn = "ResourceArn",
+        },
+    },
+})
+
+M.PutAccessGrantsInstanceResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutAccessGrantsInstanceResourcePolicy"),
+    input = M.PutAccessGrantsInstanceResourcePolicyInput,
+    output = M.PutAccessGrantsInstanceResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/accessgrantsinstance/resourcepolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.PutAccessPointConfigurationForObjectLambda = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutAccessPointConfigurationForObjectLambda"),
+    input = M.PutAccessPointConfigurationForObjectLambdaInput,
+    output = M.PutAccessPointConfigurationForObjectLambdaOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/accesspointforobjectlambda/{Name}/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.PutAccessPointPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutAccessPointPolicy"),
+    input = M.PutAccessPointPolicyInput,
+    output = M.PutAccessPointPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/accesspoint/{Name}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccessPointName = "Name",
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.PutAccessPointPolicyForObjectLambda = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutAccessPointPolicyForObjectLambda"),
+    input = M.PutAccessPointPolicyForObjectLambdaInput,
+    output = M.PutAccessPointPolicyForObjectLambdaOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/accesspointforobjectlambda/{Name}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.PutAccessPointScope = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutAccessPointScope"),
+    input = M.PutAccessPointScopeInput,
+    output = M.PutAccessPointScopeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/accesspoint/{Name}/scope" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccessPointName = "Name",
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.PutBucketLifecycleConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutBucketLifecycleConfiguration"),
+    input = M.PutBucketLifecycleConfigurationInput,
+    output = M.PutBucketLifecycleConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/bucket/{Bucket}/lifecycleconfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutBucketPolicy"),
+    input = M.PutBucketPolicyInput,
+    output = M.PutBucketPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/bucket/{Bucket}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketReplication = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutBucketReplication"),
+    input = M.PutBucketReplicationInput,
+    output = M.PutBucketReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/bucket/{Bucket}/replication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketTagging = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutBucketTagging"),
+    input = M.PutBucketTaggingInput,
+    output = M.PutBucketTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/bucket/{Bucket}/tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketVersioning = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutBucketVersioning"),
+    input = M.PutBucketVersioningInput,
+    output = M.PutBucketVersioningOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/bucket/{Bucket}/versioning" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutJobTagging = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutJobTagging"),
+    input = M.PutJobTaggingInput,
+    output = M.PutJobTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/jobs/{JobId}/tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.PutMultiRegionAccessPointPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutMultiRegionAccessPointPolicy"),
+    input = M.PutMultiRegionAccessPointPolicyOperationInput,
+    output = M.PutMultiRegionAccessPointPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v20180820/async-requests/mrap/put-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.PutPublicAccessBlock = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutPublicAccessBlock"),
+    input = M.PutPublicAccessBlockInput,
+    output = M.PutPublicAccessBlockOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/configuration/publicAccessBlock" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.PutStorageLensConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutStorageLensConfiguration"),
+    input = M.PutStorageLensConfigurationInput,
+    output = M.PutStorageLensConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/storagelens/{ConfigId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.PutStorageLensConfigurationTagging = schema.operation({
+    id = id.from("com.amazonaws.s3control", "PutStorageLensConfigurationTagging"),
+    input = M.PutStorageLensConfigurationTaggingInput,
+    output = M.PutStorageLensConfigurationTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/storagelens/{ConfigId}/tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.SubmitMultiRegionAccessPointRoutes = schema.operation({
+    id = id.from("com.amazonaws.s3control", "SubmitMultiRegionAccessPointRoutes"),
+    input = M.SubmitMultiRegionAccessPointRoutesInput,
+    output = M.SubmitMultiRegionAccessPointRoutesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v20180820/mrap/instances/{Mrap+}/routes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.s3control", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v20180820/tags/{ResourceArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            ResourceArn = "ResourceArn",
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.s3control", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v20180820/tags/{ResourceArn+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+            ResourceArn = "ResourceArn",
+        },
+    },
+})
+
+M.UpdateAccessGrantsLocation = schema.operation({
+    id = id.from("com.amazonaws.s3control", "UpdateAccessGrantsLocation"),
+    input = M.UpdateAccessGrantsLocationInput,
+    output = M.UpdateAccessGrantsLocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/accessgrantsinstance/location/{AccessGrantsLocationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.UpdateJobPriority = schema.operation({
+    id = id.from("com.amazonaws.s3control", "UpdateJobPriority"),
+    input = M.UpdateJobPriorityInput,
+    output = M.UpdateJobPriorityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v20180820/jobs/{JobId}/priority" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.UpdateJobStatus = schema.operation({
+    id = id.from("com.amazonaws.s3control", "UpdateJobStatus"),
+    input = M.UpdateJobStatusInput,
+    output = M.UpdateJobStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v20180820/jobs/{JobId}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
+M.UpdateStorageLensGroup = schema.operation({
+    id = id.from("com.amazonaws.s3control", "UpdateStorageLensGroup"),
+    input = M.UpdateStorageLensGroupInput,
+    output = M.UpdateStorageLensGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v20180820/storagelensgroup/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            AccountId = "AccountId",
+        },
+    },
+})
+
 return M

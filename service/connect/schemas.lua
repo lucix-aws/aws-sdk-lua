@@ -40492,4 +40492,4454 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.connect", "AmazonConnectService"),
+    version = "2017-08-08",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ActivateEvaluationForm = schema.operation({
+    id = id.from("com.amazonaws.connect", "ActivateEvaluationForm"),
+    input = M.ActivateEvaluationFormInput,
+    output = M.ActivateEvaluationFormOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}/activate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAnalyticsDataSet = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateAnalyticsDataSet"),
+    input = M.AssociateAnalyticsDataSetInput,
+    output = M.AssociateAnalyticsDataSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/analytics-data/instance/{InstanceId}/association" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateApprovedOrigin = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateApprovedOrigin"),
+    input = M.AssociateApprovedOriginInput,
+    output = M.AssociateApprovedOriginOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/instance/{InstanceId}/approved-origin" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateBot = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateBot"),
+    input = M.AssociateBotInput,
+    output = M.AssociateBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/instance/{InstanceId}/bot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateContactWithUser = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateContactWithUser"),
+    input = M.AssociateContactWithUserInput,
+    output = M.AssociateContactWithUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contacts/{InstanceId}/{ContactId}/associate-user" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateDefaultVocabulary = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateDefaultVocabulary"),
+    input = M.AssociateDefaultVocabularyInput,
+    output = M.AssociateDefaultVocabularyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/default-vocabulary/{InstanceId}/{LanguageCode}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateEmailAddressAlias = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateEmailAddressAlias"),
+    input = M.AssociateEmailAddressAliasInput,
+    output = M.AssociateEmailAddressAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/email-addresses/{InstanceId}/{EmailAddressId}/associate-alias" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateFlow = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateFlow"),
+    input = M.AssociateFlowInput,
+    output = M.AssociateFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/flow-associations/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateHoursOfOperations = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateHoursOfOperations"),
+    input = M.AssociateHoursOfOperationsInput,
+    output = M.AssociateHoursOfOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/associate-hours" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateInstanceStorageConfig = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateInstanceStorageConfig"),
+    input = M.AssociateInstanceStorageConfigInput,
+    output = M.AssociateInstanceStorageConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/instance/{InstanceId}/storage-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateLambdaFunction = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateLambdaFunction"),
+    input = M.AssociateLambdaFunctionInput,
+    output = M.AssociateLambdaFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/instance/{InstanceId}/lambda-function" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateLexBot = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateLexBot"),
+    input = M.AssociateLexBotInput,
+    output = M.AssociateLexBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/instance/{InstanceId}/lex-bot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociatePhoneNumberContactFlow = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociatePhoneNumberContactFlow"),
+    input = M.AssociatePhoneNumberContactFlowInput,
+    output = M.AssociatePhoneNumberContactFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/phone-number/{PhoneNumberId}/contact-flow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateQueueEmailAddresses = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateQueueEmailAddresses"),
+    input = M.AssociateQueueEmailAddressesInput,
+    output = M.AssociateQueueEmailAddressesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/queues/{InstanceId}/{QueueId}/associate-email-addresses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateQueueQuickConnects = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateQueueQuickConnects"),
+    input = M.AssociateQueueQuickConnectsInput,
+    output = M.AssociateQueueQuickConnectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/queues/{InstanceId}/{QueueId}/associate-quick-connects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateRoutingProfileQueues = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateRoutingProfileQueues"),
+    input = M.AssociateRoutingProfileQueuesInput,
+    output = M.AssociateRoutingProfileQueuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/associate-queues" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateSecurityKey = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateSecurityKey"),
+    input = M.AssociateSecurityKeyInput,
+    output = M.AssociateSecurityKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/instance/{InstanceId}/security-key" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateSecurityProfiles = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateSecurityProfiles"),
+    input = M.AssociateSecurityProfilesInput,
+    output = M.AssociateSecurityProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/associate-security-profiles/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateTrafficDistributionGroupUser = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateTrafficDistributionGroupUser"),
+    input = M.AssociateTrafficDistributionGroupUserInput,
+    output = M.AssociateTrafficDistributionGroupUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/traffic-distribution-group/{TrafficDistributionGroupId}/user" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateUserProficiencies = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateUserProficiencies"),
+    input = M.AssociateUserProficienciesInput,
+    output = M.AssociateUserProficienciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/users/{InstanceId}/{UserId}/associate-proficiencies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateWorkspace = schema.operation({
+    id = id.from("com.amazonaws.connect", "AssociateWorkspace"),
+    input = M.AssociateWorkspaceInput,
+    output = M.AssociateWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{InstanceId}/{WorkspaceId}/associate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAssociateAnalyticsDataSet = schema.operation({
+    id = id.from("com.amazonaws.connect", "BatchAssociateAnalyticsDataSet"),
+    input = M.BatchAssociateAnalyticsDataSetInput,
+    output = M.BatchAssociateAnalyticsDataSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/analytics-data/instance/{InstanceId}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateDataTableValue = schema.operation({
+    id = id.from("com.amazonaws.connect", "BatchCreateDataTableValue"),
+    input = M.BatchCreateDataTableValueInput,
+    output = M.BatchCreateDataTableValueOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-tables/{InstanceId}/{DataTableId}/values/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteDataTableValue = schema.operation({
+    id = id.from("com.amazonaws.connect", "BatchDeleteDataTableValue"),
+    input = M.BatchDeleteDataTableValueInput,
+    output = M.BatchDeleteDataTableValueOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-tables/{InstanceId}/{DataTableId}/values/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDescribeDataTableValue = schema.operation({
+    id = id.from("com.amazonaws.connect", "BatchDescribeDataTableValue"),
+    input = M.BatchDescribeDataTableValueInput,
+    output = M.BatchDescribeDataTableValueOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-tables/{InstanceId}/{DataTableId}/values/describe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDisassociateAnalyticsDataSet = schema.operation({
+    id = id.from("com.amazonaws.connect", "BatchDisassociateAnalyticsDataSet"),
+    input = M.BatchDisassociateAnalyticsDataSetInput,
+    output = M.BatchDisassociateAnalyticsDataSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/analytics-data/instance/{InstanceId}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetAttachedFileMetadata = schema.operation({
+    id = id.from("com.amazonaws.connect", "BatchGetAttachedFileMetadata"),
+    input = M.BatchGetAttachedFileMetadataInput,
+    output = M.BatchGetAttachedFileMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/attached-files/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetFlowAssociation = schema.operation({
+    id = id.from("com.amazonaws.connect", "BatchGetFlowAssociation"),
+    input = M.BatchGetFlowAssociationInput,
+    output = M.BatchGetFlowAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/flow-associations-batch/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchPutContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "BatchPutContact"),
+    input = M.BatchPutContactInput,
+    output = M.BatchPutContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact/batch/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateDataTableValue = schema.operation({
+    id = id.from("com.amazonaws.connect", "BatchUpdateDataTableValue"),
+    input = M.BatchUpdateDataTableValueInput,
+    output = M.BatchUpdateDataTableValueOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-tables/{InstanceId}/{DataTableId}/values/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ClaimPhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.connect", "ClaimPhoneNumber"),
+    input = M.ClaimPhoneNumberInput,
+    output = M.ClaimPhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/phone-number/claim" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CompleteAttachedFileUpload = schema.operation({
+    id = id.from("com.amazonaws.connect", "CompleteAttachedFileUpload"),
+    input = M.CompleteAttachedFileUploadInput,
+    output = M.CompleteAttachedFileUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/attached-files/{InstanceId}/{FileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAgentStatus = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateAgentStatus"),
+    input = M.CreateAgentStatusInput,
+    output = M.CreateAgentStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/agent-status/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateContact"),
+    input = M.CreateContactInput,
+    output = M.CreateContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact/create-contact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContactFlow = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateContactFlow"),
+    input = M.CreateContactFlowInput,
+    output = M.CreateContactFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact-flows/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContactFlowModule = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateContactFlowModule"),
+    input = M.CreateContactFlowModuleInput,
+    output = M.CreateContactFlowModuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact-flow-modules/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContactFlowModuleAlias = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateContactFlowModuleAlias"),
+    input = M.CreateContactFlowModuleAliasInput,
+    output = M.CreateContactFlowModuleAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/alias" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContactFlowModuleVersion = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateContactFlowModuleVersion"),
+    input = M.CreateContactFlowModuleVersionInput,
+    output = M.CreateContactFlowModuleVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContactFlowVersion = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateContactFlowVersion"),
+    input = M.CreateContactFlowVersionInput,
+    output = M.CreateContactFlowVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact-flows/{InstanceId}/{ContactFlowId}/version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataTable = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateDataTable"),
+    input = M.CreateDataTableInput,
+    output = M.CreateDataTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/data-tables/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataTableAttribute = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateDataTableAttribute"),
+    input = M.CreateDataTableAttributeInput,
+    output = M.CreateDataTableAttributeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/data-tables/{InstanceId}/{DataTableId}/attributes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEmailAddress = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateEmailAddress"),
+    input = M.CreateEmailAddressInput,
+    output = M.CreateEmailAddressOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/email-addresses/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEvaluationForm = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateEvaluationForm"),
+    input = M.CreateEvaluationFormInput,
+    output = M.CreateEvaluationFormOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/evaluation-forms/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHoursOfOperation = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateHoursOfOperation"),
+    input = M.CreateHoursOfOperationInput,
+    output = M.CreateHoursOfOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/hours-of-operations/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHoursOfOperationOverride = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateHoursOfOperationOverride"),
+    input = M.CreateHoursOfOperationOverrideInput,
+    output = M.CreateHoursOfOperationOverrideOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInstance = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateInstance"),
+    input = M.CreateInstanceInput,
+    output = M.CreateInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/instance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIntegrationAssociation = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateIntegrationAssociation"),
+    input = M.CreateIntegrationAssociationInput,
+    output = M.CreateIntegrationAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/instance/{InstanceId}/integration-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNotification = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateNotification"),
+    input = M.CreateNotificationInput,
+    output = M.CreateNotificationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/notifications/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateParticipant = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateParticipant"),
+    input = M.CreateParticipantInput,
+    output = M.CreateParticipantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/create-participant" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePersistentContactAssociation = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreatePersistentContactAssociation"),
+    input = M.CreatePersistentContactAssociationInput,
+    output = M.CreatePersistentContactAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/persistent-contact-association/{InstanceId}/{InitialContactId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePredefinedAttribute = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreatePredefinedAttribute"),
+    input = M.CreatePredefinedAttributeInput,
+    output = M.CreatePredefinedAttributeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/predefined-attributes/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePrompt = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreatePrompt"),
+    input = M.CreatePromptInput,
+    output = M.CreatePromptOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prompts/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePushNotificationRegistration = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreatePushNotificationRegistration"),
+    input = M.CreatePushNotificationRegistrationInput,
+    output = M.CreatePushNotificationRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/push-notification/{InstanceId}/registrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQueue = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateQueue"),
+    input = M.CreateQueueInput,
+    output = M.CreateQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/queues/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQuickConnect = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateQuickConnect"),
+    input = M.CreateQuickConnectInput,
+    output = M.CreateQuickConnectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/quick-connects/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRoutingProfile = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateRoutingProfile"),
+    input = M.CreateRoutingProfileInput,
+    output = M.CreateRoutingProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/routing-profiles/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRule = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateRule"),
+    input = M.CreateRuleInput,
+    output = M.CreateRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/rules/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSecurityProfile = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateSecurityProfile"),
+    input = M.CreateSecurityProfileInput,
+    output = M.CreateSecurityProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/security-profiles/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTaskTemplate = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateTaskTemplate"),
+    input = M.CreateTaskTemplateInput,
+    output = M.CreateTaskTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/instance/{InstanceId}/task/template" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTestCase = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateTestCase"),
+    input = M.CreateTestCaseInput,
+    output = M.CreateTestCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/test-cases/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrafficDistributionGroup = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateTrafficDistributionGroup"),
+    input = M.CreateTrafficDistributionGroupInput,
+    output = M.CreateTrafficDistributionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/traffic-distribution-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUseCase = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateUseCase"),
+    input = M.CreateUseCaseInput,
+    output = M.CreateUseCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/users/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUserHierarchyGroup = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateUserHierarchyGroup"),
+    input = M.CreateUserHierarchyGroupInput,
+    output = M.CreateUserHierarchyGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/user-hierarchy-groups/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateView = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateView"),
+    input = M.CreateViewInput,
+    output = M.CreateViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/views/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateViewVersion = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateViewVersion"),
+    input = M.CreateViewVersionInput,
+    output = M.CreateViewVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/views/{InstanceId}/{ViewId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVocabulary = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateVocabulary"),
+    input = M.CreateVocabularyInput,
+    output = M.CreateVocabularyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/vocabulary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkspace = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateWorkspace"),
+    input = M.CreateWorkspaceInput,
+    output = M.CreateWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workspaces/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkspacePage = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateWorkspacePage"),
+    input = M.CreateWorkspacePageInput,
+    output = M.CreateWorkspacePageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workspaces/{InstanceId}/{WorkspaceId}/pages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeactivateEvaluationForm = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeactivateEvaluationForm"),
+    input = M.DeactivateEvaluationFormInput,
+    output = M.DeactivateEvaluationFormOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}/deactivate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAttachedFile = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteAttachedFile"),
+    input = M.DeleteAttachedFileInput,
+    output = M.DeleteAttachedFileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/attached-files/{InstanceId}/{FileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContactEvaluation = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteContactEvaluation"),
+    input = M.DeleteContactEvaluationInput,
+    output = M.DeleteContactEvaluationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/contact-evaluations/{InstanceId}/{EvaluationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContactFlow = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteContactFlow"),
+    input = M.DeleteContactFlowInput,
+    output = M.DeleteContactFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/contact-flows/{InstanceId}/{ContactFlowId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContactFlowModule = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteContactFlowModule"),
+    input = M.DeleteContactFlowModuleInput,
+    output = M.DeleteContactFlowModuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContactFlowModuleAlias = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteContactFlowModuleAlias"),
+    input = M.DeleteContactFlowModuleAliasInput,
+    output = M.DeleteContactFlowModuleAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/alias/{AliasId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContactFlowModuleVersion = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteContactFlowModuleVersion"),
+    input = M.DeleteContactFlowModuleVersionInput,
+    output = M.DeleteContactFlowModuleVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/version/{ContactFlowModuleVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContactFlowVersion = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteContactFlowVersion"),
+    input = M.DeleteContactFlowVersionInput,
+    output = M.DeleteContactFlowVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/contact-flows/{InstanceId}/{ContactFlowId}/version/{ContactFlowVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataTable = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteDataTable"),
+    input = M.DeleteDataTableInput,
+    output = M.DeleteDataTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/data-tables/{InstanceId}/{DataTableId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataTableAttribute = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteDataTableAttribute"),
+    input = M.DeleteDataTableAttributeInput,
+    output = M.DeleteDataTableAttributeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/data-tables/{InstanceId}/{DataTableId}/attributes/{AttributeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEmailAddress = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteEmailAddress"),
+    input = M.DeleteEmailAddressInput,
+    output = M.DeleteEmailAddressOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/email-addresses/{InstanceId}/{EmailAddressId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEvaluationForm = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteEvaluationForm"),
+    input = M.DeleteEvaluationFormInput,
+    output = M.DeleteEvaluationFormOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHoursOfOperation = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteHoursOfOperation"),
+    input = M.DeleteHoursOfOperationInput,
+    output = M.DeleteHoursOfOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHoursOfOperationOverride = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteHoursOfOperationOverride"),
+    input = M.DeleteHoursOfOperationOverrideInput,
+    output = M.DeleteHoursOfOperationOverrideOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides/{HoursOfOperationOverrideId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInstance = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteInstance"),
+    input = M.DeleteInstanceInput,
+    output = M.DeleteInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/instance/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIntegrationAssociation = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteIntegrationAssociation"),
+    input = M.DeleteIntegrationAssociationInput,
+    output = M.DeleteIntegrationAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNotification = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteNotification"),
+    input = M.DeleteNotificationInput,
+    output = M.DeleteNotificationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/notifications/{InstanceId}/{NotificationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePredefinedAttribute = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeletePredefinedAttribute"),
+    input = M.DeletePredefinedAttributeInput,
+    output = M.DeletePredefinedAttributeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/predefined-attributes/{InstanceId}/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePrompt = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeletePrompt"),
+    input = M.DeletePromptInput,
+    output = M.DeletePromptOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prompts/{InstanceId}/{PromptId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePushNotificationRegistration = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeletePushNotificationRegistration"),
+    input = M.DeletePushNotificationRegistrationInput,
+    output = M.DeletePushNotificationRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/push-notification/{InstanceId}/registrations/{RegistrationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQueue = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteQueue"),
+    input = M.DeleteQueueInput,
+    output = M.DeleteQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/queues/{InstanceId}/{QueueId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQuickConnect = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteQuickConnect"),
+    input = M.DeleteQuickConnectInput,
+    output = M.DeleteQuickConnectOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/quick-connects/{InstanceId}/{QuickConnectId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRoutingProfile = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteRoutingProfile"),
+    input = M.DeleteRoutingProfileInput,
+    output = M.DeleteRoutingProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/routing-profiles/{InstanceId}/{RoutingProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRule = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteRule"),
+    input = M.DeleteRuleInput,
+    output = M.DeleteRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/rules/{InstanceId}/{RuleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSecurityProfile = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteSecurityProfile"),
+    input = M.DeleteSecurityProfileInput,
+    output = M.DeleteSecurityProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/security-profiles/{InstanceId}/{SecurityProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTaskTemplate = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteTaskTemplate"),
+    input = M.DeleteTaskTemplateInput,
+    output = M.DeleteTaskTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/instance/{InstanceId}/task/template/{TaskTemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTestCase = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteTestCase"),
+    input = M.DeleteTestCaseInput,
+    output = M.DeleteTestCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/test-cases/{InstanceId}/{TestCaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrafficDistributionGroup = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteTrafficDistributionGroup"),
+    input = M.DeleteTrafficDistributionGroupInput,
+    output = M.DeleteTrafficDistributionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/traffic-distribution-group/{TrafficDistributionGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUseCase = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteUseCase"),
+    input = M.DeleteUseCaseInput,
+    output = M.DeleteUseCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases/{UseCaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/users/{InstanceId}/{UserId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserHierarchyGroup = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteUserHierarchyGroup"),
+    input = M.DeleteUserHierarchyGroupInput,
+    output = M.DeleteUserHierarchyGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/user-hierarchy-groups/{InstanceId}/{HierarchyGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteView = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteView"),
+    input = M.DeleteViewInput,
+    output = M.DeleteViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/views/{InstanceId}/{ViewId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteViewVersion = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteViewVersion"),
+    input = M.DeleteViewVersionInput,
+    output = M.DeleteViewVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/views/{InstanceId}/{ViewId}/versions/{ViewVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVocabulary = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteVocabulary"),
+    input = M.DeleteVocabularyInput,
+    output = M.DeleteVocabularyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/vocabulary-remove/{InstanceId}/{VocabularyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkspace = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteWorkspace"),
+    input = M.DeleteWorkspaceInput,
+    output = M.DeleteWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{InstanceId}/{WorkspaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkspaceMedia = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteWorkspaceMedia"),
+    input = M.DeleteWorkspaceMediaInput,
+    output = M.DeleteWorkspaceMediaOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{InstanceId}/{WorkspaceId}/media" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkspacePage = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteWorkspacePage"),
+    input = M.DeleteWorkspacePageInput,
+    output = M.DeleteWorkspacePageOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{InstanceId}/{WorkspaceId}/pages/{Page}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAgentStatus = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeAgentStatus"),
+    input = M.DescribeAgentStatusInput,
+    output = M.DescribeAgentStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/agent-status/{InstanceId}/{AgentStatusId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAttachedFilesConfiguration = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeAttachedFilesConfiguration"),
+    input = M.DescribeAttachedFilesConfigurationInput,
+    output = M.DescribeAttachedFilesConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/attached-files-configurations/{InstanceId}/{AttachmentScope}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAuthenticationProfile = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeAuthenticationProfile"),
+    input = M.DescribeAuthenticationProfileInput,
+    output = M.DescribeAuthenticationProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/authentication-profiles/{InstanceId}/{AuthenticationProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeContact"),
+    input = M.DescribeContactInput,
+    output = M.DescribeContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contacts/{InstanceId}/{ContactId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContactEvaluation = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeContactEvaluation"),
+    input = M.DescribeContactEvaluationInput,
+    output = M.DescribeContactEvaluationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact-evaluations/{InstanceId}/{EvaluationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContactFlow = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeContactFlow"),
+    input = M.DescribeContactFlowInput,
+    output = M.DescribeContactFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact-flows/{InstanceId}/{ContactFlowId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContactFlowModule = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeContactFlowModule"),
+    input = M.DescribeContactFlowModuleInput,
+    output = M.DescribeContactFlowModuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContactFlowModuleAlias = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeContactFlowModuleAlias"),
+    input = M.DescribeContactFlowModuleAliasInput,
+    output = M.DescribeContactFlowModuleAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/alias/{AliasId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataTable = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeDataTable"),
+    input = M.DescribeDataTableInput,
+    output = M.DescribeDataTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/data-tables/{InstanceId}/{DataTableId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataTableAttribute = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeDataTableAttribute"),
+    input = M.DescribeDataTableAttributeInput,
+    output = M.DescribeDataTableAttributeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/data-tables/{InstanceId}/{DataTableId}/attributes/{AttributeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEmailAddress = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeEmailAddress"),
+    input = M.DescribeEmailAddressInput,
+    output = M.DescribeEmailAddressOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/email-addresses/{InstanceId}/{EmailAddressId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEvaluationForm = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeEvaluationForm"),
+    input = M.DescribeEvaluationFormInput,
+    output = M.DescribeEvaluationFormOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHoursOfOperation = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeHoursOfOperation"),
+    input = M.DescribeHoursOfOperationInput,
+    output = M.DescribeHoursOfOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHoursOfOperationOverride = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeHoursOfOperationOverride"),
+    input = M.DescribeHoursOfOperationOverrideInput,
+    output = M.DescribeHoursOfOperationOverrideOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides/{HoursOfOperationOverrideId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInstance = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeInstance"),
+    input = M.DescribeInstanceInput,
+    output = M.DescribeInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInstanceAttribute = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeInstanceAttribute"),
+    input = M.DescribeInstanceAttributeInput,
+    output = M.DescribeInstanceAttributeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/attribute/{AttributeType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInstanceStorageConfig = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeInstanceStorageConfig"),
+    input = M.DescribeInstanceStorageConfigInput,
+    output = M.DescribeInstanceStorageConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/storage-config/{AssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNotification = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeNotification"),
+    input = M.DescribeNotificationInput,
+    output = M.DescribeNotificationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/notifications/{InstanceId}/{NotificationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribePhoneNumber"),
+    input = M.DescribePhoneNumberInput,
+    output = M.DescribePhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/phone-number/{PhoneNumberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePredefinedAttribute = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribePredefinedAttribute"),
+    input = M.DescribePredefinedAttributeInput,
+    output = M.DescribePredefinedAttributeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/predefined-attributes/{InstanceId}/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePrompt = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribePrompt"),
+    input = M.DescribePromptInput,
+    output = M.DescribePromptOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prompts/{InstanceId}/{PromptId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeQueue = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeQueue"),
+    input = M.DescribeQueueInput,
+    output = M.DescribeQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/queues/{InstanceId}/{QueueId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeQuickConnect = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeQuickConnect"),
+    input = M.DescribeQuickConnectInput,
+    output = M.DescribeQuickConnectOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/quick-connects/{InstanceId}/{QuickConnectId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRoutingProfile = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeRoutingProfile"),
+    input = M.DescribeRoutingProfileInput,
+    output = M.DescribeRoutingProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/routing-profiles/{InstanceId}/{RoutingProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRule = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeRule"),
+    input = M.DescribeRuleInput,
+    output = M.DescribeRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/rules/{InstanceId}/{RuleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSecurityProfile = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeSecurityProfile"),
+    input = M.DescribeSecurityProfileInput,
+    output = M.DescribeSecurityProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/security-profiles/{InstanceId}/{SecurityProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTestCase = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeTestCase"),
+    input = M.DescribeTestCaseInput,
+    output = M.DescribeTestCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/test-cases/{InstanceId}/{TestCaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrafficDistributionGroup = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeTrafficDistributionGroup"),
+    input = M.DescribeTrafficDistributionGroupInput,
+    output = M.DescribeTrafficDistributionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/traffic-distribution-group/{TrafficDistributionGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUser = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeUser"),
+    input = M.DescribeUserInput,
+    output = M.DescribeUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/users/{InstanceId}/{UserId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUserHierarchyGroup = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeUserHierarchyGroup"),
+    input = M.DescribeUserHierarchyGroupInput,
+    output = M.DescribeUserHierarchyGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/user-hierarchy-groups/{InstanceId}/{HierarchyGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUserHierarchyStructure = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeUserHierarchyStructure"),
+    input = M.DescribeUserHierarchyStructureInput,
+    output = M.DescribeUserHierarchyStructureOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/user-hierarchy-structure/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeView = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeView"),
+    input = M.DescribeViewInput,
+    output = M.DescribeViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/views/{InstanceId}/{ViewId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVocabulary = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeVocabulary"),
+    input = M.DescribeVocabularyInput,
+    output = M.DescribeVocabularyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/vocabulary/{InstanceId}/{VocabularyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspace = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeWorkspace"),
+    input = M.DescribeWorkspaceInput,
+    output = M.DescribeWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{InstanceId}/{WorkspaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateAnalyticsDataSet = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateAnalyticsDataSet"),
+    input = M.DisassociateAnalyticsDataSetInput,
+    output = M.DisassociateAnalyticsDataSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/analytics-data/instance/{InstanceId}/association" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateApprovedOrigin = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateApprovedOrigin"),
+    input = M.DisassociateApprovedOriginInput,
+    output = M.DisassociateApprovedOriginOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/instance/{InstanceId}/approved-origin" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateBot = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateBot"),
+    input = M.DisassociateBotInput,
+    output = M.DisassociateBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/instance/{InstanceId}/bot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateEmailAddressAlias = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateEmailAddressAlias"),
+    input = M.DisassociateEmailAddressAliasInput,
+    output = M.DisassociateEmailAddressAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/email-addresses/{InstanceId}/{EmailAddressId}/disassociate-alias" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFlow = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateFlow"),
+    input = M.DisassociateFlowInput,
+    output = M.DisassociateFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/flow-associations/{InstanceId}/{ResourceId}/{ResourceType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateHoursOfOperations = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateHoursOfOperations"),
+    input = M.DisassociateHoursOfOperationsInput,
+    output = M.DisassociateHoursOfOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/disassociate-hours" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateInstanceStorageConfig = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateInstanceStorageConfig"),
+    input = M.DisassociateInstanceStorageConfigInput,
+    output = M.DisassociateInstanceStorageConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/instance/{InstanceId}/storage-config/{AssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateLambdaFunction = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateLambdaFunction"),
+    input = M.DisassociateLambdaFunctionInput,
+    output = M.DisassociateLambdaFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/instance/{InstanceId}/lambda-function" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateLexBot = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateLexBot"),
+    input = M.DisassociateLexBotInput,
+    output = M.DisassociateLexBotOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/instance/{InstanceId}/lex-bot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociatePhoneNumberContactFlow = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociatePhoneNumberContactFlow"),
+    input = M.DisassociatePhoneNumberContactFlowInput,
+    output = M.DisassociatePhoneNumberContactFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/phone-number/{PhoneNumberId}/contact-flow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateQueueEmailAddresses = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateQueueEmailAddresses"),
+    input = M.DisassociateQueueEmailAddressesInput,
+    output = M.DisassociateQueueEmailAddressesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/queues/{InstanceId}/{QueueId}/disassociate-email-addresses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateQueueQuickConnects = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateQueueQuickConnects"),
+    input = M.DisassociateQueueQuickConnectsInput,
+    output = M.DisassociateQueueQuickConnectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/queues/{InstanceId}/{QueueId}/disassociate-quick-connects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateRoutingProfileQueues = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateRoutingProfileQueues"),
+    input = M.DisassociateRoutingProfileQueuesInput,
+    output = M.DisassociateRoutingProfileQueuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/disassociate-queues" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateSecurityKey = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateSecurityKey"),
+    input = M.DisassociateSecurityKeyInput,
+    output = M.DisassociateSecurityKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/instance/{InstanceId}/security-key/{AssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateSecurityProfiles = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateSecurityProfiles"),
+    input = M.DisassociateSecurityProfilesInput,
+    output = M.DisassociateSecurityProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/disassociate-security-profiles/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateTrafficDistributionGroupUser = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateTrafficDistributionGroupUser"),
+    input = M.DisassociateTrafficDistributionGroupUserInput,
+    output = M.DisassociateTrafficDistributionGroupUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/traffic-distribution-group/{TrafficDistributionGroupId}/user" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateUserProficiencies = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateUserProficiencies"),
+    input = M.DisassociateUserProficienciesInput,
+    output = M.DisassociateUserProficienciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/users/{InstanceId}/{UserId}/disassociate-proficiencies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateWorkspace = schema.operation({
+    id = id.from("com.amazonaws.connect", "DisassociateWorkspace"),
+    input = M.DisassociateWorkspaceInput,
+    output = M.DisassociateWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{InstanceId}/{WorkspaceId}/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DismissUserContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "DismissUserContact"),
+    input = M.DismissUserContactInput,
+    output = M.DismissUserContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/users/{InstanceId}/{UserId}/contact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EvaluateDataTableValues = schema.operation({
+    id = id.from("com.amazonaws.connect", "EvaluateDataTableValues"),
+    input = M.EvaluateDataTableValuesInput,
+    output = M.EvaluateDataTableValuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-tables/{InstanceId}/{DataTableId}/values/evaluate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAttachedFile = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetAttachedFile"),
+    input = M.GetAttachedFileInput,
+    output = M.GetAttachedFileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/attached-files/{InstanceId}/{FileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContactAttributes = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetContactAttributes"),
+    input = M.GetContactAttributesInput,
+    output = M.GetContactAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact/attributes/{InstanceId}/{InitialContactId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContactMetrics = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetContactMetrics"),
+    input = M.GetContactMetricsInput,
+    output = M.GetContactMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metrics/contact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCurrentMetricData = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetCurrentMetricData"),
+    input = M.GetCurrentMetricDataInput,
+    output = M.GetCurrentMetricDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metrics/current/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCurrentUserData = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetCurrentUserData"),
+    input = M.GetCurrentUserDataInput,
+    output = M.GetCurrentUserDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metrics/userdata/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEffectiveHoursOfOperations = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetEffectiveHoursOfOperations"),
+    input = M.GetEffectiveHoursOfOperationsInput,
+    output = M.GetEffectiveHoursOfOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/effective-hours-of-operations/{InstanceId}/{HoursOfOperationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFederationToken = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetFederationToken"),
+    input = M.GetFederationTokenInput,
+    output = M.GetFederationTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/user/federate/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFlowAssociation = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetFlowAssociation"),
+    input = M.GetFlowAssociationInput,
+    output = M.GetFlowAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/flow-associations/{InstanceId}/{ResourceId}/{ResourceType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMetricData = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetMetricData"),
+    input = M.GetMetricDataInput,
+    output = M.GetMetricDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metrics/historical/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMetricDataV2 = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetMetricDataV2"),
+    input = M.GetMetricDataV2Input,
+    output = M.GetMetricDataV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metrics/data" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPromptFile = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetPromptFile"),
+    input = M.GetPromptFileInput,
+    output = M.GetPromptFileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prompts/{InstanceId}/{PromptId}/file" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTaskTemplate = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetTaskTemplate"),
+    input = M.GetTaskTemplateInput,
+    output = M.GetTaskTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/task/template/{TaskTemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTestCaseExecutionSummary = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetTestCaseExecutionSummary"),
+    input = M.GetTestCaseExecutionSummaryInput,
+    output = M.GetTestCaseExecutionSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/test-cases/{InstanceId}/{TestCaseId}/{TestCaseExecutionId}/summary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrafficDistribution = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetTrafficDistribution"),
+    input = M.GetTrafficDistributionInput,
+    output = M.GetTrafficDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/traffic-distribution/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportPhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.connect", "ImportPhoneNumber"),
+    input = M.ImportPhoneNumberInput,
+    output = M.ImportPhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/phone-number/import" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportWorkspaceMedia = schema.operation({
+    id = id.from("com.amazonaws.connect", "ImportWorkspaceMedia"),
+    input = M.ImportWorkspaceMediaInput,
+    output = M.ImportWorkspaceMediaOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{InstanceId}/{WorkspaceId}/media" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentStatuses = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListAgentStatuses"),
+    input = M.ListAgentStatusesInput,
+    output = M.ListAgentStatusesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/agent-status/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnalyticsDataAssociations = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListAnalyticsDataAssociations"),
+    input = M.ListAnalyticsDataAssociationsInput,
+    output = M.ListAnalyticsDataAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/analytics-data/instance/{InstanceId}/association" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnalyticsDataLakeDataSets = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListAnalyticsDataLakeDataSets"),
+    input = M.ListAnalyticsDataLakeDataSetsInput,
+    output = M.ListAnalyticsDataLakeDataSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/analytics-data/instance/{InstanceId}/datasets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApprovedOrigins = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListApprovedOrigins"),
+    input = M.ListApprovedOriginsInput,
+    output = M.ListApprovedOriginsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/approved-origins" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociatedContacts = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListAssociatedContacts"),
+    input = M.ListAssociatedContactsInput,
+    output = M.ListAssociatedContactsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact/associated/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttachedFilesConfigurations = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListAttachedFilesConfigurations"),
+    input = M.ListAttachedFilesConfigurationsInput,
+    output = M.ListAttachedFilesConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/attached-files-configurations/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAuthenticationProfiles = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListAuthenticationProfiles"),
+    input = M.ListAuthenticationProfilesInput,
+    output = M.ListAuthenticationProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/authentication-profiles-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBots = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListBots"),
+    input = M.ListBotsInput,
+    output = M.ListBotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/bots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChildHoursOfOperations = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListChildHoursOfOperations"),
+    input = M.ListChildHoursOfOperationsInput,
+    output = M.ListChildHoursOfOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/hours" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContactEvaluations = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListContactEvaluations"),
+    input = M.ListContactEvaluationsInput,
+    output = M.ListContactEvaluationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact-evaluations/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContactFlowModuleAliases = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListContactFlowModuleAliases"),
+    input = M.ListContactFlowModuleAliasesInput,
+    output = M.ListContactFlowModuleAliasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/aliases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContactFlowModules = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListContactFlowModules"),
+    input = M.ListContactFlowModulesInput,
+    output = M.ListContactFlowModulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact-flow-modules-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContactFlowModuleVersions = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListContactFlowModuleVersions"),
+    input = M.ListContactFlowModuleVersionsInput,
+    output = M.ListContactFlowModuleVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContactFlows = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListContactFlows"),
+    input = M.ListContactFlowsInput,
+    output = M.ListContactFlowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact-flows-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContactFlowVersions = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListContactFlowVersions"),
+    input = M.ListContactFlowVersionsInput,
+    output = M.ListContactFlowVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact-flows/{InstanceId}/{ContactFlowId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContactReferences = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListContactReferences"),
+    input = M.ListContactReferencesInput,
+    output = M.ListContactReferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact/references/{InstanceId}/{ContactId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataTableAttributes = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListDataTableAttributes"),
+    input = M.ListDataTableAttributesInput,
+    output = M.ListDataTableAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-tables/{InstanceId}/{DataTableId}/attributes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataTablePrimaryValues = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListDataTablePrimaryValues"),
+    input = M.ListDataTablePrimaryValuesInput,
+    output = M.ListDataTablePrimaryValuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-tables/{InstanceId}/{DataTableId}/values/list-primary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataTables = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListDataTables"),
+    input = M.ListDataTablesInput,
+    output = M.ListDataTablesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/data-tables/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataTableValues = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListDataTableValues"),
+    input = M.ListDataTableValuesInput,
+    output = M.ListDataTableValuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-tables/{InstanceId}/{DataTableId}/values/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDefaultVocabularies = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListDefaultVocabularies"),
+    input = M.ListDefaultVocabulariesInput,
+    output = M.ListDefaultVocabulariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/default-vocabulary-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEntitySecurityProfiles = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListEntitySecurityProfiles"),
+    input = M.ListEntitySecurityProfilesInput,
+    output = M.ListEntitySecurityProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/entity-security-profiles-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEvaluationForms = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListEvaluationForms"),
+    input = M.ListEvaluationFormsInput,
+    output = M.ListEvaluationFormsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/evaluation-forms/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEvaluationFormVersions = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListEvaluationFormVersions"),
+    input = M.ListEvaluationFormVersionsInput,
+    output = M.ListEvaluationFormVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlowAssociations = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListFlowAssociations"),
+    input = M.ListFlowAssociationsInput,
+    output = M.ListFlowAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/flow-associations-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHoursOfOperationOverrides = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListHoursOfOperationOverrides"),
+    input = M.ListHoursOfOperationOverridesInput,
+    output = M.ListHoursOfOperationOverridesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHoursOfOperations = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListHoursOfOperations"),
+    input = M.ListHoursOfOperationsInput,
+    output = M.ListHoursOfOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/hours-of-operations-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstanceAttributes = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListInstanceAttributes"),
+    input = M.ListInstanceAttributesInput,
+    output = M.ListInstanceAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/attributes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstances = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListInstances"),
+    input = M.ListInstancesInput,
+    output = M.ListInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstanceStorageConfigs = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListInstanceStorageConfigs"),
+    input = M.ListInstanceStorageConfigsInput,
+    output = M.ListInstanceStorageConfigsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/storage-configs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIntegrationAssociations = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListIntegrationAssociations"),
+    input = M.ListIntegrationAssociationsInput,
+    output = M.ListIntegrationAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/integration-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLambdaFunctions = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListLambdaFunctions"),
+    input = M.ListLambdaFunctionsInput,
+    output = M.ListLambdaFunctionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/lambda-functions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLexBots = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListLexBots"),
+    input = M.ListLexBotsInput,
+    output = M.ListLexBotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/lex-bots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotifications = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListNotifications"),
+    input = M.ListNotificationsInput,
+    output = M.ListNotificationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/notifications/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPhoneNumbers = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListPhoneNumbers"),
+    input = M.ListPhoneNumbersInput,
+    output = M.ListPhoneNumbersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/phone-numbers-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPhoneNumbersV2 = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListPhoneNumbersV2"),
+    input = M.ListPhoneNumbersV2Input,
+    output = M.ListPhoneNumbersV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/phone-number/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPredefinedAttributes = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListPredefinedAttributes"),
+    input = M.ListPredefinedAttributesInput,
+    output = M.ListPredefinedAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/predefined-attributes/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPrompts = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListPrompts"),
+    input = M.ListPromptsInput,
+    output = M.ListPromptsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prompts-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueueEmailAddresses = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListQueueEmailAddresses"),
+    input = M.ListQueueEmailAddressesInput,
+    output = M.ListQueueEmailAddressesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/queues/{InstanceId}/{QueueId}/email-addresses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueueQuickConnects = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListQueueQuickConnects"),
+    input = M.ListQueueQuickConnectsInput,
+    output = M.ListQueueQuickConnectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/queues/{InstanceId}/{QueueId}/quick-connects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueues = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListQueues"),
+    input = M.ListQueuesInput,
+    output = M.ListQueuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/queues-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQuickConnects = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListQuickConnects"),
+    input = M.ListQuickConnectsInput,
+    output = M.ListQuickConnectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/quick-connects/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRealtimeContactAnalysisSegmentsV2 = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListRealtimeContactAnalysisSegmentsV2"),
+    input = M.ListRealtimeContactAnalysisSegmentsV2Input,
+    output = M.ListRealtimeContactAnalysisSegmentsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/list-real-time-analysis-segments-v2/{InstanceId}/{ContactId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRoutingProfileManualAssignmentQueues = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListRoutingProfileManualAssignmentQueues"),
+    input = M.ListRoutingProfileManualAssignmentQueuesInput,
+    output = M.ListRoutingProfileManualAssignmentQueuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/manual-assignment-queues" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRoutingProfileQueues = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListRoutingProfileQueues"),
+    input = M.ListRoutingProfileQueuesInput,
+    output = M.ListRoutingProfileQueuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/queues" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRoutingProfiles = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListRoutingProfiles"),
+    input = M.ListRoutingProfilesInput,
+    output = M.ListRoutingProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/routing-profiles-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRules = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListRules"),
+    input = M.ListRulesInput,
+    output = M.ListRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/rules/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityKeys = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListSecurityKeys"),
+    input = M.ListSecurityKeysInput,
+    output = M.ListSecurityKeysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/security-keys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityProfileApplications = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListSecurityProfileApplications"),
+    input = M.ListSecurityProfileApplicationsInput,
+    output = M.ListSecurityProfileApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/security-profiles-applications/{InstanceId}/{SecurityProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityProfileFlowModules = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListSecurityProfileFlowModules"),
+    input = M.ListSecurityProfileFlowModulesInput,
+    output = M.ListSecurityProfileFlowModulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/security-profiles-flow-modules/{InstanceId}/{SecurityProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityProfilePermissions = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListSecurityProfilePermissions"),
+    input = M.ListSecurityProfilePermissionsInput,
+    output = M.ListSecurityProfilePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/security-profiles-permissions/{InstanceId}/{SecurityProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityProfiles = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListSecurityProfiles"),
+    input = M.ListSecurityProfilesInput,
+    output = M.ListSecurityProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/security-profiles-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTaskTemplates = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListTaskTemplates"),
+    input = M.ListTaskTemplatesInput,
+    output = M.ListTaskTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/task/template" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestCaseExecutionRecords = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListTestCaseExecutionRecords"),
+    input = M.ListTestCaseExecutionRecordsInput,
+    output = M.ListTestCaseExecutionRecordsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/test-cases/{InstanceId}/{TestCaseId}/{TestCaseExecutionId}/records" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestCaseExecutions = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListTestCaseExecutions"),
+    input = M.ListTestCaseExecutionsInput,
+    output = M.ListTestCaseExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/test-case-executions/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestCases = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListTestCases"),
+    input = M.ListTestCasesInput,
+    output = M.ListTestCasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/test-cases-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrafficDistributionGroups = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListTrafficDistributionGroups"),
+    input = M.ListTrafficDistributionGroupsInput,
+    output = M.ListTrafficDistributionGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/traffic-distribution-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrafficDistributionGroupUsers = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListTrafficDistributionGroupUsers"),
+    input = M.ListTrafficDistributionGroupUsersInput,
+    output = M.ListTrafficDistributionGroupUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/traffic-distribution-group/{TrafficDistributionGroupId}/user" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUseCases = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListUseCases"),
+    input = M.ListUseCasesInput,
+    output = M.ListUseCasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUserHierarchyGroups = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListUserHierarchyGroups"),
+    input = M.ListUserHierarchyGroupsInput,
+    output = M.ListUserHierarchyGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/user-hierarchy-groups-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUserNotifications = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListUserNotifications"),
+    input = M.ListUserNotificationsInput,
+    output = M.ListUserNotificationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/users/{InstanceId}/{UserId}/notifications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUserProficiencies = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListUserProficiencies"),
+    input = M.ListUserProficienciesInput,
+    output = M.ListUserProficienciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/users/{InstanceId}/{UserId}/proficiencies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsers = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListUsers"),
+    input = M.ListUsersInput,
+    output = M.ListUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/users-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListViews = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListViews"),
+    input = M.ListViewsInput,
+    output = M.ListViewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/views/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListViewVersions = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListViewVersions"),
+    input = M.ListViewVersionsInput,
+    output = M.ListViewVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/views/{InstanceId}/{ViewId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkspaceMedia = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListWorkspaceMedia"),
+    input = M.ListWorkspaceMediaInput,
+    output = M.ListWorkspaceMediaOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{InstanceId}/{WorkspaceId}/media" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkspacePages = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListWorkspacePages"),
+    input = M.ListWorkspacePagesInput,
+    output = M.ListWorkspacePagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{InstanceId}/{WorkspaceId}/pages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkspaces = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListWorkspaces"),
+    input = M.ListWorkspacesInput,
+    output = M.ListWorkspacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.MonitorContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "MonitorContact"),
+    input = M.MonitorContactInput,
+    output = M.MonitorContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/monitor" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PauseContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "PauseContact"),
+    input = M.PauseContactInput,
+    output = M.PauseContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/pause" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutUserStatus = schema.operation({
+    id = id.from("com.amazonaws.connect", "PutUserStatus"),
+    input = M.PutUserStatusInput,
+    output = M.PutUserStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/users/{InstanceId}/{UserId}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReleasePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.connect", "ReleasePhoneNumber"),
+    input = M.ReleasePhoneNumberInput,
+    output = M.ReleasePhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/phone-number/{PhoneNumberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReplicateInstance = schema.operation({
+    id = id.from("com.amazonaws.connect", "ReplicateInstance"),
+    input = M.ReplicateInstanceInput,
+    output = M.ReplicateInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/instance/{InstanceId}/replicate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResumeContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "ResumeContact"),
+    input = M.ResumeContactInput,
+    output = M.ResumeContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/resume" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResumeContactRecording = schema.operation({
+    id = id.from("com.amazonaws.connect", "ResumeContactRecording"),
+    input = M.ResumeContactRecordingInput,
+    output = M.ResumeContactRecordingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/resume-recording" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchAgentStatuses = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchAgentStatuses"),
+    input = M.SearchAgentStatusesInput,
+    output = M.SearchAgentStatusesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-agent-statuses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchAvailablePhoneNumbers = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchAvailablePhoneNumbers"),
+    input = M.SearchAvailablePhoneNumbersInput,
+    output = M.SearchAvailablePhoneNumbersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/phone-number/search-available" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchContactEvaluations = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchContactEvaluations"),
+    input = M.SearchContactEvaluationsInput,
+    output = M.SearchContactEvaluationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-contact-evaluations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchContactFlowModules = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchContactFlowModules"),
+    input = M.SearchContactFlowModulesInput,
+    output = M.SearchContactFlowModulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-contact-flow-modules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchContactFlows = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchContactFlows"),
+    input = M.SearchContactFlowsInput,
+    output = M.SearchContactFlowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-contact-flows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchContacts = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchContacts"),
+    input = M.SearchContactsInput,
+    output = M.SearchContactsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-contacts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchDataTables = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchDataTables"),
+    input = M.SearchDataTablesInput,
+    output = M.SearchDataTablesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-data-tables" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchEmailAddresses = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchEmailAddresses"),
+    input = M.SearchEmailAddressesInput,
+    output = M.SearchEmailAddressesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-email-addresses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchEvaluationForms = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchEvaluationForms"),
+    input = M.SearchEvaluationFormsInput,
+    output = M.SearchEvaluationFormsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-evaluation-forms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchHoursOfOperationOverrides = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchHoursOfOperationOverrides"),
+    input = M.SearchHoursOfOperationOverridesInput,
+    output = M.SearchHoursOfOperationOverridesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-hours-of-operation-overrides" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchHoursOfOperations = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchHoursOfOperations"),
+    input = M.SearchHoursOfOperationsInput,
+    output = M.SearchHoursOfOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-hours-of-operations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchNotifications = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchNotifications"),
+    input = M.SearchNotificationsInput,
+    output = M.SearchNotificationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-notifications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchPredefinedAttributes = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchPredefinedAttributes"),
+    input = M.SearchPredefinedAttributesInput,
+    output = M.SearchPredefinedAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-predefined-attributes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchPrompts = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchPrompts"),
+    input = M.SearchPromptsInput,
+    output = M.SearchPromptsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-prompts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchQueues = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchQueues"),
+    input = M.SearchQueuesInput,
+    output = M.SearchQueuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-queues" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchQuickConnects = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchQuickConnects"),
+    input = M.SearchQuickConnectsInput,
+    output = M.SearchQuickConnectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-quick-connects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchResourceTags = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchResourceTags"),
+    input = M.SearchResourceTagsInput,
+    output = M.SearchResourceTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-resource-tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchRoutingProfiles = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchRoutingProfiles"),
+    input = M.SearchRoutingProfilesInput,
+    output = M.SearchRoutingProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-routing-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchSecurityProfiles = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchSecurityProfiles"),
+    input = M.SearchSecurityProfilesInput,
+    output = M.SearchSecurityProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-security-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchTestCases = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchTestCases"),
+    input = M.SearchTestCasesInput,
+    output = M.SearchTestCasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-test-cases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchUserHierarchyGroups = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchUserHierarchyGroups"),
+    input = M.SearchUserHierarchyGroupsInput,
+    output = M.SearchUserHierarchyGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-user-hierarchy-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchUsers = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchUsers"),
+    input = M.SearchUsersInput,
+    output = M.SearchUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchViews = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchViews"),
+    input = M.SearchViewsInput,
+    output = M.SearchViewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-views" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchVocabularies = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchVocabularies"),
+    input = M.SearchVocabulariesInput,
+    output = M.SearchVocabulariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/vocabulary-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchWorkspaceAssociations = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchWorkspaceAssociations"),
+    input = M.SearchWorkspaceAssociationsInput,
+    output = M.SearchWorkspaceAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-workspace-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchWorkspaces = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchWorkspaces"),
+    input = M.SearchWorkspacesInput,
+    output = M.SearchWorkspacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-workspaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendChatIntegrationEvent = schema.operation({
+    id = id.from("com.amazonaws.connect", "SendChatIntegrationEvent"),
+    input = M.SendChatIntegrationEventInput,
+    output = M.SendChatIntegrationEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/chat-integration-event" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendOutboundEmail = schema.operation({
+    id = id.from("com.amazonaws.connect", "SendOutboundEmail"),
+    input = M.SendOutboundEmailInput,
+    output = M.SendOutboundEmailOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/instance/{InstanceId}/outbound-email" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAttachedFileUpload = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartAttachedFileUpload"),
+    input = M.StartAttachedFileUploadInput,
+    output = M.StartAttachedFileUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/attached-files/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartChatContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartChatContact"),
+    input = M.StartChatContactInput,
+    output = M.StartChatContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact/chat" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartContactEvaluation = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartContactEvaluation"),
+    input = M.StartContactEvaluationInput,
+    output = M.StartContactEvaluationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact-evaluations/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartContactMediaProcessing = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartContactMediaProcessing"),
+    input = M.StartContactMediaProcessingInput,
+    output = M.StartContactMediaProcessingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/start-contact-media-processing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartContactRecording = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartContactRecording"),
+    input = M.StartContactRecordingInput,
+    output = M.StartContactRecordingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/start-recording" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartContactStreaming = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartContactStreaming"),
+    input = M.StartContactStreamingInput,
+    output = M.StartContactStreamingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/start-streaming" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartEmailContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartEmailContact"),
+    input = M.StartEmailContactInput,
+    output = M.StartEmailContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact/email" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartOutboundChatContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartOutboundChatContact"),
+    input = M.StartOutboundChatContactInput,
+    output = M.StartOutboundChatContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact/outbound-chat" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartOutboundEmailContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartOutboundEmailContact"),
+    input = M.StartOutboundEmailContactInput,
+    output = M.StartOutboundEmailContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact/outbound-email" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartOutboundVoiceContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartOutboundVoiceContact"),
+    input = M.StartOutboundVoiceContactInput,
+    output = M.StartOutboundVoiceContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact/outbound-voice" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartScreenSharing = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartScreenSharing"),
+    input = M.StartScreenSharingInput,
+    output = M.StartScreenSharingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact/screen-sharing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTaskContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartTaskContact"),
+    input = M.StartTaskContactInput,
+    output = M.StartTaskContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact/task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTestCaseExecution = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartTestCaseExecution"),
+    input = M.StartTestCaseExecutionInput,
+    output = M.StartTestCaseExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/test-cases/{InstanceId}/{TestCaseId}/start-execution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartWebRTCContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartWebRTCContact"),
+    input = M.StartWebRTCContactInput,
+    output = M.StartWebRTCContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact/webrtc" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "StopContact"),
+    input = M.StopContactInput,
+    output = M.StopContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopContactMediaProcessing = schema.operation({
+    id = id.from("com.amazonaws.connect", "StopContactMediaProcessing"),
+    input = M.StopContactMediaProcessingInput,
+    output = M.StopContactMediaProcessingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/stop-contact-media-processing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopContactRecording = schema.operation({
+    id = id.from("com.amazonaws.connect", "StopContactRecording"),
+    input = M.StopContactRecordingInput,
+    output = M.StopContactRecordingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/stop-recording" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopContactStreaming = schema.operation({
+    id = id.from("com.amazonaws.connect", "StopContactStreaming"),
+    input = M.StopContactStreamingInput,
+    output = M.StopContactStreamingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/stop-streaming" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopTestCaseExecution = schema.operation({
+    id = id.from("com.amazonaws.connect", "StopTestCaseExecution"),
+    input = M.StopTestCaseExecutionInput,
+    output = M.StopTestCaseExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/test-cases/{InstanceId}/{TestCaseId}/{TestCaseExecutionId}/stop-execution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SubmitContactEvaluation = schema.operation({
+    id = id.from("com.amazonaws.connect", "SubmitContactEvaluation"),
+    input = M.SubmitContactEvaluationInput,
+    output = M.SubmitContactEvaluationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact-evaluations/{InstanceId}/{EvaluationId}/submit" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SuspendContactRecording = schema.operation({
+    id = id.from("com.amazonaws.connect", "SuspendContactRecording"),
+    input = M.SuspendContactRecordingInput,
+    output = M.SuspendContactRecordingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/suspend-recording" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "TagContact"),
+    input = M.TagContactInput,
+    output = M.TagContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.connect", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TransferContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "TransferContact"),
+    input = M.TransferContactInput,
+    output = M.TransferContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/transfer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "UntagContact"),
+    input = M.UntagContactInput,
+    output = M.UntagContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/contact/tags/{InstanceId}/{ContactId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.connect", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentStatus = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateAgentStatus"),
+    input = M.UpdateAgentStatusInput,
+    output = M.UpdateAgentStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agent-status/{InstanceId}/{AgentStatusId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAttachedFilesConfiguration = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateAttachedFilesConfiguration"),
+    input = M.UpdateAttachedFilesConfigurationInput,
+    output = M.UpdateAttachedFilesConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/attached-files-configurations/{InstanceId}/{AttachmentScope}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAuthenticationProfile = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateAuthenticationProfile"),
+    input = M.UpdateAuthenticationProfileInput,
+    output = M.UpdateAuthenticationProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/authentication-profiles/{InstanceId}/{AuthenticationProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateContact"),
+    input = M.UpdateContactInput,
+    output = M.UpdateContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contacts/{InstanceId}/{ContactId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContactAttributes = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateContactAttributes"),
+    input = M.UpdateContactAttributesInput,
+    output = M.UpdateContactAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/attributes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContactEvaluation = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateContactEvaluation"),
+    input = M.UpdateContactEvaluationInput,
+    output = M.UpdateContactEvaluationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact-evaluations/{InstanceId}/{EvaluationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContactFlowContent = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateContactFlowContent"),
+    input = M.UpdateContactFlowContentInput,
+    output = M.UpdateContactFlowContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact-flows/{InstanceId}/{ContactFlowId}/content" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContactFlowMetadata = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateContactFlowMetadata"),
+    input = M.UpdateContactFlowMetadataInput,
+    output = M.UpdateContactFlowMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact-flows/{InstanceId}/{ContactFlowId}/metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContactFlowModuleAlias = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateContactFlowModuleAlias"),
+    input = M.UpdateContactFlowModuleAliasInput,
+    output = M.UpdateContactFlowModuleAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/alias/{AliasId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContactFlowModuleContent = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateContactFlowModuleContent"),
+    input = M.UpdateContactFlowModuleContentInput,
+    output = M.UpdateContactFlowModuleContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/content" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContactFlowModuleMetadata = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateContactFlowModuleMetadata"),
+    input = M.UpdateContactFlowModuleMetadataInput,
+    output = M.UpdateContactFlowModuleMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContactFlowName = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateContactFlowName"),
+    input = M.UpdateContactFlowNameInput,
+    output = M.UpdateContactFlowNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact-flows/{InstanceId}/{ContactFlowId}/name" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContactRoutingData = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateContactRoutingData"),
+    input = M.UpdateContactRoutingDataInput,
+    output = M.UpdateContactRoutingDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contacts/{InstanceId}/{ContactId}/routing-data" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContactSchedule = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateContactSchedule"),
+    input = M.UpdateContactScheduleInput,
+    output = M.UpdateContactScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/schedule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataTableAttribute = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateDataTableAttribute"),
+    input = M.UpdateDataTableAttributeInput,
+    output = M.UpdateDataTableAttributeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-tables/{InstanceId}/{DataTableId}/attributes/{AttributeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataTableMetadata = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateDataTableMetadata"),
+    input = M.UpdateDataTableMetadataInput,
+    output = M.UpdateDataTableMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-tables/{InstanceId}/{DataTableId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataTablePrimaryValues = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateDataTablePrimaryValues"),
+    input = M.UpdateDataTablePrimaryValuesInput,
+    output = M.UpdateDataTablePrimaryValuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-tables/{InstanceId}/{DataTableId}/values/update-primary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEmailAddressMetadata = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateEmailAddressMetadata"),
+    input = M.UpdateEmailAddressMetadataInput,
+    output = M.UpdateEmailAddressMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/email-addresses/{InstanceId}/{EmailAddressId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEvaluationForm = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateEvaluationForm"),
+    input = M.UpdateEvaluationFormInput,
+    output = M.UpdateEvaluationFormOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHoursOfOperation = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateHoursOfOperation"),
+    input = M.UpdateHoursOfOperationInput,
+    output = M.UpdateHoursOfOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHoursOfOperationOverride = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateHoursOfOperationOverride"),
+    input = M.UpdateHoursOfOperationOverrideInput,
+    output = M.UpdateHoursOfOperationOverrideOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides/{HoursOfOperationOverrideId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInstanceAttribute = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateInstanceAttribute"),
+    input = M.UpdateInstanceAttributeInput,
+    output = M.UpdateInstanceAttributeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/instance/{InstanceId}/attribute/{AttributeType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInstanceStorageConfig = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateInstanceStorageConfig"),
+    input = M.UpdateInstanceStorageConfigInput,
+    output = M.UpdateInstanceStorageConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/instance/{InstanceId}/storage-config/{AssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNotificationContent = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateNotificationContent"),
+    input = M.UpdateNotificationContentInput,
+    output = M.UpdateNotificationContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/notifications/{InstanceId}/{NotificationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateParticipantAuthentication = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateParticipantAuthentication"),
+    input = M.UpdateParticipantAuthenticationInput,
+    output = M.UpdateParticipantAuthenticationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/update-participant-authentication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateParticipantRoleConfig = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateParticipantRoleConfig"),
+    input = M.UpdateParticipantRoleConfigInput,
+    output = M.UpdateParticipantRoleConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact/participant-role-config/{InstanceId}/{ContactId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdatePhoneNumber"),
+    input = M.UpdatePhoneNumberInput,
+    output = M.UpdatePhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/phone-number/{PhoneNumberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePhoneNumberMetadata = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdatePhoneNumberMetadata"),
+    input = M.UpdatePhoneNumberMetadataInput,
+    output = M.UpdatePhoneNumberMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/phone-number/{PhoneNumberId}/metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePredefinedAttribute = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdatePredefinedAttribute"),
+    input = M.UpdatePredefinedAttributeInput,
+    output = M.UpdatePredefinedAttributeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/predefined-attributes/{InstanceId}/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePrompt = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdatePrompt"),
+    input = M.UpdatePromptInput,
+    output = M.UpdatePromptOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prompts/{InstanceId}/{PromptId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQueueHoursOfOperation = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateQueueHoursOfOperation"),
+    input = M.UpdateQueueHoursOfOperationInput,
+    output = M.UpdateQueueHoursOfOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/queues/{InstanceId}/{QueueId}/hours-of-operation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQueueMaxContacts = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateQueueMaxContacts"),
+    input = M.UpdateQueueMaxContactsInput,
+    output = M.UpdateQueueMaxContactsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/queues/{InstanceId}/{QueueId}/max-contacts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQueueName = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateQueueName"),
+    input = M.UpdateQueueNameInput,
+    output = M.UpdateQueueNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/queues/{InstanceId}/{QueueId}/name" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQueueOutboundCallerConfig = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateQueueOutboundCallerConfig"),
+    input = M.UpdateQueueOutboundCallerConfigInput,
+    output = M.UpdateQueueOutboundCallerConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/queues/{InstanceId}/{QueueId}/outbound-caller-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQueueOutboundEmailConfig = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateQueueOutboundEmailConfig"),
+    input = M.UpdateQueueOutboundEmailConfigInput,
+    output = M.UpdateQueueOutboundEmailConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/queues/{InstanceId}/{QueueId}/outbound-email-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQueueStatus = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateQueueStatus"),
+    input = M.UpdateQueueStatusInput,
+    output = M.UpdateQueueStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/queues/{InstanceId}/{QueueId}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQuickConnectConfig = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateQuickConnectConfig"),
+    input = M.UpdateQuickConnectConfigInput,
+    output = M.UpdateQuickConnectConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/quick-connects/{InstanceId}/{QuickConnectId}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQuickConnectName = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateQuickConnectName"),
+    input = M.UpdateQuickConnectNameInput,
+    output = M.UpdateQuickConnectNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/quick-connects/{InstanceId}/{QuickConnectId}/name" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoutingProfileAgentAvailabilityTimer = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateRoutingProfileAgentAvailabilityTimer"),
+    input = M.UpdateRoutingProfileAgentAvailabilityTimerInput,
+    output = M.UpdateRoutingProfileAgentAvailabilityTimerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/agent-availability-timer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoutingProfileConcurrency = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateRoutingProfileConcurrency"),
+    input = M.UpdateRoutingProfileConcurrencyInput,
+    output = M.UpdateRoutingProfileConcurrencyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/concurrency" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoutingProfileDefaultOutboundQueue = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateRoutingProfileDefaultOutboundQueue"),
+    input = M.UpdateRoutingProfileDefaultOutboundQueueInput,
+    output = M.UpdateRoutingProfileDefaultOutboundQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/default-outbound-queue" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoutingProfileName = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateRoutingProfileName"),
+    input = M.UpdateRoutingProfileNameInput,
+    output = M.UpdateRoutingProfileNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/name" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoutingProfileQueues = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateRoutingProfileQueues"),
+    input = M.UpdateRoutingProfileQueuesInput,
+    output = M.UpdateRoutingProfileQueuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/queues" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRule = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateRule"),
+    input = M.UpdateRuleInput,
+    output = M.UpdateRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/rules/{InstanceId}/{RuleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSecurityProfile = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateSecurityProfile"),
+    input = M.UpdateSecurityProfileInput,
+    output = M.UpdateSecurityProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/security-profiles/{InstanceId}/{SecurityProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTaskTemplate = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateTaskTemplate"),
+    input = M.UpdateTaskTemplateInput,
+    output = M.UpdateTaskTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/instance/{InstanceId}/task/template/{TaskTemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTestCase = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateTestCase"),
+    input = M.UpdateTestCaseInput,
+    output = M.UpdateTestCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/test-cases/{InstanceId}/{TestCaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrafficDistribution = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateTrafficDistribution"),
+    input = M.UpdateTrafficDistributionInput,
+    output = M.UpdateTrafficDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/traffic-distribution/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserConfig = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateUserConfig"),
+    input = M.UpdateUserConfigInput,
+    output = M.UpdateUserConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/users/{InstanceId}/{UserId}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserHierarchy = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateUserHierarchy"),
+    input = M.UpdateUserHierarchyInput,
+    output = M.UpdateUserHierarchyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/users/{InstanceId}/{UserId}/hierarchy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserHierarchyGroupName = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateUserHierarchyGroupName"),
+    input = M.UpdateUserHierarchyGroupNameInput,
+    output = M.UpdateUserHierarchyGroupNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/user-hierarchy-groups/{InstanceId}/{HierarchyGroupId}/name" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserHierarchyStructure = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateUserHierarchyStructure"),
+    input = M.UpdateUserHierarchyStructureInput,
+    output = M.UpdateUserHierarchyStructureOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/user-hierarchy-structure/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserIdentityInfo = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateUserIdentityInfo"),
+    input = M.UpdateUserIdentityInfoInput,
+    output = M.UpdateUserIdentityInfoOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/users/{InstanceId}/{UserId}/identity-info" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserNotificationStatus = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateUserNotificationStatus"),
+    input = M.UpdateUserNotificationStatusInput,
+    output = M.UpdateUserNotificationStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/users/{InstanceId}/{UserId}/notifications/{NotificationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserPhoneConfig = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateUserPhoneConfig"),
+    input = M.UpdateUserPhoneConfigInput,
+    output = M.UpdateUserPhoneConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/users/{InstanceId}/{UserId}/phone-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserProficiencies = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateUserProficiencies"),
+    input = M.UpdateUserProficienciesInput,
+    output = M.UpdateUserProficienciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/users/{InstanceId}/{UserId}/proficiencies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserRoutingProfile = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateUserRoutingProfile"),
+    input = M.UpdateUserRoutingProfileInput,
+    output = M.UpdateUserRoutingProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/users/{InstanceId}/{UserId}/routing-profile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserSecurityProfiles = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateUserSecurityProfiles"),
+    input = M.UpdateUserSecurityProfilesInput,
+    output = M.UpdateUserSecurityProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/users/{InstanceId}/{UserId}/security-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateViewContent = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateViewContent"),
+    input = M.UpdateViewContentInput,
+    output = M.UpdateViewContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/views/{InstanceId}/{ViewId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateViewMetadata = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateViewMetadata"),
+    input = M.UpdateViewMetadataInput,
+    output = M.UpdateViewMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/views/{InstanceId}/{ViewId}/metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkspaceMetadata = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateWorkspaceMetadata"),
+    input = M.UpdateWorkspaceMetadataInput,
+    output = M.UpdateWorkspaceMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{InstanceId}/{WorkspaceId}/metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkspacePage = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateWorkspacePage"),
+    input = M.UpdateWorkspacePageInput,
+    output = M.UpdateWorkspacePageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{InstanceId}/{WorkspaceId}/pages/{Page}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkspaceTheme = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateWorkspaceTheme"),
+    input = M.UpdateWorkspaceThemeInput,
+    output = M.UpdateWorkspaceThemeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{InstanceId}/{WorkspaceId}/theme" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkspaceVisibility = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateWorkspaceVisibility"),
+    input = M.UpdateWorkspaceVisibilityInput,
+    output = M.UpdateWorkspaceVisibilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{InstanceId}/{WorkspaceId}/visibility" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

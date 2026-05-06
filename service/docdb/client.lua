@@ -7,6 +7,7 @@ local endpoint_rules = require("docdb.endpoint_rules")
 local query_protocol = require("smithy.protocol.query")
 local schemas = require("docdb.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "rds", signing_region = cfg.region } }
                 else
@@ -49,718 +52,223 @@ function M.new(cfg)
 end
 
 function Client:addSourceIdentifierToSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "AddSourceIdentifierToSubscription",
-        input_schema = schemas.AddSourceIdentifierToSubscriptionInput,
-        output_schema = schemas.AddSourceIdentifierToSubscriptionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddSourceIdentifierToSubscription, input, options)
 end
 
 function Client:addTagsToResource(input, options)
-    return self:invokeOperation(input, {
-        name = "AddTagsToResource",
-        input_schema = schemas.AddTagsToResourceInput,
-        output_schema = schemas.AddTagsToResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddTagsToResource, input, options)
 end
 
 function Client:applyPendingMaintenanceAction(input, options)
-    return self:invokeOperation(input, {
-        name = "ApplyPendingMaintenanceAction",
-        input_schema = schemas.ApplyPendingMaintenanceActionInput,
-        output_schema = schemas.ApplyPendingMaintenanceActionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ApplyPendingMaintenanceAction, input, options)
 end
 
 function Client:copyDBClusterParameterGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CopyDBClusterParameterGroup",
-        input_schema = schemas.CopyDBClusterParameterGroupInput,
-        output_schema = schemas.CopyDBClusterParameterGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CopyDBClusterParameterGroup, input, options)
 end
 
 function Client:copyDBClusterSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "CopyDBClusterSnapshot",
-        input_schema = schemas.CopyDBClusterSnapshotInput,
-        output_schema = schemas.CopyDBClusterSnapshotOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CopyDBClusterSnapshot, input, options)
 end
 
 function Client:createDBCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDBCluster",
-        input_schema = schemas.CreateDBClusterInput,
-        output_schema = schemas.CreateDBClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDBCluster, input, options)
 end
 
 function Client:createDBClusterParameterGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDBClusterParameterGroup",
-        input_schema = schemas.CreateDBClusterParameterGroupInput,
-        output_schema = schemas.CreateDBClusterParameterGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDBClusterParameterGroup, input, options)
 end
 
 function Client:createDBClusterSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDBClusterSnapshot",
-        input_schema = schemas.CreateDBClusterSnapshotInput,
-        output_schema = schemas.CreateDBClusterSnapshotOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDBClusterSnapshot, input, options)
 end
 
 function Client:createDBInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDBInstance",
-        input_schema = schemas.CreateDBInstanceInput,
-        output_schema = schemas.CreateDBInstanceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDBInstance, input, options)
 end
 
 function Client:createDBSubnetGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDBSubnetGroup",
-        input_schema = schemas.CreateDBSubnetGroupInput,
-        output_schema = schemas.CreateDBSubnetGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDBSubnetGroup, input, options)
 end
 
 function Client:createEventSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEventSubscription",
-        input_schema = schemas.CreateEventSubscriptionInput,
-        output_schema = schemas.CreateEventSubscriptionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEventSubscription, input, options)
 end
 
 function Client:createGlobalCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGlobalCluster",
-        input_schema = schemas.CreateGlobalClusterInput,
-        output_schema = schemas.CreateGlobalClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGlobalCluster, input, options)
 end
 
 function Client:deleteDBCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDBCluster",
-        input_schema = schemas.DeleteDBClusterInput,
-        output_schema = schemas.DeleteDBClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDBCluster, input, options)
 end
 
 function Client:deleteDBClusterParameterGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDBClusterParameterGroup",
-        input_schema = schemas.DeleteDBClusterParameterGroupInput,
-        output_schema = schemas.DeleteDBClusterParameterGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDBClusterParameterGroup, input, options)
 end
 
 function Client:deleteDBClusterSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDBClusterSnapshot",
-        input_schema = schemas.DeleteDBClusterSnapshotInput,
-        output_schema = schemas.DeleteDBClusterSnapshotOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDBClusterSnapshot, input, options)
 end
 
 function Client:deleteDBInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDBInstance",
-        input_schema = schemas.DeleteDBInstanceInput,
-        output_schema = schemas.DeleteDBInstanceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDBInstance, input, options)
 end
 
 function Client:deleteDBSubnetGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDBSubnetGroup",
-        input_schema = schemas.DeleteDBSubnetGroupInput,
-        output_schema = schemas.DeleteDBSubnetGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDBSubnetGroup, input, options)
 end
 
 function Client:deleteEventSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEventSubscription",
-        input_schema = schemas.DeleteEventSubscriptionInput,
-        output_schema = schemas.DeleteEventSubscriptionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEventSubscription, input, options)
 end
 
 function Client:deleteGlobalCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGlobalCluster",
-        input_schema = schemas.DeleteGlobalClusterInput,
-        output_schema = schemas.DeleteGlobalClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGlobalCluster, input, options)
 end
 
 function Client:describeCertificates(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCertificates",
-        input_schema = schemas.DescribeCertificatesInput,
-        output_schema = schemas.DescribeCertificatesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCertificates, input, options)
 end
 
 function Client:describeDBClusterParameterGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDBClusterParameterGroups",
-        input_schema = schemas.DescribeDBClusterParameterGroupsInput,
-        output_schema = schemas.DescribeDBClusterParameterGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDBClusterParameterGroups, input, options)
 end
 
 function Client:describeDBClusterParameters(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDBClusterParameters",
-        input_schema = schemas.DescribeDBClusterParametersInput,
-        output_schema = schemas.DescribeDBClusterParametersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDBClusterParameters, input, options)
 end
 
 function Client:describeDBClusters(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDBClusters",
-        input_schema = schemas.DescribeDBClustersInput,
-        output_schema = schemas.DescribeDBClustersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDBClusters, input, options)
 end
 
 function Client:describeDBClusterSnapshotAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDBClusterSnapshotAttributes",
-        input_schema = schemas.DescribeDBClusterSnapshotAttributesInput,
-        output_schema = schemas.DescribeDBClusterSnapshotAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDBClusterSnapshotAttributes, input, options)
 end
 
 function Client:describeDBClusterSnapshots(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDBClusterSnapshots",
-        input_schema = schemas.DescribeDBClusterSnapshotsInput,
-        output_schema = schemas.DescribeDBClusterSnapshotsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDBClusterSnapshots, input, options)
 end
 
 function Client:describeDBEngineVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDBEngineVersions",
-        input_schema = schemas.DescribeDBEngineVersionsInput,
-        output_schema = schemas.DescribeDBEngineVersionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDBEngineVersions, input, options)
 end
 
 function Client:describeDBInstances(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDBInstances",
-        input_schema = schemas.DescribeDBInstancesInput,
-        output_schema = schemas.DescribeDBInstancesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDBInstances, input, options)
 end
 
 function Client:describeDBSubnetGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDBSubnetGroups",
-        input_schema = schemas.DescribeDBSubnetGroupsInput,
-        output_schema = schemas.DescribeDBSubnetGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDBSubnetGroups, input, options)
 end
 
 function Client:describeEngineDefaultClusterParameters(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEngineDefaultClusterParameters",
-        input_schema = schemas.DescribeEngineDefaultClusterParametersInput,
-        output_schema = schemas.DescribeEngineDefaultClusterParametersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEngineDefaultClusterParameters, input, options)
 end
 
 function Client:describeEventCategories(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEventCategories",
-        input_schema = schemas.DescribeEventCategoriesInput,
-        output_schema = schemas.DescribeEventCategoriesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEventCategories, input, options)
 end
 
 function Client:describeEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEvents",
-        input_schema = schemas.DescribeEventsInput,
-        output_schema = schemas.DescribeEventsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEvents, input, options)
 end
 
 function Client:describeEventSubscriptions(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEventSubscriptions",
-        input_schema = schemas.DescribeEventSubscriptionsInput,
-        output_schema = schemas.DescribeEventSubscriptionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEventSubscriptions, input, options)
 end
 
 function Client:describeGlobalClusters(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeGlobalClusters",
-        input_schema = schemas.DescribeGlobalClustersInput,
-        output_schema = schemas.DescribeGlobalClustersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeGlobalClusters, input, options)
 end
 
 function Client:describeOrderableDBInstanceOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeOrderableDBInstanceOptions",
-        input_schema = schemas.DescribeOrderableDBInstanceOptionsInput,
-        output_schema = schemas.DescribeOrderableDBInstanceOptionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeOrderableDBInstanceOptions, input, options)
 end
 
 function Client:describePendingMaintenanceActions(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribePendingMaintenanceActions",
-        input_schema = schemas.DescribePendingMaintenanceActionsInput,
-        output_schema = schemas.DescribePendingMaintenanceActionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribePendingMaintenanceActions, input, options)
 end
 
 function Client:failoverDBCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "FailoverDBCluster",
-        input_schema = schemas.FailoverDBClusterInput,
-        output_schema = schemas.FailoverDBClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.FailoverDBCluster, input, options)
 end
 
 function Client:failoverGlobalCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "FailoverGlobalCluster",
-        input_schema = schemas.FailoverGlobalClusterInput,
-        output_schema = schemas.FailoverGlobalClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.FailoverGlobalCluster, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:modifyDBCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyDBCluster",
-        input_schema = schemas.ModifyDBClusterInput,
-        output_schema = schemas.ModifyDBClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyDBCluster, input, options)
 end
 
 function Client:modifyDBClusterParameterGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyDBClusterParameterGroup",
-        input_schema = schemas.ModifyDBClusterParameterGroupInput,
-        output_schema = schemas.ModifyDBClusterParameterGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyDBClusterParameterGroup, input, options)
 end
 
 function Client:modifyDBClusterSnapshotAttribute(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyDBClusterSnapshotAttribute",
-        input_schema = schemas.ModifyDBClusterSnapshotAttributeInput,
-        output_schema = schemas.ModifyDBClusterSnapshotAttributeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyDBClusterSnapshotAttribute, input, options)
 end
 
 function Client:modifyDBInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyDBInstance",
-        input_schema = schemas.ModifyDBInstanceInput,
-        output_schema = schemas.ModifyDBInstanceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyDBInstance, input, options)
 end
 
 function Client:modifyDBSubnetGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyDBSubnetGroup",
-        input_schema = schemas.ModifyDBSubnetGroupInput,
-        output_schema = schemas.ModifyDBSubnetGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyDBSubnetGroup, input, options)
 end
 
 function Client:modifyEventSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyEventSubscription",
-        input_schema = schemas.ModifyEventSubscriptionInput,
-        output_schema = schemas.ModifyEventSubscriptionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyEventSubscription, input, options)
 end
 
 function Client:modifyGlobalCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "ModifyGlobalCluster",
-        input_schema = schemas.ModifyGlobalClusterInput,
-        output_schema = schemas.ModifyGlobalClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ModifyGlobalCluster, input, options)
 end
 
 function Client:rebootDBInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "RebootDBInstance",
-        input_schema = schemas.RebootDBInstanceInput,
-        output_schema = schemas.RebootDBInstanceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RebootDBInstance, input, options)
 end
 
 function Client:removeFromGlobalCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveFromGlobalCluster",
-        input_schema = schemas.RemoveFromGlobalClusterInput,
-        output_schema = schemas.RemoveFromGlobalClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveFromGlobalCluster, input, options)
 end
 
 function Client:removeSourceIdentifierFromSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveSourceIdentifierFromSubscription",
-        input_schema = schemas.RemoveSourceIdentifierFromSubscriptionInput,
-        output_schema = schemas.RemoveSourceIdentifierFromSubscriptionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveSourceIdentifierFromSubscription, input, options)
 end
 
 function Client:removeTagsFromResource(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveTagsFromResource",
-        input_schema = schemas.RemoveTagsFromResourceInput,
-        output_schema = schemas.RemoveTagsFromResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveTagsFromResource, input, options)
 end
 
 function Client:resetDBClusterParameterGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "ResetDBClusterParameterGroup",
-        input_schema = schemas.ResetDBClusterParameterGroupInput,
-        output_schema = schemas.ResetDBClusterParameterGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ResetDBClusterParameterGroup, input, options)
 end
 
 function Client:restoreDBClusterFromSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "RestoreDBClusterFromSnapshot",
-        input_schema = schemas.RestoreDBClusterFromSnapshotInput,
-        output_schema = schemas.RestoreDBClusterFromSnapshotOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RestoreDBClusterFromSnapshot, input, options)
 end
 
 function Client:restoreDBClusterToPointInTime(input, options)
-    return self:invokeOperation(input, {
-        name = "RestoreDBClusterToPointInTime",
-        input_schema = schemas.RestoreDBClusterToPointInTimeInput,
-        output_schema = schemas.RestoreDBClusterToPointInTimeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RestoreDBClusterToPointInTime, input, options)
 end
 
 function Client:startDBCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "StartDBCluster",
-        input_schema = schemas.StartDBClusterInput,
-        output_schema = schemas.StartDBClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartDBCluster, input, options)
 end
 
 function Client:stopDBCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "StopDBCluster",
-        input_schema = schemas.StopDBClusterInput,
-        output_schema = schemas.StopDBClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopDBCluster, input, options)
 end
 
 function Client:switchoverGlobalCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "SwitchoverGlobalCluster",
-        input_schema = schemas.SwitchoverGlobalClusterInput,
-        output_schema = schemas.SwitchoverGlobalClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SwitchoverGlobalCluster, input, options)
 end
 
 return M

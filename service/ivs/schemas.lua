@@ -4127,4 +4127,494 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ivs", "AmazonInteractiveVideoService"),
+    version = "2020-07-14",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetChannel = schema.operation({
+    id = id.from("com.amazonaws.ivs", "BatchGetChannel"),
+    input = M.BatchGetChannelInput,
+    output = M.BatchGetChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetChannel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetStreamKey = schema.operation({
+    id = id.from("com.amazonaws.ivs", "BatchGetStreamKey"),
+    input = M.BatchGetStreamKeyInput,
+    output = M.BatchGetStreamKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetStreamKey" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchStartViewerSessionRevocation = schema.operation({
+    id = id.from("com.amazonaws.ivs", "BatchStartViewerSessionRevocation"),
+    input = M.BatchStartViewerSessionRevocationInput,
+    output = M.BatchStartViewerSessionRevocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchStartViewerSessionRevocation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAdConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivs", "CreateAdConfiguration"),
+    input = M.CreateAdConfigurationInput,
+    output = M.CreateAdConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateAdConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChannel = schema.operation({
+    id = id.from("com.amazonaws.ivs", "CreateChannel"),
+    input = M.CreateChannelInput,
+    output = M.CreateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateChannel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePlaybackRestrictionPolicy = schema.operation({
+    id = id.from("com.amazonaws.ivs", "CreatePlaybackRestrictionPolicy"),
+    input = M.CreatePlaybackRestrictionPolicyInput,
+    output = M.CreatePlaybackRestrictionPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreatePlaybackRestrictionPolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRecordingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivs", "CreateRecordingConfiguration"),
+    input = M.CreateRecordingConfigurationInput,
+    output = M.CreateRecordingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateRecordingConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStreamKey = schema.operation({
+    id = id.from("com.amazonaws.ivs", "CreateStreamKey"),
+    input = M.CreateStreamKeyInput,
+    output = M.CreateStreamKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateStreamKey" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAdConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivs", "DeleteAdConfiguration"),
+    input = M.DeleteAdConfigurationInput,
+    output = M.DeleteAdConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteAdConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChannel = schema.operation({
+    id = id.from("com.amazonaws.ivs", "DeleteChannel"),
+    input = M.DeleteChannelInput,
+    output = M.DeleteChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteChannel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePlaybackKeyPair = schema.operation({
+    id = id.from("com.amazonaws.ivs", "DeletePlaybackKeyPair"),
+    input = M.DeletePlaybackKeyPairInput,
+    output = M.DeletePlaybackKeyPairOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeletePlaybackKeyPair" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePlaybackRestrictionPolicy = schema.operation({
+    id = id.from("com.amazonaws.ivs", "DeletePlaybackRestrictionPolicy"),
+    input = M.DeletePlaybackRestrictionPolicyInput,
+    output = M.DeletePlaybackRestrictionPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeletePlaybackRestrictionPolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecordingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivs", "DeleteRecordingConfiguration"),
+    input = M.DeleteRecordingConfigurationInput,
+    output = M.DeleteRecordingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteRecordingConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStreamKey = schema.operation({
+    id = id.from("com.amazonaws.ivs", "DeleteStreamKey"),
+    input = M.DeleteStreamKeyInput,
+    output = M.DeleteStreamKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteStreamKey" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAdConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivs", "GetAdConfiguration"),
+    input = M.GetAdConfigurationInput,
+    output = M.GetAdConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetAdConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChannel = schema.operation({
+    id = id.from("com.amazonaws.ivs", "GetChannel"),
+    input = M.GetChannelInput,
+    output = M.GetChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetChannel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPlaybackKeyPair = schema.operation({
+    id = id.from("com.amazonaws.ivs", "GetPlaybackKeyPair"),
+    input = M.GetPlaybackKeyPairInput,
+    output = M.GetPlaybackKeyPairOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetPlaybackKeyPair" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPlaybackRestrictionPolicy = schema.operation({
+    id = id.from("com.amazonaws.ivs", "GetPlaybackRestrictionPolicy"),
+    input = M.GetPlaybackRestrictionPolicyInput,
+    output = M.GetPlaybackRestrictionPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetPlaybackRestrictionPolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecordingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivs", "GetRecordingConfiguration"),
+    input = M.GetRecordingConfigurationInput,
+    output = M.GetRecordingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetRecordingConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStream = schema.operation({
+    id = id.from("com.amazonaws.ivs", "GetStream"),
+    input = M.GetStreamInput,
+    output = M.GetStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetStream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStreamKey = schema.operation({
+    id = id.from("com.amazonaws.ivs", "GetStreamKey"),
+    input = M.GetStreamKeyInput,
+    output = M.GetStreamKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetStreamKey" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStreamSession = schema.operation({
+    id = id.from("com.amazonaws.ivs", "GetStreamSession"),
+    input = M.GetStreamSessionInput,
+    output = M.GetStreamSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetStreamSession" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportPlaybackKeyPair = schema.operation({
+    id = id.from("com.amazonaws.ivs", "ImportPlaybackKeyPair"),
+    input = M.ImportPlaybackKeyPairInput,
+    output = M.ImportPlaybackKeyPairOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ImportPlaybackKeyPair" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InsertAdBreak = schema.operation({
+    id = id.from("com.amazonaws.ivs", "InsertAdBreak"),
+    input = M.InsertAdBreakInput,
+    output = M.InsertAdBreakOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/InsertAdBreak" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAdConfigurations = schema.operation({
+    id = id.from("com.amazonaws.ivs", "ListAdConfigurations"),
+    input = M.ListAdConfigurationsInput,
+    output = M.ListAdConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListAdConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannels = schema.operation({
+    id = id.from("com.amazonaws.ivs", "ListChannels"),
+    input = M.ListChannelsInput,
+    output = M.ListChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListChannels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPlaybackKeyPairs = schema.operation({
+    id = id.from("com.amazonaws.ivs", "ListPlaybackKeyPairs"),
+    input = M.ListPlaybackKeyPairsInput,
+    output = M.ListPlaybackKeyPairsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListPlaybackKeyPairs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPlaybackRestrictionPolicies = schema.operation({
+    id = id.from("com.amazonaws.ivs", "ListPlaybackRestrictionPolicies"),
+    input = M.ListPlaybackRestrictionPoliciesInput,
+    output = M.ListPlaybackRestrictionPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListPlaybackRestrictionPolicies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecordingConfigurations = schema.operation({
+    id = id.from("com.amazonaws.ivs", "ListRecordingConfigurations"),
+    input = M.ListRecordingConfigurationsInput,
+    output = M.ListRecordingConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListRecordingConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStreamKeys = schema.operation({
+    id = id.from("com.amazonaws.ivs", "ListStreamKeys"),
+    input = M.ListStreamKeysInput,
+    output = M.ListStreamKeysOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListStreamKeys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStreams = schema.operation({
+    id = id.from("com.amazonaws.ivs", "ListStreams"),
+    input = M.ListStreamsInput,
+    output = M.ListStreamsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListStreams" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStreamSessions = schema.operation({
+    id = id.from("com.amazonaws.ivs", "ListStreamSessions"),
+    input = M.ListStreamSessionsInput,
+    output = M.ListStreamSessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListStreamSessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.ivs", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMetadata = schema.operation({
+    id = id.from("com.amazonaws.ivs", "PutMetadata"),
+    input = M.PutMetadataInput,
+    output = M.PutMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutMetadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartViewerSessionRevocation = schema.operation({
+    id = id.from("com.amazonaws.ivs", "StartViewerSessionRevocation"),
+    input = M.StartViewerSessionRevocationInput,
+    output = M.StartViewerSessionRevocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartViewerSessionRevocation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopStream = schema.operation({
+    id = id.from("com.amazonaws.ivs", "StopStream"),
+    input = M.StopStreamInput,
+    output = M.StopStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StopStream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.ivs", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.ivs", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChannel = schema.operation({
+    id = id.from("com.amazonaws.ivs", "UpdateChannel"),
+    input = M.UpdateChannelInput,
+    output = M.UpdateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateChannel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePlaybackRestrictionPolicy = schema.operation({
+    id = id.from("com.amazonaws.ivs", "UpdatePlaybackRestrictionPolicy"),
+    input = M.UpdatePlaybackRestrictionPolicyInput,
+    output = M.UpdatePlaybackRestrictionPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdatePlaybackRestrictionPolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

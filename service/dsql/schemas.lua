@@ -1107,4 +1107,158 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.dsql", "DSQL"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCluster = schema.operation({
+    id = id.from("com.amazonaws.dsql", "CreateCluster"),
+    input = M.CreateClusterInput,
+    output = M.CreateClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cluster" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCluster = schema.operation({
+    id = id.from("com.amazonaws.dsql", "DeleteCluster"),
+    input = M.DeleteClusterInput,
+    output = M.DeleteClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/cluster/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteClusterPolicy = schema.operation({
+    id = id.from("com.amazonaws.dsql", "DeleteClusterPolicy"),
+    input = M.DeleteClusterPolicyInput,
+    output = M.DeleteClusterPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/cluster/{identifier}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCluster = schema.operation({
+    id = id.from("com.amazonaws.dsql", "GetCluster"),
+    input = M.GetClusterInput,
+    output = M.GetClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cluster/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetClusterPolicy = schema.operation({
+    id = id.from("com.amazonaws.dsql", "GetClusterPolicy"),
+    input = M.GetClusterPolicyInput,
+    output = M.GetClusterPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cluster/{identifier}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVpcEndpointServiceName = schema.operation({
+    id = id.from("com.amazonaws.dsql", "GetVpcEndpointServiceName"),
+    input = M.GetVpcEndpointServiceNameInput,
+    output = M.GetVpcEndpointServiceNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{identifier}/vpc-endpoint-service-name" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusters = schema.operation({
+    id = id.from("com.amazonaws.dsql", "ListClusters"),
+    input = M.ListClustersInput,
+    output = M.ListClustersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cluster" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.dsql", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutClusterPolicy = schema.operation({
+    id = id.from("com.amazonaws.dsql", "PutClusterPolicy"),
+    input = M.PutClusterPolicyInput,
+    output = M.PutClusterPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cluster/{identifier}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.dsql", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.dsql", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCluster = schema.operation({
+    id = id.from("com.amazonaws.dsql", "UpdateCluster"),
+    input = M.UpdateClusterInput,
+    output = M.UpdateClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cluster/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

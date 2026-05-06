@@ -2595,4 +2595,377 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.applicationinsights", "EC2WindowsBarleyService"),
+    version = "2018-11-25",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddWorkload = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "AddWorkload"),
+    input = M.AddWorkloadInput,
+    output = M.AddWorkloadOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateComponent = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "CreateComponent"),
+    input = M.CreateComponentInput,
+    output = M.CreateComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLogPattern = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "CreateLogPattern"),
+    input = M.CreateLogPatternInput,
+    output = M.CreateLogPatternOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteComponent = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "DeleteComponent"),
+    input = M.DeleteComponentInput,
+    output = M.DeleteComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLogPattern = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "DeleteLogPattern"),
+    input = M.DeleteLogPatternInput,
+    output = M.DeleteLogPatternOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplication = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "DescribeApplication"),
+    input = M.DescribeApplicationInput,
+    output = M.DescribeApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeComponent = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "DescribeComponent"),
+    input = M.DescribeComponentInput,
+    output = M.DescribeComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeComponentConfiguration = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "DescribeComponentConfiguration"),
+    input = M.DescribeComponentConfigurationInput,
+    output = M.DescribeComponentConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeComponentConfigurationRecommendation = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "DescribeComponentConfigurationRecommendation"),
+    input = M.DescribeComponentConfigurationRecommendationInput,
+    output = M.DescribeComponentConfigurationRecommendationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLogPattern = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "DescribeLogPattern"),
+    input = M.DescribeLogPatternInput,
+    output = M.DescribeLogPatternOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeObservation = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "DescribeObservation"),
+    input = M.DescribeObservationInput,
+    output = M.DescribeObservationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProblem = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "DescribeProblem"),
+    input = M.DescribeProblemInput,
+    output = M.DescribeProblemOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProblemObservations = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "DescribeProblemObservations"),
+    input = M.DescribeProblemObservationsInput,
+    output = M.DescribeProblemObservationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkload = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "DescribeWorkload"),
+    input = M.DescribeWorkloadInput,
+    output = M.DescribeWorkloadOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComponents = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "ListComponents"),
+    input = M.ListComponentsInput,
+    output = M.ListComponentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationHistory = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "ListConfigurationHistory"),
+    input = M.ListConfigurationHistoryInput,
+    output = M.ListConfigurationHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLogPatterns = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "ListLogPatterns"),
+    input = M.ListLogPatternsInput,
+    output = M.ListLogPatternsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLogPatternSets = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "ListLogPatternSets"),
+    input = M.ListLogPatternSetsInput,
+    output = M.ListLogPatternSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProblems = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "ListProblems"),
+    input = M.ListProblemsInput,
+    output = M.ListProblemsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkloads = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "ListWorkloads"),
+    input = M.ListWorkloadsInput,
+    output = M.ListWorkloadsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveWorkload = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "RemoveWorkload"),
+    input = M.RemoveWorkloadInput,
+    output = M.RemoveWorkloadOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateComponent = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "UpdateComponent"),
+    input = M.UpdateComponentInput,
+    output = M.UpdateComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateComponentConfiguration = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "UpdateComponentConfiguration"),
+    input = M.UpdateComponentConfigurationInput,
+    output = M.UpdateComponentConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLogPattern = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "UpdateLogPattern"),
+    input = M.UpdateLogPatternInput,
+    output = M.UpdateLogPatternOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProblem = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "UpdateProblem"),
+    input = M.UpdateProblemInput,
+    output = M.UpdateProblemOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkload = schema.operation({
+    id = id.from("com.amazonaws.applicationinsights", "UpdateWorkload"),
+    input = M.UpdateWorkloadInput,
+    output = M.UpdateWorkloadOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

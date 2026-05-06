@@ -5009,4 +5009,729 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.redshiftserverless", "RedshiftServerless"),
+    version = "2021-04-21",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConvertRecoveryPointToSnapshot = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ConvertRecoveryPointToSnapshot"),
+    input = M.ConvertRecoveryPointToSnapshotInput,
+    output = M.ConvertRecoveryPointToSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomDomainAssociation = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "CreateCustomDomainAssociation"),
+    input = M.CreateCustomDomainAssociationInput,
+    output = M.CreateCustomDomainAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEndpointAccess = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "CreateEndpointAccess"),
+    input = M.CreateEndpointAccessInput,
+    output = M.CreateEndpointAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNamespace = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "CreateNamespace"),
+    input = M.CreateNamespaceInput,
+    output = M.CreateNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReservation = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "CreateReservation"),
+    input = M.CreateReservationInput,
+    output = M.CreateReservationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateScheduledAction = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "CreateScheduledAction"),
+    input = M.CreateScheduledActionInput,
+    output = M.CreateScheduledActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSnapshot = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "CreateSnapshot"),
+    input = M.CreateSnapshotInput,
+    output = M.CreateSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSnapshotCopyConfiguration = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "CreateSnapshotCopyConfiguration"),
+    input = M.CreateSnapshotCopyConfigurationInput,
+    output = M.CreateSnapshotCopyConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUsageLimit = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "CreateUsageLimit"),
+    input = M.CreateUsageLimitInput,
+    output = M.CreateUsageLimitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkgroup = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "CreateWorkgroup"),
+    input = M.CreateWorkgroupInput,
+    output = M.CreateWorkgroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomDomainAssociation = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "DeleteCustomDomainAssociation"),
+    input = M.DeleteCustomDomainAssociationInput,
+    output = M.DeleteCustomDomainAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEndpointAccess = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "DeleteEndpointAccess"),
+    input = M.DeleteEndpointAccessInput,
+    output = M.DeleteEndpointAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNamespace = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "DeleteNamespace"),
+    input = M.DeleteNamespaceInput,
+    output = M.DeleteNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScheduledAction = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "DeleteScheduledAction"),
+    input = M.DeleteScheduledActionInput,
+    output = M.DeleteScheduledActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSnapshot = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "DeleteSnapshot"),
+    input = M.DeleteSnapshotInput,
+    output = M.DeleteSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSnapshotCopyConfiguration = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "DeleteSnapshotCopyConfiguration"),
+    input = M.DeleteSnapshotCopyConfigurationInput,
+    output = M.DeleteSnapshotCopyConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUsageLimit = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "DeleteUsageLimit"),
+    input = M.DeleteUsageLimitInput,
+    output = M.DeleteUsageLimitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkgroup = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "DeleteWorkgroup"),
+    input = M.DeleteWorkgroupInput,
+    output = M.DeleteWorkgroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCredentials = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetCredentials"),
+    input = M.GetCredentialsInput,
+    output = M.GetCredentialsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCustomDomainAssociation = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetCustomDomainAssociation"),
+    input = M.GetCustomDomainAssociationInput,
+    output = M.GetCustomDomainAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEndpointAccess = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetEndpointAccess"),
+    input = M.GetEndpointAccessInput,
+    output = M.GetEndpointAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdentityCenterAuthToken = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetIdentityCenterAuthToken"),
+    input = M.GetIdentityCenterAuthTokenInput,
+    output = M.GetIdentityCenterAuthTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNamespace = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetNamespace"),
+    input = M.GetNamespaceInput,
+    output = M.GetNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecoveryPoint = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetRecoveryPoint"),
+    input = M.GetRecoveryPointInput,
+    output = M.GetRecoveryPointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReservation = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetReservation"),
+    input = M.GetReservationInput,
+    output = M.GetReservationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetReservationOffering = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetReservationOffering"),
+    input = M.GetReservationOfferingInput,
+    output = M.GetReservationOfferingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetScheduledAction = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetScheduledAction"),
+    input = M.GetScheduledActionInput,
+    output = M.GetScheduledActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSnapshot = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetSnapshot"),
+    input = M.GetSnapshotInput,
+    output = M.GetSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableRestoreStatus = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetTableRestoreStatus"),
+    input = M.GetTableRestoreStatusInput,
+    output = M.GetTableRestoreStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrack = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetTrack"),
+    input = M.GetTrackInput,
+    output = M.GetTrackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUsageLimit = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetUsageLimit"),
+    input = M.GetUsageLimitInput,
+    output = M.GetUsageLimitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkgroup = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "GetWorkgroup"),
+    input = M.GetWorkgroupInput,
+    output = M.GetWorkgroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomDomainAssociations = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListCustomDomainAssociations"),
+    input = M.ListCustomDomainAssociationsInput,
+    output = M.ListCustomDomainAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEndpointAccess = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListEndpointAccess"),
+    input = M.ListEndpointAccessInput,
+    output = M.ListEndpointAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedWorkgroups = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListManagedWorkgroups"),
+    input = M.ListManagedWorkgroupsInput,
+    output = M.ListManagedWorkgroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNamespaces = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListNamespaces"),
+    input = M.ListNamespacesInput,
+    output = M.ListNamespacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecoveryPoints = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListRecoveryPoints"),
+    input = M.ListRecoveryPointsInput,
+    output = M.ListRecoveryPointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReservationOfferings = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListReservationOfferings"),
+    input = M.ListReservationOfferingsInput,
+    output = M.ListReservationOfferingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReservations = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListReservations"),
+    input = M.ListReservationsInput,
+    output = M.ListReservationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScheduledActions = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListScheduledActions"),
+    input = M.ListScheduledActionsInput,
+    output = M.ListScheduledActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSnapshotCopyConfigurations = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListSnapshotCopyConfigurations"),
+    input = M.ListSnapshotCopyConfigurationsInput,
+    output = M.ListSnapshotCopyConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSnapshots = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListSnapshots"),
+    input = M.ListSnapshotsInput,
+    output = M.ListSnapshotsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTableRestoreStatus = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListTableRestoreStatus"),
+    input = M.ListTableRestoreStatusInput,
+    output = M.ListTableRestoreStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTracks = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListTracks"),
+    input = M.ListTracksInput,
+    output = M.ListTracksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsageLimits = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListUsageLimits"),
+    input = M.ListUsageLimitsInput,
+    output = M.ListUsageLimitsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkgroups = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "ListWorkgroups"),
+    input = M.ListWorkgroupsInput,
+    output = M.ListWorkgroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreFromRecoveryPoint = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "RestoreFromRecoveryPoint"),
+    input = M.RestoreFromRecoveryPointInput,
+    output = M.RestoreFromRecoveryPointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreFromSnapshot = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "RestoreFromSnapshot"),
+    input = M.RestoreFromSnapshotInput,
+    output = M.RestoreFromSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreTableFromRecoveryPoint = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "RestoreTableFromRecoveryPoint"),
+    input = M.RestoreTableFromRecoveryPointInput,
+    output = M.RestoreTableFromRecoveryPointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreTableFromSnapshot = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "RestoreTableFromSnapshot"),
+    input = M.RestoreTableFromSnapshotInput,
+    output = M.RestoreTableFromSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCustomDomainAssociation = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "UpdateCustomDomainAssociation"),
+    input = M.UpdateCustomDomainAssociationInput,
+    output = M.UpdateCustomDomainAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEndpointAccess = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "UpdateEndpointAccess"),
+    input = M.UpdateEndpointAccessInput,
+    output = M.UpdateEndpointAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLakehouseConfiguration = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "UpdateLakehouseConfiguration"),
+    input = M.UpdateLakehouseConfigurationInput,
+    output = M.UpdateLakehouseConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNamespace = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "UpdateNamespace"),
+    input = M.UpdateNamespaceInput,
+    output = M.UpdateNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateScheduledAction = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "UpdateScheduledAction"),
+    input = M.UpdateScheduledActionInput,
+    output = M.UpdateScheduledActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSnapshot = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "UpdateSnapshot"),
+    input = M.UpdateSnapshotInput,
+    output = M.UpdateSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSnapshotCopyConfiguration = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "UpdateSnapshotCopyConfiguration"),
+    input = M.UpdateSnapshotCopyConfigurationInput,
+    output = M.UpdateSnapshotCopyConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUsageLimit = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "UpdateUsageLimit"),
+    input = M.UpdateUsageLimitInput,
+    output = M.UpdateUsageLimitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkgroup = schema.operation({
+    id = id.from("com.amazonaws.redshiftserverless", "UpdateWorkgroup"),
+    input = M.UpdateWorkgroupInput,
+    output = M.UpdateWorkgroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

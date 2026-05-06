@@ -6205,4 +6205,795 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.personalize", "AmazonPersonalize"),
+    version = "2018-05-22",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBatchInferenceJob = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateBatchInferenceJob"),
+    input = M.CreateBatchInferenceJobInput,
+    output = M.CreateBatchInferenceJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBatchSegmentJob = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateBatchSegmentJob"),
+    input = M.CreateBatchSegmentJobInput,
+    output = M.CreateBatchSegmentJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCampaign = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateCampaign"),
+    input = M.CreateCampaignInput,
+    output = M.CreateCampaignOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataDeletionJob = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateDataDeletionJob"),
+    input = M.CreateDataDeletionJobInput,
+    output = M.CreateDataDeletionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataset = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateDataset"),
+    input = M.CreateDatasetInput,
+    output = M.CreateDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDatasetExportJob = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateDatasetExportJob"),
+    input = M.CreateDatasetExportJobInput,
+    output = M.CreateDatasetExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDatasetGroup = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateDatasetGroup"),
+    input = M.CreateDatasetGroupInput,
+    output = M.CreateDatasetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDatasetImportJob = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateDatasetImportJob"),
+    input = M.CreateDatasetImportJobInput,
+    output = M.CreateDatasetImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventTracker = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateEventTracker"),
+    input = M.CreateEventTrackerInput,
+    output = M.CreateEventTrackerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFilter = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateFilter"),
+    input = M.CreateFilterInput,
+    output = M.CreateFilterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMetricAttribution = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateMetricAttribution"),
+    input = M.CreateMetricAttributionInput,
+    output = M.CreateMetricAttributionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRecommender = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateRecommender"),
+    input = M.CreateRecommenderInput,
+    output = M.CreateRecommenderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSchema = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateSchema"),
+    input = M.CreateSchemaInput,
+    output = M.CreateSchemaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSolution = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateSolution"),
+    input = M.CreateSolutionInput,
+    output = M.CreateSolutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSolutionVersion = schema.operation({
+    id = id.from("com.amazonaws.personalize", "CreateSolutionVersion"),
+    input = M.CreateSolutionVersionInput,
+    output = M.CreateSolutionVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCampaign = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DeleteCampaign"),
+    input = M.DeleteCampaignInput,
+    output = M.DeleteCampaignOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataset = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DeleteDataset"),
+    input = M.DeleteDatasetInput,
+    output = M.DeleteDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDatasetGroup = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DeleteDatasetGroup"),
+    input = M.DeleteDatasetGroupInput,
+    output = M.DeleteDatasetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventTracker = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DeleteEventTracker"),
+    input = M.DeleteEventTrackerInput,
+    output = M.DeleteEventTrackerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFilter = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DeleteFilter"),
+    input = M.DeleteFilterInput,
+    output = M.DeleteFilterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMetricAttribution = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DeleteMetricAttribution"),
+    input = M.DeleteMetricAttributionInput,
+    output = M.DeleteMetricAttributionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecommender = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DeleteRecommender"),
+    input = M.DeleteRecommenderInput,
+    output = M.DeleteRecommenderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSchema = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DeleteSchema"),
+    input = M.DeleteSchemaInput,
+    output = M.DeleteSchemaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSolution = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DeleteSolution"),
+    input = M.DeleteSolutionInput,
+    output = M.DeleteSolutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAlgorithm = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeAlgorithm"),
+    input = M.DescribeAlgorithmInput,
+    output = M.DescribeAlgorithmOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBatchInferenceJob = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeBatchInferenceJob"),
+    input = M.DescribeBatchInferenceJobInput,
+    output = M.DescribeBatchInferenceJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBatchSegmentJob = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeBatchSegmentJob"),
+    input = M.DescribeBatchSegmentJobInput,
+    output = M.DescribeBatchSegmentJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCampaign = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeCampaign"),
+    input = M.DescribeCampaignInput,
+    output = M.DescribeCampaignOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataDeletionJob = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeDataDeletionJob"),
+    input = M.DescribeDataDeletionJobInput,
+    output = M.DescribeDataDeletionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataset = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeDataset"),
+    input = M.DescribeDatasetInput,
+    output = M.DescribeDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDatasetExportJob = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeDatasetExportJob"),
+    input = M.DescribeDatasetExportJobInput,
+    output = M.DescribeDatasetExportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDatasetGroup = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeDatasetGroup"),
+    input = M.DescribeDatasetGroupInput,
+    output = M.DescribeDatasetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDatasetImportJob = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeDatasetImportJob"),
+    input = M.DescribeDatasetImportJobInput,
+    output = M.DescribeDatasetImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventTracker = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeEventTracker"),
+    input = M.DescribeEventTrackerInput,
+    output = M.DescribeEventTrackerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFeatureTransformation = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeFeatureTransformation"),
+    input = M.DescribeFeatureTransformationInput,
+    output = M.DescribeFeatureTransformationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFilter = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeFilter"),
+    input = M.DescribeFilterInput,
+    output = M.DescribeFilterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMetricAttribution = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeMetricAttribution"),
+    input = M.DescribeMetricAttributionInput,
+    output = M.DescribeMetricAttributionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRecipe = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeRecipe"),
+    input = M.DescribeRecipeInput,
+    output = M.DescribeRecipeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRecommender = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeRecommender"),
+    input = M.DescribeRecommenderInput,
+    output = M.DescribeRecommenderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSchema = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeSchema"),
+    input = M.DescribeSchemaInput,
+    output = M.DescribeSchemaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSolution = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeSolution"),
+    input = M.DescribeSolutionInput,
+    output = M.DescribeSolutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSolutionVersion = schema.operation({
+    id = id.from("com.amazonaws.personalize", "DescribeSolutionVersion"),
+    input = M.DescribeSolutionVersionInput,
+    output = M.DescribeSolutionVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSolutionMetrics = schema.operation({
+    id = id.from("com.amazonaws.personalize", "GetSolutionMetrics"),
+    input = M.GetSolutionMetricsInput,
+    output = M.GetSolutionMetricsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBatchInferenceJobs = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListBatchInferenceJobs"),
+    input = M.ListBatchInferenceJobsInput,
+    output = M.ListBatchInferenceJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBatchSegmentJobs = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListBatchSegmentJobs"),
+    input = M.ListBatchSegmentJobsInput,
+    output = M.ListBatchSegmentJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCampaigns = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListCampaigns"),
+    input = M.ListCampaignsInput,
+    output = M.ListCampaignsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataDeletionJobs = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListDataDeletionJobs"),
+    input = M.ListDataDeletionJobsInput,
+    output = M.ListDataDeletionJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasetExportJobs = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListDatasetExportJobs"),
+    input = M.ListDatasetExportJobsInput,
+    output = M.ListDatasetExportJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasetGroups = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListDatasetGroups"),
+    input = M.ListDatasetGroupsInput,
+    output = M.ListDatasetGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasetImportJobs = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListDatasetImportJobs"),
+    input = M.ListDatasetImportJobsInput,
+    output = M.ListDatasetImportJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasets = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListDatasets"),
+    input = M.ListDatasetsInput,
+    output = M.ListDatasetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventTrackers = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListEventTrackers"),
+    input = M.ListEventTrackersInput,
+    output = M.ListEventTrackersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFilters = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListFilters"),
+    input = M.ListFiltersInput,
+    output = M.ListFiltersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMetricAttributionMetrics = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListMetricAttributionMetrics"),
+    input = M.ListMetricAttributionMetricsInput,
+    output = M.ListMetricAttributionMetricsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMetricAttributions = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListMetricAttributions"),
+    input = M.ListMetricAttributionsInput,
+    output = M.ListMetricAttributionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecipes = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListRecipes"),
+    input = M.ListRecipesInput,
+    output = M.ListRecipesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommenders = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListRecommenders"),
+    input = M.ListRecommendersInput,
+    output = M.ListRecommendersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSchemas = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListSchemas"),
+    input = M.ListSchemasInput,
+    output = M.ListSchemasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSolutions = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListSolutions"),
+    input = M.ListSolutionsInput,
+    output = M.ListSolutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSolutionVersions = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListSolutionVersions"),
+    input = M.ListSolutionVersionsInput,
+    output = M.ListSolutionVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.personalize", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRecommender = schema.operation({
+    id = id.from("com.amazonaws.personalize", "StartRecommender"),
+    input = M.StartRecommenderInput,
+    output = M.StartRecommenderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopRecommender = schema.operation({
+    id = id.from("com.amazonaws.personalize", "StopRecommender"),
+    input = M.StopRecommenderInput,
+    output = M.StopRecommenderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopSolutionVersionCreation = schema.operation({
+    id = id.from("com.amazonaws.personalize", "StopSolutionVersionCreation"),
+    input = M.StopSolutionVersionCreationInput,
+    output = M.StopSolutionVersionCreationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.personalize", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.personalize", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCampaign = schema.operation({
+    id = id.from("com.amazonaws.personalize", "UpdateCampaign"),
+    input = M.UpdateCampaignInput,
+    output = M.UpdateCampaignOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataset = schema.operation({
+    id = id.from("com.amazonaws.personalize", "UpdateDataset"),
+    input = M.UpdateDatasetInput,
+    output = M.UpdateDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMetricAttribution = schema.operation({
+    id = id.from("com.amazonaws.personalize", "UpdateMetricAttribution"),
+    input = M.UpdateMetricAttributionInput,
+    output = M.UpdateMetricAttributionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecommender = schema.operation({
+    id = id.from("com.amazonaws.personalize", "UpdateRecommender"),
+    input = M.UpdateRecommenderInput,
+    output = M.UpdateRecommenderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSolution = schema.operation({
+    id = id.from("com.amazonaws.personalize", "UpdateSolution"),
+    input = M.UpdateSolutionInput,
+    output = M.UpdateSolutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

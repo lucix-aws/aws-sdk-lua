@@ -6286,4 +6286,894 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.directoryservice", "DirectoryService_20150416"),
+    version = "2015-04-16",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptSharedDirectory = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "AcceptSharedDirectory"),
+    input = M.AcceptSharedDirectoryInput,
+    output = M.AcceptSharedDirectoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddIpRoutes = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "AddIpRoutes"),
+    input = M.AddIpRoutesInput,
+    output = M.AddIpRoutesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddRegion = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "AddRegion"),
+    input = M.AddRegionInput,
+    output = M.AddRegionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTagsToResource = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "AddTagsToResource"),
+    input = M.AddTagsToResourceInput,
+    output = M.AddTagsToResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelSchemaExtension = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "CancelSchemaExtension"),
+    input = M.CancelSchemaExtensionInput,
+    output = M.CancelSchemaExtensionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConnectDirectory = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "ConnectDirectory"),
+    input = M.ConnectDirectoryInput,
+    output = M.ConnectDirectoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAlias = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "CreateAlias"),
+    input = M.CreateAliasInput,
+    output = M.CreateAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateComputer = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "CreateComputer"),
+    input = M.CreateComputerInput,
+    output = M.CreateComputerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConditionalForwarder = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "CreateConditionalForwarder"),
+    input = M.CreateConditionalForwarderInput,
+    output = M.CreateConditionalForwarderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDirectory = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "CreateDirectory"),
+    input = M.CreateDirectoryInput,
+    output = M.CreateDirectoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHybridAD = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "CreateHybridAD"),
+    input = M.CreateHybridADInput,
+    output = M.CreateHybridADOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLogSubscription = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "CreateLogSubscription"),
+    input = M.CreateLogSubscriptionInput,
+    output = M.CreateLogSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMicrosoftAD = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "CreateMicrosoftAD"),
+    input = M.CreateMicrosoftADInput,
+    output = M.CreateMicrosoftADOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSnapshot = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "CreateSnapshot"),
+    input = M.CreateSnapshotInput,
+    output = M.CreateSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrust = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "CreateTrust"),
+    input = M.CreateTrustInput,
+    output = M.CreateTrustOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteADAssessment = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DeleteADAssessment"),
+    input = M.DeleteADAssessmentInput,
+    output = M.DeleteADAssessmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConditionalForwarder = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DeleteConditionalForwarder"),
+    input = M.DeleteConditionalForwarderInput,
+    output = M.DeleteConditionalForwarderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDirectory = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DeleteDirectory"),
+    input = M.DeleteDirectoryInput,
+    output = M.DeleteDirectoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLogSubscription = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DeleteLogSubscription"),
+    input = M.DeleteLogSubscriptionInput,
+    output = M.DeleteLogSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSnapshot = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DeleteSnapshot"),
+    input = M.DeleteSnapshotInput,
+    output = M.DeleteSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrust = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DeleteTrust"),
+    input = M.DeleteTrustInput,
+    output = M.DeleteTrustOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterCertificate = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DeregisterCertificate"),
+    input = M.DeregisterCertificateInput,
+    output = M.DeregisterCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterEventTopic = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DeregisterEventTopic"),
+    input = M.DeregisterEventTopicInput,
+    output = M.DeregisterEventTopicOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeADAssessment = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeADAssessment"),
+    input = M.DescribeADAssessmentInput,
+    output = M.DescribeADAssessmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCAEnrollmentPolicy = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeCAEnrollmentPolicy"),
+    input = M.DescribeCAEnrollmentPolicyInput,
+    output = M.DescribeCAEnrollmentPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCertificate = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeCertificate"),
+    input = M.DescribeCertificateInput,
+    output = M.DescribeCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClientAuthenticationSettings = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeClientAuthenticationSettings"),
+    input = M.DescribeClientAuthenticationSettingsInput,
+    output = M.DescribeClientAuthenticationSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConditionalForwarders = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeConditionalForwarders"),
+    input = M.DescribeConditionalForwardersInput,
+    output = M.DescribeConditionalForwardersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDirectories = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeDirectories"),
+    input = M.DescribeDirectoriesInput,
+    output = M.DescribeDirectoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDirectoryDataAccess = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeDirectoryDataAccess"),
+    input = M.DescribeDirectoryDataAccessInput,
+    output = M.DescribeDirectoryDataAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomainControllers = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeDomainControllers"),
+    input = M.DescribeDomainControllersInput,
+    output = M.DescribeDomainControllersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventTopics = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeEventTopics"),
+    input = M.DescribeEventTopicsInput,
+    output = M.DescribeEventTopicsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHybridADUpdate = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeHybridADUpdate"),
+    input = M.DescribeHybridADUpdateInput,
+    output = M.DescribeHybridADUpdateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLDAPSSettings = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeLDAPSSettings"),
+    input = M.DescribeLDAPSSettingsInput,
+    output = M.DescribeLDAPSSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRegions = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeRegions"),
+    input = M.DescribeRegionsInput,
+    output = M.DescribeRegionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSettings = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeSettings"),
+    input = M.DescribeSettingsInput,
+    output = M.DescribeSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSharedDirectories = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeSharedDirectories"),
+    input = M.DescribeSharedDirectoriesInput,
+    output = M.DescribeSharedDirectoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSnapshots = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeSnapshots"),
+    input = M.DescribeSnapshotsInput,
+    output = M.DescribeSnapshotsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrusts = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeTrusts"),
+    input = M.DescribeTrustsInput,
+    output = M.DescribeTrustsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUpdateDirectory = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DescribeUpdateDirectory"),
+    input = M.DescribeUpdateDirectoryInput,
+    output = M.DescribeUpdateDirectoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableCAEnrollmentPolicy = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DisableCAEnrollmentPolicy"),
+    input = M.DisableCAEnrollmentPolicyInput,
+    output = M.DisableCAEnrollmentPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableClientAuthentication = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DisableClientAuthentication"),
+    input = M.DisableClientAuthenticationInput,
+    output = M.DisableClientAuthenticationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableDirectoryDataAccess = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DisableDirectoryDataAccess"),
+    input = M.DisableDirectoryDataAccessInput,
+    output = M.DisableDirectoryDataAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableLDAPS = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DisableLDAPS"),
+    input = M.DisableLDAPSInput,
+    output = M.DisableLDAPSOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableRadius = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DisableRadius"),
+    input = M.DisableRadiusInput,
+    output = M.DisableRadiusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableSso = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "DisableSso"),
+    input = M.DisableSsoInput,
+    output = M.DisableSsoOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableCAEnrollmentPolicy = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "EnableCAEnrollmentPolicy"),
+    input = M.EnableCAEnrollmentPolicyInput,
+    output = M.EnableCAEnrollmentPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableClientAuthentication = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "EnableClientAuthentication"),
+    input = M.EnableClientAuthenticationInput,
+    output = M.EnableClientAuthenticationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableDirectoryDataAccess = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "EnableDirectoryDataAccess"),
+    input = M.EnableDirectoryDataAccessInput,
+    output = M.EnableDirectoryDataAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableLDAPS = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "EnableLDAPS"),
+    input = M.EnableLDAPSInput,
+    output = M.EnableLDAPSOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableRadius = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "EnableRadius"),
+    input = M.EnableRadiusInput,
+    output = M.EnableRadiusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableSso = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "EnableSso"),
+    input = M.EnableSsoInput,
+    output = M.EnableSsoOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDirectoryLimits = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "GetDirectoryLimits"),
+    input = M.GetDirectoryLimitsInput,
+    output = M.GetDirectoryLimitsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSnapshotLimits = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "GetSnapshotLimits"),
+    input = M.GetSnapshotLimitsInput,
+    output = M.GetSnapshotLimitsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListADAssessments = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "ListADAssessments"),
+    input = M.ListADAssessmentsInput,
+    output = M.ListADAssessmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCertificates = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "ListCertificates"),
+    input = M.ListCertificatesInput,
+    output = M.ListCertificatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIpRoutes = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "ListIpRoutes"),
+    input = M.ListIpRoutesInput,
+    output = M.ListIpRoutesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLogSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "ListLogSubscriptions"),
+    input = M.ListLogSubscriptionsInput,
+    output = M.ListLogSubscriptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSchemaExtensions = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "ListSchemaExtensions"),
+    input = M.ListSchemaExtensionsInput,
+    output = M.ListSchemaExtensionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterCertificate = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "RegisterCertificate"),
+    input = M.RegisterCertificateInput,
+    output = M.RegisterCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterEventTopic = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "RegisterEventTopic"),
+    input = M.RegisterEventTopicInput,
+    output = M.RegisterEventTopicOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectSharedDirectory = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "RejectSharedDirectory"),
+    input = M.RejectSharedDirectoryInput,
+    output = M.RejectSharedDirectoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveIpRoutes = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "RemoveIpRoutes"),
+    input = M.RemoveIpRoutesInput,
+    output = M.RemoveIpRoutesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveRegion = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "RemoveRegion"),
+    input = M.RemoveRegionInput,
+    output = M.RemoveRegionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTagsFromResource = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "RemoveTagsFromResource"),
+    input = M.RemoveTagsFromResourceInput,
+    output = M.RemoveTagsFromResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetUserPassword = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "ResetUserPassword"),
+    input = M.ResetUserPasswordInput,
+    output = M.ResetUserPasswordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreFromSnapshot = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "RestoreFromSnapshot"),
+    input = M.RestoreFromSnapshotInput,
+    output = M.RestoreFromSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ShareDirectory = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "ShareDirectory"),
+    input = M.ShareDirectoryInput,
+    output = M.ShareDirectoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartADAssessment = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "StartADAssessment"),
+    input = M.StartADAssessmentInput,
+    output = M.StartADAssessmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSchemaExtension = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "StartSchemaExtension"),
+    input = M.StartSchemaExtensionInput,
+    output = M.StartSchemaExtensionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UnshareDirectory = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "UnshareDirectory"),
+    input = M.UnshareDirectoryInput,
+    output = M.UnshareDirectoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConditionalForwarder = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "UpdateConditionalForwarder"),
+    input = M.UpdateConditionalForwarderInput,
+    output = M.UpdateConditionalForwarderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDirectorySetup = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "UpdateDirectorySetup"),
+    input = M.UpdateDirectorySetupInput,
+    output = M.UpdateDirectorySetupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHybridAD = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "UpdateHybridAD"),
+    input = M.UpdateHybridADInput,
+    output = M.UpdateHybridADOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNumberOfDomainControllers = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "UpdateNumberOfDomainControllers"),
+    input = M.UpdateNumberOfDomainControllersInput,
+    output = M.UpdateNumberOfDomainControllersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRadius = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "UpdateRadius"),
+    input = M.UpdateRadiusInput,
+    output = M.UpdateRadiusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSettings = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "UpdateSettings"),
+    input = M.UpdateSettingsInput,
+    output = M.UpdateSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrust = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "UpdateTrust"),
+    input = M.UpdateTrustInput,
+    output = M.UpdateTrustOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyTrust = schema.operation({
+    id = id.from("com.amazonaws.directoryservice", "VerifyTrust"),
+    input = M.VerifyTrustInput,
+    output = M.VerifyTrustOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

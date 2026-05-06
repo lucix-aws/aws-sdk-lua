@@ -5253,4 +5253,494 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.groundstation", "GroundStation"),
+    version = "2019-05-23",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelContact = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "CancelContact"),
+    input = M.CancelContactInput,
+    output = M.CancelContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/contact/{contactId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfig = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "CreateConfig"),
+    input = M.CreateConfigInput,
+    output = M.CreateConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataflowEndpointGroup = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "CreateDataflowEndpointGroup"),
+    input = M.CreateDataflowEndpointGroupInput,
+    output = M.CreateDataflowEndpointGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/dataflowEndpointGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataflowEndpointGroupV2 = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "CreateDataflowEndpointGroupV2"),
+    input = M.CreateDataflowEndpointGroupV2Input,
+    output = M.CreateDataflowEndpointGroupV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/dataflowEndpointGroupV2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEphemeris = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "CreateEphemeris"),
+    input = M.CreateEphemerisInput,
+    output = M.CreateEphemerisOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ephemeris" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMissionProfile = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "CreateMissionProfile"),
+    input = M.CreateMissionProfileInput,
+    output = M.CreateMissionProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/missionprofile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfig = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "DeleteConfig"),
+    input = M.DeleteConfigInput,
+    output = M.DeleteConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/config/{configType}/{configId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataflowEndpointGroup = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "DeleteDataflowEndpointGroup"),
+    input = M.DeleteDataflowEndpointGroupInput,
+    output = M.DeleteDataflowEndpointGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/dataflowEndpointGroup/{dataflowEndpointGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEphemeris = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "DeleteEphemeris"),
+    input = M.DeleteEphemerisInput,
+    output = M.DeleteEphemerisOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/ephemeris/{ephemerisId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMissionProfile = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "DeleteMissionProfile"),
+    input = M.DeleteMissionProfileInput,
+    output = M.DeleteMissionProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/missionprofile/{missionProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContact = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "DescribeContact"),
+    input = M.DescribeContactInput,
+    output = M.DescribeContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact/{contactId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContactVersion = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "DescribeContactVersion"),
+    input = M.DescribeContactVersionInput,
+    output = M.DescribeContactVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact/{contactId}/versions/{versionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEphemeris = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "DescribeEphemeris"),
+    input = M.DescribeEphemerisInput,
+    output = M.DescribeEphemerisOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ephemeris/{ephemerisId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentConfiguration = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "GetAgentConfiguration"),
+    input = M.GetAgentConfigurationInput,
+    output = M.GetAgentConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/agent/{agentId}/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentTaskResponseUrl = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "GetAgentTaskResponseUrl"),
+    input = M.GetAgentTaskResponseUrlInput,
+    output = M.GetAgentTaskResponseUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/agentResponseUrl/{agentId}/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfig = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "GetConfig"),
+    input = M.GetConfigInput,
+    output = M.GetConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/config/{configType}/{configId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataflowEndpointGroup = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "GetDataflowEndpointGroup"),
+    input = M.GetDataflowEndpointGroupInput,
+    output = M.GetDataflowEndpointGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/dataflowEndpointGroup/{dataflowEndpointGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMinuteUsage = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "GetMinuteUsage"),
+    input = M.GetMinuteUsageInput,
+    output = M.GetMinuteUsageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/minute-usage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMissionProfile = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "GetMissionProfile"),
+    input = M.GetMissionProfileInput,
+    output = M.GetMissionProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/missionprofile/{missionProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSatellite = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "GetSatellite"),
+    input = M.GetSatelliteInput,
+    output = M.GetSatelliteOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/satellite/{satelliteId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAntennas = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "ListAntennas"),
+    input = M.ListAntennasInput,
+    output = M.ListAntennasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/groundstation/{groundStationId}/antenna" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigs = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "ListConfigs"),
+    input = M.ListConfigsInput,
+    output = M.ListConfigsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContacts = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "ListContacts"),
+    input = M.ListContactsInput,
+    output = M.ListContactsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contacts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContactVersions = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "ListContactVersions"),
+    input = M.ListContactVersionsInput,
+    output = M.ListContactVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact/{contactId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataflowEndpointGroups = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "ListDataflowEndpointGroups"),
+    input = M.ListDataflowEndpointGroupsInput,
+    output = M.ListDataflowEndpointGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/dataflowEndpointGroup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEphemerides = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "ListEphemerides"),
+    input = M.ListEphemeridesInput,
+    output = M.ListEphemeridesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ephemerides" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroundStationReservations = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "ListGroundStationReservations"),
+    input = M.ListGroundStationReservationsInput,
+    output = M.ListGroundStationReservationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/groundstation/{groundStationId}/reservation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroundStations = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "ListGroundStations"),
+    input = M.ListGroundStationsInput,
+    output = M.ListGroundStationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/groundstation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMissionProfiles = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "ListMissionProfiles"),
+    input = M.ListMissionProfilesInput,
+    output = M.ListMissionProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/missionprofile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSatellites = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "ListSatellites"),
+    input = M.ListSatellitesInput,
+    output = M.ListSatellitesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/satellite" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterAgent = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "RegisterAgent"),
+    input = M.RegisterAgentInput,
+    output = M.RegisterAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agent" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReserveContact = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "ReserveContact"),
+    input = M.ReserveContactInput,
+    output = M.ReserveContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentStatus = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "UpdateAgentStatus"),
+    input = M.UpdateAgentStatusInput,
+    output = M.UpdateAgentStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/agent/{agentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfig = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "UpdateConfig"),
+    input = M.UpdateConfigInput,
+    output = M.UpdateConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/config/{configType}/{configId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContact = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "UpdateContact"),
+    input = M.UpdateContactInput,
+    output = M.UpdateContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/{contactId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEphemeris = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "UpdateEphemeris"),
+    input = M.UpdateEphemerisInput,
+    output = M.UpdateEphemerisOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/ephemeris/{ephemerisId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMissionProfile = schema.operation({
+    id = id.from("com.amazonaws.groundstation", "UpdateMissionProfile"),
+    input = M.UpdateMissionProfileInput,
+    output = M.UpdateMissionProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/missionprofile/{missionProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

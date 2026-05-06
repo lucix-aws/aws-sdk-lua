@@ -1761,4 +1761,278 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.osis", "AmazonOpenSearchIngestionService"),
+    version = "2022-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePipeline = schema.operation({
+    id = id.from("com.amazonaws.osis", "CreatePipeline"),
+    input = M.CreatePipelineInput,
+    output = M.CreatePipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2022-01-01/osis/createPipeline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePipelineEndpoint = schema.operation({
+    id = id.from("com.amazonaws.osis", "CreatePipelineEndpoint"),
+    input = M.CreatePipelineEndpointInput,
+    output = M.CreatePipelineEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2022-01-01/osis/createPipelineEndpoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePipeline = schema.operation({
+    id = id.from("com.amazonaws.osis", "DeletePipeline"),
+    input = M.DeletePipelineInput,
+    output = M.DeletePipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2022-01-01/osis/deletePipeline/{PipelineName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePipelineEndpoint = schema.operation({
+    id = id.from("com.amazonaws.osis", "DeletePipelineEndpoint"),
+    input = M.DeletePipelineEndpointInput,
+    output = M.DeletePipelineEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2022-01-01/osis/deletePipelineEndpoint/{EndpointId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.osis", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2022-01-01/osis/resourcePolicy/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPipeline = schema.operation({
+    id = id.from("com.amazonaws.osis", "GetPipeline"),
+    input = M.GetPipelineInput,
+    output = M.GetPipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2022-01-01/osis/getPipeline/{PipelineName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPipelineBlueprint = schema.operation({
+    id = id.from("com.amazonaws.osis", "GetPipelineBlueprint"),
+    input = M.GetPipelineBlueprintInput,
+    output = M.GetPipelineBlueprintOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2022-01-01/osis/getPipelineBlueprint/{BlueprintName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPipelineChangeProgress = schema.operation({
+    id = id.from("com.amazonaws.osis", "GetPipelineChangeProgress"),
+    input = M.GetPipelineChangeProgressInput,
+    output = M.GetPipelineChangeProgressOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2022-01-01/osis/getPipelineChangeProgress/{PipelineName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.osis", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2022-01-01/osis/resourcePolicy/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPipelineBlueprints = schema.operation({
+    id = id.from("com.amazonaws.osis", "ListPipelineBlueprints"),
+    input = M.ListPipelineBlueprintsInput,
+    output = M.ListPipelineBlueprintsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2022-01-01/osis/listPipelineBlueprints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPipelineEndpointConnections = schema.operation({
+    id = id.from("com.amazonaws.osis", "ListPipelineEndpointConnections"),
+    input = M.ListPipelineEndpointConnectionsInput,
+    output = M.ListPipelineEndpointConnectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2022-01-01/osis/listPipelineEndpointConnections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPipelineEndpoints = schema.operation({
+    id = id.from("com.amazonaws.osis", "ListPipelineEndpoints"),
+    input = M.ListPipelineEndpointsInput,
+    output = M.ListPipelineEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2022-01-01/osis/listPipelineEndpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPipelines = schema.operation({
+    id = id.from("com.amazonaws.osis", "ListPipelines"),
+    input = M.ListPipelinesInput,
+    output = M.ListPipelinesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2022-01-01/osis/listPipelines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.osis", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2022-01-01/osis/listTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.osis", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2022-01-01/osis/resourcePolicy/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokePipelineEndpointConnections = schema.operation({
+    id = id.from("com.amazonaws.osis", "RevokePipelineEndpointConnections"),
+    input = M.RevokePipelineEndpointConnectionsInput,
+    output = M.RevokePipelineEndpointConnectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2022-01-01/osis/revokePipelineEndpointConnections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartPipeline = schema.operation({
+    id = id.from("com.amazonaws.osis", "StartPipeline"),
+    input = M.StartPipelineInput,
+    output = M.StartPipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2022-01-01/osis/startPipeline/{PipelineName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopPipeline = schema.operation({
+    id = id.from("com.amazonaws.osis", "StopPipeline"),
+    input = M.StopPipelineInput,
+    output = M.StopPipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2022-01-01/osis/stopPipeline/{PipelineName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.osis", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2022-01-01/osis/tagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.osis", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2022-01-01/osis/untagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePipeline = schema.operation({
+    id = id.from("com.amazonaws.osis", "UpdatePipeline"),
+    input = M.UpdatePipelineInput,
+    output = M.UpdatePipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2022-01-01/osis/updatePipeline/{PipelineName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidatePipeline = schema.operation({
+    id = id.from("com.amazonaws.osis", "ValidatePipeline"),
+    input = M.ValidatePipelineInput,
+    output = M.ValidatePipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2022-01-01/osis/validatePipeline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

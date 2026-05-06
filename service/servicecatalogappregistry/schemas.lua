@@ -1850,4 +1850,302 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "AWS242AppRegistry"),
+    version = "2020-06-24",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAttributeGroup = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "AssociateAttributeGroup"),
+    input = M.AssociateAttributeGroupInput,
+    output = M.AssociateAttributeGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{application}/attribute-groups/{attributeGroup}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateResource = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "AssociateResource"),
+    input = M.AssociateResourceInput,
+    output = M.AssociateResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{application}/resources/{resourceType}/{resource}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAttributeGroup = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "CreateAttributeGroup"),
+    input = M.CreateAttributeGroupInput,
+    output = M.CreateAttributeGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/attribute-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{application}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAttributeGroup = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "DeleteAttributeGroup"),
+    input = M.DeleteAttributeGroupInput,
+    output = M.DeleteAttributeGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/attribute-groups/{attributeGroup}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateAttributeGroup = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "DisassociateAttributeGroup"),
+    input = M.DisassociateAttributeGroupInput,
+    output = M.DisassociateAttributeGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{application}/attribute-groups/{attributeGroup}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateResource = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "DisassociateResource"),
+    input = M.DisassociateResourceInput,
+    output = M.DisassociateResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{application}/resources/{resourceType}/{resource}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplication = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "GetApplication"),
+    input = M.GetApplicationInput,
+    output = M.GetApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{application}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssociatedResource = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "GetAssociatedResource"),
+    input = M.GetAssociatedResourceInput,
+    output = M.GetAssociatedResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{application}/resources/{resourceType}/{resource}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAttributeGroup = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "GetAttributeGroup"),
+    input = M.GetAttributeGroupInput,
+    output = M.GetAttributeGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/attribute-groups/{attributeGroup}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfiguration = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "GetConfiguration"),
+    input = M.GetConfigurationInput,
+    output = M.GetConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociatedAttributeGroups = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "ListAssociatedAttributeGroups"),
+    input = M.ListAssociatedAttributeGroupsInput,
+    output = M.ListAssociatedAttributeGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{application}/attribute-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociatedResources = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "ListAssociatedResources"),
+    input = M.ListAssociatedResourcesInput,
+    output = M.ListAssociatedResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{application}/resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttributeGroups = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "ListAttributeGroups"),
+    input = M.ListAttributeGroupsInput,
+    output = M.ListAttributeGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/attribute-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttributeGroupsForApplication = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "ListAttributeGroupsForApplication"),
+    input = M.ListAttributeGroupsForApplicationInput,
+    output = M.ListAttributeGroupsForApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{application}/attribute-group-details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConfiguration = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "PutConfiguration"),
+    input = M.PutConfigurationInput,
+    output = M.PutConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SyncResource = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "SyncResource"),
+    input = M.SyncResourceInput,
+    output = M.SyncResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sync/{resourceType}/{resource}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/applications/{application}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAttributeGroup = schema.operation({
+    id = id.from("com.amazonaws.servicecatalogappregistry", "UpdateAttributeGroup"),
+    input = M.UpdateAttributeGroupInput,
+    output = M.UpdateAttributeGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/attribute-groups/{attributeGroup}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

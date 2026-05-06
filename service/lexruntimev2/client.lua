@@ -7,6 +7,7 @@ local endpoint_rules = require("lexruntimev2.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("lexruntimev2.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "lex", signing_region = cfg.region } }
                 else
@@ -49,68 +52,23 @@ function M.new(cfg)
 end
 
 function Client:deleteSession(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSession",
-        input_schema = schemas.DeleteSessionInput,
-        output_schema = schemas.DeleteSessionOutput,
-        http_method = "DELETE",
-        http_path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSession, input, options)
 end
 
 function Client:getSession(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSession",
-        input_schema = schemas.GetSessionInput,
-        output_schema = schemas.GetSessionOutput,
-        http_method = "GET",
-        http_path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSession, input, options)
 end
 
 function Client:putSession(input, options)
-    return self:invokeOperation(input, {
-        name = "PutSession",
-        input_schema = schemas.PutSessionInput,
-        output_schema = schemas.PutSessionOutput,
-        http_method = "POST",
-        http_path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutSession, input, options)
 end
 
 function Client:recognizeText(input, options)
-    return self:invokeOperation(input, {
-        name = "RecognizeText",
-        input_schema = schemas.RecognizeTextInput,
-        output_schema = schemas.RecognizeTextOutput,
-        http_method = "POST",
-        http_path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}/text",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RecognizeText, input, options)
 end
 
 function Client:recognizeUtterance(input, options)
-    return self:invokeOperation(input, {
-        name = "RecognizeUtterance",
-        input_schema = schemas.RecognizeUtteranceInput,
-        output_schema = schemas.RecognizeUtteranceOutput,
-        http_method = "POST",
-        http_path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}/utterance",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RecognizeUtterance, input, options)
 end
 
 return M

@@ -2733,4 +2733,422 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.chatbot", "WheatleyOrchestration_20171011"),
+    version = "2017-10-11",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateToConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "AssociateToConfiguration"),
+    input = M.AssociateToConfigurationInput,
+    output = M.AssociateToConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/associate-to-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChimeWebhookConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "CreateChimeWebhookConfiguration"),
+    input = M.CreateChimeWebhookConfigurationInput,
+    output = M.CreateChimeWebhookConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-chime-webhook-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomAction = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "CreateCustomAction"),
+    input = M.CreateCustomActionInput,
+    output = M.CreateCustomActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-custom-action" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMicrosoftTeamsChannelConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "CreateMicrosoftTeamsChannelConfiguration"),
+    input = M.CreateMicrosoftTeamsChannelConfigurationInput,
+    output = M.CreateMicrosoftTeamsChannelConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-ms-teams-channel-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSlackChannelConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "CreateSlackChannelConfiguration"),
+    input = M.CreateSlackChannelConfigurationInput,
+    output = M.CreateSlackChannelConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-slack-channel-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChimeWebhookConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "DeleteChimeWebhookConfiguration"),
+    input = M.DeleteChimeWebhookConfigurationInput,
+    output = M.DeleteChimeWebhookConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-chime-webhook-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomAction = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "DeleteCustomAction"),
+    input = M.DeleteCustomActionInput,
+    output = M.DeleteCustomActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-custom-action" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMicrosoftTeamsChannelConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "DeleteMicrosoftTeamsChannelConfiguration"),
+    input = M.DeleteMicrosoftTeamsChannelConfigurationInput,
+    output = M.DeleteMicrosoftTeamsChannelConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-ms-teams-channel-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMicrosoftTeamsConfiguredTeam = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "DeleteMicrosoftTeamsConfiguredTeam"),
+    input = M.DeleteMicrosoftTeamsConfiguredTeamInput,
+    output = M.DeleteMicrosoftTeamsConfiguredTeamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-ms-teams-configured-teams" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMicrosoftTeamsUserIdentity = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "DeleteMicrosoftTeamsUserIdentity"),
+    input = M.DeleteMicrosoftTeamsUserIdentityInput,
+    output = M.DeleteMicrosoftTeamsUserIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-ms-teams-user-identity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSlackChannelConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "DeleteSlackChannelConfiguration"),
+    input = M.DeleteSlackChannelConfigurationInput,
+    output = M.DeleteSlackChannelConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-slack-channel-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSlackUserIdentity = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "DeleteSlackUserIdentity"),
+    input = M.DeleteSlackUserIdentityInput,
+    output = M.DeleteSlackUserIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-slack-user-identity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSlackWorkspaceAuthorization = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "DeleteSlackWorkspaceAuthorization"),
+    input = M.DeleteSlackWorkspaceAuthorizationInput,
+    output = M.DeleteSlackWorkspaceAuthorizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-slack-workspace-authorization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChimeWebhookConfigurations = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "DescribeChimeWebhookConfigurations"),
+    input = M.DescribeChimeWebhookConfigurationsInput,
+    output = M.DescribeChimeWebhookConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-chime-webhook-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSlackChannelConfigurations = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "DescribeSlackChannelConfigurations"),
+    input = M.DescribeSlackChannelConfigurationsInput,
+    output = M.DescribeSlackChannelConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-slack-channel-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSlackUserIdentities = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "DescribeSlackUserIdentities"),
+    input = M.DescribeSlackUserIdentitiesInput,
+    output = M.DescribeSlackUserIdentitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-slack-user-identities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSlackWorkspaces = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "DescribeSlackWorkspaces"),
+    input = M.DescribeSlackWorkspacesInput,
+    output = M.DescribeSlackWorkspacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/describe-slack-workspaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFromConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "DisassociateFromConfiguration"),
+    input = M.DisassociateFromConfigurationInput,
+    output = M.DisassociateFromConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/disassociate-from-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountPreferences = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "GetAccountPreferences"),
+    input = M.GetAccountPreferencesInput,
+    output = M.GetAccountPreferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-account-preferences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCustomAction = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "GetCustomAction"),
+    input = M.GetCustomActionInput,
+    output = M.GetCustomActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-custom-action" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMicrosoftTeamsChannelConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "GetMicrosoftTeamsChannelConfiguration"),
+    input = M.GetMicrosoftTeamsChannelConfigurationInput,
+    output = M.GetMicrosoftTeamsChannelConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-ms-teams-channel-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociations = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "ListAssociations"),
+    input = M.ListAssociationsInput,
+    output = M.ListAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomActions = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "ListCustomActions"),
+    input = M.ListCustomActionsInput,
+    output = M.ListCustomActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-custom-actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMicrosoftTeamsChannelConfigurations = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "ListMicrosoftTeamsChannelConfigurations"),
+    input = M.ListMicrosoftTeamsChannelConfigurationsInput,
+    output = M.ListMicrosoftTeamsChannelConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-ms-teams-channel-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMicrosoftTeamsConfiguredTeams = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "ListMicrosoftTeamsConfiguredTeams"),
+    input = M.ListMicrosoftTeamsConfiguredTeamsInput,
+    output = M.ListMicrosoftTeamsConfiguredTeamsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-ms-teams-configured-teams" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMicrosoftTeamsUserIdentities = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "ListMicrosoftTeamsUserIdentities"),
+    input = M.ListMicrosoftTeamsUserIdentitiesInput,
+    output = M.ListMicrosoftTeamsUserIdentitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-ms-teams-user-identities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-tags-for-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/untag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountPreferences = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "UpdateAccountPreferences"),
+    input = M.UpdateAccountPreferencesInput,
+    output = M.UpdateAccountPreferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-account-preferences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChimeWebhookConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "UpdateChimeWebhookConfiguration"),
+    input = M.UpdateChimeWebhookConfigurationInput,
+    output = M.UpdateChimeWebhookConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-chime-webhook-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCustomAction = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "UpdateCustomAction"),
+    input = M.UpdateCustomActionInput,
+    output = M.UpdateCustomActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-custom-action" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMicrosoftTeamsChannelConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "UpdateMicrosoftTeamsChannelConfiguration"),
+    input = M.UpdateMicrosoftTeamsChannelConfigurationInput,
+    output = M.UpdateMicrosoftTeamsChannelConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-ms-teams-channel-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSlackChannelConfiguration = schema.operation({
+    id = id.from("com.amazonaws.chatbot", "UpdateSlackChannelConfiguration"),
+    input = M.UpdateSlackChannelConfigurationInput,
+    output = M.UpdateSlackChannelConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-slack-channel-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

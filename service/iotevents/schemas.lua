@@ -3253,4 +3253,326 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.iotevents", "IotColumboService"),
+    version = "2018-07-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAlarmModel = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "CreateAlarmModel"),
+    input = M.CreateAlarmModelInput,
+    output = M.CreateAlarmModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/alarm-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDetectorModel = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "CreateDetectorModel"),
+    input = M.CreateDetectorModelInput,
+    output = M.CreateDetectorModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInput = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "CreateInput"),
+    input = M.CreateInputInput,
+    output = M.CreateInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/inputs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAlarmModel = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "DeleteAlarmModel"),
+    input = M.DeleteAlarmModelInput,
+    output = M.DeleteAlarmModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/alarm-models/{alarmModelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDetectorModel = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "DeleteDetectorModel"),
+    input = M.DeleteDetectorModelInput,
+    output = M.DeleteDetectorModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/detector-models/{detectorModelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInput = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "DeleteInput"),
+    input = M.DeleteInputInput,
+    output = M.DeleteInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/inputs/{inputName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAlarmModel = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "DescribeAlarmModel"),
+    input = M.DescribeAlarmModelInput,
+    output = M.DescribeAlarmModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/alarm-models/{alarmModelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDetectorModel = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "DescribeDetectorModel"),
+    input = M.DescribeDetectorModelInput,
+    output = M.DescribeDetectorModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector-models/{detectorModelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDetectorModelAnalysis = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "DescribeDetectorModelAnalysis"),
+    input = M.DescribeDetectorModelAnalysisInput,
+    output = M.DescribeDetectorModelAnalysisOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/analysis/detector-models/{analysisId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInput = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "DescribeInput"),
+    input = M.DescribeInputInput,
+    output = M.DescribeInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/inputs/{inputName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLoggingOptions = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "DescribeLoggingOptions"),
+    input = M.DescribeLoggingOptionsInput,
+    output = M.DescribeLoggingOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/logging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDetectorModelAnalysisResults = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "GetDetectorModelAnalysisResults"),
+    input = M.GetDetectorModelAnalysisResultsInput,
+    output = M.GetDetectorModelAnalysisResultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/analysis/detector-models/{analysisId}/results" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAlarmModels = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "ListAlarmModels"),
+    input = M.ListAlarmModelsInput,
+    output = M.ListAlarmModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/alarm-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAlarmModelVersions = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "ListAlarmModelVersions"),
+    input = M.ListAlarmModelVersionsInput,
+    output = M.ListAlarmModelVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/alarm-models/{alarmModelName}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDetectorModels = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "ListDetectorModels"),
+    input = M.ListDetectorModelsInput,
+    output = M.ListDetectorModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDetectorModelVersions = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "ListDetectorModelVersions"),
+    input = M.ListDetectorModelVersionsInput,
+    output = M.ListDetectorModelVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector-models/{detectorModelName}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInputRoutings = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "ListInputRoutings"),
+    input = M.ListInputRoutingsInput,
+    output = M.ListInputRoutingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/input-routings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInputs = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "ListInputs"),
+    input = M.ListInputsInput,
+    output = M.ListInputsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/inputs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLoggingOptions = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "PutLoggingOptions"),
+    input = M.PutLoggingOptionsInput,
+    output = M.PutLoggingOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/logging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDetectorModelAnalysis = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "StartDetectorModelAnalysis"),
+    input = M.StartDetectorModelAnalysisInput,
+    output = M.StartDetectorModelAnalysisOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/analysis/detector-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAlarmModel = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "UpdateAlarmModel"),
+    input = M.UpdateAlarmModelInput,
+    output = M.UpdateAlarmModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/alarm-models/{alarmModelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDetectorModel = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "UpdateDetectorModel"),
+    input = M.UpdateDetectorModelInput,
+    output = M.UpdateDetectorModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector-models/{detectorModelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInput = schema.operation({
+    id = id.from("com.amazonaws.iotevents", "UpdateInput"),
+    input = M.UpdateInputInput,
+    output = M.UpdateInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/inputs/{inputName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

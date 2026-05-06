@@ -4027,4 +4027,333 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.partnercentralaccount", "PartnerCentralAccount"),
+    version = "2025-04-04",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptConnectionInvitation = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "AcceptConnectionInvitation"),
+    input = M.AcceptConnectionInvitationInput,
+    output = M.AcceptConnectionInvitationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAwsTrainingCertificationEmailDomain = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "AssociateAwsTrainingCertificationEmailDomain"),
+    input = M.AssociateAwsTrainingCertificationEmailDomainInput,
+    output = M.AssociateAwsTrainingCertificationEmailDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelConnection = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "CancelConnection"),
+    input = M.CancelConnectionInput,
+    output = M.CancelConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelConnectionInvitation = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "CancelConnectionInvitation"),
+    input = M.CancelConnectionInvitationInput,
+    output = M.CancelConnectionInvitationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelProfileUpdateTask = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "CancelProfileUpdateTask"),
+    input = M.CancelProfileUpdateTaskInput,
+    output = M.CancelProfileUpdateTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnectionInvitation = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "CreateConnectionInvitation"),
+    input = M.CreateConnectionInvitationInput,
+    output = M.CreateConnectionInvitationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePartner = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "CreatePartner"),
+    input = M.CreatePartnerInput,
+    output = M.CreatePartnerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateAwsTrainingCertificationEmailDomain = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "DisassociateAwsTrainingCertificationEmailDomain"),
+    input = M.DisassociateAwsTrainingCertificationEmailDomainInput,
+    output = M.DisassociateAwsTrainingCertificationEmailDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAllianceLeadContact = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "GetAllianceLeadContact"),
+    input = M.GetAllianceLeadContactInput,
+    output = M.GetAllianceLeadContactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnection = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "GetConnection"),
+    input = M.GetConnectionInput,
+    output = M.GetConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnectionInvitation = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "GetConnectionInvitation"),
+    input = M.GetConnectionInvitationInput,
+    output = M.GetConnectionInvitationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnectionPreferences = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "GetConnectionPreferences"),
+    input = M.GetConnectionPreferencesInput,
+    output = M.GetConnectionPreferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPartner = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "GetPartner"),
+    input = M.GetPartnerInput,
+    output = M.GetPartnerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfileUpdateTask = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "GetProfileUpdateTask"),
+    input = M.GetProfileUpdateTaskInput,
+    output = M.GetProfileUpdateTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfileVisibility = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "GetProfileVisibility"),
+    input = M.GetProfileVisibilityInput,
+    output = M.GetProfileVisibilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVerification = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "GetVerification"),
+    input = M.GetVerificationInput,
+    output = M.GetVerificationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectionInvitations = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "ListConnectionInvitations"),
+    input = M.ListConnectionInvitationsInput,
+    output = M.ListConnectionInvitationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnections = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "ListConnections"),
+    input = M.ListConnectionsInput,
+    output = M.ListConnectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPartners = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "ListPartners"),
+    input = M.ListPartnersInput,
+    output = M.ListPartnersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAllianceLeadContact = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "PutAllianceLeadContact"),
+    input = M.PutAllianceLeadContactInput,
+    output = M.PutAllianceLeadContactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutProfileVisibility = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "PutProfileVisibility"),
+    input = M.PutProfileVisibilityInput,
+    output = M.PutProfileVisibilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectConnectionInvitation = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "RejectConnectionInvitation"),
+    input = M.RejectConnectionInvitationInput,
+    output = M.RejectConnectionInvitationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendEmailVerificationCode = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "SendEmailVerificationCode"),
+    input = M.SendEmailVerificationCodeInput,
+    output = M.SendEmailVerificationCodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartProfileUpdateTask = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "StartProfileUpdateTask"),
+    input = M.StartProfileUpdateTaskInput,
+    output = M.StartProfileUpdateTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartVerification = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "StartVerification"),
+    input = M.StartVerificationInput,
+    output = M.StartVerificationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnectionPreferences = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "UpdateConnectionPreferences"),
+    input = M.UpdateConnectionPreferencesInput,
+    output = M.UpdateConnectionPreferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

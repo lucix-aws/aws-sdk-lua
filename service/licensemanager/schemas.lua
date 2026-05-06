@@ -5892,4 +5892,696 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.licensemanager", "AWSLicenseManager"),
+    version = "2018-08-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptGrant = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "AcceptGrant"),
+    input = M.AcceptGrantInput,
+    output = M.AcceptGrantOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckInLicense = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "CheckInLicense"),
+    input = M.CheckInLicenseInput,
+    output = M.CheckInLicenseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckoutBorrowLicense = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "CheckoutBorrowLicense"),
+    input = M.CheckoutBorrowLicenseInput,
+    output = M.CheckoutBorrowLicenseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckoutLicense = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "CheckoutLicense"),
+    input = M.CheckoutLicenseInput,
+    output = M.CheckoutLicenseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGrant = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "CreateGrant"),
+    input = M.CreateGrantInput,
+    output = M.CreateGrantOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGrantVersion = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "CreateGrantVersion"),
+    input = M.CreateGrantVersionInput,
+    output = M.CreateGrantVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLicense = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "CreateLicense"),
+    input = M.CreateLicenseInput,
+    output = M.CreateLicenseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLicenseAssetGroup = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "CreateLicenseAssetGroup"),
+    input = M.CreateLicenseAssetGroupInput,
+    output = M.CreateLicenseAssetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLicenseAssetRuleset = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "CreateLicenseAssetRuleset"),
+    input = M.CreateLicenseAssetRulesetInput,
+    output = M.CreateLicenseAssetRulesetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLicenseConfiguration = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "CreateLicenseConfiguration"),
+    input = M.CreateLicenseConfigurationInput,
+    output = M.CreateLicenseConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLicenseConversionTaskForResource = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "CreateLicenseConversionTaskForResource"),
+    input = M.CreateLicenseConversionTaskForResourceInput,
+    output = M.CreateLicenseConversionTaskForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLicenseManagerReportGenerator = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "CreateLicenseManagerReportGenerator"),
+    input = M.CreateLicenseManagerReportGeneratorInput,
+    output = M.CreateLicenseManagerReportGeneratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLicenseVersion = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "CreateLicenseVersion"),
+    input = M.CreateLicenseVersionInput,
+    output = M.CreateLicenseVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateToken = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "CreateToken"),
+    input = M.CreateTokenInput,
+    output = M.CreateTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGrant = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "DeleteGrant"),
+    input = M.DeleteGrantInput,
+    output = M.DeleteGrantOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLicense = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "DeleteLicense"),
+    input = M.DeleteLicenseInput,
+    output = M.DeleteLicenseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLicenseAssetGroup = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "DeleteLicenseAssetGroup"),
+    input = M.DeleteLicenseAssetGroupInput,
+    output = M.DeleteLicenseAssetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLicenseAssetRuleset = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "DeleteLicenseAssetRuleset"),
+    input = M.DeleteLicenseAssetRulesetInput,
+    output = M.DeleteLicenseAssetRulesetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLicenseConfiguration = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "DeleteLicenseConfiguration"),
+    input = M.DeleteLicenseConfigurationInput,
+    output = M.DeleteLicenseConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLicenseManagerReportGenerator = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "DeleteLicenseManagerReportGenerator"),
+    input = M.DeleteLicenseManagerReportGeneratorInput,
+    output = M.DeleteLicenseManagerReportGeneratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteToken = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "DeleteToken"),
+    input = M.DeleteTokenInput,
+    output = M.DeleteTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExtendLicenseConsumption = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ExtendLicenseConsumption"),
+    input = M.ExtendLicenseConsumptionInput,
+    output = M.ExtendLicenseConsumptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccessToken = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "GetAccessToken"),
+    input = M.GetAccessTokenInput,
+    output = M.GetAccessTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGrant = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "GetGrant"),
+    input = M.GetGrantInput,
+    output = M.GetGrantOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLicense = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "GetLicense"),
+    input = M.GetLicenseInput,
+    output = M.GetLicenseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLicenseAssetGroup = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "GetLicenseAssetGroup"),
+    input = M.GetLicenseAssetGroupInput,
+    output = M.GetLicenseAssetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLicenseAssetRuleset = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "GetLicenseAssetRuleset"),
+    input = M.GetLicenseAssetRulesetInput,
+    output = M.GetLicenseAssetRulesetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLicenseConfiguration = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "GetLicenseConfiguration"),
+    input = M.GetLicenseConfigurationInput,
+    output = M.GetLicenseConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLicenseConversionTask = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "GetLicenseConversionTask"),
+    input = M.GetLicenseConversionTaskInput,
+    output = M.GetLicenseConversionTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLicenseManagerReportGenerator = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "GetLicenseManagerReportGenerator"),
+    input = M.GetLicenseManagerReportGeneratorInput,
+    output = M.GetLicenseManagerReportGeneratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLicenseUsage = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "GetLicenseUsage"),
+    input = M.GetLicenseUsageInput,
+    output = M.GetLicenseUsageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceSettings = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "GetServiceSettings"),
+    input = M.GetServiceSettingsInput,
+    output = M.GetServiceSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetsForLicenseAssetGroup = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListAssetsForLicenseAssetGroup"),
+    input = M.ListAssetsForLicenseAssetGroupInput,
+    output = M.ListAssetsForLicenseAssetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociationsForLicenseConfiguration = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListAssociationsForLicenseConfiguration"),
+    input = M.ListAssociationsForLicenseConfigurationInput,
+    output = M.ListAssociationsForLicenseConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDistributedGrants = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListDistributedGrants"),
+    input = M.ListDistributedGrantsInput,
+    output = M.ListDistributedGrantsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFailuresForLicenseConfigurationOperations = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListFailuresForLicenseConfigurationOperations"),
+    input = M.ListFailuresForLicenseConfigurationOperationsInput,
+    output = M.ListFailuresForLicenseConfigurationOperationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLicenseAssetGroups = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListLicenseAssetGroups"),
+    input = M.ListLicenseAssetGroupsInput,
+    output = M.ListLicenseAssetGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLicenseAssetRulesets = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListLicenseAssetRulesets"),
+    input = M.ListLicenseAssetRulesetsInput,
+    output = M.ListLicenseAssetRulesetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLicenseConfigurations = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListLicenseConfigurations"),
+    input = M.ListLicenseConfigurationsInput,
+    output = M.ListLicenseConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLicenseConfigurationsForOrganization = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListLicenseConfigurationsForOrganization"),
+    input = M.ListLicenseConfigurationsForOrganizationInput,
+    output = M.ListLicenseConfigurationsForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLicenseConversionTasks = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListLicenseConversionTasks"),
+    input = M.ListLicenseConversionTasksInput,
+    output = M.ListLicenseConversionTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLicenseManagerReportGenerators = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListLicenseManagerReportGenerators"),
+    input = M.ListLicenseManagerReportGeneratorsInput,
+    output = M.ListLicenseManagerReportGeneratorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLicenses = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListLicenses"),
+    input = M.ListLicensesInput,
+    output = M.ListLicensesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLicenseSpecificationsForResource = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListLicenseSpecificationsForResource"),
+    input = M.ListLicenseSpecificationsForResourceInput,
+    output = M.ListLicenseSpecificationsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLicenseVersions = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListLicenseVersions"),
+    input = M.ListLicenseVersionsInput,
+    output = M.ListLicenseVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReceivedGrants = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListReceivedGrants"),
+    input = M.ListReceivedGrantsInput,
+    output = M.ListReceivedGrantsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReceivedGrantsForOrganization = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListReceivedGrantsForOrganization"),
+    input = M.ListReceivedGrantsForOrganizationInput,
+    output = M.ListReceivedGrantsForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReceivedLicenses = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListReceivedLicenses"),
+    input = M.ListReceivedLicensesInput,
+    output = M.ListReceivedLicensesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReceivedLicensesForOrganization = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListReceivedLicensesForOrganization"),
+    input = M.ListReceivedLicensesForOrganizationInput,
+    output = M.ListReceivedLicensesForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceInventory = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListResourceInventory"),
+    input = M.ListResourceInventoryInput,
+    output = M.ListResourceInventoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTokens = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListTokens"),
+    input = M.ListTokensInput,
+    output = M.ListTokensOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsageForLicenseConfiguration = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "ListUsageForLicenseConfiguration"),
+    input = M.ListUsageForLicenseConfigurationInput,
+    output = M.ListUsageForLicenseConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectGrant = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "RejectGrant"),
+    input = M.RejectGrantInput,
+    output = M.RejectGrantOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLicenseAssetGroup = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "UpdateLicenseAssetGroup"),
+    input = M.UpdateLicenseAssetGroupInput,
+    output = M.UpdateLicenseAssetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLicenseAssetRuleset = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "UpdateLicenseAssetRuleset"),
+    input = M.UpdateLicenseAssetRulesetInput,
+    output = M.UpdateLicenseAssetRulesetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLicenseConfiguration = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "UpdateLicenseConfiguration"),
+    input = M.UpdateLicenseConfigurationInput,
+    output = M.UpdateLicenseConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLicenseManagerReportGenerator = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "UpdateLicenseManagerReportGenerator"),
+    input = M.UpdateLicenseManagerReportGeneratorInput,
+    output = M.UpdateLicenseManagerReportGeneratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLicenseSpecificationsForResource = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "UpdateLicenseSpecificationsForResource"),
+    input = M.UpdateLicenseSpecificationsForResourceInput,
+    output = M.UpdateLicenseSpecificationsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceSettings = schema.operation({
+    id = id.from("com.amazonaws.licensemanager", "UpdateServiceSettings"),
+    input = M.UpdateServiceSettingsInput,
+    output = M.UpdateServiceSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

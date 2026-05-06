@@ -7,6 +7,7 @@ local endpoint_rules = require("cleanrooms.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("cleanrooms.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cleanrooms", signing_region = cfg.region } }
                 else
@@ -49,1147 +52,355 @@ function M.new(cfg)
 end
 
 function Client:batchGetCollaborationAnalysisTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetCollaborationAnalysisTemplate",
-        input_schema = schemas.BatchGetCollaborationAnalysisTemplateInput,
-        output_schema = schemas.BatchGetCollaborationAnalysisTemplateOutput,
-        http_method = "POST",
-        http_path = "/collaborations/{collaborationIdentifier}/batch-analysistemplates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetCollaborationAnalysisTemplate, input, options)
 end
 
 function Client:batchGetSchema(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetSchema",
-        input_schema = schemas.BatchGetSchemaInput,
-        output_schema = schemas.BatchGetSchemaOutput,
-        http_method = "POST",
-        http_path = "/collaborations/{collaborationIdentifier}/batch-schema",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetSchema, input, options)
 end
 
 function Client:batchGetSchemaAnalysisRule(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetSchemaAnalysisRule",
-        input_schema = schemas.BatchGetSchemaAnalysisRuleInput,
-        output_schema = schemas.BatchGetSchemaAnalysisRuleOutput,
-        http_method = "POST",
-        http_path = "/collaborations/{collaborationIdentifier}/batch-schema-analysis-rule",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetSchemaAnalysisRule, input, options)
 end
 
 function Client:createAnalysisTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAnalysisTemplate",
-        input_schema = schemas.CreateAnalysisTemplateInput,
-        output_schema = schemas.CreateAnalysisTemplateOutput,
-        http_method = "POST",
-        http_path = "/memberships/{membershipIdentifier}/analysistemplates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAnalysisTemplate, input, options)
 end
 
 function Client:createCollaboration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCollaboration",
-        input_schema = schemas.CreateCollaborationInput,
-        output_schema = schemas.CreateCollaborationOutput,
-        http_method = "POST",
-        http_path = "/collaborations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCollaboration, input, options)
 end
 
 function Client:createCollaborationChangeRequest(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCollaborationChangeRequest",
-        input_schema = schemas.CreateCollaborationChangeRequestInput,
-        output_schema = schemas.CreateCollaborationChangeRequestOutput,
-        http_method = "POST",
-        http_path = "/collaborations/{collaborationIdentifier}/changeRequests",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCollaborationChangeRequest, input, options)
 end
 
 function Client:createConfiguredAudienceModelAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfiguredAudienceModelAssociation",
-        input_schema = schemas.CreateConfiguredAudienceModelAssociationInput,
-        output_schema = schemas.CreateConfiguredAudienceModelAssociationOutput,
-        http_method = "POST",
-        http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfiguredAudienceModelAssociation, input, options)
 end
 
 function Client:createConfiguredTable(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfiguredTable",
-        input_schema = schemas.CreateConfiguredTableInput,
-        output_schema = schemas.CreateConfiguredTableOutput,
-        http_method = "POST",
-        http_path = "/configuredTables",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfiguredTable, input, options)
 end
 
 function Client:createConfiguredTableAnalysisRule(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfiguredTableAnalysisRule",
-        input_schema = schemas.CreateConfiguredTableAnalysisRuleInput,
-        output_schema = schemas.CreateConfiguredTableAnalysisRuleOutput,
-        http_method = "POST",
-        http_path = "/configuredTables/{configuredTableIdentifier}/analysisRule",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfiguredTableAnalysisRule, input, options)
 end
 
 function Client:createConfiguredTableAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfiguredTableAssociation",
-        input_schema = schemas.CreateConfiguredTableAssociationInput,
-        output_schema = schemas.CreateConfiguredTableAssociationOutput,
-        http_method = "POST",
-        http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfiguredTableAssociation, input, options)
 end
 
 function Client:createConfiguredTableAssociationAnalysisRule(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfiguredTableAssociationAnalysisRule",
-        input_schema = schemas.CreateConfiguredTableAssociationAnalysisRuleInput,
-        output_schema = schemas.CreateConfiguredTableAssociationAnalysisRuleOutput,
-        http_method = "POST",
-        http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfiguredTableAssociationAnalysisRule, input, options)
 end
 
 function Client:createIdMappingTable(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateIdMappingTable",
-        input_schema = schemas.CreateIdMappingTableInput,
-        output_schema = schemas.CreateIdMappingTableOutput,
-        http_method = "POST",
-        http_path = "/memberships/{membershipIdentifier}/idmappingtables",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateIdMappingTable, input, options)
 end
 
 function Client:createIdNamespaceAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateIdNamespaceAssociation",
-        input_schema = schemas.CreateIdNamespaceAssociationInput,
-        output_schema = schemas.CreateIdNamespaceAssociationOutput,
-        http_method = "POST",
-        http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateIdNamespaceAssociation, input, options)
 end
 
 function Client:createMembership(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateMembership",
-        input_schema = schemas.CreateMembershipInput,
-        output_schema = schemas.CreateMembershipOutput,
-        http_method = "POST",
-        http_path = "/memberships",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateMembership, input, options)
 end
 
 function Client:createPrivacyBudgetTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePrivacyBudgetTemplate",
-        input_schema = schemas.CreatePrivacyBudgetTemplateInput,
-        output_schema = schemas.CreatePrivacyBudgetTemplateOutput,
-        http_method = "POST",
-        http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePrivacyBudgetTemplate, input, options)
 end
 
 function Client:deleteAnalysisTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAnalysisTemplate",
-        input_schema = schemas.DeleteAnalysisTemplateInput,
-        output_schema = schemas.DeleteAnalysisTemplateOutput,
-        http_method = "DELETE",
-        http_path = "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAnalysisTemplate, input, options)
 end
 
 function Client:deleteCollaboration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCollaboration",
-        input_schema = schemas.DeleteCollaborationInput,
-        output_schema = schemas.DeleteCollaborationOutput,
-        http_method = "DELETE",
-        http_path = "/collaborations/{collaborationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCollaboration, input, options)
 end
 
 function Client:deleteConfiguredAudienceModelAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfiguredAudienceModelAssociation",
-        input_schema = schemas.DeleteConfiguredAudienceModelAssociationInput,
-        output_schema = schemas.DeleteConfiguredAudienceModelAssociationOutput,
-        http_method = "DELETE",
-        http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguredAudienceModelAssociation, input, options)
 end
 
 function Client:deleteConfiguredTable(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfiguredTable",
-        input_schema = schemas.DeleteConfiguredTableInput,
-        output_schema = schemas.DeleteConfiguredTableOutput,
-        http_method = "DELETE",
-        http_path = "/configuredTables/{configuredTableIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguredTable, input, options)
 end
 
 function Client:deleteConfiguredTableAnalysisRule(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfiguredTableAnalysisRule",
-        input_schema = schemas.DeleteConfiguredTableAnalysisRuleInput,
-        output_schema = schemas.DeleteConfiguredTableAnalysisRuleOutput,
-        http_method = "DELETE",
-        http_path = "/configuredTables/{configuredTableIdentifier}/analysisRule/{analysisRuleType}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguredTableAnalysisRule, input, options)
 end
 
 function Client:deleteConfiguredTableAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfiguredTableAssociation",
-        input_schema = schemas.DeleteConfiguredTableAssociationInput,
-        output_schema = schemas.DeleteConfiguredTableAssociationOutput,
-        http_method = "DELETE",
-        http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguredTableAssociation, input, options)
 end
 
 function Client:deleteConfiguredTableAssociationAnalysisRule(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfiguredTableAssociationAnalysisRule",
-        input_schema = schemas.DeleteConfiguredTableAssociationAnalysisRuleInput,
-        output_schema = schemas.DeleteConfiguredTableAssociationAnalysisRuleOutput,
-        http_method = "DELETE",
-        http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguredTableAssociationAnalysisRule, input, options)
 end
 
 function Client:deleteIdMappingTable(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIdMappingTable",
-        input_schema = schemas.DeleteIdMappingTableInput,
-        output_schema = schemas.DeleteIdMappingTableOutput,
-        http_method = "DELETE",
-        http_path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIdMappingTable, input, options)
 end
 
 function Client:deleteIdNamespaceAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIdNamespaceAssociation",
-        input_schema = schemas.DeleteIdNamespaceAssociationInput,
-        output_schema = schemas.DeleteIdNamespaceAssociationOutput,
-        http_method = "DELETE",
-        http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIdNamespaceAssociation, input, options)
 end
 
 function Client:deleteMember(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMember",
-        input_schema = schemas.DeleteMemberInput,
-        output_schema = schemas.DeleteMemberOutput,
-        http_method = "DELETE",
-        http_path = "/collaborations/{collaborationIdentifier}/member/{accountId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMember, input, options)
 end
 
 function Client:deleteMembership(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMembership",
-        input_schema = schemas.DeleteMembershipInput,
-        output_schema = schemas.DeleteMembershipOutput,
-        http_method = "DELETE",
-        http_path = "/memberships/{membershipIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMembership, input, options)
 end
 
 function Client:deletePrivacyBudgetTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePrivacyBudgetTemplate",
-        input_schema = schemas.DeletePrivacyBudgetTemplateInput,
-        output_schema = schemas.DeletePrivacyBudgetTemplateOutput,
-        http_method = "DELETE",
-        http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePrivacyBudgetTemplate, input, options)
 end
 
 function Client:getAnalysisTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAnalysisTemplate",
-        input_schema = schemas.GetAnalysisTemplateInput,
-        output_schema = schemas.GetAnalysisTemplateOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAnalysisTemplate, input, options)
 end
 
 function Client:getCollaboration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCollaboration",
-        input_schema = schemas.GetCollaborationInput,
-        output_schema = schemas.GetCollaborationOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCollaboration, input, options)
 end
 
 function Client:getCollaborationAnalysisTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCollaborationAnalysisTemplate",
-        input_schema = schemas.GetCollaborationAnalysisTemplateInput,
-        output_schema = schemas.GetCollaborationAnalysisTemplateOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/analysistemplates/{analysisTemplateArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCollaborationAnalysisTemplate, input, options)
 end
 
 function Client:getCollaborationChangeRequest(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCollaborationChangeRequest",
-        input_schema = schemas.GetCollaborationChangeRequestInput,
-        output_schema = schemas.GetCollaborationChangeRequestOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/changeRequests/{changeRequestIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCollaborationChangeRequest, input, options)
 end
 
 function Client:getCollaborationConfiguredAudienceModelAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCollaborationConfiguredAudienceModelAssociation",
-        input_schema = schemas.GetCollaborationConfiguredAudienceModelAssociationInput,
-        output_schema = schemas.GetCollaborationConfiguredAudienceModelAssociationOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCollaborationConfiguredAudienceModelAssociation, input, options)
 end
 
 function Client:getCollaborationIdNamespaceAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCollaborationIdNamespaceAssociation",
-        input_schema = schemas.GetCollaborationIdNamespaceAssociationInput,
-        output_schema = schemas.GetCollaborationIdNamespaceAssociationOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCollaborationIdNamespaceAssociation, input, options)
 end
 
 function Client:getCollaborationPrivacyBudgetTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCollaborationPrivacyBudgetTemplate",
-        input_schema = schemas.GetCollaborationPrivacyBudgetTemplateInput,
-        output_schema = schemas.GetCollaborationPrivacyBudgetTemplateOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCollaborationPrivacyBudgetTemplate, input, options)
 end
 
 function Client:getConfiguredAudienceModelAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConfiguredAudienceModelAssociation",
-        input_schema = schemas.GetConfiguredAudienceModelAssociationInput,
-        output_schema = schemas.GetConfiguredAudienceModelAssociationOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConfiguredAudienceModelAssociation, input, options)
 end
 
 function Client:getConfiguredTable(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConfiguredTable",
-        input_schema = schemas.GetConfiguredTableInput,
-        output_schema = schemas.GetConfiguredTableOutput,
-        http_method = "GET",
-        http_path = "/configuredTables/{configuredTableIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConfiguredTable, input, options)
 end
 
 function Client:getConfiguredTableAnalysisRule(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConfiguredTableAnalysisRule",
-        input_schema = schemas.GetConfiguredTableAnalysisRuleInput,
-        output_schema = schemas.GetConfiguredTableAnalysisRuleOutput,
-        http_method = "GET",
-        http_path = "/configuredTables/{configuredTableIdentifier}/analysisRule/{analysisRuleType}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConfiguredTableAnalysisRule, input, options)
 end
 
 function Client:getConfiguredTableAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConfiguredTableAssociation",
-        input_schema = schemas.GetConfiguredTableAssociationInput,
-        output_schema = schemas.GetConfiguredTableAssociationOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConfiguredTableAssociation, input, options)
 end
 
 function Client:getConfiguredTableAssociationAnalysisRule(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConfiguredTableAssociationAnalysisRule",
-        input_schema = schemas.GetConfiguredTableAssociationAnalysisRuleInput,
-        output_schema = schemas.GetConfiguredTableAssociationAnalysisRuleOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConfiguredTableAssociationAnalysisRule, input, options)
 end
 
 function Client:getIdMappingTable(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdMappingTable",
-        input_schema = schemas.GetIdMappingTableInput,
-        output_schema = schemas.GetIdMappingTableOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdMappingTable, input, options)
 end
 
 function Client:getIdNamespaceAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdNamespaceAssociation",
-        input_schema = schemas.GetIdNamespaceAssociationInput,
-        output_schema = schemas.GetIdNamespaceAssociationOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdNamespaceAssociation, input, options)
 end
 
 function Client:getMembership(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMembership",
-        input_schema = schemas.GetMembershipInput,
-        output_schema = schemas.GetMembershipOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMembership, input, options)
 end
 
 function Client:getPrivacyBudgetTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPrivacyBudgetTemplate",
-        input_schema = schemas.GetPrivacyBudgetTemplateInput,
-        output_schema = schemas.GetPrivacyBudgetTemplateOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPrivacyBudgetTemplate, input, options)
 end
 
 function Client:getProtectedJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetProtectedJob",
-        input_schema = schemas.GetProtectedJobInput,
-        output_schema = schemas.GetProtectedJobOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/protectedJobs/{protectedJobIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetProtectedJob, input, options)
 end
 
 function Client:getProtectedQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "GetProtectedQuery",
-        input_schema = schemas.GetProtectedQueryInput,
-        output_schema = schemas.GetProtectedQueryOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/protectedQueries/{protectedQueryIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetProtectedQuery, input, options)
 end
 
 function Client:getSchema(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSchema",
-        input_schema = schemas.GetSchemaInput,
-        output_schema = schemas.GetSchemaOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/schemas/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSchema, input, options)
 end
 
 function Client:getSchemaAnalysisRule(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSchemaAnalysisRule",
-        input_schema = schemas.GetSchemaAnalysisRuleInput,
-        output_schema = schemas.GetSchemaAnalysisRuleOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/schemas/{name}/analysisRule/{type}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSchemaAnalysisRule, input, options)
 end
 
 function Client:listAnalysisTemplates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAnalysisTemplates",
-        input_schema = schemas.ListAnalysisTemplatesInput,
-        output_schema = schemas.ListAnalysisTemplatesOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/analysistemplates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAnalysisTemplates, input, options)
 end
 
 function Client:listCollaborationAnalysisTemplates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCollaborationAnalysisTemplates",
-        input_schema = schemas.ListCollaborationAnalysisTemplatesInput,
-        output_schema = schemas.ListCollaborationAnalysisTemplatesOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/analysistemplates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCollaborationAnalysisTemplates, input, options)
 end
 
 function Client:listCollaborationChangeRequests(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCollaborationChangeRequests",
-        input_schema = schemas.ListCollaborationChangeRequestsInput,
-        output_schema = schemas.ListCollaborationChangeRequestsOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/changeRequests",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCollaborationChangeRequests, input, options)
 end
 
 function Client:listCollaborationConfiguredAudienceModelAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCollaborationConfiguredAudienceModelAssociations",
-        input_schema = schemas.ListCollaborationConfiguredAudienceModelAssociationsInput,
-        output_schema = schemas.ListCollaborationConfiguredAudienceModelAssociationsOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/configuredaudiencemodelassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCollaborationConfiguredAudienceModelAssociations, input, options)
 end
 
 function Client:listCollaborationIdNamespaceAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCollaborationIdNamespaceAssociations",
-        input_schema = schemas.ListCollaborationIdNamespaceAssociationsInput,
-        output_schema = schemas.ListCollaborationIdNamespaceAssociationsOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/idnamespaceassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCollaborationIdNamespaceAssociations, input, options)
 end
 
 function Client:listCollaborationPrivacyBudgets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCollaborationPrivacyBudgets",
-        input_schema = schemas.ListCollaborationPrivacyBudgetsInput,
-        output_schema = schemas.ListCollaborationPrivacyBudgetsOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/privacybudgets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCollaborationPrivacyBudgets, input, options)
 end
 
 function Client:listCollaborationPrivacyBudgetTemplates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCollaborationPrivacyBudgetTemplates",
-        input_schema = schemas.ListCollaborationPrivacyBudgetTemplatesInput,
-        output_schema = schemas.ListCollaborationPrivacyBudgetTemplatesOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/privacybudgettemplates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCollaborationPrivacyBudgetTemplates, input, options)
 end
 
 function Client:listCollaborations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCollaborations",
-        input_schema = schemas.ListCollaborationsInput,
-        output_schema = schemas.ListCollaborationsOutput,
-        http_method = "GET",
-        http_path = "/collaborations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCollaborations, input, options)
 end
 
 function Client:listConfiguredAudienceModelAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConfiguredAudienceModelAssociations",
-        input_schema = schemas.ListConfiguredAudienceModelAssociationsInput,
-        output_schema = schemas.ListConfiguredAudienceModelAssociationsOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConfiguredAudienceModelAssociations, input, options)
 end
 
 function Client:listConfiguredTableAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConfiguredTableAssociations",
-        input_schema = schemas.ListConfiguredTableAssociationsInput,
-        output_schema = schemas.ListConfiguredTableAssociationsOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConfiguredTableAssociations, input, options)
 end
 
 function Client:listConfiguredTables(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConfiguredTables",
-        input_schema = schemas.ListConfiguredTablesInput,
-        output_schema = schemas.ListConfiguredTablesOutput,
-        http_method = "GET",
-        http_path = "/configuredTables",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConfiguredTables, input, options)
 end
 
 function Client:listIdMappingTables(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIdMappingTables",
-        input_schema = schemas.ListIdMappingTablesInput,
-        output_schema = schemas.ListIdMappingTablesOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/idmappingtables",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIdMappingTables, input, options)
 end
 
 function Client:listIdNamespaceAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIdNamespaceAssociations",
-        input_schema = schemas.ListIdNamespaceAssociationsInput,
-        output_schema = schemas.ListIdNamespaceAssociationsOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIdNamespaceAssociations, input, options)
 end
 
 function Client:listMembers(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMembers",
-        input_schema = schemas.ListMembersInput,
-        output_schema = schemas.ListMembersOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/members",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMembers, input, options)
 end
 
 function Client:listMemberships(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMemberships",
-        input_schema = schemas.ListMembershipsInput,
-        output_schema = schemas.ListMembershipsOutput,
-        http_method = "GET",
-        http_path = "/memberships",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMemberships, input, options)
 end
 
 function Client:listPrivacyBudgets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPrivacyBudgets",
-        input_schema = schemas.ListPrivacyBudgetsInput,
-        output_schema = schemas.ListPrivacyBudgetsOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/privacybudgets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPrivacyBudgets, input, options)
 end
 
 function Client:listPrivacyBudgetTemplates(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPrivacyBudgetTemplates",
-        input_schema = schemas.ListPrivacyBudgetTemplatesInput,
-        output_schema = schemas.ListPrivacyBudgetTemplatesOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPrivacyBudgetTemplates, input, options)
 end
 
 function Client:listProtectedJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProtectedJobs",
-        input_schema = schemas.ListProtectedJobsInput,
-        output_schema = schemas.ListProtectedJobsOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/protectedJobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProtectedJobs, input, options)
 end
 
 function Client:listProtectedQueries(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProtectedQueries",
-        input_schema = schemas.ListProtectedQueriesInput,
-        output_schema = schemas.ListProtectedQueriesOutput,
-        http_method = "GET",
-        http_path = "/memberships/{membershipIdentifier}/protectedQueries",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProtectedQueries, input, options)
 end
 
 function Client:listSchemas(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSchemas",
-        input_schema = schemas.ListSchemasInput,
-        output_schema = schemas.ListSchemasOutput,
-        http_method = "GET",
-        http_path = "/collaborations/{collaborationIdentifier}/schemas",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSchemas, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:populateIdMappingTable(input, options)
-    return self:invokeOperation(input, {
-        name = "PopulateIdMappingTable",
-        input_schema = schemas.PopulateIdMappingTableInput,
-        output_schema = schemas.PopulateIdMappingTableOutput,
-        http_method = "POST",
-        http_path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}/populate",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PopulateIdMappingTable, input, options)
 end
 
 function Client:previewPrivacyImpact(input, options)
-    return self:invokeOperation(input, {
-        name = "PreviewPrivacyImpact",
-        input_schema = schemas.PreviewPrivacyImpactInput,
-        output_schema = schemas.PreviewPrivacyImpactOutput,
-        http_method = "POST",
-        http_path = "/memberships/{membershipIdentifier}/previewprivacyimpact",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PreviewPrivacyImpact, input, options)
 end
 
 function Client:startProtectedJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartProtectedJob",
-        input_schema = schemas.StartProtectedJobInput,
-        output_schema = schemas.StartProtectedJobOutput,
-        http_method = "POST",
-        http_path = "/memberships/{membershipIdentifier}/protectedJobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartProtectedJob, input, options)
 end
 
 function Client:startProtectedQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "StartProtectedQuery",
-        input_schema = schemas.StartProtectedQueryInput,
-        output_schema = schemas.StartProtectedQueryOutput,
-        http_method = "POST",
-        http_path = "/memberships/{membershipIdentifier}/protectedQueries",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartProtectedQuery, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAnalysisTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAnalysisTemplate",
-        input_schema = schemas.UpdateAnalysisTemplateInput,
-        output_schema = schemas.UpdateAnalysisTemplateOutput,
-        http_method = "PATCH",
-        http_path = "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAnalysisTemplate, input, options)
 end
 
 function Client:updateCollaboration(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCollaboration",
-        input_schema = schemas.UpdateCollaborationInput,
-        output_schema = schemas.UpdateCollaborationOutput,
-        http_method = "PATCH",
-        http_path = "/collaborations/{collaborationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCollaboration, input, options)
 end
 
 function Client:updateCollaborationChangeRequest(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCollaborationChangeRequest",
-        input_schema = schemas.UpdateCollaborationChangeRequestInput,
-        output_schema = schemas.UpdateCollaborationChangeRequestOutput,
-        http_method = "PATCH",
-        http_path = "/collaborations/{collaborationIdentifier}/changeRequests/{changeRequestIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCollaborationChangeRequest, input, options)
 end
 
 function Client:updateConfiguredAudienceModelAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConfiguredAudienceModelAssociation",
-        input_schema = schemas.UpdateConfiguredAudienceModelAssociationInput,
-        output_schema = schemas.UpdateConfiguredAudienceModelAssociationOutput,
-        http_method = "PATCH",
-        http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguredAudienceModelAssociation, input, options)
 end
 
 function Client:updateConfiguredTable(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConfiguredTable",
-        input_schema = schemas.UpdateConfiguredTableInput,
-        output_schema = schemas.UpdateConfiguredTableOutput,
-        http_method = "PATCH",
-        http_path = "/configuredTables/{configuredTableIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguredTable, input, options)
 end
 
 function Client:updateConfiguredTableAnalysisRule(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConfiguredTableAnalysisRule",
-        input_schema = schemas.UpdateConfiguredTableAnalysisRuleInput,
-        output_schema = schemas.UpdateConfiguredTableAnalysisRuleOutput,
-        http_method = "PATCH",
-        http_path = "/configuredTables/{configuredTableIdentifier}/analysisRule/{analysisRuleType}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguredTableAnalysisRule, input, options)
 end
 
 function Client:updateConfiguredTableAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConfiguredTableAssociation",
-        input_schema = schemas.UpdateConfiguredTableAssociationInput,
-        output_schema = schemas.UpdateConfiguredTableAssociationOutput,
-        http_method = "PATCH",
-        http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguredTableAssociation, input, options)
 end
 
 function Client:updateConfiguredTableAssociationAnalysisRule(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConfiguredTableAssociationAnalysisRule",
-        input_schema = schemas.UpdateConfiguredTableAssociationAnalysisRuleInput,
-        output_schema = schemas.UpdateConfiguredTableAssociationAnalysisRuleOutput,
-        http_method = "PATCH",
-        http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguredTableAssociationAnalysisRule, input, options)
 end
 
 function Client:updateIdMappingTable(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateIdMappingTable",
-        input_schema = schemas.UpdateIdMappingTableInput,
-        output_schema = schemas.UpdateIdMappingTableOutput,
-        http_method = "PATCH",
-        http_path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateIdMappingTable, input, options)
 end
 
 function Client:updateIdNamespaceAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateIdNamespaceAssociation",
-        input_schema = schemas.UpdateIdNamespaceAssociationInput,
-        output_schema = schemas.UpdateIdNamespaceAssociationOutput,
-        http_method = "PATCH",
-        http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateIdNamespaceAssociation, input, options)
 end
 
 function Client:updateMembership(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateMembership",
-        input_schema = schemas.UpdateMembershipInput,
-        output_schema = schemas.UpdateMembershipOutput,
-        http_method = "PATCH",
-        http_path = "/memberships/{membershipIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateMembership, input, options)
 end
 
 function Client:updatePrivacyBudgetTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePrivacyBudgetTemplate",
-        input_schema = schemas.UpdatePrivacyBudgetTemplateInput,
-        output_schema = schemas.UpdatePrivacyBudgetTemplateOutput,
-        http_method = "PATCH",
-        http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePrivacyBudgetTemplate, input, options)
 end
 
 function Client:updateProtectedJob(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateProtectedJob",
-        input_schema = schemas.UpdateProtectedJobInput,
-        output_schema = schemas.UpdateProtectedJobOutput,
-        http_method = "PATCH",
-        http_path = "/memberships/{membershipIdentifier}/protectedJobs/{protectedJobIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateProtectedJob, input, options)
 end
 
 function Client:updateProtectedQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateProtectedQuery",
-        input_schema = schemas.UpdateProtectedQueryInput,
-        output_schema = schemas.UpdateProtectedQueryOutput,
-        http_method = "PATCH",
-        http_path = "/memberships/{membershipIdentifier}/protectedQueries/{protectedQueryIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateProtectedQuery, input, options)
 end
 
 return M

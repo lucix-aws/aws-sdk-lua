@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("storagegateway.endpoint_rules")
 local schemas = require("storagegateway.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "storagegateway", signing_region = cfg.region } }
                 else
@@ -49,1251 +52,387 @@ function M.new(cfg)
 end
 
 function Client:activateGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "ActivateGateway",
-        input_schema = schemas.ActivateGatewayInput,
-        output_schema = schemas.ActivateGatewayOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ActivateGateway, input, options)
 end
 
 function Client:addCache(input, options)
-    return self:invokeOperation(input, {
-        name = "AddCache",
-        input_schema = schemas.AddCacheInput,
-        output_schema = schemas.AddCacheOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddCache, input, options)
 end
 
 function Client:addTagsToResource(input, options)
-    return self:invokeOperation(input, {
-        name = "AddTagsToResource",
-        input_schema = schemas.AddTagsToResourceInput,
-        output_schema = schemas.AddTagsToResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddTagsToResource, input, options)
 end
 
 function Client:addUploadBuffer(input, options)
-    return self:invokeOperation(input, {
-        name = "AddUploadBuffer",
-        input_schema = schemas.AddUploadBufferInput,
-        output_schema = schemas.AddUploadBufferOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddUploadBuffer, input, options)
 end
 
 function Client:addWorkingStorage(input, options)
-    return self:invokeOperation(input, {
-        name = "AddWorkingStorage",
-        input_schema = schemas.AddWorkingStorageInput,
-        output_schema = schemas.AddWorkingStorageOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddWorkingStorage, input, options)
 end
 
 function Client:assignTapePool(input, options)
-    return self:invokeOperation(input, {
-        name = "AssignTapePool",
-        input_schema = schemas.AssignTapePoolInput,
-        output_schema = schemas.AssignTapePoolOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssignTapePool, input, options)
 end
 
 function Client:associateFileSystem(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateFileSystem",
-        input_schema = schemas.AssociateFileSystemInput,
-        output_schema = schemas.AssociateFileSystemOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateFileSystem, input, options)
 end
 
 function Client:attachVolume(input, options)
-    return self:invokeOperation(input, {
-        name = "AttachVolume",
-        input_schema = schemas.AttachVolumeInput,
-        output_schema = schemas.AttachVolumeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AttachVolume, input, options)
 end
 
 function Client:cancelArchival(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelArchival",
-        input_schema = schemas.CancelArchivalInput,
-        output_schema = schemas.CancelArchivalOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelArchival, input, options)
 end
 
 function Client:cancelCacheReport(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelCacheReport",
-        input_schema = schemas.CancelCacheReportInput,
-        output_schema = schemas.CancelCacheReportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelCacheReport, input, options)
 end
 
 function Client:cancelRetrieval(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelRetrieval",
-        input_schema = schemas.CancelRetrievalInput,
-        output_schema = schemas.CancelRetrievalOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelRetrieval, input, options)
 end
 
 function Client:createCachediSCSIVolume(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCachediSCSIVolume",
-        input_schema = schemas.CreateCachediSCSIVolumeInput,
-        output_schema = schemas.CreateCachediSCSIVolumeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCachediSCSIVolume, input, options)
 end
 
 function Client:createNFSFileShare(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateNFSFileShare",
-        input_schema = schemas.CreateNFSFileShareInput,
-        output_schema = schemas.CreateNFSFileShareOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateNFSFileShare, input, options)
 end
 
 function Client:createSMBFileShare(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSMBFileShare",
-        input_schema = schemas.CreateSMBFileShareInput,
-        output_schema = schemas.CreateSMBFileShareOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSMBFileShare, input, options)
 end
 
 function Client:createSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSnapshot",
-        input_schema = schemas.CreateSnapshotInput,
-        output_schema = schemas.CreateSnapshotOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSnapshot, input, options)
 end
 
 function Client:createSnapshotFromVolumeRecoveryPoint(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSnapshotFromVolumeRecoveryPoint",
-        input_schema = schemas.CreateSnapshotFromVolumeRecoveryPointInput,
-        output_schema = schemas.CreateSnapshotFromVolumeRecoveryPointOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSnapshotFromVolumeRecoveryPoint, input, options)
 end
 
 function Client:createStorediSCSIVolume(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateStorediSCSIVolume",
-        input_schema = schemas.CreateStorediSCSIVolumeInput,
-        output_schema = schemas.CreateStorediSCSIVolumeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateStorediSCSIVolume, input, options)
 end
 
 function Client:createTapePool(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTapePool",
-        input_schema = schemas.CreateTapePoolInput,
-        output_schema = schemas.CreateTapePoolOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTapePool, input, options)
 end
 
 function Client:createTapes(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTapes",
-        input_schema = schemas.CreateTapesInput,
-        output_schema = schemas.CreateTapesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTapes, input, options)
 end
 
 function Client:createTapeWithBarcode(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTapeWithBarcode",
-        input_schema = schemas.CreateTapeWithBarcodeInput,
-        output_schema = schemas.CreateTapeWithBarcodeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTapeWithBarcode, input, options)
 end
 
 function Client:deleteAutomaticTapeCreationPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAutomaticTapeCreationPolicy",
-        input_schema = schemas.DeleteAutomaticTapeCreationPolicyInput,
-        output_schema = schemas.DeleteAutomaticTapeCreationPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAutomaticTapeCreationPolicy, input, options)
 end
 
 function Client:deleteBandwidthRateLimit(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteBandwidthRateLimit",
-        input_schema = schemas.DeleteBandwidthRateLimitInput,
-        output_schema = schemas.DeleteBandwidthRateLimitOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteBandwidthRateLimit, input, options)
 end
 
 function Client:deleteCacheReport(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCacheReport",
-        input_schema = schemas.DeleteCacheReportInput,
-        output_schema = schemas.DeleteCacheReportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCacheReport, input, options)
 end
 
 function Client:deleteChapCredentials(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteChapCredentials",
-        input_schema = schemas.DeleteChapCredentialsInput,
-        output_schema = schemas.DeleteChapCredentialsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteChapCredentials, input, options)
 end
 
 function Client:deleteFileShare(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFileShare",
-        input_schema = schemas.DeleteFileShareInput,
-        output_schema = schemas.DeleteFileShareOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFileShare, input, options)
 end
 
 function Client:deleteGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGateway",
-        input_schema = schemas.DeleteGatewayInput,
-        output_schema = schemas.DeleteGatewayOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGateway, input, options)
 end
 
 function Client:deleteSnapshotSchedule(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSnapshotSchedule",
-        input_schema = schemas.DeleteSnapshotScheduleInput,
-        output_schema = schemas.DeleteSnapshotScheduleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSnapshotSchedule, input, options)
 end
 
 function Client:deleteTape(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTape",
-        input_schema = schemas.DeleteTapeInput,
-        output_schema = schemas.DeleteTapeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTape, input, options)
 end
 
 function Client:deleteTapeArchive(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTapeArchive",
-        input_schema = schemas.DeleteTapeArchiveInput,
-        output_schema = schemas.DeleteTapeArchiveOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTapeArchive, input, options)
 end
 
 function Client:deleteTapePool(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTapePool",
-        input_schema = schemas.DeleteTapePoolInput,
-        output_schema = schemas.DeleteTapePoolOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTapePool, input, options)
 end
 
 function Client:deleteVolume(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVolume",
-        input_schema = schemas.DeleteVolumeInput,
-        output_schema = schemas.DeleteVolumeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVolume, input, options)
 end
 
 function Client:describeAvailabilityMonitorTest(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAvailabilityMonitorTest",
-        input_schema = schemas.DescribeAvailabilityMonitorTestInput,
-        output_schema = schemas.DescribeAvailabilityMonitorTestOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAvailabilityMonitorTest, input, options)
 end
 
 function Client:describeBandwidthRateLimit(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeBandwidthRateLimit",
-        input_schema = schemas.DescribeBandwidthRateLimitInput,
-        output_schema = schemas.DescribeBandwidthRateLimitOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeBandwidthRateLimit, input, options)
 end
 
 function Client:describeBandwidthRateLimitSchedule(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeBandwidthRateLimitSchedule",
-        input_schema = schemas.DescribeBandwidthRateLimitScheduleInput,
-        output_schema = schemas.DescribeBandwidthRateLimitScheduleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeBandwidthRateLimitSchedule, input, options)
 end
 
 function Client:describeCache(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCache",
-        input_schema = schemas.DescribeCacheInput,
-        output_schema = schemas.DescribeCacheOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCache, input, options)
 end
 
 function Client:describeCachediSCSIVolumes(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCachediSCSIVolumes",
-        input_schema = schemas.DescribeCachediSCSIVolumesInput,
-        output_schema = schemas.DescribeCachediSCSIVolumesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCachediSCSIVolumes, input, options)
 end
 
 function Client:describeCacheReport(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCacheReport",
-        input_schema = schemas.DescribeCacheReportInput,
-        output_schema = schemas.DescribeCacheReportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCacheReport, input, options)
 end
 
 function Client:describeChapCredentials(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeChapCredentials",
-        input_schema = schemas.DescribeChapCredentialsInput,
-        output_schema = schemas.DescribeChapCredentialsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeChapCredentials, input, options)
 end
 
 function Client:describeFileSystemAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeFileSystemAssociations",
-        input_schema = schemas.DescribeFileSystemAssociationsInput,
-        output_schema = schemas.DescribeFileSystemAssociationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeFileSystemAssociations, input, options)
 end
 
 function Client:describeGatewayInformation(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeGatewayInformation",
-        input_schema = schemas.DescribeGatewayInformationInput,
-        output_schema = schemas.DescribeGatewayInformationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeGatewayInformation, input, options)
 end
 
 function Client:describeMaintenanceStartTime(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeMaintenanceStartTime",
-        input_schema = schemas.DescribeMaintenanceStartTimeInput,
-        output_schema = schemas.DescribeMaintenanceStartTimeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeMaintenanceStartTime, input, options)
 end
 
 function Client:describeNFSFileShares(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeNFSFileShares",
-        input_schema = schemas.DescribeNFSFileSharesInput,
-        output_schema = schemas.DescribeNFSFileSharesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeNFSFileShares, input, options)
 end
 
 function Client:describeSMBFileShares(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeSMBFileShares",
-        input_schema = schemas.DescribeSMBFileSharesInput,
-        output_schema = schemas.DescribeSMBFileSharesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeSMBFileShares, input, options)
 end
 
 function Client:describeSMBSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeSMBSettings",
-        input_schema = schemas.DescribeSMBSettingsInput,
-        output_schema = schemas.DescribeSMBSettingsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeSMBSettings, input, options)
 end
 
 function Client:describeSnapshotSchedule(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeSnapshotSchedule",
-        input_schema = schemas.DescribeSnapshotScheduleInput,
-        output_schema = schemas.DescribeSnapshotScheduleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeSnapshotSchedule, input, options)
 end
 
 function Client:describeStorediSCSIVolumes(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeStorediSCSIVolumes",
-        input_schema = schemas.DescribeStorediSCSIVolumesInput,
-        output_schema = schemas.DescribeStorediSCSIVolumesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeStorediSCSIVolumes, input, options)
 end
 
 function Client:describeTapeArchives(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTapeArchives",
-        input_schema = schemas.DescribeTapeArchivesInput,
-        output_schema = schemas.DescribeTapeArchivesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTapeArchives, input, options)
 end
 
 function Client:describeTapeRecoveryPoints(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTapeRecoveryPoints",
-        input_schema = schemas.DescribeTapeRecoveryPointsInput,
-        output_schema = schemas.DescribeTapeRecoveryPointsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTapeRecoveryPoints, input, options)
 end
 
 function Client:describeTapes(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTapes",
-        input_schema = schemas.DescribeTapesInput,
-        output_schema = schemas.DescribeTapesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTapes, input, options)
 end
 
 function Client:describeUploadBuffer(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeUploadBuffer",
-        input_schema = schemas.DescribeUploadBufferInput,
-        output_schema = schemas.DescribeUploadBufferOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeUploadBuffer, input, options)
 end
 
 function Client:describeVTLDevices(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeVTLDevices",
-        input_schema = schemas.DescribeVTLDevicesInput,
-        output_schema = schemas.DescribeVTLDevicesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeVTLDevices, input, options)
 end
 
 function Client:describeWorkingStorage(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeWorkingStorage",
-        input_schema = schemas.DescribeWorkingStorageInput,
-        output_schema = schemas.DescribeWorkingStorageOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeWorkingStorage, input, options)
 end
 
 function Client:detachVolume(input, options)
-    return self:invokeOperation(input, {
-        name = "DetachVolume",
-        input_schema = schemas.DetachVolumeInput,
-        output_schema = schemas.DetachVolumeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DetachVolume, input, options)
 end
 
 function Client:disableGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "DisableGateway",
-        input_schema = schemas.DisableGatewayInput,
-        output_schema = schemas.DisableGatewayOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisableGateway, input, options)
 end
 
 function Client:disassociateFileSystem(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateFileSystem",
-        input_schema = schemas.DisassociateFileSystemInput,
-        output_schema = schemas.DisassociateFileSystemOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateFileSystem, input, options)
 end
 
 function Client:evictFilesFailingUpload(input, options)
-    return self:invokeOperation(input, {
-        name = "EvictFilesFailingUpload",
-        input_schema = schemas.EvictFilesFailingUploadInput,
-        output_schema = schemas.EvictFilesFailingUploadOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.EvictFilesFailingUpload, input, options)
 end
 
 function Client:joinDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "JoinDomain",
-        input_schema = schemas.JoinDomainInput,
-        output_schema = schemas.JoinDomainOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.JoinDomain, input, options)
 end
 
 function Client:listAutomaticTapeCreationPolicies(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAutomaticTapeCreationPolicies",
-        input_schema = schemas.ListAutomaticTapeCreationPoliciesInput,
-        output_schema = schemas.ListAutomaticTapeCreationPoliciesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAutomaticTapeCreationPolicies, input, options)
 end
 
 function Client:listCacheReports(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCacheReports",
-        input_schema = schemas.ListCacheReportsInput,
-        output_schema = schemas.ListCacheReportsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCacheReports, input, options)
 end
 
 function Client:listFileShares(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFileShares",
-        input_schema = schemas.ListFileSharesInput,
-        output_schema = schemas.ListFileSharesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFileShares, input, options)
 end
 
 function Client:listFileSystemAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFileSystemAssociations",
-        input_schema = schemas.ListFileSystemAssociationsInput,
-        output_schema = schemas.ListFileSystemAssociationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFileSystemAssociations, input, options)
 end
 
 function Client:listGateways(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGateways",
-        input_schema = schemas.ListGatewaysInput,
-        output_schema = schemas.ListGatewaysOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGateways, input, options)
 end
 
 function Client:listLocalDisks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListLocalDisks",
-        input_schema = schemas.ListLocalDisksInput,
-        output_schema = schemas.ListLocalDisksOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListLocalDisks, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTapePools(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTapePools",
-        input_schema = schemas.ListTapePoolsInput,
-        output_schema = schemas.ListTapePoolsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTapePools, input, options)
 end
 
 function Client:listTapes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTapes",
-        input_schema = schemas.ListTapesInput,
-        output_schema = schemas.ListTapesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTapes, input, options)
 end
 
 function Client:listVolumeInitiators(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVolumeInitiators",
-        input_schema = schemas.ListVolumeInitiatorsInput,
-        output_schema = schemas.ListVolumeInitiatorsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVolumeInitiators, input, options)
 end
 
 function Client:listVolumeRecoveryPoints(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVolumeRecoveryPoints",
-        input_schema = schemas.ListVolumeRecoveryPointsInput,
-        output_schema = schemas.ListVolumeRecoveryPointsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVolumeRecoveryPoints, input, options)
 end
 
 function Client:listVolumes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVolumes",
-        input_schema = schemas.ListVolumesInput,
-        output_schema = schemas.ListVolumesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVolumes, input, options)
 end
 
 function Client:notifyWhenUploaded(input, options)
-    return self:invokeOperation(input, {
-        name = "NotifyWhenUploaded",
-        input_schema = schemas.NotifyWhenUploadedInput,
-        output_schema = schemas.NotifyWhenUploadedOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.NotifyWhenUploaded, input, options)
 end
 
 function Client:refreshCache(input, options)
-    return self:invokeOperation(input, {
-        name = "RefreshCache",
-        input_schema = schemas.RefreshCacheInput,
-        output_schema = schemas.RefreshCacheOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RefreshCache, input, options)
 end
 
 function Client:removeTagsFromResource(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveTagsFromResource",
-        input_schema = schemas.RemoveTagsFromResourceInput,
-        output_schema = schemas.RemoveTagsFromResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveTagsFromResource, input, options)
 end
 
 function Client:resetCache(input, options)
-    return self:invokeOperation(input, {
-        name = "ResetCache",
-        input_schema = schemas.ResetCacheInput,
-        output_schema = schemas.ResetCacheOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ResetCache, input, options)
 end
 
 function Client:retrieveTapeArchive(input, options)
-    return self:invokeOperation(input, {
-        name = "RetrieveTapeArchive",
-        input_schema = schemas.RetrieveTapeArchiveInput,
-        output_schema = schemas.RetrieveTapeArchiveOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RetrieveTapeArchive, input, options)
 end
 
 function Client:retrieveTapeRecoveryPoint(input, options)
-    return self:invokeOperation(input, {
-        name = "RetrieveTapeRecoveryPoint",
-        input_schema = schemas.RetrieveTapeRecoveryPointInput,
-        output_schema = schemas.RetrieveTapeRecoveryPointOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RetrieveTapeRecoveryPoint, input, options)
 end
 
 function Client:setLocalConsolePassword(input, options)
-    return self:invokeOperation(input, {
-        name = "SetLocalConsolePassword",
-        input_schema = schemas.SetLocalConsolePasswordInput,
-        output_schema = schemas.SetLocalConsolePasswordOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetLocalConsolePassword, input, options)
 end
 
 function Client:setSMBGuestPassword(input, options)
-    return self:invokeOperation(input, {
-        name = "SetSMBGuestPassword",
-        input_schema = schemas.SetSMBGuestPasswordInput,
-        output_schema = schemas.SetSMBGuestPasswordOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetSMBGuestPassword, input, options)
 end
 
 function Client:shutdownGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "ShutdownGateway",
-        input_schema = schemas.ShutdownGatewayInput,
-        output_schema = schemas.ShutdownGatewayOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ShutdownGateway, input, options)
 end
 
 function Client:startAvailabilityMonitorTest(input, options)
-    return self:invokeOperation(input, {
-        name = "StartAvailabilityMonitorTest",
-        input_schema = schemas.StartAvailabilityMonitorTestInput,
-        output_schema = schemas.StartAvailabilityMonitorTestOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartAvailabilityMonitorTest, input, options)
 end
 
 function Client:startCacheReport(input, options)
-    return self:invokeOperation(input, {
-        name = "StartCacheReport",
-        input_schema = schemas.StartCacheReportInput,
-        output_schema = schemas.StartCacheReportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartCacheReport, input, options)
 end
 
 function Client:startGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "StartGateway",
-        input_schema = schemas.StartGatewayInput,
-        output_schema = schemas.StartGatewayOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartGateway, input, options)
 end
 
 function Client:updateAutomaticTapeCreationPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAutomaticTapeCreationPolicy",
-        input_schema = schemas.UpdateAutomaticTapeCreationPolicyInput,
-        output_schema = schemas.UpdateAutomaticTapeCreationPolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAutomaticTapeCreationPolicy, input, options)
 end
 
 function Client:updateBandwidthRateLimit(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateBandwidthRateLimit",
-        input_schema = schemas.UpdateBandwidthRateLimitInput,
-        output_schema = schemas.UpdateBandwidthRateLimitOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateBandwidthRateLimit, input, options)
 end
 
 function Client:updateBandwidthRateLimitSchedule(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateBandwidthRateLimitSchedule",
-        input_schema = schemas.UpdateBandwidthRateLimitScheduleInput,
-        output_schema = schemas.UpdateBandwidthRateLimitScheduleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateBandwidthRateLimitSchedule, input, options)
 end
 
 function Client:updateChapCredentials(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateChapCredentials",
-        input_schema = schemas.UpdateChapCredentialsInput,
-        output_schema = schemas.UpdateChapCredentialsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateChapCredentials, input, options)
 end
 
 function Client:updateFileSystemAssociation(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateFileSystemAssociation",
-        input_schema = schemas.UpdateFileSystemAssociationInput,
-        output_schema = schemas.UpdateFileSystemAssociationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateFileSystemAssociation, input, options)
 end
 
 function Client:updateGatewayInformation(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateGatewayInformation",
-        input_schema = schemas.UpdateGatewayInformationInput,
-        output_schema = schemas.UpdateGatewayInformationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateGatewayInformation, input, options)
 end
 
 function Client:updateGatewaySoftwareNow(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateGatewaySoftwareNow",
-        input_schema = schemas.UpdateGatewaySoftwareNowInput,
-        output_schema = schemas.UpdateGatewaySoftwareNowOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateGatewaySoftwareNow, input, options)
 end
 
 function Client:updateMaintenanceStartTime(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateMaintenanceStartTime",
-        input_schema = schemas.UpdateMaintenanceStartTimeInput,
-        output_schema = schemas.UpdateMaintenanceStartTimeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateMaintenanceStartTime, input, options)
 end
 
 function Client:updateNFSFileShare(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateNFSFileShare",
-        input_schema = schemas.UpdateNFSFileShareInput,
-        output_schema = schemas.UpdateNFSFileShareOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateNFSFileShare, input, options)
 end
 
 function Client:updateSMBFileShare(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSMBFileShare",
-        input_schema = schemas.UpdateSMBFileShareInput,
-        output_schema = schemas.UpdateSMBFileShareOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSMBFileShare, input, options)
 end
 
 function Client:updateSMBFileShareVisibility(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSMBFileShareVisibility",
-        input_schema = schemas.UpdateSMBFileShareVisibilityInput,
-        output_schema = schemas.UpdateSMBFileShareVisibilityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSMBFileShareVisibility, input, options)
 end
 
 function Client:updateSMBLocalGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSMBLocalGroups",
-        input_schema = schemas.UpdateSMBLocalGroupsInput,
-        output_schema = schemas.UpdateSMBLocalGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSMBLocalGroups, input, options)
 end
 
 function Client:updateSMBSecurityStrategy(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSMBSecurityStrategy",
-        input_schema = schemas.UpdateSMBSecurityStrategyInput,
-        output_schema = schemas.UpdateSMBSecurityStrategyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSMBSecurityStrategy, input, options)
 end
 
 function Client:updateSnapshotSchedule(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSnapshotSchedule",
-        input_schema = schemas.UpdateSnapshotScheduleInput,
-        output_schema = schemas.UpdateSnapshotScheduleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSnapshotSchedule, input, options)
 end
 
 function Client:updateVTLDeviceType(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateVTLDeviceType",
-        input_schema = schemas.UpdateVTLDeviceTypeInput,
-        output_schema = schemas.UpdateVTLDeviceTypeOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateVTLDeviceType, input, options)
 end
 
 return M

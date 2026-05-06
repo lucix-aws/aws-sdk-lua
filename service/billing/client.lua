@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("billing.endpoint_rules")
 local schemas = require("billing.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "billing", signing_region = cfg.region } }
                 else
@@ -49,159 +52,51 @@ function M.new(cfg)
 end
 
 function Client:associateSourceViews(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateSourceViews",
-        input_schema = schemas.AssociateSourceViewsInput,
-        output_schema = schemas.AssociateSourceViewsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateSourceViews, input, options)
 end
 
 function Client:createBillingView(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateBillingView",
-        input_schema = schemas.CreateBillingViewInput,
-        output_schema = schemas.CreateBillingViewOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateBillingView, input, options)
 end
 
 function Client:deleteBillingView(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteBillingView",
-        input_schema = schemas.DeleteBillingViewInput,
-        output_schema = schemas.DeleteBillingViewOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteBillingView, input, options)
 end
 
 function Client:disassociateSourceViews(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateSourceViews",
-        input_schema = schemas.DisassociateSourceViewsInput,
-        output_schema = schemas.DisassociateSourceViewsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateSourceViews, input, options)
 end
 
 function Client:getBillingView(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBillingView",
-        input_schema = schemas.GetBillingViewInput,
-        output_schema = schemas.GetBillingViewOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBillingView, input, options)
 end
 
 function Client:getResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourcePolicy",
-        input_schema = schemas.GetResourcePolicyInput,
-        output_schema = schemas.GetResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options)
 end
 
 function Client:listBillingViews(input, options)
-    return self:invokeOperation(input, {
-        name = "ListBillingViews",
-        input_schema = schemas.ListBillingViewsInput,
-        output_schema = schemas.ListBillingViewsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListBillingViews, input, options)
 end
 
 function Client:listSourceViewsForBillingView(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSourceViewsForBillingView",
-        input_schema = schemas.ListSourceViewsForBillingViewInput,
-        output_schema = schemas.ListSourceViewsForBillingViewOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSourceViewsForBillingView, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateBillingView(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateBillingView",
-        input_schema = schemas.UpdateBillingViewInput,
-        output_schema = schemas.UpdateBillingViewOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateBillingView, input, options)
 end
 
 return M

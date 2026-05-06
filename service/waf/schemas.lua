@@ -5201,4 +5201,861 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.waf", "AWSWAF_20150824"),
+    version = "2015-08-24",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateByteMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "CreateByteMatchSet"),
+    input = M.CreateByteMatchSetInput,
+    output = M.CreateByteMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGeoMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "CreateGeoMatchSet"),
+    input = M.CreateGeoMatchSetInput,
+    output = M.CreateGeoMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIPSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "CreateIPSet"),
+    input = M.CreateIPSetInput,
+    output = M.CreateIPSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRateBasedRule = schema.operation({
+    id = id.from("com.amazonaws.waf", "CreateRateBasedRule"),
+    input = M.CreateRateBasedRuleInput,
+    output = M.CreateRateBasedRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRegexMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "CreateRegexMatchSet"),
+    input = M.CreateRegexMatchSetInput,
+    output = M.CreateRegexMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRegexPatternSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "CreateRegexPatternSet"),
+    input = M.CreateRegexPatternSetInput,
+    output = M.CreateRegexPatternSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRule = schema.operation({
+    id = id.from("com.amazonaws.waf", "CreateRule"),
+    input = M.CreateRuleInput,
+    output = M.CreateRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.waf", "CreateRuleGroup"),
+    input = M.CreateRuleGroupInput,
+    output = M.CreateRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSizeConstraintSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "CreateSizeConstraintSet"),
+    input = M.CreateSizeConstraintSetInput,
+    output = M.CreateSizeConstraintSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSqlInjectionMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "CreateSqlInjectionMatchSet"),
+    input = M.CreateSqlInjectionMatchSetInput,
+    output = M.CreateSqlInjectionMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWebACL = schema.operation({
+    id = id.from("com.amazonaws.waf", "CreateWebACL"),
+    input = M.CreateWebACLInput,
+    output = M.CreateWebACLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWebACLMigrationStack = schema.operation({
+    id = id.from("com.amazonaws.waf", "CreateWebACLMigrationStack"),
+    input = M.CreateWebACLMigrationStackInput,
+    output = M.CreateWebACLMigrationStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateXssMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "CreateXssMatchSet"),
+    input = M.CreateXssMatchSetInput,
+    output = M.CreateXssMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteByteMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "DeleteByteMatchSet"),
+    input = M.DeleteByteMatchSetInput,
+    output = M.DeleteByteMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGeoMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "DeleteGeoMatchSet"),
+    input = M.DeleteGeoMatchSetInput,
+    output = M.DeleteGeoMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIPSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "DeleteIPSet"),
+    input = M.DeleteIPSetInput,
+    output = M.DeleteIPSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.waf", "DeleteLoggingConfiguration"),
+    input = M.DeleteLoggingConfigurationInput,
+    output = M.DeleteLoggingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePermissionPolicy = schema.operation({
+    id = id.from("com.amazonaws.waf", "DeletePermissionPolicy"),
+    input = M.DeletePermissionPolicyInput,
+    output = M.DeletePermissionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRateBasedRule = schema.operation({
+    id = id.from("com.amazonaws.waf", "DeleteRateBasedRule"),
+    input = M.DeleteRateBasedRuleInput,
+    output = M.DeleteRateBasedRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRegexMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "DeleteRegexMatchSet"),
+    input = M.DeleteRegexMatchSetInput,
+    output = M.DeleteRegexMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRegexPatternSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "DeleteRegexPatternSet"),
+    input = M.DeleteRegexPatternSetInput,
+    output = M.DeleteRegexPatternSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRule = schema.operation({
+    id = id.from("com.amazonaws.waf", "DeleteRule"),
+    input = M.DeleteRuleInput,
+    output = M.DeleteRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.waf", "DeleteRuleGroup"),
+    input = M.DeleteRuleGroupInput,
+    output = M.DeleteRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSizeConstraintSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "DeleteSizeConstraintSet"),
+    input = M.DeleteSizeConstraintSetInput,
+    output = M.DeleteSizeConstraintSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSqlInjectionMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "DeleteSqlInjectionMatchSet"),
+    input = M.DeleteSqlInjectionMatchSetInput,
+    output = M.DeleteSqlInjectionMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWebACL = schema.operation({
+    id = id.from("com.amazonaws.waf", "DeleteWebACL"),
+    input = M.DeleteWebACLInput,
+    output = M.DeleteWebACLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteXssMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "DeleteXssMatchSet"),
+    input = M.DeleteXssMatchSetInput,
+    output = M.DeleteXssMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetByteMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetByteMatchSet"),
+    input = M.GetByteMatchSetInput,
+    output = M.GetByteMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChangeToken = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetChangeToken"),
+    input = M.GetChangeTokenInput,
+    output = M.GetChangeTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChangeTokenStatus = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetChangeTokenStatus"),
+    input = M.GetChangeTokenStatusInput,
+    output = M.GetChangeTokenStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGeoMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetGeoMatchSet"),
+    input = M.GetGeoMatchSetInput,
+    output = M.GetGeoMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIPSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetIPSet"),
+    input = M.GetIPSetInput,
+    output = M.GetIPSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetLoggingConfiguration"),
+    input = M.GetLoggingConfigurationInput,
+    output = M.GetLoggingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPermissionPolicy = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetPermissionPolicy"),
+    input = M.GetPermissionPolicyInput,
+    output = M.GetPermissionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRateBasedRule = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetRateBasedRule"),
+    input = M.GetRateBasedRuleInput,
+    output = M.GetRateBasedRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRateBasedRuleManagedKeys = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetRateBasedRuleManagedKeys"),
+    input = M.GetRateBasedRuleManagedKeysInput,
+    output = M.GetRateBasedRuleManagedKeysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRegexMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetRegexMatchSet"),
+    input = M.GetRegexMatchSetInput,
+    output = M.GetRegexMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRegexPatternSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetRegexPatternSet"),
+    input = M.GetRegexPatternSetInput,
+    output = M.GetRegexPatternSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRule = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetRule"),
+    input = M.GetRuleInput,
+    output = M.GetRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetRuleGroup"),
+    input = M.GetRuleGroupInput,
+    output = M.GetRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSampledRequests = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetSampledRequests"),
+    input = M.GetSampledRequestsInput,
+    output = M.GetSampledRequestsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSizeConstraintSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetSizeConstraintSet"),
+    input = M.GetSizeConstraintSetInput,
+    output = M.GetSizeConstraintSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSqlInjectionMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetSqlInjectionMatchSet"),
+    input = M.GetSqlInjectionMatchSetInput,
+    output = M.GetSqlInjectionMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWebACL = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetWebACL"),
+    input = M.GetWebACLInput,
+    output = M.GetWebACLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetXssMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "GetXssMatchSet"),
+    input = M.GetXssMatchSetInput,
+    output = M.GetXssMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListActivatedRulesInRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListActivatedRulesInRuleGroup"),
+    input = M.ListActivatedRulesInRuleGroupInput,
+    output = M.ListActivatedRulesInRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListByteMatchSets = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListByteMatchSets"),
+    input = M.ListByteMatchSetsInput,
+    output = M.ListByteMatchSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGeoMatchSets = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListGeoMatchSets"),
+    input = M.ListGeoMatchSetsInput,
+    output = M.ListGeoMatchSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIPSets = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListIPSets"),
+    input = M.ListIPSetsInput,
+    output = M.ListIPSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLoggingConfigurations = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListLoggingConfigurations"),
+    input = M.ListLoggingConfigurationsInput,
+    output = M.ListLoggingConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRateBasedRules = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListRateBasedRules"),
+    input = M.ListRateBasedRulesInput,
+    output = M.ListRateBasedRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRegexMatchSets = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListRegexMatchSets"),
+    input = M.ListRegexMatchSetsInput,
+    output = M.ListRegexMatchSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRegexPatternSets = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListRegexPatternSets"),
+    input = M.ListRegexPatternSetsInput,
+    output = M.ListRegexPatternSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRuleGroups = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListRuleGroups"),
+    input = M.ListRuleGroupsInput,
+    output = M.ListRuleGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRules = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListRules"),
+    input = M.ListRulesInput,
+    output = M.ListRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSizeConstraintSets = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListSizeConstraintSets"),
+    input = M.ListSizeConstraintSetsInput,
+    output = M.ListSizeConstraintSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSqlInjectionMatchSets = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListSqlInjectionMatchSets"),
+    input = M.ListSqlInjectionMatchSetsInput,
+    output = M.ListSqlInjectionMatchSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubscribedRuleGroups = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListSubscribedRuleGroups"),
+    input = M.ListSubscribedRuleGroupsInput,
+    output = M.ListSubscribedRuleGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWebACLs = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListWebACLs"),
+    input = M.ListWebACLsInput,
+    output = M.ListWebACLsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListXssMatchSets = schema.operation({
+    id = id.from("com.amazonaws.waf", "ListXssMatchSets"),
+    input = M.ListXssMatchSetsInput,
+    output = M.ListXssMatchSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.waf", "PutLoggingConfiguration"),
+    input = M.PutLoggingConfigurationInput,
+    output = M.PutLoggingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPermissionPolicy = schema.operation({
+    id = id.from("com.amazonaws.waf", "PutPermissionPolicy"),
+    input = M.PutPermissionPolicyInput,
+    output = M.PutPermissionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.waf", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.waf", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateByteMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "UpdateByteMatchSet"),
+    input = M.UpdateByteMatchSetInput,
+    output = M.UpdateByteMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGeoMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "UpdateGeoMatchSet"),
+    input = M.UpdateGeoMatchSetInput,
+    output = M.UpdateGeoMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIPSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "UpdateIPSet"),
+    input = M.UpdateIPSetInput,
+    output = M.UpdateIPSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRateBasedRule = schema.operation({
+    id = id.from("com.amazonaws.waf", "UpdateRateBasedRule"),
+    input = M.UpdateRateBasedRuleInput,
+    output = M.UpdateRateBasedRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRegexMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "UpdateRegexMatchSet"),
+    input = M.UpdateRegexMatchSetInput,
+    output = M.UpdateRegexMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRegexPatternSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "UpdateRegexPatternSet"),
+    input = M.UpdateRegexPatternSetInput,
+    output = M.UpdateRegexPatternSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRule = schema.operation({
+    id = id.from("com.amazonaws.waf", "UpdateRule"),
+    input = M.UpdateRuleInput,
+    output = M.UpdateRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.waf", "UpdateRuleGroup"),
+    input = M.UpdateRuleGroupInput,
+    output = M.UpdateRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSizeConstraintSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "UpdateSizeConstraintSet"),
+    input = M.UpdateSizeConstraintSetInput,
+    output = M.UpdateSizeConstraintSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSqlInjectionMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "UpdateSqlInjectionMatchSet"),
+    input = M.UpdateSqlInjectionMatchSetInput,
+    output = M.UpdateSqlInjectionMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWebACL = schema.operation({
+    id = id.from("com.amazonaws.waf", "UpdateWebACL"),
+    input = M.UpdateWebACLInput,
+    output = M.UpdateWebACLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateXssMatchSet = schema.operation({
+    id = id.from("com.amazonaws.waf", "UpdateXssMatchSet"),
+    input = M.UpdateXssMatchSetInput,
+    output = M.UpdateXssMatchSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("textract.endpoint_rules")
 local schemas = require("textract.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "textract", signing_region = cfg.region } }
                 else
@@ -49,328 +52,103 @@ function M.new(cfg)
 end
 
 function Client:analyzeDocument(input, options)
-    return self:invokeOperation(input, {
-        name = "AnalyzeDocument",
-        input_schema = schemas.AnalyzeDocumentInput,
-        output_schema = schemas.AnalyzeDocumentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AnalyzeDocument, input, options)
 end
 
 function Client:analyzeExpense(input, options)
-    return self:invokeOperation(input, {
-        name = "AnalyzeExpense",
-        input_schema = schemas.AnalyzeExpenseInput,
-        output_schema = schemas.AnalyzeExpenseOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AnalyzeExpense, input, options)
 end
 
 function Client:analyzeID(input, options)
-    return self:invokeOperation(input, {
-        name = "AnalyzeID",
-        input_schema = schemas.AnalyzeIDInput,
-        output_schema = schemas.AnalyzeIDOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AnalyzeID, input, options)
 end
 
 function Client:createAdapter(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAdapter",
-        input_schema = schemas.CreateAdapterInput,
-        output_schema = schemas.CreateAdapterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAdapter, input, options)
 end
 
 function Client:createAdapterVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAdapterVersion",
-        input_schema = schemas.CreateAdapterVersionInput,
-        output_schema = schemas.CreateAdapterVersionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAdapterVersion, input, options)
 end
 
 function Client:deleteAdapter(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAdapter",
-        input_schema = schemas.DeleteAdapterInput,
-        output_schema = schemas.DeleteAdapterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAdapter, input, options)
 end
 
 function Client:deleteAdapterVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAdapterVersion",
-        input_schema = schemas.DeleteAdapterVersionInput,
-        output_schema = schemas.DeleteAdapterVersionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAdapterVersion, input, options)
 end
 
 function Client:detectDocumentText(input, options)
-    return self:invokeOperation(input, {
-        name = "DetectDocumentText",
-        input_schema = schemas.DetectDocumentTextInput,
-        output_schema = schemas.DetectDocumentTextOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DetectDocumentText, input, options)
 end
 
 function Client:getAdapter(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAdapter",
-        input_schema = schemas.GetAdapterInput,
-        output_schema = schemas.GetAdapterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAdapter, input, options)
 end
 
 function Client:getAdapterVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAdapterVersion",
-        input_schema = schemas.GetAdapterVersionInput,
-        output_schema = schemas.GetAdapterVersionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAdapterVersion, input, options)
 end
 
 function Client:getDocumentAnalysis(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDocumentAnalysis",
-        input_schema = schemas.GetDocumentAnalysisInput,
-        output_schema = schemas.GetDocumentAnalysisOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDocumentAnalysis, input, options)
 end
 
 function Client:getDocumentTextDetection(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDocumentTextDetection",
-        input_schema = schemas.GetDocumentTextDetectionInput,
-        output_schema = schemas.GetDocumentTextDetectionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDocumentTextDetection, input, options)
 end
 
 function Client:getExpenseAnalysis(input, options)
-    return self:invokeOperation(input, {
-        name = "GetExpenseAnalysis",
-        input_schema = schemas.GetExpenseAnalysisInput,
-        output_schema = schemas.GetExpenseAnalysisOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetExpenseAnalysis, input, options)
 end
 
 function Client:getLendingAnalysis(input, options)
-    return self:invokeOperation(input, {
-        name = "GetLendingAnalysis",
-        input_schema = schemas.GetLendingAnalysisInput,
-        output_schema = schemas.GetLendingAnalysisOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetLendingAnalysis, input, options)
 end
 
 function Client:getLendingAnalysisSummary(input, options)
-    return self:invokeOperation(input, {
-        name = "GetLendingAnalysisSummary",
-        input_schema = schemas.GetLendingAnalysisSummaryInput,
-        output_schema = schemas.GetLendingAnalysisSummaryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetLendingAnalysisSummary, input, options)
 end
 
 function Client:listAdapters(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAdapters",
-        input_schema = schemas.ListAdaptersInput,
-        output_schema = schemas.ListAdaptersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAdapters, input, options)
 end
 
 function Client:listAdapterVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAdapterVersions",
-        input_schema = schemas.ListAdapterVersionsInput,
-        output_schema = schemas.ListAdapterVersionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAdapterVersions, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:startDocumentAnalysis(input, options)
-    return self:invokeOperation(input, {
-        name = "StartDocumentAnalysis",
-        input_schema = schemas.StartDocumentAnalysisInput,
-        output_schema = schemas.StartDocumentAnalysisOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartDocumentAnalysis, input, options)
 end
 
 function Client:startDocumentTextDetection(input, options)
-    return self:invokeOperation(input, {
-        name = "StartDocumentTextDetection",
-        input_schema = schemas.StartDocumentTextDetectionInput,
-        output_schema = schemas.StartDocumentTextDetectionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartDocumentTextDetection, input, options)
 end
 
 function Client:startExpenseAnalysis(input, options)
-    return self:invokeOperation(input, {
-        name = "StartExpenseAnalysis",
-        input_schema = schemas.StartExpenseAnalysisInput,
-        output_schema = schemas.StartExpenseAnalysisOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartExpenseAnalysis, input, options)
 end
 
 function Client:startLendingAnalysis(input, options)
-    return self:invokeOperation(input, {
-        name = "StartLendingAnalysis",
-        input_schema = schemas.StartLendingAnalysisInput,
-        output_schema = schemas.StartLendingAnalysisOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartLendingAnalysis, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAdapter(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAdapter",
-        input_schema = schemas.UpdateAdapterInput,
-        output_schema = schemas.UpdateAdapterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAdapter, input, options)
 end
 
 return M

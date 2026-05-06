@@ -16442,4 +16442,422 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.mediaconvert", "MediaConvert"),
+    version = "2017-08-29",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateCertificate = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "AssociateCertificate"),
+    input = M.AssociateCertificateInput,
+    output = M.AssociateCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2017-08-29/certificates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelJob = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "CancelJob"),
+    input = M.CancelJobInput,
+    output = M.CancelJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2017-08-29/jobs/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateJob = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "CreateJob"),
+    input = M.CreateJobInput,
+    output = M.CreateJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2017-08-29/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateJobTemplate = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "CreateJobTemplate"),
+    input = M.CreateJobTemplateInput,
+    output = M.CreateJobTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2017-08-29/jobTemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePreset = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "CreatePreset"),
+    input = M.CreatePresetInput,
+    output = M.CreatePresetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2017-08-29/presets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQueue = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "CreateQueue"),
+    input = M.CreateQueueInput,
+    output = M.CreateQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2017-08-29/queues" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResourceShare = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "CreateResourceShare"),
+    input = M.CreateResourceShareInput,
+    output = M.CreateResourceShareOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2017-08-29/resourceShares" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteJobTemplate = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "DeleteJobTemplate"),
+    input = M.DeleteJobTemplateInput,
+    output = M.DeleteJobTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2017-08-29/jobTemplates/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePolicy = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "DeletePolicy"),
+    input = M.DeletePolicyInput,
+    output = M.DeletePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2017-08-29/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePreset = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "DeletePreset"),
+    input = M.DeletePresetInput,
+    output = M.DeletePresetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2017-08-29/presets/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQueue = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "DeleteQueue"),
+    input = M.DeleteQueueInput,
+    output = M.DeleteQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2017-08-29/queues/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEndpoints = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "DescribeEndpoints"),
+    input = M.DescribeEndpointsInput,
+    output = M.DescribeEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2017-08-29/endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateCertificate = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "DisassociateCertificate"),
+    input = M.DisassociateCertificateInput,
+    output = M.DisassociateCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2017-08-29/certificates/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJob = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "GetJob"),
+    input = M.GetJobInput,
+    output = M.GetJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2017-08-29/jobs/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJobsQueryResults = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "GetJobsQueryResults"),
+    input = M.GetJobsQueryResultsInput,
+    output = M.GetJobsQueryResultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2017-08-29/jobsQueries/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJobTemplate = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "GetJobTemplate"),
+    input = M.GetJobTemplateInput,
+    output = M.GetJobTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2017-08-29/jobTemplates/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicy = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "GetPolicy"),
+    input = M.GetPolicyInput,
+    output = M.GetPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2017-08-29/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPreset = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "GetPreset"),
+    input = M.GetPresetInput,
+    output = M.GetPresetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2017-08-29/presets/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueue = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "GetQueue"),
+    input = M.GetQueueInput,
+    output = M.GetQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2017-08-29/queues/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobs = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "ListJobs"),
+    input = M.ListJobsInput,
+    output = M.ListJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2017-08-29/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobTemplates = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "ListJobTemplates"),
+    input = M.ListJobTemplatesInput,
+    output = M.ListJobTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2017-08-29/jobTemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPresets = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "ListPresets"),
+    input = M.ListPresetsInput,
+    output = M.ListPresetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2017-08-29/presets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueues = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "ListQueues"),
+    input = M.ListQueuesInput,
+    output = M.ListQueuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2017-08-29/queues" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2017-08-29/tags/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVersions = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "ListVersions"),
+    input = M.ListVersionsInput,
+    output = M.ListVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2017-08-29/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Probe = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "Probe"),
+    input = M.ProbeInput,
+    output = M.ProbeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2017-08-29/probe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPolicy = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "PutPolicy"),
+    input = M.PutPolicyInput,
+    output = M.PutPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2017-08-29/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchJobs = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "SearchJobs"),
+    input = M.SearchJobsInput,
+    output = M.SearchJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2017-08-29/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartJobsQuery = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "StartJobsQuery"),
+    input = M.StartJobsQueryInput,
+    output = M.StartJobsQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2017-08-29/jobsQueries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2017-08-29/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2017-08-29/tags/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateJobTemplate = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "UpdateJobTemplate"),
+    input = M.UpdateJobTemplateInput,
+    output = M.UpdateJobTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2017-08-29/jobTemplates/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePreset = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "UpdatePreset"),
+    input = M.UpdatePresetInput,
+    output = M.UpdatePresetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2017-08-29/presets/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQueue = schema.operation({
+    id = id.from("com.amazonaws.mediaconvert", "UpdateQueue"),
+    input = M.UpdateQueueInput,
+    output = M.UpdateQueueOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2017-08-29/queues/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

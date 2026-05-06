@@ -4088,4 +4088,470 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.codecatalyst", "CodeCatalyst"),
+    version = "2022-09-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateAccessToken = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "CreateAccessToken"),
+    input = M.CreateAccessTokenInput,
+    output = M.CreateAccessTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/accessTokens" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateDevEnvironment = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "CreateDevEnvironment"),
+    input = M.CreateDevEnvironmentInput,
+    output = M.CreateDevEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateProject = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "CreateProject"),
+    input = M.CreateProjectInput,
+    output = M.CreateProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/spaces/{spaceName}/projects" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateSourceRepository = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "CreateSourceRepository"),
+    input = M.CreateSourceRepositoryInput,
+    output = M.CreateSourceRepositoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateSourceRepositoryBranch = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "CreateSourceRepositoryBranch"),
+    input = M.CreateSourceRepositoryBranchInput,
+    output = M.CreateSourceRepositoryBranchOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{sourceRepositoryName}/branches/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteAccessToken = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "DeleteAccessToken"),
+    input = M.DeleteAccessTokenInput,
+    output = M.DeleteAccessTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/accessTokens/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteDevEnvironment = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "DeleteDevEnvironment"),
+    input = M.DeleteDevEnvironmentInput,
+    output = M.DeleteDevEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteProject = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "DeleteProject"),
+    input = M.DeleteProjectInput,
+    output = M.DeleteProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/spaces/{spaceName}/projects/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteSourceRepository = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "DeleteSourceRepository"),
+    input = M.DeleteSourceRepositoryInput,
+    output = M.DeleteSourceRepositoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteSpace = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "DeleteSpace"),
+    input = M.DeleteSpaceInput,
+    output = M.DeleteSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/spaces/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetDevEnvironment = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "GetDevEnvironment"),
+    input = M.GetDevEnvironmentInput,
+    output = M.GetDevEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetProject = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "GetProject"),
+    input = M.GetProjectInput,
+    output = M.GetProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/spaces/{spaceName}/projects/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetSourceRepository = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "GetSourceRepository"),
+    input = M.GetSourceRepositoryInput,
+    output = M.GetSourceRepositoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetSourceRepositoryCloneUrls = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "GetSourceRepositoryCloneUrls"),
+    input = M.GetSourceRepositoryCloneUrlsInput,
+    output = M.GetSourceRepositoryCloneUrlsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{sourceRepositoryName}/cloneUrls" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetSpace = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "GetSpace"),
+    input = M.GetSpaceInput,
+    output = M.GetSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/spaces/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetSubscription = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "GetSubscription"),
+    input = M.GetSubscriptionInput,
+    output = M.GetSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/spaces/{spaceName}/subscription" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetUserDetails = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "GetUserDetails"),
+    input = M.GetUserDetailsInput,
+    output = M.GetUserDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/userDetails" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetWorkflow = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "GetWorkflow"),
+    input = M.GetWorkflowInput,
+    output = M.GetWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/spaces/{spaceName}/projects/{projectName}/workflows/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetWorkflowRun = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "GetWorkflowRun"),
+    input = M.GetWorkflowRunInput,
+    output = M.GetWorkflowRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/spaces/{spaceName}/projects/{projectName}/workflowRuns/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListAccessTokens = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "ListAccessTokens"),
+    input = M.ListAccessTokensInput,
+    output = M.ListAccessTokensOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/accessTokens" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListDevEnvironments = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "ListDevEnvironments"),
+    input = M.ListDevEnvironmentsInput,
+    output = M.ListDevEnvironmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/spaces/{spaceName}/devEnvironments" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListDevEnvironmentSessions = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "ListDevEnvironmentSessions"),
+    input = M.ListDevEnvironmentSessionsInput,
+    output = M.ListDevEnvironmentSessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{devEnvironmentId}/sessions" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListEventLogs = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "ListEventLogs"),
+    input = M.ListEventLogsInput,
+    output = M.ListEventLogsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/spaces/{spaceName}/eventLogs" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListProjects = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "ListProjects"),
+    input = M.ListProjectsInput,
+    output = M.ListProjectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/spaces/{spaceName}/projects" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListSourceRepositories = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "ListSourceRepositories"),
+    input = M.ListSourceRepositoriesInput,
+    output = M.ListSourceRepositoriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListSourceRepositoryBranches = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "ListSourceRepositoryBranches"),
+    input = M.ListSourceRepositoryBranchesInput,
+    output = M.ListSourceRepositoryBranchesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{sourceRepositoryName}/branches" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListSpaces = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "ListSpaces"),
+    input = M.ListSpacesInput,
+    output = M.ListSpacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/spaces" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListWorkflowRuns = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "ListWorkflowRuns"),
+    input = M.ListWorkflowRunsInput,
+    output = M.ListWorkflowRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/spaces/{spaceName}/projects/{projectName}/workflowRuns" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListWorkflows = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "ListWorkflows"),
+    input = M.ListWorkflowsInput,
+    output = M.ListWorkflowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/spaces/{spaceName}/projects/{projectName}/workflows" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.StartDevEnvironment = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "StartDevEnvironment"),
+    input = M.StartDevEnvironmentInput,
+    output = M.StartDevEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.StartDevEnvironmentSession = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "StartDevEnvironmentSession"),
+    input = M.StartDevEnvironmentSessionInput,
+    output = M.StartDevEnvironmentSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}/session" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.StartWorkflowRun = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "StartWorkflowRun"),
+    input = M.StartWorkflowRunInput,
+    output = M.StartWorkflowRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/spaces/{spaceName}/projects/{projectName}/workflowRuns" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.StopDevEnvironment = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "StopDevEnvironment"),
+    input = M.StopDevEnvironmentInput,
+    output = M.StopDevEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.StopDevEnvironmentSession = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "StopDevEnvironmentSession"),
+    input = M.StopDevEnvironmentSessionInput,
+    output = M.StopDevEnvironmentSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}/session/{sessionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.UpdateDevEnvironment = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "UpdateDevEnvironment"),
+    input = M.UpdateDevEnvironmentInput,
+    output = M.UpdateDevEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.UpdateProject = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "UpdateProject"),
+    input = M.UpdateProjectInput,
+    output = M.UpdateProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/spaces/{spaceName}/projects/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.UpdateSpace = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "UpdateSpace"),
+    input = M.UpdateSpaceInput,
+    output = M.UpdateSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/spaces/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.VerifySession = schema.operation({
+    id = id.from("com.amazonaws.codecatalyst", "VerifySession"),
+    input = M.VerifySessionInput,
+    output = M.VerifySessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/session" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
 return M

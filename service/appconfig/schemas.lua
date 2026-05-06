@@ -4377,4 +4377,554 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.appconfig", "AmazonAppConfig"),
+    version = "2019-10-09",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfigurationProfile = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "CreateConfigurationProfile"),
+    input = M.CreateConfigurationProfileInput,
+    output = M.CreateConfigurationProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{ApplicationId}/configurationprofiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDeploymentStrategy = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "CreateDeploymentStrategy"),
+    input = M.CreateDeploymentStrategyInput,
+    output = M.CreateDeploymentStrategyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deploymentstrategies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "CreateEnvironment"),
+    input = M.CreateEnvironmentInput,
+    output = M.CreateEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{ApplicationId}/environments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExtension = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "CreateExtension"),
+    input = M.CreateExtensionInput,
+    output = M.CreateExtensionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/extensions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExtensionAssociation = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "CreateExtensionAssociation"),
+    input = M.CreateExtensionAssociationInput,
+    output = M.CreateExtensionAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/extensionassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHostedConfigurationVersion = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "CreateHostedConfigurationVersion"),
+    input = M.CreateHostedConfigurationVersionInput,
+    output = M.CreateHostedConfigurationVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{ApplicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfigurationProfile = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "DeleteConfigurationProfile"),
+    input = M.DeleteConfigurationProfileInput,
+    output = M.DeleteConfigurationProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDeploymentStrategy = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "DeleteDeploymentStrategy"),
+    input = M.DeleteDeploymentStrategyInput,
+    output = M.DeleteDeploymentStrategyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/deployementstrategies/{DeploymentStrategyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironment = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "DeleteEnvironment"),
+    input = M.DeleteEnvironmentInput,
+    output = M.DeleteEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{ApplicationId}/environments/{EnvironmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteExtension = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "DeleteExtension"),
+    input = M.DeleteExtensionInput,
+    output = M.DeleteExtensionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/extensions/{ExtensionIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteExtensionAssociation = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "DeleteExtensionAssociation"),
+    input = M.DeleteExtensionAssociationInput,
+    output = M.DeleteExtensionAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/extensionassociations/{ExtensionAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHostedConfigurationVersion = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "DeleteHostedConfigurationVersion"),
+    input = M.DeleteHostedConfigurationVersionInput,
+    output = M.DeleteHostedConfigurationVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions/{VersionNumber}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "GetAccountSettings"),
+    input = M.GetAccountSettingsInput,
+    output = M.GetAccountSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplication = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "GetApplication"),
+    input = M.GetApplicationInput,
+    output = M.GetApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfiguration = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "GetConfiguration"),
+    input = M.GetConfigurationInput,
+    output = M.GetConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{Application}/environments/{Environment}/configurations/{Configuration}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfigurationProfile = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "GetConfigurationProfile"),
+    input = M.GetConfigurationProfileInput,
+    output = M.GetConfigurationProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeployment = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "GetDeployment"),
+    input = M.GetDeploymentInput,
+    output = M.GetDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}/environments/{EnvironmentId}/deployments/{DeploymentNumber}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeploymentStrategy = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "GetDeploymentStrategy"),
+    input = M.GetDeploymentStrategyInput,
+    output = M.GetDeploymentStrategyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/deploymentstrategies/{DeploymentStrategyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironment = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "GetEnvironment"),
+    input = M.GetEnvironmentInput,
+    output = M.GetEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}/environments/{EnvironmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExtension = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "GetExtension"),
+    input = M.GetExtensionInput,
+    output = M.GetExtensionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/extensions/{ExtensionIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExtensionAssociation = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "GetExtensionAssociation"),
+    input = M.GetExtensionAssociationInput,
+    output = M.GetExtensionAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/extensionassociations/{ExtensionAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHostedConfigurationVersion = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "GetHostedConfigurationVersion"),
+    input = M.GetHostedConfigurationVersionInput,
+    output = M.GetHostedConfigurationVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions/{VersionNumber}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationProfiles = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "ListConfigurationProfiles"),
+    input = M.ListConfigurationProfilesInput,
+    output = M.ListConfigurationProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}/configurationprofiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeployments = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "ListDeployments"),
+    input = M.ListDeploymentsInput,
+    output = M.ListDeploymentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}/environments/{EnvironmentId}/deployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeploymentStrategies = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "ListDeploymentStrategies"),
+    input = M.ListDeploymentStrategiesInput,
+    output = M.ListDeploymentStrategiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/deploymentstrategies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironments = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "ListEnvironments"),
+    input = M.ListEnvironmentsInput,
+    output = M.ListEnvironmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}/environments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExtensionAssociations = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "ListExtensionAssociations"),
+    input = M.ListExtensionAssociationsInput,
+    output = M.ListExtensionAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/extensionassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExtensions = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "ListExtensions"),
+    input = M.ListExtensionsInput,
+    output = M.ListExtensionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/extensions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHostedConfigurationVersions = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "ListHostedConfigurationVersions"),
+    input = M.ListHostedConfigurationVersionsInput,
+    output = M.ListHostedConfigurationVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDeployment = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "StartDeployment"),
+    input = M.StartDeploymentInput,
+    output = M.StartDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{ApplicationId}/environments/{EnvironmentId}/deployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDeployment = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "StopDeployment"),
+    input = M.StopDeploymentInput,
+    output = M.StopDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{ApplicationId}/environments/{EnvironmentId}/deployments/{DeploymentNumber}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "UpdateAccountSettings"),
+    input = M.UpdateAccountSettingsInput,
+    output = M.UpdateAccountSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/applications/{ApplicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfigurationProfile = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "UpdateConfigurationProfile"),
+    input = M.UpdateConfigurationProfileInput,
+    output = M.UpdateConfigurationProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDeploymentStrategy = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "UpdateDeploymentStrategy"),
+    input = M.UpdateDeploymentStrategyInput,
+    output = M.UpdateDeploymentStrategyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/deploymentstrategies/{DeploymentStrategyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "UpdateEnvironment"),
+    input = M.UpdateEnvironmentInput,
+    output = M.UpdateEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/applications/{ApplicationId}/environments/{EnvironmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateExtension = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "UpdateExtension"),
+    input = M.UpdateExtensionInput,
+    output = M.UpdateExtensionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/extensions/{ExtensionIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateExtensionAssociation = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "UpdateExtensionAssociation"),
+    input = M.UpdateExtensionAssociationInput,
+    output = M.UpdateExtensionAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/extensionassociations/{ExtensionAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateConfiguration = schema.operation({
+    id = id.from("com.amazonaws.appconfig", "ValidateConfiguration"),
+    input = M.ValidateConfigurationInput,
+    output = M.ValidateConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/validators" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

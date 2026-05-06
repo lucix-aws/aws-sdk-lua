@@ -3569,4 +3569,242 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.mediapackage", "MediaPackage"),
+    version = "2017-10-12",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfigureLogs = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "ConfigureLogs"),
+    input = M.ConfigureLogsInput,
+    output = M.ConfigureLogsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channels/{Id}/configure_logs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChannel = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "CreateChannel"),
+    input = M.CreateChannelInput,
+    output = M.CreateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHarvestJob = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "CreateHarvestJob"),
+    input = M.CreateHarvestJobInput,
+    output = M.CreateHarvestJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/harvest_jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOriginEndpoint = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "CreateOriginEndpoint"),
+    input = M.CreateOriginEndpointInput,
+    output = M.CreateOriginEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/origin_endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChannel = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "DeleteChannel"),
+    input = M.DeleteChannelInput,
+    output = M.DeleteChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/channels/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOriginEndpoint = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "DeleteOriginEndpoint"),
+    input = M.DeleteOriginEndpointInput,
+    output = M.DeleteOriginEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/origin_endpoints/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChannel = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "DescribeChannel"),
+    input = M.DescribeChannelInput,
+    output = M.DescribeChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHarvestJob = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "DescribeHarvestJob"),
+    input = M.DescribeHarvestJobInput,
+    output = M.DescribeHarvestJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/harvest_jobs/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOriginEndpoint = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "DescribeOriginEndpoint"),
+    input = M.DescribeOriginEndpointInput,
+    output = M.DescribeOriginEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/origin_endpoints/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannels = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "ListChannels"),
+    input = M.ListChannelsInput,
+    output = M.ListChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHarvestJobs = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "ListHarvestJobs"),
+    input = M.ListHarvestJobsInput,
+    output = M.ListHarvestJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/harvest_jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOriginEndpoints = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "ListOriginEndpoints"),
+    input = M.ListOriginEndpointsInput,
+    output = M.ListOriginEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/origin_endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RotateChannelCredentials = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "RotateChannelCredentials"),
+    input = M.RotateChannelCredentialsInput,
+    output = M.RotateChannelCredentialsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channels/{Id}/credentials" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RotateIngestEndpointCredentials = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "RotateIngestEndpointCredentials"),
+    input = M.RotateIngestEndpointCredentialsInput,
+    output = M.RotateIngestEndpointCredentialsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channels/{Id}/ingest_endpoints/{IngestEndpointId}/credentials" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChannel = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "UpdateChannel"),
+    input = M.UpdateChannelInput,
+    output = M.UpdateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channels/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOriginEndpoint = schema.operation({
+    id = id.from("com.amazonaws.mediapackage", "UpdateOriginEndpoint"),
+    input = M.UpdateOriginEndpointInput,
+    output = M.UpdateOriginEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/origin_endpoints/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

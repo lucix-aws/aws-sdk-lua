@@ -2719,4 +2719,344 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.servicediscovery", "Route53AutoNaming_v20170314"),
+    version = "2017-03-14",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateHttpNamespace = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "CreateHttpNamespace"),
+    input = M.CreateHttpNamespaceInput,
+    output = M.CreateHttpNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePrivateDnsNamespace = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "CreatePrivateDnsNamespace"),
+    input = M.CreatePrivateDnsNamespaceInput,
+    output = M.CreatePrivateDnsNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePublicDnsNamespace = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "CreatePublicDnsNamespace"),
+    input = M.CreatePublicDnsNamespaceInput,
+    output = M.CreatePublicDnsNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateService = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "CreateService"),
+    input = M.CreateServiceInput,
+    output = M.CreateServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNamespace = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "DeleteNamespace"),
+    input = M.DeleteNamespaceInput,
+    output = M.DeleteNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteService = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "DeleteService"),
+    input = M.DeleteServiceInput,
+    output = M.DeleteServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceAttributes = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "DeleteServiceAttributes"),
+    input = M.DeleteServiceAttributesInput,
+    output = M.DeleteServiceAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterInstance = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "DeregisterInstance"),
+    input = M.DeregisterInstanceInput,
+    output = M.DeregisterInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DiscoverInstances = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "DiscoverInstances"),
+    input = M.DiscoverInstancesInput,
+    output = M.DiscoverInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DiscoverInstancesRevision = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "DiscoverInstancesRevision"),
+    input = M.DiscoverInstancesRevisionInput,
+    output = M.DiscoverInstancesRevisionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstance = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "GetInstance"),
+    input = M.GetInstanceInput,
+    output = M.GetInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstancesHealthStatus = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "GetInstancesHealthStatus"),
+    input = M.GetInstancesHealthStatusInput,
+    output = M.GetInstancesHealthStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNamespace = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "GetNamespace"),
+    input = M.GetNamespaceInput,
+    output = M.GetNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOperation = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "GetOperation"),
+    input = M.GetOperationInput,
+    output = M.GetOperationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetService = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "GetService"),
+    input = M.GetServiceInput,
+    output = M.GetServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceAttributes = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "GetServiceAttributes"),
+    input = M.GetServiceAttributesInput,
+    output = M.GetServiceAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstances = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "ListInstances"),
+    input = M.ListInstancesInput,
+    output = M.ListInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNamespaces = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "ListNamespaces"),
+    input = M.ListNamespacesInput,
+    output = M.ListNamespacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOperations = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "ListOperations"),
+    input = M.ListOperationsInput,
+    output = M.ListOperationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServices = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "ListServices"),
+    input = M.ListServicesInput,
+    output = M.ListServicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterInstance = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "RegisterInstance"),
+    input = M.RegisterInstanceInput,
+    output = M.RegisterInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHttpNamespace = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "UpdateHttpNamespace"),
+    input = M.UpdateHttpNamespaceInput,
+    output = M.UpdateHttpNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInstanceCustomHealthStatus = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "UpdateInstanceCustomHealthStatus"),
+    input = M.UpdateInstanceCustomHealthStatusInput,
+    output = M.UpdateInstanceCustomHealthStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePrivateDnsNamespace = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "UpdatePrivateDnsNamespace"),
+    input = M.UpdatePrivateDnsNamespaceInput,
+    output = M.UpdatePrivateDnsNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePublicDnsNamespace = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "UpdatePublicDnsNamespace"),
+    input = M.UpdatePublicDnsNamespaceInput,
+    output = M.UpdatePublicDnsNamespaceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateService = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "UpdateService"),
+    input = M.UpdateServiceInput,
+    output = M.UpdateServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceAttributes = schema.operation({
+    id = id.from("com.amazonaws.servicediscovery", "UpdateServiceAttributes"),
+    input = M.UpdateServiceAttributesInput,
+    output = M.UpdateServiceAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

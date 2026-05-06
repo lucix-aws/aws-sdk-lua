@@ -7,6 +7,7 @@ local endpoint_rules = require("licensemanagerlinuxsubscriptions.endpoint_rules"
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("licensemanagerlinuxsubscriptions.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "license-manager-linux-subscriptions", signing_region = cfg.region } }
                 else
@@ -49,146 +52,47 @@ function M.new(cfg)
 end
 
 function Client:deregisterSubscriptionProvider(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterSubscriptionProvider",
-        input_schema = schemas.DeregisterSubscriptionProviderInput,
-        output_schema = schemas.DeregisterSubscriptionProviderOutput,
-        http_method = "POST",
-        http_path = "/subscription/DeregisterSubscriptionProvider",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterSubscriptionProvider, input, options)
 end
 
 function Client:getRegisteredSubscriptionProvider(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRegisteredSubscriptionProvider",
-        input_schema = schemas.GetRegisteredSubscriptionProviderInput,
-        output_schema = schemas.GetRegisteredSubscriptionProviderOutput,
-        http_method = "POST",
-        http_path = "/subscription/GetRegisteredSubscriptionProvider",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRegisteredSubscriptionProvider, input, options)
 end
 
 function Client:getServiceSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "GetServiceSettings",
-        input_schema = schemas.GetServiceSettingsInput,
-        output_schema = schemas.GetServiceSettingsOutput,
-        http_method = "POST",
-        http_path = "/subscription/GetServiceSettings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetServiceSettings, input, options)
 end
 
 function Client:listLinuxSubscriptionInstances(input, options)
-    return self:invokeOperation(input, {
-        name = "ListLinuxSubscriptionInstances",
-        input_schema = schemas.ListLinuxSubscriptionInstancesInput,
-        output_schema = schemas.ListLinuxSubscriptionInstancesOutput,
-        http_method = "POST",
-        http_path = "/subscription/ListLinuxSubscriptionInstances",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListLinuxSubscriptionInstances, input, options)
 end
 
 function Client:listLinuxSubscriptions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListLinuxSubscriptions",
-        input_schema = schemas.ListLinuxSubscriptionsInput,
-        output_schema = schemas.ListLinuxSubscriptionsOutput,
-        http_method = "POST",
-        http_path = "/subscription/ListLinuxSubscriptions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListLinuxSubscriptions, input, options)
 end
 
 function Client:listRegisteredSubscriptionProviders(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRegisteredSubscriptionProviders",
-        input_schema = schemas.ListRegisteredSubscriptionProvidersInput,
-        output_schema = schemas.ListRegisteredSubscriptionProvidersOutput,
-        http_method = "POST",
-        http_path = "/subscription/ListRegisteredSubscriptionProviders",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRegisteredSubscriptionProviders, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:registerSubscriptionProvider(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterSubscriptionProvider",
-        input_schema = schemas.RegisterSubscriptionProviderInput,
-        output_schema = schemas.RegisterSubscriptionProviderOutput,
-        http_method = "POST",
-        http_path = "/subscription/RegisterSubscriptionProvider",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterSubscriptionProvider, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "PUT",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateServiceSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateServiceSettings",
-        input_schema = schemas.UpdateServiceSettingsInput,
-        output_schema = schemas.UpdateServiceSettingsOutput,
-        http_method = "POST",
-        http_path = "/subscription/UpdateServiceSettings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateServiceSettings, input, options)
 end
 
 return M

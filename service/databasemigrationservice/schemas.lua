@@ -13569,4 +13569,1323 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.databasemigrationservice", "AmazonDMSv20160101"),
+    version = "2016-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTagsToResource = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "AddTagsToResource"),
+    input = M.AddTagsToResourceInput,
+    output = M.AddTagsToResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ApplyPendingMaintenanceAction = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ApplyPendingMaintenanceAction"),
+    input = M.ApplyPendingMaintenanceActionInput,
+    output = M.ApplyPendingMaintenanceActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchStartRecommendations = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "BatchStartRecommendations"),
+    input = M.BatchStartRecommendationsInput,
+    output = M.BatchStartRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelMetadataModelConversion = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "CancelMetadataModelConversion"),
+    input = M.CancelMetadataModelConversionInput,
+    output = M.CancelMetadataModelConversionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelMetadataModelCreation = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "CancelMetadataModelCreation"),
+    input = M.CancelMetadataModelCreationInput,
+    output = M.CancelMetadataModelCreationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelReplicationTaskAssessmentRun = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "CancelReplicationTaskAssessmentRun"),
+    input = M.CancelReplicationTaskAssessmentRunInput,
+    output = M.CancelReplicationTaskAssessmentRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataMigration = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "CreateDataMigration"),
+    input = M.CreateDataMigrationInput,
+    output = M.CreateDataMigrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataProvider = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "CreateDataProvider"),
+    input = M.CreateDataProviderInput,
+    output = M.CreateDataProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEndpoint = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "CreateEndpoint"),
+    input = M.CreateEndpointInput,
+    output = M.CreateEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventSubscription = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "CreateEventSubscription"),
+    input = M.CreateEventSubscriptionInput,
+    output = M.CreateEventSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFleetAdvisorCollector = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "CreateFleetAdvisorCollector"),
+    input = M.CreateFleetAdvisorCollectorInput,
+    output = M.CreateFleetAdvisorCollectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInstanceProfile = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "CreateInstanceProfile"),
+    input = M.CreateInstanceProfileInput,
+    output = M.CreateInstanceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMigrationProject = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "CreateMigrationProject"),
+    input = M.CreateMigrationProjectInput,
+    output = M.CreateMigrationProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReplicationConfig = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "CreateReplicationConfig"),
+    input = M.CreateReplicationConfigInput,
+    output = M.CreateReplicationConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReplicationInstance = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "CreateReplicationInstance"),
+    input = M.CreateReplicationInstanceInput,
+    output = M.CreateReplicationInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReplicationSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "CreateReplicationSubnetGroup"),
+    input = M.CreateReplicationSubnetGroupInput,
+    output = M.CreateReplicationSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateReplicationTask = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "CreateReplicationTask"),
+    input = M.CreateReplicationTaskInput,
+    output = M.CreateReplicationTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCertificate = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteCertificate"),
+    input = M.DeleteCertificateInput,
+    output = M.DeleteCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnection = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteConnection"),
+    input = M.DeleteConnectionInput,
+    output = M.DeleteConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataMigration = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteDataMigration"),
+    input = M.DeleteDataMigrationInput,
+    output = M.DeleteDataMigrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataProvider = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteDataProvider"),
+    input = M.DeleteDataProviderInput,
+    output = M.DeleteDataProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEndpoint = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteEndpoint"),
+    input = M.DeleteEndpointInput,
+    output = M.DeleteEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventSubscription = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteEventSubscription"),
+    input = M.DeleteEventSubscriptionInput,
+    output = M.DeleteEventSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFleetAdvisorCollector = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteFleetAdvisorCollector"),
+    input = M.DeleteFleetAdvisorCollectorInput,
+    output = M.DeleteFleetAdvisorCollectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFleetAdvisorDatabases = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteFleetAdvisorDatabases"),
+    input = M.DeleteFleetAdvisorDatabasesInput,
+    output = M.DeleteFleetAdvisorDatabasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInstanceProfile = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteInstanceProfile"),
+    input = M.DeleteInstanceProfileInput,
+    output = M.DeleteInstanceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMigrationProject = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteMigrationProject"),
+    input = M.DeleteMigrationProjectInput,
+    output = M.DeleteMigrationProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReplicationConfig = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteReplicationConfig"),
+    input = M.DeleteReplicationConfigInput,
+    output = M.DeleteReplicationConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReplicationInstance = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteReplicationInstance"),
+    input = M.DeleteReplicationInstanceInput,
+    output = M.DeleteReplicationInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReplicationSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteReplicationSubnetGroup"),
+    input = M.DeleteReplicationSubnetGroupInput,
+    output = M.DeleteReplicationSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReplicationTask = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteReplicationTask"),
+    input = M.DeleteReplicationTaskInput,
+    output = M.DeleteReplicationTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReplicationTaskAssessmentRun = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DeleteReplicationTaskAssessmentRun"),
+    input = M.DeleteReplicationTaskAssessmentRunInput,
+    output = M.DeleteReplicationTaskAssessmentRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountAttributes = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeAccountAttributes"),
+    input = M.DescribeAccountAttributesInput,
+    output = M.DescribeAccountAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicableIndividualAssessments = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeApplicableIndividualAssessments"),
+    input = M.DescribeApplicableIndividualAssessmentsInput,
+    output = M.DescribeApplicableIndividualAssessmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCertificates = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeCertificates"),
+    input = M.DescribeCertificatesInput,
+    output = M.DescribeCertificatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnections = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeConnections"),
+    input = M.DescribeConnectionsInput,
+    output = M.DescribeConnectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConversionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeConversionConfiguration"),
+    input = M.DescribeConversionConfigurationInput,
+    output = M.DescribeConversionConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataMigrations = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeDataMigrations"),
+    input = M.DescribeDataMigrationsInput,
+    output = M.DescribeDataMigrationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataProviders = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeDataProviders"),
+    input = M.DescribeDataProvidersInput,
+    output = M.DescribeDataProvidersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEndpoints = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeEndpoints"),
+    input = M.DescribeEndpointsInput,
+    output = M.DescribeEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEndpointSettings = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeEndpointSettings"),
+    input = M.DescribeEndpointSettingsInput,
+    output = M.DescribeEndpointSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEndpointTypes = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeEndpointTypes"),
+    input = M.DescribeEndpointTypesInput,
+    output = M.DescribeEndpointTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEngineVersions = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeEngineVersions"),
+    input = M.DescribeEngineVersionsInput,
+    output = M.DescribeEngineVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventCategories = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeEventCategories"),
+    input = M.DescribeEventCategoriesInput,
+    output = M.DescribeEventCategoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEvents = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeEvents"),
+    input = M.DescribeEventsInput,
+    output = M.DescribeEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeEventSubscriptions"),
+    input = M.DescribeEventSubscriptionsInput,
+    output = M.DescribeEventSubscriptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExtensionPackAssociations = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeExtensionPackAssociations"),
+    input = M.DescribeExtensionPackAssociationsInput,
+    output = M.DescribeExtensionPackAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetAdvisorCollectors = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeFleetAdvisorCollectors"),
+    input = M.DescribeFleetAdvisorCollectorsInput,
+    output = M.DescribeFleetAdvisorCollectorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetAdvisorDatabases = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeFleetAdvisorDatabases"),
+    input = M.DescribeFleetAdvisorDatabasesInput,
+    output = M.DescribeFleetAdvisorDatabasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetAdvisorLsaAnalysis = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeFleetAdvisorLsaAnalysis"),
+    input = M.DescribeFleetAdvisorLsaAnalysisInput,
+    output = M.DescribeFleetAdvisorLsaAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetAdvisorSchemaObjectSummary = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeFleetAdvisorSchemaObjectSummary"),
+    input = M.DescribeFleetAdvisorSchemaObjectSummaryInput,
+    output = M.DescribeFleetAdvisorSchemaObjectSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFleetAdvisorSchemas = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeFleetAdvisorSchemas"),
+    input = M.DescribeFleetAdvisorSchemasInput,
+    output = M.DescribeFleetAdvisorSchemasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInstanceProfiles = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeInstanceProfiles"),
+    input = M.DescribeInstanceProfilesInput,
+    output = M.DescribeInstanceProfilesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMetadataModel = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeMetadataModel"),
+    input = M.DescribeMetadataModelInput,
+    output = M.DescribeMetadataModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMetadataModelAssessments = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeMetadataModelAssessments"),
+    input = M.DescribeMetadataModelAssessmentsInput,
+    output = M.DescribeMetadataModelAssessmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMetadataModelChildren = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeMetadataModelChildren"),
+    input = M.DescribeMetadataModelChildrenInput,
+    output = M.DescribeMetadataModelChildrenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMetadataModelConversions = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeMetadataModelConversions"),
+    input = M.DescribeMetadataModelConversionsInput,
+    output = M.DescribeMetadataModelConversionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMetadataModelCreations = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeMetadataModelCreations"),
+    input = M.DescribeMetadataModelCreationsInput,
+    output = M.DescribeMetadataModelCreationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMetadataModelExportsAsScript = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeMetadataModelExportsAsScript"),
+    input = M.DescribeMetadataModelExportsAsScriptInput,
+    output = M.DescribeMetadataModelExportsAsScriptOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMetadataModelExportsToTarget = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeMetadataModelExportsToTarget"),
+    input = M.DescribeMetadataModelExportsToTargetInput,
+    output = M.DescribeMetadataModelExportsToTargetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMetadataModelImports = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeMetadataModelImports"),
+    input = M.DescribeMetadataModelImportsInput,
+    output = M.DescribeMetadataModelImportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMigrationProjects = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeMigrationProjects"),
+    input = M.DescribeMigrationProjectsInput,
+    output = M.DescribeMigrationProjectsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrderableReplicationInstances = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeOrderableReplicationInstances"),
+    input = M.DescribeOrderableReplicationInstancesInput,
+    output = M.DescribeOrderableReplicationInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePendingMaintenanceActions = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribePendingMaintenanceActions"),
+    input = M.DescribePendingMaintenanceActionsInput,
+    output = M.DescribePendingMaintenanceActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRecommendationLimitations = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeRecommendationLimitations"),
+    input = M.DescribeRecommendationLimitationsInput,
+    output = M.DescribeRecommendationLimitationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRecommendations = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeRecommendations"),
+    input = M.DescribeRecommendationsInput,
+    output = M.DescribeRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRefreshSchemasStatus = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeRefreshSchemasStatus"),
+    input = M.DescribeRefreshSchemasStatusInput,
+    output = M.DescribeRefreshSchemasStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplicationConfigs = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeReplicationConfigs"),
+    input = M.DescribeReplicationConfigsInput,
+    output = M.DescribeReplicationConfigsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplicationInstances = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeReplicationInstances"),
+    input = M.DescribeReplicationInstancesInput,
+    output = M.DescribeReplicationInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplicationInstanceTaskLogs = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeReplicationInstanceTaskLogs"),
+    input = M.DescribeReplicationInstanceTaskLogsInput,
+    output = M.DescribeReplicationInstanceTaskLogsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplications = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeReplications"),
+    input = M.DescribeReplicationsInput,
+    output = M.DescribeReplicationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplicationSubnetGroups = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeReplicationSubnetGroups"),
+    input = M.DescribeReplicationSubnetGroupsInput,
+    output = M.DescribeReplicationSubnetGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplicationTableStatistics = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeReplicationTableStatistics"),
+    input = M.DescribeReplicationTableStatisticsInput,
+    output = M.DescribeReplicationTableStatisticsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplicationTaskAssessmentResults = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeReplicationTaskAssessmentResults"),
+    input = M.DescribeReplicationTaskAssessmentResultsInput,
+    output = M.DescribeReplicationTaskAssessmentResultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplicationTaskAssessmentRuns = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeReplicationTaskAssessmentRuns"),
+    input = M.DescribeReplicationTaskAssessmentRunsInput,
+    output = M.DescribeReplicationTaskAssessmentRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplicationTaskIndividualAssessments = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeReplicationTaskIndividualAssessments"),
+    input = M.DescribeReplicationTaskIndividualAssessmentsInput,
+    output = M.DescribeReplicationTaskIndividualAssessmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplicationTasks = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeReplicationTasks"),
+    input = M.DescribeReplicationTasksInput,
+    output = M.DescribeReplicationTasksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSchemas = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeSchemas"),
+    input = M.DescribeSchemasInput,
+    output = M.DescribeSchemasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTableStatistics = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "DescribeTableStatistics"),
+    input = M.DescribeTableStatisticsInput,
+    output = M.DescribeTableStatisticsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportMetadataModelAssessment = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ExportMetadataModelAssessment"),
+    input = M.ExportMetadataModelAssessmentInput,
+    output = M.ExportMetadataModelAssessmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTargetSelectionRules = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "GetTargetSelectionRules"),
+    input = M.GetTargetSelectionRulesInput,
+    output = M.GetTargetSelectionRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportCertificate = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ImportCertificate"),
+    input = M.ImportCertificateInput,
+    output = M.ImportCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyConversionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ModifyConversionConfiguration"),
+    input = M.ModifyConversionConfigurationInput,
+    output = M.ModifyConversionConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDataMigration = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ModifyDataMigration"),
+    input = M.ModifyDataMigrationInput,
+    output = M.ModifyDataMigrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDataProvider = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ModifyDataProvider"),
+    input = M.ModifyDataProviderInput,
+    output = M.ModifyDataProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyEndpoint = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ModifyEndpoint"),
+    input = M.ModifyEndpointInput,
+    output = M.ModifyEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyEventSubscription = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ModifyEventSubscription"),
+    input = M.ModifyEventSubscriptionInput,
+    output = M.ModifyEventSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyInstanceProfile = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ModifyInstanceProfile"),
+    input = M.ModifyInstanceProfileInput,
+    output = M.ModifyInstanceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyMigrationProject = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ModifyMigrationProject"),
+    input = M.ModifyMigrationProjectInput,
+    output = M.ModifyMigrationProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyReplicationConfig = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ModifyReplicationConfig"),
+    input = M.ModifyReplicationConfigInput,
+    output = M.ModifyReplicationConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyReplicationInstance = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ModifyReplicationInstance"),
+    input = M.ModifyReplicationInstanceInput,
+    output = M.ModifyReplicationInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyReplicationSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ModifyReplicationSubnetGroup"),
+    input = M.ModifyReplicationSubnetGroupInput,
+    output = M.ModifyReplicationSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyReplicationTask = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ModifyReplicationTask"),
+    input = M.ModifyReplicationTaskInput,
+    output = M.ModifyReplicationTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.MoveReplicationTask = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "MoveReplicationTask"),
+    input = M.MoveReplicationTaskInput,
+    output = M.MoveReplicationTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootReplicationInstance = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "RebootReplicationInstance"),
+    input = M.RebootReplicationInstanceInput,
+    output = M.RebootReplicationInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RefreshSchemas = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "RefreshSchemas"),
+    input = M.RefreshSchemasInput,
+    output = M.RefreshSchemasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReloadReplicationTables = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ReloadReplicationTables"),
+    input = M.ReloadReplicationTablesInput,
+    output = M.ReloadReplicationTablesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReloadTables = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "ReloadTables"),
+    input = M.ReloadTablesInput,
+    output = M.ReloadTablesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTagsFromResource = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "RemoveTagsFromResource"),
+    input = M.RemoveTagsFromResourceInput,
+    output = M.RemoveTagsFromResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RunFleetAdvisorLsaAnalysis = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "RunFleetAdvisorLsaAnalysis"),
+    input = M.RunFleetAdvisorLsaAnalysisInput,
+    output = M.RunFleetAdvisorLsaAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDataMigration = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StartDataMigration"),
+    input = M.StartDataMigrationInput,
+    output = M.StartDataMigrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartExtensionPackAssociation = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StartExtensionPackAssociation"),
+    input = M.StartExtensionPackAssociationInput,
+    output = M.StartExtensionPackAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMetadataModelAssessment = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StartMetadataModelAssessment"),
+    input = M.StartMetadataModelAssessmentInput,
+    output = M.StartMetadataModelAssessmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMetadataModelConversion = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StartMetadataModelConversion"),
+    input = M.StartMetadataModelConversionInput,
+    output = M.StartMetadataModelConversionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMetadataModelCreation = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StartMetadataModelCreation"),
+    input = M.StartMetadataModelCreationInput,
+    output = M.StartMetadataModelCreationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMetadataModelExportAsScript = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StartMetadataModelExportAsScript"),
+    input = M.StartMetadataModelExportAsScriptInput,
+    output = M.StartMetadataModelExportAsScriptOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMetadataModelExportToTarget = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StartMetadataModelExportToTarget"),
+    input = M.StartMetadataModelExportToTargetInput,
+    output = M.StartMetadataModelExportToTargetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMetadataModelImport = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StartMetadataModelImport"),
+    input = M.StartMetadataModelImportInput,
+    output = M.StartMetadataModelImportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRecommendations = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StartRecommendations"),
+    input = M.StartRecommendationsInput,
+    output = M.StartRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReplication = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StartReplication"),
+    input = M.StartReplicationInput,
+    output = M.StartReplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReplicationTask = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StartReplicationTask"),
+    input = M.StartReplicationTaskInput,
+    output = M.StartReplicationTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReplicationTaskAssessment = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StartReplicationTaskAssessment"),
+    input = M.StartReplicationTaskAssessmentInput,
+    output = M.StartReplicationTaskAssessmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReplicationTaskAssessmentRun = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StartReplicationTaskAssessmentRun"),
+    input = M.StartReplicationTaskAssessmentRunInput,
+    output = M.StartReplicationTaskAssessmentRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDataMigration = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StopDataMigration"),
+    input = M.StopDataMigrationInput,
+    output = M.StopDataMigrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopReplication = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StopReplication"),
+    input = M.StopReplicationInput,
+    output = M.StopReplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopReplicationTask = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "StopReplicationTask"),
+    input = M.StopReplicationTaskInput,
+    output = M.StopReplicationTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestConnection = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "TestConnection"),
+    input = M.TestConnectionInput,
+    output = M.TestConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSubscriptionsToEventBridge = schema.operation({
+    id = id.from("com.amazonaws.databasemigrationservice", "UpdateSubscriptionsToEventBridge"),
+    input = M.UpdateSubscriptionsToEventBridgeInput,
+    output = M.UpdateSubscriptionsToEventBridgeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -1681,4 +1681,122 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.managedblockchainquery", "TietonChainQueryService"),
+    version = "2023-05-04",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetTokenBalance = schema.operation({
+    id = id.from("com.amazonaws.managedblockchainquery", "BatchGetTokenBalance"),
+    input = M.BatchGetTokenBalanceInput,
+    output = M.BatchGetTokenBalanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/batch-get-token-balance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssetContract = schema.operation({
+    id = id.from("com.amazonaws.managedblockchainquery", "GetAssetContract"),
+    input = M.GetAssetContractInput,
+    output = M.GetAssetContractOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-asset-contract" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTokenBalance = schema.operation({
+    id = id.from("com.amazonaws.managedblockchainquery", "GetTokenBalance"),
+    input = M.GetTokenBalanceInput,
+    output = M.GetTokenBalanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-token-balance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTransaction = schema.operation({
+    id = id.from("com.amazonaws.managedblockchainquery", "GetTransaction"),
+    input = M.GetTransactionInput,
+    output = M.GetTransactionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-transaction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetContracts = schema.operation({
+    id = id.from("com.amazonaws.managedblockchainquery", "ListAssetContracts"),
+    input = M.ListAssetContractsInput,
+    output = M.ListAssetContractsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-asset-contracts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFilteredTransactionEvents = schema.operation({
+    id = id.from("com.amazonaws.managedblockchainquery", "ListFilteredTransactionEvents"),
+    input = M.ListFilteredTransactionEventsInput,
+    output = M.ListFilteredTransactionEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-filtered-transaction-events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTokenBalances = schema.operation({
+    id = id.from("com.amazonaws.managedblockchainquery", "ListTokenBalances"),
+    input = M.ListTokenBalancesInput,
+    output = M.ListTokenBalancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-token-balances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTransactionEvents = schema.operation({
+    id = id.from("com.amazonaws.managedblockchainquery", "ListTransactionEvents"),
+    input = M.ListTransactionEventsInput,
+    output = M.ListTransactionEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-transaction-events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTransactions = schema.operation({
+    id = id.from("com.amazonaws.managedblockchainquery", "ListTransactions"),
+    input = M.ListTransactionsInput,
+    output = M.ListTransactionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-transactions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

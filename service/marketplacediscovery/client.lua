@@ -7,6 +7,7 @@ local endpoint_rules = require("marketplacediscovery.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("marketplacediscovery.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "aws-marketplace", signing_region = cfg.region } }
                 else
@@ -49,120 +52,39 @@ function M.new(cfg)
 end
 
 function Client:getListing(input, options)
-    return self:invokeOperation(input, {
-        name = "GetListing",
-        input_schema = schemas.GetListingInput,
-        output_schema = schemas.GetListingOutput,
-        http_method = "POST",
-        http_path = "/2026-02-05/getListing",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetListing, input, options)
 end
 
 function Client:getOffer(input, options)
-    return self:invokeOperation(input, {
-        name = "GetOffer",
-        input_schema = schemas.GetOfferInput,
-        output_schema = schemas.GetOfferOutput,
-        http_method = "POST",
-        http_path = "/2026-02-05/getOffer",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetOffer, input, options)
 end
 
 function Client:getOfferSet(input, options)
-    return self:invokeOperation(input, {
-        name = "GetOfferSet",
-        input_schema = schemas.GetOfferSetInput,
-        output_schema = schemas.GetOfferSetOutput,
-        http_method = "POST",
-        http_path = "/2026-02-05/getOfferSet",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetOfferSet, input, options)
 end
 
 function Client:getOfferTerms(input, options)
-    return self:invokeOperation(input, {
-        name = "GetOfferTerms",
-        input_schema = schemas.GetOfferTermsInput,
-        output_schema = schemas.GetOfferTermsOutput,
-        http_method = "POST",
-        http_path = "/2026-02-05/getOfferTerms",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetOfferTerms, input, options)
 end
 
 function Client:getProduct(input, options)
-    return self:invokeOperation(input, {
-        name = "GetProduct",
-        input_schema = schemas.GetProductInput,
-        output_schema = schemas.GetProductOutput,
-        http_method = "POST",
-        http_path = "/2026-02-05/getProduct",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetProduct, input, options)
 end
 
 function Client:listFulfillmentOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFulfillmentOptions",
-        input_schema = schemas.ListFulfillmentOptionsInput,
-        output_schema = schemas.ListFulfillmentOptionsOutput,
-        http_method = "POST",
-        http_path = "/2026-02-05/listFulfillmentOptions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFulfillmentOptions, input, options)
 end
 
 function Client:listPurchaseOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPurchaseOptions",
-        input_schema = schemas.ListPurchaseOptionsInput,
-        output_schema = schemas.ListPurchaseOptionsOutput,
-        http_method = "POST",
-        http_path = "/2026-02-05/listPurchaseOptions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPurchaseOptions, input, options)
 end
 
 function Client:searchFacets(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchFacets",
-        input_schema = schemas.SearchFacetsInput,
-        output_schema = schemas.SearchFacetsOutput,
-        http_method = "POST",
-        http_path = "/2026-02-05/searchFacets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchFacets, input, options)
 end
 
 function Client:searchListings(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchListings",
-        input_schema = schemas.SearchListingsInput,
-        output_schema = schemas.SearchListingsOutput,
-        http_method = "POST",
-        http_path = "/2026-02-05/searchListings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchListings, input, options)
 end
 
 return M

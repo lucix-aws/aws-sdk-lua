@@ -4323,4 +4323,626 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.chimesdkmessaging", "ChimeMessagingService"),
+    version = "2021-05-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateChannelFlow = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "AssociateChannelFlow"),
+    input = M.AssociateChannelFlowInput,
+    output = M.AssociateChannelFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channels/{ChannelArn}/channel-flow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateChannelMembership = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "BatchCreateChannelMembership"),
+    input = M.BatchCreateChannelMembershipInput,
+    output = M.BatchCreateChannelMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channels/{ChannelArn}/memberships?operation=batch-create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ChannelFlowCallback = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "ChannelFlowCallback"),
+    input = M.ChannelFlowCallbackInput,
+    output = M.ChannelFlowCallbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channels/{ChannelArn}?operation=channel-flow-callback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChannel = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "CreateChannel"),
+    input = M.CreateChannelInput,
+    output = M.CreateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChannelBan = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "CreateChannelBan"),
+    input = M.CreateChannelBanInput,
+    output = M.CreateChannelBanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channels/{ChannelArn}/bans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChannelFlow = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "CreateChannelFlow"),
+    input = M.CreateChannelFlowInput,
+    output = M.CreateChannelFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channel-flows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChannelMembership = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "CreateChannelMembership"),
+    input = M.CreateChannelMembershipInput,
+    output = M.CreateChannelMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channels/{ChannelArn}/memberships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChannelModerator = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "CreateChannelModerator"),
+    input = M.CreateChannelModeratorInput,
+    output = M.CreateChannelModeratorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channels/{ChannelArn}/moderators" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChannel = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DeleteChannel"),
+    input = M.DeleteChannelInput,
+    output = M.DeleteChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/channels/{ChannelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChannelBan = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DeleteChannelBan"),
+    input = M.DeleteChannelBanInput,
+    output = M.DeleteChannelBanOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/channels/{ChannelArn}/bans/{MemberArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChannelFlow = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DeleteChannelFlow"),
+    input = M.DeleteChannelFlowInput,
+    output = M.DeleteChannelFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/channel-flows/{ChannelFlowArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChannelMembership = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DeleteChannelMembership"),
+    input = M.DeleteChannelMembershipInput,
+    output = M.DeleteChannelMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/channels/{ChannelArn}/memberships/{MemberArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChannelMessage = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DeleteChannelMessage"),
+    input = M.DeleteChannelMessageInput,
+    output = M.DeleteChannelMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/channels/{ChannelArn}/messages/{MessageId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChannelModerator = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DeleteChannelModerator"),
+    input = M.DeleteChannelModeratorInput,
+    output = M.DeleteChannelModeratorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/channels/{ChannelArn}/moderators/{ChannelModeratorArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMessagingStreamingConfigurations = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DeleteMessagingStreamingConfigurations"),
+    input = M.DeleteMessagingStreamingConfigurationsInput,
+    output = M.DeleteMessagingStreamingConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/app-instances/{AppInstanceArn}/streaming-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChannel = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DescribeChannel"),
+    input = M.DescribeChannelInput,
+    output = M.DescribeChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{ChannelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChannelBan = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DescribeChannelBan"),
+    input = M.DescribeChannelBanInput,
+    output = M.DescribeChannelBanOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{ChannelArn}/bans/{MemberArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChannelFlow = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DescribeChannelFlow"),
+    input = M.DescribeChannelFlowInput,
+    output = M.DescribeChannelFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channel-flows/{ChannelFlowArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChannelMembership = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DescribeChannelMembership"),
+    input = M.DescribeChannelMembershipInput,
+    output = M.DescribeChannelMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{ChannelArn}/memberships/{MemberArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChannelMembershipForAppInstanceUser = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DescribeChannelMembershipForAppInstanceUser"),
+    input = M.DescribeChannelMembershipForAppInstanceUserInput,
+    output = M.DescribeChannelMembershipForAppInstanceUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{ChannelArn}?scope=app-instance-user-membership" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChannelModeratedByAppInstanceUser = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DescribeChannelModeratedByAppInstanceUser"),
+    input = M.DescribeChannelModeratedByAppInstanceUserInput,
+    output = M.DescribeChannelModeratedByAppInstanceUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{ChannelArn}?scope=app-instance-user-moderated-channel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChannelModerator = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DescribeChannelModerator"),
+    input = M.DescribeChannelModeratorInput,
+    output = M.DescribeChannelModeratorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{ChannelArn}/moderators/{ChannelModeratorArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateChannelFlow = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "DisassociateChannelFlow"),
+    input = M.DisassociateChannelFlowInput,
+    output = M.DisassociateChannelFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/channels/{ChannelArn}/channel-flow/{ChannelFlowArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChannelMembershipPreferences = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "GetChannelMembershipPreferences"),
+    input = M.GetChannelMembershipPreferencesInput,
+    output = M.GetChannelMembershipPreferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{ChannelArn}/memberships/{MemberArn}/preferences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChannelMessage = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "GetChannelMessage"),
+    input = M.GetChannelMessageInput,
+    output = M.GetChannelMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{ChannelArn}/messages/{MessageId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChannelMessageStatus = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "GetChannelMessageStatus"),
+    input = M.GetChannelMessageStatusInput,
+    output = M.GetChannelMessageStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{ChannelArn}/messages/{MessageId}?scope=message-status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMessagingSessionEndpoint = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "GetMessagingSessionEndpoint"),
+    input = M.GetMessagingSessionEndpointInput,
+    output = M.GetMessagingSessionEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/endpoints/messaging-session" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMessagingStreamingConfigurations = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "GetMessagingStreamingConfigurations"),
+    input = M.GetMessagingStreamingConfigurationsInput,
+    output = M.GetMessagingStreamingConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/app-instances/{AppInstanceArn}/streaming-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannelBans = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "ListChannelBans"),
+    input = M.ListChannelBansInput,
+    output = M.ListChannelBansOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{ChannelArn}/bans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannelFlows = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "ListChannelFlows"),
+    input = M.ListChannelFlowsInput,
+    output = M.ListChannelFlowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channel-flows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannelMemberships = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "ListChannelMemberships"),
+    input = M.ListChannelMembershipsInput,
+    output = M.ListChannelMembershipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{ChannelArn}/memberships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannelMembershipsForAppInstanceUser = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "ListChannelMembershipsForAppInstanceUser"),
+    input = M.ListChannelMembershipsForAppInstanceUserInput,
+    output = M.ListChannelMembershipsForAppInstanceUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels?scope=app-instance-user-memberships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannelMessages = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "ListChannelMessages"),
+    input = M.ListChannelMessagesInput,
+    output = M.ListChannelMessagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{ChannelArn}/messages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannelModerators = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "ListChannelModerators"),
+    input = M.ListChannelModeratorsInput,
+    output = M.ListChannelModeratorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{ChannelArn}/moderators" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannels = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "ListChannels"),
+    input = M.ListChannelsInput,
+    output = M.ListChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannelsAssociatedWithChannelFlow = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "ListChannelsAssociatedWithChannelFlow"),
+    input = M.ListChannelsAssociatedWithChannelFlowInput,
+    output = M.ListChannelsAssociatedWithChannelFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels?scope=channel-flow-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannelsModeratedByAppInstanceUser = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "ListChannelsModeratedByAppInstanceUser"),
+    input = M.ListChannelsModeratedByAppInstanceUserInput,
+    output = M.ListChannelsModeratedByAppInstanceUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels?scope=app-instance-user-moderated-channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubChannels = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "ListSubChannels"),
+    input = M.ListSubChannelsInput,
+    output = M.ListSubChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/{ChannelArn}/subchannels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutChannelExpirationSettings = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "PutChannelExpirationSettings"),
+    input = M.PutChannelExpirationSettingsInput,
+    output = M.PutChannelExpirationSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channels/{ChannelArn}/expiration-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutChannelMembershipPreferences = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "PutChannelMembershipPreferences"),
+    input = M.PutChannelMembershipPreferencesInput,
+    output = M.PutChannelMembershipPreferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channels/{ChannelArn}/memberships/{MemberArn}/preferences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMessagingStreamingConfigurations = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "PutMessagingStreamingConfigurations"),
+    input = M.PutMessagingStreamingConfigurationsInput,
+    output = M.PutMessagingStreamingConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/app-instances/{AppInstanceArn}/streaming-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RedactChannelMessage = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "RedactChannelMessage"),
+    input = M.RedactChannelMessageInput,
+    output = M.RedactChannelMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channels/{ChannelArn}/messages/{MessageId}?operation=redact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchChannels = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "SearchChannels"),
+    input = M.SearchChannelsInput,
+    output = M.SearchChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channels?operation=search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendChannelMessage = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "SendChannelMessage"),
+    input = M.SendChannelMessageInput,
+    output = M.SendChannelMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channels/{ChannelArn}/messages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags?operation=tag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags?operation=untag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChannel = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "UpdateChannel"),
+    input = M.UpdateChannelInput,
+    output = M.UpdateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channels/{ChannelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChannelFlow = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "UpdateChannelFlow"),
+    input = M.UpdateChannelFlowInput,
+    output = M.UpdateChannelFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channel-flows/{ChannelFlowArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChannelMessage = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "UpdateChannelMessage"),
+    input = M.UpdateChannelMessageInput,
+    output = M.UpdateChannelMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channels/{ChannelArn}/messages/{MessageId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChannelReadMarker = schema.operation({
+    id = id.from("com.amazonaws.chimesdkmessaging", "UpdateChannelReadMarker"),
+    input = M.UpdateChannelReadMarkerInput,
+    output = M.UpdateChannelReadMarkerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channels/{ChannelArn}/readMarker" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

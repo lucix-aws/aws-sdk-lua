@@ -7,6 +7,7 @@ local endpoint_rules = require("licensemanagerusersubscriptions.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("licensemanagerusersubscriptions.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "license-manager-user-subscriptions", signing_region = cfg.region } }
                 else
@@ -49,224 +52,71 @@ function M.new(cfg)
 end
 
 function Client:associateUser(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateUser",
-        input_schema = schemas.AssociateUserInput,
-        output_schema = schemas.AssociateUserOutput,
-        http_method = "POST",
-        http_path = "/user/AssociateUser",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateUser, input, options)
 end
 
 function Client:createLicenseServerEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLicenseServerEndpoint",
-        input_schema = schemas.CreateLicenseServerEndpointInput,
-        output_schema = schemas.CreateLicenseServerEndpointOutput,
-        http_method = "POST",
-        http_path = "/license-server/CreateLicenseServerEndpoint",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLicenseServerEndpoint, input, options)
 end
 
 function Client:deleteLicenseServerEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteLicenseServerEndpoint",
-        input_schema = schemas.DeleteLicenseServerEndpointInput,
-        output_schema = schemas.DeleteLicenseServerEndpointOutput,
-        http_method = "POST",
-        http_path = "/license-server/DeleteLicenseServerEndpoint",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteLicenseServerEndpoint, input, options)
 end
 
 function Client:deregisterIdentityProvider(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterIdentityProvider",
-        input_schema = schemas.DeregisterIdentityProviderInput,
-        output_schema = schemas.DeregisterIdentityProviderOutput,
-        http_method = "POST",
-        http_path = "/identity-provider/DeregisterIdentityProvider",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterIdentityProvider, input, options)
 end
 
 function Client:disassociateUser(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateUser",
-        input_schema = schemas.DisassociateUserInput,
-        output_schema = schemas.DisassociateUserOutput,
-        http_method = "POST",
-        http_path = "/user/DisassociateUser",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateUser, input, options)
 end
 
 function Client:listIdentityProviders(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIdentityProviders",
-        input_schema = schemas.ListIdentityProvidersInput,
-        output_schema = schemas.ListIdentityProvidersOutput,
-        http_method = "POST",
-        http_path = "/identity-provider/ListIdentityProviders",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIdentityProviders, input, options)
 end
 
 function Client:listInstances(input, options)
-    return self:invokeOperation(input, {
-        name = "ListInstances",
-        input_schema = schemas.ListInstancesInput,
-        output_schema = schemas.ListInstancesOutput,
-        http_method = "POST",
-        http_path = "/instance/ListInstances",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListInstances, input, options)
 end
 
 function Client:listLicenseServerEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "ListLicenseServerEndpoints",
-        input_schema = schemas.ListLicenseServerEndpointsInput,
-        output_schema = schemas.ListLicenseServerEndpointsOutput,
-        http_method = "POST",
-        http_path = "/license-server/ListLicenseServerEndpoints",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListLicenseServerEndpoints, input, options)
 end
 
 function Client:listProductSubscriptions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProductSubscriptions",
-        input_schema = schemas.ListProductSubscriptionsInput,
-        output_schema = schemas.ListProductSubscriptionsOutput,
-        http_method = "POST",
-        http_path = "/user/ListProductSubscriptions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProductSubscriptions, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listUserAssociations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListUserAssociations",
-        input_schema = schemas.ListUserAssociationsInput,
-        output_schema = schemas.ListUserAssociationsOutput,
-        http_method = "POST",
-        http_path = "/user/ListUserAssociations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListUserAssociations, input, options)
 end
 
 function Client:registerIdentityProvider(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterIdentityProvider",
-        input_schema = schemas.RegisterIdentityProviderInput,
-        output_schema = schemas.RegisterIdentityProviderOutput,
-        http_method = "POST",
-        http_path = "/identity-provider/RegisterIdentityProvider",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterIdentityProvider, input, options)
 end
 
 function Client:startProductSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "StartProductSubscription",
-        input_schema = schemas.StartProductSubscriptionInput,
-        output_schema = schemas.StartProductSubscriptionOutput,
-        http_method = "POST",
-        http_path = "/user/StartProductSubscription",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartProductSubscription, input, options)
 end
 
 function Client:stopProductSubscription(input, options)
-    return self:invokeOperation(input, {
-        name = "StopProductSubscription",
-        input_schema = schemas.StopProductSubscriptionInput,
-        output_schema = schemas.StopProductSubscriptionOutput,
-        http_method = "POST",
-        http_path = "/user/StopProductSubscription",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopProductSubscription, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "PUT",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateIdentityProviderSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateIdentityProviderSettings",
-        input_schema = schemas.UpdateIdentityProviderSettingsInput,
-        output_schema = schemas.UpdateIdentityProviderSettingsOutput,
-        http_method = "POST",
-        http_path = "/identity-provider/UpdateIdentityProviderSettings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateIdentityProviderSettings, input, options)
 end
 
 return M

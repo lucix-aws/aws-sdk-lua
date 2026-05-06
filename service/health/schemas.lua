@@ -1646,4 +1646,168 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.health", "AWSHealth_20160804"),
+    version = "2016-08-04",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAffectedAccountsForOrganization = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeAffectedAccountsForOrganization"),
+    input = M.DescribeAffectedAccountsForOrganizationInput,
+    output = M.DescribeAffectedAccountsForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAffectedEntities = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeAffectedEntities"),
+    input = M.DescribeAffectedEntitiesInput,
+    output = M.DescribeAffectedEntitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAffectedEntitiesForOrganization = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeAffectedEntitiesForOrganization"),
+    input = M.DescribeAffectedEntitiesForOrganizationInput,
+    output = M.DescribeAffectedEntitiesForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEntityAggregates = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeEntityAggregates"),
+    input = M.DescribeEntityAggregatesInput,
+    output = M.DescribeEntityAggregatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEntityAggregatesForOrganization = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeEntityAggregatesForOrganization"),
+    input = M.DescribeEntityAggregatesForOrganizationInput,
+    output = M.DescribeEntityAggregatesForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventAggregates = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeEventAggregates"),
+    input = M.DescribeEventAggregatesInput,
+    output = M.DescribeEventAggregatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventDetails = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeEventDetails"),
+    input = M.DescribeEventDetailsInput,
+    output = M.DescribeEventDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventDetailsForOrganization = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeEventDetailsForOrganization"),
+    input = M.DescribeEventDetailsForOrganizationInput,
+    output = M.DescribeEventDetailsForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEvents = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeEvents"),
+    input = M.DescribeEventsInput,
+    output = M.DescribeEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventsForOrganization = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeEventsForOrganization"),
+    input = M.DescribeEventsForOrganizationInput,
+    output = M.DescribeEventsForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventTypes = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeEventTypes"),
+    input = M.DescribeEventTypesInput,
+    output = M.DescribeEventTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHealthServiceStatusForOrganization = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeHealthServiceStatusForOrganization"),
+    input = M.DescribeHealthServiceStatusForOrganizationInput,
+    output = M.DescribeHealthServiceStatusForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableHealthServiceAccessForOrganization = schema.operation({
+    id = id.from("com.amazonaws.health", "DisableHealthServiceAccessForOrganization"),
+    input = M.DisableHealthServiceAccessForOrganizationInput,
+    output = M.DisableHealthServiceAccessForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableHealthServiceAccessForOrganization = schema.operation({
+    id = id.from("com.amazonaws.health", "EnableHealthServiceAccessForOrganization"),
+    input = M.EnableHealthServiceAccessForOrganizationInput,
+    output = M.EnableHealthServiceAccessForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -519,4 +519,62 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sagemakerfeaturestoreruntime", "AmazonSageMakerFeatureStoreRuntime"),
+    version = "2020-07-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetRecord = schema.operation({
+    id = id.from("com.amazonaws.sagemakerfeaturestoreruntime", "BatchGetRecord"),
+    input = M.BatchGetRecordInput,
+    output = M.BatchGetRecordOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetRecord" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecord = schema.operation({
+    id = id.from("com.amazonaws.sagemakerfeaturestoreruntime", "DeleteRecord"),
+    input = M.DeleteRecordInput,
+    output = M.DeleteRecordOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/FeatureGroup/{FeatureGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecord = schema.operation({
+    id = id.from("com.amazonaws.sagemakerfeaturestoreruntime", "GetRecord"),
+    input = M.GetRecordInput,
+    output = M.GetRecordOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/FeatureGroup/{FeatureGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRecord = schema.operation({
+    id = id.from("com.amazonaws.sagemakerfeaturestoreruntime", "PutRecord"),
+    input = M.PutRecordInput,
+    output = M.PutRecordOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/FeatureGroup/{FeatureGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

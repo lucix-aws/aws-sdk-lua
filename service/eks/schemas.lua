@@ -7938,4 +7938,782 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.eks", "AWSWesleyFrontend"),
+    version = "2017-11-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.eks", "AssociateAccessPolicy"),
+    input = M.AssociateAccessPolicyInput,
+    output = M.AssociateAccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/access-entries/{principalArn}/access-policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateEncryptionConfig = schema.operation({
+    id = id.from("com.amazonaws.eks", "AssociateEncryptionConfig"),
+    input = M.AssociateEncryptionConfigInput,
+    output = M.AssociateEncryptionConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/encryption-config/associate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateIdentityProviderConfig = schema.operation({
+    id = id.from("com.amazonaws.eks", "AssociateIdentityProviderConfig"),
+    input = M.AssociateIdentityProviderConfigInput,
+    output = M.AssociateIdentityProviderConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/identity-provider-configs/associate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccessEntry = schema.operation({
+    id = id.from("com.amazonaws.eks", "CreateAccessEntry"),
+    input = M.CreateAccessEntryInput,
+    output = M.CreateAccessEntryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/access-entries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAddon = schema.operation({
+    id = id.from("com.amazonaws.eks", "CreateAddon"),
+    input = M.CreateAddonInput,
+    output = M.CreateAddonOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/addons" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCapability = schema.operation({
+    id = id.from("com.amazonaws.eks", "CreateCapability"),
+    input = M.CreateCapabilityInput,
+    output = M.CreateCapabilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/capabilities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCluster = schema.operation({
+    id = id.from("com.amazonaws.eks", "CreateCluster"),
+    input = M.CreateClusterInput,
+    output = M.CreateClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEksAnywhereSubscription = schema.operation({
+    id = id.from("com.amazonaws.eks", "CreateEksAnywhereSubscription"),
+    input = M.CreateEksAnywhereSubscriptionInput,
+    output = M.CreateEksAnywhereSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/eks-anywhere-subscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFargateProfile = schema.operation({
+    id = id.from("com.amazonaws.eks", "CreateFargateProfile"),
+    input = M.CreateFargateProfileInput,
+    output = M.CreateFargateProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/fargate-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNodegroup = schema.operation({
+    id = id.from("com.amazonaws.eks", "CreateNodegroup"),
+    input = M.CreateNodegroupInput,
+    output = M.CreateNodegroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/node-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePodIdentityAssociation = schema.operation({
+    id = id.from("com.amazonaws.eks", "CreatePodIdentityAssociation"),
+    input = M.CreatePodIdentityAssociationInput,
+    output = M.CreatePodIdentityAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/pod-identity-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccessEntry = schema.operation({
+    id = id.from("com.amazonaws.eks", "DeleteAccessEntry"),
+    input = M.DeleteAccessEntryInput,
+    output = M.DeleteAccessEntryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/clusters/{clusterName}/access-entries/{principalArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAddon = schema.operation({
+    id = id.from("com.amazonaws.eks", "DeleteAddon"),
+    input = M.DeleteAddonInput,
+    output = M.DeleteAddonOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/clusters/{clusterName}/addons/{addonName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCapability = schema.operation({
+    id = id.from("com.amazonaws.eks", "DeleteCapability"),
+    input = M.DeleteCapabilityInput,
+    output = M.DeleteCapabilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/clusters/{clusterName}/capabilities/{capabilityName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCluster = schema.operation({
+    id = id.from("com.amazonaws.eks", "DeleteCluster"),
+    input = M.DeleteClusterInput,
+    output = M.DeleteClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/clusters/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEksAnywhereSubscription = schema.operation({
+    id = id.from("com.amazonaws.eks", "DeleteEksAnywhereSubscription"),
+    input = M.DeleteEksAnywhereSubscriptionInput,
+    output = M.DeleteEksAnywhereSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/eks-anywhere-subscriptions/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFargateProfile = schema.operation({
+    id = id.from("com.amazonaws.eks", "DeleteFargateProfile"),
+    input = M.DeleteFargateProfileInput,
+    output = M.DeleteFargateProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/clusters/{clusterName}/fargate-profiles/{fargateProfileName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNodegroup = schema.operation({
+    id = id.from("com.amazonaws.eks", "DeleteNodegroup"),
+    input = M.DeleteNodegroupInput,
+    output = M.DeleteNodegroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/clusters/{clusterName}/node-groups/{nodegroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePodIdentityAssociation = schema.operation({
+    id = id.from("com.amazonaws.eks", "DeletePodIdentityAssociation"),
+    input = M.DeletePodIdentityAssociationInput,
+    output = M.DeletePodIdentityAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/clusters/{clusterName}/pod-identity-associations/{associationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterCluster = schema.operation({
+    id = id.from("com.amazonaws.eks", "DeregisterCluster"),
+    input = M.DeregisterClusterInput,
+    output = M.DeregisterClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/cluster-registrations/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccessEntry = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeAccessEntry"),
+    input = M.DescribeAccessEntryInput,
+    output = M.DescribeAccessEntryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/access-entries/{principalArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAddon = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeAddon"),
+    input = M.DescribeAddonInput,
+    output = M.DescribeAddonOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/addons/{addonName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAddonConfiguration = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeAddonConfiguration"),
+    input = M.DescribeAddonConfigurationInput,
+    output = M.DescribeAddonConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/addons/configuration-schemas" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAddonVersions = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeAddonVersions"),
+    input = M.DescribeAddonVersionsInput,
+    output = M.DescribeAddonVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/addons/supported-versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCapability = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeCapability"),
+    input = M.DescribeCapabilityInput,
+    output = M.DescribeCapabilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/capabilities/{capabilityName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCluster = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeCluster"),
+    input = M.DescribeClusterInput,
+    output = M.DescribeClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClusterVersions = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeClusterVersions"),
+    input = M.DescribeClusterVersionsInput,
+    output = M.DescribeClusterVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cluster-versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEksAnywhereSubscription = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeEksAnywhereSubscription"),
+    input = M.DescribeEksAnywhereSubscriptionInput,
+    output = M.DescribeEksAnywhereSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/eks-anywhere-subscriptions/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFargateProfile = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeFargateProfile"),
+    input = M.DescribeFargateProfileInput,
+    output = M.DescribeFargateProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/fargate-profiles/{fargateProfileName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIdentityProviderConfig = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeIdentityProviderConfig"),
+    input = M.DescribeIdentityProviderConfigInput,
+    output = M.DescribeIdentityProviderConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/identity-provider-configs/describe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInsight = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeInsight"),
+    input = M.DescribeInsightInput,
+    output = M.DescribeInsightOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/insights/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInsightsRefresh = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeInsightsRefresh"),
+    input = M.DescribeInsightsRefreshInput,
+    output = M.DescribeInsightsRefreshOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/insights-refresh" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNodegroup = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeNodegroup"),
+    input = M.DescribeNodegroupInput,
+    output = M.DescribeNodegroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/node-groups/{nodegroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePodIdentityAssociation = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribePodIdentityAssociation"),
+    input = M.DescribePodIdentityAssociationInput,
+    output = M.DescribePodIdentityAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/pod-identity-associations/{associationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUpdate = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeUpdate"),
+    input = M.DescribeUpdateInput,
+    output = M.DescribeUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{name}/updates/{updateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.eks", "DisassociateAccessPolicy"),
+    input = M.DisassociateAccessPolicyInput,
+    output = M.DisassociateAccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/clusters/{clusterName}/access-entries/{principalArn}/access-policies/{policyArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateIdentityProviderConfig = schema.operation({
+    id = id.from("com.amazonaws.eks", "DisassociateIdentityProviderConfig"),
+    input = M.DisassociateIdentityProviderConfigInput,
+    output = M.DisassociateIdentityProviderConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/identity-provider-configs/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccessEntries = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListAccessEntries"),
+    input = M.ListAccessEntriesInput,
+    output = M.ListAccessEntriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/access-entries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccessPolicies = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListAccessPolicies"),
+    input = M.ListAccessPoliciesInput,
+    output = M.ListAccessPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/access-policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAddons = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListAddons"),
+    input = M.ListAddonsInput,
+    output = M.ListAddonsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/addons" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociatedAccessPolicies = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListAssociatedAccessPolicies"),
+    input = M.ListAssociatedAccessPoliciesInput,
+    output = M.ListAssociatedAccessPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/access-entries/{principalArn}/access-policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCapabilities = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListCapabilities"),
+    input = M.ListCapabilitiesInput,
+    output = M.ListCapabilitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/capabilities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusters = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListClusters"),
+    input = M.ListClustersInput,
+    output = M.ListClustersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEksAnywhereSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListEksAnywhereSubscriptions"),
+    input = M.ListEksAnywhereSubscriptionsInput,
+    output = M.ListEksAnywhereSubscriptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/eks-anywhere-subscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFargateProfiles = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListFargateProfiles"),
+    input = M.ListFargateProfilesInput,
+    output = M.ListFargateProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/fargate-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdentityProviderConfigs = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListIdentityProviderConfigs"),
+    input = M.ListIdentityProviderConfigsInput,
+    output = M.ListIdentityProviderConfigsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/identity-provider-configs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInsights = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListInsights"),
+    input = M.ListInsightsInput,
+    output = M.ListInsightsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/insights" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNodegroups = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListNodegroups"),
+    input = M.ListNodegroupsInput,
+    output = M.ListNodegroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/node-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPodIdentityAssociations = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListPodIdentityAssociations"),
+    input = M.ListPodIdentityAssociationsInput,
+    output = M.ListPodIdentityAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/pod-identity-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUpdates = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListUpdates"),
+    input = M.ListUpdatesInput,
+    output = M.ListUpdatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{name}/updates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterCluster = schema.operation({
+    id = id.from("com.amazonaws.eks", "RegisterCluster"),
+    input = M.RegisterClusterInput,
+    output = M.RegisterClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cluster-registrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartInsightsRefresh = schema.operation({
+    id = id.from("com.amazonaws.eks", "StartInsightsRefresh"),
+    input = M.StartInsightsRefreshInput,
+    output = M.StartInsightsRefreshOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/insights-refresh" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.eks", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.eks", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccessEntry = schema.operation({
+    id = id.from("com.amazonaws.eks", "UpdateAccessEntry"),
+    input = M.UpdateAccessEntryInput,
+    output = M.UpdateAccessEntryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/access-entries/{principalArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAddon = schema.operation({
+    id = id.from("com.amazonaws.eks", "UpdateAddon"),
+    input = M.UpdateAddonInput,
+    output = M.UpdateAddonOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/addons/{addonName}/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCapability = schema.operation({
+    id = id.from("com.amazonaws.eks", "UpdateCapability"),
+    input = M.UpdateCapabilityInput,
+    output = M.UpdateCapabilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/capabilities/{capabilityName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateClusterConfig = schema.operation({
+    id = id.from("com.amazonaws.eks", "UpdateClusterConfig"),
+    input = M.UpdateClusterConfigInput,
+    output = M.UpdateClusterConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{name}/update-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateClusterVersion = schema.operation({
+    id = id.from("com.amazonaws.eks", "UpdateClusterVersion"),
+    input = M.UpdateClusterVersionInput,
+    output = M.UpdateClusterVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{name}/updates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEksAnywhereSubscription = schema.operation({
+    id = id.from("com.amazonaws.eks", "UpdateEksAnywhereSubscription"),
+    input = M.UpdateEksAnywhereSubscriptionInput,
+    output = M.UpdateEksAnywhereSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/eks-anywhere-subscriptions/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNodegroupConfig = schema.operation({
+    id = id.from("com.amazonaws.eks", "UpdateNodegroupConfig"),
+    input = M.UpdateNodegroupConfigInput,
+    output = M.UpdateNodegroupConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/node-groups/{nodegroupName}/update-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNodegroupVersion = schema.operation({
+    id = id.from("com.amazonaws.eks", "UpdateNodegroupVersion"),
+    input = M.UpdateNodegroupVersionInput,
+    output = M.UpdateNodegroupVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/node-groups/{nodegroupName}/update-version" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePodIdentityAssociation = schema.operation({
+    id = id.from("com.amazonaws.eks", "UpdatePodIdentityAssociation"),
+    input = M.UpdatePodIdentityAssociationInput,
+    output = M.UpdatePodIdentityAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/pod-identity-associations/{associationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -15971,4 +15971,1629 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.s3", "AmazonS3"),
+    version = "2006-03-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AbortMultipartUpload = schema.operation({
+    id = id.from("com.amazonaws.s3", "AbortMultipartUpload"),
+    input = M.AbortMultipartUploadInput,
+    output = M.AbortMultipartUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/{Key+}?x-id=AbortMultipartUpload" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Key = "Key",
+        },
+    },
+})
+
+M.CompleteMultipartUpload = schema.operation({
+    id = id.from("com.amazonaws.s3", "CompleteMultipartUpload"),
+    input = M.CompleteMultipartUploadInput,
+    output = M.CompleteMultipartUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/{Key+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Key = "Key",
+        },
+    },
+})
+
+M.CopyObject = schema.operation({
+    id = id.from("com.amazonaws.s3", "CopyObject"),
+    input = M.CopyObjectInput,
+    output = M.CopyObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{Key+}?x-id=CopyObject" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            CopySource = "CopySource",
+            Key = "Key",
+        },
+    },
+})
+
+M.CreateBucket = schema.operation({
+    id = id.from("com.amazonaws.s3", "CreateBucket"),
+    input = M.CreateBucketInput,
+    output = M.CreateBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.CreateBucketMetadataConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "CreateBucketMetadataConfiguration"),
+    input = M.CreateBucketMetadataConfigurationInput,
+    output = M.CreateBucketMetadataConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/?metadataConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.CreateBucketMetadataTableConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "CreateBucketMetadataTableConfiguration"),
+    input = M.CreateBucketMetadataTableConfigurationInput,
+    output = M.CreateBucketMetadataTableConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/?metadataTable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.CreateMultipartUpload = schema.operation({
+    id = id.from("com.amazonaws.s3", "CreateMultipartUpload"),
+    input = M.CreateMultipartUploadInput,
+    output = M.CreateMultipartUploadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/{Key+}?uploads" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Key = "Key",
+        },
+    },
+})
+
+M.CreateSession = schema.operation({
+    id = id.from("com.amazonaws.s3", "CreateSession"),
+    input = M.CreateSessionInput,
+    output = M.CreateSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?session" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucket = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucket"),
+    input = M.DeleteBucketInput,
+    output = M.DeleteBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketAnalyticsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucketAnalyticsConfiguration"),
+    input = M.DeleteBucketAnalyticsConfigurationInput,
+    output = M.DeleteBucketAnalyticsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?analytics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketCors = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucketCors"),
+    input = M.DeleteBucketCorsInput,
+    output = M.DeleteBucketCorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?cors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketEncryption = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucketEncryption"),
+    input = M.DeleteBucketEncryptionInput,
+    output = M.DeleteBucketEncryptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?encryption" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketIntelligentTieringConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucketIntelligentTieringConfiguration"),
+    input = M.DeleteBucketIntelligentTieringConfigurationInput,
+    output = M.DeleteBucketIntelligentTieringConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?intelligent-tiering" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketInventoryConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucketInventoryConfiguration"),
+    input = M.DeleteBucketInventoryConfigurationInput,
+    output = M.DeleteBucketInventoryConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?inventory" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketLifecycle = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucketLifecycle"),
+    input = M.DeleteBucketLifecycleInput,
+    output = M.DeleteBucketLifecycleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?lifecycle" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketMetadataConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucketMetadataConfiguration"),
+    input = M.DeleteBucketMetadataConfigurationInput,
+    output = M.DeleteBucketMetadataConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?metadataConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketMetadataTableConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucketMetadataTableConfiguration"),
+    input = M.DeleteBucketMetadataTableConfigurationInput,
+    output = M.DeleteBucketMetadataTableConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?metadataTable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketMetricsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucketMetricsConfiguration"),
+    input = M.DeleteBucketMetricsConfigurationInput,
+    output = M.DeleteBucketMetricsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketOwnershipControls = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucketOwnershipControls"),
+    input = M.DeleteBucketOwnershipControlsInput,
+    output = M.DeleteBucketOwnershipControlsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?ownershipControls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucketPolicy"),
+    input = M.DeleteBucketPolicyInput,
+    output = M.DeleteBucketPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketReplication = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucketReplication"),
+    input = M.DeleteBucketReplicationInput,
+    output = M.DeleteBucketReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?replication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketTagging = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucketTagging"),
+    input = M.DeleteBucketTaggingInput,
+    output = M.DeleteBucketTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteBucketWebsite = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteBucketWebsite"),
+    input = M.DeleteBucketWebsiteInput,
+    output = M.DeleteBucketWebsiteOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?website" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteObject = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteObject"),
+    input = M.DeleteObjectInput,
+    output = M.DeleteObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/{Key+}?x-id=DeleteObject" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Key = "Key",
+        },
+    },
+})
+
+M.DeleteObjects = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteObjects"),
+    input = M.DeleteObjectsInput,
+    output = M.DeleteObjectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/?delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeleteObjectTagging = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteObjectTagging"),
+    input = M.DeleteObjectTaggingInput,
+    output = M.DeleteObjectTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/{Key+}?tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.DeletePublicAccessBlock = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeletePublicAccessBlock"),
+    input = M.DeletePublicAccessBlockInput,
+    output = M.DeletePublicAccessBlockOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/?publicAccessBlock" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketAbac = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketAbac"),
+    input = M.GetBucketAbacInput,
+    output = M.GetBucketAbacOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?abac" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketAccelerateConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketAccelerateConfiguration"),
+    input = M.GetBucketAccelerateConfigurationInput,
+    output = M.GetBucketAccelerateConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?accelerate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketAcl = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketAcl"),
+    input = M.GetBucketAclInput,
+    output = M.GetBucketAclOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?acl" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketAnalyticsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketAnalyticsConfiguration"),
+    input = M.GetBucketAnalyticsConfigurationInput,
+    output = M.GetBucketAnalyticsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?analytics&x-id=GetBucketAnalyticsConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketCors = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketCors"),
+    input = M.GetBucketCorsInput,
+    output = M.GetBucketCorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?cors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketEncryption = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketEncryption"),
+    input = M.GetBucketEncryptionInput,
+    output = M.GetBucketEncryptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?encryption" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketIntelligentTieringConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketIntelligentTieringConfiguration"),
+    input = M.GetBucketIntelligentTieringConfigurationInput,
+    output = M.GetBucketIntelligentTieringConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?intelligent-tiering&x-id=GetBucketIntelligentTieringConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketInventoryConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketInventoryConfiguration"),
+    input = M.GetBucketInventoryConfigurationInput,
+    output = M.GetBucketInventoryConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?inventory&x-id=GetBucketInventoryConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketLifecycleConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketLifecycleConfiguration"),
+    input = M.GetBucketLifecycleConfigurationInput,
+    output = M.GetBucketLifecycleConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?lifecycle" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketLocation = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketLocation"),
+    input = M.GetBucketLocationInput,
+    output = M.GetBucketLocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?location" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketLogging = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketLogging"),
+    input = M.GetBucketLoggingInput,
+    output = M.GetBucketLoggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?logging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketMetadataConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketMetadataConfiguration"),
+    input = M.GetBucketMetadataConfigurationInput,
+    output = M.GetBucketMetadataConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?metadataConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketMetadataTableConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketMetadataTableConfiguration"),
+    input = M.GetBucketMetadataTableConfigurationInput,
+    output = M.GetBucketMetadataTableConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?metadataTable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketMetricsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketMetricsConfiguration"),
+    input = M.GetBucketMetricsConfigurationInput,
+    output = M.GetBucketMetricsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?metrics&x-id=GetBucketMetricsConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketNotificationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketNotificationConfiguration"),
+    input = M.GetBucketNotificationConfigurationInput,
+    output = M.GetBucketNotificationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?notification" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketOwnershipControls = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketOwnershipControls"),
+    input = M.GetBucketOwnershipControlsInput,
+    output = M.GetBucketOwnershipControlsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?ownershipControls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketPolicy"),
+    input = M.GetBucketPolicyInput,
+    output = M.GetBucketPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketPolicyStatus = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketPolicyStatus"),
+    input = M.GetBucketPolicyStatusInput,
+    output = M.GetBucketPolicyStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?policyStatus" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketReplication = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketReplication"),
+    input = M.GetBucketReplicationInput,
+    output = M.GetBucketReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?replication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketRequestPayment = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketRequestPayment"),
+    input = M.GetBucketRequestPaymentInput,
+    output = M.GetBucketRequestPaymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?requestPayment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketTagging = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketTagging"),
+    input = M.GetBucketTaggingInput,
+    output = M.GetBucketTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketVersioning = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketVersioning"),
+    input = M.GetBucketVersioningInput,
+    output = M.GetBucketVersioningOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?versioning" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetBucketWebsite = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetBucketWebsite"),
+    input = M.GetBucketWebsiteInput,
+    output = M.GetBucketWebsiteOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?website" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetObject = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetObject"),
+    input = M.GetObjectInput,
+    output = M.GetObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{Key+}?x-id=GetObject" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Key = "Key",
+        },
+    },
+})
+
+M.GetObjectAcl = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetObjectAcl"),
+    input = M.GetObjectAclInput,
+    output = M.GetObjectAclOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{Key+}?acl" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Key = "Key",
+        },
+    },
+})
+
+M.GetObjectAttributes = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetObjectAttributes"),
+    input = M.GetObjectAttributesInput,
+    output = M.GetObjectAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{Key+}?attributes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetObjectLegalHold = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetObjectLegalHold"),
+    input = M.GetObjectLegalHoldInput,
+    output = M.GetObjectLegalHoldOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{Key+}?legal-hold" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetObjectLockConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetObjectLockConfiguration"),
+    input = M.GetObjectLockConfigurationInput,
+    output = M.GetObjectLockConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?object-lock" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetObjectRetention = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetObjectRetention"),
+    input = M.GetObjectRetentionInput,
+    output = M.GetObjectRetentionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{Key+}?retention" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetObjectTagging = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetObjectTagging"),
+    input = M.GetObjectTaggingInput,
+    output = M.GetObjectTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{Key+}?tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetObjectTorrent = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetObjectTorrent"),
+    input = M.GetObjectTorrentInput,
+    output = M.GetObjectTorrentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{Key+}?torrent" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.GetPublicAccessBlock = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetPublicAccessBlock"),
+    input = M.GetPublicAccessBlockInput,
+    output = M.GetPublicAccessBlockOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?publicAccessBlock" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.HeadBucket = schema.operation({
+    id = id.from("com.amazonaws.s3", "HeadBucket"),
+    input = M.HeadBucketInput,
+    output = M.HeadBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "HEAD", path = "/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.HeadObject = schema.operation({
+    id = id.from("com.amazonaws.s3", "HeadObject"),
+    input = M.HeadObjectInput,
+    output = M.HeadObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "HEAD", path = "/{Key+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Key = "Key",
+        },
+    },
+})
+
+M.ListBucketAnalyticsConfigurations = schema.operation({
+    id = id.from("com.amazonaws.s3", "ListBucketAnalyticsConfigurations"),
+    input = M.ListBucketAnalyticsConfigurationsInput,
+    output = M.ListBucketAnalyticsConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?analytics&x-id=ListBucketAnalyticsConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.ListBucketIntelligentTieringConfigurations = schema.operation({
+    id = id.from("com.amazonaws.s3", "ListBucketIntelligentTieringConfigurations"),
+    input = M.ListBucketIntelligentTieringConfigurationsInput,
+    output = M.ListBucketIntelligentTieringConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?intelligent-tiering&x-id=ListBucketIntelligentTieringConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.ListBucketInventoryConfigurations = schema.operation({
+    id = id.from("com.amazonaws.s3", "ListBucketInventoryConfigurations"),
+    input = M.ListBucketInventoryConfigurationsInput,
+    output = M.ListBucketInventoryConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?inventory&x-id=ListBucketInventoryConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.ListBucketMetricsConfigurations = schema.operation({
+    id = id.from("com.amazonaws.s3", "ListBucketMetricsConfigurations"),
+    input = M.ListBucketMetricsConfigurationsInput,
+    output = M.ListBucketMetricsConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?metrics&x-id=ListBucketMetricsConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.ListBuckets = schema.operation({
+    id = id.from("com.amazonaws.s3", "ListBuckets"),
+    input = M.ListBucketsInput,
+    output = M.ListBucketsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?x-id=ListBuckets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDirectoryBuckets = schema.operation({
+    id = id.from("com.amazonaws.s3", "ListDirectoryBuckets"),
+    input = M.ListDirectoryBucketsInput,
+    output = M.ListDirectoryBucketsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?x-id=ListDirectoryBuckets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMultipartUploads = schema.operation({
+    id = id.from("com.amazonaws.s3", "ListMultipartUploads"),
+    input = M.ListMultipartUploadsInput,
+    output = M.ListMultipartUploadsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?uploads" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Prefix = "Prefix",
+        },
+    },
+})
+
+M.ListObjects = schema.operation({
+    id = id.from("com.amazonaws.s3", "ListObjects"),
+    input = M.ListObjectsInput,
+    output = M.ListObjectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Prefix = "Prefix",
+        },
+    },
+})
+
+M.ListObjectsV2 = schema.operation({
+    id = id.from("com.amazonaws.s3", "ListObjectsV2"),
+    input = M.ListObjectsV2Input,
+    output = M.ListObjectsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?list-type=2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Prefix = "Prefix",
+        },
+    },
+})
+
+M.ListObjectVersions = schema.operation({
+    id = id.from("com.amazonaws.s3", "ListObjectVersions"),
+    input = M.ListObjectVersionsInput,
+    output = M.ListObjectVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/?versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Prefix = "Prefix",
+        },
+    },
+})
+
+M.ListParts = schema.operation({
+    id = id.from("com.amazonaws.s3", "ListParts"),
+    input = M.ListPartsInput,
+    output = M.ListPartsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{Key+}?x-id=ListParts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Key = "Key",
+        },
+    },
+})
+
+M.PutBucketAbac = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketAbac"),
+    input = M.PutBucketAbacInput,
+    output = M.PutBucketAbacOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?abac" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketAccelerateConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketAccelerateConfiguration"),
+    input = M.PutBucketAccelerateConfigurationInput,
+    output = M.PutBucketAccelerateConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?accelerate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketAcl = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketAcl"),
+    input = M.PutBucketAclInput,
+    output = M.PutBucketAclOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?acl" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketAnalyticsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketAnalyticsConfiguration"),
+    input = M.PutBucketAnalyticsConfigurationInput,
+    output = M.PutBucketAnalyticsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?analytics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketCors = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketCors"),
+    input = M.PutBucketCorsInput,
+    output = M.PutBucketCorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?cors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketEncryption = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketEncryption"),
+    input = M.PutBucketEncryptionInput,
+    output = M.PutBucketEncryptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?encryption" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketIntelligentTieringConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketIntelligentTieringConfiguration"),
+    input = M.PutBucketIntelligentTieringConfigurationInput,
+    output = M.PutBucketIntelligentTieringConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?intelligent-tiering" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketInventoryConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketInventoryConfiguration"),
+    input = M.PutBucketInventoryConfigurationInput,
+    output = M.PutBucketInventoryConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?inventory" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketLifecycleConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketLifecycleConfiguration"),
+    input = M.PutBucketLifecycleConfigurationInput,
+    output = M.PutBucketLifecycleConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?lifecycle" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketLogging = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketLogging"),
+    input = M.PutBucketLoggingInput,
+    output = M.PutBucketLoggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?logging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketMetricsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketMetricsConfiguration"),
+    input = M.PutBucketMetricsConfigurationInput,
+    output = M.PutBucketMetricsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketNotificationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketNotificationConfiguration"),
+    input = M.PutBucketNotificationConfigurationInput,
+    output = M.PutBucketNotificationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?notification" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketOwnershipControls = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketOwnershipControls"),
+    input = M.PutBucketOwnershipControlsInput,
+    output = M.PutBucketOwnershipControlsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?ownershipControls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketPolicy = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketPolicy"),
+    input = M.PutBucketPolicyInput,
+    output = M.PutBucketPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketReplication = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketReplication"),
+    input = M.PutBucketReplicationInput,
+    output = M.PutBucketReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?replication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketRequestPayment = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketRequestPayment"),
+    input = M.PutBucketRequestPaymentInput,
+    output = M.PutBucketRequestPaymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?requestPayment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketTagging = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketTagging"),
+    input = M.PutBucketTaggingInput,
+    output = M.PutBucketTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketVersioning = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketVersioning"),
+    input = M.PutBucketVersioningInput,
+    output = M.PutBucketVersioningOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?versioning" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutBucketWebsite = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutBucketWebsite"),
+    input = M.PutBucketWebsiteInput,
+    output = M.PutBucketWebsiteOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?website" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutObject = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutObject"),
+    input = M.PutObjectInput,
+    output = M.PutObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{Key+}?x-id=PutObject" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Key = "Key",
+        },
+    },
+})
+
+M.PutObjectAcl = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutObjectAcl"),
+    input = M.PutObjectAclInput,
+    output = M.PutObjectAclOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{Key+}?acl" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Key = "Key",
+        },
+    },
+})
+
+M.PutObjectLegalHold = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutObjectLegalHold"),
+    input = M.PutObjectLegalHoldInput,
+    output = M.PutObjectLegalHoldOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{Key+}?legal-hold" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutObjectLockConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutObjectLockConfiguration"),
+    input = M.PutObjectLockConfigurationInput,
+    output = M.PutObjectLockConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?object-lock" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutObjectRetention = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutObjectRetention"),
+    input = M.PutObjectRetentionInput,
+    output = M.PutObjectRetentionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{Key+}?retention" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutObjectTagging = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutObjectTagging"),
+    input = M.PutObjectTaggingInput,
+    output = M.PutObjectTaggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{Key+}?tagging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.PutPublicAccessBlock = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutPublicAccessBlock"),
+    input = M.PutPublicAccessBlockInput,
+    output = M.PutPublicAccessBlockOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?publicAccessBlock" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.RenameObject = schema.operation({
+    id = id.from("com.amazonaws.s3", "RenameObject"),
+    input = M.RenameObjectInput,
+    output = M.RenameObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{Key+}?renameObject" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Key = "Key",
+        },
+    },
+})
+
+M.RestoreObject = schema.operation({
+    id = id.from("com.amazonaws.s3", "RestoreObject"),
+    input = M.RestoreObjectInput,
+    output = M.RestoreObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/{Key+}?restore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.SelectObjectContent = schema.operation({
+    id = id.from("com.amazonaws.s3", "SelectObjectContent"),
+    input = M.SelectObjectContentInput,
+    output = M.SelectObjectContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/{Key+}?select&select-type=2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+        [traits.EVENT_STREAM] = M.SelectObjectContentEventStream,
+    },
+})
+
+M.UpdateBucketMetadataInventoryTableConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "UpdateBucketMetadataInventoryTableConfiguration"),
+    input = M.UpdateBucketMetadataInventoryTableConfigurationInput,
+    output = M.UpdateBucketMetadataInventoryTableConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?metadataInventoryTable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.UpdateBucketMetadataJournalTableConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "UpdateBucketMetadataJournalTableConfiguration"),
+    input = M.UpdateBucketMetadataJournalTableConfigurationInput,
+    output = M.UpdateBucketMetadataJournalTableConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?metadataJournalTable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.UpdateObjectEncryption = schema.operation({
+    id = id.from("com.amazonaws.s3", "UpdateObjectEncryption"),
+    input = M.UpdateObjectEncryptionInput,
+    output = M.UpdateObjectEncryptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{Key+}?encryption" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.UploadPart = schema.operation({
+    id = id.from("com.amazonaws.s3", "UploadPart"),
+    input = M.UploadPartInput,
+    output = M.UploadPartOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{Key+}?x-id=UploadPart" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Key = "Key",
+        },
+    },
+})
+
+M.UploadPartCopy = schema.operation({
+    id = id.from("com.amazonaws.s3", "UploadPartCopy"),
+    input = M.UploadPartCopyInput,
+    output = M.UploadPartCopyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{Key+}?x-id=UploadPartCopy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
+M.WriteGetObjectResponse = schema.operation({
+    id = id.from("com.amazonaws.s3", "WriteGetObjectResponse"),
+    input = M.WriteGetObjectResponseInput,
+    output = M.WriteGetObjectResponseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/WriteGetObjectResponse" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

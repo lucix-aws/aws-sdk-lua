@@ -2112,4 +2112,290 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.appintegrations", "AmazonAppIntegrationService"),
+    version = "2020-07-29",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataIntegration = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "CreateDataIntegration"),
+    input = M.CreateDataIntegrationInput,
+    output = M.CreateDataIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/dataIntegrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataIntegrationAssociation = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "CreateDataIntegrationAssociation"),
+    input = M.CreateDataIntegrationAssociationInput,
+    output = M.CreateDataIntegrationAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/dataIntegrations/{DataIntegrationIdentifier}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventIntegration = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "CreateEventIntegration"),
+    input = M.CreateEventIntegrationInput,
+    output = M.CreateEventIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/eventIntegrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataIntegration = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "DeleteDataIntegration"),
+    input = M.DeleteDataIntegrationInput,
+    output = M.DeleteDataIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/dataIntegrations/{DataIntegrationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventIntegration = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "DeleteEventIntegration"),
+    input = M.DeleteEventIntegrationInput,
+    output = M.DeleteEventIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/eventIntegrations/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplication = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "GetApplication"),
+    input = M.GetApplicationInput,
+    output = M.GetApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataIntegration = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "GetDataIntegration"),
+    input = M.GetDataIntegrationInput,
+    output = M.GetDataIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/dataIntegrations/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventIntegration = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "GetEventIntegration"),
+    input = M.GetEventIntegrationInput,
+    output = M.GetEventIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/eventIntegrations/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationAssociations = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "ListApplicationAssociations"),
+    input = M.ListApplicationAssociationsInput,
+    output = M.ListApplicationAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataIntegrationAssociations = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "ListDataIntegrationAssociations"),
+    input = M.ListDataIntegrationAssociationsInput,
+    output = M.ListDataIntegrationAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/dataIntegrations/{DataIntegrationIdentifier}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataIntegrations = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "ListDataIntegrations"),
+    input = M.ListDataIntegrationsInput,
+    output = M.ListDataIntegrationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/dataIntegrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventIntegrationAssociations = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "ListEventIntegrationAssociations"),
+    input = M.ListEventIntegrationAssociationsInput,
+    output = M.ListEventIntegrationAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/eventIntegrations/{EventIntegrationName}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventIntegrations = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "ListEventIntegrations"),
+    input = M.ListEventIntegrationsInput,
+    output = M.ListEventIntegrationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/eventIntegrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/applications/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataIntegration = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "UpdateDataIntegration"),
+    input = M.UpdateDataIntegrationInput,
+    output = M.UpdateDataIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/dataIntegrations/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataIntegrationAssociation = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "UpdateDataIntegrationAssociation"),
+    input = M.UpdateDataIntegrationAssociationInput,
+    output = M.UpdateDataIntegrationAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/dataIntegrations/{DataIntegrationIdentifier}/associations/{DataIntegrationAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEventIntegration = schema.operation({
+    id = id.from("com.amazonaws.appintegrations", "UpdateEventIntegration"),
+    input = M.UpdateEventIntegrationInput,
+    output = M.UpdateEventIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/eventIntegrations/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

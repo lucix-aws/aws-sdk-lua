@@ -13306,4 +13306,878 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.bedrockagent", "AmazonBedrockAgentBuildTimeLambda"),
+    version = "2023-06-05",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAgentCollaborator = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "AssociateAgentCollaborator"),
+    input = M.AssociateAgentCollaboratorInput,
+    output = M.AssociateAgentCollaboratorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAgentKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "AssociateAgentKnowledgeBase"),
+    input = M.AssociateAgentKnowledgeBaseInput,
+    output = M.AssociateAgentKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAgent = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "CreateAgent"),
+    input = M.CreateAgentInput,
+    output = M.CreateAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/agents/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAgentActionGroup = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "CreateAgentActionGroup"),
+    input = M.CreateAgentActionGroupInput,
+    output = M.CreateAgentActionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAgentAlias = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "CreateAgentAlias"),
+    input = M.CreateAgentAliasInput,
+    output = M.CreateAgentAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/agents/{agentId}/agentaliases/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataSource = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "CreateDataSource"),
+    input = M.CreateDataSourceInput,
+    output = M.CreateDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/knowledgebases/{knowledgeBaseId}/datasources/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFlow = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "CreateFlow"),
+    input = M.CreateFlowInput,
+    output = M.CreateFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/flows/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFlowAlias = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "CreateFlowAlias"),
+    input = M.CreateFlowAliasInput,
+    output = M.CreateFlowAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/flows/{flowIdentifier}/aliases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFlowVersion = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "CreateFlowVersion"),
+    input = M.CreateFlowVersionInput,
+    output = M.CreateFlowVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/flows/{flowIdentifier}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "CreateKnowledgeBase"),
+    input = M.CreateKnowledgeBaseInput,
+    output = M.CreateKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/knowledgebases/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePrompt = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "CreatePrompt"),
+    input = M.CreatePromptInput,
+    output = M.CreatePromptOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prompts/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePromptVersion = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "CreatePromptVersion"),
+    input = M.CreatePromptVersionInput,
+    output = M.CreatePromptVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prompts/{promptIdentifier}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAgent = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DeleteAgent"),
+    input = M.DeleteAgentInput,
+    output = M.DeleteAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/agents/{agentId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAgentActionGroup = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DeleteAgentActionGroup"),
+    input = M.DeleteAgentActionGroupInput,
+    output = M.DeleteAgentActionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAgentAlias = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DeleteAgentAlias"),
+    input = M.DeleteAgentAliasInput,
+    output = M.DeleteAgentAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/agents/{agentId}/agentaliases/{agentAliasId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAgentVersion = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DeleteAgentVersion"),
+    input = M.DeleteAgentVersionInput,
+    output = M.DeleteAgentVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/agents/{agentId}/agentversions/{agentVersion}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataSource = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DeleteDataSource"),
+    input = M.DeleteDataSourceInput,
+    output = M.DeleteDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFlow = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DeleteFlow"),
+    input = M.DeleteFlowInput,
+    output = M.DeleteFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/flows/{flowIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFlowAlias = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DeleteFlowAlias"),
+    input = M.DeleteFlowAliasInput,
+    output = M.DeleteFlowAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/flows/{flowIdentifier}/aliases/{aliasIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFlowVersion = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DeleteFlowVersion"),
+    input = M.DeleteFlowVersionInput,
+    output = M.DeleteFlowVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/flows/{flowIdentifier}/versions/{flowVersion}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DeleteKnowledgeBase"),
+    input = M.DeleteKnowledgeBaseInput,
+    output = M.DeleteKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgebases/{knowledgeBaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKnowledgeBaseDocuments = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DeleteKnowledgeBaseDocuments"),
+    input = M.DeleteKnowledgeBaseDocumentsInput,
+    output = M.DeleteKnowledgeBaseDocumentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents/deleteDocuments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePrompt = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DeletePrompt"),
+    input = M.DeletePromptInput,
+    output = M.DeletePromptOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prompts/{promptIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateAgentCollaborator = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DisassociateAgentCollaborator"),
+    input = M.DisassociateAgentCollaboratorInput,
+    output = M.DisassociateAgentCollaboratorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/{collaboratorId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateAgentKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DisassociateAgentKnowledgeBase"),
+    input = M.DisassociateAgentKnowledgeBaseInput,
+    output = M.DisassociateAgentKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgent = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetAgent"),
+    input = M.GetAgentInput,
+    output = M.GetAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/agents/{agentId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentActionGroup = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetAgentActionGroup"),
+    input = M.GetAgentActionGroupInput,
+    output = M.GetAgentActionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentAlias = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetAgentAlias"),
+    input = M.GetAgentAliasInput,
+    output = M.GetAgentAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/agents/{agentId}/agentaliases/{agentAliasId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentCollaborator = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetAgentCollaborator"),
+    input = M.GetAgentCollaboratorInput,
+    output = M.GetAgentCollaboratorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/{collaboratorId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetAgentKnowledgeBase"),
+    input = M.GetAgentKnowledgeBaseInput,
+    output = M.GetAgentKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentVersion = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetAgentVersion"),
+    input = M.GetAgentVersionInput,
+    output = M.GetAgentVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/agents/{agentId}/agentversions/{agentVersion}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataSource = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetDataSource"),
+    input = M.GetDataSourceInput,
+    output = M.GetDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFlow = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetFlow"),
+    input = M.GetFlowInput,
+    output = M.GetFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/flows/{flowIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFlowAlias = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetFlowAlias"),
+    input = M.GetFlowAliasInput,
+    output = M.GetFlowAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/flows/{flowIdentifier}/aliases/{aliasIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFlowVersion = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetFlowVersion"),
+    input = M.GetFlowVersionInput,
+    output = M.GetFlowVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/flows/{flowIdentifier}/versions/{flowVersion}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIngestionJob = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetIngestionJob"),
+    input = M.GetIngestionJobInput,
+    output = M.GetIngestionJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/{ingestionJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetKnowledgeBase"),
+    input = M.GetKnowledgeBaseInput,
+    output = M.GetKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgebases/{knowledgeBaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKnowledgeBaseDocuments = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetKnowledgeBaseDocuments"),
+    input = M.GetKnowledgeBaseDocumentsInput,
+    output = M.GetKnowledgeBaseDocumentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents/getDocuments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPrompt = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetPrompt"),
+    input = M.GetPromptInput,
+    output = M.GetPromptOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prompts/{promptIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.IngestKnowledgeBaseDocuments = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "IngestKnowledgeBaseDocuments"),
+    input = M.IngestKnowledgeBaseDocumentsInput,
+    output = M.IngestKnowledgeBaseDocumentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentActionGroups = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListAgentActionGroups"),
+    input = M.ListAgentActionGroupsInput,
+    output = M.ListAgentActionGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentAliases = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListAgentAliases"),
+    input = M.ListAgentAliasesInput,
+    output = M.ListAgentAliasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agents/{agentId}/agentaliases/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentCollaborators = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListAgentCollaborators"),
+    input = M.ListAgentCollaboratorsInput,
+    output = M.ListAgentCollaboratorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentKnowledgeBases = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListAgentKnowledgeBases"),
+    input = M.ListAgentKnowledgeBasesInput,
+    output = M.ListAgentKnowledgeBasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgents = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListAgents"),
+    input = M.ListAgentsInput,
+    output = M.ListAgentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agents/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentVersions = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListAgentVersions"),
+    input = M.ListAgentVersionsInput,
+    output = M.ListAgentVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agents/{agentId}/agentversions/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSources = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListDataSources"),
+    input = M.ListDataSourcesInput,
+    output = M.ListDataSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgebases/{knowledgeBaseId}/datasources/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlowAliases = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListFlowAliases"),
+    input = M.ListFlowAliasesInput,
+    output = M.ListFlowAliasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/flows/{flowIdentifier}/aliases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlows = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListFlows"),
+    input = M.ListFlowsInput,
+    output = M.ListFlowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/flows/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlowVersions = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListFlowVersions"),
+    input = M.ListFlowVersionsInput,
+    output = M.ListFlowVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/flows/{flowIdentifier}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIngestionJobs = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListIngestionJobs"),
+    input = M.ListIngestionJobsInput,
+    output = M.ListIngestionJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKnowledgeBaseDocuments = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListKnowledgeBaseDocuments"),
+    input = M.ListKnowledgeBaseDocumentsInput,
+    output = M.ListKnowledgeBaseDocumentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKnowledgeBases = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListKnowledgeBases"),
+    input = M.ListKnowledgeBasesInput,
+    output = M.ListKnowledgeBasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgebases/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPrompts = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListPrompts"),
+    input = M.ListPromptsInput,
+    output = M.ListPromptsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prompts/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PrepareAgent = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "PrepareAgent"),
+    input = M.PrepareAgentInput,
+    output = M.PrepareAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agents/{agentId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PrepareFlow = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "PrepareFlow"),
+    input = M.PrepareFlowInput,
+    output = M.PrepareFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/flows/{flowIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartIngestionJob = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "StartIngestionJob"),
+    input = M.StartIngestionJobInput,
+    output = M.StartIngestionJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopIngestionJob = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "StopIngestionJob"),
+    input = M.StopIngestionJobInput,
+    output = M.StopIngestionJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/{ingestionJobId}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgent = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "UpdateAgent"),
+    input = M.UpdateAgentInput,
+    output = M.UpdateAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/agents/{agentId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentActionGroup = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "UpdateAgentActionGroup"),
+    input = M.UpdateAgentActionGroupInput,
+    output = M.UpdateAgentActionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentAlias = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "UpdateAgentAlias"),
+    input = M.UpdateAgentAliasInput,
+    output = M.UpdateAgentAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/agents/{agentId}/agentaliases/{agentAliasId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentCollaborator = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "UpdateAgentCollaborator"),
+    input = M.UpdateAgentCollaboratorInput,
+    output = M.UpdateAgentCollaboratorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/{collaboratorId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "UpdateAgentKnowledgeBase"),
+    input = M.UpdateAgentKnowledgeBaseInput,
+    output = M.UpdateAgentKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataSource = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "UpdateDataSource"),
+    input = M.UpdateDataSourceInput,
+    output = M.UpdateDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFlow = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "UpdateFlow"),
+    input = M.UpdateFlowInput,
+    output = M.UpdateFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/flows/{flowIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFlowAlias = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "UpdateFlowAlias"),
+    input = M.UpdateFlowAliasInput,
+    output = M.UpdateFlowAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/flows/{flowIdentifier}/aliases/{aliasIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "UpdateKnowledgeBase"),
+    input = M.UpdateKnowledgeBaseInput,
+    output = M.UpdateKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/knowledgebases/{knowledgeBaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePrompt = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "UpdatePrompt"),
+    input = M.UpdatePromptInput,
+    output = M.UpdatePromptOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prompts/{promptIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateFlowDefinition = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ValidateFlowDefinition"),
+    input = M.ValidateFlowDefinitionInput,
+    output = M.ValidateFlowDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/flows/validate-definition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

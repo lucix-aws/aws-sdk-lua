@@ -1665,4 +1665,218 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "LicenseManagerUserSubscriptions"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateUser = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "AssociateUser"),
+    input = M.AssociateUserInput,
+    output = M.AssociateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/user/AssociateUser" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLicenseServerEndpoint = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "CreateLicenseServerEndpoint"),
+    input = M.CreateLicenseServerEndpointInput,
+    output = M.CreateLicenseServerEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/license-server/CreateLicenseServerEndpoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLicenseServerEndpoint = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "DeleteLicenseServerEndpoint"),
+    input = M.DeleteLicenseServerEndpointInput,
+    output = M.DeleteLicenseServerEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/license-server/DeleteLicenseServerEndpoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterIdentityProvider = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "DeregisterIdentityProvider"),
+    input = M.DeregisterIdentityProviderInput,
+    output = M.DeregisterIdentityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identity-provider/DeregisterIdentityProvider" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateUser = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "DisassociateUser"),
+    input = M.DisassociateUserInput,
+    output = M.DisassociateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/user/DisassociateUser" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdentityProviders = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "ListIdentityProviders"),
+    input = M.ListIdentityProvidersInput,
+    output = M.ListIdentityProvidersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identity-provider/ListIdentityProviders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstances = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "ListInstances"),
+    input = M.ListInstancesInput,
+    output = M.ListInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/instance/ListInstances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLicenseServerEndpoints = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "ListLicenseServerEndpoints"),
+    input = M.ListLicenseServerEndpointsInput,
+    output = M.ListLicenseServerEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/license-server/ListLicenseServerEndpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProductSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "ListProductSubscriptions"),
+    input = M.ListProductSubscriptionsInput,
+    output = M.ListProductSubscriptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/user/ListProductSubscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUserAssociations = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "ListUserAssociations"),
+    input = M.ListUserAssociationsInput,
+    output = M.ListUserAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/user/ListUserAssociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterIdentityProvider = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "RegisterIdentityProvider"),
+    input = M.RegisterIdentityProviderInput,
+    output = M.RegisterIdentityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identity-provider/RegisterIdentityProvider" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartProductSubscription = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "StartProductSubscription"),
+    input = M.StartProductSubscriptionInput,
+    output = M.StartProductSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/user/StartProductSubscription" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopProductSubscription = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "StopProductSubscription"),
+    input = M.StopProductSubscriptionInput,
+    output = M.StopProductSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/user/StopProductSubscription" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIdentityProviderSettings = schema.operation({
+    id = id.from("com.amazonaws.licensemanagerusersubscriptions", "UpdateIdentityProviderSettings"),
+    input = M.UpdateIdentityProviderSettingsInput,
+    output = M.UpdateIdentityProviderSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identity-provider/UpdateIdentityProviderSettings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

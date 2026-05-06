@@ -7,6 +7,7 @@ local endpoint_rules = require("bedrock.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("bedrock.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bedrock", signing_region = cfg.region } }
                 else
@@ -49,1417 +52,407 @@ function M.new(cfg)
 end
 
 function Client:batchDeleteEvaluationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDeleteEvaluationJob",
-        input_schema = schemas.BatchDeleteEvaluationJobInput,
-        output_schema = schemas.BatchDeleteEvaluationJobOutput,
-        http_method = "POST",
-        http_path = "/evaluation-jobs/batch-delete",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDeleteEvaluationJob, input, options)
 end
 
 function Client:cancelAutomatedReasoningPolicyBuildWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelAutomatedReasoningPolicyBuildWorkflow",
-        input_schema = schemas.CancelAutomatedReasoningPolicyBuildWorkflowInput,
-        output_schema = schemas.CancelAutomatedReasoningPolicyBuildWorkflowOutput,
-        http_method = "POST",
-        http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/cancel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelAutomatedReasoningPolicyBuildWorkflow, input, options)
 end
 
 function Client:createAutomatedReasoningPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAutomatedReasoningPolicy",
-        input_schema = schemas.CreateAutomatedReasoningPolicyInput,
-        output_schema = schemas.CreateAutomatedReasoningPolicyOutput,
-        http_method = "POST",
-        http_path = "/automated-reasoning-policies",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAutomatedReasoningPolicy, input, options)
 end
 
 function Client:createAutomatedReasoningPolicyTestCase(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAutomatedReasoningPolicyTestCase",
-        input_schema = schemas.CreateAutomatedReasoningPolicyTestCaseInput,
-        output_schema = schemas.CreateAutomatedReasoningPolicyTestCaseOutput,
-        http_method = "POST",
-        http_path = "/automated-reasoning-policies/{policyArn}/test-cases",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAutomatedReasoningPolicyTestCase, input, options)
 end
 
 function Client:createAutomatedReasoningPolicyVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAutomatedReasoningPolicyVersion",
-        input_schema = schemas.CreateAutomatedReasoningPolicyVersionInput,
-        output_schema = schemas.CreateAutomatedReasoningPolicyVersionOutput,
-        http_method = "POST",
-        http_path = "/automated-reasoning-policies/{policyArn}/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAutomatedReasoningPolicyVersion, input, options)
 end
 
 function Client:createCustomModel(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCustomModel",
-        input_schema = schemas.CreateCustomModelInput,
-        output_schema = schemas.CreateCustomModelOutput,
-        http_method = "POST",
-        http_path = "/custom-models/create-custom-model",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCustomModel, input, options)
 end
 
 function Client:createCustomModelDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCustomModelDeployment",
-        input_schema = schemas.CreateCustomModelDeploymentInput,
-        output_schema = schemas.CreateCustomModelDeploymentOutput,
-        http_method = "POST",
-        http_path = "/model-customization/custom-model-deployments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCustomModelDeployment, input, options)
 end
 
 function Client:createEvaluationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEvaluationJob",
-        input_schema = schemas.CreateEvaluationJobInput,
-        output_schema = schemas.CreateEvaluationJobOutput,
-        http_method = "POST",
-        http_path = "/evaluation-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEvaluationJob, input, options)
 end
 
 function Client:createFoundationModelAgreement(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateFoundationModelAgreement",
-        input_schema = schemas.CreateFoundationModelAgreementInput,
-        output_schema = schemas.CreateFoundationModelAgreementOutput,
-        http_method = "POST",
-        http_path = "/create-foundation-model-agreement",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateFoundationModelAgreement, input, options)
 end
 
 function Client:createGuardrail(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGuardrail",
-        input_schema = schemas.CreateGuardrailInput,
-        output_schema = schemas.CreateGuardrailOutput,
-        http_method = "POST",
-        http_path = "/guardrails",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGuardrail, input, options)
 end
 
 function Client:createGuardrailVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGuardrailVersion",
-        input_schema = schemas.CreateGuardrailVersionInput,
-        output_schema = schemas.CreateGuardrailVersionOutput,
-        http_method = "POST",
-        http_path = "/guardrails/{guardrailIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGuardrailVersion, input, options)
 end
 
 function Client:createInferenceProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateInferenceProfile",
-        input_schema = schemas.CreateInferenceProfileInput,
-        output_schema = schemas.CreateInferenceProfileOutput,
-        http_method = "POST",
-        http_path = "/inference-profiles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateInferenceProfile, input, options)
 end
 
 function Client:createMarketplaceModelEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateMarketplaceModelEndpoint",
-        input_schema = schemas.CreateMarketplaceModelEndpointInput,
-        output_schema = schemas.CreateMarketplaceModelEndpointOutput,
-        http_method = "POST",
-        http_path = "/marketplace-model/endpoints",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateMarketplaceModelEndpoint, input, options)
 end
 
 function Client:createModelCopyJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateModelCopyJob",
-        input_schema = schemas.CreateModelCopyJobInput,
-        output_schema = schemas.CreateModelCopyJobOutput,
-        http_method = "POST",
-        http_path = "/model-copy-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateModelCopyJob, input, options)
 end
 
 function Client:createModelCustomizationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateModelCustomizationJob",
-        input_schema = schemas.CreateModelCustomizationJobInput,
-        output_schema = schemas.CreateModelCustomizationJobOutput,
-        http_method = "POST",
-        http_path = "/model-customization-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateModelCustomizationJob, input, options)
 end
 
 function Client:createModelImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateModelImportJob",
-        input_schema = schemas.CreateModelImportJobInput,
-        output_schema = schemas.CreateModelImportJobOutput,
-        http_method = "POST",
-        http_path = "/model-import-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateModelImportJob, input, options)
 end
 
 function Client:createModelInvocationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateModelInvocationJob",
-        input_schema = schemas.CreateModelInvocationJobInput,
-        output_schema = schemas.CreateModelInvocationJobOutput,
-        http_method = "POST",
-        http_path = "/model-invocation-job",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateModelInvocationJob, input, options)
 end
 
 function Client:createPromptRouter(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePromptRouter",
-        input_schema = schemas.CreatePromptRouterInput,
-        output_schema = schemas.CreatePromptRouterOutput,
-        http_method = "POST",
-        http_path = "/prompt-routers",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePromptRouter, input, options)
 end
 
 function Client:createProvisionedModelThroughput(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateProvisionedModelThroughput",
-        input_schema = schemas.CreateProvisionedModelThroughputInput,
-        output_schema = schemas.CreateProvisionedModelThroughputOutput,
-        http_method = "POST",
-        http_path = "/provisioned-model-throughput",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateProvisionedModelThroughput, input, options)
 end
 
 function Client:deleteAutomatedReasoningPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAutomatedReasoningPolicy",
-        input_schema = schemas.DeleteAutomatedReasoningPolicyInput,
-        output_schema = schemas.DeleteAutomatedReasoningPolicyOutput,
-        http_method = "DELETE",
-        http_path = "/automated-reasoning-policies/{policyArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAutomatedReasoningPolicy, input, options)
 end
 
 function Client:deleteAutomatedReasoningPolicyBuildWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAutomatedReasoningPolicyBuildWorkflow",
-        input_schema = schemas.DeleteAutomatedReasoningPolicyBuildWorkflowInput,
-        output_schema = schemas.DeleteAutomatedReasoningPolicyBuildWorkflowOutput,
-        http_method = "DELETE",
-        http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAutomatedReasoningPolicyBuildWorkflow, input, options)
 end
 
 function Client:deleteAutomatedReasoningPolicyTestCase(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAutomatedReasoningPolicyTestCase",
-        input_schema = schemas.DeleteAutomatedReasoningPolicyTestCaseInput,
-        output_schema = schemas.DeleteAutomatedReasoningPolicyTestCaseOutput,
-        http_method = "DELETE",
-        http_path = "/automated-reasoning-policies/{policyArn}/test-cases/{testCaseId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAutomatedReasoningPolicyTestCase, input, options)
 end
 
 function Client:deleteCustomModel(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCustomModel",
-        input_schema = schemas.DeleteCustomModelInput,
-        output_schema = schemas.DeleteCustomModelOutput,
-        http_method = "DELETE",
-        http_path = "/custom-models/{modelIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCustomModel, input, options)
 end
 
 function Client:deleteCustomModelDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCustomModelDeployment",
-        input_schema = schemas.DeleteCustomModelDeploymentInput,
-        output_schema = schemas.DeleteCustomModelDeploymentOutput,
-        http_method = "DELETE",
-        http_path = "/model-customization/custom-model-deployments/{customModelDeploymentIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCustomModelDeployment, input, options)
 end
 
 function Client:deleteEnforcedGuardrailConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEnforcedGuardrailConfiguration",
-        input_schema = schemas.DeleteEnforcedGuardrailConfigurationInput,
-        output_schema = schemas.DeleteEnforcedGuardrailConfigurationOutput,
-        http_method = "DELETE",
-        http_path = "/enforcedGuardrailsConfiguration/{configId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEnforcedGuardrailConfiguration, input, options)
 end
 
 function Client:deleteFoundationModelAgreement(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteFoundationModelAgreement",
-        input_schema = schemas.DeleteFoundationModelAgreementInput,
-        output_schema = schemas.DeleteFoundationModelAgreementOutput,
-        http_method = "POST",
-        http_path = "/delete-foundation-model-agreement",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteFoundationModelAgreement, input, options)
 end
 
 function Client:deleteGuardrail(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGuardrail",
-        input_schema = schemas.DeleteGuardrailInput,
-        output_schema = schemas.DeleteGuardrailOutput,
-        http_method = "DELETE",
-        http_path = "/guardrails/{guardrailIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGuardrail, input, options)
 end
 
 function Client:deleteImportedModel(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteImportedModel",
-        input_schema = schemas.DeleteImportedModelInput,
-        output_schema = schemas.DeleteImportedModelOutput,
-        http_method = "DELETE",
-        http_path = "/imported-models/{modelIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteImportedModel, input, options)
 end
 
 function Client:deleteInferenceProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteInferenceProfile",
-        input_schema = schemas.DeleteInferenceProfileInput,
-        output_schema = schemas.DeleteInferenceProfileOutput,
-        http_method = "DELETE",
-        http_path = "/inference-profiles/{inferenceProfileIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteInferenceProfile, input, options)
 end
 
 function Client:deleteMarketplaceModelEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMarketplaceModelEndpoint",
-        input_schema = schemas.DeleteMarketplaceModelEndpointInput,
-        output_schema = schemas.DeleteMarketplaceModelEndpointOutput,
-        http_method = "DELETE",
-        http_path = "/marketplace-model/endpoints/{endpointArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMarketplaceModelEndpoint, input, options)
 end
 
 function Client:deleteModelInvocationLoggingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteModelInvocationLoggingConfiguration",
-        input_schema = schemas.DeleteModelInvocationLoggingConfigurationInput,
-        output_schema = schemas.DeleteModelInvocationLoggingConfigurationOutput,
-        http_method = "DELETE",
-        http_path = "/logging/modelinvocations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteModelInvocationLoggingConfiguration, input, options)
 end
 
 function Client:deletePromptRouter(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePromptRouter",
-        input_schema = schemas.DeletePromptRouterInput,
-        output_schema = schemas.DeletePromptRouterOutput,
-        http_method = "DELETE",
-        http_path = "/prompt-routers/{promptRouterArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePromptRouter, input, options)
 end
 
 function Client:deleteProvisionedModelThroughput(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteProvisionedModelThroughput",
-        input_schema = schemas.DeleteProvisionedModelThroughputInput,
-        output_schema = schemas.DeleteProvisionedModelThroughputOutput,
-        http_method = "DELETE",
-        http_path = "/provisioned-model-throughput/{provisionedModelId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteProvisionedModelThroughput, input, options)
 end
 
 function Client:deleteResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteResourcePolicy",
-        input_schema = schemas.DeleteResourcePolicyInput,
-        output_schema = schemas.DeleteResourcePolicyOutput,
-        http_method = "DELETE",
-        http_path = "/resource-policy/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options)
 end
 
 function Client:deregisterMarketplaceModelEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterMarketplaceModelEndpoint",
-        input_schema = schemas.DeregisterMarketplaceModelEndpointInput,
-        output_schema = schemas.DeregisterMarketplaceModelEndpointOutput,
-        http_method = "DELETE",
-        http_path = "/marketplace-model/endpoints/{endpointArn}/registration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterMarketplaceModelEndpoint, input, options)
 end
 
 function Client:exportAutomatedReasoningPolicyVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "ExportAutomatedReasoningPolicyVersion",
-        input_schema = schemas.ExportAutomatedReasoningPolicyVersionInput,
-        output_schema = schemas.ExportAutomatedReasoningPolicyVersionOutput,
-        http_method = "GET",
-        http_path = "/automated-reasoning-policies/{policyArn}/export",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExportAutomatedReasoningPolicyVersion, input, options)
 end
 
 function Client:getAutomatedReasoningPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAutomatedReasoningPolicy",
-        input_schema = schemas.GetAutomatedReasoningPolicyInput,
-        output_schema = schemas.GetAutomatedReasoningPolicyOutput,
-        http_method = "GET",
-        http_path = "/automated-reasoning-policies/{policyArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAutomatedReasoningPolicy, input, options)
 end
 
 function Client:getAutomatedReasoningPolicyAnnotations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAutomatedReasoningPolicyAnnotations",
-        input_schema = schemas.GetAutomatedReasoningPolicyAnnotationsInput,
-        output_schema = schemas.GetAutomatedReasoningPolicyAnnotationsOutput,
-        http_method = "GET",
-        http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/annotations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAutomatedReasoningPolicyAnnotations, input, options)
 end
 
 function Client:getAutomatedReasoningPolicyBuildWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAutomatedReasoningPolicyBuildWorkflow",
-        input_schema = schemas.GetAutomatedReasoningPolicyBuildWorkflowInput,
-        output_schema = schemas.GetAutomatedReasoningPolicyBuildWorkflowOutput,
-        http_method = "GET",
-        http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAutomatedReasoningPolicyBuildWorkflow, input, options)
 end
 
 function Client:getAutomatedReasoningPolicyBuildWorkflowResultAssets(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAutomatedReasoningPolicyBuildWorkflowResultAssets",
-        input_schema = schemas.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsInput,
-        output_schema = schemas.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput,
-        http_method = "GET",
-        http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/result-assets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAutomatedReasoningPolicyBuildWorkflowResultAssets, input, options)
 end
 
 function Client:getAutomatedReasoningPolicyNextScenario(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAutomatedReasoningPolicyNextScenario",
-        input_schema = schemas.GetAutomatedReasoningPolicyNextScenarioInput,
-        output_schema = schemas.GetAutomatedReasoningPolicyNextScenarioOutput,
-        http_method = "GET",
-        http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/scenarios",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAutomatedReasoningPolicyNextScenario, input, options)
 end
 
 function Client:getAutomatedReasoningPolicyTestCase(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAutomatedReasoningPolicyTestCase",
-        input_schema = schemas.GetAutomatedReasoningPolicyTestCaseInput,
-        output_schema = schemas.GetAutomatedReasoningPolicyTestCaseOutput,
-        http_method = "GET",
-        http_path = "/automated-reasoning-policies/{policyArn}/test-cases/{testCaseId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAutomatedReasoningPolicyTestCase, input, options)
 end
 
 function Client:getAutomatedReasoningPolicyTestResult(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAutomatedReasoningPolicyTestResult",
-        input_schema = schemas.GetAutomatedReasoningPolicyTestResultInput,
-        output_schema = schemas.GetAutomatedReasoningPolicyTestResultOutput,
-        http_method = "GET",
-        http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/test-cases/{testCaseId}/test-results",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAutomatedReasoningPolicyTestResult, input, options)
 end
 
 function Client:getCustomModel(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCustomModel",
-        input_schema = schemas.GetCustomModelInput,
-        output_schema = schemas.GetCustomModelOutput,
-        http_method = "GET",
-        http_path = "/custom-models/{modelIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCustomModel, input, options)
 end
 
 function Client:getCustomModelDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCustomModelDeployment",
-        input_schema = schemas.GetCustomModelDeploymentInput,
-        output_schema = schemas.GetCustomModelDeploymentOutput,
-        http_method = "GET",
-        http_path = "/model-customization/custom-model-deployments/{customModelDeploymentIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCustomModelDeployment, input, options)
 end
 
 function Client:getEvaluationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEvaluationJob",
-        input_schema = schemas.GetEvaluationJobInput,
-        output_schema = schemas.GetEvaluationJobOutput,
-        http_method = "GET",
-        http_path = "/evaluation-jobs/{jobIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEvaluationJob, input, options)
 end
 
 function Client:getFoundationModel(input, options)
-    return self:invokeOperation(input, {
-        name = "GetFoundationModel",
-        input_schema = schemas.GetFoundationModelInput,
-        output_schema = schemas.GetFoundationModelOutput,
-        http_method = "GET",
-        http_path = "/foundation-models/{modelIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetFoundationModel, input, options)
 end
 
 function Client:getFoundationModelAvailability(input, options)
-    return self:invokeOperation(input, {
-        name = "GetFoundationModelAvailability",
-        input_schema = schemas.GetFoundationModelAvailabilityInput,
-        output_schema = schemas.GetFoundationModelAvailabilityOutput,
-        http_method = "GET",
-        http_path = "/foundation-model-availability/{modelId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetFoundationModelAvailability, input, options)
 end
 
 function Client:getGuardrail(input, options)
-    return self:invokeOperation(input, {
-        name = "GetGuardrail",
-        input_schema = schemas.GetGuardrailInput,
-        output_schema = schemas.GetGuardrailOutput,
-        http_method = "GET",
-        http_path = "/guardrails/{guardrailIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetGuardrail, input, options)
 end
 
 function Client:getImportedModel(input, options)
-    return self:invokeOperation(input, {
-        name = "GetImportedModel",
-        input_schema = schemas.GetImportedModelInput,
-        output_schema = schemas.GetImportedModelOutput,
-        http_method = "GET",
-        http_path = "/imported-models/{modelIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetImportedModel, input, options)
 end
 
 function Client:getInferenceProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "GetInferenceProfile",
-        input_schema = schemas.GetInferenceProfileInput,
-        output_schema = schemas.GetInferenceProfileOutput,
-        http_method = "GET",
-        http_path = "/inference-profiles/{inferenceProfileIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetInferenceProfile, input, options)
 end
 
 function Client:getMarketplaceModelEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMarketplaceModelEndpoint",
-        input_schema = schemas.GetMarketplaceModelEndpointInput,
-        output_schema = schemas.GetMarketplaceModelEndpointOutput,
-        http_method = "GET",
-        http_path = "/marketplace-model/endpoints/{endpointArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMarketplaceModelEndpoint, input, options)
 end
 
 function Client:getModelCopyJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetModelCopyJob",
-        input_schema = schemas.GetModelCopyJobInput,
-        output_schema = schemas.GetModelCopyJobOutput,
-        http_method = "GET",
-        http_path = "/model-copy-jobs/{jobArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetModelCopyJob, input, options)
 end
 
 function Client:getModelCustomizationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetModelCustomizationJob",
-        input_schema = schemas.GetModelCustomizationJobInput,
-        output_schema = schemas.GetModelCustomizationJobOutput,
-        http_method = "GET",
-        http_path = "/model-customization-jobs/{jobIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetModelCustomizationJob, input, options)
 end
 
 function Client:getModelImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetModelImportJob",
-        input_schema = schemas.GetModelImportJobInput,
-        output_schema = schemas.GetModelImportJobOutput,
-        http_method = "GET",
-        http_path = "/model-import-jobs/{jobIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetModelImportJob, input, options)
 end
 
 function Client:getModelInvocationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetModelInvocationJob",
-        input_schema = schemas.GetModelInvocationJobInput,
-        output_schema = schemas.GetModelInvocationJobOutput,
-        http_method = "GET",
-        http_path = "/model-invocation-job/{jobIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetModelInvocationJob, input, options)
 end
 
 function Client:getModelInvocationLoggingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetModelInvocationLoggingConfiguration",
-        input_schema = schemas.GetModelInvocationLoggingConfigurationInput,
-        output_schema = schemas.GetModelInvocationLoggingConfigurationOutput,
-        http_method = "GET",
-        http_path = "/logging/modelinvocations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetModelInvocationLoggingConfiguration, input, options)
 end
 
 function Client:getPromptRouter(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPromptRouter",
-        input_schema = schemas.GetPromptRouterInput,
-        output_schema = schemas.GetPromptRouterOutput,
-        http_method = "GET",
-        http_path = "/prompt-routers/{promptRouterArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPromptRouter, input, options)
 end
 
 function Client:getProvisionedModelThroughput(input, options)
-    return self:invokeOperation(input, {
-        name = "GetProvisionedModelThroughput",
-        input_schema = schemas.GetProvisionedModelThroughputInput,
-        output_schema = schemas.GetProvisionedModelThroughputOutput,
-        http_method = "GET",
-        http_path = "/provisioned-model-throughput/{provisionedModelId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetProvisionedModelThroughput, input, options)
 end
 
 function Client:getResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetResourcePolicy",
-        input_schema = schemas.GetResourcePolicyInput,
-        output_schema = schemas.GetResourcePolicyOutput,
-        http_method = "GET",
-        http_path = "/resource-policy/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options)
 end
 
 function Client:getUseCaseForModelAccess(input, options)
-    return self:invokeOperation(input, {
-        name = "GetUseCaseForModelAccess",
-        input_schema = schemas.GetUseCaseForModelAccessInput,
-        output_schema = schemas.GetUseCaseForModelAccessOutput,
-        http_method = "GET",
-        http_path = "/use-case-for-model-access",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetUseCaseForModelAccess, input, options)
 end
 
 function Client:listAutomatedReasoningPolicies(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAutomatedReasoningPolicies",
-        input_schema = schemas.ListAutomatedReasoningPoliciesInput,
-        output_schema = schemas.ListAutomatedReasoningPoliciesOutput,
-        http_method = "GET",
-        http_path = "/automated-reasoning-policies",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAutomatedReasoningPolicies, input, options)
 end
 
 function Client:listAutomatedReasoningPolicyBuildWorkflows(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAutomatedReasoningPolicyBuildWorkflows",
-        input_schema = schemas.ListAutomatedReasoningPolicyBuildWorkflowsInput,
-        output_schema = schemas.ListAutomatedReasoningPolicyBuildWorkflowsOutput,
-        http_method = "GET",
-        http_path = "/automated-reasoning-policies/{policyArn}/build-workflows",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAutomatedReasoningPolicyBuildWorkflows, input, options)
 end
 
 function Client:listAutomatedReasoningPolicyTestCases(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAutomatedReasoningPolicyTestCases",
-        input_schema = schemas.ListAutomatedReasoningPolicyTestCasesInput,
-        output_schema = schemas.ListAutomatedReasoningPolicyTestCasesOutput,
-        http_method = "GET",
-        http_path = "/automated-reasoning-policies/{policyArn}/test-cases",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAutomatedReasoningPolicyTestCases, input, options)
 end
 
 function Client:listAutomatedReasoningPolicyTestResults(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAutomatedReasoningPolicyTestResults",
-        input_schema = schemas.ListAutomatedReasoningPolicyTestResultsInput,
-        output_schema = schemas.ListAutomatedReasoningPolicyTestResultsOutput,
-        http_method = "GET",
-        http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/test-results",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAutomatedReasoningPolicyTestResults, input, options)
 end
 
 function Client:listCustomModelDeployments(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCustomModelDeployments",
-        input_schema = schemas.ListCustomModelDeploymentsInput,
-        output_schema = schemas.ListCustomModelDeploymentsOutput,
-        http_method = "GET",
-        http_path = "/model-customization/custom-model-deployments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCustomModelDeployments, input, options)
 end
 
 function Client:listCustomModels(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCustomModels",
-        input_schema = schemas.ListCustomModelsInput,
-        output_schema = schemas.ListCustomModelsOutput,
-        http_method = "GET",
-        http_path = "/custom-models",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCustomModels, input, options)
 end
 
 function Client:listEnforcedGuardrailsConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEnforcedGuardrailsConfiguration",
-        input_schema = schemas.ListEnforcedGuardrailsConfigurationInput,
-        output_schema = schemas.ListEnforcedGuardrailsConfigurationOutput,
-        http_method = "GET",
-        http_path = "/enforcedGuardrailsConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEnforcedGuardrailsConfiguration, input, options)
 end
 
 function Client:listEvaluationJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEvaluationJobs",
-        input_schema = schemas.ListEvaluationJobsInput,
-        output_schema = schemas.ListEvaluationJobsOutput,
-        http_method = "GET",
-        http_path = "/evaluation-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEvaluationJobs, input, options)
 end
 
 function Client:listFoundationModelAgreementOffers(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFoundationModelAgreementOffers",
-        input_schema = schemas.ListFoundationModelAgreementOffersInput,
-        output_schema = schemas.ListFoundationModelAgreementOffersOutput,
-        http_method = "GET",
-        http_path = "/list-foundation-model-agreement-offers/{modelId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFoundationModelAgreementOffers, input, options)
 end
 
 function Client:listFoundationModels(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFoundationModels",
-        input_schema = schemas.ListFoundationModelsInput,
-        output_schema = schemas.ListFoundationModelsOutput,
-        http_method = "GET",
-        http_path = "/foundation-models",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFoundationModels, input, options)
 end
 
 function Client:listGuardrails(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGuardrails",
-        input_schema = schemas.ListGuardrailsInput,
-        output_schema = schemas.ListGuardrailsOutput,
-        http_method = "GET",
-        http_path = "/guardrails",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGuardrails, input, options)
 end
 
 function Client:listImportedModels(input, options)
-    return self:invokeOperation(input, {
-        name = "ListImportedModels",
-        input_schema = schemas.ListImportedModelsInput,
-        output_schema = schemas.ListImportedModelsOutput,
-        http_method = "GET",
-        http_path = "/imported-models",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListImportedModels, input, options)
 end
 
 function Client:listInferenceProfiles(input, options)
-    return self:invokeOperation(input, {
-        name = "ListInferenceProfiles",
-        input_schema = schemas.ListInferenceProfilesInput,
-        output_schema = schemas.ListInferenceProfilesOutput,
-        http_method = "GET",
-        http_path = "/inference-profiles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListInferenceProfiles, input, options)
 end
 
 function Client:listMarketplaceModelEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMarketplaceModelEndpoints",
-        input_schema = schemas.ListMarketplaceModelEndpointsInput,
-        output_schema = schemas.ListMarketplaceModelEndpointsOutput,
-        http_method = "GET",
-        http_path = "/marketplace-model/endpoints",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMarketplaceModelEndpoints, input, options)
 end
 
 function Client:listModelCopyJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListModelCopyJobs",
-        input_schema = schemas.ListModelCopyJobsInput,
-        output_schema = schemas.ListModelCopyJobsOutput,
-        http_method = "GET",
-        http_path = "/model-copy-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListModelCopyJobs, input, options)
 end
 
 function Client:listModelCustomizationJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListModelCustomizationJobs",
-        input_schema = schemas.ListModelCustomizationJobsInput,
-        output_schema = schemas.ListModelCustomizationJobsOutput,
-        http_method = "GET",
-        http_path = "/model-customization-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListModelCustomizationJobs, input, options)
 end
 
 function Client:listModelImportJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListModelImportJobs",
-        input_schema = schemas.ListModelImportJobsInput,
-        output_schema = schemas.ListModelImportJobsOutput,
-        http_method = "GET",
-        http_path = "/model-import-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListModelImportJobs, input, options)
 end
 
 function Client:listModelInvocationJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListModelInvocationJobs",
-        input_schema = schemas.ListModelInvocationJobsInput,
-        output_schema = schemas.ListModelInvocationJobsOutput,
-        http_method = "GET",
-        http_path = "/model-invocation-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListModelInvocationJobs, input, options)
 end
 
 function Client:listPromptRouters(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPromptRouters",
-        input_schema = schemas.ListPromptRoutersInput,
-        output_schema = schemas.ListPromptRoutersOutput,
-        http_method = "GET",
-        http_path = "/prompt-routers",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPromptRouters, input, options)
 end
 
 function Client:listProvisionedModelThroughputs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProvisionedModelThroughputs",
-        input_schema = schemas.ListProvisionedModelThroughputsInput,
-        output_schema = schemas.ListProvisionedModelThroughputsOutput,
-        http_method = "GET",
-        http_path = "/provisioned-model-throughputs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProvisionedModelThroughputs, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/listTagsForResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putEnforcedGuardrailConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutEnforcedGuardrailConfiguration",
-        input_schema = schemas.PutEnforcedGuardrailConfigurationInput,
-        output_schema = schemas.PutEnforcedGuardrailConfigurationOutput,
-        http_method = "PUT",
-        http_path = "/enforcedGuardrailsConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutEnforcedGuardrailConfiguration, input, options)
 end
 
 function Client:putModelInvocationLoggingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutModelInvocationLoggingConfiguration",
-        input_schema = schemas.PutModelInvocationLoggingConfigurationInput,
-        output_schema = schemas.PutModelInvocationLoggingConfigurationOutput,
-        http_method = "PUT",
-        http_path = "/logging/modelinvocations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutModelInvocationLoggingConfiguration, input, options)
 end
 
 function Client:putResourcePolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutResourcePolicy",
-        input_schema = schemas.PutResourcePolicyInput,
-        output_schema = schemas.PutResourcePolicyOutput,
-        http_method = "POST",
-        http_path = "/resource-policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options)
 end
 
 function Client:putUseCaseForModelAccess(input, options)
-    return self:invokeOperation(input, {
-        name = "PutUseCaseForModelAccess",
-        input_schema = schemas.PutUseCaseForModelAccessInput,
-        output_schema = schemas.PutUseCaseForModelAccessOutput,
-        http_method = "POST",
-        http_path = "/use-case-for-model-access",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutUseCaseForModelAccess, input, options)
 end
 
 function Client:registerMarketplaceModelEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterMarketplaceModelEndpoint",
-        input_schema = schemas.RegisterMarketplaceModelEndpointInput,
-        output_schema = schemas.RegisterMarketplaceModelEndpointOutput,
-        http_method = "POST",
-        http_path = "/marketplace-model/endpoints/{endpointIdentifier}/registration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterMarketplaceModelEndpoint, input, options)
 end
 
 function Client:startAutomatedReasoningPolicyBuildWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "StartAutomatedReasoningPolicyBuildWorkflow",
-        input_schema = schemas.StartAutomatedReasoningPolicyBuildWorkflowInput,
-        output_schema = schemas.StartAutomatedReasoningPolicyBuildWorkflowOutput,
-        http_method = "POST",
-        http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowType}/start",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartAutomatedReasoningPolicyBuildWorkflow, input, options)
 end
 
 function Client:startAutomatedReasoningPolicyTestWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "StartAutomatedReasoningPolicyTestWorkflow",
-        input_schema = schemas.StartAutomatedReasoningPolicyTestWorkflowInput,
-        output_schema = schemas.StartAutomatedReasoningPolicyTestWorkflowOutput,
-        http_method = "POST",
-        http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/test-workflows",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartAutomatedReasoningPolicyTestWorkflow, input, options)
 end
 
 function Client:stopEvaluationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StopEvaluationJob",
-        input_schema = schemas.StopEvaluationJobInput,
-        output_schema = schemas.StopEvaluationJobOutput,
-        http_method = "POST",
-        http_path = "/evaluation-job/{jobIdentifier}/stop",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopEvaluationJob, input, options)
 end
 
 function Client:stopModelCustomizationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StopModelCustomizationJob",
-        input_schema = schemas.StopModelCustomizationJobInput,
-        output_schema = schemas.StopModelCustomizationJobOutput,
-        http_method = "POST",
-        http_path = "/model-customization-jobs/{jobIdentifier}/stop",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopModelCustomizationJob, input, options)
 end
 
 function Client:stopModelInvocationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StopModelInvocationJob",
-        input_schema = schemas.StopModelInvocationJobInput,
-        output_schema = schemas.StopModelInvocationJobOutput,
-        http_method = "POST",
-        http_path = "/model-invocation-job/{jobIdentifier}/stop",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopModelInvocationJob, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/untagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAutomatedReasoningPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAutomatedReasoningPolicy",
-        input_schema = schemas.UpdateAutomatedReasoningPolicyInput,
-        output_schema = schemas.UpdateAutomatedReasoningPolicyOutput,
-        http_method = "PATCH",
-        http_path = "/automated-reasoning-policies/{policyArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAutomatedReasoningPolicy, input, options)
 end
 
 function Client:updateAutomatedReasoningPolicyAnnotations(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAutomatedReasoningPolicyAnnotations",
-        input_schema = schemas.UpdateAutomatedReasoningPolicyAnnotationsInput,
-        output_schema = schemas.UpdateAutomatedReasoningPolicyAnnotationsOutput,
-        http_method = "PATCH",
-        http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/annotations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAutomatedReasoningPolicyAnnotations, input, options)
 end
 
 function Client:updateAutomatedReasoningPolicyTestCase(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAutomatedReasoningPolicyTestCase",
-        input_schema = schemas.UpdateAutomatedReasoningPolicyTestCaseInput,
-        output_schema = schemas.UpdateAutomatedReasoningPolicyTestCaseOutput,
-        http_method = "PATCH",
-        http_path = "/automated-reasoning-policies/{policyArn}/test-cases/{testCaseId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAutomatedReasoningPolicyTestCase, input, options)
 end
 
 function Client:updateCustomModelDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCustomModelDeployment",
-        input_schema = schemas.UpdateCustomModelDeploymentInput,
-        output_schema = schemas.UpdateCustomModelDeploymentOutput,
-        http_method = "PATCH",
-        http_path = "/model-customization/custom-model-deployments/{customModelDeploymentIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCustomModelDeployment, input, options)
 end
 
 function Client:updateGuardrail(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateGuardrail",
-        input_schema = schemas.UpdateGuardrailInput,
-        output_schema = schemas.UpdateGuardrailOutput,
-        http_method = "PUT",
-        http_path = "/guardrails/{guardrailIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateGuardrail, input, options)
 end
 
 function Client:updateMarketplaceModelEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateMarketplaceModelEndpoint",
-        input_schema = schemas.UpdateMarketplaceModelEndpointInput,
-        output_schema = schemas.UpdateMarketplaceModelEndpointOutput,
-        http_method = "PATCH",
-        http_path = "/marketplace-model/endpoints/{endpointArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateMarketplaceModelEndpoint, input, options)
 end
 
 function Client:updateProvisionedModelThroughput(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateProvisionedModelThroughput",
-        input_schema = schemas.UpdateProvisionedModelThroughputInput,
-        output_schema = schemas.UpdateProvisionedModelThroughputOutput,
-        http_method = "PATCH",
-        http_path = "/provisioned-model-throughput/{provisionedModelId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateProvisionedModelThroughput, input, options)
 end
 
 return M

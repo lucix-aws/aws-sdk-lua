@@ -150,4 +150,26 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.marketplacereporting", "AWSMarketplaceReporting"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBuyerDashboard = schema.operation({
+    id = id.from("com.amazonaws.marketplacereporting", "GetBuyerDashboard"),
+    input = M.GetBuyerDashboardInput,
+    output = M.GetBuyerDashboardOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getBuyerDashboard" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

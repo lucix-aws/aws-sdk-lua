@@ -6956,4 +6956,1070 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.storagegateway", "StorageGateway_20130630"),
+    version = "2013-06-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ActivateGateway = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ActivateGateway"),
+    input = M.ActivateGatewayInput,
+    output = M.ActivateGatewayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddCache = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "AddCache"),
+    input = M.AddCacheInput,
+    output = M.AddCacheOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTagsToResource = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "AddTagsToResource"),
+    input = M.AddTagsToResourceInput,
+    output = M.AddTagsToResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddUploadBuffer = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "AddUploadBuffer"),
+    input = M.AddUploadBufferInput,
+    output = M.AddUploadBufferOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddWorkingStorage = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "AddWorkingStorage"),
+    input = M.AddWorkingStorageInput,
+    output = M.AddWorkingStorageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssignTapePool = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "AssignTapePool"),
+    input = M.AssignTapePoolInput,
+    output = M.AssignTapePoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateFileSystem = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "AssociateFileSystem"),
+    input = M.AssociateFileSystemInput,
+    output = M.AssociateFileSystemOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachVolume = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "AttachVolume"),
+    input = M.AttachVolumeInput,
+    output = M.AttachVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelArchival = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "CancelArchival"),
+    input = M.CancelArchivalInput,
+    output = M.CancelArchivalOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelCacheReport = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "CancelCacheReport"),
+    input = M.CancelCacheReportInput,
+    output = M.CancelCacheReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelRetrieval = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "CancelRetrieval"),
+    input = M.CancelRetrievalInput,
+    output = M.CancelRetrievalOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCachediSCSIVolume = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "CreateCachediSCSIVolume"),
+    input = M.CreateCachediSCSIVolumeInput,
+    output = M.CreateCachediSCSIVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNFSFileShare = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "CreateNFSFileShare"),
+    input = M.CreateNFSFileShareInput,
+    output = M.CreateNFSFileShareOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSMBFileShare = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "CreateSMBFileShare"),
+    input = M.CreateSMBFileShareInput,
+    output = M.CreateSMBFileShareOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSnapshot = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "CreateSnapshot"),
+    input = M.CreateSnapshotInput,
+    output = M.CreateSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSnapshotFromVolumeRecoveryPoint = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "CreateSnapshotFromVolumeRecoveryPoint"),
+    input = M.CreateSnapshotFromVolumeRecoveryPointInput,
+    output = M.CreateSnapshotFromVolumeRecoveryPointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStorediSCSIVolume = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "CreateStorediSCSIVolume"),
+    input = M.CreateStorediSCSIVolumeInput,
+    output = M.CreateStorediSCSIVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTapePool = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "CreateTapePool"),
+    input = M.CreateTapePoolInput,
+    output = M.CreateTapePoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTapes = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "CreateTapes"),
+    input = M.CreateTapesInput,
+    output = M.CreateTapesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTapeWithBarcode = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "CreateTapeWithBarcode"),
+    input = M.CreateTapeWithBarcodeInput,
+    output = M.CreateTapeWithBarcodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAutomaticTapeCreationPolicy = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DeleteAutomaticTapeCreationPolicy"),
+    input = M.DeleteAutomaticTapeCreationPolicyInput,
+    output = M.DeleteAutomaticTapeCreationPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBandwidthRateLimit = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DeleteBandwidthRateLimit"),
+    input = M.DeleteBandwidthRateLimitInput,
+    output = M.DeleteBandwidthRateLimitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCacheReport = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DeleteCacheReport"),
+    input = M.DeleteCacheReportInput,
+    output = M.DeleteCacheReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChapCredentials = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DeleteChapCredentials"),
+    input = M.DeleteChapCredentialsInput,
+    output = M.DeleteChapCredentialsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFileShare = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DeleteFileShare"),
+    input = M.DeleteFileShareInput,
+    output = M.DeleteFileShareOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGateway = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DeleteGateway"),
+    input = M.DeleteGatewayInput,
+    output = M.DeleteGatewayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSnapshotSchedule = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DeleteSnapshotSchedule"),
+    input = M.DeleteSnapshotScheduleInput,
+    output = M.DeleteSnapshotScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTape = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DeleteTape"),
+    input = M.DeleteTapeInput,
+    output = M.DeleteTapeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTapeArchive = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DeleteTapeArchive"),
+    input = M.DeleteTapeArchiveInput,
+    output = M.DeleteTapeArchiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTapePool = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DeleteTapePool"),
+    input = M.DeleteTapePoolInput,
+    output = M.DeleteTapePoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVolume = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DeleteVolume"),
+    input = M.DeleteVolumeInput,
+    output = M.DeleteVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAvailabilityMonitorTest = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeAvailabilityMonitorTest"),
+    input = M.DescribeAvailabilityMonitorTestInput,
+    output = M.DescribeAvailabilityMonitorTestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBandwidthRateLimit = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeBandwidthRateLimit"),
+    input = M.DescribeBandwidthRateLimitInput,
+    output = M.DescribeBandwidthRateLimitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBandwidthRateLimitSchedule = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeBandwidthRateLimitSchedule"),
+    input = M.DescribeBandwidthRateLimitScheduleInput,
+    output = M.DescribeBandwidthRateLimitScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCache = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeCache"),
+    input = M.DescribeCacheInput,
+    output = M.DescribeCacheOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCachediSCSIVolumes = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeCachediSCSIVolumes"),
+    input = M.DescribeCachediSCSIVolumesInput,
+    output = M.DescribeCachediSCSIVolumesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCacheReport = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeCacheReport"),
+    input = M.DescribeCacheReportInput,
+    output = M.DescribeCacheReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChapCredentials = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeChapCredentials"),
+    input = M.DescribeChapCredentialsInput,
+    output = M.DescribeChapCredentialsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFileSystemAssociations = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeFileSystemAssociations"),
+    input = M.DescribeFileSystemAssociationsInput,
+    output = M.DescribeFileSystemAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGatewayInformation = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeGatewayInformation"),
+    input = M.DescribeGatewayInformationInput,
+    output = M.DescribeGatewayInformationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMaintenanceStartTime = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeMaintenanceStartTime"),
+    input = M.DescribeMaintenanceStartTimeInput,
+    output = M.DescribeMaintenanceStartTimeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNFSFileShares = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeNFSFileShares"),
+    input = M.DescribeNFSFileSharesInput,
+    output = M.DescribeNFSFileSharesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSMBFileShares = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeSMBFileShares"),
+    input = M.DescribeSMBFileSharesInput,
+    output = M.DescribeSMBFileSharesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSMBSettings = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeSMBSettings"),
+    input = M.DescribeSMBSettingsInput,
+    output = M.DescribeSMBSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSnapshotSchedule = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeSnapshotSchedule"),
+    input = M.DescribeSnapshotScheduleInput,
+    output = M.DescribeSnapshotScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStorediSCSIVolumes = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeStorediSCSIVolumes"),
+    input = M.DescribeStorediSCSIVolumesInput,
+    output = M.DescribeStorediSCSIVolumesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTapeArchives = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeTapeArchives"),
+    input = M.DescribeTapeArchivesInput,
+    output = M.DescribeTapeArchivesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTapeRecoveryPoints = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeTapeRecoveryPoints"),
+    input = M.DescribeTapeRecoveryPointsInput,
+    output = M.DescribeTapeRecoveryPointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTapes = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeTapes"),
+    input = M.DescribeTapesInput,
+    output = M.DescribeTapesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUploadBuffer = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeUploadBuffer"),
+    input = M.DescribeUploadBufferInput,
+    output = M.DescribeUploadBufferOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVTLDevices = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeVTLDevices"),
+    input = M.DescribeVTLDevicesInput,
+    output = M.DescribeVTLDevicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkingStorage = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DescribeWorkingStorage"),
+    input = M.DescribeWorkingStorageInput,
+    output = M.DescribeWorkingStorageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachVolume = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DetachVolume"),
+    input = M.DetachVolumeInput,
+    output = M.DetachVolumeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableGateway = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DisableGateway"),
+    input = M.DisableGatewayInput,
+    output = M.DisableGatewayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFileSystem = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "DisassociateFileSystem"),
+    input = M.DisassociateFileSystemInput,
+    output = M.DisassociateFileSystemOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EvictFilesFailingUpload = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "EvictFilesFailingUpload"),
+    input = M.EvictFilesFailingUploadInput,
+    output = M.EvictFilesFailingUploadOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.JoinDomain = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "JoinDomain"),
+    input = M.JoinDomainInput,
+    output = M.JoinDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutomaticTapeCreationPolicies = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ListAutomaticTapeCreationPolicies"),
+    input = M.ListAutomaticTapeCreationPoliciesInput,
+    output = M.ListAutomaticTapeCreationPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCacheReports = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ListCacheReports"),
+    input = M.ListCacheReportsInput,
+    output = M.ListCacheReportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFileShares = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ListFileShares"),
+    input = M.ListFileSharesInput,
+    output = M.ListFileSharesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFileSystemAssociations = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ListFileSystemAssociations"),
+    input = M.ListFileSystemAssociationsInput,
+    output = M.ListFileSystemAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGateways = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ListGateways"),
+    input = M.ListGatewaysInput,
+    output = M.ListGatewaysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLocalDisks = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ListLocalDisks"),
+    input = M.ListLocalDisksInput,
+    output = M.ListLocalDisksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTapePools = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ListTapePools"),
+    input = M.ListTapePoolsInput,
+    output = M.ListTapePoolsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTapes = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ListTapes"),
+    input = M.ListTapesInput,
+    output = M.ListTapesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVolumeInitiators = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ListVolumeInitiators"),
+    input = M.ListVolumeInitiatorsInput,
+    output = M.ListVolumeInitiatorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVolumeRecoveryPoints = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ListVolumeRecoveryPoints"),
+    input = M.ListVolumeRecoveryPointsInput,
+    output = M.ListVolumeRecoveryPointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVolumes = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ListVolumes"),
+    input = M.ListVolumesInput,
+    output = M.ListVolumesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.NotifyWhenUploaded = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "NotifyWhenUploaded"),
+    input = M.NotifyWhenUploadedInput,
+    output = M.NotifyWhenUploadedOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RefreshCache = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "RefreshCache"),
+    input = M.RefreshCacheInput,
+    output = M.RefreshCacheOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTagsFromResource = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "RemoveTagsFromResource"),
+    input = M.RemoveTagsFromResourceInput,
+    output = M.RemoveTagsFromResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetCache = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ResetCache"),
+    input = M.ResetCacheInput,
+    output = M.ResetCacheOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetrieveTapeArchive = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "RetrieveTapeArchive"),
+    input = M.RetrieveTapeArchiveInput,
+    output = M.RetrieveTapeArchiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetrieveTapeRecoveryPoint = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "RetrieveTapeRecoveryPoint"),
+    input = M.RetrieveTapeRecoveryPointInput,
+    output = M.RetrieveTapeRecoveryPointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetLocalConsolePassword = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "SetLocalConsolePassword"),
+    input = M.SetLocalConsolePasswordInput,
+    output = M.SetLocalConsolePasswordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetSMBGuestPassword = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "SetSMBGuestPassword"),
+    input = M.SetSMBGuestPasswordInput,
+    output = M.SetSMBGuestPasswordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ShutdownGateway = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "ShutdownGateway"),
+    input = M.ShutdownGatewayInput,
+    output = M.ShutdownGatewayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAvailabilityMonitorTest = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "StartAvailabilityMonitorTest"),
+    input = M.StartAvailabilityMonitorTestInput,
+    output = M.StartAvailabilityMonitorTestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCacheReport = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "StartCacheReport"),
+    input = M.StartCacheReportInput,
+    output = M.StartCacheReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartGateway = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "StartGateway"),
+    input = M.StartGatewayInput,
+    output = M.StartGatewayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAutomaticTapeCreationPolicy = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateAutomaticTapeCreationPolicy"),
+    input = M.UpdateAutomaticTapeCreationPolicyInput,
+    output = M.UpdateAutomaticTapeCreationPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBandwidthRateLimit = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateBandwidthRateLimit"),
+    input = M.UpdateBandwidthRateLimitInput,
+    output = M.UpdateBandwidthRateLimitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBandwidthRateLimitSchedule = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateBandwidthRateLimitSchedule"),
+    input = M.UpdateBandwidthRateLimitScheduleInput,
+    output = M.UpdateBandwidthRateLimitScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChapCredentials = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateChapCredentials"),
+    input = M.UpdateChapCredentialsInput,
+    output = M.UpdateChapCredentialsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFileSystemAssociation = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateFileSystemAssociation"),
+    input = M.UpdateFileSystemAssociationInput,
+    output = M.UpdateFileSystemAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGatewayInformation = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateGatewayInformation"),
+    input = M.UpdateGatewayInformationInput,
+    output = M.UpdateGatewayInformationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGatewaySoftwareNow = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateGatewaySoftwareNow"),
+    input = M.UpdateGatewaySoftwareNowInput,
+    output = M.UpdateGatewaySoftwareNowOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMaintenanceStartTime = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateMaintenanceStartTime"),
+    input = M.UpdateMaintenanceStartTimeInput,
+    output = M.UpdateMaintenanceStartTimeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNFSFileShare = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateNFSFileShare"),
+    input = M.UpdateNFSFileShareInput,
+    output = M.UpdateNFSFileShareOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSMBFileShare = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateSMBFileShare"),
+    input = M.UpdateSMBFileShareInput,
+    output = M.UpdateSMBFileShareOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSMBFileShareVisibility = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateSMBFileShareVisibility"),
+    input = M.UpdateSMBFileShareVisibilityInput,
+    output = M.UpdateSMBFileShareVisibilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSMBLocalGroups = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateSMBLocalGroups"),
+    input = M.UpdateSMBLocalGroupsInput,
+    output = M.UpdateSMBLocalGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSMBSecurityStrategy = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateSMBSecurityStrategy"),
+    input = M.UpdateSMBSecurityStrategyInput,
+    output = M.UpdateSMBSecurityStrategyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSnapshotSchedule = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateSnapshotSchedule"),
+    input = M.UpdateSnapshotScheduleInput,
+    output = M.UpdateSnapshotScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVTLDeviceType = schema.operation({
+    id = id.from("com.amazonaws.storagegateway", "UpdateVTLDeviceType"),
+    input = M.UpdateVTLDeviceTypeInput,
+    output = M.UpdateVTLDeviceTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

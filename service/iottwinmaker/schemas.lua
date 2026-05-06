@@ -5570,4 +5570,494 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.iottwinmaker", "AWSIoTTwinMaker"),
+    version = "2021-11-29",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchPutPropertyValues = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "BatchPutPropertyValues"),
+    input = M.BatchPutPropertyValuesInput,
+    output = M.BatchPutPropertyValuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/entity-properties" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelMetadataTransferJob = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "CancelMetadataTransferJob"),
+    input = M.CancelMetadataTransferJobInput,
+    output = M.CancelMetadataTransferJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/metadata-transfer-jobs/{metadataTransferJobId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateComponentType = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "CreateComponentType"),
+    input = M.CreateComponentTypeInput,
+    output = M.CreateComponentTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/component-types/{componentTypeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEntity = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "CreateEntity"),
+    input = M.CreateEntityInput,
+    output = M.CreateEntityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/entities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMetadataTransferJob = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "CreateMetadataTransferJob"),
+    input = M.CreateMetadataTransferJobInput,
+    output = M.CreateMetadataTransferJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metadata-transfer-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateScene = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "CreateScene"),
+    input = M.CreateSceneInput,
+    output = M.CreateSceneOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/scenes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSyncJob = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "CreateSyncJob"),
+    input = M.CreateSyncJobInput,
+    output = M.CreateSyncJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/sync-jobs/{syncSource}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkspace = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "CreateWorkspace"),
+    input = M.CreateWorkspaceInput,
+    output = M.CreateWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteComponentType = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "DeleteComponentType"),
+    input = M.DeleteComponentTypeInput,
+    output = M.DeleteComponentTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}/component-types/{componentTypeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEntity = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "DeleteEntity"),
+    input = M.DeleteEntityInput,
+    output = M.DeleteEntityOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}/entities/{entityId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScene = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "DeleteScene"),
+    input = M.DeleteSceneInput,
+    output = M.DeleteSceneOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}/scenes/{sceneId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSyncJob = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "DeleteSyncJob"),
+    input = M.DeleteSyncJobInput,
+    output = M.DeleteSyncJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}/sync-jobs/{syncSource}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkspace = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "DeleteWorkspace"),
+    input = M.DeleteWorkspaceInput,
+    output = M.DeleteWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteQuery = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "ExecuteQuery"),
+    input = M.ExecuteQueryInput,
+    output = M.ExecuteQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/queries/execution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComponentType = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "GetComponentType"),
+    input = M.GetComponentTypeInput,
+    output = M.GetComponentTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/component-types/{componentTypeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEntity = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "GetEntity"),
+    input = M.GetEntityInput,
+    output = M.GetEntityOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/entities/{entityId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMetadataTransferJob = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "GetMetadataTransferJob"),
+    input = M.GetMetadataTransferJobInput,
+    output = M.GetMetadataTransferJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/metadata-transfer-jobs/{metadataTransferJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPricingPlan = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "GetPricingPlan"),
+    input = M.GetPricingPlanInput,
+    output = M.GetPricingPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/pricingplan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPropertyValue = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "GetPropertyValue"),
+    input = M.GetPropertyValueInput,
+    output = M.GetPropertyValueOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/entity-properties/value" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPropertyValueHistory = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "GetPropertyValueHistory"),
+    input = M.GetPropertyValueHistoryInput,
+    output = M.GetPropertyValueHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/entity-properties/history" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetScene = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "GetScene"),
+    input = M.GetSceneInput,
+    output = M.GetSceneOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/scenes/{sceneId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSyncJob = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "GetSyncJob"),
+    input = M.GetSyncJobInput,
+    output = M.GetSyncJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sync-jobs/{syncSource}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkspace = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "GetWorkspace"),
+    input = M.GetWorkspaceInput,
+    output = M.GetWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComponents = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "ListComponents"),
+    input = M.ListComponentsInput,
+    output = M.ListComponentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/entities/{entityId}/components-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComponentTypes = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "ListComponentTypes"),
+    input = M.ListComponentTypesInput,
+    output = M.ListComponentTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/component-types-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEntities = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "ListEntities"),
+    input = M.ListEntitiesInput,
+    output = M.ListEntitiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/entities-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMetadataTransferJobs = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "ListMetadataTransferJobs"),
+    input = M.ListMetadataTransferJobsInput,
+    output = M.ListMetadataTransferJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metadata-transfer-jobs-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProperties = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "ListProperties"),
+    input = M.ListPropertiesInput,
+    output = M.ListPropertiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/properties-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScenes = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "ListScenes"),
+    input = M.ListScenesInput,
+    output = M.ListScenesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/scenes-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSyncJobs = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "ListSyncJobs"),
+    input = M.ListSyncJobsInput,
+    output = M.ListSyncJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/sync-jobs-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSyncResources = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "ListSyncResources"),
+    input = M.ListSyncResourcesInput,
+    output = M.ListSyncResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/sync-jobs/{syncSource}/resources-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkspaces = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "ListWorkspaces"),
+    input = M.ListWorkspacesInput,
+    output = M.ListWorkspacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateComponentType = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "UpdateComponentType"),
+    input = M.UpdateComponentTypeInput,
+    output = M.UpdateComponentTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workspaces/{workspaceId}/component-types/{componentTypeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEntity = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "UpdateEntity"),
+    input = M.UpdateEntityInput,
+    output = M.UpdateEntityOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workspaces/{workspaceId}/entities/{entityId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePricingPlan = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "UpdatePricingPlan"),
+    input = M.UpdatePricingPlanInput,
+    output = M.UpdatePricingPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/pricingplan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateScene = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "UpdateScene"),
+    input = M.UpdateSceneInput,
+    output = M.UpdateSceneOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workspaces/{workspaceId}/scenes/{sceneId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkspace = schema.operation({
+    id = id.from("com.amazonaws.iottwinmaker", "UpdateWorkspace"),
+    input = M.UpdateWorkspaceInput,
+    output = M.UpdateWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workspaces/{workspaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

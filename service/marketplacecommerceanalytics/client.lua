@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("marketplacecommerceanalytics.endpoint_rules")
 local schemas = require("marketplacecommerceanalytics.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "marketplacecommerceanalytics", signing_region = cfg.region } }
                 else
@@ -49,29 +52,11 @@ function M.new(cfg)
 end
 
 function Client:generateDataSet(input, options)
-    return self:invokeOperation(input, {
-        name = "GenerateDataSet",
-        input_schema = schemas.GenerateDataSetInput,
-        output_schema = schemas.GenerateDataSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GenerateDataSet, input, options)
 end
 
 function Client:startSupportDataExport(input, options)
-    return self:invokeOperation(input, {
-        name = "StartSupportDataExport",
-        input_schema = schemas.StartSupportDataExportInput,
-        output_schema = schemas.StartSupportDataExportOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartSupportDataExport, input, options)
 end
 
 return M

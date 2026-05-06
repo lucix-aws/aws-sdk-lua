@@ -3440,4 +3440,134 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.pipes", "Pipes"),
+    version = "2015-10-07",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePipe = schema.operation({
+    id = id.from("com.amazonaws.pipes", "CreatePipe"),
+    input = M.CreatePipeInput,
+    output = M.CreatePipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/pipes/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePipe = schema.operation({
+    id = id.from("com.amazonaws.pipes", "DeletePipe"),
+    input = M.DeletePipeInput,
+    output = M.DeletePipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/pipes/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePipe = schema.operation({
+    id = id.from("com.amazonaws.pipes", "DescribePipe"),
+    input = M.DescribePipeInput,
+    output = M.DescribePipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/pipes/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPipes = schema.operation({
+    id = id.from("com.amazonaws.pipes", "ListPipes"),
+    input = M.ListPipesInput,
+    output = M.ListPipesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/pipes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.pipes", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartPipe = schema.operation({
+    id = id.from("com.amazonaws.pipes", "StartPipe"),
+    input = M.StartPipeInput,
+    output = M.StartPipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/pipes/{Name}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopPipe = schema.operation({
+    id = id.from("com.amazonaws.pipes", "StopPipe"),
+    input = M.StopPipeInput,
+    output = M.StopPipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/pipes/{Name}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.pipes", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.pipes", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePipe = schema.operation({
+    id = id.from("com.amazonaws.pipes", "UpdatePipe"),
+    input = M.UpdatePipeInput,
+    output = M.UpdatePipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/pipes/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

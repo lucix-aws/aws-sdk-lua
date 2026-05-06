@@ -7,6 +7,7 @@ local endpoint_rules = require("omics.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("omics.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "omics", signing_region = cfg.region } }
                 else
@@ -49,1394 +52,431 @@ function M.new(cfg)
 end
 
 function Client:abortMultipartReadSetUpload(input, options)
-    return self:invokeOperation(input, {
-        name = "AbortMultipartReadSetUpload",
-        input_schema = schemas.AbortMultipartReadSetUploadInput,
-        output_schema = schemas.AbortMultipartReadSetUploadOutput,
-        http_method = "DELETE",
-        http_path = "/sequencestore/{sequenceStoreId}/upload/{uploadId}/abort",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AbortMultipartReadSetUpload, input, options)
 end
 
 function Client:acceptShare(input, options)
-    return self:invokeOperation(input, {
-        name = "AcceptShare",
-        input_schema = schemas.AcceptShareInput,
-        output_schema = schemas.AcceptShareOutput,
-        http_method = "POST",
-        http_path = "/share/{shareId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AcceptShare, input, options)
 end
 
 function Client:batchDeleteReadSet(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDeleteReadSet",
-        input_schema = schemas.BatchDeleteReadSetInput,
-        output_schema = schemas.BatchDeleteReadSetOutput,
-        http_method = "POST",
-        http_path = "/sequencestore/{sequenceStoreId}/readset/batch/delete",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDeleteReadSet, input, options)
 end
 
 function Client:cancelAnnotationImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelAnnotationImportJob",
-        input_schema = schemas.CancelAnnotationImportJobInput,
-        output_schema = schemas.CancelAnnotationImportJobOutput,
-        http_method = "DELETE",
-        http_path = "/import/annotation/{jobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelAnnotationImportJob, input, options)
 end
 
 function Client:cancelRun(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelRun",
-        input_schema = schemas.CancelRunInput,
-        output_schema = schemas.CancelRunOutput,
-        http_method = "POST",
-        http_path = "/run/{id}/cancel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelRun, input, options)
 end
 
 function Client:cancelRunBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelRunBatch",
-        input_schema = schemas.CancelRunBatchInput,
-        output_schema = schemas.CancelRunBatchOutput,
-        http_method = "POST",
-        http_path = "/runBatch/cancel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelRunBatch, input, options)
 end
 
 function Client:cancelVariantImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelVariantImportJob",
-        input_schema = schemas.CancelVariantImportJobInput,
-        output_schema = schemas.CancelVariantImportJobOutput,
-        http_method = "DELETE",
-        http_path = "/import/variant/{jobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelVariantImportJob, input, options)
 end
 
 function Client:completeMultipartReadSetUpload(input, options)
-    return self:invokeOperation(input, {
-        name = "CompleteMultipartReadSetUpload",
-        input_schema = schemas.CompleteMultipartReadSetUploadInput,
-        output_schema = schemas.CompleteMultipartReadSetUploadOutput,
-        http_method = "POST",
-        http_path = "/sequencestore/{sequenceStoreId}/upload/{uploadId}/complete",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CompleteMultipartReadSetUpload, input, options)
 end
 
 function Client:createAnnotationStore(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAnnotationStore",
-        input_schema = schemas.CreateAnnotationStoreInput,
-        output_schema = schemas.CreateAnnotationStoreOutput,
-        http_method = "POST",
-        http_path = "/annotationStore",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAnnotationStore, input, options)
 end
 
 function Client:createAnnotationStoreVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAnnotationStoreVersion",
-        input_schema = schemas.CreateAnnotationStoreVersionInput,
-        output_schema = schemas.CreateAnnotationStoreVersionOutput,
-        http_method = "POST",
-        http_path = "/annotationStore/{name}/version",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAnnotationStoreVersion, input, options)
 end
 
 function Client:createConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfiguration",
-        input_schema = schemas.CreateConfigurationInput,
-        output_schema = schemas.CreateConfigurationOutput,
-        http_method = "POST",
-        http_path = "/configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfiguration, input, options)
 end
 
 function Client:createMultipartReadSetUpload(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateMultipartReadSetUpload",
-        input_schema = schemas.CreateMultipartReadSetUploadInput,
-        output_schema = schemas.CreateMultipartReadSetUploadOutput,
-        http_method = "POST",
-        http_path = "/sequencestore/{sequenceStoreId}/upload",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateMultipartReadSetUpload, input, options)
 end
 
 function Client:createReferenceStore(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateReferenceStore",
-        input_schema = schemas.CreateReferenceStoreInput,
-        output_schema = schemas.CreateReferenceStoreOutput,
-        http_method = "POST",
-        http_path = "/referencestore",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateReferenceStore, input, options)
 end
 
 function Client:createRunCache(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRunCache",
-        input_schema = schemas.CreateRunCacheInput,
-        output_schema = schemas.CreateRunCacheOutput,
-        http_method = "POST",
-        http_path = "/runCache",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRunCache, input, options)
 end
 
 function Client:createRunGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRunGroup",
-        input_schema = schemas.CreateRunGroupInput,
-        output_schema = schemas.CreateRunGroupOutput,
-        http_method = "POST",
-        http_path = "/runGroup",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRunGroup, input, options)
 end
 
 function Client:createSequenceStore(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSequenceStore",
-        input_schema = schemas.CreateSequenceStoreInput,
-        output_schema = schemas.CreateSequenceStoreOutput,
-        http_method = "POST",
-        http_path = "/sequencestore",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSequenceStore, input, options)
 end
 
 function Client:createShare(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateShare",
-        input_schema = schemas.CreateShareInput,
-        output_schema = schemas.CreateShareOutput,
-        http_method = "POST",
-        http_path = "/share",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateShare, input, options)
 end
 
 function Client:createVariantStore(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateVariantStore",
-        input_schema = schemas.CreateVariantStoreInput,
-        output_schema = schemas.CreateVariantStoreOutput,
-        http_method = "POST",
-        http_path = "/variantStore",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateVariantStore, input, options)
 end
 
 function Client:createWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateWorkflow",
-        input_schema = schemas.CreateWorkflowInput,
-        output_schema = schemas.CreateWorkflowOutput,
-        http_method = "POST",
-        http_path = "/workflow",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateWorkflow, input, options)
 end
 
 function Client:createWorkflowVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateWorkflowVersion",
-        input_schema = schemas.CreateWorkflowVersionInput,
-        output_schema = schemas.CreateWorkflowVersionOutput,
-        http_method = "POST",
-        http_path = "/workflow/{workflowId}/version",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateWorkflowVersion, input, options)
 end
 
 function Client:deleteAnnotationStore(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAnnotationStore",
-        input_schema = schemas.DeleteAnnotationStoreInput,
-        output_schema = schemas.DeleteAnnotationStoreOutput,
-        http_method = "DELETE",
-        http_path = "/annotationStore/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAnnotationStore, input, options)
 end
 
 function Client:deleteAnnotationStoreVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAnnotationStoreVersions",
-        input_schema = schemas.DeleteAnnotationStoreVersionsInput,
-        output_schema = schemas.DeleteAnnotationStoreVersionsOutput,
-        http_method = "POST",
-        http_path = "/annotationStore/{name}/versions/delete",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAnnotationStoreVersions, input, options)
 end
 
 function Client:deleteBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteBatch",
-        input_schema = schemas.DeleteBatchInput,
-        output_schema = schemas.DeleteBatchOutput,
-        http_method = "DELETE",
-        http_path = "/runBatch/{batchId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteBatch, input, options)
 end
 
 function Client:deleteConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfiguration",
-        input_schema = schemas.DeleteConfigurationInput,
-        output_schema = schemas.DeleteConfigurationOutput,
-        http_method = "DELETE",
-        http_path = "/configuration/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguration, input, options)
 end
 
 function Client:deleteReference(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteReference",
-        input_schema = schemas.DeleteReferenceInput,
-        output_schema = schemas.DeleteReferenceOutput,
-        http_method = "DELETE",
-        http_path = "/referencestore/{referenceStoreId}/reference/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteReference, input, options)
 end
 
 function Client:deleteReferenceStore(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteReferenceStore",
-        input_schema = schemas.DeleteReferenceStoreInput,
-        output_schema = schemas.DeleteReferenceStoreOutput,
-        http_method = "DELETE",
-        http_path = "/referencestore/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteReferenceStore, input, options)
 end
 
 function Client:deleteRun(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRun",
-        input_schema = schemas.DeleteRunInput,
-        output_schema = schemas.DeleteRunOutput,
-        http_method = "DELETE",
-        http_path = "/run/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRun, input, options)
 end
 
 function Client:deleteRunBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRunBatch",
-        input_schema = schemas.DeleteRunBatchInput,
-        output_schema = schemas.DeleteRunBatchOutput,
-        http_method = "POST",
-        http_path = "/runBatch/delete",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRunBatch, input, options)
 end
 
 function Client:deleteRunCache(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRunCache",
-        input_schema = schemas.DeleteRunCacheInput,
-        output_schema = schemas.DeleteRunCacheOutput,
-        http_method = "DELETE",
-        http_path = "/runCache/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRunCache, input, options)
 end
 
 function Client:deleteRunGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRunGroup",
-        input_schema = schemas.DeleteRunGroupInput,
-        output_schema = schemas.DeleteRunGroupOutput,
-        http_method = "DELETE",
-        http_path = "/runGroup/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRunGroup, input, options)
 end
 
 function Client:deleteS3AccessPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteS3AccessPolicy",
-        input_schema = schemas.DeleteS3AccessPolicyInput,
-        output_schema = schemas.DeleteS3AccessPolicyOutput,
-        http_method = "DELETE",
-        http_path = "/s3accesspolicy/{s3AccessPointArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteS3AccessPolicy, input, options)
 end
 
 function Client:deleteSequenceStore(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSequenceStore",
-        input_schema = schemas.DeleteSequenceStoreInput,
-        output_schema = schemas.DeleteSequenceStoreOutput,
-        http_method = "DELETE",
-        http_path = "/sequencestore/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSequenceStore, input, options)
 end
 
 function Client:deleteShare(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteShare",
-        input_schema = schemas.DeleteShareInput,
-        output_schema = schemas.DeleteShareOutput,
-        http_method = "DELETE",
-        http_path = "/share/{shareId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteShare, input, options)
 end
 
 function Client:deleteVariantStore(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVariantStore",
-        input_schema = schemas.DeleteVariantStoreInput,
-        output_schema = schemas.DeleteVariantStoreOutput,
-        http_method = "DELETE",
-        http_path = "/variantStore/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVariantStore, input, options)
 end
 
 function Client:deleteWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWorkflow",
-        input_schema = schemas.DeleteWorkflowInput,
-        output_schema = schemas.DeleteWorkflowOutput,
-        http_method = "DELETE",
-        http_path = "/workflow/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflow, input, options)
 end
 
 function Client:deleteWorkflowVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteWorkflowVersion",
-        input_schema = schemas.DeleteWorkflowVersionInput,
-        output_schema = schemas.DeleteWorkflowVersionOutput,
-        http_method = "DELETE",
-        http_path = "/workflow/{workflowId}/version/{versionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflowVersion, input, options)
 end
 
 function Client:getAnnotationImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAnnotationImportJob",
-        input_schema = schemas.GetAnnotationImportJobInput,
-        output_schema = schemas.GetAnnotationImportJobOutput,
-        http_method = "GET",
-        http_path = "/import/annotation/{jobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAnnotationImportJob, input, options)
 end
 
 function Client:getAnnotationStore(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAnnotationStore",
-        input_schema = schemas.GetAnnotationStoreInput,
-        output_schema = schemas.GetAnnotationStoreOutput,
-        http_method = "GET",
-        http_path = "/annotationStore/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAnnotationStore, input, options)
 end
 
 function Client:getAnnotationStoreVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAnnotationStoreVersion",
-        input_schema = schemas.GetAnnotationStoreVersionInput,
-        output_schema = schemas.GetAnnotationStoreVersionOutput,
-        http_method = "GET",
-        http_path = "/annotationStore/{name}/version/{versionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAnnotationStoreVersion, input, options)
 end
 
 function Client:getBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBatch",
-        input_schema = schemas.GetBatchInput,
-        output_schema = schemas.GetBatchOutput,
-        http_method = "GET",
-        http_path = "/runBatch/{batchId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBatch, input, options)
 end
 
 function Client:getConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConfiguration",
-        input_schema = schemas.GetConfigurationInput,
-        output_schema = schemas.GetConfigurationOutput,
-        http_method = "GET",
-        http_path = "/configuration/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConfiguration, input, options)
 end
 
 function Client:getReadSet(input, options)
-    return self:invokeOperation(input, {
-        name = "GetReadSet",
-        input_schema = schemas.GetReadSetInput,
-        output_schema = schemas.GetReadSetOutput,
-        http_method = "GET",
-        http_path = "/sequencestore/{sequenceStoreId}/readset/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetReadSet, input, options)
 end
 
 function Client:getReadSetActivationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetReadSetActivationJob",
-        input_schema = schemas.GetReadSetActivationJobInput,
-        output_schema = schemas.GetReadSetActivationJobOutput,
-        http_method = "GET",
-        http_path = "/sequencestore/{sequenceStoreId}/activationjob/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetReadSetActivationJob, input, options)
 end
 
 function Client:getReadSetExportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetReadSetExportJob",
-        input_schema = schemas.GetReadSetExportJobInput,
-        output_schema = schemas.GetReadSetExportJobOutput,
-        http_method = "GET",
-        http_path = "/sequencestore/{sequenceStoreId}/exportjob/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetReadSetExportJob, input, options)
 end
 
 function Client:getReadSetImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetReadSetImportJob",
-        input_schema = schemas.GetReadSetImportJobInput,
-        output_schema = schemas.GetReadSetImportJobOutput,
-        http_method = "GET",
-        http_path = "/sequencestore/{sequenceStoreId}/importjob/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetReadSetImportJob, input, options)
 end
 
 function Client:getReadSetMetadata(input, options)
-    return self:invokeOperation(input, {
-        name = "GetReadSetMetadata",
-        input_schema = schemas.GetReadSetMetadataInput,
-        output_schema = schemas.GetReadSetMetadataOutput,
-        http_method = "GET",
-        http_path = "/sequencestore/{sequenceStoreId}/readset/{id}/metadata",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetReadSetMetadata, input, options)
 end
 
 function Client:getReference(input, options)
-    return self:invokeOperation(input, {
-        name = "GetReference",
-        input_schema = schemas.GetReferenceInput,
-        output_schema = schemas.GetReferenceOutput,
-        http_method = "GET",
-        http_path = "/referencestore/{referenceStoreId}/reference/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetReference, input, options)
 end
 
 function Client:getReferenceImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetReferenceImportJob",
-        input_schema = schemas.GetReferenceImportJobInput,
-        output_schema = schemas.GetReferenceImportJobOutput,
-        http_method = "GET",
-        http_path = "/referencestore/{referenceStoreId}/importjob/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetReferenceImportJob, input, options)
 end
 
 function Client:getReferenceMetadata(input, options)
-    return self:invokeOperation(input, {
-        name = "GetReferenceMetadata",
-        input_schema = schemas.GetReferenceMetadataInput,
-        output_schema = schemas.GetReferenceMetadataOutput,
-        http_method = "GET",
-        http_path = "/referencestore/{referenceStoreId}/reference/{id}/metadata",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetReferenceMetadata, input, options)
 end
 
 function Client:getReferenceStore(input, options)
-    return self:invokeOperation(input, {
-        name = "GetReferenceStore",
-        input_schema = schemas.GetReferenceStoreInput,
-        output_schema = schemas.GetReferenceStoreOutput,
-        http_method = "GET",
-        http_path = "/referencestore/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetReferenceStore, input, options)
 end
 
 function Client:getRun(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRun",
-        input_schema = schemas.GetRunInput,
-        output_schema = schemas.GetRunOutput,
-        http_method = "GET",
-        http_path = "/run/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRun, input, options)
 end
 
 function Client:getRunCache(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRunCache",
-        input_schema = schemas.GetRunCacheInput,
-        output_schema = schemas.GetRunCacheOutput,
-        http_method = "GET",
-        http_path = "/runCache/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRunCache, input, options)
 end
 
 function Client:getRunGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRunGroup",
-        input_schema = schemas.GetRunGroupInput,
-        output_schema = schemas.GetRunGroupOutput,
-        http_method = "GET",
-        http_path = "/runGroup/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRunGroup, input, options)
 end
 
 function Client:getRunTask(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRunTask",
-        input_schema = schemas.GetRunTaskInput,
-        output_schema = schemas.GetRunTaskOutput,
-        http_method = "GET",
-        http_path = "/run/{id}/task/{taskId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRunTask, input, options)
 end
 
 function Client:getS3AccessPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetS3AccessPolicy",
-        input_schema = schemas.GetS3AccessPolicyInput,
-        output_schema = schemas.GetS3AccessPolicyOutput,
-        http_method = "GET",
-        http_path = "/s3accesspolicy/{s3AccessPointArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetS3AccessPolicy, input, options)
 end
 
 function Client:getSequenceStore(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSequenceStore",
-        input_schema = schemas.GetSequenceStoreInput,
-        output_schema = schemas.GetSequenceStoreOutput,
-        http_method = "GET",
-        http_path = "/sequencestore/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSequenceStore, input, options)
 end
 
 function Client:getShare(input, options)
-    return self:invokeOperation(input, {
-        name = "GetShare",
-        input_schema = schemas.GetShareInput,
-        output_schema = schemas.GetShareOutput,
-        http_method = "GET",
-        http_path = "/share/{shareId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetShare, input, options)
 end
 
 function Client:getVariantImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetVariantImportJob",
-        input_schema = schemas.GetVariantImportJobInput,
-        output_schema = schemas.GetVariantImportJobOutput,
-        http_method = "GET",
-        http_path = "/import/variant/{jobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetVariantImportJob, input, options)
 end
 
 function Client:getVariantStore(input, options)
-    return self:invokeOperation(input, {
-        name = "GetVariantStore",
-        input_schema = schemas.GetVariantStoreInput,
-        output_schema = schemas.GetVariantStoreOutput,
-        http_method = "GET",
-        http_path = "/variantStore/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetVariantStore, input, options)
 end
 
 function Client:getWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "GetWorkflow",
-        input_schema = schemas.GetWorkflowInput,
-        output_schema = schemas.GetWorkflowOutput,
-        http_method = "GET",
-        http_path = "/workflow/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetWorkflow, input, options)
 end
 
 function Client:getWorkflowVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "GetWorkflowVersion",
-        input_schema = schemas.GetWorkflowVersionInput,
-        output_schema = schemas.GetWorkflowVersionOutput,
-        http_method = "GET",
-        http_path = "/workflow/{workflowId}/version/{versionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetWorkflowVersion, input, options)
 end
 
 function Client:listAnnotationImportJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAnnotationImportJobs",
-        input_schema = schemas.ListAnnotationImportJobsInput,
-        output_schema = schemas.ListAnnotationImportJobsOutput,
-        http_method = "POST",
-        http_path = "/import/annotations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAnnotationImportJobs, input, options)
 end
 
 function Client:listAnnotationStores(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAnnotationStores",
-        input_schema = schemas.ListAnnotationStoresInput,
-        output_schema = schemas.ListAnnotationStoresOutput,
-        http_method = "POST",
-        http_path = "/annotationStores",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAnnotationStores, input, options)
 end
 
 function Client:listAnnotationStoreVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAnnotationStoreVersions",
-        input_schema = schemas.ListAnnotationStoreVersionsInput,
-        output_schema = schemas.ListAnnotationStoreVersionsOutput,
-        http_method = "POST",
-        http_path = "/annotationStore/{name}/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAnnotationStoreVersions, input, options)
 end
 
 function Client:listBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "ListBatch",
-        input_schema = schemas.ListBatchInput,
-        output_schema = schemas.ListBatchOutput,
-        http_method = "GET",
-        http_path = "/runBatch",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListBatch, input, options)
 end
 
 function Client:listConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConfigurations",
-        input_schema = schemas.ListConfigurationsInput,
-        output_schema = schemas.ListConfigurationsOutput,
-        http_method = "GET",
-        http_path = "/configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConfigurations, input, options)
 end
 
 function Client:listMultipartReadSetUploads(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMultipartReadSetUploads",
-        input_schema = schemas.ListMultipartReadSetUploadsInput,
-        output_schema = schemas.ListMultipartReadSetUploadsOutput,
-        http_method = "POST",
-        http_path = "/sequencestore/{sequenceStoreId}/uploads",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMultipartReadSetUploads, input, options)
 end
 
 function Client:listReadSetActivationJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReadSetActivationJobs",
-        input_schema = schemas.ListReadSetActivationJobsInput,
-        output_schema = schemas.ListReadSetActivationJobsOutput,
-        http_method = "POST",
-        http_path = "/sequencestore/{sequenceStoreId}/activationjobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReadSetActivationJobs, input, options)
 end
 
 function Client:listReadSetExportJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReadSetExportJobs",
-        input_schema = schemas.ListReadSetExportJobsInput,
-        output_schema = schemas.ListReadSetExportJobsOutput,
-        http_method = "POST",
-        http_path = "/sequencestore/{sequenceStoreId}/exportjobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReadSetExportJobs, input, options)
 end
 
 function Client:listReadSetImportJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReadSetImportJobs",
-        input_schema = schemas.ListReadSetImportJobsInput,
-        output_schema = schemas.ListReadSetImportJobsOutput,
-        http_method = "POST",
-        http_path = "/sequencestore/{sequenceStoreId}/importjobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReadSetImportJobs, input, options)
 end
 
 function Client:listReadSets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReadSets",
-        input_schema = schemas.ListReadSetsInput,
-        output_schema = schemas.ListReadSetsOutput,
-        http_method = "POST",
-        http_path = "/sequencestore/{sequenceStoreId}/readsets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReadSets, input, options)
 end
 
 function Client:listReadSetUploadParts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReadSetUploadParts",
-        input_schema = schemas.ListReadSetUploadPartsInput,
-        output_schema = schemas.ListReadSetUploadPartsOutput,
-        http_method = "POST",
-        http_path = "/sequencestore/{sequenceStoreId}/upload/{uploadId}/parts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReadSetUploadParts, input, options)
 end
 
 function Client:listReferenceImportJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReferenceImportJobs",
-        input_schema = schemas.ListReferenceImportJobsInput,
-        output_schema = schemas.ListReferenceImportJobsOutput,
-        http_method = "POST",
-        http_path = "/referencestore/{referenceStoreId}/importjobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReferenceImportJobs, input, options)
 end
 
 function Client:listReferences(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReferences",
-        input_schema = schemas.ListReferencesInput,
-        output_schema = schemas.ListReferencesOutput,
-        http_method = "POST",
-        http_path = "/referencestore/{referenceStoreId}/references",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReferences, input, options)
 end
 
 function Client:listReferenceStores(input, options)
-    return self:invokeOperation(input, {
-        name = "ListReferenceStores",
-        input_schema = schemas.ListReferenceStoresInput,
-        output_schema = schemas.ListReferenceStoresOutput,
-        http_method = "POST",
-        http_path = "/referencestores",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListReferenceStores, input, options)
 end
 
 function Client:listRunCaches(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRunCaches",
-        input_schema = schemas.ListRunCachesInput,
-        output_schema = schemas.ListRunCachesOutput,
-        http_method = "GET",
-        http_path = "/runCache",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRunCaches, input, options)
 end
 
 function Client:listRunGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRunGroups",
-        input_schema = schemas.ListRunGroupsInput,
-        output_schema = schemas.ListRunGroupsOutput,
-        http_method = "GET",
-        http_path = "/runGroup",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRunGroups, input, options)
 end
 
 function Client:listRuns(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRuns",
-        input_schema = schemas.ListRunsInput,
-        output_schema = schemas.ListRunsOutput,
-        http_method = "GET",
-        http_path = "/run",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRuns, input, options)
 end
 
 function Client:listRunsInBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRunsInBatch",
-        input_schema = schemas.ListRunsInBatchInput,
-        output_schema = schemas.ListRunsInBatchOutput,
-        http_method = "GET",
-        http_path = "/runBatch/{batchId}/run",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRunsInBatch, input, options)
 end
 
 function Client:listRunTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRunTasks",
-        input_schema = schemas.ListRunTasksInput,
-        output_schema = schemas.ListRunTasksOutput,
-        http_method = "GET",
-        http_path = "/run/{id}/task",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRunTasks, input, options)
 end
 
 function Client:listSequenceStores(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSequenceStores",
-        input_schema = schemas.ListSequenceStoresInput,
-        output_schema = schemas.ListSequenceStoresOutput,
-        http_method = "POST",
-        http_path = "/sequencestores",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSequenceStores, input, options)
 end
 
 function Client:listShares(input, options)
-    return self:invokeOperation(input, {
-        name = "ListShares",
-        input_schema = schemas.ListSharesInput,
-        output_schema = schemas.ListSharesOutput,
-        http_method = "POST",
-        http_path = "/shares",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListShares, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listVariantImportJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVariantImportJobs",
-        input_schema = schemas.ListVariantImportJobsInput,
-        output_schema = schemas.ListVariantImportJobsOutput,
-        http_method = "POST",
-        http_path = "/import/variants",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVariantImportJobs, input, options)
 end
 
 function Client:listVariantStores(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVariantStores",
-        input_schema = schemas.ListVariantStoresInput,
-        output_schema = schemas.ListVariantStoresOutput,
-        http_method = "POST",
-        http_path = "/variantStores",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVariantStores, input, options)
 end
 
 function Client:listWorkflows(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkflows",
-        input_schema = schemas.ListWorkflowsInput,
-        output_schema = schemas.ListWorkflowsOutput,
-        http_method = "GET",
-        http_path = "/workflow",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkflows, input, options)
 end
 
 function Client:listWorkflowVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListWorkflowVersions",
-        input_schema = schemas.ListWorkflowVersionsInput,
-        output_schema = schemas.ListWorkflowVersionsOutput,
-        http_method = "GET",
-        http_path = "/workflow/{workflowId}/version",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListWorkflowVersions, input, options)
 end
 
 function Client:putS3AccessPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutS3AccessPolicy",
-        input_schema = schemas.PutS3AccessPolicyInput,
-        output_schema = schemas.PutS3AccessPolicyOutput,
-        http_method = "PUT",
-        http_path = "/s3accesspolicy/{s3AccessPointArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutS3AccessPolicy, input, options)
 end
 
 function Client:startAnnotationImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartAnnotationImportJob",
-        input_schema = schemas.StartAnnotationImportJobInput,
-        output_schema = schemas.StartAnnotationImportJobOutput,
-        http_method = "POST",
-        http_path = "/import/annotation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartAnnotationImportJob, input, options)
 end
 
 function Client:startReadSetActivationJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartReadSetActivationJob",
-        input_schema = schemas.StartReadSetActivationJobInput,
-        output_schema = schemas.StartReadSetActivationJobOutput,
-        http_method = "POST",
-        http_path = "/sequencestore/{sequenceStoreId}/activationjob",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartReadSetActivationJob, input, options)
 end
 
 function Client:startReadSetExportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartReadSetExportJob",
-        input_schema = schemas.StartReadSetExportJobInput,
-        output_schema = schemas.StartReadSetExportJobOutput,
-        http_method = "POST",
-        http_path = "/sequencestore/{sequenceStoreId}/exportjob",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartReadSetExportJob, input, options)
 end
 
 function Client:startReadSetImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartReadSetImportJob",
-        input_schema = schemas.StartReadSetImportJobInput,
-        output_schema = schemas.StartReadSetImportJobOutput,
-        http_method = "POST",
-        http_path = "/sequencestore/{sequenceStoreId}/importjob",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartReadSetImportJob, input, options)
 end
 
 function Client:startReferenceImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartReferenceImportJob",
-        input_schema = schemas.StartReferenceImportJobInput,
-        output_schema = schemas.StartReferenceImportJobOutput,
-        http_method = "POST",
-        http_path = "/referencestore/{referenceStoreId}/importjob",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartReferenceImportJob, input, options)
 end
 
 function Client:startRun(input, options)
-    return self:invokeOperation(input, {
-        name = "StartRun",
-        input_schema = schemas.StartRunInput,
-        output_schema = schemas.StartRunOutput,
-        http_method = "POST",
-        http_path = "/run",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartRun, input, options)
 end
 
 function Client:startRunBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "StartRunBatch",
-        input_schema = schemas.StartRunBatchInput,
-        output_schema = schemas.StartRunBatchOutput,
-        http_method = "POST",
-        http_path = "/runBatch",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartRunBatch, input, options)
 end
 
 function Client:startVariantImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartVariantImportJob",
-        input_schema = schemas.StartVariantImportJobInput,
-        output_schema = schemas.StartVariantImportJobOutput,
-        http_method = "POST",
-        http_path = "/import/variant",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartVariantImportJob, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAnnotationStore(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAnnotationStore",
-        input_schema = schemas.UpdateAnnotationStoreInput,
-        output_schema = schemas.UpdateAnnotationStoreOutput,
-        http_method = "POST",
-        http_path = "/annotationStore/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAnnotationStore, input, options)
 end
 
 function Client:updateAnnotationStoreVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAnnotationStoreVersion",
-        input_schema = schemas.UpdateAnnotationStoreVersionInput,
-        output_schema = schemas.UpdateAnnotationStoreVersionOutput,
-        http_method = "POST",
-        http_path = "/annotationStore/{name}/version/{versionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAnnotationStoreVersion, input, options)
 end
 
 function Client:updateRunCache(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRunCache",
-        input_schema = schemas.UpdateRunCacheInput,
-        output_schema = schemas.UpdateRunCacheOutput,
-        http_method = "POST",
-        http_path = "/runCache/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRunCache, input, options)
 end
 
 function Client:updateRunGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRunGroup",
-        input_schema = schemas.UpdateRunGroupInput,
-        output_schema = schemas.UpdateRunGroupOutput,
-        http_method = "POST",
-        http_path = "/runGroup/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRunGroup, input, options)
 end
 
 function Client:updateSequenceStore(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSequenceStore",
-        input_schema = schemas.UpdateSequenceStoreInput,
-        output_schema = schemas.UpdateSequenceStoreOutput,
-        http_method = "PATCH",
-        http_path = "/sequencestore/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSequenceStore, input, options)
 end
 
 function Client:updateVariantStore(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateVariantStore",
-        input_schema = schemas.UpdateVariantStoreInput,
-        output_schema = schemas.UpdateVariantStoreOutput,
-        http_method = "POST",
-        http_path = "/variantStore/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateVariantStore, input, options)
 end
 
 function Client:updateWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateWorkflow",
-        input_schema = schemas.UpdateWorkflowInput,
-        output_schema = schemas.UpdateWorkflowOutput,
-        http_method = "POST",
-        http_path = "/workflow/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateWorkflow, input, options)
 end
 
 function Client:updateWorkflowVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateWorkflowVersion",
-        input_schema = schemas.UpdateWorkflowVersionInput,
-        output_schema = schemas.UpdateWorkflowVersionOutput,
-        http_method = "POST",
-        http_path = "/workflow/{workflowId}/version/{versionName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateWorkflowVersion, input, options)
 end
 
 function Client:uploadReadSetPart(input, options)
-    return self:invokeOperation(input, {
-        name = "UploadReadSetPart",
-        input_schema = schemas.UploadReadSetPartInput,
-        output_schema = schemas.UploadReadSetPartOutput,
-        http_method = "PUT",
-        http_path = "/sequencestore/{sequenceStoreId}/upload/{uploadId}/part",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UploadReadSetPart, input, options)
 end
 
 return M

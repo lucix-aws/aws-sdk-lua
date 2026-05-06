@@ -359,4 +359,62 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sso", "SWBPortalService"),
+    version = "2019-06-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRoleCredentials = schema.operation({
+    id = id.from("com.amazonaws.sso", "GetRoleCredentials"),
+    input = M.GetRoleCredentialsInput,
+    output = M.GetRoleCredentialsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/federation/credentials" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.ListAccountRoles = schema.operation({
+    id = id.from("com.amazonaws.sso", "ListAccountRoles"),
+    input = M.ListAccountRolesInput,
+    output = M.ListAccountRolesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assignment/roles" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.ListAccounts = schema.operation({
+    id = id.from("com.amazonaws.sso", "ListAccounts"),
+    input = M.ListAccountsInput,
+    output = M.ListAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assignment/accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.Logout = schema.operation({
+    id = id.from("com.amazonaws.sso", "Logout"),
+    input = M.LogoutInput,
+    output = M.LogoutOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/logout" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
 return M

@@ -1654,4 +1654,289 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.backupgateway", "BackupOnPremises_v20210101"),
+    version = "2021-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateGatewayToServer = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "AssociateGatewayToServer"),
+    input = M.AssociateGatewayToServerInput,
+    output = M.AssociateGatewayToServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGateway = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "CreateGateway"),
+    input = M.CreateGatewayInput,
+    output = M.CreateGatewayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGateway = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "DeleteGateway"),
+    input = M.DeleteGatewayInput,
+    output = M.DeleteGatewayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHypervisor = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "DeleteHypervisor"),
+    input = M.DeleteHypervisorInput,
+    output = M.DeleteHypervisorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateGatewayFromServer = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "DisassociateGatewayFromServer"),
+    input = M.DisassociateGatewayFromServerInput,
+    output = M.DisassociateGatewayFromServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBandwidthRateLimitSchedule = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "GetBandwidthRateLimitSchedule"),
+    input = M.GetBandwidthRateLimitScheduleInput,
+    output = M.GetBandwidthRateLimitScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGateway = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "GetGateway"),
+    input = M.GetGatewayInput,
+    output = M.GetGatewayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHypervisor = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "GetHypervisor"),
+    input = M.GetHypervisorInput,
+    output = M.GetHypervisorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHypervisorPropertyMappings = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "GetHypervisorPropertyMappings"),
+    input = M.GetHypervisorPropertyMappingsInput,
+    output = M.GetHypervisorPropertyMappingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVirtualMachine = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "GetVirtualMachine"),
+    input = M.GetVirtualMachineInput,
+    output = M.GetVirtualMachineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportHypervisorConfiguration = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "ImportHypervisorConfiguration"),
+    input = M.ImportHypervisorConfigurationInput,
+    output = M.ImportHypervisorConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGateways = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "ListGateways"),
+    input = M.ListGatewaysInput,
+    output = M.ListGatewaysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHypervisors = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "ListHypervisors"),
+    input = M.ListHypervisorsInput,
+    output = M.ListHypervisorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVirtualMachines = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "ListVirtualMachines"),
+    input = M.ListVirtualMachinesInput,
+    output = M.ListVirtualMachinesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutBandwidthRateLimitSchedule = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "PutBandwidthRateLimitSchedule"),
+    input = M.PutBandwidthRateLimitScheduleInput,
+    output = M.PutBandwidthRateLimitScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutHypervisorPropertyMappings = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "PutHypervisorPropertyMappings"),
+    input = M.PutHypervisorPropertyMappingsInput,
+    output = M.PutHypervisorPropertyMappingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMaintenanceStartTime = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "PutMaintenanceStartTime"),
+    input = M.PutMaintenanceStartTimeInput,
+    output = M.PutMaintenanceStartTimeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartVirtualMachinesMetadataSync = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "StartVirtualMachinesMetadataSync"),
+    input = M.StartVirtualMachinesMetadataSyncInput,
+    output = M.StartVirtualMachinesMetadataSyncOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestHypervisorConfiguration = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "TestHypervisorConfiguration"),
+    input = M.TestHypervisorConfigurationInput,
+    output = M.TestHypervisorConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGatewayInformation = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "UpdateGatewayInformation"),
+    input = M.UpdateGatewayInformationInput,
+    output = M.UpdateGatewayInformationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGatewaySoftwareNow = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "UpdateGatewaySoftwareNow"),
+    input = M.UpdateGatewaySoftwareNowInput,
+    output = M.UpdateGatewaySoftwareNowOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHypervisor = schema.operation({
+    id = id.from("com.amazonaws.backupgateway", "UpdateHypervisor"),
+    input = M.UpdateHypervisorInput,
+    output = M.UpdateHypervisorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

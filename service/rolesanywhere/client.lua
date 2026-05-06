@@ -7,6 +7,7 @@ local endpoint_rules = require("rolesanywhere.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("rolesanywhere.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "rolesanywhere", signing_region = cfg.region } }
                 else
@@ -49,393 +52,123 @@ function M.new(cfg)
 end
 
 function Client:createProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateProfile",
-        input_schema = schemas.CreateProfileInput,
-        output_schema = schemas.CreateProfileOutput,
-        http_method = "POST",
-        http_path = "/profiles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateProfile, input, options)
 end
 
 function Client:createTrustAnchor(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateTrustAnchor",
-        input_schema = schemas.CreateTrustAnchorInput,
-        output_schema = schemas.CreateTrustAnchorOutput,
-        http_method = "POST",
-        http_path = "/trustanchors",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateTrustAnchor, input, options)
 end
 
 function Client:deleteAttributeMapping(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAttributeMapping",
-        input_schema = schemas.DeleteAttributeMappingInput,
-        output_schema = schemas.DeleteAttributeMappingOutput,
-        http_method = "DELETE",
-        http_path = "/profiles/{profileId}/mappings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAttributeMapping, input, options)
 end
 
 function Client:deleteCrl(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCrl",
-        input_schema = schemas.DeleteCrlInput,
-        output_schema = schemas.DeleteCrlOutput,
-        http_method = "DELETE",
-        http_path = "/crl/{crlId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCrl, input, options)
 end
 
 function Client:deleteProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteProfile",
-        input_schema = schemas.DeleteProfileInput,
-        output_schema = schemas.DeleteProfileOutput,
-        http_method = "DELETE",
-        http_path = "/profile/{profileId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteProfile, input, options)
 end
 
 function Client:deleteTrustAnchor(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTrustAnchor",
-        input_schema = schemas.DeleteTrustAnchorInput,
-        output_schema = schemas.DeleteTrustAnchorOutput,
-        http_method = "DELETE",
-        http_path = "/trustanchor/{trustAnchorId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTrustAnchor, input, options)
 end
 
 function Client:disableCrl(input, options)
-    return self:invokeOperation(input, {
-        name = "DisableCrl",
-        input_schema = schemas.DisableCrlInput,
-        output_schema = schemas.DisableCrlOutput,
-        http_method = "POST",
-        http_path = "/crl/{crlId}/disable",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisableCrl, input, options)
 end
 
 function Client:disableProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "DisableProfile",
-        input_schema = schemas.DisableProfileInput,
-        output_schema = schemas.DisableProfileOutput,
-        http_method = "POST",
-        http_path = "/profile/{profileId}/disable",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisableProfile, input, options)
 end
 
 function Client:disableTrustAnchor(input, options)
-    return self:invokeOperation(input, {
-        name = "DisableTrustAnchor",
-        input_schema = schemas.DisableTrustAnchorInput,
-        output_schema = schemas.DisableTrustAnchorOutput,
-        http_method = "POST",
-        http_path = "/trustanchor/{trustAnchorId}/disable",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisableTrustAnchor, input, options)
 end
 
 function Client:enableCrl(input, options)
-    return self:invokeOperation(input, {
-        name = "EnableCrl",
-        input_schema = schemas.EnableCrlInput,
-        output_schema = schemas.EnableCrlOutput,
-        http_method = "POST",
-        http_path = "/crl/{crlId}/enable",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.EnableCrl, input, options)
 end
 
 function Client:enableProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "EnableProfile",
-        input_schema = schemas.EnableProfileInput,
-        output_schema = schemas.EnableProfileOutput,
-        http_method = "POST",
-        http_path = "/profile/{profileId}/enable",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.EnableProfile, input, options)
 end
 
 function Client:enableTrustAnchor(input, options)
-    return self:invokeOperation(input, {
-        name = "EnableTrustAnchor",
-        input_schema = schemas.EnableTrustAnchorInput,
-        output_schema = schemas.EnableTrustAnchorOutput,
-        http_method = "POST",
-        http_path = "/trustanchor/{trustAnchorId}/enable",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.EnableTrustAnchor, input, options)
 end
 
 function Client:getCrl(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCrl",
-        input_schema = schemas.GetCrlInput,
-        output_schema = schemas.GetCrlOutput,
-        http_method = "GET",
-        http_path = "/crl/{crlId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCrl, input, options)
 end
 
 function Client:getProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "GetProfile",
-        input_schema = schemas.GetProfileInput,
-        output_schema = schemas.GetProfileOutput,
-        http_method = "GET",
-        http_path = "/profile/{profileId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetProfile, input, options)
 end
 
 function Client:getSubject(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSubject",
-        input_schema = schemas.GetSubjectInput,
-        output_schema = schemas.GetSubjectOutput,
-        http_method = "GET",
-        http_path = "/subject/{subjectId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSubject, input, options)
 end
 
 function Client:getTrustAnchor(input, options)
-    return self:invokeOperation(input, {
-        name = "GetTrustAnchor",
-        input_schema = schemas.GetTrustAnchorInput,
-        output_schema = schemas.GetTrustAnchorOutput,
-        http_method = "GET",
-        http_path = "/trustanchor/{trustAnchorId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetTrustAnchor, input, options)
 end
 
 function Client:importCrl(input, options)
-    return self:invokeOperation(input, {
-        name = "ImportCrl",
-        input_schema = schemas.ImportCrlInput,
-        output_schema = schemas.ImportCrlOutput,
-        http_method = "POST",
-        http_path = "/crls",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ImportCrl, input, options)
 end
 
 function Client:listCrls(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCrls",
-        input_schema = schemas.ListCrlsInput,
-        output_schema = schemas.ListCrlsOutput,
-        http_method = "GET",
-        http_path = "/crls",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCrls, input, options)
 end
 
 function Client:listProfiles(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProfiles",
-        input_schema = schemas.ListProfilesInput,
-        output_schema = schemas.ListProfilesOutput,
-        http_method = "GET",
-        http_path = "/profiles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProfiles, input, options)
 end
 
 function Client:listSubjects(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSubjects",
-        input_schema = schemas.ListSubjectsInput,
-        output_schema = schemas.ListSubjectsOutput,
-        http_method = "GET",
-        http_path = "/subjects",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSubjects, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/ListTagsForResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTrustAnchors(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTrustAnchors",
-        input_schema = schemas.ListTrustAnchorsInput,
-        output_schema = schemas.ListTrustAnchorsOutput,
-        http_method = "GET",
-        http_path = "/trustanchors",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTrustAnchors, input, options)
 end
 
 function Client:putAttributeMapping(input, options)
-    return self:invokeOperation(input, {
-        name = "PutAttributeMapping",
-        input_schema = schemas.PutAttributeMappingInput,
-        output_schema = schemas.PutAttributeMappingOutput,
-        http_method = "PUT",
-        http_path = "/profiles/{profileId}/mappings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutAttributeMapping, input, options)
 end
 
 function Client:putNotificationSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "PutNotificationSettings",
-        input_schema = schemas.PutNotificationSettingsInput,
-        output_schema = schemas.PutNotificationSettingsOutput,
-        http_method = "PATCH",
-        http_path = "/put-notifications-settings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutNotificationSettings, input, options)
 end
 
 function Client:resetNotificationSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "ResetNotificationSettings",
-        input_schema = schemas.ResetNotificationSettingsInput,
-        output_schema = schemas.ResetNotificationSettingsOutput,
-        http_method = "PATCH",
-        http_path = "/reset-notifications-settings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ResetNotificationSettings, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/TagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/UntagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateCrl(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCrl",
-        input_schema = schemas.UpdateCrlInput,
-        output_schema = schemas.UpdateCrlOutput,
-        http_method = "PATCH",
-        http_path = "/crl/{crlId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCrl, input, options)
 end
 
 function Client:updateProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateProfile",
-        input_schema = schemas.UpdateProfileInput,
-        output_schema = schemas.UpdateProfileOutput,
-        http_method = "PATCH",
-        http_path = "/profile/{profileId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateProfile, input, options)
 end
 
 function Client:updateTrustAnchor(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTrustAnchor",
-        input_schema = schemas.UpdateTrustAnchorInput,
-        output_schema = schemas.UpdateTrustAnchorOutput,
-        http_method = "PATCH",
-        http_path = "/trustanchor/{trustAnchorId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTrustAnchor, input, options)
 end
 
 return M

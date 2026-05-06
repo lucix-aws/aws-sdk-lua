@@ -1054,4 +1054,134 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.elementalinference", "ElementalInference"),
+    version = "2018-11-14",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateFeed = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "AssociateFeed"),
+    input = M.AssociateFeedInput,
+    output = M.AssociateFeedOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/feed/{id}/associate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFeed = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "CreateFeed"),
+    input = M.CreateFeedInput,
+    output = M.CreateFeedOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/feed" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFeed = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "DeleteFeed"),
+    input = M.DeleteFeedInput,
+    output = M.DeleteFeedOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/feed/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFeed = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "DisassociateFeed"),
+    input = M.DisassociateFeedInput,
+    output = M.DisassociateFeedOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/feed/{id}/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFeed = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "GetFeed"),
+    input = M.GetFeedInput,
+    output = M.GetFeedOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/feed/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFeeds = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "ListFeeds"),
+    input = M.ListFeedsInput,
+    output = M.ListFeedsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/feeds" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFeed = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "UpdateFeed"),
+    input = M.UpdateFeedInput,
+    output = M.UpdateFeedOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/feed/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

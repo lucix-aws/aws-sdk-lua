@@ -7701,4 +7701,619 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.wafv2", "AWSWAF_20190729"),
+    version = "2019-07-29",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateWebACL = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "AssociateWebACL"),
+    input = M.AssociateWebACLInput,
+    output = M.AssociateWebACLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckCapacity = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "CheckCapacity"),
+    input = M.CheckCapacityInput,
+    output = M.CheckCapacityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAPIKey = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "CreateAPIKey"),
+    input = M.CreateAPIKeyInput,
+    output = M.CreateAPIKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIPSet = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "CreateIPSet"),
+    input = M.CreateIPSetInput,
+    output = M.CreateIPSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRegexPatternSet = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "CreateRegexPatternSet"),
+    input = M.CreateRegexPatternSetInput,
+    output = M.CreateRegexPatternSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "CreateRuleGroup"),
+    input = M.CreateRuleGroupInput,
+    output = M.CreateRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWebACL = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "CreateWebACL"),
+    input = M.CreateWebACLInput,
+    output = M.CreateWebACLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAPIKey = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "DeleteAPIKey"),
+    input = M.DeleteAPIKeyInput,
+    output = M.DeleteAPIKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFirewallManagerRuleGroups = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "DeleteFirewallManagerRuleGroups"),
+    input = M.DeleteFirewallManagerRuleGroupsInput,
+    output = M.DeleteFirewallManagerRuleGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIPSet = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "DeleteIPSet"),
+    input = M.DeleteIPSetInput,
+    output = M.DeleteIPSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "DeleteLoggingConfiguration"),
+    input = M.DeleteLoggingConfigurationInput,
+    output = M.DeleteLoggingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePermissionPolicy = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "DeletePermissionPolicy"),
+    input = M.DeletePermissionPolicyInput,
+    output = M.DeletePermissionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRegexPatternSet = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "DeleteRegexPatternSet"),
+    input = M.DeleteRegexPatternSetInput,
+    output = M.DeleteRegexPatternSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "DeleteRuleGroup"),
+    input = M.DeleteRuleGroupInput,
+    output = M.DeleteRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWebACL = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "DeleteWebACL"),
+    input = M.DeleteWebACLInput,
+    output = M.DeleteWebACLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAllManagedProducts = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "DescribeAllManagedProducts"),
+    input = M.DescribeAllManagedProductsInput,
+    output = M.DescribeAllManagedProductsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeManagedProductsByVendor = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "DescribeManagedProductsByVendor"),
+    input = M.DescribeManagedProductsByVendorInput,
+    output = M.DescribeManagedProductsByVendorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeManagedRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "DescribeManagedRuleGroup"),
+    input = M.DescribeManagedRuleGroupInput,
+    output = M.DescribeManagedRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateWebACL = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "DisassociateWebACL"),
+    input = M.DisassociateWebACLInput,
+    output = M.DisassociateWebACLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateMobileSdkReleaseUrl = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GenerateMobileSdkReleaseUrl"),
+    input = M.GenerateMobileSdkReleaseUrlInput,
+    output = M.GenerateMobileSdkReleaseUrlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDecryptedAPIKey = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetDecryptedAPIKey"),
+    input = M.GetDecryptedAPIKeyInput,
+    output = M.GetDecryptedAPIKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIPSet = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetIPSet"),
+    input = M.GetIPSetInput,
+    output = M.GetIPSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetLoggingConfiguration"),
+    input = M.GetLoggingConfigurationInput,
+    output = M.GetLoggingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetManagedRuleSet = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetManagedRuleSet"),
+    input = M.GetManagedRuleSetInput,
+    output = M.GetManagedRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMobileSdkRelease = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetMobileSdkRelease"),
+    input = M.GetMobileSdkReleaseInput,
+    output = M.GetMobileSdkReleaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPermissionPolicy = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetPermissionPolicy"),
+    input = M.GetPermissionPolicyInput,
+    output = M.GetPermissionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRateBasedStatementManagedKeys = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetRateBasedStatementManagedKeys"),
+    input = M.GetRateBasedStatementManagedKeysInput,
+    output = M.GetRateBasedStatementManagedKeysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRegexPatternSet = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetRegexPatternSet"),
+    input = M.GetRegexPatternSetInput,
+    output = M.GetRegexPatternSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetRuleGroup"),
+    input = M.GetRuleGroupInput,
+    output = M.GetRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSampledRequests = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetSampledRequests"),
+    input = M.GetSampledRequestsInput,
+    output = M.GetSampledRequestsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTopPathStatisticsByTraffic = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetTopPathStatisticsByTraffic"),
+    input = M.GetTopPathStatisticsByTrafficInput,
+    output = M.GetTopPathStatisticsByTrafficOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWebACL = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetWebACL"),
+    input = M.GetWebACLInput,
+    output = M.GetWebACLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWebACLForResource = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetWebACLForResource"),
+    input = M.GetWebACLForResourceInput,
+    output = M.GetWebACLForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAPIKeys = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "ListAPIKeys"),
+    input = M.ListAPIKeysInput,
+    output = M.ListAPIKeysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAvailableManagedRuleGroups = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "ListAvailableManagedRuleGroups"),
+    input = M.ListAvailableManagedRuleGroupsInput,
+    output = M.ListAvailableManagedRuleGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAvailableManagedRuleGroupVersions = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "ListAvailableManagedRuleGroupVersions"),
+    input = M.ListAvailableManagedRuleGroupVersionsInput,
+    output = M.ListAvailableManagedRuleGroupVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIPSets = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "ListIPSets"),
+    input = M.ListIPSetsInput,
+    output = M.ListIPSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLoggingConfigurations = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "ListLoggingConfigurations"),
+    input = M.ListLoggingConfigurationsInput,
+    output = M.ListLoggingConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedRuleSets = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "ListManagedRuleSets"),
+    input = M.ListManagedRuleSetsInput,
+    output = M.ListManagedRuleSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMobileSdkReleases = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "ListMobileSdkReleases"),
+    input = M.ListMobileSdkReleasesInput,
+    output = M.ListMobileSdkReleasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRegexPatternSets = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "ListRegexPatternSets"),
+    input = M.ListRegexPatternSetsInput,
+    output = M.ListRegexPatternSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourcesForWebACL = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "ListResourcesForWebACL"),
+    input = M.ListResourcesForWebACLInput,
+    output = M.ListResourcesForWebACLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRuleGroups = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "ListRuleGroups"),
+    input = M.ListRuleGroupsInput,
+    output = M.ListRuleGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWebACLs = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "ListWebACLs"),
+    input = M.ListWebACLsInput,
+    output = M.ListWebACLsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "PutLoggingConfiguration"),
+    input = M.PutLoggingConfigurationInput,
+    output = M.PutLoggingConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutManagedRuleSetVersions = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "PutManagedRuleSetVersions"),
+    input = M.PutManagedRuleSetVersionsInput,
+    output = M.PutManagedRuleSetVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPermissionPolicy = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "PutPermissionPolicy"),
+    input = M.PutPermissionPolicyInput,
+    output = M.PutPermissionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIPSet = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "UpdateIPSet"),
+    input = M.UpdateIPSetInput,
+    output = M.UpdateIPSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateManagedRuleSetVersionExpiryDate = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "UpdateManagedRuleSetVersionExpiryDate"),
+    input = M.UpdateManagedRuleSetVersionExpiryDateInput,
+    output = M.UpdateManagedRuleSetVersionExpiryDateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRegexPatternSet = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "UpdateRegexPatternSet"),
+    input = M.UpdateRegexPatternSetInput,
+    output = M.UpdateRegexPatternSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "UpdateRuleGroup"),
+    input = M.UpdateRuleGroupInput,
+    output = M.UpdateRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWebACL = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "UpdateWebACL"),
+    input = M.UpdateWebACLInput,
+    output = M.UpdateWebACLOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

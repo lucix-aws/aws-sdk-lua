@@ -7,6 +7,7 @@ local endpoint_rules = require("elasticbeanstalk.endpoint_rules")
 local query_protocol = require("smithy.protocol.query")
 local schemas = require("elasticbeanstalk.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "elasticbeanstalk", signing_region = cfg.region } }
                 else
@@ -49,614 +52,191 @@ function M.new(cfg)
 end
 
 function Client:abortEnvironmentUpdate(input, options)
-    return self:invokeOperation(input, {
-        name = "AbortEnvironmentUpdate",
-        input_schema = schemas.AbortEnvironmentUpdateInput,
-        output_schema = schemas.AbortEnvironmentUpdateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AbortEnvironmentUpdate, input, options)
 end
 
 function Client:applyEnvironmentManagedAction(input, options)
-    return self:invokeOperation(input, {
-        name = "ApplyEnvironmentManagedAction",
-        input_schema = schemas.ApplyEnvironmentManagedActionInput,
-        output_schema = schemas.ApplyEnvironmentManagedActionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ApplyEnvironmentManagedAction, input, options)
 end
 
 function Client:associateEnvironmentOperationsRole(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateEnvironmentOperationsRole",
-        input_schema = schemas.AssociateEnvironmentOperationsRoleInput,
-        output_schema = schemas.AssociateEnvironmentOperationsRoleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateEnvironmentOperationsRole, input, options)
 end
 
 function Client:checkDNSAvailability(input, options)
-    return self:invokeOperation(input, {
-        name = "CheckDNSAvailability",
-        input_schema = schemas.CheckDNSAvailabilityInput,
-        output_schema = schemas.CheckDNSAvailabilityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CheckDNSAvailability, input, options)
 end
 
 function Client:composeEnvironments(input, options)
-    return self:invokeOperation(input, {
-        name = "ComposeEnvironments",
-        input_schema = schemas.ComposeEnvironmentsInput,
-        output_schema = schemas.ComposeEnvironmentsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ComposeEnvironments, input, options)
 end
 
 function Client:createApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateApplication",
-        input_schema = schemas.CreateApplicationInput,
-        output_schema = schemas.CreateApplicationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options)
 end
 
 function Client:createApplicationVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateApplicationVersion",
-        input_schema = schemas.CreateApplicationVersionInput,
-        output_schema = schemas.CreateApplicationVersionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateApplicationVersion, input, options)
 end
 
 function Client:createConfigurationTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConfigurationTemplate",
-        input_schema = schemas.CreateConfigurationTemplateInput,
-        output_schema = schemas.CreateConfigurationTemplateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationTemplate, input, options)
 end
 
 function Client:createEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEnvironment",
-        input_schema = schemas.CreateEnvironmentInput,
-        output_schema = schemas.CreateEnvironmentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEnvironment, input, options)
 end
 
 function Client:createPlatformVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePlatformVersion",
-        input_schema = schemas.CreatePlatformVersionInput,
-        output_schema = schemas.CreatePlatformVersionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePlatformVersion, input, options)
 end
 
 function Client:createStorageLocation(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateStorageLocation",
-        input_schema = schemas.CreateStorageLocationInput,
-        output_schema = schemas.CreateStorageLocationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateStorageLocation, input, options)
 end
 
 function Client:deleteApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteApplication",
-        input_schema = schemas.DeleteApplicationInput,
-        output_schema = schemas.DeleteApplicationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options)
 end
 
 function Client:deleteApplicationVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteApplicationVersion",
-        input_schema = schemas.DeleteApplicationVersionInput,
-        output_schema = schemas.DeleteApplicationVersionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteApplicationVersion, input, options)
 end
 
 function Client:deleteConfigurationTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConfigurationTemplate",
-        input_schema = schemas.DeleteConfigurationTemplateInput,
-        output_schema = schemas.DeleteConfigurationTemplateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationTemplate, input, options)
 end
 
 function Client:deleteEnvironmentConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEnvironmentConfiguration",
-        input_schema = schemas.DeleteEnvironmentConfigurationInput,
-        output_schema = schemas.DeleteEnvironmentConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironmentConfiguration, input, options)
 end
 
 function Client:deletePlatformVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePlatformVersion",
-        input_schema = schemas.DeletePlatformVersionInput,
-        output_schema = schemas.DeletePlatformVersionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePlatformVersion, input, options)
 end
 
 function Client:describeAccountAttributes(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAccountAttributes",
-        input_schema = schemas.DescribeAccountAttributesInput,
-        output_schema = schemas.DescribeAccountAttributesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAccountAttributes, input, options)
 end
 
 function Client:describeApplications(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeApplications",
-        input_schema = schemas.DescribeApplicationsInput,
-        output_schema = schemas.DescribeApplicationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeApplications, input, options)
 end
 
 function Client:describeApplicationVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeApplicationVersions",
-        input_schema = schemas.DescribeApplicationVersionsInput,
-        output_schema = schemas.DescribeApplicationVersionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeApplicationVersions, input, options)
 end
 
 function Client:describeConfigurationOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeConfigurationOptions",
-        input_schema = schemas.DescribeConfigurationOptionsInput,
-        output_schema = schemas.DescribeConfigurationOptionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeConfigurationOptions, input, options)
 end
 
 function Client:describeConfigurationSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeConfigurationSettings",
-        input_schema = schemas.DescribeConfigurationSettingsInput,
-        output_schema = schemas.DescribeConfigurationSettingsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeConfigurationSettings, input, options)
 end
 
 function Client:describeEnvironmentHealth(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEnvironmentHealth",
-        input_schema = schemas.DescribeEnvironmentHealthInput,
-        output_schema = schemas.DescribeEnvironmentHealthOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEnvironmentHealth, input, options)
 end
 
 function Client:describeEnvironmentManagedActionHistory(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEnvironmentManagedActionHistory",
-        input_schema = schemas.DescribeEnvironmentManagedActionHistoryInput,
-        output_schema = schemas.DescribeEnvironmentManagedActionHistoryOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEnvironmentManagedActionHistory, input, options)
 end
 
 function Client:describeEnvironmentManagedActions(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEnvironmentManagedActions",
-        input_schema = schemas.DescribeEnvironmentManagedActionsInput,
-        output_schema = schemas.DescribeEnvironmentManagedActionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEnvironmentManagedActions, input, options)
 end
 
 function Client:describeEnvironmentResources(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEnvironmentResources",
-        input_schema = schemas.DescribeEnvironmentResourcesInput,
-        output_schema = schemas.DescribeEnvironmentResourcesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEnvironmentResources, input, options)
 end
 
 function Client:describeEnvironments(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEnvironments",
-        input_schema = schemas.DescribeEnvironmentsInput,
-        output_schema = schemas.DescribeEnvironmentsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEnvironments, input, options)
 end
 
 function Client:describeEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeEvents",
-        input_schema = schemas.DescribeEventsInput,
-        output_schema = schemas.DescribeEventsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeEvents, input, options)
 end
 
 function Client:describeInstancesHealth(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeInstancesHealth",
-        input_schema = schemas.DescribeInstancesHealthInput,
-        output_schema = schemas.DescribeInstancesHealthOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeInstancesHealth, input, options)
 end
 
 function Client:describePlatformVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribePlatformVersion",
-        input_schema = schemas.DescribePlatformVersionInput,
-        output_schema = schemas.DescribePlatformVersionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribePlatformVersion, input, options)
 end
 
 function Client:disassociateEnvironmentOperationsRole(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateEnvironmentOperationsRole",
-        input_schema = schemas.DisassociateEnvironmentOperationsRoleInput,
-        output_schema = schemas.DisassociateEnvironmentOperationsRoleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateEnvironmentOperationsRole, input, options)
 end
 
 function Client:listAvailableSolutionStacks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAvailableSolutionStacks",
-        input_schema = schemas.ListAvailableSolutionStacksInput,
-        output_schema = schemas.ListAvailableSolutionStacksOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAvailableSolutionStacks, input, options)
 end
 
 function Client:listPlatformBranches(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPlatformBranches",
-        input_schema = schemas.ListPlatformBranchesInput,
-        output_schema = schemas.ListPlatformBranchesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPlatformBranches, input, options)
 end
 
 function Client:listPlatformVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPlatformVersions",
-        input_schema = schemas.ListPlatformVersionsInput,
-        output_schema = schemas.ListPlatformVersionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPlatformVersions, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:rebuildEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "RebuildEnvironment",
-        input_schema = schemas.RebuildEnvironmentInput,
-        output_schema = schemas.RebuildEnvironmentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RebuildEnvironment, input, options)
 end
 
 function Client:requestEnvironmentInfo(input, options)
-    return self:invokeOperation(input, {
-        name = "RequestEnvironmentInfo",
-        input_schema = schemas.RequestEnvironmentInfoInput,
-        output_schema = schemas.RequestEnvironmentInfoOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RequestEnvironmentInfo, input, options)
 end
 
 function Client:restartAppServer(input, options)
-    return self:invokeOperation(input, {
-        name = "RestartAppServer",
-        input_schema = schemas.RestartAppServerInput,
-        output_schema = schemas.RestartAppServerOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RestartAppServer, input, options)
 end
 
 function Client:retrieveEnvironmentInfo(input, options)
-    return self:invokeOperation(input, {
-        name = "RetrieveEnvironmentInfo",
-        input_schema = schemas.RetrieveEnvironmentInfoInput,
-        output_schema = schemas.RetrieveEnvironmentInfoOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RetrieveEnvironmentInfo, input, options)
 end
 
 function Client:swapEnvironmentCNAMEs(input, options)
-    return self:invokeOperation(input, {
-        name = "SwapEnvironmentCNAMEs",
-        input_schema = schemas.SwapEnvironmentCNAMEsInput,
-        output_schema = schemas.SwapEnvironmentCNAMEsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SwapEnvironmentCNAMEs, input, options)
 end
 
 function Client:terminateEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "TerminateEnvironment",
-        input_schema = schemas.TerminateEnvironmentInput,
-        output_schema = schemas.TerminateEnvironmentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TerminateEnvironment, input, options)
 end
 
 function Client:updateApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateApplication",
-        input_schema = schemas.UpdateApplicationInput,
-        output_schema = schemas.UpdateApplicationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options)
 end
 
 function Client:updateApplicationResourceLifecycle(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateApplicationResourceLifecycle",
-        input_schema = schemas.UpdateApplicationResourceLifecycleInput,
-        output_schema = schemas.UpdateApplicationResourceLifecycleOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateApplicationResourceLifecycle, input, options)
 end
 
 function Client:updateApplicationVersion(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateApplicationVersion",
-        input_schema = schemas.UpdateApplicationVersionInput,
-        output_schema = schemas.UpdateApplicationVersionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateApplicationVersion, input, options)
 end
 
 function Client:updateConfigurationTemplate(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateConfigurationTemplate",
-        input_schema = schemas.UpdateConfigurationTemplateInput,
-        output_schema = schemas.UpdateConfigurationTemplateOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationTemplate, input, options)
 end
 
 function Client:updateEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateEnvironment",
-        input_schema = schemas.UpdateEnvironmentInput,
-        output_schema = schemas.UpdateEnvironmentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateEnvironment, input, options)
 end
 
 function Client:updateTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateTagsForResource",
-        input_schema = schemas.UpdateTagsForResourceInput,
-        output_schema = schemas.UpdateTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateTagsForResource, input, options)
 end
 
 function Client:validateConfigurationSettings(input, options)
-    return self:invokeOperation(input, {
-        name = "ValidateConfigurationSettings",
-        input_schema = schemas.ValidateConfigurationSettingsInput,
-        output_schema = schemas.ValidateConfigurationSettingsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ValidateConfigurationSettings, input, options)
 end
 
 return M

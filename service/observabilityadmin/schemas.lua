@@ -3043,4 +3043,494 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.observabilityadmin", "ObservabilityAdmin"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCentralizationRuleForOrganization = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "CreateCentralizationRuleForOrganization"),
+    input = M.CreateCentralizationRuleForOrganizationInput,
+    output = M.CreateCentralizationRuleForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateCentralizationRuleForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateS3TableIntegration = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "CreateS3TableIntegration"),
+    input = M.CreateS3TableIntegrationInput,
+    output = M.CreateS3TableIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateS3TableIntegration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTelemetryPipeline = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "CreateTelemetryPipeline"),
+    input = M.CreateTelemetryPipelineInput,
+    output = M.CreateTelemetryPipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateTelemetryPipeline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTelemetryRule = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "CreateTelemetryRule"),
+    input = M.CreateTelemetryRuleInput,
+    output = M.CreateTelemetryRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateTelemetryRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTelemetryRuleForOrganization = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "CreateTelemetryRuleForOrganization"),
+    input = M.CreateTelemetryRuleForOrganizationInput,
+    output = M.CreateTelemetryRuleForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateTelemetryRuleForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCentralizationRuleForOrganization = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "DeleteCentralizationRuleForOrganization"),
+    input = M.DeleteCentralizationRuleForOrganizationInput,
+    output = M.DeleteCentralizationRuleForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteCentralizationRuleForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteS3TableIntegration = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "DeleteS3TableIntegration"),
+    input = M.DeleteS3TableIntegrationInput,
+    output = M.DeleteS3TableIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteS3TableIntegration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTelemetryPipeline = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "DeleteTelemetryPipeline"),
+    input = M.DeleteTelemetryPipelineInput,
+    output = M.DeleteTelemetryPipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteTelemetryPipeline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTelemetryRule = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "DeleteTelemetryRule"),
+    input = M.DeleteTelemetryRuleInput,
+    output = M.DeleteTelemetryRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteTelemetryRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTelemetryRuleForOrganization = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "DeleteTelemetryRuleForOrganization"),
+    input = M.DeleteTelemetryRuleForOrganizationInput,
+    output = M.DeleteTelemetryRuleForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteTelemetryRuleForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCentralizationRuleForOrganization = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "GetCentralizationRuleForOrganization"),
+    input = M.GetCentralizationRuleForOrganizationInput,
+    output = M.GetCentralizationRuleForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetCentralizationRuleForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetS3TableIntegration = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "GetS3TableIntegration"),
+    input = M.GetS3TableIntegrationInput,
+    output = M.GetS3TableIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetS3TableIntegration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTelemetryEnrichmentStatus = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "GetTelemetryEnrichmentStatus"),
+    input = M.GetTelemetryEnrichmentStatusInput,
+    output = M.GetTelemetryEnrichmentStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTelemetryEnrichmentStatus" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTelemetryEvaluationStatus = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "GetTelemetryEvaluationStatus"),
+    input = M.GetTelemetryEvaluationStatusInput,
+    output = M.GetTelemetryEvaluationStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTelemetryEvaluationStatus" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTelemetryEvaluationStatusForOrganization = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "GetTelemetryEvaluationStatusForOrganization"),
+    input = M.GetTelemetryEvaluationStatusForOrganizationInput,
+    output = M.GetTelemetryEvaluationStatusForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTelemetryEvaluationStatusForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTelemetryPipeline = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "GetTelemetryPipeline"),
+    input = M.GetTelemetryPipelineInput,
+    output = M.GetTelemetryPipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTelemetryPipeline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTelemetryRule = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "GetTelemetryRule"),
+    input = M.GetTelemetryRuleInput,
+    output = M.GetTelemetryRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTelemetryRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTelemetryRuleForOrganization = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "GetTelemetryRuleForOrganization"),
+    input = M.GetTelemetryRuleForOrganizationInput,
+    output = M.GetTelemetryRuleForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTelemetryRuleForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCentralizationRulesForOrganization = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "ListCentralizationRulesForOrganization"),
+    input = M.ListCentralizationRulesForOrganizationInput,
+    output = M.ListCentralizationRulesForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListCentralizationRulesForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceTelemetry = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "ListResourceTelemetry"),
+    input = M.ListResourceTelemetryInput,
+    output = M.ListResourceTelemetryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListResourceTelemetry" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceTelemetryForOrganization = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "ListResourceTelemetryForOrganization"),
+    input = M.ListResourceTelemetryForOrganizationInput,
+    output = M.ListResourceTelemetryForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListResourceTelemetryForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListS3TableIntegrations = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "ListS3TableIntegrations"),
+    input = M.ListS3TableIntegrationsInput,
+    output = M.ListS3TableIntegrationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListS3TableIntegrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTelemetryPipelines = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "ListTelemetryPipelines"),
+    input = M.ListTelemetryPipelinesInput,
+    output = M.ListTelemetryPipelinesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTelemetryPipelines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTelemetryRules = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "ListTelemetryRules"),
+    input = M.ListTelemetryRulesInput,
+    output = M.ListTelemetryRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTelemetryRules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTelemetryRulesForOrganization = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "ListTelemetryRulesForOrganization"),
+    input = M.ListTelemetryRulesForOrganizationInput,
+    output = M.ListTelemetryRulesForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTelemetryRulesForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTelemetryEnrichment = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "StartTelemetryEnrichment"),
+    input = M.StartTelemetryEnrichmentInput,
+    output = M.StartTelemetryEnrichmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartTelemetryEnrichment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTelemetryEvaluation = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "StartTelemetryEvaluation"),
+    input = M.StartTelemetryEvaluationInput,
+    output = M.StartTelemetryEvaluationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartTelemetryEvaluation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTelemetryEvaluationForOrganization = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "StartTelemetryEvaluationForOrganization"),
+    input = M.StartTelemetryEvaluationForOrganizationInput,
+    output = M.StartTelemetryEvaluationForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartTelemetryEvaluationForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopTelemetryEnrichment = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "StopTelemetryEnrichment"),
+    input = M.StopTelemetryEnrichmentInput,
+    output = M.StopTelemetryEnrichmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StopTelemetryEnrichment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopTelemetryEvaluation = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "StopTelemetryEvaluation"),
+    input = M.StopTelemetryEvaluationInput,
+    output = M.StopTelemetryEvaluationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StopTelemetryEvaluation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopTelemetryEvaluationForOrganization = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "StopTelemetryEvaluationForOrganization"),
+    input = M.StopTelemetryEvaluationForOrganizationInput,
+    output = M.StopTelemetryEvaluationForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StopTelemetryEvaluationForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestTelemetryPipeline = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "TestTelemetryPipeline"),
+    input = M.TestTelemetryPipelineInput,
+    output = M.TestTelemetryPipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TestTelemetryPipeline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UntagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCentralizationRuleForOrganization = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "UpdateCentralizationRuleForOrganization"),
+    input = M.UpdateCentralizationRuleForOrganizationInput,
+    output = M.UpdateCentralizationRuleForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateCentralizationRuleForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTelemetryPipeline = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "UpdateTelemetryPipeline"),
+    input = M.UpdateTelemetryPipelineInput,
+    output = M.UpdateTelemetryPipelineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateTelemetryPipeline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTelemetryRule = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "UpdateTelemetryRule"),
+    input = M.UpdateTelemetryRuleInput,
+    output = M.UpdateTelemetryRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateTelemetryRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTelemetryRuleForOrganization = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "UpdateTelemetryRuleForOrganization"),
+    input = M.UpdateTelemetryRuleForOrganizationInput,
+    output = M.UpdateTelemetryRuleForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateTelemetryRuleForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateTelemetryPipelineConfiguration = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "ValidateTelemetryPipelineConfiguration"),
+    input = M.ValidateTelemetryPipelineConfigurationInput,
+    output = M.ValidateTelemetryPipelineConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ValidateTelemetryPipelineConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

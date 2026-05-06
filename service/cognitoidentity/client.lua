@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cognitoidentity.endpoint_rules")
 local schemas = require("cognitoidentity.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cognito-identity", signing_region = cfg.region } }
                 else
@@ -49,302 +52,95 @@ function M.new(cfg)
 end
 
 function Client:createIdentityPool(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateIdentityPool",
-        input_schema = schemas.CreateIdentityPoolInput,
-        output_schema = schemas.CreateIdentityPoolOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateIdentityPool, input, options)
 end
 
 function Client:deleteIdentities(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIdentities",
-        input_schema = schemas.DeleteIdentitiesInput,
-        output_schema = schemas.DeleteIdentitiesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIdentities, input, options)
 end
 
 function Client:deleteIdentityPool(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIdentityPool",
-        input_schema = schemas.DeleteIdentityPoolInput,
-        output_schema = schemas.DeleteIdentityPoolOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIdentityPool, input, options)
 end
 
 function Client:describeIdentity(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeIdentity",
-        input_schema = schemas.DescribeIdentityInput,
-        output_schema = schemas.DescribeIdentityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeIdentity, input, options)
 end
 
 function Client:describeIdentityPool(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeIdentityPool",
-        input_schema = schemas.DescribeIdentityPoolInput,
-        output_schema = schemas.DescribeIdentityPoolOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeIdentityPool, input, options)
 end
 
 function Client:getCredentialsForIdentity(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCredentialsForIdentity",
-        input_schema = schemas.GetCredentialsForIdentityInput,
-        output_schema = schemas.GetCredentialsForIdentityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "smithy.api#noAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCredentialsForIdentity, input, options)
 end
 
 function Client:getId(input, options)
-    return self:invokeOperation(input, {
-        name = "GetId",
-        input_schema = schemas.GetIdInput,
-        output_schema = schemas.GetIdOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "smithy.api#noAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetId, input, options)
 end
 
 function Client:getIdentityPoolRoles(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdentityPoolRoles",
-        input_schema = schemas.GetIdentityPoolRolesInput,
-        output_schema = schemas.GetIdentityPoolRolesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdentityPoolRoles, input, options)
 end
 
 function Client:getOpenIdToken(input, options)
-    return self:invokeOperation(input, {
-        name = "GetOpenIdToken",
-        input_schema = schemas.GetOpenIdTokenInput,
-        output_schema = schemas.GetOpenIdTokenOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "smithy.api#noAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetOpenIdToken, input, options)
 end
 
 function Client:getOpenIdTokenForDeveloperIdentity(input, options)
-    return self:invokeOperation(input, {
-        name = "GetOpenIdTokenForDeveloperIdentity",
-        input_schema = schemas.GetOpenIdTokenForDeveloperIdentityInput,
-        output_schema = schemas.GetOpenIdTokenForDeveloperIdentityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetOpenIdTokenForDeveloperIdentity, input, options)
 end
 
 function Client:getPrincipalTagAttributeMap(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPrincipalTagAttributeMap",
-        input_schema = schemas.GetPrincipalTagAttributeMapInput,
-        output_schema = schemas.GetPrincipalTagAttributeMapOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPrincipalTagAttributeMap, input, options)
 end
 
 function Client:listIdentities(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIdentities",
-        input_schema = schemas.ListIdentitiesInput,
-        output_schema = schemas.ListIdentitiesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIdentities, input, options)
 end
 
 function Client:listIdentityPools(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIdentityPools",
-        input_schema = schemas.ListIdentityPoolsInput,
-        output_schema = schemas.ListIdentityPoolsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIdentityPools, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:lookupDeveloperIdentity(input, options)
-    return self:invokeOperation(input, {
-        name = "LookupDeveloperIdentity",
-        input_schema = schemas.LookupDeveloperIdentityInput,
-        output_schema = schemas.LookupDeveloperIdentityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.LookupDeveloperIdentity, input, options)
 end
 
 function Client:mergeDeveloperIdentities(input, options)
-    return self:invokeOperation(input, {
-        name = "MergeDeveloperIdentities",
-        input_schema = schemas.MergeDeveloperIdentitiesInput,
-        output_schema = schemas.MergeDeveloperIdentitiesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.MergeDeveloperIdentities, input, options)
 end
 
 function Client:setIdentityPoolRoles(input, options)
-    return self:invokeOperation(input, {
-        name = "SetIdentityPoolRoles",
-        input_schema = schemas.SetIdentityPoolRolesInput,
-        output_schema = schemas.SetIdentityPoolRolesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetIdentityPoolRoles, input, options)
 end
 
 function Client:setPrincipalTagAttributeMap(input, options)
-    return self:invokeOperation(input, {
-        name = "SetPrincipalTagAttributeMap",
-        input_schema = schemas.SetPrincipalTagAttributeMapInput,
-        output_schema = schemas.SetPrincipalTagAttributeMapOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetPrincipalTagAttributeMap, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:unlinkDeveloperIdentity(input, options)
-    return self:invokeOperation(input, {
-        name = "UnlinkDeveloperIdentity",
-        input_schema = schemas.UnlinkDeveloperIdentityInput,
-        output_schema = schemas.UnlinkDeveloperIdentityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UnlinkDeveloperIdentity, input, options)
 end
 
 function Client:unlinkIdentity(input, options)
-    return self:invokeOperation(input, {
-        name = "UnlinkIdentity",
-        input_schema = schemas.UnlinkIdentityInput,
-        output_schema = schemas.UnlinkIdentityOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "smithy.api#noAuth",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UnlinkIdentity, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateIdentityPool(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateIdentityPool",
-        input_schema = schemas.UpdateIdentityPoolInput,
-        output_schema = schemas.UpdateIdentityPoolOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateIdentityPool, input, options)
 end
 
 return M

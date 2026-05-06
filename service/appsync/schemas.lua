@@ -6410,4 +6410,902 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.appsync", "AWSDeepdishControlPlaneService"),
+    version = "2017-07-25",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateApi = schema.operation({
+    id = id.from("com.amazonaws.appsync", "AssociateApi"),
+    input = M.AssociateApiInput,
+    output = M.AssociateApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/domainnames/{domainName}/apiassociation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateMergedGraphqlApi = schema.operation({
+    id = id.from("com.amazonaws.appsync", "AssociateMergedGraphqlApi"),
+    input = M.AssociateMergedGraphqlApiInput,
+    output = M.AssociateMergedGraphqlApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/sourceApis/{sourceApiIdentifier}/mergedApiAssociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateSourceGraphqlApi = schema.operation({
+    id = id.from("com.amazonaws.appsync", "AssociateSourceGraphqlApi"),
+    input = M.AssociateSourceGraphqlApiInput,
+    output = M.AssociateSourceGraphqlApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApi = schema.operation({
+    id = id.from("com.amazonaws.appsync", "CreateApi"),
+    input = M.CreateApiInput,
+    output = M.CreateApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/apis" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApiCache = schema.operation({
+    id = id.from("com.amazonaws.appsync", "CreateApiCache"),
+    input = M.CreateApiCacheInput,
+    output = M.CreateApiCacheOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis/{apiId}/ApiCaches" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApiKey = schema.operation({
+    id = id.from("com.amazonaws.appsync", "CreateApiKey"),
+    input = M.CreateApiKeyInput,
+    output = M.CreateApiKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis/{apiId}/apikeys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChannelNamespace = schema.operation({
+    id = id.from("com.amazonaws.appsync", "CreateChannelNamespace"),
+    input = M.CreateChannelNamespaceInput,
+    output = M.CreateChannelNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/apis/{apiId}/channelNamespaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataSource = schema.operation({
+    id = id.from("com.amazonaws.appsync", "CreateDataSource"),
+    input = M.CreateDataSourceInput,
+    output = M.CreateDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis/{apiId}/datasources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomainName = schema.operation({
+    id = id.from("com.amazonaws.appsync", "CreateDomainName"),
+    input = M.CreateDomainNameInput,
+    output = M.CreateDomainNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/domainnames" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFunction = schema.operation({
+    id = id.from("com.amazonaws.appsync", "CreateFunction"),
+    input = M.CreateFunctionInput,
+    output = M.CreateFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis/{apiId}/functions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGraphqlApi = schema.operation({
+    id = id.from("com.amazonaws.appsync", "CreateGraphqlApi"),
+    input = M.CreateGraphqlApiInput,
+    output = M.CreateGraphqlApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResolver = schema.operation({
+    id = id.from("com.amazonaws.appsync", "CreateResolver"),
+    input = M.CreateResolverInput,
+    output = M.CreateResolverOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis/{apiId}/types/{typeName}/resolvers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateType = schema.operation({
+    id = id.from("com.amazonaws.appsync", "CreateType"),
+    input = M.CreateTypeInput,
+    output = M.CreateTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis/{apiId}/types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApi = schema.operation({
+    id = id.from("com.amazonaws.appsync", "DeleteApi"),
+    input = M.DeleteApiInput,
+    output = M.DeleteApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/apis/{apiId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApiCache = schema.operation({
+    id = id.from("com.amazonaws.appsync", "DeleteApiCache"),
+    input = M.DeleteApiCacheInput,
+    output = M.DeleteApiCacheOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apis/{apiId}/ApiCaches" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApiKey = schema.operation({
+    id = id.from("com.amazonaws.appsync", "DeleteApiKey"),
+    input = M.DeleteApiKeyInput,
+    output = M.DeleteApiKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apis/{apiId}/apikeys/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChannelNamespace = schema.operation({
+    id = id.from("com.amazonaws.appsync", "DeleteChannelNamespace"),
+    input = M.DeleteChannelNamespaceInput,
+    output = M.DeleteChannelNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/apis/{apiId}/channelNamespaces/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataSource = schema.operation({
+    id = id.from("com.amazonaws.appsync", "DeleteDataSource"),
+    input = M.DeleteDataSourceInput,
+    output = M.DeleteDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apis/{apiId}/datasources/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomainName = schema.operation({
+    id = id.from("com.amazonaws.appsync", "DeleteDomainName"),
+    input = M.DeleteDomainNameInput,
+    output = M.DeleteDomainNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/domainnames/{domainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFunction = schema.operation({
+    id = id.from("com.amazonaws.appsync", "DeleteFunction"),
+    input = M.DeleteFunctionInput,
+    output = M.DeleteFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apis/{apiId}/functions/{functionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGraphqlApi = schema.operation({
+    id = id.from("com.amazonaws.appsync", "DeleteGraphqlApi"),
+    input = M.DeleteGraphqlApiInput,
+    output = M.DeleteGraphqlApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apis/{apiId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResolver = schema.operation({
+    id = id.from("com.amazonaws.appsync", "DeleteResolver"),
+    input = M.DeleteResolverInput,
+    output = M.DeleteResolverOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apis/{apiId}/types/{typeName}/resolvers/{fieldName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteType = schema.operation({
+    id = id.from("com.amazonaws.appsync", "DeleteType"),
+    input = M.DeleteTypeInput,
+    output = M.DeleteTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apis/{apiId}/types/{typeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateApi = schema.operation({
+    id = id.from("com.amazonaws.appsync", "DisassociateApi"),
+    input = M.DisassociateApiInput,
+    output = M.DisassociateApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/domainnames/{domainName}/apiassociation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateMergedGraphqlApi = schema.operation({
+    id = id.from("com.amazonaws.appsync", "DisassociateMergedGraphqlApi"),
+    input = M.DisassociateMergedGraphqlApiInput,
+    output = M.DisassociateMergedGraphqlApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/sourceApis/{sourceApiIdentifier}/mergedApiAssociations/{associationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateSourceGraphqlApi = schema.operation({
+    id = id.from("com.amazonaws.appsync", "DisassociateSourceGraphqlApi"),
+    input = M.DisassociateSourceGraphqlApiInput,
+    output = M.DisassociateSourceGraphqlApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EvaluateCode = schema.operation({
+    id = id.from("com.amazonaws.appsync", "EvaluateCode"),
+    input = M.EvaluateCodeInput,
+    output = M.EvaluateCodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/dataplane-evaluatecode" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EvaluateMappingTemplate = schema.operation({
+    id = id.from("com.amazonaws.appsync", "EvaluateMappingTemplate"),
+    input = M.EvaluateMappingTemplateInput,
+    output = M.EvaluateMappingTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/dataplane-evaluatetemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FlushApiCache = schema.operation({
+    id = id.from("com.amazonaws.appsync", "FlushApiCache"),
+    input = M.FlushApiCacheInput,
+    output = M.FlushApiCacheOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/apis/{apiId}/FlushCache" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApi = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetApi"),
+    input = M.GetApiInput,
+    output = M.GetApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/apis/{apiId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApiAssociation = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetApiAssociation"),
+    input = M.GetApiAssociationInput,
+    output = M.GetApiAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/domainnames/{domainName}/apiassociation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApiCache = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetApiCache"),
+    input = M.GetApiCacheInput,
+    output = M.GetApiCacheOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/ApiCaches" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChannelNamespace = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetChannelNamespace"),
+    input = M.GetChannelNamespaceInput,
+    output = M.GetChannelNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/apis/{apiId}/channelNamespaces/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataSource = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetDataSource"),
+    input = M.GetDataSourceInput,
+    output = M.GetDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/datasources/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataSourceIntrospection = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetDataSourceIntrospection"),
+    input = M.GetDataSourceIntrospectionInput,
+    output = M.GetDataSourceIntrospectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/datasources/introspections/{introspectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainName = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetDomainName"),
+    input = M.GetDomainNameInput,
+    output = M.GetDomainNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/domainnames/{domainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFunction = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetFunction"),
+    input = M.GetFunctionInput,
+    output = M.GetFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/functions/{functionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGraphqlApi = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetGraphqlApi"),
+    input = M.GetGraphqlApiInput,
+    output = M.GetGraphqlApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGraphqlApiEnvironmentVariables = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetGraphqlApiEnvironmentVariables"),
+    input = M.GetGraphqlApiEnvironmentVariablesInput,
+    output = M.GetGraphqlApiEnvironmentVariablesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/environmentVariables" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIntrospectionSchema = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetIntrospectionSchema"),
+    input = M.GetIntrospectionSchemaInput,
+    output = M.GetIntrospectionSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/schema" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResolver = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetResolver"),
+    input = M.GetResolverInput,
+    output = M.GetResolverOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/types/{typeName}/resolvers/{fieldName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSchemaCreationStatus = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetSchemaCreationStatus"),
+    input = M.GetSchemaCreationStatusInput,
+    output = M.GetSchemaCreationStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/schemacreation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSourceApiAssociation = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetSourceApiAssociation"),
+    input = M.GetSourceApiAssociationInput,
+    output = M.GetSourceApiAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetType = schema.operation({
+    id = id.from("com.amazonaws.appsync", "GetType"),
+    input = M.GetTypeInput,
+    output = M.GetTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/types/{typeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApiKeys = schema.operation({
+    id = id.from("com.amazonaws.appsync", "ListApiKeys"),
+    input = M.ListApiKeysInput,
+    output = M.ListApiKeysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/apikeys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApis = schema.operation({
+    id = id.from("com.amazonaws.appsync", "ListApis"),
+    input = M.ListApisInput,
+    output = M.ListApisOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/apis" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannelNamespaces = schema.operation({
+    id = id.from("com.amazonaws.appsync", "ListChannelNamespaces"),
+    input = M.ListChannelNamespacesInput,
+    output = M.ListChannelNamespacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/apis/{apiId}/channelNamespaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSources = schema.operation({
+    id = id.from("com.amazonaws.appsync", "ListDataSources"),
+    input = M.ListDataSourcesInput,
+    output = M.ListDataSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/datasources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainNames = schema.operation({
+    id = id.from("com.amazonaws.appsync", "ListDomainNames"),
+    input = M.ListDomainNamesInput,
+    output = M.ListDomainNamesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/domainnames" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFunctions = schema.operation({
+    id = id.from("com.amazonaws.appsync", "ListFunctions"),
+    input = M.ListFunctionsInput,
+    output = M.ListFunctionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/functions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGraphqlApis = schema.operation({
+    id = id.from("com.amazonaws.appsync", "ListGraphqlApis"),
+    input = M.ListGraphqlApisInput,
+    output = M.ListGraphqlApisOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResolvers = schema.operation({
+    id = id.from("com.amazonaws.appsync", "ListResolvers"),
+    input = M.ListResolversInput,
+    output = M.ListResolversOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/types/{typeName}/resolvers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResolversByFunction = schema.operation({
+    id = id.from("com.amazonaws.appsync", "ListResolversByFunction"),
+    input = M.ListResolversByFunctionInput,
+    output = M.ListResolversByFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/functions/{functionId}/resolvers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSourceApiAssociations = schema.operation({
+    id = id.from("com.amazonaws.appsync", "ListSourceApiAssociations"),
+    input = M.ListSourceApiAssociationsInput,
+    output = M.ListSourceApiAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/sourceApiAssociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.appsync", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTypes = schema.operation({
+    id = id.from("com.amazonaws.appsync", "ListTypes"),
+    input = M.ListTypesInput,
+    output = M.ListTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/apis/{apiId}/types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTypesByAssociation = schema.operation({
+    id = id.from("com.amazonaws.appsync", "ListTypesByAssociation"),
+    input = M.ListTypesByAssociationInput,
+    output = M.ListTypesByAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutGraphqlApiEnvironmentVariables = schema.operation({
+    id = id.from("com.amazonaws.appsync", "PutGraphqlApiEnvironmentVariables"),
+    input = M.PutGraphqlApiEnvironmentVariablesInput,
+    output = M.PutGraphqlApiEnvironmentVariablesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/apis/{apiId}/environmentVariables" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDataSourceIntrospection = schema.operation({
+    id = id.from("com.amazonaws.appsync", "StartDataSourceIntrospection"),
+    input = M.StartDataSourceIntrospectionInput,
+    output = M.StartDataSourceIntrospectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/datasources/introspections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSchemaCreation = schema.operation({
+    id = id.from("com.amazonaws.appsync", "StartSchemaCreation"),
+    input = M.StartSchemaCreationInput,
+    output = M.StartSchemaCreationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis/{apiId}/schemacreation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSchemaMerge = schema.operation({
+    id = id.from("com.amazonaws.appsync", "StartSchemaMerge"),
+    input = M.StartSchemaMergeInput,
+    output = M.StartSchemaMergeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/merge" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.appsync", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.appsync", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApi = schema.operation({
+    id = id.from("com.amazonaws.appsync", "UpdateApi"),
+    input = M.UpdateApiInput,
+    output = M.UpdateApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/apis/{apiId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApiCache = schema.operation({
+    id = id.from("com.amazonaws.appsync", "UpdateApiCache"),
+    input = M.UpdateApiCacheInput,
+    output = M.UpdateApiCacheOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis/{apiId}/ApiCaches/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApiKey = schema.operation({
+    id = id.from("com.amazonaws.appsync", "UpdateApiKey"),
+    input = M.UpdateApiKeyInput,
+    output = M.UpdateApiKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis/{apiId}/apikeys/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChannelNamespace = schema.operation({
+    id = id.from("com.amazonaws.appsync", "UpdateChannelNamespace"),
+    input = M.UpdateChannelNamespaceInput,
+    output = M.UpdateChannelNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/apis/{apiId}/channelNamespaces/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataSource = schema.operation({
+    id = id.from("com.amazonaws.appsync", "UpdateDataSource"),
+    input = M.UpdateDataSourceInput,
+    output = M.UpdateDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis/{apiId}/datasources/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomainName = schema.operation({
+    id = id.from("com.amazonaws.appsync", "UpdateDomainName"),
+    input = M.UpdateDomainNameInput,
+    output = M.UpdateDomainNameOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/domainnames/{domainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFunction = schema.operation({
+    id = id.from("com.amazonaws.appsync", "UpdateFunction"),
+    input = M.UpdateFunctionInput,
+    output = M.UpdateFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis/{apiId}/functions/{functionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGraphqlApi = schema.operation({
+    id = id.from("com.amazonaws.appsync", "UpdateGraphqlApi"),
+    input = M.UpdateGraphqlApiInput,
+    output = M.UpdateGraphqlApiOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis/{apiId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResolver = schema.operation({
+    id = id.from("com.amazonaws.appsync", "UpdateResolver"),
+    input = M.UpdateResolverInput,
+    output = M.UpdateResolverOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis/{apiId}/types/{typeName}/resolvers/{fieldName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSourceApiAssociation = schema.operation({
+    id = id.from("com.amazonaws.appsync", "UpdateSourceApiAssociation"),
+    input = M.UpdateSourceApiAssociationInput,
+    output = M.UpdateSourceApiAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateType = schema.operation({
+    id = id.from("com.amazonaws.appsync", "UpdateType"),
+    input = M.UpdateTypeInput,
+    output = M.UpdateTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/apis/{apiId}/types/{typeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

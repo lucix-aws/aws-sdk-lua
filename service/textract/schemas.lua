@@ -3302,4 +3302,289 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.textract", "Textract"),
+    version = "2018-06-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AnalyzeDocument = schema.operation({
+    id = id.from("com.amazonaws.textract", "AnalyzeDocument"),
+    input = M.AnalyzeDocumentInput,
+    output = M.AnalyzeDocumentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AnalyzeExpense = schema.operation({
+    id = id.from("com.amazonaws.textract", "AnalyzeExpense"),
+    input = M.AnalyzeExpenseInput,
+    output = M.AnalyzeExpenseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AnalyzeID = schema.operation({
+    id = id.from("com.amazonaws.textract", "AnalyzeID"),
+    input = M.AnalyzeIDInput,
+    output = M.AnalyzeIDOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAdapter = schema.operation({
+    id = id.from("com.amazonaws.textract", "CreateAdapter"),
+    input = M.CreateAdapterInput,
+    output = M.CreateAdapterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAdapterVersion = schema.operation({
+    id = id.from("com.amazonaws.textract", "CreateAdapterVersion"),
+    input = M.CreateAdapterVersionInput,
+    output = M.CreateAdapterVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAdapter = schema.operation({
+    id = id.from("com.amazonaws.textract", "DeleteAdapter"),
+    input = M.DeleteAdapterInput,
+    output = M.DeleteAdapterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAdapterVersion = schema.operation({
+    id = id.from("com.amazonaws.textract", "DeleteAdapterVersion"),
+    input = M.DeleteAdapterVersionInput,
+    output = M.DeleteAdapterVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectDocumentText = schema.operation({
+    id = id.from("com.amazonaws.textract", "DetectDocumentText"),
+    input = M.DetectDocumentTextInput,
+    output = M.DetectDocumentTextOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAdapter = schema.operation({
+    id = id.from("com.amazonaws.textract", "GetAdapter"),
+    input = M.GetAdapterInput,
+    output = M.GetAdapterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAdapterVersion = schema.operation({
+    id = id.from("com.amazonaws.textract", "GetAdapterVersion"),
+    input = M.GetAdapterVersionInput,
+    output = M.GetAdapterVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDocumentAnalysis = schema.operation({
+    id = id.from("com.amazonaws.textract", "GetDocumentAnalysis"),
+    input = M.GetDocumentAnalysisInput,
+    output = M.GetDocumentAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDocumentTextDetection = schema.operation({
+    id = id.from("com.amazonaws.textract", "GetDocumentTextDetection"),
+    input = M.GetDocumentTextDetectionInput,
+    output = M.GetDocumentTextDetectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExpenseAnalysis = schema.operation({
+    id = id.from("com.amazonaws.textract", "GetExpenseAnalysis"),
+    input = M.GetExpenseAnalysisInput,
+    output = M.GetExpenseAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLendingAnalysis = schema.operation({
+    id = id.from("com.amazonaws.textract", "GetLendingAnalysis"),
+    input = M.GetLendingAnalysisInput,
+    output = M.GetLendingAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLendingAnalysisSummary = schema.operation({
+    id = id.from("com.amazonaws.textract", "GetLendingAnalysisSummary"),
+    input = M.GetLendingAnalysisSummaryInput,
+    output = M.GetLendingAnalysisSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAdapters = schema.operation({
+    id = id.from("com.amazonaws.textract", "ListAdapters"),
+    input = M.ListAdaptersInput,
+    output = M.ListAdaptersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAdapterVersions = schema.operation({
+    id = id.from("com.amazonaws.textract", "ListAdapterVersions"),
+    input = M.ListAdapterVersionsInput,
+    output = M.ListAdapterVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.textract", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDocumentAnalysis = schema.operation({
+    id = id.from("com.amazonaws.textract", "StartDocumentAnalysis"),
+    input = M.StartDocumentAnalysisInput,
+    output = M.StartDocumentAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDocumentTextDetection = schema.operation({
+    id = id.from("com.amazonaws.textract", "StartDocumentTextDetection"),
+    input = M.StartDocumentTextDetectionInput,
+    output = M.StartDocumentTextDetectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartExpenseAnalysis = schema.operation({
+    id = id.from("com.amazonaws.textract", "StartExpenseAnalysis"),
+    input = M.StartExpenseAnalysisInput,
+    output = M.StartExpenseAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartLendingAnalysis = schema.operation({
+    id = id.from("com.amazonaws.textract", "StartLendingAnalysis"),
+    input = M.StartLendingAnalysisInput,
+    output = M.StartLendingAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.textract", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.textract", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAdapter = schema.operation({
+    id = id.from("com.amazonaws.textract", "UpdateAdapter"),
+    input = M.UpdateAdapterInput,
+    output = M.UpdateAdapterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

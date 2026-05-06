@@ -5595,4 +5595,146 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.firehose", "Firehose_20150804"),
+    version = "2015-08-04",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDeliveryStream = schema.operation({
+    id = id.from("com.amazonaws.firehose", "CreateDeliveryStream"),
+    input = M.CreateDeliveryStreamInput,
+    output = M.CreateDeliveryStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDeliveryStream = schema.operation({
+    id = id.from("com.amazonaws.firehose", "DeleteDeliveryStream"),
+    input = M.DeleteDeliveryStreamInput,
+    output = M.DeleteDeliveryStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDeliveryStream = schema.operation({
+    id = id.from("com.amazonaws.firehose", "DescribeDeliveryStream"),
+    input = M.DescribeDeliveryStreamInput,
+    output = M.DescribeDeliveryStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeliveryStreams = schema.operation({
+    id = id.from("com.amazonaws.firehose", "ListDeliveryStreams"),
+    input = M.ListDeliveryStreamsInput,
+    output = M.ListDeliveryStreamsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForDeliveryStream = schema.operation({
+    id = id.from("com.amazonaws.firehose", "ListTagsForDeliveryStream"),
+    input = M.ListTagsForDeliveryStreamInput,
+    output = M.ListTagsForDeliveryStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRecord = schema.operation({
+    id = id.from("com.amazonaws.firehose", "PutRecord"),
+    input = M.PutRecordInput,
+    output = M.PutRecordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRecordBatch = schema.operation({
+    id = id.from("com.amazonaws.firehose", "PutRecordBatch"),
+    input = M.PutRecordBatchInput,
+    output = M.PutRecordBatchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDeliveryStreamEncryption = schema.operation({
+    id = id.from("com.amazonaws.firehose", "StartDeliveryStreamEncryption"),
+    input = M.StartDeliveryStreamEncryptionInput,
+    output = M.StartDeliveryStreamEncryptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDeliveryStreamEncryption = schema.operation({
+    id = id.from("com.amazonaws.firehose", "StopDeliveryStreamEncryption"),
+    input = M.StopDeliveryStreamEncryptionInput,
+    output = M.StopDeliveryStreamEncryptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagDeliveryStream = schema.operation({
+    id = id.from("com.amazonaws.firehose", "TagDeliveryStream"),
+    input = M.TagDeliveryStreamInput,
+    output = M.TagDeliveryStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagDeliveryStream = schema.operation({
+    id = id.from("com.amazonaws.firehose", "UntagDeliveryStream"),
+    input = M.UntagDeliveryStreamInput,
+    output = M.UntagDeliveryStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDestination = schema.operation({
+    id = id.from("com.amazonaws.firehose", "UpdateDestination"),
+    input = M.UpdateDestinationInput,
+    output = M.UpdateDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

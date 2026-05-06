@@ -5921,4 +5921,861 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.devicefarm", "DeviceFarm_20150623"),
+    version = "2015-06-23",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDevicePool = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "CreateDevicePool"),
+    input = M.CreateDevicePoolInput,
+    output = M.CreateDevicePoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInstanceProfile = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "CreateInstanceProfile"),
+    input = M.CreateInstanceProfileInput,
+    output = M.CreateInstanceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNetworkProfile = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "CreateNetworkProfile"),
+    input = M.CreateNetworkProfileInput,
+    output = M.CreateNetworkProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProject = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "CreateProject"),
+    input = M.CreateProjectInput,
+    output = M.CreateProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRemoteAccessSession = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "CreateRemoteAccessSession"),
+    input = M.CreateRemoteAccessSessionInput,
+    output = M.CreateRemoteAccessSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTestGridProject = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "CreateTestGridProject"),
+    input = M.CreateTestGridProjectInput,
+    output = M.CreateTestGridProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTestGridUrl = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "CreateTestGridUrl"),
+    input = M.CreateTestGridUrlInput,
+    output = M.CreateTestGridUrlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUpload = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "CreateUpload"),
+    input = M.CreateUploadInput,
+    output = M.CreateUploadOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVPCEConfiguration = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "CreateVPCEConfiguration"),
+    input = M.CreateVPCEConfigurationInput,
+    output = M.CreateVPCEConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDevicePool = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "DeleteDevicePool"),
+    input = M.DeleteDevicePoolInput,
+    output = M.DeleteDevicePoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInstanceProfile = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "DeleteInstanceProfile"),
+    input = M.DeleteInstanceProfileInput,
+    output = M.DeleteInstanceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNetworkProfile = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "DeleteNetworkProfile"),
+    input = M.DeleteNetworkProfileInput,
+    output = M.DeleteNetworkProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProject = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "DeleteProject"),
+    input = M.DeleteProjectInput,
+    output = M.DeleteProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRemoteAccessSession = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "DeleteRemoteAccessSession"),
+    input = M.DeleteRemoteAccessSessionInput,
+    output = M.DeleteRemoteAccessSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRun = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "DeleteRun"),
+    input = M.DeleteRunInput,
+    output = M.DeleteRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTestGridProject = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "DeleteTestGridProject"),
+    input = M.DeleteTestGridProjectInput,
+    output = M.DeleteTestGridProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUpload = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "DeleteUpload"),
+    input = M.DeleteUploadInput,
+    output = M.DeleteUploadOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVPCEConfiguration = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "DeleteVPCEConfiguration"),
+    input = M.DeleteVPCEConfigurationInput,
+    output = M.DeleteVPCEConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetAccountSettings"),
+    input = M.GetAccountSettingsInput,
+    output = M.GetAccountSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDevice = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetDevice"),
+    input = M.GetDeviceInput,
+    output = M.GetDeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDeviceInstance = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetDeviceInstance"),
+    input = M.GetDeviceInstanceInput,
+    output = M.GetDeviceInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDevicePool = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetDevicePool"),
+    input = M.GetDevicePoolInput,
+    output = M.GetDevicePoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDevicePoolCompatibility = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetDevicePoolCompatibility"),
+    input = M.GetDevicePoolCompatibilityInput,
+    output = M.GetDevicePoolCompatibilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstanceProfile = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetInstanceProfile"),
+    input = M.GetInstanceProfileInput,
+    output = M.GetInstanceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJob = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetJob"),
+    input = M.GetJobInput,
+    output = M.GetJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNetworkProfile = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetNetworkProfile"),
+    input = M.GetNetworkProfileInput,
+    output = M.GetNetworkProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOfferingStatus = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetOfferingStatus"),
+    input = M.GetOfferingStatusInput,
+    output = M.GetOfferingStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProject = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetProject"),
+    input = M.GetProjectInput,
+    output = M.GetProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRemoteAccessSession = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetRemoteAccessSession"),
+    input = M.GetRemoteAccessSessionInput,
+    output = M.GetRemoteAccessSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRun = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetRun"),
+    input = M.GetRunInput,
+    output = M.GetRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSuite = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetSuite"),
+    input = M.GetSuiteInput,
+    output = M.GetSuiteOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTest = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetTest"),
+    input = M.GetTestInput,
+    output = M.GetTestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTestGridProject = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetTestGridProject"),
+    input = M.GetTestGridProjectInput,
+    output = M.GetTestGridProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTestGridSession = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetTestGridSession"),
+    input = M.GetTestGridSessionInput,
+    output = M.GetTestGridSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUpload = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetUpload"),
+    input = M.GetUploadInput,
+    output = M.GetUploadOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVPCEConfiguration = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "GetVPCEConfiguration"),
+    input = M.GetVPCEConfigurationInput,
+    output = M.GetVPCEConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InstallToRemoteAccessSession = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "InstallToRemoteAccessSession"),
+    input = M.InstallToRemoteAccessSessionInput,
+    output = M.InstallToRemoteAccessSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListArtifacts = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListArtifacts"),
+    input = M.ListArtifactsInput,
+    output = M.ListArtifactsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeviceInstances = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListDeviceInstances"),
+    input = M.ListDeviceInstancesInput,
+    output = M.ListDeviceInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDevicePools = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListDevicePools"),
+    input = M.ListDevicePoolsInput,
+    output = M.ListDevicePoolsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDevices = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListDevices"),
+    input = M.ListDevicesInput,
+    output = M.ListDevicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstanceProfiles = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListInstanceProfiles"),
+    input = M.ListInstanceProfilesInput,
+    output = M.ListInstanceProfilesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobs = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListJobs"),
+    input = M.ListJobsInput,
+    output = M.ListJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkProfiles = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListNetworkProfiles"),
+    input = M.ListNetworkProfilesInput,
+    output = M.ListNetworkProfilesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOfferingPromotions = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListOfferingPromotions"),
+    input = M.ListOfferingPromotionsInput,
+    output = M.ListOfferingPromotionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOfferings = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListOfferings"),
+    input = M.ListOfferingsInput,
+    output = M.ListOfferingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOfferingTransactions = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListOfferingTransactions"),
+    input = M.ListOfferingTransactionsInput,
+    output = M.ListOfferingTransactionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProjects = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListProjects"),
+    input = M.ListProjectsInput,
+    output = M.ListProjectsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRemoteAccessSessions = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListRemoteAccessSessions"),
+    input = M.ListRemoteAccessSessionsInput,
+    output = M.ListRemoteAccessSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRuns = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListRuns"),
+    input = M.ListRunsInput,
+    output = M.ListRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSamples = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListSamples"),
+    input = M.ListSamplesInput,
+    output = M.ListSamplesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSuites = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListSuites"),
+    input = M.ListSuitesInput,
+    output = M.ListSuitesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestGridProjects = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListTestGridProjects"),
+    input = M.ListTestGridProjectsInput,
+    output = M.ListTestGridProjectsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestGridSessionActions = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListTestGridSessionActions"),
+    input = M.ListTestGridSessionActionsInput,
+    output = M.ListTestGridSessionActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestGridSessionArtifacts = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListTestGridSessionArtifacts"),
+    input = M.ListTestGridSessionArtifactsInput,
+    output = M.ListTestGridSessionArtifactsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestGridSessions = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListTestGridSessions"),
+    input = M.ListTestGridSessionsInput,
+    output = M.ListTestGridSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTests = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListTests"),
+    input = M.ListTestsInput,
+    output = M.ListTestsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUniqueProblems = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListUniqueProblems"),
+    input = M.ListUniqueProblemsInput,
+    output = M.ListUniqueProblemsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUploads = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListUploads"),
+    input = M.ListUploadsInput,
+    output = M.ListUploadsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVPCEConfigurations = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ListVPCEConfigurations"),
+    input = M.ListVPCEConfigurationsInput,
+    output = M.ListVPCEConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PurchaseOffering = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "PurchaseOffering"),
+    input = M.PurchaseOfferingInput,
+    output = M.PurchaseOfferingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RenewOffering = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "RenewOffering"),
+    input = M.RenewOfferingInput,
+    output = M.RenewOfferingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ScheduleRun = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "ScheduleRun"),
+    input = M.ScheduleRunInput,
+    output = M.ScheduleRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopJob = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "StopJob"),
+    input = M.StopJobInput,
+    output = M.StopJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopRemoteAccessSession = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "StopRemoteAccessSession"),
+    input = M.StopRemoteAccessSessionInput,
+    output = M.StopRemoteAccessSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopRun = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "StopRun"),
+    input = M.StopRunInput,
+    output = M.StopRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDeviceInstance = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "UpdateDeviceInstance"),
+    input = M.UpdateDeviceInstanceInput,
+    output = M.UpdateDeviceInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDevicePool = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "UpdateDevicePool"),
+    input = M.UpdateDevicePoolInput,
+    output = M.UpdateDevicePoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInstanceProfile = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "UpdateInstanceProfile"),
+    input = M.UpdateInstanceProfileInput,
+    output = M.UpdateInstanceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNetworkProfile = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "UpdateNetworkProfile"),
+    input = M.UpdateNetworkProfileInput,
+    output = M.UpdateNetworkProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProject = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "UpdateProject"),
+    input = M.UpdateProjectInput,
+    output = M.UpdateProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTestGridProject = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "UpdateTestGridProject"),
+    input = M.UpdateTestGridProjectInput,
+    output = M.UpdateTestGridProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUpload = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "UpdateUpload"),
+    input = M.UpdateUploadInput,
+    output = M.UpdateUploadOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVPCEConfiguration = schema.operation({
+    id = id.from("com.amazonaws.devicefarm", "UpdateVPCEConfiguration"),
+    input = M.UpdateVPCEConfigurationInput,
+    output = M.UpdateVPCEConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

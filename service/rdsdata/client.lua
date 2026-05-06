@@ -7,6 +7,7 @@ local endpoint_rules = require("rdsdata.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("rdsdata.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "rds-data", signing_region = cfg.region } }
                 else
@@ -49,81 +52,27 @@ function M.new(cfg)
 end
 
 function Client:batchExecuteStatement(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchExecuteStatement",
-        input_schema = schemas.BatchExecuteStatementInput,
-        output_schema = schemas.BatchExecuteStatementOutput,
-        http_method = "POST",
-        http_path = "/BatchExecute",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchExecuteStatement, input, options)
 end
 
 function Client:beginTransaction(input, options)
-    return self:invokeOperation(input, {
-        name = "BeginTransaction",
-        input_schema = schemas.BeginTransactionInput,
-        output_schema = schemas.BeginTransactionOutput,
-        http_method = "POST",
-        http_path = "/BeginTransaction",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BeginTransaction, input, options)
 end
 
 function Client:commitTransaction(input, options)
-    return self:invokeOperation(input, {
-        name = "CommitTransaction",
-        input_schema = schemas.CommitTransactionInput,
-        output_schema = schemas.CommitTransactionOutput,
-        http_method = "POST",
-        http_path = "/CommitTransaction",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CommitTransaction, input, options)
 end
 
 function Client:executeSql(input, options)
-    return self:invokeOperation(input, {
-        name = "ExecuteSql",
-        input_schema = schemas.ExecuteSqlInput,
-        output_schema = schemas.ExecuteSqlOutput,
-        http_method = "POST",
-        http_path = "/ExecuteSql",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExecuteSql, input, options)
 end
 
 function Client:executeStatement(input, options)
-    return self:invokeOperation(input, {
-        name = "ExecuteStatement",
-        input_schema = schemas.ExecuteStatementInput,
-        output_schema = schemas.ExecuteStatementOutput,
-        http_method = "POST",
-        http_path = "/Execute",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExecuteStatement, input, options)
 end
 
 function Client:rollbackTransaction(input, options)
-    return self:invokeOperation(input, {
-        name = "RollbackTransaction",
-        input_schema = schemas.RollbackTransactionInput,
-        output_schema = schemas.RollbackTransactionOutput,
-        http_method = "POST",
-        http_path = "/RollbackTransaction",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RollbackTransaction, input, options)
 end
 
 return M

@@ -7,6 +7,7 @@ local endpoint_rules = require("savingsplans.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("savingsplans.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "savingsplans", signing_region = cfg.region } }
                 else
@@ -49,133 +52,43 @@ function M.new(cfg)
 end
 
 function Client:createSavingsPlan(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSavingsPlan",
-        input_schema = schemas.CreateSavingsPlanInput,
-        output_schema = schemas.CreateSavingsPlanOutput,
-        http_method = "POST",
-        http_path = "/CreateSavingsPlan",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSavingsPlan, input, options)
 end
 
 function Client:deleteQueuedSavingsPlan(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteQueuedSavingsPlan",
-        input_schema = schemas.DeleteQueuedSavingsPlanInput,
-        output_schema = schemas.DeleteQueuedSavingsPlanOutput,
-        http_method = "POST",
-        http_path = "/DeleteQueuedSavingsPlan",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteQueuedSavingsPlan, input, options)
 end
 
 function Client:describeSavingsPlanRates(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeSavingsPlanRates",
-        input_schema = schemas.DescribeSavingsPlanRatesInput,
-        output_schema = schemas.DescribeSavingsPlanRatesOutput,
-        http_method = "POST",
-        http_path = "/DescribeSavingsPlanRates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeSavingsPlanRates, input, options)
 end
 
 function Client:describeSavingsPlans(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeSavingsPlans",
-        input_schema = schemas.DescribeSavingsPlansInput,
-        output_schema = schemas.DescribeSavingsPlansOutput,
-        http_method = "POST",
-        http_path = "/DescribeSavingsPlans",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeSavingsPlans, input, options)
 end
 
 function Client:describeSavingsPlansOfferingRates(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeSavingsPlansOfferingRates",
-        input_schema = schemas.DescribeSavingsPlansOfferingRatesInput,
-        output_schema = schemas.DescribeSavingsPlansOfferingRatesOutput,
-        http_method = "POST",
-        http_path = "/DescribeSavingsPlansOfferingRates",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeSavingsPlansOfferingRates, input, options)
 end
 
 function Client:describeSavingsPlansOfferings(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeSavingsPlansOfferings",
-        input_schema = schemas.DescribeSavingsPlansOfferingsInput,
-        output_schema = schemas.DescribeSavingsPlansOfferingsOutput,
-        http_method = "POST",
-        http_path = "/DescribeSavingsPlansOfferings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeSavingsPlansOfferings, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/ListTagsForResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:returnSavingsPlan(input, options)
-    return self:invokeOperation(input, {
-        name = "ReturnSavingsPlan",
-        input_schema = schemas.ReturnSavingsPlanInput,
-        output_schema = schemas.ReturnSavingsPlanOutput,
-        http_method = "POST",
-        http_path = "/ReturnSavingsPlan",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ReturnSavingsPlan, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/TagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/UntagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 return M

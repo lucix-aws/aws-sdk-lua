@@ -2185,4 +2185,242 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.signer", "WallabyService"),
+    version = "2017-08-25",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddProfilePermission = schema.operation({
+    id = id.from("com.amazonaws.signer", "AddProfilePermission"),
+    input = M.AddProfilePermissionInput,
+    output = M.AddProfilePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/signing-profiles/{profileName}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelSigningProfile = schema.operation({
+    id = id.from("com.amazonaws.signer", "CancelSigningProfile"),
+    input = M.CancelSigningProfileInput,
+    output = M.CancelSigningProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/signing-profiles/{profileName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSigningJob = schema.operation({
+    id = id.from("com.amazonaws.signer", "DescribeSigningJob"),
+    input = M.DescribeSigningJobInput,
+    output = M.DescribeSigningJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/signing-jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRevocationStatus = schema.operation({
+    id = id.from("com.amazonaws.signer", "GetRevocationStatus"),
+    input = M.GetRevocationStatusInput,
+    output = M.GetRevocationStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/revocations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSigningPlatform = schema.operation({
+    id = id.from("com.amazonaws.signer", "GetSigningPlatform"),
+    input = M.GetSigningPlatformInput,
+    output = M.GetSigningPlatformOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/signing-platforms/{platformId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSigningProfile = schema.operation({
+    id = id.from("com.amazonaws.signer", "GetSigningProfile"),
+    input = M.GetSigningProfileInput,
+    output = M.GetSigningProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/signing-profiles/{profileName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfilePermissions = schema.operation({
+    id = id.from("com.amazonaws.signer", "ListProfilePermissions"),
+    input = M.ListProfilePermissionsInput,
+    output = M.ListProfilePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/signing-profiles/{profileName}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSigningJobs = schema.operation({
+    id = id.from("com.amazonaws.signer", "ListSigningJobs"),
+    input = M.ListSigningJobsInput,
+    output = M.ListSigningJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/signing-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSigningPlatforms = schema.operation({
+    id = id.from("com.amazonaws.signer", "ListSigningPlatforms"),
+    input = M.ListSigningPlatformsInput,
+    output = M.ListSigningPlatformsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/signing-platforms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSigningProfiles = schema.operation({
+    id = id.from("com.amazonaws.signer", "ListSigningProfiles"),
+    input = M.ListSigningProfilesInput,
+    output = M.ListSigningProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/signing-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.signer", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSigningProfile = schema.operation({
+    id = id.from("com.amazonaws.signer", "PutSigningProfile"),
+    input = M.PutSigningProfileInput,
+    output = M.PutSigningProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/signing-profiles/{profileName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveProfilePermission = schema.operation({
+    id = id.from("com.amazonaws.signer", "RemoveProfilePermission"),
+    input = M.RemoveProfilePermissionInput,
+    output = M.RemoveProfilePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/signing-profiles/{profileName}/permissions/{statementId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeSignature = schema.operation({
+    id = id.from("com.amazonaws.signer", "RevokeSignature"),
+    input = M.RevokeSignatureInput,
+    output = M.RevokeSignatureOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/signing-jobs/{jobId}/revoke" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeSigningProfile = schema.operation({
+    id = id.from("com.amazonaws.signer", "RevokeSigningProfile"),
+    input = M.RevokeSigningProfileInput,
+    output = M.RevokeSigningProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/signing-profiles/{profileName}/revoke" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SignPayload = schema.operation({
+    id = id.from("com.amazonaws.signer", "SignPayload"),
+    input = M.SignPayloadInput,
+    output = M.SignPayloadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/signing-jobs/with-payload" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSigningJob = schema.operation({
+    id = id.from("com.amazonaws.signer", "StartSigningJob"),
+    input = M.StartSigningJobInput,
+    output = M.StartSigningJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/signing-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.signer", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.signer", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

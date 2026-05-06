@@ -1628,4 +1628,190 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.support", "AWSSupport_20130415"),
+    version = "2013-04-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddAttachmentsToSet = schema.operation({
+    id = id.from("com.amazonaws.support", "AddAttachmentsToSet"),
+    input = M.AddAttachmentsToSetInput,
+    output = M.AddAttachmentsToSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddCommunicationToCase = schema.operation({
+    id = id.from("com.amazonaws.support", "AddCommunicationToCase"),
+    input = M.AddCommunicationToCaseInput,
+    output = M.AddCommunicationToCaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCase = schema.operation({
+    id = id.from("com.amazonaws.support", "CreateCase"),
+    input = M.CreateCaseInput,
+    output = M.CreateCaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAttachment = schema.operation({
+    id = id.from("com.amazonaws.support", "DescribeAttachment"),
+    input = M.DescribeAttachmentInput,
+    output = M.DescribeAttachmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCases = schema.operation({
+    id = id.from("com.amazonaws.support", "DescribeCases"),
+    input = M.DescribeCasesInput,
+    output = M.DescribeCasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCommunications = schema.operation({
+    id = id.from("com.amazonaws.support", "DescribeCommunications"),
+    input = M.DescribeCommunicationsInput,
+    output = M.DescribeCommunicationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCreateCaseOptions = schema.operation({
+    id = id.from("com.amazonaws.support", "DescribeCreateCaseOptions"),
+    input = M.DescribeCreateCaseOptionsInput,
+    output = M.DescribeCreateCaseOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServices = schema.operation({
+    id = id.from("com.amazonaws.support", "DescribeServices"),
+    input = M.DescribeServicesInput,
+    output = M.DescribeServicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSeverityLevels = schema.operation({
+    id = id.from("com.amazonaws.support", "DescribeSeverityLevels"),
+    input = M.DescribeSeverityLevelsInput,
+    output = M.DescribeSeverityLevelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSupportedLanguages = schema.operation({
+    id = id.from("com.amazonaws.support", "DescribeSupportedLanguages"),
+    input = M.DescribeSupportedLanguagesInput,
+    output = M.DescribeSupportedLanguagesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrustedAdvisorCheckRefreshStatuses = schema.operation({
+    id = id.from("com.amazonaws.support", "DescribeTrustedAdvisorCheckRefreshStatuses"),
+    input = M.DescribeTrustedAdvisorCheckRefreshStatusesInput,
+    output = M.DescribeTrustedAdvisorCheckRefreshStatusesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrustedAdvisorCheckResult = schema.operation({
+    id = id.from("com.amazonaws.support", "DescribeTrustedAdvisorCheckResult"),
+    input = M.DescribeTrustedAdvisorCheckResultInput,
+    output = M.DescribeTrustedAdvisorCheckResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrustedAdvisorChecks = schema.operation({
+    id = id.from("com.amazonaws.support", "DescribeTrustedAdvisorChecks"),
+    input = M.DescribeTrustedAdvisorChecksInput,
+    output = M.DescribeTrustedAdvisorChecksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrustedAdvisorCheckSummaries = schema.operation({
+    id = id.from("com.amazonaws.support", "DescribeTrustedAdvisorCheckSummaries"),
+    input = M.DescribeTrustedAdvisorCheckSummariesInput,
+    output = M.DescribeTrustedAdvisorCheckSummariesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RefreshTrustedAdvisorCheck = schema.operation({
+    id = id.from("com.amazonaws.support", "RefreshTrustedAdvisorCheck"),
+    input = M.RefreshTrustedAdvisorCheckInput,
+    output = M.RefreshTrustedAdvisorCheckOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResolveCase = schema.operation({
+    id = id.from("com.amazonaws.support", "ResolveCase"),
+    input = M.ResolveCaseInput,
+    output = M.ResolveCaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

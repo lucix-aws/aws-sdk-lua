@@ -7,6 +7,7 @@ local endpoint_rules = require("mediastoredata.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("mediastoredata.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mediastore", signing_region = cfg.region } }
                 else
@@ -49,68 +52,23 @@ function M.new(cfg)
 end
 
 function Client:deleteObject(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteObject",
-        input_schema = schemas.DeleteObjectInput,
-        output_schema = schemas.DeleteObjectOutput,
-        http_method = "DELETE",
-        http_path = "/{Path+}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteObject, input, options)
 end
 
 function Client:describeObject(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeObject",
-        input_schema = schemas.DescribeObjectInput,
-        output_schema = schemas.DescribeObjectOutput,
-        http_method = "HEAD",
-        http_path = "/{Path+}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeObject, input, options)
 end
 
 function Client:getObject(input, options)
-    return self:invokeOperation(input, {
-        name = "GetObject",
-        input_schema = schemas.GetObjectInput,
-        output_schema = schemas.GetObjectOutput,
-        http_method = "GET",
-        http_path = "/{Path+}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetObject, input, options)
 end
 
 function Client:listItems(input, options)
-    return self:invokeOperation(input, {
-        name = "ListItems",
-        input_schema = schemas.ListItemsInput,
-        output_schema = schemas.ListItemsOutput,
-        http_method = "GET",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListItems, input, options)
 end
 
 function Client:putObject(input, options)
-    return self:invokeOperation(input, {
-        name = "PutObject",
-        input_schema = schemas.PutObjectInput,
-        output_schema = schemas.PutObjectOutput,
-        http_method = "PUT",
-        http_path = "/{Path+}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutObject, input, options)
 end
 
 return M

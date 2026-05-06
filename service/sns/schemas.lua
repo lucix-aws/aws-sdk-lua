@@ -2385,4 +2385,476 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sns", "AmazonSimpleNotificationService"),
+    version = "2010-03-31",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddPermission = schema.operation({
+    id = id.from("com.amazonaws.sns", "AddPermission"),
+    input = M.AddPermissionInput,
+    output = M.AddPermissionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckIfPhoneNumberIsOptedOut = schema.operation({
+    id = id.from("com.amazonaws.sns", "CheckIfPhoneNumberIsOptedOut"),
+    input = M.CheckIfPhoneNumberIsOptedOutInput,
+    output = M.CheckIfPhoneNumberIsOptedOutOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfirmSubscription = schema.operation({
+    id = id.from("com.amazonaws.sns", "ConfirmSubscription"),
+    input = M.ConfirmSubscriptionInput,
+    output = M.ConfirmSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePlatformApplication = schema.operation({
+    id = id.from("com.amazonaws.sns", "CreatePlatformApplication"),
+    input = M.CreatePlatformApplicationInput,
+    output = M.CreatePlatformApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePlatformEndpoint = schema.operation({
+    id = id.from("com.amazonaws.sns", "CreatePlatformEndpoint"),
+    input = M.CreatePlatformEndpointInput,
+    output = M.CreatePlatformEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSMSSandboxPhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.sns", "CreateSMSSandboxPhoneNumber"),
+    input = M.CreateSMSSandboxPhoneNumberInput,
+    output = M.CreateSMSSandboxPhoneNumberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTopic = schema.operation({
+    id = id.from("com.amazonaws.sns", "CreateTopic"),
+    input = M.CreateTopicInput,
+    output = M.CreateTopicOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEndpoint = schema.operation({
+    id = id.from("com.amazonaws.sns", "DeleteEndpoint"),
+    input = M.DeleteEndpointInput,
+    output = M.DeleteEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePlatformApplication = schema.operation({
+    id = id.from("com.amazonaws.sns", "DeletePlatformApplication"),
+    input = M.DeletePlatformApplicationInput,
+    output = M.DeletePlatformApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSMSSandboxPhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.sns", "DeleteSMSSandboxPhoneNumber"),
+    input = M.DeleteSMSSandboxPhoneNumberInput,
+    output = M.DeleteSMSSandboxPhoneNumberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTopic = schema.operation({
+    id = id.from("com.amazonaws.sns", "DeleteTopic"),
+    input = M.DeleteTopicInput,
+    output = M.DeleteTopicOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataProtectionPolicy = schema.operation({
+    id = id.from("com.amazonaws.sns", "GetDataProtectionPolicy"),
+    input = M.GetDataProtectionPolicyInput,
+    output = M.GetDataProtectionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEndpointAttributes = schema.operation({
+    id = id.from("com.amazonaws.sns", "GetEndpointAttributes"),
+    input = M.GetEndpointAttributesInput,
+    output = M.GetEndpointAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPlatformApplicationAttributes = schema.operation({
+    id = id.from("com.amazonaws.sns", "GetPlatformApplicationAttributes"),
+    input = M.GetPlatformApplicationAttributesInput,
+    output = M.GetPlatformApplicationAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSMSAttributes = schema.operation({
+    id = id.from("com.amazonaws.sns", "GetSMSAttributes"),
+    input = M.GetSMSAttributesInput,
+    output = M.GetSMSAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSMSSandboxAccountStatus = schema.operation({
+    id = id.from("com.amazonaws.sns", "GetSMSSandboxAccountStatus"),
+    input = M.GetSMSSandboxAccountStatusInput,
+    output = M.GetSMSSandboxAccountStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSubscriptionAttributes = schema.operation({
+    id = id.from("com.amazonaws.sns", "GetSubscriptionAttributes"),
+    input = M.GetSubscriptionAttributesInput,
+    output = M.GetSubscriptionAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTopicAttributes = schema.operation({
+    id = id.from("com.amazonaws.sns", "GetTopicAttributes"),
+    input = M.GetTopicAttributesInput,
+    output = M.GetTopicAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEndpointsByPlatformApplication = schema.operation({
+    id = id.from("com.amazonaws.sns", "ListEndpointsByPlatformApplication"),
+    input = M.ListEndpointsByPlatformApplicationInput,
+    output = M.ListEndpointsByPlatformApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOriginationNumbers = schema.operation({
+    id = id.from("com.amazonaws.sns", "ListOriginationNumbers"),
+    input = M.ListOriginationNumbersInput,
+    output = M.ListOriginationNumbersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPhoneNumbersOptedOut = schema.operation({
+    id = id.from("com.amazonaws.sns", "ListPhoneNumbersOptedOut"),
+    input = M.ListPhoneNumbersOptedOutInput,
+    output = M.ListPhoneNumbersOptedOutOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPlatformApplications = schema.operation({
+    id = id.from("com.amazonaws.sns", "ListPlatformApplications"),
+    input = M.ListPlatformApplicationsInput,
+    output = M.ListPlatformApplicationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSMSSandboxPhoneNumbers = schema.operation({
+    id = id.from("com.amazonaws.sns", "ListSMSSandboxPhoneNumbers"),
+    input = M.ListSMSSandboxPhoneNumbersInput,
+    output = M.ListSMSSandboxPhoneNumbersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.sns", "ListSubscriptions"),
+    input = M.ListSubscriptionsInput,
+    output = M.ListSubscriptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubscriptionsByTopic = schema.operation({
+    id = id.from("com.amazonaws.sns", "ListSubscriptionsByTopic"),
+    input = M.ListSubscriptionsByTopicInput,
+    output = M.ListSubscriptionsByTopicOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.sns", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTopics = schema.operation({
+    id = id.from("com.amazonaws.sns", "ListTopics"),
+    input = M.ListTopicsInput,
+    output = M.ListTopicsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.OptInPhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.sns", "OptInPhoneNumber"),
+    input = M.OptInPhoneNumberInput,
+    output = M.OptInPhoneNumberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Publish = schema.operation({
+    id = id.from("com.amazonaws.sns", "Publish"),
+    input = M.PublishInput,
+    output = M.PublishOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PublishBatch = schema.operation({
+    id = id.from("com.amazonaws.sns", "PublishBatch"),
+    input = M.PublishBatchInput,
+    output = M.PublishBatchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDataProtectionPolicy = schema.operation({
+    id = id.from("com.amazonaws.sns", "PutDataProtectionPolicy"),
+    input = M.PutDataProtectionPolicyInput,
+    output = M.PutDataProtectionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemovePermission = schema.operation({
+    id = id.from("com.amazonaws.sns", "RemovePermission"),
+    input = M.RemovePermissionInput,
+    output = M.RemovePermissionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetEndpointAttributes = schema.operation({
+    id = id.from("com.amazonaws.sns", "SetEndpointAttributes"),
+    input = M.SetEndpointAttributesInput,
+    output = M.SetEndpointAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetPlatformApplicationAttributes = schema.operation({
+    id = id.from("com.amazonaws.sns", "SetPlatformApplicationAttributes"),
+    input = M.SetPlatformApplicationAttributesInput,
+    output = M.SetPlatformApplicationAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetSMSAttributes = schema.operation({
+    id = id.from("com.amazonaws.sns", "SetSMSAttributes"),
+    input = M.SetSMSAttributesInput,
+    output = M.SetSMSAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetSubscriptionAttributes = schema.operation({
+    id = id.from("com.amazonaws.sns", "SetSubscriptionAttributes"),
+    input = M.SetSubscriptionAttributesInput,
+    output = M.SetSubscriptionAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetTopicAttributes = schema.operation({
+    id = id.from("com.amazonaws.sns", "SetTopicAttributes"),
+    input = M.SetTopicAttributesInput,
+    output = M.SetTopicAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Subscribe = schema.operation({
+    id = id.from("com.amazonaws.sns", "Subscribe"),
+    input = M.SubscribeInput,
+    output = M.SubscribeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.sns", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Unsubscribe = schema.operation({
+    id = id.from("com.amazonaws.sns", "Unsubscribe"),
+    input = M.UnsubscribeInput,
+    output = M.UnsubscribeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.sns", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifySMSSandboxPhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.sns", "VerifySMSSandboxPhoneNumber"),
+    input = M.VerifySMSSandboxPhoneNumberInput,
+    output = M.VerifySMSSandboxPhoneNumberOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

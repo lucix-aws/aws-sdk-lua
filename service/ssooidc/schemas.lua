@@ -815,4 +815,62 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ssooidc", "AWSSSOOIDCService"),
+    version = "2019-06-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateToken = schema.operation({
+    id = id.from("com.amazonaws.ssooidc", "CreateToken"),
+    input = M.CreateTokenInput,
+    output = M.CreateTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/token" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.CreateTokenWithIAM = schema.operation({
+    id = id.from("com.amazonaws.ssooidc", "CreateTokenWithIAM"),
+    input = M.CreateTokenWithIAMInput,
+    output = M.CreateTokenWithIAMOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/token?aws_iam=t" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterClient = schema.operation({
+    id = id.from("com.amazonaws.ssooidc", "RegisterClient"),
+    input = M.RegisterClientInput,
+    output = M.RegisterClientOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/client/register" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.StartDeviceAuthorization = schema.operation({
+    id = id.from("com.amazonaws.ssooidc", "StartDeviceAuthorization"),
+    input = M.StartDeviceAuthorizationInput,
+    output = M.StartDeviceAuthorizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/device_authorization" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
 return M

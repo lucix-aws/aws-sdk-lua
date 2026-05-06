@@ -2593,4 +2593,333 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.voiceid", "VoiceID"),
+    version = "2021-09-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateFraudster = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "AssociateFraudster"),
+    input = M.AssociateFraudsterInput,
+    output = M.AssociateFraudsterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomain = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "CreateDomain"),
+    input = M.CreateDomainInput,
+    output = M.CreateDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWatchlist = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "CreateWatchlist"),
+    input = M.CreateWatchlistInput,
+    output = M.CreateWatchlistOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomain = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "DeleteDomain"),
+    input = M.DeleteDomainInput,
+    output = M.DeleteDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFraudster = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "DeleteFraudster"),
+    input = M.DeleteFraudsterInput,
+    output = M.DeleteFraudsterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSpeaker = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "DeleteSpeaker"),
+    input = M.DeleteSpeakerInput,
+    output = M.DeleteSpeakerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWatchlist = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "DeleteWatchlist"),
+    input = M.DeleteWatchlistInput,
+    output = M.DeleteWatchlistOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomain = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "DescribeDomain"),
+    input = M.DescribeDomainInput,
+    output = M.DescribeDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFraudster = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "DescribeFraudster"),
+    input = M.DescribeFraudsterInput,
+    output = M.DescribeFraudsterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFraudsterRegistrationJob = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "DescribeFraudsterRegistrationJob"),
+    input = M.DescribeFraudsterRegistrationJobInput,
+    output = M.DescribeFraudsterRegistrationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSpeaker = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "DescribeSpeaker"),
+    input = M.DescribeSpeakerInput,
+    output = M.DescribeSpeakerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSpeakerEnrollmentJob = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "DescribeSpeakerEnrollmentJob"),
+    input = M.DescribeSpeakerEnrollmentJobInput,
+    output = M.DescribeSpeakerEnrollmentJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWatchlist = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "DescribeWatchlist"),
+    input = M.DescribeWatchlistInput,
+    output = M.DescribeWatchlistOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFraudster = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "DisassociateFraudster"),
+    input = M.DisassociateFraudsterInput,
+    output = M.DisassociateFraudsterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EvaluateSession = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "EvaluateSession"),
+    input = M.EvaluateSessionInput,
+    output = M.EvaluateSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomains = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "ListDomains"),
+    input = M.ListDomainsInput,
+    output = M.ListDomainsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFraudsterRegistrationJobs = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "ListFraudsterRegistrationJobs"),
+    input = M.ListFraudsterRegistrationJobsInput,
+    output = M.ListFraudsterRegistrationJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFraudsters = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "ListFraudsters"),
+    input = M.ListFraudstersInput,
+    output = M.ListFraudstersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSpeakerEnrollmentJobs = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "ListSpeakerEnrollmentJobs"),
+    input = M.ListSpeakerEnrollmentJobsInput,
+    output = M.ListSpeakerEnrollmentJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSpeakers = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "ListSpeakers"),
+    input = M.ListSpeakersInput,
+    output = M.ListSpeakersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWatchlists = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "ListWatchlists"),
+    input = M.ListWatchlistsInput,
+    output = M.ListWatchlistsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.OptOutSpeaker = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "OptOutSpeaker"),
+    input = M.OptOutSpeakerInput,
+    output = M.OptOutSpeakerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFraudsterRegistrationJob = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "StartFraudsterRegistrationJob"),
+    input = M.StartFraudsterRegistrationJobInput,
+    output = M.StartFraudsterRegistrationJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSpeakerEnrollmentJob = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "StartSpeakerEnrollmentJob"),
+    input = M.StartSpeakerEnrollmentJobInput,
+    output = M.StartSpeakerEnrollmentJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomain = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "UpdateDomain"),
+    input = M.UpdateDomainInput,
+    output = M.UpdateDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWatchlist = schema.operation({
+    id = id.from("com.amazonaws.voiceid", "UpdateWatchlist"),
+    input = M.UpdateWatchlistInput,
+    output = M.UpdateWatchlistOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

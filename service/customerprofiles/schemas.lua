@@ -13600,4 +13600,1286 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.customerprofiles", "CustomerProfiles_20200815"),
+    version = "2020-08-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddProfileKey = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "AddProfileKey"),
+    input = M.AddProfileKeyInput,
+    output = M.AddProfileKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/profiles/keys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetCalculatedAttributeForProfile = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "BatchGetCalculatedAttributeForProfile"),
+    input = M.BatchGetCalculatedAttributeForProfileInput,
+    output = M.BatchGetCalculatedAttributeForProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}/batch-get-for-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetProfile = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "BatchGetProfile"),
+    input = M.BatchGetProfileInput,
+    output = M.BatchGetProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/batch-get-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCalculatedAttributeDefinition = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "CreateCalculatedAttributeDefinition"),
+    input = M.CreateCalculatedAttributeDefinitionInput,
+    output = M.CreateCalculatedAttributeDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomain = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "CreateDomain"),
+    input = M.CreateDomainInput,
+    output = M.CreateDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomainLayout = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "CreateDomainLayout"),
+    input = M.CreateDomainLayoutInput,
+    output = M.CreateDomainLayoutOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/layouts/{LayoutDefinitionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventStream = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "CreateEventStream"),
+    input = M.CreateEventStreamInput,
+    output = M.CreateEventStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/event-streams/{EventStreamName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventTrigger = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "CreateEventTrigger"),
+    input = M.CreateEventTriggerInput,
+    output = M.CreateEventTriggerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/event-triggers/{EventTriggerName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIntegrationWorkflow = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "CreateIntegrationWorkflow"),
+    input = M.CreateIntegrationWorkflowInput,
+    output = M.CreateIntegrationWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/workflows/integrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProfile = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "CreateProfile"),
+    input = M.CreateProfileInput,
+    output = M.CreateProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRecommender = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "CreateRecommender"),
+    input = M.CreateRecommenderInput,
+    output = M.CreateRecommenderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/recommenders/{RecommenderName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRecommenderFilter = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "CreateRecommenderFilter"),
+    input = M.CreateRecommenderFilterInput,
+    output = M.CreateRecommenderFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/recommender-filters/{RecommenderFilterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRecommenderSchema = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "CreateRecommenderSchema"),
+    input = M.CreateRecommenderSchemaInput,
+    output = M.CreateRecommenderSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/recommender-schemas/{RecommenderSchemaName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSegmentDefinition = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "CreateSegmentDefinition"),
+    input = M.CreateSegmentDefinitionInput,
+    output = M.CreateSegmentDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSegmentEstimate = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "CreateSegmentEstimate"),
+    input = M.CreateSegmentEstimateInput,
+    output = M.CreateSegmentEstimateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/segment-estimates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSegmentSnapshot = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "CreateSegmentSnapshot"),
+    input = M.CreateSegmentSnapshotInput,
+    output = M.CreateSegmentSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/segments/{SegmentDefinitionName}/snapshots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUploadJob = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "CreateUploadJob"),
+    input = M.CreateUploadJobInput,
+    output = M.CreateUploadJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/upload-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCalculatedAttributeDefinition = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteCalculatedAttributeDefinition"),
+    input = M.DeleteCalculatedAttributeDefinitionInput,
+    output = M.DeleteCalculatedAttributeDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomain = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteDomain"),
+    input = M.DeleteDomainInput,
+    output = M.DeleteDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{DomainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomainLayout = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteDomainLayout"),
+    input = M.DeleteDomainLayoutInput,
+    output = M.DeleteDomainLayoutOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{DomainName}/layouts/{LayoutDefinitionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomainObjectType = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteDomainObjectType"),
+    input = M.DeleteDomainObjectTypeInput,
+    output = M.DeleteDomainObjectTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{DomainName}/domain-object-types/{ObjectTypeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventStream = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteEventStream"),
+    input = M.DeleteEventStreamInput,
+    output = M.DeleteEventStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{DomainName}/event-streams/{EventStreamName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventTrigger = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteEventTrigger"),
+    input = M.DeleteEventTriggerInput,
+    output = M.DeleteEventTriggerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{DomainName}/event-triggers/{EventTriggerName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIntegration = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteIntegration"),
+    input = M.DeleteIntegrationInput,
+    output = M.DeleteIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/integrations/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProfile = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteProfile"),
+    input = M.DeleteProfileInput,
+    output = M.DeleteProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/profiles/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProfileKey = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteProfileKey"),
+    input = M.DeleteProfileKeyInput,
+    output = M.DeleteProfileKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/profiles/keys/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProfileObject = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteProfileObject"),
+    input = M.DeleteProfileObjectInput,
+    output = M.DeleteProfileObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/profiles/objects/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProfileObjectType = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteProfileObjectType"),
+    input = M.DeleteProfileObjectTypeInput,
+    output = M.DeleteProfileObjectTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{DomainName}/object-types/{ObjectTypeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecommender = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteRecommender"),
+    input = M.DeleteRecommenderInput,
+    output = M.DeleteRecommenderOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{DomainName}/recommenders/{RecommenderName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecommenderFilter = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteRecommenderFilter"),
+    input = M.DeleteRecommenderFilterInput,
+    output = M.DeleteRecommenderFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{DomainName}/recommender-filters/{RecommenderFilterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecommenderSchema = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteRecommenderSchema"),
+    input = M.DeleteRecommenderSchemaInput,
+    output = M.DeleteRecommenderSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{DomainName}/recommender-schemas/{RecommenderSchemaName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSegmentDefinition = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteSegmentDefinition"),
+    input = M.DeleteSegmentDefinitionInput,
+    output = M.DeleteSegmentDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkflow = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteWorkflow"),
+    input = M.DeleteWorkflowInput,
+    output = M.DeleteWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{DomainName}/workflows/{WorkflowId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectProfileObjectType = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DetectProfileObjectType"),
+    input = M.DetectProfileObjectTypeInput,
+    output = M.DetectProfileObjectTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/detect/object-types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAutoMergingPreview = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetAutoMergingPreview"),
+    input = M.GetAutoMergingPreviewInput,
+    output = M.GetAutoMergingPreviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/identity-resolution-jobs/auto-merging-preview" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCalculatedAttributeDefinition = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetCalculatedAttributeDefinition"),
+    input = M.GetCalculatedAttributeDefinitionInput,
+    output = M.GetCalculatedAttributeDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCalculatedAttributeForProfile = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetCalculatedAttributeForProfile"),
+    input = M.GetCalculatedAttributeForProfileInput,
+    output = M.GetCalculatedAttributeForProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/profile/{ProfileId}/calculated-attributes/{CalculatedAttributeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomain = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetDomain"),
+    input = M.GetDomainInput,
+    output = M.GetDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainLayout = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetDomainLayout"),
+    input = M.GetDomainLayoutInput,
+    output = M.GetDomainLayoutOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/layouts/{LayoutDefinitionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainObjectType = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetDomainObjectType"),
+    input = M.GetDomainObjectTypeInput,
+    output = M.GetDomainObjectTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/domain-object-types/{ObjectTypeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventStream = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetEventStream"),
+    input = M.GetEventStreamInput,
+    output = M.GetEventStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/event-streams/{EventStreamName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventTrigger = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetEventTrigger"),
+    input = M.GetEventTriggerInput,
+    output = M.GetEventTriggerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/event-triggers/{EventTriggerName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdentityResolutionJob = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetIdentityResolutionJob"),
+    input = M.GetIdentityResolutionJobInput,
+    output = M.GetIdentityResolutionJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/identity-resolution-jobs/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIntegration = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetIntegration"),
+    input = M.GetIntegrationInput,
+    output = M.GetIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/integrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMatches = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetMatches"),
+    input = M.GetMatchesInput,
+    output = M.GetMatchesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/matches" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetObjectTypeAttributeStatistics = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetObjectTypeAttributeStatistics"),
+    input = M.GetObjectTypeAttributeStatisticsInput,
+    output = M.GetObjectTypeAttributeStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/object-types/{ObjectTypeName}/attributes/{AttributeName}/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfileHistoryRecord = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetProfileHistoryRecord"),
+    input = M.GetProfileHistoryRecordInput,
+    output = M.GetProfileHistoryRecordOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/profiles/{ProfileId}/history-records/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfileObjectType = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetProfileObjectType"),
+    input = M.GetProfileObjectTypeInput,
+    output = M.GetProfileObjectTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/object-types/{ObjectTypeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfileObjectTypeTemplate = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetProfileObjectTypeTemplate"),
+    input = M.GetProfileObjectTypeTemplateInput,
+    output = M.GetProfileObjectTypeTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/templates/{TemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfileRecommendations = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetProfileRecommendations"),
+    input = M.GetProfileRecommendationsInput,
+    output = M.GetProfileRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/profiles/{ProfileId}/recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommender = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetRecommender"),
+    input = M.GetRecommenderInput,
+    output = M.GetRecommenderOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/recommenders/{RecommenderName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommenderFilter = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetRecommenderFilter"),
+    input = M.GetRecommenderFilterInput,
+    output = M.GetRecommenderFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/recommender-filters/{RecommenderFilterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommenderSchema = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetRecommenderSchema"),
+    input = M.GetRecommenderSchemaInput,
+    output = M.GetRecommenderSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/recommender-schemas/{RecommenderSchemaName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSegmentDefinition = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetSegmentDefinition"),
+    input = M.GetSegmentDefinitionInput,
+    output = M.GetSegmentDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSegmentEstimate = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetSegmentEstimate"),
+    input = M.GetSegmentEstimateInput,
+    output = M.GetSegmentEstimateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/segment-estimates/{EstimateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSegmentMembership = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetSegmentMembership"),
+    input = M.GetSegmentMembershipInput,
+    output = M.GetSegmentMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/segments/{SegmentDefinitionName}/membership" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSegmentSnapshot = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetSegmentSnapshot"),
+    input = M.GetSegmentSnapshotInput,
+    output = M.GetSegmentSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/segments/{SegmentDefinitionName}/snapshots/{SnapshotId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSimilarProfiles = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetSimilarProfiles"),
+    input = M.GetSimilarProfilesInput,
+    output = M.GetSimilarProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/matches" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUploadJob = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetUploadJob"),
+    input = M.GetUploadJobInput,
+    output = M.GetUploadJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/upload-jobs/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUploadJobPath = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetUploadJobPath"),
+    input = M.GetUploadJobPathInput,
+    output = M.GetUploadJobPathOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/upload-jobs/{JobId}/path" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflow = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetWorkflow"),
+    input = M.GetWorkflowInput,
+    output = M.GetWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/workflows/{WorkflowId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflowSteps = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetWorkflowSteps"),
+    input = M.GetWorkflowStepsInput,
+    output = M.GetWorkflowStepsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/workflows/{WorkflowId}/steps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccountIntegrations = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListAccountIntegrations"),
+    input = M.ListAccountIntegrationsInput,
+    output = M.ListAccountIntegrationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/integrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCalculatedAttributeDefinitions = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListCalculatedAttributeDefinitions"),
+    input = M.ListCalculatedAttributeDefinitionsInput,
+    output = M.ListCalculatedAttributeDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/calculated-attributes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCalculatedAttributesForProfile = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListCalculatedAttributesForProfile"),
+    input = M.ListCalculatedAttributesForProfileInput,
+    output = M.ListCalculatedAttributesForProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/profile/{ProfileId}/calculated-attributes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainLayouts = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListDomainLayouts"),
+    input = M.ListDomainLayoutsInput,
+    output = M.ListDomainLayoutsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/layouts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainObjectTypes = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListDomainObjectTypes"),
+    input = M.ListDomainObjectTypesInput,
+    output = M.ListDomainObjectTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/domain-object-types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomains = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListDomains"),
+    input = M.ListDomainsInput,
+    output = M.ListDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventStreams = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListEventStreams"),
+    input = M.ListEventStreamsInput,
+    output = M.ListEventStreamsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/event-streams" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventTriggers = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListEventTriggers"),
+    input = M.ListEventTriggersInput,
+    output = M.ListEventTriggersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/event-triggers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdentityResolutionJobs = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListIdentityResolutionJobs"),
+    input = M.ListIdentityResolutionJobsInput,
+    output = M.ListIdentityResolutionJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/identity-resolution-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIntegrations = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListIntegrations"),
+    input = M.ListIntegrationsInput,
+    output = M.ListIntegrationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/integrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListObjectTypeAttributes = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListObjectTypeAttributes"),
+    input = M.ListObjectTypeAttributesInput,
+    output = M.ListObjectTypeAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/object-types/{ObjectTypeName}/attributes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListObjectTypeAttributeValues = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListObjectTypeAttributeValues"),
+    input = M.ListObjectTypeAttributeValuesInput,
+    output = M.ListObjectTypeAttributeValuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/object-types/{ObjectTypeName}/attributes/{AttributeName}/values" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfileAttributeValues = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListProfileAttributeValues"),
+    input = M.ListProfileAttributeValuesInput,
+    output = M.ListProfileAttributeValuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/profile-attributes/{AttributeName}/values" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfileHistoryRecords = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListProfileHistoryRecords"),
+    input = M.ListProfileHistoryRecordsInput,
+    output = M.ListProfileHistoryRecordsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/profiles/history-records" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfileObjects = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListProfileObjects"),
+    input = M.ListProfileObjectsInput,
+    output = M.ListProfileObjectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/profiles/objects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfileObjectTypes = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListProfileObjectTypes"),
+    input = M.ListProfileObjectTypesInput,
+    output = M.ListProfileObjectTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/object-types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfileObjectTypeTemplates = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListProfileObjectTypeTemplates"),
+    input = M.ListProfileObjectTypeTemplatesInput,
+    output = M.ListProfileObjectTypeTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommenderFilters = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListRecommenderFilters"),
+    input = M.ListRecommenderFiltersInput,
+    output = M.ListRecommenderFiltersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/recommender-filters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommenderRecipes = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListRecommenderRecipes"),
+    input = M.ListRecommenderRecipesInput,
+    output = M.ListRecommenderRecipesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/recommender-recipes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommenders = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListRecommenders"),
+    input = M.ListRecommendersInput,
+    output = M.ListRecommendersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/recommenders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommenderSchemas = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListRecommenderSchemas"),
+    input = M.ListRecommenderSchemasInput,
+    output = M.ListRecommenderSchemasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/recommender-schemas" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRuleBasedMatches = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListRuleBasedMatches"),
+    input = M.ListRuleBasedMatchesInput,
+    output = M.ListRuleBasedMatchesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/profiles/ruleBasedMatches" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSegmentDefinitions = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListSegmentDefinitions"),
+    input = M.ListSegmentDefinitionsInput,
+    output = M.ListSegmentDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/segment-definitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUploadJobs = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListUploadJobs"),
+    input = M.ListUploadJobsInput,
+    output = M.ListUploadJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/upload-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflows = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListWorkflows"),
+    input = M.ListWorkflowsInput,
+    output = M.ListWorkflowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/workflows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.MergeProfiles = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "MergeProfiles"),
+    input = M.MergeProfilesInput,
+    output = M.MergeProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/profiles/objects/merge" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDomainObjectType = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "PutDomainObjectType"),
+    input = M.PutDomainObjectTypeInput,
+    output = M.PutDomainObjectTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/domain-object-types/{ObjectTypeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutIntegration = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "PutIntegration"),
+    input = M.PutIntegrationInput,
+    output = M.PutIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/integrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutProfileObject = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "PutProfileObject"),
+    input = M.PutProfileObjectInput,
+    output = M.PutProfileObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/profiles/objects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutProfileObjectType = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "PutProfileObjectType"),
+    input = M.PutProfileObjectTypeInput,
+    output = M.PutProfileObjectTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/object-types/{ObjectTypeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchProfiles = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "SearchProfiles"),
+    input = M.SearchProfilesInput,
+    output = M.SearchProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/profiles/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRecommender = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "StartRecommender"),
+    input = M.StartRecommenderInput,
+    output = M.StartRecommenderOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/recommenders/{RecommenderName}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartUploadJob = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "StartUploadJob"),
+    input = M.StartUploadJobInput,
+    output = M.StartUploadJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/upload-jobs/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopRecommender = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "StopRecommender"),
+    input = M.StopRecommenderInput,
+    output = M.StopRecommenderOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/recommenders/{RecommenderName}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopUploadJob = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "StopUploadJob"),
+    input = M.StopUploadJobInput,
+    output = M.StopUploadJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/upload-jobs/{JobId}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCalculatedAttributeDefinition = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "UpdateCalculatedAttributeDefinition"),
+    input = M.UpdateCalculatedAttributeDefinitionInput,
+    output = M.UpdateCalculatedAttributeDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomain = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "UpdateDomain"),
+    input = M.UpdateDomainInput,
+    output = M.UpdateDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomainLayout = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "UpdateDomainLayout"),
+    input = M.UpdateDomainLayoutInput,
+    output = M.UpdateDomainLayoutOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/layouts/{LayoutDefinitionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEventTrigger = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "UpdateEventTrigger"),
+    input = M.UpdateEventTriggerInput,
+    output = M.UpdateEventTriggerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/event-triggers/{EventTriggerName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProfile = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "UpdateProfile"),
+    input = M.UpdateProfileInput,
+    output = M.UpdateProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecommender = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "UpdateRecommender"),
+    input = M.UpdateRecommenderInput,
+    output = M.UpdateRecommenderOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/domains/{DomainName}/recommenders/{RecommenderName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

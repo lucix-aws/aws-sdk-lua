@@ -7,6 +7,7 @@ local endpoint_rules = require("rbin.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("rbin.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "rbin", signing_region = cfg.region } }
                 else
@@ -49,133 +52,43 @@ function M.new(cfg)
 end
 
 function Client:createRule(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRule",
-        input_schema = schemas.CreateRuleInput,
-        output_schema = schemas.CreateRuleOutput,
-        http_method = "POST",
-        http_path = "/rules",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRule, input, options)
 end
 
 function Client:deleteRule(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRule",
-        input_schema = schemas.DeleteRuleInput,
-        output_schema = schemas.DeleteRuleOutput,
-        http_method = "DELETE",
-        http_path = "/rules/{Identifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRule, input, options)
 end
 
 function Client:getRule(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRule",
-        input_schema = schemas.GetRuleInput,
-        output_schema = schemas.GetRuleOutput,
-        http_method = "GET",
-        http_path = "/rules/{Identifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRule, input, options)
 end
 
 function Client:listRules(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRules",
-        input_schema = schemas.ListRulesInput,
-        output_schema = schemas.ListRulesOutput,
-        http_method = "POST",
-        http_path = "/list-rules",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRules, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:lockRule(input, options)
-    return self:invokeOperation(input, {
-        name = "LockRule",
-        input_schema = schemas.LockRuleInput,
-        output_schema = schemas.LockRuleOutput,
-        http_method = "PATCH",
-        http_path = "/rules/{Identifier}/lock",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.LockRule, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:unlockRule(input, options)
-    return self:invokeOperation(input, {
-        name = "UnlockRule",
-        input_schema = schemas.UnlockRuleInput,
-        output_schema = schemas.UnlockRuleOutput,
-        http_method = "PATCH",
-        http_path = "/rules/{Identifier}/unlock",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UnlockRule, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateRule(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRule",
-        input_schema = schemas.UpdateRuleInput,
-        output_schema = schemas.UpdateRuleOutput,
-        http_method = "PATCH",
-        http_path = "/rules/{Identifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRule, input, options)
 end
 
 return M

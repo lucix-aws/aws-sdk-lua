@@ -2832,4 +2832,278 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.migrationhubstrategy", "AWSMigrationHubStrategyRecommendation"),
+    version = "2020-02-19",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplicationComponentDetails = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "GetApplicationComponentDetails"),
+    input = M.GetApplicationComponentDetailsInput,
+    output = M.GetApplicationComponentDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/get-applicationcomponent-details/{applicationComponentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplicationComponentStrategies = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "GetApplicationComponentStrategies"),
+    input = M.GetApplicationComponentStrategiesInput,
+    output = M.GetApplicationComponentStrategiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/get-applicationcomponent-strategies/{applicationComponentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssessment = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "GetAssessment"),
+    input = M.GetAssessmentInput,
+    output = M.GetAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/get-assessment/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImportFileTask = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "GetImportFileTask"),
+    input = M.GetImportFileTaskInput,
+    output = M.GetImportFileTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/get-import-file-task/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLatestAssessmentId = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "GetLatestAssessmentId"),
+    input = M.GetLatestAssessmentIdInput,
+    output = M.GetLatestAssessmentIdOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/get-latest-assessment-id" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPortfolioPreferences = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "GetPortfolioPreferences"),
+    input = M.GetPortfolioPreferencesInput,
+    output = M.GetPortfolioPreferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/get-portfolio-preferences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPortfolioSummary = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "GetPortfolioSummary"),
+    input = M.GetPortfolioSummaryInput,
+    output = M.GetPortfolioSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/get-portfolio-summary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommendationReportDetails = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "GetRecommendationReportDetails"),
+    input = M.GetRecommendationReportDetailsInput,
+    output = M.GetRecommendationReportDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/get-recommendation-report-details/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServerDetails = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "GetServerDetails"),
+    input = M.GetServerDetailsInput,
+    output = M.GetServerDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/get-server-details/{serverId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServerStrategies = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "GetServerStrategies"),
+    input = M.GetServerStrategiesInput,
+    output = M.GetServerStrategiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/get-server-strategies/{serverId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnalyzableServers = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "ListAnalyzableServers"),
+    input = M.ListAnalyzableServersInput,
+    output = M.ListAnalyzableServersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-analyzable-servers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationComponents = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "ListApplicationComponents"),
+    input = M.ListApplicationComponentsInput,
+    output = M.ListApplicationComponentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-applicationcomponents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollectors = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "ListCollectors"),
+    input = M.ListCollectorsInput,
+    output = M.ListCollectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/list-collectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImportFileTask = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "ListImportFileTask"),
+    input = M.ListImportFileTaskInput,
+    output = M.ListImportFileTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/list-import-file-task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServers = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "ListServers"),
+    input = M.ListServersInput,
+    output = M.ListServersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-servers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPortfolioPreferences = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "PutPortfolioPreferences"),
+    input = M.PutPortfolioPreferencesInput,
+    output = M.PutPortfolioPreferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/put-portfolio-preferences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAssessment = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "StartAssessment"),
+    input = M.StartAssessmentInput,
+    output = M.StartAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/start-assessment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartImportFileTask = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "StartImportFileTask"),
+    input = M.StartImportFileTaskInput,
+    output = M.StartImportFileTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/start-import-file-task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRecommendationReportGeneration = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "StartRecommendationReportGeneration"),
+    input = M.StartRecommendationReportGenerationInput,
+    output = M.StartRecommendationReportGenerationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/start-recommendation-report-generation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopAssessment = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "StopAssessment"),
+    input = M.StopAssessmentInput,
+    output = M.StopAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/stop-assessment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplicationComponentConfig = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "UpdateApplicationComponentConfig"),
+    input = M.UpdateApplicationComponentConfigInput,
+    output = M.UpdateApplicationComponentConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-applicationcomponent-config/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServerConfig = schema.operation({
+    id = id.from("com.amazonaws.migrationhubstrategy", "UpdateServerConfig"),
+    input = M.UpdateServerConfigInput,
+    output = M.UpdateServerConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-server-config/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

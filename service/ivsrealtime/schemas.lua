@@ -4278,4 +4278,482 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ivsrealtime", "AmazonInteractiveVideoServiceRealTime"),
+    version = "2020-07-14",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEncoderConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "CreateEncoderConfiguration"),
+    input = M.CreateEncoderConfigurationInput,
+    output = M.CreateEncoderConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateEncoderConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIngestConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "CreateIngestConfiguration"),
+    input = M.CreateIngestConfigurationInput,
+    output = M.CreateIngestConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateIngestConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateParticipantToken = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "CreateParticipantToken"),
+    input = M.CreateParticipantTokenInput,
+    output = M.CreateParticipantTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateParticipantToken" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStage = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "CreateStage"),
+    input = M.CreateStageInput,
+    output = M.CreateStageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateStage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStorageConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "CreateStorageConfiguration"),
+    input = M.CreateStorageConfigurationInput,
+    output = M.CreateStorageConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateStorageConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEncoderConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "DeleteEncoderConfiguration"),
+    input = M.DeleteEncoderConfigurationInput,
+    output = M.DeleteEncoderConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteEncoderConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIngestConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "DeleteIngestConfiguration"),
+    input = M.DeleteIngestConfigurationInput,
+    output = M.DeleteIngestConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteIngestConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePublicKey = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "DeletePublicKey"),
+    input = M.DeletePublicKeyInput,
+    output = M.DeletePublicKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeletePublicKey" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStage = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "DeleteStage"),
+    input = M.DeleteStageInput,
+    output = M.DeleteStageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteStage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStorageConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "DeleteStorageConfiguration"),
+    input = M.DeleteStorageConfigurationInput,
+    output = M.DeleteStorageConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteStorageConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisconnectParticipant = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "DisconnectParticipant"),
+    input = M.DisconnectParticipantInput,
+    output = M.DisconnectParticipantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DisconnectParticipant" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComposition = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "GetComposition"),
+    input = M.GetCompositionInput,
+    output = M.GetCompositionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetComposition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEncoderConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "GetEncoderConfiguration"),
+    input = M.GetEncoderConfigurationInput,
+    output = M.GetEncoderConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetEncoderConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIngestConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "GetIngestConfiguration"),
+    input = M.GetIngestConfigurationInput,
+    output = M.GetIngestConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetIngestConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetParticipant = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "GetParticipant"),
+    input = M.GetParticipantInput,
+    output = M.GetParticipantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetParticipant" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPublicKey = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "GetPublicKey"),
+    input = M.GetPublicKeyInput,
+    output = M.GetPublicKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetPublicKey" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStage = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "GetStage"),
+    input = M.GetStageInput,
+    output = M.GetStageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetStage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStageSession = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "GetStageSession"),
+    input = M.GetStageSessionInput,
+    output = M.GetStageSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetStageSession" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStorageConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "GetStorageConfiguration"),
+    input = M.GetStorageConfigurationInput,
+    output = M.GetStorageConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetStorageConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportPublicKey = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "ImportPublicKey"),
+    input = M.ImportPublicKeyInput,
+    output = M.ImportPublicKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ImportPublicKey" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCompositions = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "ListCompositions"),
+    input = M.ListCompositionsInput,
+    output = M.ListCompositionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListCompositions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEncoderConfigurations = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "ListEncoderConfigurations"),
+    input = M.ListEncoderConfigurationsInput,
+    output = M.ListEncoderConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListEncoderConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIngestConfigurations = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "ListIngestConfigurations"),
+    input = M.ListIngestConfigurationsInput,
+    output = M.ListIngestConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListIngestConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListParticipantEvents = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "ListParticipantEvents"),
+    input = M.ListParticipantEventsInput,
+    output = M.ListParticipantEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListParticipantEvents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListParticipantReplicas = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "ListParticipantReplicas"),
+    input = M.ListParticipantReplicasInput,
+    output = M.ListParticipantReplicasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListParticipantReplicas" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListParticipants = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "ListParticipants"),
+    input = M.ListParticipantsInput,
+    output = M.ListParticipantsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListParticipants" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPublicKeys = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "ListPublicKeys"),
+    input = M.ListPublicKeysInput,
+    output = M.ListPublicKeysOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListPublicKeys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStages = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "ListStages"),
+    input = M.ListStagesInput,
+    output = M.ListStagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListStages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStageSessions = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "ListStageSessions"),
+    input = M.ListStageSessionsInput,
+    output = M.ListStageSessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListStageSessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStorageConfigurations = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "ListStorageConfigurations"),
+    input = M.ListStorageConfigurationsInput,
+    output = M.ListStorageConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListStorageConfigurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartComposition = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "StartComposition"),
+    input = M.StartCompositionInput,
+    output = M.StartCompositionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartComposition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartParticipantReplication = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "StartParticipantReplication"),
+    input = M.StartParticipantReplicationInput,
+    output = M.StartParticipantReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartParticipantReplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopComposition = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "StopComposition"),
+    input = M.StopCompositionInput,
+    output = M.StopCompositionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StopComposition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopParticipantReplication = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "StopParticipantReplication"),
+    input = M.StopParticipantReplicationInput,
+    output = M.StopParticipantReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StopParticipantReplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIngestConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "UpdateIngestConfiguration"),
+    input = M.UpdateIngestConfigurationInput,
+    output = M.UpdateIngestConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateIngestConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStage = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "UpdateStage"),
+    input = M.UpdateStageInput,
+    output = M.UpdateStageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateStage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

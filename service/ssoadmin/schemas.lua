@@ -4982,4 +4982,883 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ssoadmin", "SWBExternalService"),
+    version = "2020-07-20",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddRegion = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "AddRegion"),
+    input = M.AddRegionInput,
+    output = M.AddRegionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachCustomerManagedPolicyReferenceToPermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "AttachCustomerManagedPolicyReferenceToPermissionSet"),
+    input = M.AttachCustomerManagedPolicyReferenceToPermissionSetInput,
+    output = M.AttachCustomerManagedPolicyReferenceToPermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachManagedPolicyToPermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "AttachManagedPolicyToPermissionSet"),
+    input = M.AttachManagedPolicyToPermissionSetInput,
+    output = M.AttachManagedPolicyToPermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccountAssignment = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "CreateAccountAssignment"),
+    input = M.CreateAccountAssignmentInput,
+    output = M.CreateAccountAssignmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplicationAssignment = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "CreateApplicationAssignment"),
+    input = M.CreateApplicationAssignmentInput,
+    output = M.CreateApplicationAssignmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInstance = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "CreateInstance"),
+    input = M.CreateInstanceInput,
+    output = M.CreateInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInstanceAccessControlAttributeConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "CreateInstanceAccessControlAttributeConfiguration"),
+    input = M.CreateInstanceAccessControlAttributeConfigurationInput,
+    output = M.CreateInstanceAccessControlAttributeConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "CreatePermissionSet"),
+    input = M.CreatePermissionSetInput,
+    output = M.CreatePermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrustedTokenIssuer = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "CreateTrustedTokenIssuer"),
+    input = M.CreateTrustedTokenIssuerInput,
+    output = M.CreateTrustedTokenIssuerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccountAssignment = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DeleteAccountAssignment"),
+    input = M.DeleteAccountAssignmentInput,
+    output = M.DeleteAccountAssignmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplicationAccessScope = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DeleteApplicationAccessScope"),
+    input = M.DeleteApplicationAccessScopeInput,
+    output = M.DeleteApplicationAccessScopeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplicationAssignment = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DeleteApplicationAssignment"),
+    input = M.DeleteApplicationAssignmentInput,
+    output = M.DeleteApplicationAssignmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplicationAuthenticationMethod = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DeleteApplicationAuthenticationMethod"),
+    input = M.DeleteApplicationAuthenticationMethodInput,
+    output = M.DeleteApplicationAuthenticationMethodOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplicationGrant = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DeleteApplicationGrant"),
+    input = M.DeleteApplicationGrantInput,
+    output = M.DeleteApplicationGrantOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInlinePolicyFromPermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DeleteInlinePolicyFromPermissionSet"),
+    input = M.DeleteInlinePolicyFromPermissionSetInput,
+    output = M.DeleteInlinePolicyFromPermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInstance = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DeleteInstance"),
+    input = M.DeleteInstanceInput,
+    output = M.DeleteInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInstanceAccessControlAttributeConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DeleteInstanceAccessControlAttributeConfiguration"),
+    input = M.DeleteInstanceAccessControlAttributeConfigurationInput,
+    output = M.DeleteInstanceAccessControlAttributeConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePermissionsBoundaryFromPermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DeletePermissionsBoundaryFromPermissionSet"),
+    input = M.DeletePermissionsBoundaryFromPermissionSetInput,
+    output = M.DeletePermissionsBoundaryFromPermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DeletePermissionSet"),
+    input = M.DeletePermissionSetInput,
+    output = M.DeletePermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrustedTokenIssuer = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DeleteTrustedTokenIssuer"),
+    input = M.DeleteTrustedTokenIssuerInput,
+    output = M.DeleteTrustedTokenIssuerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountAssignmentCreationStatus = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DescribeAccountAssignmentCreationStatus"),
+    input = M.DescribeAccountAssignmentCreationStatusInput,
+    output = M.DescribeAccountAssignmentCreationStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountAssignmentDeletionStatus = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DescribeAccountAssignmentDeletionStatus"),
+    input = M.DescribeAccountAssignmentDeletionStatusInput,
+    output = M.DescribeAccountAssignmentDeletionStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplication = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DescribeApplication"),
+    input = M.DescribeApplicationInput,
+    output = M.DescribeApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicationAssignment = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DescribeApplicationAssignment"),
+    input = M.DescribeApplicationAssignmentInput,
+    output = M.DescribeApplicationAssignmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicationProvider = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DescribeApplicationProvider"),
+    input = M.DescribeApplicationProviderInput,
+    output = M.DescribeApplicationProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInstance = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DescribeInstance"),
+    input = M.DescribeInstanceInput,
+    output = M.DescribeInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInstanceAccessControlAttributeConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DescribeInstanceAccessControlAttributeConfiguration"),
+    input = M.DescribeInstanceAccessControlAttributeConfigurationInput,
+    output = M.DescribeInstanceAccessControlAttributeConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DescribePermissionSet"),
+    input = M.DescribePermissionSetInput,
+    output = M.DescribePermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePermissionSetProvisioningStatus = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DescribePermissionSetProvisioningStatus"),
+    input = M.DescribePermissionSetProvisioningStatusInput,
+    output = M.DescribePermissionSetProvisioningStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRegion = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DescribeRegion"),
+    input = M.DescribeRegionInput,
+    output = M.DescribeRegionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrustedTokenIssuer = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DescribeTrustedTokenIssuer"),
+    input = M.DescribeTrustedTokenIssuerInput,
+    output = M.DescribeTrustedTokenIssuerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachCustomerManagedPolicyReferenceFromPermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DetachCustomerManagedPolicyReferenceFromPermissionSet"),
+    input = M.DetachCustomerManagedPolicyReferenceFromPermissionSetInput,
+    output = M.DetachCustomerManagedPolicyReferenceFromPermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachManagedPolicyFromPermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "DetachManagedPolicyFromPermissionSet"),
+    input = M.DetachManagedPolicyFromPermissionSetInput,
+    output = M.DetachManagedPolicyFromPermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplicationAccessScope = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "GetApplicationAccessScope"),
+    input = M.GetApplicationAccessScopeInput,
+    output = M.GetApplicationAccessScopeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplicationAssignmentConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "GetApplicationAssignmentConfiguration"),
+    input = M.GetApplicationAssignmentConfigurationInput,
+    output = M.GetApplicationAssignmentConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplicationAuthenticationMethod = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "GetApplicationAuthenticationMethod"),
+    input = M.GetApplicationAuthenticationMethodInput,
+    output = M.GetApplicationAuthenticationMethodOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplicationGrant = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "GetApplicationGrant"),
+    input = M.GetApplicationGrantInput,
+    output = M.GetApplicationGrantOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplicationSessionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "GetApplicationSessionConfiguration"),
+    input = M.GetApplicationSessionConfigurationInput,
+    output = M.GetApplicationSessionConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInlinePolicyForPermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "GetInlinePolicyForPermissionSet"),
+    input = M.GetInlinePolicyForPermissionSetInput,
+    output = M.GetInlinePolicyForPermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPermissionsBoundaryForPermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "GetPermissionsBoundaryForPermissionSet"),
+    input = M.GetPermissionsBoundaryForPermissionSetInput,
+    output = M.GetPermissionsBoundaryForPermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccountAssignmentCreationStatus = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListAccountAssignmentCreationStatus"),
+    input = M.ListAccountAssignmentCreationStatusInput,
+    output = M.ListAccountAssignmentCreationStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccountAssignmentDeletionStatus = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListAccountAssignmentDeletionStatus"),
+    input = M.ListAccountAssignmentDeletionStatusInput,
+    output = M.ListAccountAssignmentDeletionStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccountAssignments = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListAccountAssignments"),
+    input = M.ListAccountAssignmentsInput,
+    output = M.ListAccountAssignmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccountAssignmentsForPrincipal = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListAccountAssignmentsForPrincipal"),
+    input = M.ListAccountAssignmentsForPrincipalInput,
+    output = M.ListAccountAssignmentsForPrincipalOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccountsForProvisionedPermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListAccountsForProvisionedPermissionSet"),
+    input = M.ListAccountsForProvisionedPermissionSetInput,
+    output = M.ListAccountsForProvisionedPermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationAccessScopes = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListApplicationAccessScopes"),
+    input = M.ListApplicationAccessScopesInput,
+    output = M.ListApplicationAccessScopesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationAssignments = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListApplicationAssignments"),
+    input = M.ListApplicationAssignmentsInput,
+    output = M.ListApplicationAssignmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationAssignmentsForPrincipal = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListApplicationAssignmentsForPrincipal"),
+    input = M.ListApplicationAssignmentsForPrincipalInput,
+    output = M.ListApplicationAssignmentsForPrincipalOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationAuthenticationMethods = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListApplicationAuthenticationMethods"),
+    input = M.ListApplicationAuthenticationMethodsInput,
+    output = M.ListApplicationAuthenticationMethodsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationGrants = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListApplicationGrants"),
+    input = M.ListApplicationGrantsInput,
+    output = M.ListApplicationGrantsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationProviders = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListApplicationProviders"),
+    input = M.ListApplicationProvidersInput,
+    output = M.ListApplicationProvidersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomerManagedPolicyReferencesInPermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListCustomerManagedPolicyReferencesInPermissionSet"),
+    input = M.ListCustomerManagedPolicyReferencesInPermissionSetInput,
+    output = M.ListCustomerManagedPolicyReferencesInPermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstances = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListInstances"),
+    input = M.ListInstancesInput,
+    output = M.ListInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedPoliciesInPermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListManagedPoliciesInPermissionSet"),
+    input = M.ListManagedPoliciesInPermissionSetInput,
+    output = M.ListManagedPoliciesInPermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPermissionSetProvisioningStatus = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListPermissionSetProvisioningStatus"),
+    input = M.ListPermissionSetProvisioningStatusInput,
+    output = M.ListPermissionSetProvisioningStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPermissionSets = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListPermissionSets"),
+    input = M.ListPermissionSetsInput,
+    output = M.ListPermissionSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPermissionSetsProvisionedToAccount = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListPermissionSetsProvisionedToAccount"),
+    input = M.ListPermissionSetsProvisionedToAccountInput,
+    output = M.ListPermissionSetsProvisionedToAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRegions = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListRegions"),
+    input = M.ListRegionsInput,
+    output = M.ListRegionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrustedTokenIssuers = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ListTrustedTokenIssuers"),
+    input = M.ListTrustedTokenIssuersInput,
+    output = M.ListTrustedTokenIssuersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ProvisionPermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "ProvisionPermissionSet"),
+    input = M.ProvisionPermissionSetInput,
+    output = M.ProvisionPermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutApplicationAccessScope = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "PutApplicationAccessScope"),
+    input = M.PutApplicationAccessScopeInput,
+    output = M.PutApplicationAccessScopeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutApplicationAssignmentConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "PutApplicationAssignmentConfiguration"),
+    input = M.PutApplicationAssignmentConfigurationInput,
+    output = M.PutApplicationAssignmentConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutApplicationAuthenticationMethod = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "PutApplicationAuthenticationMethod"),
+    input = M.PutApplicationAuthenticationMethodInput,
+    output = M.PutApplicationAuthenticationMethodOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutApplicationGrant = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "PutApplicationGrant"),
+    input = M.PutApplicationGrantInput,
+    output = M.PutApplicationGrantOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutApplicationSessionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "PutApplicationSessionConfiguration"),
+    input = M.PutApplicationSessionConfigurationInput,
+    output = M.PutApplicationSessionConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutInlinePolicyToPermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "PutInlinePolicyToPermissionSet"),
+    input = M.PutInlinePolicyToPermissionSetInput,
+    output = M.PutInlinePolicyToPermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPermissionsBoundaryToPermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "PutPermissionsBoundaryToPermissionSet"),
+    input = M.PutPermissionsBoundaryToPermissionSetInput,
+    output = M.PutPermissionsBoundaryToPermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveRegion = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "RemoveRegion"),
+    input = M.RemoveRegionInput,
+    output = M.RemoveRegionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInstance = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "UpdateInstance"),
+    input = M.UpdateInstanceInput,
+    output = M.UpdateInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInstanceAccessControlAttributeConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "UpdateInstanceAccessControlAttributeConfiguration"),
+    input = M.UpdateInstanceAccessControlAttributeConfigurationInput,
+    output = M.UpdateInstanceAccessControlAttributeConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePermissionSet = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "UpdatePermissionSet"),
+    input = M.UpdatePermissionSetInput,
+    output = M.UpdatePermissionSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrustedTokenIssuer = schema.operation({
+    id = id.from("com.amazonaws.ssoadmin", "UpdateTrustedTokenIssuer"),
+    input = M.UpdateTrustedTokenIssuerInput,
+    output = M.UpdateTrustedTokenIssuerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -7,6 +7,7 @@ local endpoint_rules = require("repostspace.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("repostspace.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "repostspace", signing_region = cfg.region } }
                 else
@@ -49,250 +52,79 @@ function M.new(cfg)
 end
 
 function Client:batchAddChannelRoleToAccessors(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchAddChannelRoleToAccessors",
-        input_schema = schemas.BatchAddChannelRoleToAccessorsInput,
-        output_schema = schemas.BatchAddChannelRoleToAccessorsOutput,
-        http_method = "POST",
-        http_path = "/spaces/{spaceId}/channels/{channelId}/roles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchAddChannelRoleToAccessors, input, options)
 end
 
 function Client:batchAddRole(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchAddRole",
-        input_schema = schemas.BatchAddRoleInput,
-        output_schema = schemas.BatchAddRoleOutput,
-        http_method = "POST",
-        http_path = "/spaces/{spaceId}/roles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchAddRole, input, options)
 end
 
 function Client:batchRemoveChannelRoleFromAccessors(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchRemoveChannelRoleFromAccessors",
-        input_schema = schemas.BatchRemoveChannelRoleFromAccessorsInput,
-        output_schema = schemas.BatchRemoveChannelRoleFromAccessorsOutput,
-        http_method = "PATCH",
-        http_path = "/spaces/{spaceId}/channels/{channelId}/roles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchRemoveChannelRoleFromAccessors, input, options)
 end
 
 function Client:batchRemoveRole(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchRemoveRole",
-        input_schema = schemas.BatchRemoveRoleInput,
-        output_schema = schemas.BatchRemoveRoleOutput,
-        http_method = "PATCH",
-        http_path = "/spaces/{spaceId}/roles",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchRemoveRole, input, options)
 end
 
 function Client:createChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateChannel",
-        input_schema = schemas.CreateChannelInput,
-        output_schema = schemas.CreateChannelOutput,
-        http_method = "POST",
-        http_path = "/spaces/{spaceId}/channels",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateChannel, input, options)
 end
 
 function Client:createSpace(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSpace",
-        input_schema = schemas.CreateSpaceInput,
-        output_schema = schemas.CreateSpaceOutput,
-        http_method = "POST",
-        http_path = "/spaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSpace, input, options)
 end
 
 function Client:deleteSpace(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSpace",
-        input_schema = schemas.DeleteSpaceInput,
-        output_schema = schemas.DeleteSpaceOutput,
-        http_method = "DELETE",
-        http_path = "/spaces/{spaceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSpace, input, options)
 end
 
 function Client:deregisterAdmin(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterAdmin",
-        input_schema = schemas.DeregisterAdminInput,
-        output_schema = schemas.DeregisterAdminOutput,
-        http_method = "DELETE",
-        http_path = "/spaces/{spaceId}/admins/{adminId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterAdmin, input, options)
 end
 
 function Client:getChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "GetChannel",
-        input_schema = schemas.GetChannelInput,
-        output_schema = schemas.GetChannelOutput,
-        http_method = "GET",
-        http_path = "/spaces/{spaceId}/channels/{channelId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetChannel, input, options)
 end
 
 function Client:getSpace(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSpace",
-        input_schema = schemas.GetSpaceInput,
-        output_schema = schemas.GetSpaceOutput,
-        http_method = "GET",
-        http_path = "/spaces/{spaceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSpace, input, options)
 end
 
 function Client:listChannels(input, options)
-    return self:invokeOperation(input, {
-        name = "ListChannels",
-        input_schema = schemas.ListChannelsInput,
-        output_schema = schemas.ListChannelsOutput,
-        http_method = "GET",
-        http_path = "/spaces/{spaceId}/channels",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListChannels, input, options)
 end
 
 function Client:listSpaces(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSpaces",
-        input_schema = schemas.ListSpacesInput,
-        output_schema = schemas.ListSpacesOutput,
-        http_method = "GET",
-        http_path = "/spaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSpaces, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:registerAdmin(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterAdmin",
-        input_schema = schemas.RegisterAdminInput,
-        output_schema = schemas.RegisterAdminOutput,
-        http_method = "POST",
-        http_path = "/spaces/{spaceId}/admins/{adminId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterAdmin, input, options)
 end
 
 function Client:sendInvites(input, options)
-    return self:invokeOperation(input, {
-        name = "SendInvites",
-        input_schema = schemas.SendInvitesInput,
-        output_schema = schemas.SendInvitesOutput,
-        http_method = "POST",
-        http_path = "/spaces/{spaceId}/invite",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SendInvites, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateChannel",
-        input_schema = schemas.UpdateChannelInput,
-        output_schema = schemas.UpdateChannelOutput,
-        http_method = "PUT",
-        http_path = "/spaces/{spaceId}/channels/{channelId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateChannel, input, options)
 end
 
 function Client:updateSpace(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSpace",
-        input_schema = schemas.UpdateSpaceInput,
-        output_schema = schemas.UpdateSpaceOutput,
-        http_method = "PUT",
-        http_path = "/spaces/{spaceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSpace, input, options)
 end
 
 return M

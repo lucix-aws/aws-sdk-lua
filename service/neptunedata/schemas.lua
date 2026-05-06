@@ -4616,4 +4616,530 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.neptunedata", "AmazonNeptuneDataplane"),
+    version = "2023-08-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelGremlinQuery = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "CancelGremlinQuery"),
+    input = M.CancelGremlinQueryInput,
+    output = M.CancelGremlinQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/gremlin/status/{queryId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelLoaderJob = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "CancelLoaderJob"),
+    input = M.CancelLoaderJobInput,
+    output = M.CancelLoaderJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/loader/{loadId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelMLDataProcessingJob = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "CancelMLDataProcessingJob"),
+    input = M.CancelMLDataProcessingJobInput,
+    output = M.CancelMLDataProcessingJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/ml/dataprocessing/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelMLModelTrainingJob = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "CancelMLModelTrainingJob"),
+    input = M.CancelMLModelTrainingJobInput,
+    output = M.CancelMLModelTrainingJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/ml/modeltraining/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelMLModelTransformJob = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "CancelMLModelTransformJob"),
+    input = M.CancelMLModelTransformJobInput,
+    output = M.CancelMLModelTransformJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/ml/modeltransform/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelOpenCypherQuery = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "CancelOpenCypherQuery"),
+    input = M.CancelOpenCypherQueryInput,
+    output = M.CancelOpenCypherQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/opencypher/status/{queryId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMLEndpoint = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "CreateMLEndpoint"),
+    input = M.CreateMLEndpointInput,
+    output = M.CreateMLEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ml/endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMLEndpoint = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "DeleteMLEndpoint"),
+    input = M.DeleteMLEndpointInput,
+    output = M.DeleteMLEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/ml/endpoints/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePropertygraphStatistics = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "DeletePropertygraphStatistics"),
+    input = M.DeletePropertygraphStatisticsInput,
+    output = M.DeletePropertygraphStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/propertygraph/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSparqlStatistics = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "DeleteSparqlStatistics"),
+    input = M.DeleteSparqlStatisticsInput,
+    output = M.DeleteSparqlStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/sparql/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteFastReset = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ExecuteFastReset"),
+    input = M.ExecuteFastResetInput,
+    output = M.ExecuteFastResetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/system" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteGremlinExplainQuery = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ExecuteGremlinExplainQuery"),
+    input = M.ExecuteGremlinExplainQueryInput,
+    output = M.ExecuteGremlinExplainQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/gremlin/explain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteGremlinProfileQuery = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ExecuteGremlinProfileQuery"),
+    input = M.ExecuteGremlinProfileQueryInput,
+    output = M.ExecuteGremlinProfileQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/gremlin/profile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteGremlinQuery = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ExecuteGremlinQuery"),
+    input = M.ExecuteGremlinQueryInput,
+    output = M.ExecuteGremlinQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/gremlin" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteOpenCypherExplainQuery = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ExecuteOpenCypherExplainQuery"),
+    input = M.ExecuteOpenCypherExplainQueryInput,
+    output = M.ExecuteOpenCypherExplainQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/opencypher/explain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteOpenCypherQuery = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ExecuteOpenCypherQuery"),
+    input = M.ExecuteOpenCypherQueryInput,
+    output = M.ExecuteOpenCypherQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/opencypher" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEngineStatus = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetEngineStatus"),
+    input = M.GetEngineStatusInput,
+    output = M.GetEngineStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGremlinQueryStatus = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetGremlinQueryStatus"),
+    input = M.GetGremlinQueryStatusInput,
+    output = M.GetGremlinQueryStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/gremlin/status/{queryId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLoaderJobStatus = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetLoaderJobStatus"),
+    input = M.GetLoaderJobStatusInput,
+    output = M.GetLoaderJobStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/loader/{loadId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMLDataProcessingJob = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetMLDataProcessingJob"),
+    input = M.GetMLDataProcessingJobInput,
+    output = M.GetMLDataProcessingJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ml/dataprocessing/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMLEndpoint = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetMLEndpoint"),
+    input = M.GetMLEndpointInput,
+    output = M.GetMLEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ml/endpoints/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMLModelTrainingJob = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetMLModelTrainingJob"),
+    input = M.GetMLModelTrainingJobInput,
+    output = M.GetMLModelTrainingJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ml/modeltraining/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMLModelTransformJob = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetMLModelTransformJob"),
+    input = M.GetMLModelTransformJobInput,
+    output = M.GetMLModelTransformJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ml/modeltransform/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOpenCypherQueryStatus = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetOpenCypherQueryStatus"),
+    input = M.GetOpenCypherQueryStatusInput,
+    output = M.GetOpenCypherQueryStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/opencypher/status/{queryId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPropertygraphStatistics = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetPropertygraphStatistics"),
+    input = M.GetPropertygraphStatisticsInput,
+    output = M.GetPropertygraphStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/propertygraph/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPropertygraphStream = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetPropertygraphStream"),
+    input = M.GetPropertygraphStreamInput,
+    output = M.GetPropertygraphStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/propertygraph/stream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPropertygraphSummary = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetPropertygraphSummary"),
+    input = M.GetPropertygraphSummaryInput,
+    output = M.GetPropertygraphSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/propertygraph/statistics/summary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRDFGraphSummary = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetRDFGraphSummary"),
+    input = M.GetRDFGraphSummaryInput,
+    output = M.GetRDFGraphSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/rdf/statistics/summary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSparqlStatistics = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetSparqlStatistics"),
+    input = M.GetSparqlStatisticsInput,
+    output = M.GetSparqlStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sparql/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSparqlStream = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetSparqlStream"),
+    input = M.GetSparqlStreamInput,
+    output = M.GetSparqlStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/sparql/stream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGremlinQueries = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ListGremlinQueries"),
+    input = M.ListGremlinQueriesInput,
+    output = M.ListGremlinQueriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/gremlin/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLoaderJobs = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ListLoaderJobs"),
+    input = M.ListLoaderJobsInput,
+    output = M.ListLoaderJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/loader" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMLDataProcessingJobs = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ListMLDataProcessingJobs"),
+    input = M.ListMLDataProcessingJobsInput,
+    output = M.ListMLDataProcessingJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ml/dataprocessing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMLEndpoints = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ListMLEndpoints"),
+    input = M.ListMLEndpointsInput,
+    output = M.ListMLEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ml/endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMLModelTrainingJobs = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ListMLModelTrainingJobs"),
+    input = M.ListMLModelTrainingJobsInput,
+    output = M.ListMLModelTrainingJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ml/modeltraining" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMLModelTransformJobs = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ListMLModelTransformJobs"),
+    input = M.ListMLModelTransformJobsInput,
+    output = M.ListMLModelTransformJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ml/modeltransform" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOpenCypherQueries = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ListOpenCypherQueries"),
+    input = M.ListOpenCypherQueriesInput,
+    output = M.ListOpenCypherQueriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/opencypher/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ManagePropertygraphStatistics = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ManagePropertygraphStatistics"),
+    input = M.ManagePropertygraphStatisticsInput,
+    output = M.ManagePropertygraphStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/propertygraph/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ManageSparqlStatistics = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ManageSparqlStatistics"),
+    input = M.ManageSparqlStatisticsInput,
+    output = M.ManageSparqlStatisticsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sparql/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartLoaderJob = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "StartLoaderJob"),
+    input = M.StartLoaderJobInput,
+    output = M.StartLoaderJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/loader" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMLDataProcessingJob = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "StartMLDataProcessingJob"),
+    input = M.StartMLDataProcessingJobInput,
+    output = M.StartMLDataProcessingJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ml/dataprocessing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMLModelTrainingJob = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "StartMLModelTrainingJob"),
+    input = M.StartMLModelTrainingJobInput,
+    output = M.StartMLModelTrainingJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ml/modeltraining" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMLModelTransformJob = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "StartMLModelTransformJob"),
+    input = M.StartMLModelTransformJobInput,
+    output = M.StartMLModelTransformJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ml/modeltransform" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -278,4 +278,26 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cloudtraildata", "CloudTrailDataService"),
+    version = "2021-08-11",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAuditEvents = schema.operation({
+    id = id.from("com.amazonaws.cloudtraildata", "PutAuditEvents"),
+    input = M.PutAuditEventsInput,
+    output = M.PutAuditEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutAuditEvents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

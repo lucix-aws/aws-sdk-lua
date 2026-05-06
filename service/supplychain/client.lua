@@ -7,6 +7,7 @@ local endpoint_rules = require("supplychain.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("supplychain.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "scn", signing_region = cfg.region } }
                 else
@@ -49,393 +52,123 @@ function M.new(cfg)
 end
 
 function Client:createBillOfMaterialsImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateBillOfMaterialsImportJob",
-        input_schema = schemas.CreateBillOfMaterialsImportJobInput,
-        output_schema = schemas.CreateBillOfMaterialsImportJobOutput,
-        http_method = "POST",
-        http_path = "/api/configuration/instances/{instanceId}/bill-of-materials-import-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateBillOfMaterialsImportJob, input, options)
 end
 
 function Client:createDataIntegrationFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDataIntegrationFlow",
-        input_schema = schemas.CreateDataIntegrationFlowInput,
-        output_schema = schemas.CreateDataIntegrationFlowOutput,
-        http_method = "PUT",
-        http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDataIntegrationFlow, input, options)
 end
 
 function Client:createDataLakeDataset(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDataLakeDataset",
-        input_schema = schemas.CreateDataLakeDatasetInput,
-        output_schema = schemas.CreateDataLakeDatasetOutput,
-        http_method = "PUT",
-        http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDataLakeDataset, input, options)
 end
 
 function Client:createDataLakeNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDataLakeNamespace",
-        input_schema = schemas.CreateDataLakeNamespaceInput,
-        output_schema = schemas.CreateDataLakeNamespaceOutput,
-        http_method = "PUT",
-        http_path = "/api/datalake/instance/{instanceId}/namespaces/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDataLakeNamespace, input, options)
 end
 
 function Client:createInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateInstance",
-        input_schema = schemas.CreateInstanceInput,
-        output_schema = schemas.CreateInstanceOutput,
-        http_method = "POST",
-        http_path = "/api/instance",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateInstance, input, options)
 end
 
 function Client:deleteDataIntegrationFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDataIntegrationFlow",
-        input_schema = schemas.DeleteDataIntegrationFlowInput,
-        output_schema = schemas.DeleteDataIntegrationFlowOutput,
-        http_method = "DELETE",
-        http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDataIntegrationFlow, input, options)
 end
 
 function Client:deleteDataLakeDataset(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDataLakeDataset",
-        input_schema = schemas.DeleteDataLakeDatasetInput,
-        output_schema = schemas.DeleteDataLakeDatasetOutput,
-        http_method = "DELETE",
-        http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDataLakeDataset, input, options)
 end
 
 function Client:deleteDataLakeNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDataLakeNamespace",
-        input_schema = schemas.DeleteDataLakeNamespaceInput,
-        output_schema = schemas.DeleteDataLakeNamespaceOutput,
-        http_method = "DELETE",
-        http_path = "/api/datalake/instance/{instanceId}/namespaces/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDataLakeNamespace, input, options)
 end
 
 function Client:deleteInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteInstance",
-        input_schema = schemas.DeleteInstanceInput,
-        output_schema = schemas.DeleteInstanceOutput,
-        http_method = "DELETE",
-        http_path = "/api/instance/{instanceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteInstance, input, options)
 end
 
 function Client:getBillOfMaterialsImportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBillOfMaterialsImportJob",
-        input_schema = schemas.GetBillOfMaterialsImportJobInput,
-        output_schema = schemas.GetBillOfMaterialsImportJobOutput,
-        http_method = "GET",
-        http_path = "/api/configuration/instances/{instanceId}/bill-of-materials-import-jobs/{jobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBillOfMaterialsImportJob, input, options)
 end
 
 function Client:getDataIntegrationEvent(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDataIntegrationEvent",
-        input_schema = schemas.GetDataIntegrationEventInput,
-        output_schema = schemas.GetDataIntegrationEventOutput,
-        http_method = "GET",
-        http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-events/{eventId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDataIntegrationEvent, input, options)
 end
 
 function Client:getDataIntegrationFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDataIntegrationFlow",
-        input_schema = schemas.GetDataIntegrationFlowInput,
-        output_schema = schemas.GetDataIntegrationFlowOutput,
-        http_method = "GET",
-        http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDataIntegrationFlow, input, options)
 end
 
 function Client:getDataIntegrationFlowExecution(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDataIntegrationFlowExecution",
-        input_schema = schemas.GetDataIntegrationFlowExecutionInput,
-        output_schema = schemas.GetDataIntegrationFlowExecutionOutput,
-        http_method = "GET",
-        http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-flows/{flowName}/executions/{executionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDataIntegrationFlowExecution, input, options)
 end
 
 function Client:getDataLakeDataset(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDataLakeDataset",
-        input_schema = schemas.GetDataLakeDatasetInput,
-        output_schema = schemas.GetDataLakeDatasetOutput,
-        http_method = "GET",
-        http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDataLakeDataset, input, options)
 end
 
 function Client:getDataLakeNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDataLakeNamespace",
-        input_schema = schemas.GetDataLakeNamespaceInput,
-        output_schema = schemas.GetDataLakeNamespaceOutput,
-        http_method = "GET",
-        http_path = "/api/datalake/instance/{instanceId}/namespaces/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDataLakeNamespace, input, options)
 end
 
 function Client:getInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "GetInstance",
-        input_schema = schemas.GetInstanceInput,
-        output_schema = schemas.GetInstanceOutput,
-        http_method = "GET",
-        http_path = "/api/instance/{instanceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetInstance, input, options)
 end
 
 function Client:listDataIntegrationEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDataIntegrationEvents",
-        input_schema = schemas.ListDataIntegrationEventsInput,
-        output_schema = schemas.ListDataIntegrationEventsOutput,
-        http_method = "GET",
-        http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-events",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDataIntegrationEvents, input, options)
 end
 
 function Client:listDataIntegrationFlowExecutions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDataIntegrationFlowExecutions",
-        input_schema = schemas.ListDataIntegrationFlowExecutionsInput,
-        output_schema = schemas.ListDataIntegrationFlowExecutionsOutput,
-        http_method = "GET",
-        http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-flows/{flowName}/executions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDataIntegrationFlowExecutions, input, options)
 end
 
 function Client:listDataIntegrationFlows(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDataIntegrationFlows",
-        input_schema = schemas.ListDataIntegrationFlowsInput,
-        output_schema = schemas.ListDataIntegrationFlowsOutput,
-        http_method = "GET",
-        http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDataIntegrationFlows, input, options)
 end
 
 function Client:listDataLakeDatasets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDataLakeDatasets",
-        input_schema = schemas.ListDataLakeDatasetsInput,
-        output_schema = schemas.ListDataLakeDatasetsOutput,
-        http_method = "GET",
-        http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDataLakeDatasets, input, options)
 end
 
 function Client:listDataLakeNamespaces(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDataLakeNamespaces",
-        input_schema = schemas.ListDataLakeNamespacesInput,
-        output_schema = schemas.ListDataLakeNamespacesOutput,
-        http_method = "GET",
-        http_path = "/api/datalake/instance/{instanceId}/namespaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDataLakeNamespaces, input, options)
 end
 
 function Client:listInstances(input, options)
-    return self:invokeOperation(input, {
-        name = "ListInstances",
-        input_schema = schemas.ListInstancesInput,
-        output_schema = schemas.ListInstancesOutput,
-        http_method = "GET",
-        http_path = "/api/instance",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListInstances, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/api/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:sendDataIntegrationEvent(input, options)
-    return self:invokeOperation(input, {
-        name = "SendDataIntegrationEvent",
-        input_schema = schemas.SendDataIntegrationEventInput,
-        output_schema = schemas.SendDataIntegrationEventOutput,
-        http_method = "POST",
-        http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-events",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SendDataIntegrationEvent, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/api/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/api/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateDataIntegrationFlow(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDataIntegrationFlow",
-        input_schema = schemas.UpdateDataIntegrationFlowInput,
-        output_schema = schemas.UpdateDataIntegrationFlowOutput,
-        http_method = "PATCH",
-        http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDataIntegrationFlow, input, options)
 end
 
 function Client:updateDataLakeDataset(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDataLakeDataset",
-        input_schema = schemas.UpdateDataLakeDatasetInput,
-        output_schema = schemas.UpdateDataLakeDatasetOutput,
-        http_method = "PATCH",
-        http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDataLakeDataset, input, options)
 end
 
 function Client:updateDataLakeNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDataLakeNamespace",
-        input_schema = schemas.UpdateDataLakeNamespaceInput,
-        output_schema = schemas.UpdateDataLakeNamespaceOutput,
-        http_method = "PATCH",
-        http_path = "/api/datalake/instance/{instanceId}/namespaces/{name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDataLakeNamespace, input, options)
 end
 
 function Client:updateInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateInstance",
-        input_schema = schemas.UpdateInstanceInput,
-        output_schema = schemas.UpdateInstanceOutput,
-        http_method = "PATCH",
-        http_path = "/api/instance/{instanceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateInstance, input, options)
 end
 
 return M

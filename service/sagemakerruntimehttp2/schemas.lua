@@ -387,4 +387,27 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sagemakerruntimehttp2", "AmazonSageMakerRuntimeHttp2"),
+    version = "2025-10-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InvokeEndpointWithBidirectionalStream = schema.operation({
+    id = id.from("com.amazonaws.sagemakerruntimehttp2", "InvokeEndpointWithBidirectionalStream"),
+    input = M.InvokeEndpointWithBidirectionalStreamInput,
+    output = M.InvokeEndpointWithBidirectionalStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/endpoints/{EndpointName}/invocations-bidirectional-stream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.ResponseStreamEvent,
+    },
+})
+
 return M

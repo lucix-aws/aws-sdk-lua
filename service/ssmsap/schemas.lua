@@ -2416,4 +2416,338 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ssmsap", "SsmSap"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePermission = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "DeleteResourcePermission"),
+    input = M.DeleteResourcePermissionInput,
+    output = M.DeleteResourcePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-resource-permission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterApplication = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "DeregisterApplication"),
+    input = M.DeregisterApplicationInput,
+    output = M.DeregisterApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/deregister-application" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplication = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "GetApplication"),
+    input = M.GetApplicationInput,
+    output = M.GetApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-application" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComponent = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "GetComponent"),
+    input = M.GetComponentInput,
+    output = M.GetComponentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-component" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfigurationCheckOperation = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "GetConfigurationCheckOperation"),
+    input = M.GetConfigurationCheckOperationInput,
+    output = M.GetConfigurationCheckOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-configuration-check-operation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDatabase = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "GetDatabase"),
+    input = M.GetDatabaseInput,
+    output = M.GetDatabaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-database" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOperation = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "GetOperation"),
+    input = M.GetOperationInput,
+    output = M.GetOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-operation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePermission = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "GetResourcePermission"),
+    input = M.GetResourcePermissionInput,
+    output = M.GetResourcePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-resource-permission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComponents = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "ListComponents"),
+    input = M.ListComponentsInput,
+    output = M.ListComponentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-components" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationCheckDefinitions = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "ListConfigurationCheckDefinitions"),
+    input = M.ListConfigurationCheckDefinitionsInput,
+    output = M.ListConfigurationCheckDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-configuration-check-definitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfigurationCheckOperations = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "ListConfigurationCheckOperations"),
+    input = M.ListConfigurationCheckOperationsInput,
+    output = M.ListConfigurationCheckOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-configuration-check-operations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatabases = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "ListDatabases"),
+    input = M.ListDatabasesInput,
+    output = M.ListDatabasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-databases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOperationEvents = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "ListOperationEvents"),
+    input = M.ListOperationEventsInput,
+    output = M.ListOperationEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-operation-events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOperations = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "ListOperations"),
+    input = M.ListOperationsInput,
+    output = M.ListOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-operations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubCheckResults = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "ListSubCheckResults"),
+    input = M.ListSubCheckResultsInput,
+    output = M.ListSubCheckResultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-sub-check-results" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSubCheckRuleResults = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "ListSubCheckRuleResults"),
+    input = M.ListSubCheckRuleResultsInput,
+    output = M.ListSubCheckRuleResultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-sub-check-rule-results" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePermission = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "PutResourcePermission"),
+    input = M.PutResourcePermissionInput,
+    output = M.PutResourcePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/put-resource-permission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterApplication = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "RegisterApplication"),
+    input = M.RegisterApplicationInput,
+    output = M.RegisterApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/register-application" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartApplication = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "StartApplication"),
+    input = M.StartApplicationInput,
+    output = M.StartApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/start-application" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartApplicationRefresh = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "StartApplicationRefresh"),
+    input = M.StartApplicationRefreshInput,
+    output = M.StartApplicationRefreshOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/start-application-refresh" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartConfigurationChecks = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "StartConfigurationChecks"),
+    input = M.StartConfigurationChecksInput,
+    output = M.StartConfigurationChecksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/start-configuration-checks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopApplication = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "StopApplication"),
+    input = M.StopApplicationInput,
+    output = M.StopApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/stop-application" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplicationSettings = schema.operation({
+    id = id.from("com.amazonaws.ssmsap", "UpdateApplicationSettings"),
+    input = M.UpdateApplicationSettingsInput,
+    output = M.UpdateApplicationSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-application-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

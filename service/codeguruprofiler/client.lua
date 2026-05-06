@@ -7,6 +7,7 @@ local endpoint_rules = require("codeguruprofiler.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("codeguruprofiler.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codeguru-profiler", signing_region = cfg.region } }
                 else
@@ -49,302 +52,95 @@ function M.new(cfg)
 end
 
 function Client:addNotificationChannels(input, options)
-    return self:invokeOperation(input, {
-        name = "AddNotificationChannels",
-        input_schema = schemas.AddNotificationChannelsInput,
-        output_schema = schemas.AddNotificationChannelsOutput,
-        http_method = "POST",
-        http_path = "/profilingGroups/{profilingGroupName}/notificationConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddNotificationChannels, input, options)
 end
 
 function Client:batchGetFrameMetricData(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchGetFrameMetricData",
-        input_schema = schemas.BatchGetFrameMetricDataInput,
-        output_schema = schemas.BatchGetFrameMetricDataOutput,
-        http_method = "POST",
-        http_path = "/profilingGroups/{profilingGroupName}/frames/-/metrics",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchGetFrameMetricData, input, options)
 end
 
 function Client:configureAgent(input, options)
-    return self:invokeOperation(input, {
-        name = "ConfigureAgent",
-        input_schema = schemas.ConfigureAgentInput,
-        output_schema = schemas.ConfigureAgentOutput,
-        http_method = "POST",
-        http_path = "/profilingGroups/{profilingGroupName}/configureAgent",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ConfigureAgent, input, options)
 end
 
 function Client:createProfilingGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateProfilingGroup",
-        input_schema = schemas.CreateProfilingGroupInput,
-        output_schema = schemas.CreateProfilingGroupOutput,
-        http_method = "POST",
-        http_path = "/profilingGroups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateProfilingGroup, input, options)
 end
 
 function Client:deleteProfilingGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteProfilingGroup",
-        input_schema = schemas.DeleteProfilingGroupInput,
-        output_schema = schemas.DeleteProfilingGroupOutput,
-        http_method = "DELETE",
-        http_path = "/profilingGroups/{profilingGroupName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteProfilingGroup, input, options)
 end
 
 function Client:describeProfilingGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeProfilingGroup",
-        input_schema = schemas.DescribeProfilingGroupInput,
-        output_schema = schemas.DescribeProfilingGroupOutput,
-        http_method = "GET",
-        http_path = "/profilingGroups/{profilingGroupName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeProfilingGroup, input, options)
 end
 
 function Client:getFindingsReportAccountSummary(input, options)
-    return self:invokeOperation(input, {
-        name = "GetFindingsReportAccountSummary",
-        input_schema = schemas.GetFindingsReportAccountSummaryInput,
-        output_schema = schemas.GetFindingsReportAccountSummaryOutput,
-        http_method = "GET",
-        http_path = "/internal/findingsReports",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetFindingsReportAccountSummary, input, options)
 end
 
 function Client:getNotificationConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetNotificationConfiguration",
-        input_schema = schemas.GetNotificationConfigurationInput,
-        output_schema = schemas.GetNotificationConfigurationOutput,
-        http_method = "GET",
-        http_path = "/profilingGroups/{profilingGroupName}/notificationConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetNotificationConfiguration, input, options)
 end
 
 function Client:getPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPolicy",
-        input_schema = schemas.GetPolicyInput,
-        output_schema = schemas.GetPolicyOutput,
-        http_method = "GET",
-        http_path = "/profilingGroups/{profilingGroupName}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPolicy, input, options)
 end
 
 function Client:getProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "GetProfile",
-        input_schema = schemas.GetProfileInput,
-        output_schema = schemas.GetProfileOutput,
-        http_method = "GET",
-        http_path = "/profilingGroups/{profilingGroupName}/profile",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetProfile, input, options)
 end
 
 function Client:getRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRecommendations",
-        input_schema = schemas.GetRecommendationsInput,
-        output_schema = schemas.GetRecommendationsOutput,
-        http_method = "GET",
-        http_path = "/internal/profilingGroups/{profilingGroupName}/recommendations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRecommendations, input, options)
 end
 
 function Client:listFindingsReports(input, options)
-    return self:invokeOperation(input, {
-        name = "ListFindingsReports",
-        input_schema = schemas.ListFindingsReportsInput,
-        output_schema = schemas.ListFindingsReportsOutput,
-        http_method = "GET",
-        http_path = "/internal/profilingGroups/{profilingGroupName}/findingsReports",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListFindingsReports, input, options)
 end
 
 function Client:listProfileTimes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProfileTimes",
-        input_schema = schemas.ListProfileTimesInput,
-        output_schema = schemas.ListProfileTimesOutput,
-        http_method = "GET",
-        http_path = "/profilingGroups/{profilingGroupName}/profileTimes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProfileTimes, input, options)
 end
 
 function Client:listProfilingGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProfilingGroups",
-        input_schema = schemas.ListProfilingGroupsInput,
-        output_schema = schemas.ListProfilingGroupsOutput,
-        http_method = "GET",
-        http_path = "/profilingGroups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProfilingGroups, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:postAgentProfile(input, options)
-    return self:invokeOperation(input, {
-        name = "PostAgentProfile",
-        input_schema = schemas.PostAgentProfileInput,
-        output_schema = schemas.PostAgentProfileOutput,
-        http_method = "POST",
-        http_path = "/profilingGroups/{profilingGroupName}/agentProfile",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PostAgentProfile, input, options)
 end
 
 function Client:putPermission(input, options)
-    return self:invokeOperation(input, {
-        name = "PutPermission",
-        input_schema = schemas.PutPermissionInput,
-        output_schema = schemas.PutPermissionOutput,
-        http_method = "PUT",
-        http_path = "/profilingGroups/{profilingGroupName}/policy/{actionGroup}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutPermission, input, options)
 end
 
 function Client:removeNotificationChannel(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveNotificationChannel",
-        input_schema = schemas.RemoveNotificationChannelInput,
-        output_schema = schemas.RemoveNotificationChannelOutput,
-        http_method = "DELETE",
-        http_path = "/profilingGroups/{profilingGroupName}/notificationConfiguration/{channelId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveNotificationChannel, input, options)
 end
 
 function Client:removePermission(input, options)
-    return self:invokeOperation(input, {
-        name = "RemovePermission",
-        input_schema = schemas.RemovePermissionInput,
-        output_schema = schemas.RemovePermissionOutput,
-        http_method = "DELETE",
-        http_path = "/profilingGroups/{profilingGroupName}/policy/{actionGroup}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemovePermission, input, options)
 end
 
 function Client:submitFeedback(input, options)
-    return self:invokeOperation(input, {
-        name = "SubmitFeedback",
-        input_schema = schemas.SubmitFeedbackInput,
-        output_schema = schemas.SubmitFeedbackOutput,
-        http_method = "POST",
-        http_path = "/internal/profilingGroups/{profilingGroupName}/anomalies/{anomalyInstanceId}/feedback",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SubmitFeedback, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateProfilingGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateProfilingGroup",
-        input_schema = schemas.UpdateProfilingGroupInput,
-        output_schema = schemas.UpdateProfilingGroupOutput,
-        http_method = "PUT",
-        http_path = "/profilingGroups/{profilingGroupName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateProfilingGroup, input, options)
 end
 
 return M

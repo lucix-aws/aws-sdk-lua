@@ -7,6 +7,7 @@ local endpoint_rules = require("workspacesthinclient.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("workspacesthinclient.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "thinclient", signing_region = cfg.region } }
                 else
@@ -49,211 +52,67 @@ function M.new(cfg)
 end
 
 function Client:createEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEnvironment",
-        input_schema = schemas.CreateEnvironmentInput,
-        output_schema = schemas.CreateEnvironmentOutput,
-        http_method = "POST",
-        http_path = "/environments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEnvironment, input, options)
 end
 
 function Client:deleteDevice(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDevice",
-        input_schema = schemas.DeleteDeviceInput,
-        output_schema = schemas.DeleteDeviceOutput,
-        http_method = "DELETE",
-        http_path = "/devices/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDevice, input, options)
 end
 
 function Client:deleteEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEnvironment",
-        input_schema = schemas.DeleteEnvironmentInput,
-        output_schema = schemas.DeleteEnvironmentOutput,
-        http_method = "DELETE",
-        http_path = "/environments/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironment, input, options)
 end
 
 function Client:deregisterDevice(input, options)
-    return self:invokeOperation(input, {
-        name = "DeregisterDevice",
-        input_schema = schemas.DeregisterDeviceInput,
-        output_schema = schemas.DeregisterDeviceOutput,
-        http_method = "POST",
-        http_path = "/deregister-device/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeregisterDevice, input, options)
 end
 
 function Client:getDevice(input, options)
-    return self:invokeOperation(input, {
-        name = "GetDevice",
-        input_schema = schemas.GetDeviceInput,
-        output_schema = schemas.GetDeviceOutput,
-        http_method = "GET",
-        http_path = "/devices/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetDevice, input, options)
 end
 
 function Client:getEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEnvironment",
-        input_schema = schemas.GetEnvironmentInput,
-        output_schema = schemas.GetEnvironmentOutput,
-        http_method = "GET",
-        http_path = "/environments/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEnvironment, input, options)
 end
 
 function Client:getSoftwareSet(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSoftwareSet",
-        input_schema = schemas.GetSoftwareSetInput,
-        output_schema = schemas.GetSoftwareSetOutput,
-        http_method = "GET",
-        http_path = "/softwaresets/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSoftwareSet, input, options)
 end
 
 function Client:listDevices(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDevices",
-        input_schema = schemas.ListDevicesInput,
-        output_schema = schemas.ListDevicesOutput,
-        http_method = "GET",
-        http_path = "/devices",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDevices, input, options)
 end
 
 function Client:listEnvironments(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEnvironments",
-        input_schema = schemas.ListEnvironmentsInput,
-        output_schema = schemas.ListEnvironmentsOutput,
-        http_method = "GET",
-        http_path = "/environments",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEnvironments, input, options)
 end
 
 function Client:listSoftwareSets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSoftwareSets",
-        input_schema = schemas.ListSoftwareSetsInput,
-        output_schema = schemas.ListSoftwareSetsOutput,
-        http_method = "GET",
-        http_path = "/softwaresets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSoftwareSets, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateDevice(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDevice",
-        input_schema = schemas.UpdateDeviceInput,
-        output_schema = schemas.UpdateDeviceOutput,
-        http_method = "PATCH",
-        http_path = "/devices/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDevice, input, options)
 end
 
 function Client:updateEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateEnvironment",
-        input_schema = schemas.UpdateEnvironmentInput,
-        output_schema = schemas.UpdateEnvironmentOutput,
-        http_method = "PATCH",
-        http_path = "/environments/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateEnvironment, input, options)
 end
 
 function Client:updateSoftwareSet(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSoftwareSet",
-        input_schema = schemas.UpdateSoftwareSetInput,
-        output_schema = schemas.UpdateSoftwareSetOutput,
-        http_method = "PATCH",
-        http_path = "/softwaresets/{id}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSoftwareSet, input, options)
 end
 
 return M

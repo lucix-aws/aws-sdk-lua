@@ -4322,4 +4322,530 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.transcribe", "Transcribe"),
+    version = "2017-10-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCallAnalyticsCategory = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "CreateCallAnalyticsCategory"),
+    input = M.CreateCallAnalyticsCategoryInput,
+    output = M.CreateCallAnalyticsCategoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/callanalyticscategories/{CategoryName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLanguageModel = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "CreateLanguageModel"),
+    input = M.CreateLanguageModelInput,
+    output = M.CreateLanguageModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/languagemodels/{ModelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMedicalVocabulary = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "CreateMedicalVocabulary"),
+    input = M.CreateMedicalVocabularyInput,
+    output = M.CreateMedicalVocabularyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/medicalvocabularies/{VocabularyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVocabulary = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "CreateVocabulary"),
+    input = M.CreateVocabularyInput,
+    output = M.CreateVocabularyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/vocabularies/{VocabularyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVocabularyFilter = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "CreateVocabularyFilter"),
+    input = M.CreateVocabularyFilterInput,
+    output = M.CreateVocabularyFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/vocabularyFilters/{VocabularyFilterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCallAnalyticsCategory = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "DeleteCallAnalyticsCategory"),
+    input = M.DeleteCallAnalyticsCategoryInput,
+    output = M.DeleteCallAnalyticsCategoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/callanalyticscategories/{CategoryName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCallAnalyticsJob = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "DeleteCallAnalyticsJob"),
+    input = M.DeleteCallAnalyticsJobInput,
+    output = M.DeleteCallAnalyticsJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/callanalyticsjobs/{CallAnalyticsJobName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLanguageModel = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "DeleteLanguageModel"),
+    input = M.DeleteLanguageModelInput,
+    output = M.DeleteLanguageModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/languagemodels/{ModelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMedicalScribeJob = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "DeleteMedicalScribeJob"),
+    input = M.DeleteMedicalScribeJobInput,
+    output = M.DeleteMedicalScribeJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/medicalscribejobs/{MedicalScribeJobName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMedicalTranscriptionJob = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "DeleteMedicalTranscriptionJob"),
+    input = M.DeleteMedicalTranscriptionJobInput,
+    output = M.DeleteMedicalTranscriptionJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/medicaltranscriptionjobs/{MedicalTranscriptionJobName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMedicalVocabulary = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "DeleteMedicalVocabulary"),
+    input = M.DeleteMedicalVocabularyInput,
+    output = M.DeleteMedicalVocabularyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/medicalvocabularies/{VocabularyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTranscriptionJob = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "DeleteTranscriptionJob"),
+    input = M.DeleteTranscriptionJobInput,
+    output = M.DeleteTranscriptionJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/transcriptionjobs/{TranscriptionJobName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVocabulary = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "DeleteVocabulary"),
+    input = M.DeleteVocabularyInput,
+    output = M.DeleteVocabularyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/vocabularies/{VocabularyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVocabularyFilter = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "DeleteVocabularyFilter"),
+    input = M.DeleteVocabularyFilterInput,
+    output = M.DeleteVocabularyFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/vocabularyFilters/{VocabularyFilterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLanguageModel = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "DescribeLanguageModel"),
+    input = M.DescribeLanguageModelInput,
+    output = M.DescribeLanguageModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/languagemodels/{ModelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCallAnalyticsCategory = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "GetCallAnalyticsCategory"),
+    input = M.GetCallAnalyticsCategoryInput,
+    output = M.GetCallAnalyticsCategoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/callanalyticscategories/{CategoryName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCallAnalyticsJob = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "GetCallAnalyticsJob"),
+    input = M.GetCallAnalyticsJobInput,
+    output = M.GetCallAnalyticsJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/callanalyticsjobs/{CallAnalyticsJobName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMedicalScribeJob = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "GetMedicalScribeJob"),
+    input = M.GetMedicalScribeJobInput,
+    output = M.GetMedicalScribeJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/medicalscribejobs/{MedicalScribeJobName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMedicalTranscriptionJob = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "GetMedicalTranscriptionJob"),
+    input = M.GetMedicalTranscriptionJobInput,
+    output = M.GetMedicalTranscriptionJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/medicaltranscriptionjobs/{MedicalTranscriptionJobName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMedicalVocabulary = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "GetMedicalVocabulary"),
+    input = M.GetMedicalVocabularyInput,
+    output = M.GetMedicalVocabularyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/medicalvocabularies/{VocabularyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTranscriptionJob = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "GetTranscriptionJob"),
+    input = M.GetTranscriptionJobInput,
+    output = M.GetTranscriptionJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/transcriptionjobs/{TranscriptionJobName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVocabulary = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "GetVocabulary"),
+    input = M.GetVocabularyInput,
+    output = M.GetVocabularyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/vocabularies/{VocabularyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVocabularyFilter = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "GetVocabularyFilter"),
+    input = M.GetVocabularyFilterInput,
+    output = M.GetVocabularyFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/vocabularyFilters/{VocabularyFilterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCallAnalyticsCategories = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "ListCallAnalyticsCategories"),
+    input = M.ListCallAnalyticsCategoriesInput,
+    output = M.ListCallAnalyticsCategoriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/callanalyticscategories" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCallAnalyticsJobs = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "ListCallAnalyticsJobs"),
+    input = M.ListCallAnalyticsJobsInput,
+    output = M.ListCallAnalyticsJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/callanalyticsjobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLanguageModels = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "ListLanguageModels"),
+    input = M.ListLanguageModelsInput,
+    output = M.ListLanguageModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/languagemodels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMedicalScribeJobs = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "ListMedicalScribeJobs"),
+    input = M.ListMedicalScribeJobsInput,
+    output = M.ListMedicalScribeJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/medicalscribejobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMedicalTranscriptionJobs = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "ListMedicalTranscriptionJobs"),
+    input = M.ListMedicalTranscriptionJobsInput,
+    output = M.ListMedicalTranscriptionJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/medicaltranscriptionjobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMedicalVocabularies = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "ListMedicalVocabularies"),
+    input = M.ListMedicalVocabulariesInput,
+    output = M.ListMedicalVocabulariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/medicalvocabularies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTranscriptionJobs = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "ListTranscriptionJobs"),
+    input = M.ListTranscriptionJobsInput,
+    output = M.ListTranscriptionJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/transcriptionjobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVocabularies = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "ListVocabularies"),
+    input = M.ListVocabulariesInput,
+    output = M.ListVocabulariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/vocabularies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVocabularyFilters = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "ListVocabularyFilters"),
+    input = M.ListVocabularyFiltersInput,
+    output = M.ListVocabularyFiltersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/vocabularyFilters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCallAnalyticsJob = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "StartCallAnalyticsJob"),
+    input = M.StartCallAnalyticsJobInput,
+    output = M.StartCallAnalyticsJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/callanalyticsjobs/{CallAnalyticsJobName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMedicalScribeJob = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "StartMedicalScribeJob"),
+    input = M.StartMedicalScribeJobInput,
+    output = M.StartMedicalScribeJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/medicalscribejobs/{MedicalScribeJobName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMedicalTranscriptionJob = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "StartMedicalTranscriptionJob"),
+    input = M.StartMedicalTranscriptionJobInput,
+    output = M.StartMedicalTranscriptionJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/medicaltranscriptionjobs/{MedicalTranscriptionJobName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTranscriptionJob = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "StartTranscriptionJob"),
+    input = M.StartTranscriptionJobInput,
+    output = M.StartTranscriptionJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/transcriptionjobs/{TranscriptionJobName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCallAnalyticsCategory = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "UpdateCallAnalyticsCategory"),
+    input = M.UpdateCallAnalyticsCategoryInput,
+    output = M.UpdateCallAnalyticsCategoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/callanalyticscategories/{CategoryName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMedicalVocabulary = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "UpdateMedicalVocabulary"),
+    input = M.UpdateMedicalVocabularyInput,
+    output = M.UpdateMedicalVocabularyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/medicalvocabularies/{VocabularyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVocabulary = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "UpdateVocabulary"),
+    input = M.UpdateVocabularyInput,
+    output = M.UpdateVocabularyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/vocabularies/{VocabularyName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVocabularyFilter = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "UpdateVocabularyFilter"),
+    input = M.UpdateVocabularyFilterInput,
+    output = M.UpdateVocabularyFilterOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/vocabularyFilters/{VocabularyFilterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -1592,4 +1592,158 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.backupsearch", "CryoBackupSearchService"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSearchJob = schema.operation({
+    id = id.from("com.amazonaws.backupsearch", "GetSearchJob"),
+    input = M.GetSearchJobInput,
+    output = M.GetSearchJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/search-jobs/{SearchJobIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSearchResultExportJob = schema.operation({
+    id = id.from("com.amazonaws.backupsearch", "GetSearchResultExportJob"),
+    input = M.GetSearchResultExportJobInput,
+    output = M.GetSearchResultExportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/export-search-jobs/{ExportJobIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSearchJobBackups = schema.operation({
+    id = id.from("com.amazonaws.backupsearch", "ListSearchJobBackups"),
+    input = M.ListSearchJobBackupsInput,
+    output = M.ListSearchJobBackupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/search-jobs/{SearchJobIdentifier}/backups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSearchJobResults = schema.operation({
+    id = id.from("com.amazonaws.backupsearch", "ListSearchJobResults"),
+    input = M.ListSearchJobResultsInput,
+    output = M.ListSearchJobResultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/search-jobs/{SearchJobIdentifier}/search-results" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSearchJobs = schema.operation({
+    id = id.from("com.amazonaws.backupsearch", "ListSearchJobs"),
+    input = M.ListSearchJobsInput,
+    output = M.ListSearchJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/search-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSearchResultExportJobs = schema.operation({
+    id = id.from("com.amazonaws.backupsearch", "ListSearchResultExportJobs"),
+    input = M.ListSearchResultExportJobsInput,
+    output = M.ListSearchResultExportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/export-search-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.backupsearch", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSearchJob = schema.operation({
+    id = id.from("com.amazonaws.backupsearch", "StartSearchJob"),
+    input = M.StartSearchJobInput,
+    output = M.StartSearchJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/search-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSearchResultExportJob = schema.operation({
+    id = id.from("com.amazonaws.backupsearch", "StartSearchResultExportJob"),
+    input = M.StartSearchResultExportJobInput,
+    output = M.StartSearchResultExportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/export-search-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopSearchJob = schema.operation({
+    id = id.from("com.amazonaws.backupsearch", "StopSearchJob"),
+    input = M.StopSearchJobInput,
+    output = M.StopSearchJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/search-jobs/{SearchJobIdentifier}/actions/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.backupsearch", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.backupsearch", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

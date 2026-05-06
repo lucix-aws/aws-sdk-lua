@@ -1597,4 +1597,158 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ioteventsdata", "IotColumboDataService"),
+    version = "2018-10-23",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAcknowledgeAlarm = schema.operation({
+    id = id.from("com.amazonaws.ioteventsdata", "BatchAcknowledgeAlarm"),
+    input = M.BatchAcknowledgeAlarmInput,
+    output = M.BatchAcknowledgeAlarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/alarms/acknowledge" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteDetector = schema.operation({
+    id = id.from("com.amazonaws.ioteventsdata", "BatchDeleteDetector"),
+    input = M.BatchDeleteDetectorInput,
+    output = M.BatchDeleteDetectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detectors/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDisableAlarm = schema.operation({
+    id = id.from("com.amazonaws.ioteventsdata", "BatchDisableAlarm"),
+    input = M.BatchDisableAlarmInput,
+    output = M.BatchDisableAlarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/alarms/disable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchEnableAlarm = schema.operation({
+    id = id.from("com.amazonaws.ioteventsdata", "BatchEnableAlarm"),
+    input = M.BatchEnableAlarmInput,
+    output = M.BatchEnableAlarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/alarms/enable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchPutMessage = schema.operation({
+    id = id.from("com.amazonaws.ioteventsdata", "BatchPutMessage"),
+    input = M.BatchPutMessageInput,
+    output = M.BatchPutMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/inputs/messages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchResetAlarm = schema.operation({
+    id = id.from("com.amazonaws.ioteventsdata", "BatchResetAlarm"),
+    input = M.BatchResetAlarmInput,
+    output = M.BatchResetAlarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/alarms/reset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchSnoozeAlarm = schema.operation({
+    id = id.from("com.amazonaws.ioteventsdata", "BatchSnoozeAlarm"),
+    input = M.BatchSnoozeAlarmInput,
+    output = M.BatchSnoozeAlarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/alarms/snooze" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateDetector = schema.operation({
+    id = id.from("com.amazonaws.ioteventsdata", "BatchUpdateDetector"),
+    input = M.BatchUpdateDetectorInput,
+    output = M.BatchUpdateDetectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAlarm = schema.operation({
+    id = id.from("com.amazonaws.ioteventsdata", "DescribeAlarm"),
+    input = M.DescribeAlarmInput,
+    output = M.DescribeAlarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/alarms/{alarmModelName}/keyValues" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDetector = schema.operation({
+    id = id.from("com.amazonaws.ioteventsdata", "DescribeDetector"),
+    input = M.DescribeDetectorInput,
+    output = M.DescribeDetectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detectors/{detectorModelName}/keyValues" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAlarms = schema.operation({
+    id = id.from("com.amazonaws.ioteventsdata", "ListAlarms"),
+    input = M.ListAlarmsInput,
+    output = M.ListAlarmsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/alarms/{alarmModelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDetectors = schema.operation({
+    id = id.from("com.amazonaws.ioteventsdata", "ListDetectors"),
+    input = M.ListDetectorsInput,
+    output = M.ListDetectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detectors/{detectorModelName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

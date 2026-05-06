@@ -4605,4 +4605,470 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.entityresolution", "AWSVeniceService"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddPolicyStatement = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "AddPolicyStatement"),
+    input = M.AddPolicyStatementInput,
+    output = M.AddPolicyStatementOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/policies/{arn}/{statementId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteUniqueId = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "BatchDeleteUniqueId"),
+    input = M.BatchDeleteUniqueIdInput,
+    output = M.BatchDeleteUniqueIdOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/matchingworkflows/{workflowName}/uniqueids" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIdMappingWorkflow = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "CreateIdMappingWorkflow"),
+    input = M.CreateIdMappingWorkflowInput,
+    output = M.CreateIdMappingWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/idmappingworkflows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIdNamespace = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "CreateIdNamespace"),
+    input = M.CreateIdNamespaceInput,
+    output = M.CreateIdNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/idnamespaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMatchingWorkflow = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "CreateMatchingWorkflow"),
+    input = M.CreateMatchingWorkflowInput,
+    output = M.CreateMatchingWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/matchingworkflows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSchemaMapping = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "CreateSchemaMapping"),
+    input = M.CreateSchemaMappingInput,
+    output = M.CreateSchemaMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/schemas" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdMappingWorkflow = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "DeleteIdMappingWorkflow"),
+    input = M.DeleteIdMappingWorkflowInput,
+    output = M.DeleteIdMappingWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/idmappingworkflows/{workflowName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdNamespace = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "DeleteIdNamespace"),
+    input = M.DeleteIdNamespaceInput,
+    output = M.DeleteIdNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/idnamespaces/{idNamespaceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMatchingWorkflow = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "DeleteMatchingWorkflow"),
+    input = M.DeleteMatchingWorkflowInput,
+    output = M.DeleteMatchingWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/matchingworkflows/{workflowName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePolicyStatement = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "DeletePolicyStatement"),
+    input = M.DeletePolicyStatementInput,
+    output = M.DeletePolicyStatementOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/policies/{arn}/{statementId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSchemaMapping = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "DeleteSchemaMapping"),
+    input = M.DeleteSchemaMappingInput,
+    output = M.DeleteSchemaMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/schemas/{schemaName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateMatchId = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "GenerateMatchId"),
+    input = M.GenerateMatchIdInput,
+    output = M.GenerateMatchIdOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/matchingworkflows/{workflowName}/generateMatches" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdMappingJob = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "GetIdMappingJob"),
+    input = M.GetIdMappingJobInput,
+    output = M.GetIdMappingJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/idmappingworkflows/{workflowName}/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdMappingWorkflow = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "GetIdMappingWorkflow"),
+    input = M.GetIdMappingWorkflowInput,
+    output = M.GetIdMappingWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/idmappingworkflows/{workflowName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdNamespace = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "GetIdNamespace"),
+    input = M.GetIdNamespaceInput,
+    output = M.GetIdNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/idnamespaces/{idNamespaceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMatchId = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "GetMatchId"),
+    input = M.GetMatchIdInput,
+    output = M.GetMatchIdOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/matchingworkflows/{workflowName}/matches" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMatchingJob = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "GetMatchingJob"),
+    input = M.GetMatchingJobInput,
+    output = M.GetMatchingJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/matchingworkflows/{workflowName}/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMatchingWorkflow = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "GetMatchingWorkflow"),
+    input = M.GetMatchingWorkflowInput,
+    output = M.GetMatchingWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/matchingworkflows/{workflowName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicy = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "GetPolicy"),
+    input = M.GetPolicyInput,
+    output = M.GetPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policies/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProviderService = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "GetProviderService"),
+    input = M.GetProviderServiceInput,
+    output = M.GetProviderServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/providerservices/{providerName}/{providerServiceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSchemaMapping = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "GetSchemaMapping"),
+    input = M.GetSchemaMappingInput,
+    output = M.GetSchemaMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/schemas/{schemaName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdMappingJobs = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "ListIdMappingJobs"),
+    input = M.ListIdMappingJobsInput,
+    output = M.ListIdMappingJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/idmappingworkflows/{workflowName}/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdMappingWorkflows = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "ListIdMappingWorkflows"),
+    input = M.ListIdMappingWorkflowsInput,
+    output = M.ListIdMappingWorkflowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/idmappingworkflows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdNamespaces = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "ListIdNamespaces"),
+    input = M.ListIdNamespacesInput,
+    output = M.ListIdNamespacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/idnamespaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMatchingJobs = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "ListMatchingJobs"),
+    input = M.ListMatchingJobsInput,
+    output = M.ListMatchingJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/matchingworkflows/{workflowName}/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMatchingWorkflows = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "ListMatchingWorkflows"),
+    input = M.ListMatchingWorkflowsInput,
+    output = M.ListMatchingWorkflowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/matchingworkflows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProviderServices = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "ListProviderServices"),
+    input = M.ListProviderServicesInput,
+    output = M.ListProviderServicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/providerservices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSchemaMappings = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "ListSchemaMappings"),
+    input = M.ListSchemaMappingsInput,
+    output = M.ListSchemaMappingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/schemas" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPolicy = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "PutPolicy"),
+    input = M.PutPolicyInput,
+    output = M.PutPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/policies/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartIdMappingJob = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "StartIdMappingJob"),
+    input = M.StartIdMappingJobInput,
+    output = M.StartIdMappingJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/idmappingworkflows/{workflowName}/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMatchingJob = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "StartMatchingJob"),
+    input = M.StartMatchingJobInput,
+    output = M.StartMatchingJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/matchingworkflows/{workflowName}/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIdMappingWorkflow = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "UpdateIdMappingWorkflow"),
+    input = M.UpdateIdMappingWorkflowInput,
+    output = M.UpdateIdMappingWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/idmappingworkflows/{workflowName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIdNamespace = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "UpdateIdNamespace"),
+    input = M.UpdateIdNamespaceInput,
+    output = M.UpdateIdNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/idnamespaces/{idNamespaceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMatchingWorkflow = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "UpdateMatchingWorkflow"),
+    input = M.UpdateMatchingWorkflowInput,
+    output = M.UpdateMatchingWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/matchingworkflows/{workflowName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSchemaMapping = schema.operation({
+    id = id.from("com.amazonaws.entityresolution", "UpdateSchemaMapping"),
+    input = M.UpdateSchemaMappingInput,
+    output = M.UpdateSchemaMappingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/schemas/{schemaName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

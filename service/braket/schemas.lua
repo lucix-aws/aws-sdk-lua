@@ -2398,4 +2398,218 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.braket", "Braket"),
+    version = "2019-09-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelJob = schema.operation({
+    id = id.from("com.amazonaws.braket", "CancelJob"),
+    input = M.CancelJobInput,
+    output = M.CancelJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/job/{jobArn}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelQuantumTask = schema.operation({
+    id = id.from("com.amazonaws.braket", "CancelQuantumTask"),
+    input = M.CancelQuantumTaskInput,
+    output = M.CancelQuantumTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/quantum-task/{quantumTaskArn}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateJob = schema.operation({
+    id = id.from("com.amazonaws.braket", "CreateJob"),
+    input = M.CreateJobInput,
+    output = M.CreateJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQuantumTask = schema.operation({
+    id = id.from("com.amazonaws.braket", "CreateQuantumTask"),
+    input = M.CreateQuantumTaskInput,
+    output = M.CreateQuantumTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/quantum-task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSpendingLimit = schema.operation({
+    id = id.from("com.amazonaws.braket", "CreateSpendingLimit"),
+    input = M.CreateSpendingLimitInput,
+    output = M.CreateSpendingLimitOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/spending-limit" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSpendingLimit = schema.operation({
+    id = id.from("com.amazonaws.braket", "DeleteSpendingLimit"),
+    input = M.DeleteSpendingLimitInput,
+    output = M.DeleteSpendingLimitOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/spending-limit/{spendingLimitArn}/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDevice = schema.operation({
+    id = id.from("com.amazonaws.braket", "GetDevice"),
+    input = M.GetDeviceInput,
+    output = M.GetDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/device/{deviceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJob = schema.operation({
+    id = id.from("com.amazonaws.braket", "GetJob"),
+    input = M.GetJobInput,
+    output = M.GetJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/job/{jobArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQuantumTask = schema.operation({
+    id = id.from("com.amazonaws.braket", "GetQuantumTask"),
+    input = M.GetQuantumTaskInput,
+    output = M.GetQuantumTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/quantum-task/{quantumTaskArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.braket", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchDevices = schema.operation({
+    id = id.from("com.amazonaws.braket", "SearchDevices"),
+    input = M.SearchDevicesInput,
+    output = M.SearchDevicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/devices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchJobs = schema.operation({
+    id = id.from("com.amazonaws.braket", "SearchJobs"),
+    input = M.SearchJobsInput,
+    output = M.SearchJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchQuantumTasks = schema.operation({
+    id = id.from("com.amazonaws.braket", "SearchQuantumTasks"),
+    input = M.SearchQuantumTasksInput,
+    output = M.SearchQuantumTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/quantum-tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchSpendingLimits = schema.operation({
+    id = id.from("com.amazonaws.braket", "SearchSpendingLimits"),
+    input = M.SearchSpendingLimitsInput,
+    output = M.SearchSpendingLimitsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/spending-limits" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.braket", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.braket", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSpendingLimit = schema.operation({
+    id = id.from("com.amazonaws.braket", "UpdateSpendingLimit"),
+    input = M.UpdateSpendingLimitInput,
+    output = M.UpdateSpendingLimitOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/spending-limit/{spendingLimitArn}/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -4082,4 +4082,542 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.amp", "AmazonPrometheusService"),
+    version = "2020-08-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAlertManagerDefinition = schema.operation({
+    id = id.from("com.amazonaws.amp", "CreateAlertManagerDefinition"),
+    input = M.CreateAlertManagerDefinitionInput,
+    output = M.CreateAlertManagerDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/alertmanager/definition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAnomalyDetector = schema.operation({
+    id = id.from("com.amazonaws.amp", "CreateAnomalyDetector"),
+    input = M.CreateAnomalyDetectorInput,
+    output = M.CreateAnomalyDetectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/anomalydetectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.amp", "CreateLoggingConfiguration"),
+    input = M.CreateLoggingConfigurationInput,
+    output = M.CreateLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/logging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQueryLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.amp", "CreateQueryLoggingConfiguration"),
+    input = M.CreateQueryLoggingConfigurationInput,
+    output = M.CreateQueryLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/logging/query" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRuleGroupsNamespace = schema.operation({
+    id = id.from("com.amazonaws.amp", "CreateRuleGroupsNamespace"),
+    input = M.CreateRuleGroupsNamespaceInput,
+    output = M.CreateRuleGroupsNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/rulegroupsnamespaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateScraper = schema.operation({
+    id = id.from("com.amazonaws.amp", "CreateScraper"),
+    input = M.CreateScraperInput,
+    output = M.CreateScraperOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/scrapers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkspace = schema.operation({
+    id = id.from("com.amazonaws.amp", "CreateWorkspace"),
+    input = M.CreateWorkspaceInput,
+    output = M.CreateWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAlertManagerDefinition = schema.operation({
+    id = id.from("com.amazonaws.amp", "DeleteAlertManagerDefinition"),
+    input = M.DeleteAlertManagerDefinitionInput,
+    output = M.DeleteAlertManagerDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}/alertmanager/definition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAnomalyDetector = schema.operation({
+    id = id.from("com.amazonaws.amp", "DeleteAnomalyDetector"),
+    input = M.DeleteAnomalyDetectorInput,
+    output = M.DeleteAnomalyDetectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}/anomalydetectors/{anomalyDetectorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.amp", "DeleteLoggingConfiguration"),
+    input = M.DeleteLoggingConfigurationInput,
+    output = M.DeleteLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}/logging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQueryLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.amp", "DeleteQueryLoggingConfiguration"),
+    input = M.DeleteQueryLoggingConfigurationInput,
+    output = M.DeleteQueryLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}/logging/query" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.amp", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRuleGroupsNamespace = schema.operation({
+    id = id.from("com.amazonaws.amp", "DeleteRuleGroupsNamespace"),
+    input = M.DeleteRuleGroupsNamespaceInput,
+    output = M.DeleteRuleGroupsNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}/rulegroupsnamespaces/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScraper = schema.operation({
+    id = id.from("com.amazonaws.amp", "DeleteScraper"),
+    input = M.DeleteScraperInput,
+    output = M.DeleteScraperOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/scrapers/{scraperId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScraperLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.amp", "DeleteScraperLoggingConfiguration"),
+    input = M.DeleteScraperLoggingConfigurationInput,
+    output = M.DeleteScraperLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/scrapers/{scraperId}/logging-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkspace = schema.operation({
+    id = id.from("com.amazonaws.amp", "DeleteWorkspace"),
+    input = M.DeleteWorkspaceInput,
+    output = M.DeleteWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workspaces/{workspaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAlertManagerDefinition = schema.operation({
+    id = id.from("com.amazonaws.amp", "DescribeAlertManagerDefinition"),
+    input = M.DescribeAlertManagerDefinitionInput,
+    output = M.DescribeAlertManagerDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/alertmanager/definition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAnomalyDetector = schema.operation({
+    id = id.from("com.amazonaws.amp", "DescribeAnomalyDetector"),
+    input = M.DescribeAnomalyDetectorInput,
+    output = M.DescribeAnomalyDetectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/anomalydetectors/{anomalyDetectorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.amp", "DescribeLoggingConfiguration"),
+    input = M.DescribeLoggingConfigurationInput,
+    output = M.DescribeLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/logging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeQueryLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.amp", "DescribeQueryLoggingConfiguration"),
+    input = M.DescribeQueryLoggingConfigurationInput,
+    output = M.DescribeQueryLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/logging/query" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.amp", "DescribeResourcePolicy"),
+    input = M.DescribeResourcePolicyInput,
+    output = M.DescribeResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRuleGroupsNamespace = schema.operation({
+    id = id.from("com.amazonaws.amp", "DescribeRuleGroupsNamespace"),
+    input = M.DescribeRuleGroupsNamespaceInput,
+    output = M.DescribeRuleGroupsNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/rulegroupsnamespaces/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScraper = schema.operation({
+    id = id.from("com.amazonaws.amp", "DescribeScraper"),
+    input = M.DescribeScraperInput,
+    output = M.DescribeScraperOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/scrapers/{scraperId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeScraperLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.amp", "DescribeScraperLoggingConfiguration"),
+    input = M.DescribeScraperLoggingConfigurationInput,
+    output = M.DescribeScraperLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/scrapers/{scraperId}/logging-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspace = schema.operation({
+    id = id.from("com.amazonaws.amp", "DescribeWorkspace"),
+    input = M.DescribeWorkspaceInput,
+    output = M.DescribeWorkspaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkspaceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.amp", "DescribeWorkspaceConfiguration"),
+    input = M.DescribeWorkspaceConfigurationInput,
+    output = M.DescribeWorkspaceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDefaultScraperConfiguration = schema.operation({
+    id = id.from("com.amazonaws.amp", "GetDefaultScraperConfiguration"),
+    input = M.GetDefaultScraperConfigurationInput,
+    output = M.GetDefaultScraperConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/scraperconfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnomalyDetectors = schema.operation({
+    id = id.from("com.amazonaws.amp", "ListAnomalyDetectors"),
+    input = M.ListAnomalyDetectorsInput,
+    output = M.ListAnomalyDetectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/anomalydetectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRuleGroupsNamespaces = schema.operation({
+    id = id.from("com.amazonaws.amp", "ListRuleGroupsNamespaces"),
+    input = M.ListRuleGroupsNamespacesInput,
+    output = M.ListRuleGroupsNamespacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces/{workspaceId}/rulegroupsnamespaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScrapers = schema.operation({
+    id = id.from("com.amazonaws.amp", "ListScrapers"),
+    input = M.ListScrapersInput,
+    output = M.ListScrapersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/scrapers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.amp", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkspaces = schema.operation({
+    id = id.from("com.amazonaws.amp", "ListWorkspaces"),
+    input = M.ListWorkspacesInput,
+    output = M.ListWorkspacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workspaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAlertManagerDefinition = schema.operation({
+    id = id.from("com.amazonaws.amp", "PutAlertManagerDefinition"),
+    input = M.PutAlertManagerDefinitionInput,
+    output = M.PutAlertManagerDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workspaces/{workspaceId}/alertmanager/definition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAnomalyDetector = schema.operation({
+    id = id.from("com.amazonaws.amp", "PutAnomalyDetector"),
+    input = M.PutAnomalyDetectorInput,
+    output = M.PutAnomalyDetectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workspaces/{workspaceId}/anomalydetectors/{anomalyDetectorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.amp", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workspaces/{workspaceId}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRuleGroupsNamespace = schema.operation({
+    id = id.from("com.amazonaws.amp", "PutRuleGroupsNamespace"),
+    input = M.PutRuleGroupsNamespaceInput,
+    output = M.PutRuleGroupsNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workspaces/{workspaceId}/rulegroupsnamespaces/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.amp", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.amp", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.amp", "UpdateLoggingConfiguration"),
+    input = M.UpdateLoggingConfigurationInput,
+    output = M.UpdateLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workspaces/{workspaceId}/logging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQueryLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.amp", "UpdateQueryLoggingConfiguration"),
+    input = M.UpdateQueryLoggingConfigurationInput,
+    output = M.UpdateQueryLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/workspaces/{workspaceId}/logging/query" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateScraper = schema.operation({
+    id = id.from("com.amazonaws.amp", "UpdateScraper"),
+    input = M.UpdateScraperInput,
+    output = M.UpdateScraperOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/scrapers/{scraperId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateScraperLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.amp", "UpdateScraperLoggingConfiguration"),
+    input = M.UpdateScraperLoggingConfigurationInput,
+    output = M.UpdateScraperLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/scrapers/{scraperId}/logging-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkspaceAlias = schema.operation({
+    id = id.from("com.amazonaws.amp", "UpdateWorkspaceAlias"),
+    input = M.UpdateWorkspaceAliasInput,
+    output = M.UpdateWorkspaceAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workspaces/{workspaceId}/alias" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkspaceConfiguration = schema.operation({
+    id = id.from("com.amazonaws.amp", "UpdateWorkspaceConfiguration"),
+    input = M.UpdateWorkspaceConfigurationInput,
+    output = M.UpdateWorkspaceConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/workspaces/{workspaceId}/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

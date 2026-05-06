@@ -1364,4 +1364,170 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.snowdevicemanagement", "SnowDeviceManagement"),
+    version = "2021-08-04",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelTask = schema.operation({
+    id = id.from("com.amazonaws.snowdevicemanagement", "CancelTask"),
+    input = M.CancelTaskInput,
+    output = M.CancelTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/task/{taskId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTask = schema.operation({
+    id = id.from("com.amazonaws.snowdevicemanagement", "CreateTask"),
+    input = M.CreateTaskInput,
+    output = M.CreateTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/task" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDevice = schema.operation({
+    id = id.from("com.amazonaws.snowdevicemanagement", "DescribeDevice"),
+    input = M.DescribeDeviceInput,
+    output = M.DescribeDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/managed-device/{managedDeviceId}/describe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDeviceEc2Instances = schema.operation({
+    id = id.from("com.amazonaws.snowdevicemanagement", "DescribeDeviceEc2Instances"),
+    input = M.DescribeDeviceEc2InstancesInput,
+    output = M.DescribeDeviceEc2InstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/managed-device/{managedDeviceId}/resources/ec2/describe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExecution = schema.operation({
+    id = id.from("com.amazonaws.snowdevicemanagement", "DescribeExecution"),
+    input = M.DescribeExecutionInput,
+    output = M.DescribeExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/task/{taskId}/execution/{managedDeviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTask = schema.operation({
+    id = id.from("com.amazonaws.snowdevicemanagement", "DescribeTask"),
+    input = M.DescribeTaskInput,
+    output = M.DescribeTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/task/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeviceResources = schema.operation({
+    id = id.from("com.amazonaws.snowdevicemanagement", "ListDeviceResources"),
+    input = M.ListDeviceResourcesInput,
+    output = M.ListDeviceResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/managed-device/{managedDeviceId}/resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDevices = schema.operation({
+    id = id.from("com.amazonaws.snowdevicemanagement", "ListDevices"),
+    input = M.ListDevicesInput,
+    output = M.ListDevicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/managed-devices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExecutions = schema.operation({
+    id = id.from("com.amazonaws.snowdevicemanagement", "ListExecutions"),
+    input = M.ListExecutionsInput,
+    output = M.ListExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/executions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.snowdevicemanagement", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTasks = schema.operation({
+    id = id.from("com.amazonaws.snowdevicemanagement", "ListTasks"),
+    input = M.ListTasksInput,
+    output = M.ListTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.snowdevicemanagement", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.snowdevicemanagement", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

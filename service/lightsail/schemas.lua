@@ -12812,4 +12812,1946 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.lightsail", "Lightsail_20161128"),
+    version = "2016-11-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AllocateStaticIp = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "AllocateStaticIp"),
+    input = M.AllocateStaticIpInput,
+    output = M.AllocateStaticIpOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/AllocateStaticIp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachCertificateToDistribution = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "AttachCertificateToDistribution"),
+    input = M.AttachCertificateToDistributionInput,
+    output = M.AttachCertificateToDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/AttachCertificateToDistribution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachDisk = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "AttachDisk"),
+    input = M.AttachDiskInput,
+    output = M.AttachDiskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/AttachDisk" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachInstancesToLoadBalancer = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "AttachInstancesToLoadBalancer"),
+    input = M.AttachInstancesToLoadBalancerInput,
+    output = M.AttachInstancesToLoadBalancerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/AttachInstancesToLoadBalancer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachLoadBalancerTlsCertificate = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "AttachLoadBalancerTlsCertificate"),
+    input = M.AttachLoadBalancerTlsCertificateInput,
+    output = M.AttachLoadBalancerTlsCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/AttachLoadBalancerTlsCertificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachStaticIp = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "AttachStaticIp"),
+    input = M.AttachStaticIpInput,
+    output = M.AttachStaticIpOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/AttachStaticIp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CloseInstancePublicPorts = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CloseInstancePublicPorts"),
+    input = M.CloseInstancePublicPortsInput,
+    output = M.CloseInstancePublicPortsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CloseInstancePublicPorts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopySnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CopySnapshot"),
+    input = M.CopySnapshotInput,
+    output = M.CopySnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CopySnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBucket = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateBucket"),
+    input = M.CreateBucketInput,
+    output = M.CreateBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateBucket" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBucketAccessKey = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateBucketAccessKey"),
+    input = M.CreateBucketAccessKeyInput,
+    output = M.CreateBucketAccessKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateBucketAccessKey" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCertificate = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateCertificate"),
+    input = M.CreateCertificateInput,
+    output = M.CreateCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateCertificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCloudFormationStack = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateCloudFormationStack"),
+    input = M.CreateCloudFormationStackInput,
+    output = M.CreateCloudFormationStackOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateCloudFormationStack" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContactMethod = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateContactMethod"),
+    input = M.CreateContactMethodInput,
+    output = M.CreateContactMethodOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateContactMethod" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContainerService = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateContainerService"),
+    input = M.CreateContainerServiceInput,
+    output = M.CreateContainerServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/container-services" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContainerServiceDeployment = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateContainerServiceDeployment"),
+    input = M.CreateContainerServiceDeploymentInput,
+    output = M.CreateContainerServiceDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/container-services/{serviceName}/deployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContainerServiceRegistryLogin = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateContainerServiceRegistryLogin"),
+    input = M.CreateContainerServiceRegistryLoginInput,
+    output = M.CreateContainerServiceRegistryLoginOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/container-registry-login" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDisk = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateDisk"),
+    input = M.CreateDiskInput,
+    output = M.CreateDiskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateDisk" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDiskFromSnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateDiskFromSnapshot"),
+    input = M.CreateDiskFromSnapshotInput,
+    output = M.CreateDiskFromSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateDiskFromSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDiskSnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateDiskSnapshot"),
+    input = M.CreateDiskSnapshotInput,
+    output = M.CreateDiskSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateDiskSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDistribution = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateDistribution"),
+    input = M.CreateDistributionInput,
+    output = M.CreateDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateDistribution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomain = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateDomain"),
+    input = M.CreateDomainInput,
+    output = M.CreateDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateDomain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDomainEntry = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateDomainEntry"),
+    input = M.CreateDomainEntryInput,
+    output = M.CreateDomainEntryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateDomainEntry" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGUISessionAccessDetails = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateGUISessionAccessDetails"),
+    input = M.CreateGUISessionAccessDetailsInput,
+    output = M.CreateGUISessionAccessDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/create-gui-session-access-details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInstances = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateInstances"),
+    input = M.CreateInstancesInput,
+    output = M.CreateInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateInstances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInstancesFromSnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateInstancesFromSnapshot"),
+    input = M.CreateInstancesFromSnapshotInput,
+    output = M.CreateInstancesFromSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateInstancesFromSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInstanceSnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateInstanceSnapshot"),
+    input = M.CreateInstanceSnapshotInput,
+    output = M.CreateInstanceSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateInstanceSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKeyPair = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateKeyPair"),
+    input = M.CreateKeyPairInput,
+    output = M.CreateKeyPairOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateKeyPair" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLoadBalancer = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateLoadBalancer"),
+    input = M.CreateLoadBalancerInput,
+    output = M.CreateLoadBalancerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateLoadBalancer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLoadBalancerTlsCertificate = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateLoadBalancerTlsCertificate"),
+    input = M.CreateLoadBalancerTlsCertificateInput,
+    output = M.CreateLoadBalancerTlsCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateLoadBalancerTlsCertificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRelationalDatabase = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateRelationalDatabase"),
+    input = M.CreateRelationalDatabaseInput,
+    output = M.CreateRelationalDatabaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateRelationalDatabase" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRelationalDatabaseFromSnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateRelationalDatabaseFromSnapshot"),
+    input = M.CreateRelationalDatabaseFromSnapshotInput,
+    output = M.CreateRelationalDatabaseFromSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateRelationalDatabaseFromSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRelationalDatabaseSnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateRelationalDatabaseSnapshot"),
+    input = M.CreateRelationalDatabaseSnapshotInput,
+    output = M.CreateRelationalDatabaseSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateRelationalDatabaseSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAlarm = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteAlarm"),
+    input = M.DeleteAlarmInput,
+    output = M.DeleteAlarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/ls/api/2016-11-28/DeleteAlarm/{alarmName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAutoSnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteAutoSnapshot"),
+    input = M.DeleteAutoSnapshotInput,
+    output = M.DeleteAutoSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteAutoSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBucket = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteBucket"),
+    input = M.DeleteBucketInput,
+    output = M.DeleteBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteBucket" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBucketAccessKey = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteBucketAccessKey"),
+    input = M.DeleteBucketAccessKeyInput,
+    output = M.DeleteBucketAccessKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteBucketAccessKey" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCertificate = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteCertificate"),
+    input = M.DeleteCertificateInput,
+    output = M.DeleteCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteCertificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContactMethod = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteContactMethod"),
+    input = M.DeleteContactMethodInput,
+    output = M.DeleteContactMethodOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteContactMethod" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContainerImage = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteContainerImage"),
+    input = M.DeleteContainerImageInput,
+    output = M.DeleteContainerImageOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/ls/api/2016-11-28/container-services/{serviceName}/images/{image}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContainerService = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteContainerService"),
+    input = M.DeleteContainerServiceInput,
+    output = M.DeleteContainerServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/ls/api/2016-11-28/container-services/{serviceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDisk = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteDisk"),
+    input = M.DeleteDiskInput,
+    output = M.DeleteDiskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteDisk" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDiskSnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteDiskSnapshot"),
+    input = M.DeleteDiskSnapshotInput,
+    output = M.DeleteDiskSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteDiskSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDistribution = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteDistribution"),
+    input = M.DeleteDistributionInput,
+    output = M.DeleteDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteDistribution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomain = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteDomain"),
+    input = M.DeleteDomainInput,
+    output = M.DeleteDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteDomain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDomainEntry = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteDomainEntry"),
+    input = M.DeleteDomainEntryInput,
+    output = M.DeleteDomainEntryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteDomainEntry" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInstance = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteInstance"),
+    input = M.DeleteInstanceInput,
+    output = M.DeleteInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteInstance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInstanceSnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteInstanceSnapshot"),
+    input = M.DeleteInstanceSnapshotInput,
+    output = M.DeleteInstanceSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteInstanceSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKeyPair = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteKeyPair"),
+    input = M.DeleteKeyPairInput,
+    output = M.DeleteKeyPairOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteKeyPair" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKnownHostKeys = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteKnownHostKeys"),
+    input = M.DeleteKnownHostKeysInput,
+    output = M.DeleteKnownHostKeysOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteKnownHostKeys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLoadBalancer = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteLoadBalancer"),
+    input = M.DeleteLoadBalancerInput,
+    output = M.DeleteLoadBalancerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteLoadBalancer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLoadBalancerTlsCertificate = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteLoadBalancerTlsCertificate"),
+    input = M.DeleteLoadBalancerTlsCertificateInput,
+    output = M.DeleteLoadBalancerTlsCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteLoadBalancerTlsCertificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRelationalDatabase = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteRelationalDatabase"),
+    input = M.DeleteRelationalDatabaseInput,
+    output = M.DeleteRelationalDatabaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteRelationalDatabase" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRelationalDatabaseSnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteRelationalDatabaseSnapshot"),
+    input = M.DeleteRelationalDatabaseSnapshotInput,
+    output = M.DeleteRelationalDatabaseSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteRelationalDatabaseSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachCertificateFromDistribution = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DetachCertificateFromDistribution"),
+    input = M.DetachCertificateFromDistributionInput,
+    output = M.DetachCertificateFromDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DetachCertificateFromDistribution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachDisk = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DetachDisk"),
+    input = M.DetachDiskInput,
+    output = M.DetachDiskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DetachDisk" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachInstancesFromLoadBalancer = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DetachInstancesFromLoadBalancer"),
+    input = M.DetachInstancesFromLoadBalancerInput,
+    output = M.DetachInstancesFromLoadBalancerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DetachInstancesFromLoadBalancer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachStaticIp = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DetachStaticIp"),
+    input = M.DetachStaticIpInput,
+    output = M.DetachStaticIpOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DetachStaticIp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableAddOn = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DisableAddOn"),
+    input = M.DisableAddOnInput,
+    output = M.DisableAddOnOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DisableAddOn" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DownloadDefaultKeyPair = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DownloadDefaultKeyPair"),
+    input = M.DownloadDefaultKeyPairInput,
+    output = M.DownloadDefaultKeyPairOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DownloadDefaultKeyPair" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableAddOn = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "EnableAddOn"),
+    input = M.EnableAddOnInput,
+    output = M.EnableAddOnOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/EnableAddOn" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportSnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "ExportSnapshot"),
+    input = M.ExportSnapshotInput,
+    output = M.ExportSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/ExportSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetActiveNames = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetActiveNames"),
+    input = M.GetActiveNamesInput,
+    output = M.GetActiveNamesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetActiveNames" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAlarms = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetAlarms"),
+    input = M.GetAlarmsInput,
+    output = M.GetAlarmsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ls/api/2016-11-28/GetAlarms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAutoSnapshots = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetAutoSnapshots"),
+    input = M.GetAutoSnapshotsInput,
+    output = M.GetAutoSnapshotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetAutoSnapshots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBlueprints = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetBlueprints"),
+    input = M.GetBlueprintsInput,
+    output = M.GetBlueprintsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetBlueprints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBucketAccessKeys = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetBucketAccessKeys"),
+    input = M.GetBucketAccessKeysInput,
+    output = M.GetBucketAccessKeysOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetBucketAccessKeys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBucketBundles = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetBucketBundles"),
+    input = M.GetBucketBundlesInput,
+    output = M.GetBucketBundlesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetBucketBundles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBucketMetricData = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetBucketMetricData"),
+    input = M.GetBucketMetricDataInput,
+    output = M.GetBucketMetricDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetBucketMetricData" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBuckets = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetBuckets"),
+    input = M.GetBucketsInput,
+    output = M.GetBucketsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetBuckets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBundles = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetBundles"),
+    input = M.GetBundlesInput,
+    output = M.GetBundlesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetBundles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCertificates = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetCertificates"),
+    input = M.GetCertificatesInput,
+    output = M.GetCertificatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetCertificates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCloudFormationStackRecords = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetCloudFormationStackRecords"),
+    input = M.GetCloudFormationStackRecordsInput,
+    output = M.GetCloudFormationStackRecordsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetCloudFormationStackRecords" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContactMethods = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetContactMethods"),
+    input = M.GetContactMethodsInput,
+    output = M.GetContactMethodsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ls/api/2016-11-28/GetContactMethods" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContainerAPIMetadata = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetContainerAPIMetadata"),
+    input = M.GetContainerAPIMetadataInput,
+    output = M.GetContainerAPIMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ls/api/2016-11-28/container-api-metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContainerImages = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetContainerImages"),
+    input = M.GetContainerImagesInput,
+    output = M.GetContainerImagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ls/api/2016-11-28/container-services/{serviceName}/images" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContainerLog = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetContainerLog"),
+    input = M.GetContainerLogInput,
+    output = M.GetContainerLogOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ls/api/2016-11-28/container-services/{serviceName}/containers/{containerName}/log" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContainerServiceDeployments = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetContainerServiceDeployments"),
+    input = M.GetContainerServiceDeploymentsInput,
+    output = M.GetContainerServiceDeploymentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ls/api/2016-11-28/container-services/{serviceName}/deployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContainerServiceMetricData = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetContainerServiceMetricData"),
+    input = M.GetContainerServiceMetricDataInput,
+    output = M.GetContainerServiceMetricDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ls/api/2016-11-28/container-services/{serviceName}/metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContainerServicePowers = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetContainerServicePowers"),
+    input = M.GetContainerServicePowersInput,
+    output = M.GetContainerServicePowersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ls/api/2016-11-28/container-service-powers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContainerServices = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetContainerServices"),
+    input = M.GetContainerServicesInput,
+    output = M.GetContainerServicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ls/api/2016-11-28/container-services" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCostEstimate = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetCostEstimate"),
+    input = M.GetCostEstimateInput,
+    output = M.GetCostEstimateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/budgettracker/getCostEstimate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDisk = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetDisk"),
+    input = M.GetDiskInput,
+    output = M.GetDiskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetDisk" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDisks = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetDisks"),
+    input = M.GetDisksInput,
+    output = M.GetDisksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetDisks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDiskSnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetDiskSnapshot"),
+    input = M.GetDiskSnapshotInput,
+    output = M.GetDiskSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetDiskSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDiskSnapshots = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetDiskSnapshots"),
+    input = M.GetDiskSnapshotsInput,
+    output = M.GetDiskSnapshotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetDiskSnapshots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDistributionBundles = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetDistributionBundles"),
+    input = M.GetDistributionBundlesInput,
+    output = M.GetDistributionBundlesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetDistributionBundles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDistributionLatestCacheReset = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetDistributionLatestCacheReset"),
+    input = M.GetDistributionLatestCacheResetInput,
+    output = M.GetDistributionLatestCacheResetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetDistributionLatestCacheReset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDistributionMetricData = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetDistributionMetricData"),
+    input = M.GetDistributionMetricDataInput,
+    output = M.GetDistributionMetricDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetDistributionMetricData" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDistributions = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetDistributions"),
+    input = M.GetDistributionsInput,
+    output = M.GetDistributionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetDistributions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomain = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetDomain"),
+    input = M.GetDomainInput,
+    output = M.GetDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetDomain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomains = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetDomains"),
+    input = M.GetDomainsInput,
+    output = M.GetDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetDomains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExportSnapshotRecords = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetExportSnapshotRecords"),
+    input = M.GetExportSnapshotRecordsInput,
+    output = M.GetExportSnapshotRecordsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetExportSnapshotRecords" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstance = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetInstance"),
+    input = M.GetInstanceInput,
+    output = M.GetInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetInstance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstanceAccessDetails = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetInstanceAccessDetails"),
+    input = M.GetInstanceAccessDetailsInput,
+    output = M.GetInstanceAccessDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetInstanceAccessDetails" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstanceMetricData = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetInstanceMetricData"),
+    input = M.GetInstanceMetricDataInput,
+    output = M.GetInstanceMetricDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetInstanceMetricData" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstancePortStates = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetInstancePortStates"),
+    input = M.GetInstancePortStatesInput,
+    output = M.GetInstancePortStatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetInstancePortStates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstances = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetInstances"),
+    input = M.GetInstancesInput,
+    output = M.GetInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetInstances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstanceSnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetInstanceSnapshot"),
+    input = M.GetInstanceSnapshotInput,
+    output = M.GetInstanceSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetInstanceSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstanceSnapshots = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetInstanceSnapshots"),
+    input = M.GetInstanceSnapshotsInput,
+    output = M.GetInstanceSnapshotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetInstanceSnapshots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstanceState = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetInstanceState"),
+    input = M.GetInstanceStateInput,
+    output = M.GetInstanceStateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetInstanceState" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKeyPair = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetKeyPair"),
+    input = M.GetKeyPairInput,
+    output = M.GetKeyPairOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetKeyPair" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKeyPairs = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetKeyPairs"),
+    input = M.GetKeyPairsInput,
+    output = M.GetKeyPairsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetKeyPairs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLoadBalancer = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetLoadBalancer"),
+    input = M.GetLoadBalancerInput,
+    output = M.GetLoadBalancerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetLoadBalancer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLoadBalancerMetricData = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetLoadBalancerMetricData"),
+    input = M.GetLoadBalancerMetricDataInput,
+    output = M.GetLoadBalancerMetricDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetLoadBalancerMetricData" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLoadBalancers = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetLoadBalancers"),
+    input = M.GetLoadBalancersInput,
+    output = M.GetLoadBalancersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetLoadBalancers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLoadBalancerTlsCertificates = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetLoadBalancerTlsCertificates"),
+    input = M.GetLoadBalancerTlsCertificatesInput,
+    output = M.GetLoadBalancerTlsCertificatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetLoadBalancerTlsCertificates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLoadBalancerTlsPolicies = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetLoadBalancerTlsPolicies"),
+    input = M.GetLoadBalancerTlsPoliciesInput,
+    output = M.GetLoadBalancerTlsPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetLoadBalancerTlsPolicies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOperation = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetOperation"),
+    input = M.GetOperationInput,
+    output = M.GetOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetOperation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOperations = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetOperations"),
+    input = M.GetOperationsInput,
+    output = M.GetOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetOperations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOperationsForResource = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetOperationsForResource"),
+    input = M.GetOperationsForResourceInput,
+    output = M.GetOperationsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetOperationsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRegions = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetRegions"),
+    input = M.GetRegionsInput,
+    output = M.GetRegionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetRegions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRelationalDatabase = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetRelationalDatabase"),
+    input = M.GetRelationalDatabaseInput,
+    output = M.GetRelationalDatabaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetRelationalDatabase" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRelationalDatabaseBlueprints = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetRelationalDatabaseBlueprints"),
+    input = M.GetRelationalDatabaseBlueprintsInput,
+    output = M.GetRelationalDatabaseBlueprintsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetRelationalDatabaseBlueprints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRelationalDatabaseBundles = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetRelationalDatabaseBundles"),
+    input = M.GetRelationalDatabaseBundlesInput,
+    output = M.GetRelationalDatabaseBundlesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetRelationalDatabaseBundles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRelationalDatabaseEvents = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetRelationalDatabaseEvents"),
+    input = M.GetRelationalDatabaseEventsInput,
+    output = M.GetRelationalDatabaseEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetRelationalDatabaseEvents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRelationalDatabaseLogEvents = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetRelationalDatabaseLogEvents"),
+    input = M.GetRelationalDatabaseLogEventsInput,
+    output = M.GetRelationalDatabaseLogEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetRelationalDatabaseLogEvents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRelationalDatabaseLogStreams = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetRelationalDatabaseLogStreams"),
+    input = M.GetRelationalDatabaseLogStreamsInput,
+    output = M.GetRelationalDatabaseLogStreamsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetRelationalDatabaseLogStreams" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRelationalDatabaseMasterUserPassword = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetRelationalDatabaseMasterUserPassword"),
+    input = M.GetRelationalDatabaseMasterUserPasswordInput,
+    output = M.GetRelationalDatabaseMasterUserPasswordOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetRelationalDatabaseMasterUserPassword" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRelationalDatabaseMetricData = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetRelationalDatabaseMetricData"),
+    input = M.GetRelationalDatabaseMetricDataInput,
+    output = M.GetRelationalDatabaseMetricDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetRelationalDatabaseMetricData" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRelationalDatabaseParameters = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetRelationalDatabaseParameters"),
+    input = M.GetRelationalDatabaseParametersInput,
+    output = M.GetRelationalDatabaseParametersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetRelationalDatabaseParameters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRelationalDatabases = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetRelationalDatabases"),
+    input = M.GetRelationalDatabasesInput,
+    output = M.GetRelationalDatabasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetRelationalDatabases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRelationalDatabaseSnapshot = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetRelationalDatabaseSnapshot"),
+    input = M.GetRelationalDatabaseSnapshotInput,
+    output = M.GetRelationalDatabaseSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetRelationalDatabaseSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRelationalDatabaseSnapshots = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetRelationalDatabaseSnapshots"),
+    input = M.GetRelationalDatabaseSnapshotsInput,
+    output = M.GetRelationalDatabaseSnapshotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetRelationalDatabaseSnapshots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSetupHistory = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetSetupHistory"),
+    input = M.GetSetupHistoryInput,
+    output = M.GetSetupHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/get-setup-history" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStaticIp = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetStaticIp"),
+    input = M.GetStaticIpInput,
+    output = M.GetStaticIpOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetStaticIp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStaticIps = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetStaticIps"),
+    input = M.GetStaticIpsInput,
+    output = M.GetStaticIpsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetStaticIps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportKeyPair = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "ImportKeyPair"),
+    input = M.ImportKeyPairInput,
+    output = M.ImportKeyPairOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/ImportKeyPair" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.IsVpcPeered = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "IsVpcPeered"),
+    input = M.IsVpcPeeredInput,
+    output = M.IsVpcPeeredOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/IsVpcPeered" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.OpenInstancePublicPorts = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "OpenInstancePublicPorts"),
+    input = M.OpenInstancePublicPortsInput,
+    output = M.OpenInstancePublicPortsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/OpenInstancePublicPorts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PeerVpc = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "PeerVpc"),
+    input = M.PeerVpcInput,
+    output = M.PeerVpcOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/PeerVpc" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAlarm = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "PutAlarm"),
+    input = M.PutAlarmInput,
+    output = M.PutAlarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/PutAlarm" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutInstancePublicPorts = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "PutInstancePublicPorts"),
+    input = M.PutInstancePublicPortsInput,
+    output = M.PutInstancePublicPortsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/PutInstancePublicPorts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootInstance = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "RebootInstance"),
+    input = M.RebootInstanceInput,
+    output = M.RebootInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/RebootInstance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootRelationalDatabase = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "RebootRelationalDatabase"),
+    input = M.RebootRelationalDatabaseInput,
+    output = M.RebootRelationalDatabaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/RebootRelationalDatabase" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterContainerImage = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "RegisterContainerImage"),
+    input = M.RegisterContainerImageInput,
+    output = M.RegisterContainerImageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/container-services/{serviceName}/images" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReleaseStaticIp = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "ReleaseStaticIp"),
+    input = M.ReleaseStaticIpInput,
+    output = M.ReleaseStaticIpOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/ReleaseStaticIp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetDistributionCache = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "ResetDistributionCache"),
+    input = M.ResetDistributionCacheInput,
+    output = M.ResetDistributionCacheOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/ResetDistributionCache" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendContactMethodVerification = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "SendContactMethodVerification"),
+    input = M.SendContactMethodVerificationInput,
+    output = M.SendContactMethodVerificationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/SendContactMethodVerification" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetIpAddressType = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "SetIpAddressType"),
+    input = M.SetIpAddressTypeInput,
+    output = M.SetIpAddressTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/SetIpAddressType" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetResourceAccessForBucket = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "SetResourceAccessForBucket"),
+    input = M.SetResourceAccessForBucketInput,
+    output = M.SetResourceAccessForBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/SetResourceAccessForBucket" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetupInstanceHttps = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "SetupInstanceHttps"),
+    input = M.SetupInstanceHttpsInput,
+    output = M.SetupInstanceHttpsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/setup-instance-https" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartGUISession = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "StartGUISession"),
+    input = M.StartGUISessionInput,
+    output = M.StartGUISessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/start-gui-session" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartInstance = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "StartInstance"),
+    input = M.StartInstanceInput,
+    output = M.StartInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/StartInstance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRelationalDatabase = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "StartRelationalDatabase"),
+    input = M.StartRelationalDatabaseInput,
+    output = M.StartRelationalDatabaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/StartRelationalDatabase" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopGUISession = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "StopGUISession"),
+    input = M.StopGUISessionInput,
+    output = M.StopGUISessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/stop-gui-session" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopInstance = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "StopInstance"),
+    input = M.StopInstanceInput,
+    output = M.StopInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/StopInstance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopRelationalDatabase = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "StopRelationalDatabase"),
+    input = M.StopRelationalDatabaseInput,
+    output = M.StopRelationalDatabaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/StopRelationalDatabase" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/TagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestAlarm = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "TestAlarm"),
+    input = M.TestAlarmInput,
+    output = M.TestAlarmOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ls/api/2016-11-28/TestAlarm/{alarmName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UnpeerVpc = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "UnpeerVpc"),
+    input = M.UnpeerVpcInput,
+    output = M.UnpeerVpcOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/UnpeerVpc" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/UntagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBucket = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "UpdateBucket"),
+    input = M.UpdateBucketInput,
+    output = M.UpdateBucketOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/UpdateBucket" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBucketBundle = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "UpdateBucketBundle"),
+    input = M.UpdateBucketBundleInput,
+    output = M.UpdateBucketBundleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/UpdateBucketBundle" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContainerService = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "UpdateContainerService"),
+    input = M.UpdateContainerServiceInput,
+    output = M.UpdateContainerServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/ls/api/2016-11-28/container-services/{serviceName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDistribution = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "UpdateDistribution"),
+    input = M.UpdateDistributionInput,
+    output = M.UpdateDistributionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/UpdateDistribution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDistributionBundle = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "UpdateDistributionBundle"),
+    input = M.UpdateDistributionBundleInput,
+    output = M.UpdateDistributionBundleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/UpdateDistributionBundle" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDomainEntry = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "UpdateDomainEntry"),
+    input = M.UpdateDomainEntryInput,
+    output = M.UpdateDomainEntryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/UpdateDomainEntry" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInstanceMetadataOptions = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "UpdateInstanceMetadataOptions"),
+    input = M.UpdateInstanceMetadataOptionsInput,
+    output = M.UpdateInstanceMetadataOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/UpdateInstanceMetadataOptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLoadBalancerAttribute = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "UpdateLoadBalancerAttribute"),
+    input = M.UpdateLoadBalancerAttributeInput,
+    output = M.UpdateLoadBalancerAttributeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/UpdateLoadBalancerAttribute" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRelationalDatabase = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "UpdateRelationalDatabase"),
+    input = M.UpdateRelationalDatabaseInput,
+    output = M.UpdateRelationalDatabaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/UpdateRelationalDatabase" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRelationalDatabaseParameters = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "UpdateRelationalDatabaseParameters"),
+    input = M.UpdateRelationalDatabaseParametersInput,
+    output = M.UpdateRelationalDatabaseParametersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/UpdateRelationalDatabaseParameters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

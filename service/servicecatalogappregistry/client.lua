@@ -7,6 +7,7 @@ local endpoint_rules = require("servicecatalogappregistry.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("servicecatalogappregistry.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "servicecatalog", signing_region = cfg.region } }
                 else
@@ -49,315 +52,99 @@ function M.new(cfg)
 end
 
 function Client:associateAttributeGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateAttributeGroup",
-        input_schema = schemas.AssociateAttributeGroupInput,
-        output_schema = schemas.AssociateAttributeGroupOutput,
-        http_method = "PUT",
-        http_path = "/applications/{application}/attribute-groups/{attributeGroup}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateAttributeGroup, input, options)
 end
 
 function Client:associateResource(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateResource",
-        input_schema = schemas.AssociateResourceInput,
-        output_schema = schemas.AssociateResourceOutput,
-        http_method = "PUT",
-        http_path = "/applications/{application}/resources/{resourceType}/{resource}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateResource, input, options)
 end
 
 function Client:createApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateApplication",
-        input_schema = schemas.CreateApplicationInput,
-        output_schema = schemas.CreateApplicationOutput,
-        http_method = "POST",
-        http_path = "/applications",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options)
 end
 
 function Client:createAttributeGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAttributeGroup",
-        input_schema = schemas.CreateAttributeGroupInput,
-        output_schema = schemas.CreateAttributeGroupOutput,
-        http_method = "POST",
-        http_path = "/attribute-groups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAttributeGroup, input, options)
 end
 
 function Client:deleteApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteApplication",
-        input_schema = schemas.DeleteApplicationInput,
-        output_schema = schemas.DeleteApplicationOutput,
-        http_method = "DELETE",
-        http_path = "/applications/{application}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options)
 end
 
 function Client:deleteAttributeGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAttributeGroup",
-        input_schema = schemas.DeleteAttributeGroupInput,
-        output_schema = schemas.DeleteAttributeGroupOutput,
-        http_method = "DELETE",
-        http_path = "/attribute-groups/{attributeGroup}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAttributeGroup, input, options)
 end
 
 function Client:disassociateAttributeGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateAttributeGroup",
-        input_schema = schemas.DisassociateAttributeGroupInput,
-        output_schema = schemas.DisassociateAttributeGroupOutput,
-        http_method = "DELETE",
-        http_path = "/applications/{application}/attribute-groups/{attributeGroup}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateAttributeGroup, input, options)
 end
 
 function Client:disassociateResource(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateResource",
-        input_schema = schemas.DisassociateResourceInput,
-        output_schema = schemas.DisassociateResourceOutput,
-        http_method = "DELETE",
-        http_path = "/applications/{application}/resources/{resourceType}/{resource}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateResource, input, options)
 end
 
 function Client:getApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "GetApplication",
-        input_schema = schemas.GetApplicationInput,
-        output_schema = schemas.GetApplicationOutput,
-        http_method = "GET",
-        http_path = "/applications/{application}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetApplication, input, options)
 end
 
 function Client:getAssociatedResource(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAssociatedResource",
-        input_schema = schemas.GetAssociatedResourceInput,
-        output_schema = schemas.GetAssociatedResourceOutput,
-        http_method = "GET",
-        http_path = "/applications/{application}/resources/{resourceType}/{resource}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAssociatedResource, input, options)
 end
 
 function Client:getAttributeGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAttributeGroup",
-        input_schema = schemas.GetAttributeGroupInput,
-        output_schema = schemas.GetAttributeGroupOutput,
-        http_method = "GET",
-        http_path = "/attribute-groups/{attributeGroup}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAttributeGroup, input, options)
 end
 
 function Client:getConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetConfiguration",
-        input_schema = schemas.GetConfigurationInput,
-        output_schema = schemas.GetConfigurationOutput,
-        http_method = "GET",
-        http_path = "/configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetConfiguration, input, options)
 end
 
 function Client:listApplications(input, options)
-    return self:invokeOperation(input, {
-        name = "ListApplications",
-        input_schema = schemas.ListApplicationsInput,
-        output_schema = schemas.ListApplicationsOutput,
-        http_method = "GET",
-        http_path = "/applications",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options)
 end
 
 function Client:listAssociatedAttributeGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAssociatedAttributeGroups",
-        input_schema = schemas.ListAssociatedAttributeGroupsInput,
-        output_schema = schemas.ListAssociatedAttributeGroupsOutput,
-        http_method = "GET",
-        http_path = "/applications/{application}/attribute-groups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAssociatedAttributeGroups, input, options)
 end
 
 function Client:listAssociatedResources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAssociatedResources",
-        input_schema = schemas.ListAssociatedResourcesInput,
-        output_schema = schemas.ListAssociatedResourcesOutput,
-        http_method = "GET",
-        http_path = "/applications/{application}/resources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAssociatedResources, input, options)
 end
 
 function Client:listAttributeGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAttributeGroups",
-        input_schema = schemas.ListAttributeGroupsInput,
-        output_schema = schemas.ListAttributeGroupsOutput,
-        http_method = "GET",
-        http_path = "/attribute-groups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAttributeGroups, input, options)
 end
 
 function Client:listAttributeGroupsForApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAttributeGroupsForApplication",
-        input_schema = schemas.ListAttributeGroupsForApplicationInput,
-        output_schema = schemas.ListAttributeGroupsForApplicationOutput,
-        http_method = "GET",
-        http_path = "/applications/{application}/attribute-group-details",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAttributeGroupsForApplication, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "PutConfiguration",
-        input_schema = schemas.PutConfigurationInput,
-        output_schema = schemas.PutConfigurationOutput,
-        http_method = "PUT",
-        http_path = "/configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutConfiguration, input, options)
 end
 
 function Client:syncResource(input, options)
-    return self:invokeOperation(input, {
-        name = "SyncResource",
-        input_schema = schemas.SyncResourceInput,
-        output_schema = schemas.SyncResourceOutput,
-        http_method = "POST",
-        http_path = "/sync/{resourceType}/{resource}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SyncResource, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateApplication(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateApplication",
-        input_schema = schemas.UpdateApplicationInput,
-        output_schema = schemas.UpdateApplicationOutput,
-        http_method = "PATCH",
-        http_path = "/applications/{application}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options)
 end
 
 function Client:updateAttributeGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAttributeGroup",
-        input_schema = schemas.UpdateAttributeGroupInput,
-        output_schema = schemas.UpdateAttributeGroupOutput,
-        http_method = "PATCH",
-        http_path = "/attribute-groups/{attributeGroup}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAttributeGroup, input, options)
 end
 
 return M

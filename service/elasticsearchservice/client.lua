@@ -7,6 +7,7 @@ local endpoint_rules = require("elasticsearchservice.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("elasticsearchservice.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "es", signing_region = cfg.region } }
                 else
@@ -49,666 +52,207 @@ function M.new(cfg)
 end
 
 function Client:acceptInboundCrossClusterSearchConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "AcceptInboundCrossClusterSearchConnection",
-        input_schema = schemas.AcceptInboundCrossClusterSearchConnectionInput,
-        output_schema = schemas.AcceptInboundCrossClusterSearchConnectionOutput,
-        http_method = "PUT",
-        http_path = "/2015-01-01/es/ccs/inboundConnection/{CrossClusterSearchConnectionId}/accept",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AcceptInboundCrossClusterSearchConnection, input, options)
 end
 
 function Client:addTags(input, options)
-    return self:invokeOperation(input, {
-        name = "AddTags",
-        input_schema = schemas.AddTagsInput,
-        output_schema = schemas.AddTagsOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddTags, input, options)
 end
 
 function Client:associatePackage(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociatePackage",
-        input_schema = schemas.AssociatePackageInput,
-        output_schema = schemas.AssociatePackageOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/packages/associate/{PackageID}/{DomainName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociatePackage, input, options)
 end
 
 function Client:authorizeVpcEndpointAccess(input, options)
-    return self:invokeOperation(input, {
-        name = "AuthorizeVpcEndpointAccess",
-        input_schema = schemas.AuthorizeVpcEndpointAccessInput,
-        output_schema = schemas.AuthorizeVpcEndpointAccessOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/domain/{DomainName}/authorizeVpcEndpointAccess",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AuthorizeVpcEndpointAccess, input, options)
 end
 
 function Client:cancelDomainConfigChange(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelDomainConfigChange",
-        input_schema = schemas.CancelDomainConfigChangeInput,
-        output_schema = schemas.CancelDomainConfigChangeOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/domain/{DomainName}/config/cancel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelDomainConfigChange, input, options)
 end
 
 function Client:cancelElasticsearchServiceSoftwareUpdate(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelElasticsearchServiceSoftwareUpdate",
-        input_schema = schemas.CancelElasticsearchServiceSoftwareUpdateInput,
-        output_schema = schemas.CancelElasticsearchServiceSoftwareUpdateOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/serviceSoftwareUpdate/cancel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelElasticsearchServiceSoftwareUpdate, input, options)
 end
 
 function Client:createElasticsearchDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateElasticsearchDomain",
-        input_schema = schemas.CreateElasticsearchDomainInput,
-        output_schema = schemas.CreateElasticsearchDomainOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/domain",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateElasticsearchDomain, input, options)
 end
 
 function Client:createOutboundCrossClusterSearchConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateOutboundCrossClusterSearchConnection",
-        input_schema = schemas.CreateOutboundCrossClusterSearchConnectionInput,
-        output_schema = schemas.CreateOutboundCrossClusterSearchConnectionOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/ccs/outboundConnection",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateOutboundCrossClusterSearchConnection, input, options)
 end
 
 function Client:createPackage(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePackage",
-        input_schema = schemas.CreatePackageInput,
-        output_schema = schemas.CreatePackageOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/packages",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePackage, input, options)
 end
 
 function Client:createVpcEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateVpcEndpoint",
-        input_schema = schemas.CreateVpcEndpointInput,
-        output_schema = schemas.CreateVpcEndpointOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/vpcEndpoints",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateVpcEndpoint, input, options)
 end
 
 function Client:deleteElasticsearchDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteElasticsearchDomain",
-        input_schema = schemas.DeleteElasticsearchDomainInput,
-        output_schema = schemas.DeleteElasticsearchDomainOutput,
-        http_method = "DELETE",
-        http_path = "/2015-01-01/es/domain/{DomainName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteElasticsearchDomain, input, options)
 end
 
 function Client:deleteElasticsearchServiceRole(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteElasticsearchServiceRole",
-        input_schema = schemas.DeleteElasticsearchServiceRoleInput,
-        output_schema = schemas.DeleteElasticsearchServiceRoleOutput,
-        http_method = "DELETE",
-        http_path = "/2015-01-01/es/role",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteElasticsearchServiceRole, input, options)
 end
 
 function Client:deleteInboundCrossClusterSearchConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteInboundCrossClusterSearchConnection",
-        input_schema = schemas.DeleteInboundCrossClusterSearchConnectionInput,
-        output_schema = schemas.DeleteInboundCrossClusterSearchConnectionOutput,
-        http_method = "DELETE",
-        http_path = "/2015-01-01/es/ccs/inboundConnection/{CrossClusterSearchConnectionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteInboundCrossClusterSearchConnection, input, options)
 end
 
 function Client:deleteOutboundCrossClusterSearchConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteOutboundCrossClusterSearchConnection",
-        input_schema = schemas.DeleteOutboundCrossClusterSearchConnectionInput,
-        output_schema = schemas.DeleteOutboundCrossClusterSearchConnectionOutput,
-        http_method = "DELETE",
-        http_path = "/2015-01-01/es/ccs/outboundConnection/{CrossClusterSearchConnectionId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteOutboundCrossClusterSearchConnection, input, options)
 end
 
 function Client:deletePackage(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePackage",
-        input_schema = schemas.DeletePackageInput,
-        output_schema = schemas.DeletePackageOutput,
-        http_method = "DELETE",
-        http_path = "/2015-01-01/packages/{PackageID}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePackage, input, options)
 end
 
 function Client:deleteVpcEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVpcEndpoint",
-        input_schema = schemas.DeleteVpcEndpointInput,
-        output_schema = schemas.DeleteVpcEndpointOutput,
-        http_method = "DELETE",
-        http_path = "/2015-01-01/es/vpcEndpoints/{VpcEndpointId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVpcEndpoint, input, options)
 end
 
 function Client:describeDomainAutoTunes(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDomainAutoTunes",
-        input_schema = schemas.DescribeDomainAutoTunesInput,
-        output_schema = schemas.DescribeDomainAutoTunesOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/domain/{DomainName}/autoTunes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDomainAutoTunes, input, options)
 end
 
 function Client:describeDomainChangeProgress(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDomainChangeProgress",
-        input_schema = schemas.DescribeDomainChangeProgressInput,
-        output_schema = schemas.DescribeDomainChangeProgressOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/domain/{DomainName}/progress",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDomainChangeProgress, input, options)
 end
 
 function Client:describeElasticsearchDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeElasticsearchDomain",
-        input_schema = schemas.DescribeElasticsearchDomainInput,
-        output_schema = schemas.DescribeElasticsearchDomainOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/domain/{DomainName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeElasticsearchDomain, input, options)
 end
 
 function Client:describeElasticsearchDomainConfig(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeElasticsearchDomainConfig",
-        input_schema = schemas.DescribeElasticsearchDomainConfigInput,
-        output_schema = schemas.DescribeElasticsearchDomainConfigOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/domain/{DomainName}/config",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeElasticsearchDomainConfig, input, options)
 end
 
 function Client:describeElasticsearchDomains(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeElasticsearchDomains",
-        input_schema = schemas.DescribeElasticsearchDomainsInput,
-        output_schema = schemas.DescribeElasticsearchDomainsOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/domain-info",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeElasticsearchDomains, input, options)
 end
 
 function Client:describeElasticsearchInstanceTypeLimits(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeElasticsearchInstanceTypeLimits",
-        input_schema = schemas.DescribeElasticsearchInstanceTypeLimitsInput,
-        output_schema = schemas.DescribeElasticsearchInstanceTypeLimitsOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/instanceTypeLimits/{ElasticsearchVersion}/{InstanceType}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeElasticsearchInstanceTypeLimits, input, options)
 end
 
 function Client:describeInboundCrossClusterSearchConnections(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeInboundCrossClusterSearchConnections",
-        input_schema = schemas.DescribeInboundCrossClusterSearchConnectionsInput,
-        output_schema = schemas.DescribeInboundCrossClusterSearchConnectionsOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/ccs/inboundConnection/search",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeInboundCrossClusterSearchConnections, input, options)
 end
 
 function Client:describeOutboundCrossClusterSearchConnections(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeOutboundCrossClusterSearchConnections",
-        input_schema = schemas.DescribeOutboundCrossClusterSearchConnectionsInput,
-        output_schema = schemas.DescribeOutboundCrossClusterSearchConnectionsOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/ccs/outboundConnection/search",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeOutboundCrossClusterSearchConnections, input, options)
 end
 
 function Client:describePackages(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribePackages",
-        input_schema = schemas.DescribePackagesInput,
-        output_schema = schemas.DescribePackagesOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/packages/describe",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribePackages, input, options)
 end
 
 function Client:describeReservedElasticsearchInstanceOfferings(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeReservedElasticsearchInstanceOfferings",
-        input_schema = schemas.DescribeReservedElasticsearchInstanceOfferingsInput,
-        output_schema = schemas.DescribeReservedElasticsearchInstanceOfferingsOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/reservedInstanceOfferings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeReservedElasticsearchInstanceOfferings, input, options)
 end
 
 function Client:describeReservedElasticsearchInstances(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeReservedElasticsearchInstances",
-        input_schema = schemas.DescribeReservedElasticsearchInstancesInput,
-        output_schema = schemas.DescribeReservedElasticsearchInstancesOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/reservedInstances",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeReservedElasticsearchInstances, input, options)
 end
 
 function Client:describeVpcEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeVpcEndpoints",
-        input_schema = schemas.DescribeVpcEndpointsInput,
-        output_schema = schemas.DescribeVpcEndpointsOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/vpcEndpoints/describe",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeVpcEndpoints, input, options)
 end
 
 function Client:dissociatePackage(input, options)
-    return self:invokeOperation(input, {
-        name = "DissociatePackage",
-        input_schema = schemas.DissociatePackageInput,
-        output_schema = schemas.DissociatePackageOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/packages/dissociate/{PackageID}/{DomainName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DissociatePackage, input, options)
 end
 
 function Client:getCompatibleElasticsearchVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCompatibleElasticsearchVersions",
-        input_schema = schemas.GetCompatibleElasticsearchVersionsInput,
-        output_schema = schemas.GetCompatibleElasticsearchVersionsOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/compatibleVersions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCompatibleElasticsearchVersions, input, options)
 end
 
 function Client:getPackageVersionHistory(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPackageVersionHistory",
-        input_schema = schemas.GetPackageVersionHistoryInput,
-        output_schema = schemas.GetPackageVersionHistoryOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/packages/{PackageID}/history",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPackageVersionHistory, input, options)
 end
 
 function Client:getUpgradeHistory(input, options)
-    return self:invokeOperation(input, {
-        name = "GetUpgradeHistory",
-        input_schema = schemas.GetUpgradeHistoryInput,
-        output_schema = schemas.GetUpgradeHistoryOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/upgradeDomain/{DomainName}/history",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetUpgradeHistory, input, options)
 end
 
 function Client:getUpgradeStatus(input, options)
-    return self:invokeOperation(input, {
-        name = "GetUpgradeStatus",
-        input_schema = schemas.GetUpgradeStatusInput,
-        output_schema = schemas.GetUpgradeStatusOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/upgradeDomain/{DomainName}/status",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetUpgradeStatus, input, options)
 end
 
 function Client:listDomainNames(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDomainNames",
-        input_schema = schemas.ListDomainNamesInput,
-        output_schema = schemas.ListDomainNamesOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/domain",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDomainNames, input, options)
 end
 
 function Client:listDomainsForPackage(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDomainsForPackage",
-        input_schema = schemas.ListDomainsForPackageInput,
-        output_schema = schemas.ListDomainsForPackageOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/packages/{PackageID}/domains",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDomainsForPackage, input, options)
 end
 
 function Client:listElasticsearchInstanceTypes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListElasticsearchInstanceTypes",
-        input_schema = schemas.ListElasticsearchInstanceTypesInput,
-        output_schema = schemas.ListElasticsearchInstanceTypesOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/instanceTypes/{ElasticsearchVersion}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListElasticsearchInstanceTypes, input, options)
 end
 
 function Client:listElasticsearchVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "ListElasticsearchVersions",
-        input_schema = schemas.ListElasticsearchVersionsInput,
-        output_schema = schemas.ListElasticsearchVersionsOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/versions",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListElasticsearchVersions, input, options)
 end
 
 function Client:listPackagesForDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPackagesForDomain",
-        input_schema = schemas.ListPackagesForDomainInput,
-        output_schema = schemas.ListPackagesForDomainOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/domain/{DomainName}/packages",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPackagesForDomain, input, options)
 end
 
 function Client:listTags(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTags",
-        input_schema = schemas.ListTagsInput,
-        output_schema = schemas.ListTagsOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTags, input, options)
 end
 
 function Client:listVpcEndpointAccess(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVpcEndpointAccess",
-        input_schema = schemas.ListVpcEndpointAccessInput,
-        output_schema = schemas.ListVpcEndpointAccessOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/domain/{DomainName}/listVpcEndpointAccess",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVpcEndpointAccess, input, options)
 end
 
 function Client:listVpcEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVpcEndpoints",
-        input_schema = schemas.ListVpcEndpointsInput,
-        output_schema = schemas.ListVpcEndpointsOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/vpcEndpoints",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVpcEndpoints, input, options)
 end
 
 function Client:listVpcEndpointsForDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVpcEndpointsForDomain",
-        input_schema = schemas.ListVpcEndpointsForDomainInput,
-        output_schema = schemas.ListVpcEndpointsForDomainOutput,
-        http_method = "GET",
-        http_path = "/2015-01-01/es/domain/{DomainName}/vpcEndpoints",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVpcEndpointsForDomain, input, options)
 end
 
 function Client:purchaseReservedElasticsearchInstanceOffering(input, options)
-    return self:invokeOperation(input, {
-        name = "PurchaseReservedElasticsearchInstanceOffering",
-        input_schema = schemas.PurchaseReservedElasticsearchInstanceOfferingInput,
-        output_schema = schemas.PurchaseReservedElasticsearchInstanceOfferingOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/purchaseReservedInstanceOffering",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PurchaseReservedElasticsearchInstanceOffering, input, options)
 end
 
 function Client:rejectInboundCrossClusterSearchConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "RejectInboundCrossClusterSearchConnection",
-        input_schema = schemas.RejectInboundCrossClusterSearchConnectionInput,
-        output_schema = schemas.RejectInboundCrossClusterSearchConnectionOutput,
-        http_method = "PUT",
-        http_path = "/2015-01-01/es/ccs/inboundConnection/{CrossClusterSearchConnectionId}/reject",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RejectInboundCrossClusterSearchConnection, input, options)
 end
 
 function Client:removeTags(input, options)
-    return self:invokeOperation(input, {
-        name = "RemoveTags",
-        input_schema = schemas.RemoveTagsInput,
-        output_schema = schemas.RemoveTagsOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/tags-removal",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RemoveTags, input, options)
 end
 
 function Client:revokeVpcEndpointAccess(input, options)
-    return self:invokeOperation(input, {
-        name = "RevokeVpcEndpointAccess",
-        input_schema = schemas.RevokeVpcEndpointAccessInput,
-        output_schema = schemas.RevokeVpcEndpointAccessOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/domain/{DomainName}/revokeVpcEndpointAccess",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RevokeVpcEndpointAccess, input, options)
 end
 
 function Client:startElasticsearchServiceSoftwareUpdate(input, options)
-    return self:invokeOperation(input, {
-        name = "StartElasticsearchServiceSoftwareUpdate",
-        input_schema = schemas.StartElasticsearchServiceSoftwareUpdateInput,
-        output_schema = schemas.StartElasticsearchServiceSoftwareUpdateOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/serviceSoftwareUpdate/start",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartElasticsearchServiceSoftwareUpdate, input, options)
 end
 
 function Client:updateElasticsearchDomainConfig(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateElasticsearchDomainConfig",
-        input_schema = schemas.UpdateElasticsearchDomainConfigInput,
-        output_schema = schemas.UpdateElasticsearchDomainConfigOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/domain/{DomainName}/config",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateElasticsearchDomainConfig, input, options)
 end
 
 function Client:updatePackage(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdatePackage",
-        input_schema = schemas.UpdatePackageInput,
-        output_schema = schemas.UpdatePackageOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/packages/update",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdatePackage, input, options)
 end
 
 function Client:updateVpcEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateVpcEndpoint",
-        input_schema = schemas.UpdateVpcEndpointInput,
-        output_schema = schemas.UpdateVpcEndpointOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/vpcEndpoints/update",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateVpcEndpoint, input, options)
 end
 
 function Client:upgradeElasticsearchDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "UpgradeElasticsearchDomain",
-        input_schema = schemas.UpgradeElasticsearchDomainInput,
-        output_schema = schemas.UpgradeElasticsearchDomainOutput,
-        http_method = "POST",
-        http_path = "/2015-01-01/es/upgradeDomain",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpgradeElasticsearchDomain, input, options)
 end
 
 return M

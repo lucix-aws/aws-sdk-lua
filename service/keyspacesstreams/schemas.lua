@@ -827,4 +827,58 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.keyspacesstreams", "KeyspacesStreams"),
+    version = "2024-09-09",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecords = schema.operation({
+    id = id.from("com.amazonaws.keyspacesstreams", "GetRecords"),
+    input = M.GetRecordsInput,
+    output = M.GetRecordsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetShardIterator = schema.operation({
+    id = id.from("com.amazonaws.keyspacesstreams", "GetShardIterator"),
+    input = M.GetShardIteratorInput,
+    output = M.GetShardIteratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStream = schema.operation({
+    id = id.from("com.amazonaws.keyspacesstreams", "GetStream"),
+    input = M.GetStreamInput,
+    output = M.GetStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStreams = schema.operation({
+    id = id.from("com.amazonaws.keyspacesstreams", "ListStreams"),
+    input = M.ListStreamsInput,
+    output = M.ListStreamsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

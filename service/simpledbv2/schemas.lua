@@ -472,4 +472,50 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.simpledbv2", "SimpleDBv2"),
+    version = "2025-09-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExport = schema.operation({
+    id = id.from("com.amazonaws.simpledbv2", "GetExport"),
+    input = M.GetExportInput,
+    output = M.GetExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/GetExport" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExports = schema.operation({
+    id = id.from("com.amazonaws.simpledbv2", "ListExports"),
+    input = M.ListExportsInput,
+    output = M.ListExportsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/ListExports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDomainExport = schema.operation({
+    id = id.from("com.amazonaws.simpledbv2", "StartDomainExport"),
+    input = M.StartDomainExportInput,
+    output = M.StartDomainExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/StartDomainExport" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

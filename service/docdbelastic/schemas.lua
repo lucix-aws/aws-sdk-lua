@@ -1697,4 +1697,242 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.docdbelastic", "ChimeraDbLionfishServiceLambda"),
+    version = "2022-11-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ApplyPendingMaintenanceAction = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "ApplyPendingMaintenanceAction"),
+    input = M.ApplyPendingMaintenanceActionInput,
+    output = M.ApplyPendingMaintenanceActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/pending-action" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyClusterSnapshot = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "CopyClusterSnapshot"),
+    input = M.CopyClusterSnapshotInput,
+    output = M.CopyClusterSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cluster-snapshot/{snapshotArn}/copy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCluster = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "CreateCluster"),
+    input = M.CreateClusterInput,
+    output = M.CreateClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cluster" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateClusterSnapshot = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "CreateClusterSnapshot"),
+    input = M.CreateClusterSnapshotInput,
+    output = M.CreateClusterSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cluster-snapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCluster = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "DeleteCluster"),
+    input = M.DeleteClusterInput,
+    output = M.DeleteClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/cluster/{clusterArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteClusterSnapshot = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "DeleteClusterSnapshot"),
+    input = M.DeleteClusterSnapshotInput,
+    output = M.DeleteClusterSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/cluster-snapshot/{snapshotArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCluster = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "GetCluster"),
+    input = M.GetClusterInput,
+    output = M.GetClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cluster/{clusterArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetClusterSnapshot = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "GetClusterSnapshot"),
+    input = M.GetClusterSnapshotInput,
+    output = M.GetClusterSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cluster-snapshot/{snapshotArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPendingMaintenanceAction = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "GetPendingMaintenanceAction"),
+    input = M.GetPendingMaintenanceActionInput,
+    output = M.GetPendingMaintenanceActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/pending-action/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusters = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "ListClusters"),
+    input = M.ListClustersInput,
+    output = M.ListClustersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusterSnapshots = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "ListClusterSnapshots"),
+    input = M.ListClusterSnapshotsInput,
+    output = M.ListClusterSnapshotsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cluster-snapshots" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPendingMaintenanceActions = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "ListPendingMaintenanceActions"),
+    input = M.ListPendingMaintenanceActionsInput,
+    output = M.ListPendingMaintenanceActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/pending-actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreClusterFromSnapshot = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "RestoreClusterFromSnapshot"),
+    input = M.RestoreClusterFromSnapshotInput,
+    output = M.RestoreClusterFromSnapshotOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cluster-snapshot/{snapshotArn}/restore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCluster = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "StartCluster"),
+    input = M.StartClusterInput,
+    output = M.StartClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cluster/{clusterArn}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopCluster = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "StopCluster"),
+    input = M.StopClusterInput,
+    output = M.StopClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cluster/{clusterArn}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCluster = schema.operation({
+    id = id.from("com.amazonaws.docdbelastic", "UpdateCluster"),
+    input = M.UpdateClusterInput,
+    output = M.UpdateClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/cluster/{clusterArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

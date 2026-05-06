@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("apprunner.endpoint_rules")
 local schemas = require("apprunner.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "apprunner", signing_region = cfg.region } }
                 else
@@ -49,484 +52,151 @@ function M.new(cfg)
 end
 
 function Client:associateCustomDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateCustomDomain",
-        input_schema = schemas.AssociateCustomDomainInput,
-        output_schema = schemas.AssociateCustomDomainOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateCustomDomain, input, options)
 end
 
 function Client:createAutoScalingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAutoScalingConfiguration",
-        input_schema = schemas.CreateAutoScalingConfigurationInput,
-        output_schema = schemas.CreateAutoScalingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAutoScalingConfiguration, input, options)
 end
 
 function Client:createConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateConnection",
-        input_schema = schemas.CreateConnectionInput,
-        output_schema = schemas.CreateConnectionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateConnection, input, options)
 end
 
 function Client:createObservabilityConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateObservabilityConfiguration",
-        input_schema = schemas.CreateObservabilityConfigurationInput,
-        output_schema = schemas.CreateObservabilityConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateObservabilityConfiguration, input, options)
 end
 
 function Client:createService(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateService",
-        input_schema = schemas.CreateServiceInput,
-        output_schema = schemas.CreateServiceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateService, input, options)
 end
 
 function Client:createVpcConnector(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateVpcConnector",
-        input_schema = schemas.CreateVpcConnectorInput,
-        output_schema = schemas.CreateVpcConnectorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateVpcConnector, input, options)
 end
 
 function Client:createVpcIngressConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateVpcIngressConnection",
-        input_schema = schemas.CreateVpcIngressConnectionInput,
-        output_schema = schemas.CreateVpcIngressConnectionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateVpcIngressConnection, input, options)
 end
 
 function Client:deleteAutoScalingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAutoScalingConfiguration",
-        input_schema = schemas.DeleteAutoScalingConfigurationInput,
-        output_schema = schemas.DeleteAutoScalingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAutoScalingConfiguration, input, options)
 end
 
 function Client:deleteConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteConnection",
-        input_schema = schemas.DeleteConnectionInput,
-        output_schema = schemas.DeleteConnectionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteConnection, input, options)
 end
 
 function Client:deleteObservabilityConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteObservabilityConfiguration",
-        input_schema = schemas.DeleteObservabilityConfigurationInput,
-        output_schema = schemas.DeleteObservabilityConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteObservabilityConfiguration, input, options)
 end
 
 function Client:deleteService(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteService",
-        input_schema = schemas.DeleteServiceInput,
-        output_schema = schemas.DeleteServiceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteService, input, options)
 end
 
 function Client:deleteVpcConnector(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVpcConnector",
-        input_schema = schemas.DeleteVpcConnectorInput,
-        output_schema = schemas.DeleteVpcConnectorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVpcConnector, input, options)
 end
 
 function Client:deleteVpcIngressConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVpcIngressConnection",
-        input_schema = schemas.DeleteVpcIngressConnectionInput,
-        output_schema = schemas.DeleteVpcIngressConnectionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVpcIngressConnection, input, options)
 end
 
 function Client:describeAutoScalingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAutoScalingConfiguration",
-        input_schema = schemas.DescribeAutoScalingConfigurationInput,
-        output_schema = schemas.DescribeAutoScalingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAutoScalingConfiguration, input, options)
 end
 
 function Client:describeCustomDomains(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCustomDomains",
-        input_schema = schemas.DescribeCustomDomainsInput,
-        output_schema = schemas.DescribeCustomDomainsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCustomDomains, input, options)
 end
 
 function Client:describeObservabilityConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeObservabilityConfiguration",
-        input_schema = schemas.DescribeObservabilityConfigurationInput,
-        output_schema = schemas.DescribeObservabilityConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeObservabilityConfiguration, input, options)
 end
 
 function Client:describeService(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeService",
-        input_schema = schemas.DescribeServiceInput,
-        output_schema = schemas.DescribeServiceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeService, input, options)
 end
 
 function Client:describeVpcConnector(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeVpcConnector",
-        input_schema = schemas.DescribeVpcConnectorInput,
-        output_schema = schemas.DescribeVpcConnectorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeVpcConnector, input, options)
 end
 
 function Client:describeVpcIngressConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeVpcIngressConnection",
-        input_schema = schemas.DescribeVpcIngressConnectionInput,
-        output_schema = schemas.DescribeVpcIngressConnectionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeVpcIngressConnection, input, options)
 end
 
 function Client:disassociateCustomDomain(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateCustomDomain",
-        input_schema = schemas.DisassociateCustomDomainInput,
-        output_schema = schemas.DisassociateCustomDomainOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateCustomDomain, input, options)
 end
 
 function Client:listAutoScalingConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAutoScalingConfigurations",
-        input_schema = schemas.ListAutoScalingConfigurationsInput,
-        output_schema = schemas.ListAutoScalingConfigurationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAutoScalingConfigurations, input, options)
 end
 
 function Client:listConnections(input, options)
-    return self:invokeOperation(input, {
-        name = "ListConnections",
-        input_schema = schemas.ListConnectionsInput,
-        output_schema = schemas.ListConnectionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListConnections, input, options)
 end
 
 function Client:listObservabilityConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListObservabilityConfigurations",
-        input_schema = schemas.ListObservabilityConfigurationsInput,
-        output_schema = schemas.ListObservabilityConfigurationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListObservabilityConfigurations, input, options)
 end
 
 function Client:listOperations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListOperations",
-        input_schema = schemas.ListOperationsInput,
-        output_schema = schemas.ListOperationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListOperations, input, options)
 end
 
 function Client:listServices(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServices",
-        input_schema = schemas.ListServicesInput,
-        output_schema = schemas.ListServicesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServices, input, options)
 end
 
 function Client:listServicesForAutoScalingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "ListServicesForAutoScalingConfiguration",
-        input_schema = schemas.ListServicesForAutoScalingConfigurationInput,
-        output_schema = schemas.ListServicesForAutoScalingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListServicesForAutoScalingConfiguration, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listVpcConnectors(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVpcConnectors",
-        input_schema = schemas.ListVpcConnectorsInput,
-        output_schema = schemas.ListVpcConnectorsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVpcConnectors, input, options)
 end
 
 function Client:listVpcIngressConnections(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVpcIngressConnections",
-        input_schema = schemas.ListVpcIngressConnectionsInput,
-        output_schema = schemas.ListVpcIngressConnectionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVpcIngressConnections, input, options)
 end
 
 function Client:pauseService(input, options)
-    return self:invokeOperation(input, {
-        name = "PauseService",
-        input_schema = schemas.PauseServiceInput,
-        output_schema = schemas.PauseServiceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PauseService, input, options)
 end
 
 function Client:resumeService(input, options)
-    return self:invokeOperation(input, {
-        name = "ResumeService",
-        input_schema = schemas.ResumeServiceInput,
-        output_schema = schemas.ResumeServiceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ResumeService, input, options)
 end
 
 function Client:startDeployment(input, options)
-    return self:invokeOperation(input, {
-        name = "StartDeployment",
-        input_schema = schemas.StartDeploymentInput,
-        output_schema = schemas.StartDeploymentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartDeployment, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateDefaultAutoScalingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDefaultAutoScalingConfiguration",
-        input_schema = schemas.UpdateDefaultAutoScalingConfigurationInput,
-        output_schema = schemas.UpdateDefaultAutoScalingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDefaultAutoScalingConfiguration, input, options)
 end
 
 function Client:updateService(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateService",
-        input_schema = schemas.UpdateServiceInput,
-        output_schema = schemas.UpdateServiceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateService, input, options)
 end
 
 function Client:updateVpcIngressConnection(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateVpcIngressConnection",
-        input_schema = schemas.UpdateVpcIngressConnectionInput,
-        output_schema = schemas.UpdateVpcIngressConnectionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateVpcIngressConnection, input, options)
 end
 
 return M

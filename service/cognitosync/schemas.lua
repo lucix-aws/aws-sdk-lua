@@ -1486,4 +1486,218 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cognitosync", "AWSCognitoSyncService"),
+    version = "2014-06-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BulkPublish = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "BulkPublish"),
+    input = M.BulkPublishInput,
+    output = M.BulkPublishOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identitypools/{IdentityPoolId}/bulkpublish" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataset = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "DeleteDataset"),
+    input = M.DeleteDatasetInput,
+    output = M.DeleteDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataset = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "DescribeDataset"),
+    input = M.DescribeDatasetInput,
+    output = M.DescribeDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIdentityPoolUsage = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "DescribeIdentityPoolUsage"),
+    input = M.DescribeIdentityPoolUsageInput,
+    output = M.DescribeIdentityPoolUsageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/identitypools/{IdentityPoolId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIdentityUsage = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "DescribeIdentityUsage"),
+    input = M.DescribeIdentityUsageInput,
+    output = M.DescribeIdentityUsageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBulkPublishDetails = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "GetBulkPublishDetails"),
+    input = M.GetBulkPublishDetailsInput,
+    output = M.GetBulkPublishDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identitypools/{IdentityPoolId}/getBulkPublishDetails" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCognitoEvents = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "GetCognitoEvents"),
+    input = M.GetCognitoEventsInput,
+    output = M.GetCognitoEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/identitypools/{IdentityPoolId}/events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdentityPoolConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "GetIdentityPoolConfiguration"),
+    input = M.GetIdentityPoolConfigurationInput,
+    output = M.GetIdentityPoolConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/identitypools/{IdentityPoolId}/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasets = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "ListDatasets"),
+    input = M.ListDatasetsInput,
+    output = M.ListDatasetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdentityPoolUsage = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "ListIdentityPoolUsage"),
+    input = M.ListIdentityPoolUsageInput,
+    output = M.ListIdentityPoolUsageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/identitypools" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecords = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "ListRecords"),
+    input = M.ListRecordsInput,
+    output = M.ListRecordsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/records" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterDevice = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "RegisterDevice"),
+    input = M.RegisterDeviceInput,
+    output = M.RegisterDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identitypools/{IdentityPoolId}/identity/{IdentityId}/device" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetCognitoEvents = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "SetCognitoEvents"),
+    input = M.SetCognitoEventsInput,
+    output = M.SetCognitoEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identitypools/{IdentityPoolId}/events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetIdentityPoolConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "SetIdentityPoolConfiguration"),
+    input = M.SetIdentityPoolConfigurationInput,
+    output = M.SetIdentityPoolConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identitypools/{IdentityPoolId}/configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SubscribeToDataset = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "SubscribeToDataset"),
+    input = M.SubscribeToDatasetInput,
+    output = M.SubscribeToDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UnsubscribeFromDataset = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "UnsubscribeFromDataset"),
+    input = M.UnsubscribeFromDatasetInput,
+    output = M.UnsubscribeFromDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecords = schema.operation({
+    id = id.from("com.amazonaws.cognitosync", "UpdateRecords"),
+    input = M.UpdateRecordsInput,
+    output = M.UpdateRecordsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

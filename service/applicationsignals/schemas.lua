@@ -3814,4 +3814,290 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.applicationsignals", "ApplicationSignals"),
+    version = "2024-04-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetServiceLevelObjectiveBudgetReport = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "BatchGetServiceLevelObjectiveBudgetReport"),
+    input = M.BatchGetServiceLevelObjectiveBudgetReportInput,
+    output = M.BatchGetServiceLevelObjectiveBudgetReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/budget-report" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateExclusionWindows = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "BatchUpdateExclusionWindows"),
+    input = M.BatchUpdateExclusionWindowsInput,
+    output = M.BatchUpdateExclusionWindowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/exclusion-windows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServiceLevelObjective = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "CreateServiceLevelObjective"),
+    input = M.CreateServiceLevelObjectiveInput,
+    output = M.CreateServiceLevelObjectiveOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/slo" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGroupingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "DeleteGroupingConfiguration"),
+    input = M.DeleteGroupingConfigurationInput,
+    output = M.DeleteGroupingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/grouping-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceLevelObjective = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "DeleteServiceLevelObjective"),
+    input = M.DeleteServiceLevelObjectiveInput,
+    output = M.DeleteServiceLevelObjectiveOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/slo/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetService = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "GetService"),
+    input = M.GetServiceInput,
+    output = M.GetServiceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/service" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceLevelObjective = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "GetServiceLevelObjective"),
+    input = M.GetServiceLevelObjectiveInput,
+    output = M.GetServiceLevelObjectiveOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/slo/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAuditFindings = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "ListAuditFindings"),
+    input = M.ListAuditFindingsInput,
+    output = M.ListAuditFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/auditFindings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEntityEvents = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "ListEntityEvents"),
+    input = M.ListEntityEventsInput,
+    output = M.ListEntityEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroupingAttributeDefinitions = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "ListGroupingAttributeDefinitions"),
+    input = M.ListGroupingAttributeDefinitionsInput,
+    output = M.ListGroupingAttributeDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/grouping-attribute-definitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceDependencies = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "ListServiceDependencies"),
+    input = M.ListServiceDependenciesInput,
+    output = M.ListServiceDependenciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/service-dependencies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceDependents = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "ListServiceDependents"),
+    input = M.ListServiceDependentsInput,
+    output = M.ListServiceDependentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/service-dependents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceLevelObjectiveExclusionWindows = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "ListServiceLevelObjectiveExclusionWindows"),
+    input = M.ListServiceLevelObjectiveExclusionWindowsInput,
+    output = M.ListServiceLevelObjectiveExclusionWindowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/slo/{Id}/exclusion-windows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceLevelObjectives = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "ListServiceLevelObjectives"),
+    input = M.ListServiceLevelObjectivesInput,
+    output = M.ListServiceLevelObjectivesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/slos" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceOperations = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "ListServiceOperations"),
+    input = M.ListServiceOperationsInput,
+    output = M.ListServiceOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/service-operations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServices = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "ListServices"),
+    input = M.ListServicesInput,
+    output = M.ListServicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/services" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceStates = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "ListServiceStates"),
+    input = M.ListServiceStatesInput,
+    output = M.ListServiceStatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/service/states" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutGroupingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "PutGroupingConfiguration"),
+    input = M.PutGroupingConfigurationInput,
+    output = M.PutGroupingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/grouping-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDiscovery = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "StartDiscovery"),
+    input = M.StartDiscoveryInput,
+    output = M.StartDiscoveryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/start-discovery" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/untag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceLevelObjective = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "UpdateServiceLevelObjective"),
+    input = M.UpdateServiceLevelObjectiveInput,
+    output = M.UpdateServiceLevelObjectiveOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/slo/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

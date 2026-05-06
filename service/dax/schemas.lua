@@ -2046,4 +2046,245 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.dax", "AmazonDAXV3"),
+    version = "2017-04-19",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCluster = schema.operation({
+    id = id.from("com.amazonaws.dax", "CreateCluster"),
+    input = M.CreateClusterInput,
+    output = M.CreateClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.dax", "CreateParameterGroup"),
+    input = M.CreateParameterGroupInput,
+    output = M.CreateParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.dax", "CreateSubnetGroup"),
+    input = M.CreateSubnetGroupInput,
+    output = M.CreateSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DecreaseReplicationFactor = schema.operation({
+    id = id.from("com.amazonaws.dax", "DecreaseReplicationFactor"),
+    input = M.DecreaseReplicationFactorInput,
+    output = M.DecreaseReplicationFactorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCluster = schema.operation({
+    id = id.from("com.amazonaws.dax", "DeleteCluster"),
+    input = M.DeleteClusterInput,
+    output = M.DeleteClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.dax", "DeleteParameterGroup"),
+    input = M.DeleteParameterGroupInput,
+    output = M.DeleteParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.dax", "DeleteSubnetGroup"),
+    input = M.DeleteSubnetGroupInput,
+    output = M.DeleteSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeClusters = schema.operation({
+    id = id.from("com.amazonaws.dax", "DescribeClusters"),
+    input = M.DescribeClustersInput,
+    output = M.DescribeClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDefaultParameters = schema.operation({
+    id = id.from("com.amazonaws.dax", "DescribeDefaultParameters"),
+    input = M.DescribeDefaultParametersInput,
+    output = M.DescribeDefaultParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEvents = schema.operation({
+    id = id.from("com.amazonaws.dax", "DescribeEvents"),
+    input = M.DescribeEventsInput,
+    output = M.DescribeEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeParameterGroups = schema.operation({
+    id = id.from("com.amazonaws.dax", "DescribeParameterGroups"),
+    input = M.DescribeParameterGroupsInput,
+    output = M.DescribeParameterGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeParameters = schema.operation({
+    id = id.from("com.amazonaws.dax", "DescribeParameters"),
+    input = M.DescribeParametersInput,
+    output = M.DescribeParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSubnetGroups = schema.operation({
+    id = id.from("com.amazonaws.dax", "DescribeSubnetGroups"),
+    input = M.DescribeSubnetGroupsInput,
+    output = M.DescribeSubnetGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.IncreaseReplicationFactor = schema.operation({
+    id = id.from("com.amazonaws.dax", "IncreaseReplicationFactor"),
+    input = M.IncreaseReplicationFactorInput,
+    output = M.IncreaseReplicationFactorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTags = schema.operation({
+    id = id.from("com.amazonaws.dax", "ListTags"),
+    input = M.ListTagsInput,
+    output = M.ListTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootNode = schema.operation({
+    id = id.from("com.amazonaws.dax", "RebootNode"),
+    input = M.RebootNodeInput,
+    output = M.RebootNodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.dax", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.dax", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCluster = schema.operation({
+    id = id.from("com.amazonaws.dax", "UpdateCluster"),
+    input = M.UpdateClusterInput,
+    output = M.UpdateClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateParameterGroup = schema.operation({
+    id = id.from("com.amazonaws.dax", "UpdateParameterGroup"),
+    input = M.UpdateParameterGroupInput,
+    output = M.UpdateParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSubnetGroup = schema.operation({
+    id = id.from("com.amazonaws.dax", "UpdateSubnetGroup"),
+    input = M.UpdateSubnetGroupInput,
+    output = M.UpdateSubnetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

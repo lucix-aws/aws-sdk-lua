@@ -4548,4 +4548,386 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.devopsguru", "CapstoneControlPlaneService"),
+    version = "2020-12-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddNotificationChannel = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "AddNotificationChannel"),
+    input = M.AddNotificationChannelInput,
+    output = M.AddNotificationChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInsight = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "DeleteInsight"),
+    input = M.DeleteInsightInput,
+    output = M.DeleteInsightOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/insights/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountHealth = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "DescribeAccountHealth"),
+    input = M.DescribeAccountHealthInput,
+    output = M.DescribeAccountHealthOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/health" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountOverview = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "DescribeAccountOverview"),
+    input = M.DescribeAccountOverviewInput,
+    output = M.DescribeAccountOverviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/overview" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAnomaly = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "DescribeAnomaly"),
+    input = M.DescribeAnomalyInput,
+    output = M.DescribeAnomalyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/anomalies/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventSourcesConfig = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "DescribeEventSourcesConfig"),
+    input = M.DescribeEventSourcesConfigInput,
+    output = M.DescribeEventSourcesConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/event-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFeedback = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "DescribeFeedback"),
+    input = M.DescribeFeedbackInput,
+    output = M.DescribeFeedbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/feedback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInsight = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "DescribeInsight"),
+    input = M.DescribeInsightInput,
+    output = M.DescribeInsightOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/insights/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrganizationHealth = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "DescribeOrganizationHealth"),
+    input = M.DescribeOrganizationHealthInput,
+    output = M.DescribeOrganizationHealthOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/organization/health" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrganizationOverview = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "DescribeOrganizationOverview"),
+    input = M.DescribeOrganizationOverviewInput,
+    output = M.DescribeOrganizationOverviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/organization/overview" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOrganizationResourceCollectionHealth = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "DescribeOrganizationResourceCollectionHealth"),
+    input = M.DescribeOrganizationResourceCollectionHealthInput,
+    output = M.DescribeOrganizationResourceCollectionHealthOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/organization/health/resource-collection" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeResourceCollectionHealth = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "DescribeResourceCollectionHealth"),
+    input = M.DescribeResourceCollectionHealthInput,
+    output = M.DescribeResourceCollectionHealthOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/health/resource-collection/{ResourceCollectionType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServiceIntegration = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "DescribeServiceIntegration"),
+    input = M.DescribeServiceIntegrationInput,
+    output = M.DescribeServiceIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/service-integrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCostEstimation = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "GetCostEstimation"),
+    input = M.GetCostEstimationInput,
+    output = M.GetCostEstimationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cost-estimation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceCollection = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "GetResourceCollection"),
+    input = M.GetResourceCollectionInput,
+    output = M.GetResourceCollectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resource-collections/{ResourceCollectionType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnomaliesForInsight = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "ListAnomaliesForInsight"),
+    input = M.ListAnomaliesForInsightInput,
+    output = M.ListAnomaliesForInsightOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/anomalies/insight/{InsightId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnomalousLogGroups = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "ListAnomalousLogGroups"),
+    input = M.ListAnomalousLogGroupsInput,
+    output = M.ListAnomalousLogGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-log-anomalies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEvents = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "ListEvents"),
+    input = M.ListEventsInput,
+    output = M.ListEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInsights = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "ListInsights"),
+    input = M.ListInsightsInput,
+    output = M.ListInsightsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/insights" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMonitoredResources = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "ListMonitoredResources"),
+    input = M.ListMonitoredResourcesInput,
+    output = M.ListMonitoredResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/monitoredResources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotificationChannels = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "ListNotificationChannels"),
+    input = M.ListNotificationChannelsInput,
+    output = M.ListNotificationChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOrganizationInsights = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "ListOrganizationInsights"),
+    input = M.ListOrganizationInsightsInput,
+    output = M.ListOrganizationInsightsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/organization/insights" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommendations = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "ListRecommendations"),
+    input = M.ListRecommendationsInput,
+    output = M.ListRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/recommendations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFeedback = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "PutFeedback"),
+    input = M.PutFeedbackInput,
+    output = M.PutFeedbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/feedback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveNotificationChannel = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "RemoveNotificationChannel"),
+    input = M.RemoveNotificationChannelInput,
+    output = M.RemoveNotificationChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/channels/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchInsights = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "SearchInsights"),
+    input = M.SearchInsightsInput,
+    output = M.SearchInsightsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/insights/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchOrganizationInsights = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "SearchOrganizationInsights"),
+    input = M.SearchOrganizationInsightsInput,
+    output = M.SearchOrganizationInsightsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/organization/insights/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCostEstimation = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "StartCostEstimation"),
+    input = M.StartCostEstimationInput,
+    output = M.StartCostEstimationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/cost-estimation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEventSourcesConfig = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "UpdateEventSourcesConfig"),
+    input = M.UpdateEventSourcesConfigInput,
+    output = M.UpdateEventSourcesConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/event-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResourceCollection = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "UpdateResourceCollection"),
+    input = M.UpdateResourceCollectionInput,
+    output = M.UpdateResourceCollectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/resource-collections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceIntegration = schema.operation({
+    id = id.from("com.amazonaws.devopsguru", "UpdateServiceIntegration"),
+    input = M.UpdateServiceIntegrationInput,
+    output = M.UpdateServiceIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/service-integrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

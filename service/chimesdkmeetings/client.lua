@@ -7,6 +7,7 @@ local endpoint_rules = require("chimesdkmeetings.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("chimesdkmeetings.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "chime", signing_region = cfg.region } }
                 else
@@ -49,211 +52,67 @@ function M.new(cfg)
 end
 
 function Client:batchCreateAttendee(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchCreateAttendee",
-        input_schema = schemas.BatchCreateAttendeeInput,
-        output_schema = schemas.BatchCreateAttendeeOutput,
-        http_method = "POST",
-        http_path = "/meetings/{MeetingId}/attendees?operation=batch-create",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchCreateAttendee, input, options)
 end
 
 function Client:batchUpdateAttendeeCapabilitiesExcept(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchUpdateAttendeeCapabilitiesExcept",
-        input_schema = schemas.BatchUpdateAttendeeCapabilitiesExceptInput,
-        output_schema = schemas.BatchUpdateAttendeeCapabilitiesExceptOutput,
-        http_method = "PUT",
-        http_path = "/meetings/{MeetingId}/attendees/capabilities?operation=batch-update-except",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchUpdateAttendeeCapabilitiesExcept, input, options)
 end
 
 function Client:createAttendee(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateAttendee",
-        input_schema = schemas.CreateAttendeeInput,
-        output_schema = schemas.CreateAttendeeOutput,
-        http_method = "POST",
-        http_path = "/meetings/{MeetingId}/attendees",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateAttendee, input, options)
 end
 
 function Client:createMeeting(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateMeeting",
-        input_schema = schemas.CreateMeetingInput,
-        output_schema = schemas.CreateMeetingOutput,
-        http_method = "POST",
-        http_path = "/meetings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateMeeting, input, options)
 end
 
 function Client:createMeetingWithAttendees(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateMeetingWithAttendees",
-        input_schema = schemas.CreateMeetingWithAttendeesInput,
-        output_schema = schemas.CreateMeetingWithAttendeesOutput,
-        http_method = "POST",
-        http_path = "/meetings?operation=create-attendees",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateMeetingWithAttendees, input, options)
 end
 
 function Client:deleteAttendee(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteAttendee",
-        input_schema = schemas.DeleteAttendeeInput,
-        output_schema = schemas.DeleteAttendeeOutput,
-        http_method = "DELETE",
-        http_path = "/meetings/{MeetingId}/attendees/{AttendeeId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteAttendee, input, options)
 end
 
 function Client:deleteMeeting(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMeeting",
-        input_schema = schemas.DeleteMeetingInput,
-        output_schema = schemas.DeleteMeetingOutput,
-        http_method = "DELETE",
-        http_path = "/meetings/{MeetingId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMeeting, input, options)
 end
 
 function Client:getAttendee(input, options)
-    return self:invokeOperation(input, {
-        name = "GetAttendee",
-        input_schema = schemas.GetAttendeeInput,
-        output_schema = schemas.GetAttendeeOutput,
-        http_method = "GET",
-        http_path = "/meetings/{MeetingId}/attendees/{AttendeeId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetAttendee, input, options)
 end
 
 function Client:getMeeting(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMeeting",
-        input_schema = schemas.GetMeetingInput,
-        output_schema = schemas.GetMeetingOutput,
-        http_method = "GET",
-        http_path = "/meetings/{MeetingId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMeeting, input, options)
 end
 
 function Client:listAttendees(input, options)
-    return self:invokeOperation(input, {
-        name = "ListAttendees",
-        input_schema = schemas.ListAttendeesInput,
-        output_schema = schemas.ListAttendeesOutput,
-        http_method = "GET",
-        http_path = "/meetings/{MeetingId}/attendees",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListAttendees, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:startMeetingTranscription(input, options)
-    return self:invokeOperation(input, {
-        name = "StartMeetingTranscription",
-        input_schema = schemas.StartMeetingTranscriptionInput,
-        output_schema = schemas.StartMeetingTranscriptionOutput,
-        http_method = "POST",
-        http_path = "/meetings/{MeetingId}/transcription?operation=start",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartMeetingTranscription, input, options)
 end
 
 function Client:stopMeetingTranscription(input, options)
-    return self:invokeOperation(input, {
-        name = "StopMeetingTranscription",
-        input_schema = schemas.StopMeetingTranscriptionInput,
-        output_schema = schemas.StopMeetingTranscriptionOutput,
-        http_method = "POST",
-        http_path = "/meetings/{MeetingId}/transcription?operation=stop",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopMeetingTranscription, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags?operation=tag-resource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags?operation=untag-resource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateAttendeeCapabilities(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateAttendeeCapabilities",
-        input_schema = schemas.UpdateAttendeeCapabilitiesInput,
-        output_schema = schemas.UpdateAttendeeCapabilitiesOutput,
-        http_method = "PUT",
-        http_path = "/meetings/{MeetingId}/attendees/{AttendeeId}/capabilities",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateAttendeeCapabilities, input, options)
 end
 
 return M

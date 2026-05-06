@@ -34329,4 +34329,2929 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.glue", "AWSGlue"),
+    version = "2017-03-31",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreatePartition = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchCreatePartition"),
+    input = M.BatchCreatePartitionInput,
+    output = M.BatchCreatePartitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteConnection = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchDeleteConnection"),
+    input = M.BatchDeleteConnectionInput,
+    output = M.BatchDeleteConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeletePartition = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchDeletePartition"),
+    input = M.BatchDeletePartitionInput,
+    output = M.BatchDeletePartitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteTable = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchDeleteTable"),
+    input = M.BatchDeleteTableInput,
+    output = M.BatchDeleteTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteTableVersion = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchDeleteTableVersion"),
+    input = M.BatchDeleteTableVersionInput,
+    output = M.BatchDeleteTableVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetBlueprints = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchGetBlueprints"),
+    input = M.BatchGetBlueprintsInput,
+    output = M.BatchGetBlueprintsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetCrawlers = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchGetCrawlers"),
+    input = M.BatchGetCrawlersInput,
+    output = M.BatchGetCrawlersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetCustomEntityTypes = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchGetCustomEntityTypes"),
+    input = M.BatchGetCustomEntityTypesInput,
+    output = M.BatchGetCustomEntityTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetDataQualityResult = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchGetDataQualityResult"),
+    input = M.BatchGetDataQualityResultInput,
+    output = M.BatchGetDataQualityResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetDevEndpoints = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchGetDevEndpoints"),
+    input = M.BatchGetDevEndpointsInput,
+    output = M.BatchGetDevEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetJobs = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchGetJobs"),
+    input = M.BatchGetJobsInput,
+    output = M.BatchGetJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetPartition = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchGetPartition"),
+    input = M.BatchGetPartitionInput,
+    output = M.BatchGetPartitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetTableOptimizer = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchGetTableOptimizer"),
+    input = M.BatchGetTableOptimizerInput,
+    output = M.BatchGetTableOptimizerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetTriggers = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchGetTriggers"),
+    input = M.BatchGetTriggersInput,
+    output = M.BatchGetTriggersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetWorkflows = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchGetWorkflows"),
+    input = M.BatchGetWorkflowsInput,
+    output = M.BatchGetWorkflowsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchPutDataQualityStatisticAnnotation = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchPutDataQualityStatisticAnnotation"),
+    input = M.BatchPutDataQualityStatisticAnnotationInput,
+    output = M.BatchPutDataQualityStatisticAnnotationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchStopJobRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchStopJobRun"),
+    input = M.BatchStopJobRunInput,
+    output = M.BatchStopJobRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdatePartition = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchUpdatePartition"),
+    input = M.BatchUpdatePartitionInput,
+    output = M.BatchUpdatePartitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelDataQualityRuleRecommendationRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "CancelDataQualityRuleRecommendationRun"),
+    input = M.CancelDataQualityRuleRecommendationRunInput,
+    output = M.CancelDataQualityRuleRecommendationRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelDataQualityRulesetEvaluationRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "CancelDataQualityRulesetEvaluationRun"),
+    input = M.CancelDataQualityRulesetEvaluationRunInput,
+    output = M.CancelDataQualityRulesetEvaluationRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelMLTaskRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "CancelMLTaskRun"),
+    input = M.CancelMLTaskRunInput,
+    output = M.CancelMLTaskRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelStatement = schema.operation({
+    id = id.from("com.amazonaws.glue", "CancelStatement"),
+    input = M.CancelStatementInput,
+    output = M.CancelStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckSchemaVersionValidity = schema.operation({
+    id = id.from("com.amazonaws.glue", "CheckSchemaVersionValidity"),
+    input = M.CheckSchemaVersionValidityInput,
+    output = M.CheckSchemaVersionValidityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBlueprint = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateBlueprint"),
+    input = M.CreateBlueprintInput,
+    output = M.CreateBlueprintOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCatalog = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateCatalog"),
+    input = M.CreateCatalogInput,
+    output = M.CreateCatalogOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateClassifier = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateClassifier"),
+    input = M.CreateClassifierInput,
+    output = M.CreateClassifierOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateColumnStatisticsTaskSettings = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateColumnStatisticsTaskSettings"),
+    input = M.CreateColumnStatisticsTaskSettingsInput,
+    output = M.CreateColumnStatisticsTaskSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnection = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateConnection"),
+    input = M.CreateConnectionInput,
+    output = M.CreateConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCrawler = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateCrawler"),
+    input = M.CreateCrawlerInput,
+    output = M.CreateCrawlerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomEntityType = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateCustomEntityType"),
+    input = M.CreateCustomEntityTypeInput,
+    output = M.CreateCustomEntityTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDatabase = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateDatabase"),
+    input = M.CreateDatabaseInput,
+    output = M.CreateDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataQualityRuleset = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateDataQualityRuleset"),
+    input = M.CreateDataQualityRulesetInput,
+    output = M.CreateDataQualityRulesetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDevEndpoint = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateDevEndpoint"),
+    input = M.CreateDevEndpointInput,
+    output = M.CreateDevEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGlueIdentityCenterConfiguration = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateGlueIdentityCenterConfiguration"),
+    input = M.CreateGlueIdentityCenterConfigurationInput,
+    output = M.CreateGlueIdentityCenterConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIntegration = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateIntegration"),
+    input = M.CreateIntegrationInput,
+    output = M.CreateIntegrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIntegrationResourceProperty = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateIntegrationResourceProperty"),
+    input = M.CreateIntegrationResourcePropertyInput,
+    output = M.CreateIntegrationResourcePropertyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIntegrationTableProperties = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateIntegrationTableProperties"),
+    input = M.CreateIntegrationTablePropertiesInput,
+    output = M.CreateIntegrationTablePropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateJob = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateJob"),
+    input = M.CreateJobInput,
+    output = M.CreateJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMLTransform = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateMLTransform"),
+    input = M.CreateMLTransformInput,
+    output = M.CreateMLTransformOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePartition = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreatePartition"),
+    input = M.CreatePartitionInput,
+    output = M.CreatePartitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePartitionIndex = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreatePartitionIndex"),
+    input = M.CreatePartitionIndexInput,
+    output = M.CreatePartitionIndexOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRegistry = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateRegistry"),
+    input = M.CreateRegistryInput,
+    output = M.CreateRegistryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSchema = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateSchema"),
+    input = M.CreateSchemaInput,
+    output = M.CreateSchemaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateScript = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateScript"),
+    input = M.CreateScriptInput,
+    output = M.CreateScriptOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSecurityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateSecurityConfiguration"),
+    input = M.CreateSecurityConfigurationInput,
+    output = M.CreateSecurityConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSession = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateSession"),
+    input = M.CreateSessionInput,
+    output = M.CreateSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTable = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateTable"),
+    input = M.CreateTableInput,
+    output = M.CreateTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTableOptimizer = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateTableOptimizer"),
+    input = M.CreateTableOptimizerInput,
+    output = M.CreateTableOptimizerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrigger = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateTrigger"),
+    input = M.CreateTriggerInput,
+    output = M.CreateTriggerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUsageProfile = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateUsageProfile"),
+    input = M.CreateUsageProfileInput,
+    output = M.CreateUsageProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUserDefinedFunction = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateUserDefinedFunction"),
+    input = M.CreateUserDefinedFunctionInput,
+    output = M.CreateUserDefinedFunctionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkflow = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateWorkflow"),
+    input = M.CreateWorkflowInput,
+    output = M.CreateWorkflowOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBlueprint = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteBlueprint"),
+    input = M.DeleteBlueprintInput,
+    output = M.DeleteBlueprintOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCatalog = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteCatalog"),
+    input = M.DeleteCatalogInput,
+    output = M.DeleteCatalogOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteClassifier = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteClassifier"),
+    input = M.DeleteClassifierInput,
+    output = M.DeleteClassifierOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteColumnStatisticsForPartition = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteColumnStatisticsForPartition"),
+    input = M.DeleteColumnStatisticsForPartitionInput,
+    output = M.DeleteColumnStatisticsForPartitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteColumnStatisticsForTable = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteColumnStatisticsForTable"),
+    input = M.DeleteColumnStatisticsForTableInput,
+    output = M.DeleteColumnStatisticsForTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteColumnStatisticsTaskSettings = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteColumnStatisticsTaskSettings"),
+    input = M.DeleteColumnStatisticsTaskSettingsInput,
+    output = M.DeleteColumnStatisticsTaskSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnection = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteConnection"),
+    input = M.DeleteConnectionInput,
+    output = M.DeleteConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnectionType = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteConnectionType"),
+    input = M.DeleteConnectionTypeInput,
+    output = M.DeleteConnectionTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCrawler = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteCrawler"),
+    input = M.DeleteCrawlerInput,
+    output = M.DeleteCrawlerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomEntityType = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteCustomEntityType"),
+    input = M.DeleteCustomEntityTypeInput,
+    output = M.DeleteCustomEntityTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDatabase = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteDatabase"),
+    input = M.DeleteDatabaseInput,
+    output = M.DeleteDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataQualityRuleset = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteDataQualityRuleset"),
+    input = M.DeleteDataQualityRulesetInput,
+    output = M.DeleteDataQualityRulesetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDevEndpoint = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteDevEndpoint"),
+    input = M.DeleteDevEndpointInput,
+    output = M.DeleteDevEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGlueIdentityCenterConfiguration = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteGlueIdentityCenterConfiguration"),
+    input = M.DeleteGlueIdentityCenterConfigurationInput,
+    output = M.DeleteGlueIdentityCenterConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIntegration = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteIntegration"),
+    input = M.DeleteIntegrationInput,
+    output = M.DeleteIntegrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIntegrationResourceProperty = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteIntegrationResourceProperty"),
+    input = M.DeleteIntegrationResourcePropertyInput,
+    output = M.DeleteIntegrationResourcePropertyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIntegrationTableProperties = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteIntegrationTableProperties"),
+    input = M.DeleteIntegrationTablePropertiesInput,
+    output = M.DeleteIntegrationTablePropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteJob = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteJob"),
+    input = M.DeleteJobInput,
+    output = M.DeleteJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMLTransform = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteMLTransform"),
+    input = M.DeleteMLTransformInput,
+    output = M.DeleteMLTransformOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePartition = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeletePartition"),
+    input = M.DeletePartitionInput,
+    output = M.DeletePartitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePartitionIndex = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeletePartitionIndex"),
+    input = M.DeletePartitionIndexInput,
+    output = M.DeletePartitionIndexOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRegistry = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteRegistry"),
+    input = M.DeleteRegistryInput,
+    output = M.DeleteRegistryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSchema = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteSchema"),
+    input = M.DeleteSchemaInput,
+    output = M.DeleteSchemaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSchemaVersions = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteSchemaVersions"),
+    input = M.DeleteSchemaVersionsInput,
+    output = M.DeleteSchemaVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSecurityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteSecurityConfiguration"),
+    input = M.DeleteSecurityConfigurationInput,
+    output = M.DeleteSecurityConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSession = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteSession"),
+    input = M.DeleteSessionInput,
+    output = M.DeleteSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTable = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteTable"),
+    input = M.DeleteTableInput,
+    output = M.DeleteTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTableOptimizer = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteTableOptimizer"),
+    input = M.DeleteTableOptimizerInput,
+    output = M.DeleteTableOptimizerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTableVersion = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteTableVersion"),
+    input = M.DeleteTableVersionInput,
+    output = M.DeleteTableVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrigger = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteTrigger"),
+    input = M.DeleteTriggerInput,
+    output = M.DeleteTriggerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUsageProfile = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteUsageProfile"),
+    input = M.DeleteUsageProfileInput,
+    output = M.DeleteUsageProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserDefinedFunction = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteUserDefinedFunction"),
+    input = M.DeleteUserDefinedFunctionInput,
+    output = M.DeleteUserDefinedFunctionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkflow = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteWorkflow"),
+    input = M.DeleteWorkflowInput,
+    output = M.DeleteWorkflowOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnectionType = schema.operation({
+    id = id.from("com.amazonaws.glue", "DescribeConnectionType"),
+    input = M.DescribeConnectionTypeInput,
+    output = M.DescribeConnectionTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEntity = schema.operation({
+    id = id.from("com.amazonaws.glue", "DescribeEntity"),
+    input = M.DescribeEntityInput,
+    output = M.DescribeEntityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInboundIntegrations = schema.operation({
+    id = id.from("com.amazonaws.glue", "DescribeInboundIntegrations"),
+    input = M.DescribeInboundIntegrationsInput,
+    output = M.DescribeInboundIntegrationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIntegrations = schema.operation({
+    id = id.from("com.amazonaws.glue", "DescribeIntegrations"),
+    input = M.DescribeIntegrationsInput,
+    output = M.DescribeIntegrationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBlueprint = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetBlueprint"),
+    input = M.GetBlueprintInput,
+    output = M.GetBlueprintOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBlueprintRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetBlueprintRun"),
+    input = M.GetBlueprintRunInput,
+    output = M.GetBlueprintRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBlueprintRuns = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetBlueprintRuns"),
+    input = M.GetBlueprintRunsInput,
+    output = M.GetBlueprintRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCatalog = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetCatalog"),
+    input = M.GetCatalogInput,
+    output = M.GetCatalogOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCatalogImportStatus = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetCatalogImportStatus"),
+    input = M.GetCatalogImportStatusInput,
+    output = M.GetCatalogImportStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCatalogs = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetCatalogs"),
+    input = M.GetCatalogsInput,
+    output = M.GetCatalogsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetClassifier = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetClassifier"),
+    input = M.GetClassifierInput,
+    output = M.GetClassifierOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetClassifiers = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetClassifiers"),
+    input = M.GetClassifiersInput,
+    output = M.GetClassifiersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetColumnStatisticsForPartition = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetColumnStatisticsForPartition"),
+    input = M.GetColumnStatisticsForPartitionInput,
+    output = M.GetColumnStatisticsForPartitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetColumnStatisticsForTable = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetColumnStatisticsForTable"),
+    input = M.GetColumnStatisticsForTableInput,
+    output = M.GetColumnStatisticsForTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetColumnStatisticsTaskRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetColumnStatisticsTaskRun"),
+    input = M.GetColumnStatisticsTaskRunInput,
+    output = M.GetColumnStatisticsTaskRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetColumnStatisticsTaskRuns = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetColumnStatisticsTaskRuns"),
+    input = M.GetColumnStatisticsTaskRunsInput,
+    output = M.GetColumnStatisticsTaskRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetColumnStatisticsTaskSettings = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetColumnStatisticsTaskSettings"),
+    input = M.GetColumnStatisticsTaskSettingsInput,
+    output = M.GetColumnStatisticsTaskSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnection = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetConnection"),
+    input = M.GetConnectionInput,
+    output = M.GetConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnections = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetConnections"),
+    input = M.GetConnectionsInput,
+    output = M.GetConnectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCrawler = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetCrawler"),
+    input = M.GetCrawlerInput,
+    output = M.GetCrawlerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCrawlerMetrics = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetCrawlerMetrics"),
+    input = M.GetCrawlerMetricsInput,
+    output = M.GetCrawlerMetricsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCrawlers = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetCrawlers"),
+    input = M.GetCrawlersInput,
+    output = M.GetCrawlersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCustomEntityType = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetCustomEntityType"),
+    input = M.GetCustomEntityTypeInput,
+    output = M.GetCustomEntityTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDatabase = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDatabase"),
+    input = M.GetDatabaseInput,
+    output = M.GetDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDatabases = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDatabases"),
+    input = M.GetDatabasesInput,
+    output = M.GetDatabasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataCatalogEncryptionSettings = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDataCatalogEncryptionSettings"),
+    input = M.GetDataCatalogEncryptionSettingsInput,
+    output = M.GetDataCatalogEncryptionSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataflowGraph = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDataflowGraph"),
+    input = M.GetDataflowGraphInput,
+    output = M.GetDataflowGraphOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataQualityModel = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDataQualityModel"),
+    input = M.GetDataQualityModelInput,
+    output = M.GetDataQualityModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataQualityModelResult = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDataQualityModelResult"),
+    input = M.GetDataQualityModelResultInput,
+    output = M.GetDataQualityModelResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataQualityResult = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDataQualityResult"),
+    input = M.GetDataQualityResultInput,
+    output = M.GetDataQualityResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataQualityRuleRecommendationRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDataQualityRuleRecommendationRun"),
+    input = M.GetDataQualityRuleRecommendationRunInput,
+    output = M.GetDataQualityRuleRecommendationRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataQualityRuleset = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDataQualityRuleset"),
+    input = M.GetDataQualityRulesetInput,
+    output = M.GetDataQualityRulesetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataQualityRulesetEvaluationRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDataQualityRulesetEvaluationRun"),
+    input = M.GetDataQualityRulesetEvaluationRunInput,
+    output = M.GetDataQualityRulesetEvaluationRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDevEndpoint = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDevEndpoint"),
+    input = M.GetDevEndpointInput,
+    output = M.GetDevEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDevEndpoints = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDevEndpoints"),
+    input = M.GetDevEndpointsInput,
+    output = M.GetDevEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEntityRecords = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetEntityRecords"),
+    input = M.GetEntityRecordsInput,
+    output = M.GetEntityRecordsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGlueIdentityCenterConfiguration = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetGlueIdentityCenterConfiguration"),
+    input = M.GetGlueIdentityCenterConfigurationInput,
+    output = M.GetGlueIdentityCenterConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIntegrationResourceProperty = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetIntegrationResourceProperty"),
+    input = M.GetIntegrationResourcePropertyInput,
+    output = M.GetIntegrationResourcePropertyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIntegrationTableProperties = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetIntegrationTableProperties"),
+    input = M.GetIntegrationTablePropertiesInput,
+    output = M.GetIntegrationTablePropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJob = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetJob"),
+    input = M.GetJobInput,
+    output = M.GetJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJobBookmark = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetJobBookmark"),
+    input = M.GetJobBookmarkInput,
+    output = M.GetJobBookmarkOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJobRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetJobRun"),
+    input = M.GetJobRunInput,
+    output = M.GetJobRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJobRuns = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetJobRuns"),
+    input = M.GetJobRunsInput,
+    output = M.GetJobRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJobs = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetJobs"),
+    input = M.GetJobsInput,
+    output = M.GetJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMapping = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetMapping"),
+    input = M.GetMappingInput,
+    output = M.GetMappingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMaterializedViewRefreshTaskRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetMaterializedViewRefreshTaskRun"),
+    input = M.GetMaterializedViewRefreshTaskRunInput,
+    output = M.GetMaterializedViewRefreshTaskRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMLTaskRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetMLTaskRun"),
+    input = M.GetMLTaskRunInput,
+    output = M.GetMLTaskRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMLTaskRuns = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetMLTaskRuns"),
+    input = M.GetMLTaskRunsInput,
+    output = M.GetMLTaskRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMLTransform = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetMLTransform"),
+    input = M.GetMLTransformInput,
+    output = M.GetMLTransformOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMLTransforms = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetMLTransforms"),
+    input = M.GetMLTransformsInput,
+    output = M.GetMLTransformsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPartition = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetPartition"),
+    input = M.GetPartitionInput,
+    output = M.GetPartitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPartitionIndexes = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetPartitionIndexes"),
+    input = M.GetPartitionIndexesInput,
+    output = M.GetPartitionIndexesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPartitions = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetPartitions"),
+    input = M.GetPartitionsInput,
+    output = M.GetPartitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPlan = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetPlan"),
+    input = M.GetPlanInput,
+    output = M.GetPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRegistry = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetRegistry"),
+    input = M.GetRegistryInput,
+    output = M.GetRegistryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicies = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetResourcePolicies"),
+    input = M.GetResourcePoliciesInput,
+    output = M.GetResourcePoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSchema = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetSchema"),
+    input = M.GetSchemaInput,
+    output = M.GetSchemaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSchemaByDefinition = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetSchemaByDefinition"),
+    input = M.GetSchemaByDefinitionInput,
+    output = M.GetSchemaByDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSchemaVersion = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetSchemaVersion"),
+    input = M.GetSchemaVersionInput,
+    output = M.GetSchemaVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSchemaVersionsDiff = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetSchemaVersionsDiff"),
+    input = M.GetSchemaVersionsDiffInput,
+    output = M.GetSchemaVersionsDiffOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSecurityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetSecurityConfiguration"),
+    input = M.GetSecurityConfigurationInput,
+    output = M.GetSecurityConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSecurityConfigurations = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetSecurityConfigurations"),
+    input = M.GetSecurityConfigurationsInput,
+    output = M.GetSecurityConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSession = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetSession"),
+    input = M.GetSessionInput,
+    output = M.GetSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStatement = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetStatement"),
+    input = M.GetStatementInput,
+    output = M.GetStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTable = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetTable"),
+    input = M.GetTableInput,
+    output = M.GetTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableOptimizer = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetTableOptimizer"),
+    input = M.GetTableOptimizerInput,
+    output = M.GetTableOptimizerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTables = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetTables"),
+    input = M.GetTablesInput,
+    output = M.GetTablesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableVersion = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetTableVersion"),
+    input = M.GetTableVersionInput,
+    output = M.GetTableVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTableVersions = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetTableVersions"),
+    input = M.GetTableVersionsInput,
+    output = M.GetTableVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTags = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetTags"),
+    input = M.GetTagsInput,
+    output = M.GetTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrigger = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetTrigger"),
+    input = M.GetTriggerInput,
+    output = M.GetTriggerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTriggers = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetTriggers"),
+    input = M.GetTriggersInput,
+    output = M.GetTriggersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUnfilteredPartitionMetadata = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetUnfilteredPartitionMetadata"),
+    input = M.GetUnfilteredPartitionMetadataInput,
+    output = M.GetUnfilteredPartitionMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUnfilteredPartitionsMetadata = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetUnfilteredPartitionsMetadata"),
+    input = M.GetUnfilteredPartitionsMetadataInput,
+    output = M.GetUnfilteredPartitionsMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUnfilteredTableMetadata = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetUnfilteredTableMetadata"),
+    input = M.GetUnfilteredTableMetadataInput,
+    output = M.GetUnfilteredTableMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUsageProfile = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetUsageProfile"),
+    input = M.GetUsageProfileInput,
+    output = M.GetUsageProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUserDefinedFunction = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetUserDefinedFunction"),
+    input = M.GetUserDefinedFunctionInput,
+    output = M.GetUserDefinedFunctionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUserDefinedFunctions = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetUserDefinedFunctions"),
+    input = M.GetUserDefinedFunctionsInput,
+    output = M.GetUserDefinedFunctionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflow = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetWorkflow"),
+    input = M.GetWorkflowInput,
+    output = M.GetWorkflowOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflowRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetWorkflowRun"),
+    input = M.GetWorkflowRunInput,
+    output = M.GetWorkflowRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflowRunProperties = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetWorkflowRunProperties"),
+    input = M.GetWorkflowRunPropertiesInput,
+    output = M.GetWorkflowRunPropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkflowRuns = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetWorkflowRuns"),
+    input = M.GetWorkflowRunsInput,
+    output = M.GetWorkflowRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportCatalogToGlue = schema.operation({
+    id = id.from("com.amazonaws.glue", "ImportCatalogToGlue"),
+    input = M.ImportCatalogToGlueInput,
+    output = M.ImportCatalogToGlueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBlueprints = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListBlueprints"),
+    input = M.ListBlueprintsInput,
+    output = M.ListBlueprintsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListColumnStatisticsTaskRuns = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListColumnStatisticsTaskRuns"),
+    input = M.ListColumnStatisticsTaskRunsInput,
+    output = M.ListColumnStatisticsTaskRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectionTypes = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListConnectionTypes"),
+    input = M.ListConnectionTypesInput,
+    output = M.ListConnectionTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCrawlers = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListCrawlers"),
+    input = M.ListCrawlersInput,
+    output = M.ListCrawlersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCrawls = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListCrawls"),
+    input = M.ListCrawlsInput,
+    output = M.ListCrawlsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomEntityTypes = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListCustomEntityTypes"),
+    input = M.ListCustomEntityTypesInput,
+    output = M.ListCustomEntityTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataQualityResults = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListDataQualityResults"),
+    input = M.ListDataQualityResultsInput,
+    output = M.ListDataQualityResultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataQualityRuleRecommendationRuns = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListDataQualityRuleRecommendationRuns"),
+    input = M.ListDataQualityRuleRecommendationRunsInput,
+    output = M.ListDataQualityRuleRecommendationRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataQualityRulesetEvaluationRuns = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListDataQualityRulesetEvaluationRuns"),
+    input = M.ListDataQualityRulesetEvaluationRunsInput,
+    output = M.ListDataQualityRulesetEvaluationRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataQualityRulesets = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListDataQualityRulesets"),
+    input = M.ListDataQualityRulesetsInput,
+    output = M.ListDataQualityRulesetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataQualityStatisticAnnotations = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListDataQualityStatisticAnnotations"),
+    input = M.ListDataQualityStatisticAnnotationsInput,
+    output = M.ListDataQualityStatisticAnnotationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataQualityStatistics = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListDataQualityStatistics"),
+    input = M.ListDataQualityStatisticsInput,
+    output = M.ListDataQualityStatisticsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDevEndpoints = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListDevEndpoints"),
+    input = M.ListDevEndpointsInput,
+    output = M.ListDevEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEntities = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListEntities"),
+    input = M.ListEntitiesInput,
+    output = M.ListEntitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIntegrationResourceProperties = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListIntegrationResourceProperties"),
+    input = M.ListIntegrationResourcePropertiesInput,
+    output = M.ListIntegrationResourcePropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobs = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListJobs"),
+    input = M.ListJobsInput,
+    output = M.ListJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMaterializedViewRefreshTaskRuns = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListMaterializedViewRefreshTaskRuns"),
+    input = M.ListMaterializedViewRefreshTaskRunsInput,
+    output = M.ListMaterializedViewRefreshTaskRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMLTransforms = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListMLTransforms"),
+    input = M.ListMLTransformsInput,
+    output = M.ListMLTransformsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRegistries = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListRegistries"),
+    input = M.ListRegistriesInput,
+    output = M.ListRegistriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSchemas = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListSchemas"),
+    input = M.ListSchemasInput,
+    output = M.ListSchemasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSchemaVersions = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListSchemaVersions"),
+    input = M.ListSchemaVersionsInput,
+    output = M.ListSchemaVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessions = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListSessions"),
+    input = M.ListSessionsInput,
+    output = M.ListSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStatements = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListStatements"),
+    input = M.ListStatementsInput,
+    output = M.ListStatementsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTableOptimizerRuns = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListTableOptimizerRuns"),
+    input = M.ListTableOptimizerRunsInput,
+    output = M.ListTableOptimizerRunsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTriggers = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListTriggers"),
+    input = M.ListTriggersInput,
+    output = M.ListTriggersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsageProfiles = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListUsageProfiles"),
+    input = M.ListUsageProfilesInput,
+    output = M.ListUsageProfilesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkflows = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListWorkflows"),
+    input = M.ListWorkflowsInput,
+    output = M.ListWorkflowsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyIntegration = schema.operation({
+    id = id.from("com.amazonaws.glue", "ModifyIntegration"),
+    input = M.ModifyIntegrationInput,
+    output = M.ModifyIntegrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDataCatalogEncryptionSettings = schema.operation({
+    id = id.from("com.amazonaws.glue", "PutDataCatalogEncryptionSettings"),
+    input = M.PutDataCatalogEncryptionSettingsInput,
+    output = M.PutDataCatalogEncryptionSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDataQualityProfileAnnotation = schema.operation({
+    id = id.from("com.amazonaws.glue", "PutDataQualityProfileAnnotation"),
+    input = M.PutDataQualityProfileAnnotationInput,
+    output = M.PutDataQualityProfileAnnotationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.glue", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSchemaVersionMetadata = schema.operation({
+    id = id.from("com.amazonaws.glue", "PutSchemaVersionMetadata"),
+    input = M.PutSchemaVersionMetadataInput,
+    output = M.PutSchemaVersionMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutWorkflowRunProperties = schema.operation({
+    id = id.from("com.amazonaws.glue", "PutWorkflowRunProperties"),
+    input = M.PutWorkflowRunPropertiesInput,
+    output = M.PutWorkflowRunPropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.QuerySchemaVersionMetadata = schema.operation({
+    id = id.from("com.amazonaws.glue", "QuerySchemaVersionMetadata"),
+    input = M.QuerySchemaVersionMetadataInput,
+    output = M.QuerySchemaVersionMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterConnectionType = schema.operation({
+    id = id.from("com.amazonaws.glue", "RegisterConnectionType"),
+    input = M.RegisterConnectionTypeInput,
+    output = M.RegisterConnectionTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterSchemaVersion = schema.operation({
+    id = id.from("com.amazonaws.glue", "RegisterSchemaVersion"),
+    input = M.RegisterSchemaVersionInput,
+    output = M.RegisterSchemaVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveSchemaVersionMetadata = schema.operation({
+    id = id.from("com.amazonaws.glue", "RemoveSchemaVersionMetadata"),
+    input = M.RemoveSchemaVersionMetadataInput,
+    output = M.RemoveSchemaVersionMetadataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetJobBookmark = schema.operation({
+    id = id.from("com.amazonaws.glue", "ResetJobBookmark"),
+    input = M.ResetJobBookmarkInput,
+    output = M.ResetJobBookmarkOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResumeWorkflowRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "ResumeWorkflowRun"),
+    input = M.ResumeWorkflowRunInput,
+    output = M.ResumeWorkflowRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RunStatement = schema.operation({
+    id = id.from("com.amazonaws.glue", "RunStatement"),
+    input = M.RunStatementInput,
+    output = M.RunStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchTables = schema.operation({
+    id = id.from("com.amazonaws.glue", "SearchTables"),
+    input = M.SearchTablesInput,
+    output = M.SearchTablesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartBlueprintRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartBlueprintRun"),
+    input = M.StartBlueprintRunInput,
+    output = M.StartBlueprintRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartColumnStatisticsTaskRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartColumnStatisticsTaskRun"),
+    input = M.StartColumnStatisticsTaskRunInput,
+    output = M.StartColumnStatisticsTaskRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartColumnStatisticsTaskRunSchedule = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartColumnStatisticsTaskRunSchedule"),
+    input = M.StartColumnStatisticsTaskRunScheduleInput,
+    output = M.StartColumnStatisticsTaskRunScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCrawler = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartCrawler"),
+    input = M.StartCrawlerInput,
+    output = M.StartCrawlerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCrawlerSchedule = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartCrawlerSchedule"),
+    input = M.StartCrawlerScheduleInput,
+    output = M.StartCrawlerScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDataQualityRuleRecommendationRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartDataQualityRuleRecommendationRun"),
+    input = M.StartDataQualityRuleRecommendationRunInput,
+    output = M.StartDataQualityRuleRecommendationRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDataQualityRulesetEvaluationRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartDataQualityRulesetEvaluationRun"),
+    input = M.StartDataQualityRulesetEvaluationRunInput,
+    output = M.StartDataQualityRulesetEvaluationRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartExportLabelsTaskRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartExportLabelsTaskRun"),
+    input = M.StartExportLabelsTaskRunInput,
+    output = M.StartExportLabelsTaskRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartImportLabelsTaskRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartImportLabelsTaskRun"),
+    input = M.StartImportLabelsTaskRunInput,
+    output = M.StartImportLabelsTaskRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartJobRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartJobRun"),
+    input = M.StartJobRunInput,
+    output = M.StartJobRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMaterializedViewRefreshTaskRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartMaterializedViewRefreshTaskRun"),
+    input = M.StartMaterializedViewRefreshTaskRunInput,
+    output = M.StartMaterializedViewRefreshTaskRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMLEvaluationTaskRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartMLEvaluationTaskRun"),
+    input = M.StartMLEvaluationTaskRunInput,
+    output = M.StartMLEvaluationTaskRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMLLabelingSetGenerationTaskRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartMLLabelingSetGenerationTaskRun"),
+    input = M.StartMLLabelingSetGenerationTaskRunInput,
+    output = M.StartMLLabelingSetGenerationTaskRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTrigger = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartTrigger"),
+    input = M.StartTriggerInput,
+    output = M.StartTriggerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartWorkflowRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartWorkflowRun"),
+    input = M.StartWorkflowRunInput,
+    output = M.StartWorkflowRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopColumnStatisticsTaskRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "StopColumnStatisticsTaskRun"),
+    input = M.StopColumnStatisticsTaskRunInput,
+    output = M.StopColumnStatisticsTaskRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopColumnStatisticsTaskRunSchedule = schema.operation({
+    id = id.from("com.amazonaws.glue", "StopColumnStatisticsTaskRunSchedule"),
+    input = M.StopColumnStatisticsTaskRunScheduleInput,
+    output = M.StopColumnStatisticsTaskRunScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopCrawler = schema.operation({
+    id = id.from("com.amazonaws.glue", "StopCrawler"),
+    input = M.StopCrawlerInput,
+    output = M.StopCrawlerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopCrawlerSchedule = schema.operation({
+    id = id.from("com.amazonaws.glue", "StopCrawlerSchedule"),
+    input = M.StopCrawlerScheduleInput,
+    output = M.StopCrawlerScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopMaterializedViewRefreshTaskRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "StopMaterializedViewRefreshTaskRun"),
+    input = M.StopMaterializedViewRefreshTaskRunInput,
+    output = M.StopMaterializedViewRefreshTaskRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopSession = schema.operation({
+    id = id.from("com.amazonaws.glue", "StopSession"),
+    input = M.StopSessionInput,
+    output = M.StopSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopTrigger = schema.operation({
+    id = id.from("com.amazonaws.glue", "StopTrigger"),
+    input = M.StopTriggerInput,
+    output = M.StopTriggerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopWorkflowRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "StopWorkflowRun"),
+    input = M.StopWorkflowRunInput,
+    output = M.StopWorkflowRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.glue", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestConnection = schema.operation({
+    id = id.from("com.amazonaws.glue", "TestConnection"),
+    input = M.TestConnectionOperationInput,
+    output = M.TestConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.glue", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBlueprint = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateBlueprint"),
+    input = M.UpdateBlueprintInput,
+    output = M.UpdateBlueprintOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCatalog = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateCatalog"),
+    input = M.UpdateCatalogInput,
+    output = M.UpdateCatalogOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateClassifier = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateClassifier"),
+    input = M.UpdateClassifierInput,
+    output = M.UpdateClassifierOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateColumnStatisticsForPartition = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateColumnStatisticsForPartition"),
+    input = M.UpdateColumnStatisticsForPartitionInput,
+    output = M.UpdateColumnStatisticsForPartitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateColumnStatisticsForTable = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateColumnStatisticsForTable"),
+    input = M.UpdateColumnStatisticsForTableInput,
+    output = M.UpdateColumnStatisticsForTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateColumnStatisticsTaskSettings = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateColumnStatisticsTaskSettings"),
+    input = M.UpdateColumnStatisticsTaskSettingsInput,
+    output = M.UpdateColumnStatisticsTaskSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnection = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateConnection"),
+    input = M.UpdateConnectionInput,
+    output = M.UpdateConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCrawler = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateCrawler"),
+    input = M.UpdateCrawlerInput,
+    output = M.UpdateCrawlerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCrawlerSchedule = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateCrawlerSchedule"),
+    input = M.UpdateCrawlerScheduleInput,
+    output = M.UpdateCrawlerScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDatabase = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateDatabase"),
+    input = M.UpdateDatabaseInput,
+    output = M.UpdateDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataQualityRuleset = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateDataQualityRuleset"),
+    input = M.UpdateDataQualityRulesetInput,
+    output = M.UpdateDataQualityRulesetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDevEndpoint = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateDevEndpoint"),
+    input = M.UpdateDevEndpointInput,
+    output = M.UpdateDevEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGlueIdentityCenterConfiguration = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateGlueIdentityCenterConfiguration"),
+    input = M.UpdateGlueIdentityCenterConfigurationInput,
+    output = M.UpdateGlueIdentityCenterConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIntegrationResourceProperty = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateIntegrationResourceProperty"),
+    input = M.UpdateIntegrationResourcePropertyInput,
+    output = M.UpdateIntegrationResourcePropertyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIntegrationTableProperties = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateIntegrationTableProperties"),
+    input = M.UpdateIntegrationTablePropertiesInput,
+    output = M.UpdateIntegrationTablePropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateJob = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateJob"),
+    input = M.UpdateJobInput,
+    output = M.UpdateJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateJobFromSourceControl = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateJobFromSourceControl"),
+    input = M.UpdateJobFromSourceControlInput,
+    output = M.UpdateJobFromSourceControlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMLTransform = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateMLTransform"),
+    input = M.UpdateMLTransformInput,
+    output = M.UpdateMLTransformOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePartition = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdatePartition"),
+    input = M.UpdatePartitionInput,
+    output = M.UpdatePartitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRegistry = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateRegistry"),
+    input = M.UpdateRegistryInput,
+    output = M.UpdateRegistryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSchema = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateSchema"),
+    input = M.UpdateSchemaInput,
+    output = M.UpdateSchemaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSourceControlFromJob = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateSourceControlFromJob"),
+    input = M.UpdateSourceControlFromJobInput,
+    output = M.UpdateSourceControlFromJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTable = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateTable"),
+    input = M.UpdateTableInput,
+    output = M.UpdateTableOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTableOptimizer = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateTableOptimizer"),
+    input = M.UpdateTableOptimizerInput,
+    output = M.UpdateTableOptimizerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrigger = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateTrigger"),
+    input = M.UpdateTriggerInput,
+    output = M.UpdateTriggerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUsageProfile = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateUsageProfile"),
+    input = M.UpdateUsageProfileInput,
+    output = M.UpdateUsageProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserDefinedFunction = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateUserDefinedFunction"),
+    input = M.UpdateUserDefinedFunctionInput,
+    output = M.UpdateUserDefinedFunctionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWorkflow = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateWorkflow"),
+    input = M.UpdateWorkflowInput,
+    output = M.UpdateWorkflowOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -15432,4 +15432,1328 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.bedrock", "AmazonBedrockControlPlaneService"),
+    version = "2023-04-20",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.BatchDeleteEvaluationJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "BatchDeleteEvaluationJob"),
+    input = M.BatchDeleteEvaluationJobInput,
+    output = M.BatchDeleteEvaluationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/evaluation-jobs/batch-delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CancelAutomatedReasoningPolicyBuildWorkflow = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CancelAutomatedReasoningPolicyBuildWorkflow"),
+    input = M.CancelAutomatedReasoningPolicyBuildWorkflowInput,
+    output = M.CancelAutomatedReasoningPolicyBuildWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateAutomatedReasoningPolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateAutomatedReasoningPolicy"),
+    input = M.CreateAutomatedReasoningPolicyInput,
+    output = M.CreateAutomatedReasoningPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/automated-reasoning-policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateAutomatedReasoningPolicyTestCase = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateAutomatedReasoningPolicyTestCase"),
+    input = M.CreateAutomatedReasoningPolicyTestCaseInput,
+    output = M.CreateAutomatedReasoningPolicyTestCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/automated-reasoning-policies/{policyArn}/test-cases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateAutomatedReasoningPolicyVersion = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateAutomatedReasoningPolicyVersion"),
+    input = M.CreateAutomatedReasoningPolicyVersionInput,
+    output = M.CreateAutomatedReasoningPolicyVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/automated-reasoning-policies/{policyArn}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateCustomModel = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateCustomModel"),
+    input = M.CreateCustomModelInput,
+    output = M.CreateCustomModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/custom-models/create-custom-model" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateCustomModelDeployment = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateCustomModelDeployment"),
+    input = M.CreateCustomModelDeploymentInput,
+    output = M.CreateCustomModelDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/model-customization/custom-model-deployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateEvaluationJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateEvaluationJob"),
+    input = M.CreateEvaluationJobInput,
+    output = M.CreateEvaluationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/evaluation-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateFoundationModelAgreement = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateFoundationModelAgreement"),
+    input = M.CreateFoundationModelAgreementInput,
+    output = M.CreateFoundationModelAgreementOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-foundation-model-agreement" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateGuardrail = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateGuardrail"),
+    input = M.CreateGuardrailInput,
+    output = M.CreateGuardrailOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/guardrails" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateGuardrailVersion = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateGuardrailVersion"),
+    input = M.CreateGuardrailVersionInput,
+    output = M.CreateGuardrailVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/guardrails/{guardrailIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateInferenceProfile = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateInferenceProfile"),
+    input = M.CreateInferenceProfileInput,
+    output = M.CreateInferenceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/inference-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateMarketplaceModelEndpoint = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateMarketplaceModelEndpoint"),
+    input = M.CreateMarketplaceModelEndpointInput,
+    output = M.CreateMarketplaceModelEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/marketplace-model/endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateModelCopyJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateModelCopyJob"),
+    input = M.CreateModelCopyJobInput,
+    output = M.CreateModelCopyJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/model-copy-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateModelCustomizationJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateModelCustomizationJob"),
+    input = M.CreateModelCustomizationJobInput,
+    output = M.CreateModelCustomizationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/model-customization-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateModelImportJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateModelImportJob"),
+    input = M.CreateModelImportJobInput,
+    output = M.CreateModelImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/model-import-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateModelInvocationJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateModelInvocationJob"),
+    input = M.CreateModelInvocationJobInput,
+    output = M.CreateModelInvocationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/model-invocation-job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreatePromptRouter = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreatePromptRouter"),
+    input = M.CreatePromptRouterInput,
+    output = M.CreatePromptRouterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prompt-routers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateProvisionedModelThroughput = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateProvisionedModelThroughput"),
+    input = M.CreateProvisionedModelThroughputInput,
+    output = M.CreateProvisionedModelThroughputOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/provisioned-model-throughput" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteAutomatedReasoningPolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeleteAutomatedReasoningPolicy"),
+    input = M.DeleteAutomatedReasoningPolicyInput,
+    output = M.DeleteAutomatedReasoningPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/automated-reasoning-policies/{policyArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteAutomatedReasoningPolicyBuildWorkflow = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeleteAutomatedReasoningPolicyBuildWorkflow"),
+    input = M.DeleteAutomatedReasoningPolicyBuildWorkflowInput,
+    output = M.DeleteAutomatedReasoningPolicyBuildWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteAutomatedReasoningPolicyTestCase = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeleteAutomatedReasoningPolicyTestCase"),
+    input = M.DeleteAutomatedReasoningPolicyTestCaseInput,
+    output = M.DeleteAutomatedReasoningPolicyTestCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/automated-reasoning-policies/{policyArn}/test-cases/{testCaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteCustomModel = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeleteCustomModel"),
+    input = M.DeleteCustomModelInput,
+    output = M.DeleteCustomModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/custom-models/{modelIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteCustomModelDeployment = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeleteCustomModelDeployment"),
+    input = M.DeleteCustomModelDeploymentInput,
+    output = M.DeleteCustomModelDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/model-customization/custom-model-deployments/{customModelDeploymentIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteEnforcedGuardrailConfiguration = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeleteEnforcedGuardrailConfiguration"),
+    input = M.DeleteEnforcedGuardrailConfigurationInput,
+    output = M.DeleteEnforcedGuardrailConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/enforcedGuardrailsConfiguration/{configId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteFoundationModelAgreement = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeleteFoundationModelAgreement"),
+    input = M.DeleteFoundationModelAgreementInput,
+    output = M.DeleteFoundationModelAgreementOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-foundation-model-agreement" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteGuardrail = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeleteGuardrail"),
+    input = M.DeleteGuardrailInput,
+    output = M.DeleteGuardrailOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/guardrails/{guardrailIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteImportedModel = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeleteImportedModel"),
+    input = M.DeleteImportedModelInput,
+    output = M.DeleteImportedModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/imported-models/{modelIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteInferenceProfile = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeleteInferenceProfile"),
+    input = M.DeleteInferenceProfileInput,
+    output = M.DeleteInferenceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/inference-profiles/{inferenceProfileIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteMarketplaceModelEndpoint = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeleteMarketplaceModelEndpoint"),
+    input = M.DeleteMarketplaceModelEndpointInput,
+    output = M.DeleteMarketplaceModelEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/marketplace-model/endpoints/{endpointArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteModelInvocationLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeleteModelInvocationLoggingConfiguration"),
+    input = M.DeleteModelInvocationLoggingConfigurationInput,
+    output = M.DeleteModelInvocationLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/logging/modelinvocations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeletePromptRouter = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeletePromptRouter"),
+    input = M.DeletePromptRouterInput,
+    output = M.DeletePromptRouterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prompt-routers/{promptRouterArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteProvisionedModelThroughput = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeleteProvisionedModelThroughput"),
+    input = M.DeleteProvisionedModelThroughputInput,
+    output = M.DeleteProvisionedModelThroughputOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/provisioned-model-throughput/{provisionedModelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/resource-policy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.DeregisterMarketplaceModelEndpoint = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "DeregisterMarketplaceModelEndpoint"),
+    input = M.DeregisterMarketplaceModelEndpointInput,
+    output = M.DeregisterMarketplaceModelEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/marketplace-model/endpoints/{endpointArn}/registration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ExportAutomatedReasoningPolicyVersion = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ExportAutomatedReasoningPolicyVersion"),
+    input = M.ExportAutomatedReasoningPolicyVersionInput,
+    output = M.ExportAutomatedReasoningPolicyVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automated-reasoning-policies/{policyArn}/export" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetAutomatedReasoningPolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetAutomatedReasoningPolicy"),
+    input = M.GetAutomatedReasoningPolicyInput,
+    output = M.GetAutomatedReasoningPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automated-reasoning-policies/{policyArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetAutomatedReasoningPolicyAnnotations = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetAutomatedReasoningPolicyAnnotations"),
+    input = M.GetAutomatedReasoningPolicyAnnotationsInput,
+    output = M.GetAutomatedReasoningPolicyAnnotationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/annotations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetAutomatedReasoningPolicyBuildWorkflow = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetAutomatedReasoningPolicyBuildWorkflow"),
+    input = M.GetAutomatedReasoningPolicyBuildWorkflowInput,
+    output = M.GetAutomatedReasoningPolicyBuildWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetAutomatedReasoningPolicyBuildWorkflowResultAssets = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetAutomatedReasoningPolicyBuildWorkflowResultAssets"),
+    input = M.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsInput,
+    output = M.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/result-assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetAutomatedReasoningPolicyNextScenario = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetAutomatedReasoningPolicyNextScenario"),
+    input = M.GetAutomatedReasoningPolicyNextScenarioInput,
+    output = M.GetAutomatedReasoningPolicyNextScenarioOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/scenarios" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetAutomatedReasoningPolicyTestCase = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetAutomatedReasoningPolicyTestCase"),
+    input = M.GetAutomatedReasoningPolicyTestCaseInput,
+    output = M.GetAutomatedReasoningPolicyTestCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automated-reasoning-policies/{policyArn}/test-cases/{testCaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetAutomatedReasoningPolicyTestResult = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetAutomatedReasoningPolicyTestResult"),
+    input = M.GetAutomatedReasoningPolicyTestResultInput,
+    output = M.GetAutomatedReasoningPolicyTestResultOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/test-cases/{testCaseId}/test-results" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetCustomModel = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetCustomModel"),
+    input = M.GetCustomModelInput,
+    output = M.GetCustomModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/custom-models/{modelIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetCustomModelDeployment = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetCustomModelDeployment"),
+    input = M.GetCustomModelDeploymentInput,
+    output = M.GetCustomModelDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/model-customization/custom-model-deployments/{customModelDeploymentIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetEvaluationJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetEvaluationJob"),
+    input = M.GetEvaluationJobInput,
+    output = M.GetEvaluationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/evaluation-jobs/{jobIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetFoundationModel = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetFoundationModel"),
+    input = M.GetFoundationModelInput,
+    output = M.GetFoundationModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/foundation-models/{modelIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetFoundationModelAvailability = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetFoundationModelAvailability"),
+    input = M.GetFoundationModelAvailabilityInput,
+    output = M.GetFoundationModelAvailabilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/foundation-model-availability/{modelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetGuardrail = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetGuardrail"),
+    input = M.GetGuardrailInput,
+    output = M.GetGuardrailOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/guardrails/{guardrailIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetImportedModel = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetImportedModel"),
+    input = M.GetImportedModelInput,
+    output = M.GetImportedModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/imported-models/{modelIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetInferenceProfile = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetInferenceProfile"),
+    input = M.GetInferenceProfileInput,
+    output = M.GetInferenceProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/inference-profiles/{inferenceProfileIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetMarketplaceModelEndpoint = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetMarketplaceModelEndpoint"),
+    input = M.GetMarketplaceModelEndpointInput,
+    output = M.GetMarketplaceModelEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/marketplace-model/endpoints/{endpointArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetModelCopyJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetModelCopyJob"),
+    input = M.GetModelCopyJobInput,
+    output = M.GetModelCopyJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/model-copy-jobs/{jobArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetModelCustomizationJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetModelCustomizationJob"),
+    input = M.GetModelCustomizationJobInput,
+    output = M.GetModelCustomizationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/model-customization-jobs/{jobIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetModelImportJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetModelImportJob"),
+    input = M.GetModelImportJobInput,
+    output = M.GetModelImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/model-import-jobs/{jobIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetModelInvocationJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetModelInvocationJob"),
+    input = M.GetModelInvocationJobInput,
+    output = M.GetModelInvocationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/model-invocation-job/{jobIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetModelInvocationLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetModelInvocationLoggingConfiguration"),
+    input = M.GetModelInvocationLoggingConfigurationInput,
+    output = M.GetModelInvocationLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/logging/modelinvocations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetPromptRouter = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetPromptRouter"),
+    input = M.GetPromptRouterInput,
+    output = M.GetPromptRouterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prompt-routers/{promptRouterArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetProvisionedModelThroughput = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetProvisionedModelThroughput"),
+    input = M.GetProvisionedModelThroughputInput,
+    output = M.GetProvisionedModelThroughputOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/provisioned-model-throughput/{provisionedModelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resource-policy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.GetUseCaseForModelAccess = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetUseCaseForModelAccess"),
+    input = M.GetUseCaseForModelAccessInput,
+    output = M.GetUseCaseForModelAccessOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/use-case-for-model-access" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListAutomatedReasoningPolicies = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListAutomatedReasoningPolicies"),
+    input = M.ListAutomatedReasoningPoliciesInput,
+    output = M.ListAutomatedReasoningPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automated-reasoning-policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListAutomatedReasoningPolicyBuildWorkflows = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListAutomatedReasoningPolicyBuildWorkflows"),
+    input = M.ListAutomatedReasoningPolicyBuildWorkflowsInput,
+    output = M.ListAutomatedReasoningPolicyBuildWorkflowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automated-reasoning-policies/{policyArn}/build-workflows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListAutomatedReasoningPolicyTestCases = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListAutomatedReasoningPolicyTestCases"),
+    input = M.ListAutomatedReasoningPolicyTestCasesInput,
+    output = M.ListAutomatedReasoningPolicyTestCasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automated-reasoning-policies/{policyArn}/test-cases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListAutomatedReasoningPolicyTestResults = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListAutomatedReasoningPolicyTestResults"),
+    input = M.ListAutomatedReasoningPolicyTestResultsInput,
+    output = M.ListAutomatedReasoningPolicyTestResultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/test-results" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListCustomModelDeployments = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListCustomModelDeployments"),
+    input = M.ListCustomModelDeploymentsInput,
+    output = M.ListCustomModelDeploymentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/model-customization/custom-model-deployments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListCustomModels = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListCustomModels"),
+    input = M.ListCustomModelsInput,
+    output = M.ListCustomModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/custom-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListEnforcedGuardrailsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListEnforcedGuardrailsConfiguration"),
+    input = M.ListEnforcedGuardrailsConfigurationInput,
+    output = M.ListEnforcedGuardrailsConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/enforcedGuardrailsConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListEvaluationJobs = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListEvaluationJobs"),
+    input = M.ListEvaluationJobsInput,
+    output = M.ListEvaluationJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/evaluation-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListFoundationModelAgreementOffers = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListFoundationModelAgreementOffers"),
+    input = M.ListFoundationModelAgreementOffersInput,
+    output = M.ListFoundationModelAgreementOffersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/list-foundation-model-agreement-offers/{modelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListFoundationModels = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListFoundationModels"),
+    input = M.ListFoundationModelsInput,
+    output = M.ListFoundationModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/foundation-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListGuardrails = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListGuardrails"),
+    input = M.ListGuardrailsInput,
+    output = M.ListGuardrailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/guardrails" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListImportedModels = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListImportedModels"),
+    input = M.ListImportedModelsInput,
+    output = M.ListImportedModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/imported-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListInferenceProfiles = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListInferenceProfiles"),
+    input = M.ListInferenceProfilesInput,
+    output = M.ListInferenceProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/inference-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListMarketplaceModelEndpoints = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListMarketplaceModelEndpoints"),
+    input = M.ListMarketplaceModelEndpointsInput,
+    output = M.ListMarketplaceModelEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/marketplace-model/endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListModelCopyJobs = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListModelCopyJobs"),
+    input = M.ListModelCopyJobsInput,
+    output = M.ListModelCopyJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/model-copy-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListModelCustomizationJobs = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListModelCustomizationJobs"),
+    input = M.ListModelCustomizationJobsInput,
+    output = M.ListModelCustomizationJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/model-customization-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListModelImportJobs = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListModelImportJobs"),
+    input = M.ListModelImportJobsInput,
+    output = M.ListModelImportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/model-import-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListModelInvocationJobs = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListModelInvocationJobs"),
+    input = M.ListModelInvocationJobsInput,
+    output = M.ListModelInvocationJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/model-invocation-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListPromptRouters = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListPromptRouters"),
+    input = M.ListPromptRoutersInput,
+    output = M.ListPromptRoutersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prompt-routers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListProvisionedModelThroughputs = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListProvisionedModelThroughputs"),
+    input = M.ListProvisionedModelThroughputsInput,
+    output = M.ListProvisionedModelThroughputsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/provisioned-model-throughputs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/listTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.PutEnforcedGuardrailConfiguration = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "PutEnforcedGuardrailConfiguration"),
+    input = M.PutEnforcedGuardrailConfigurationInput,
+    output = M.PutEnforcedGuardrailConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/enforcedGuardrailsConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.PutModelInvocationLoggingConfiguration = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "PutModelInvocationLoggingConfiguration"),
+    input = M.PutModelInvocationLoggingConfigurationInput,
+    output = M.PutModelInvocationLoggingConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/logging/modelinvocations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resource-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.PutUseCaseForModelAccess = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "PutUseCaseForModelAccess"),
+    input = M.PutUseCaseForModelAccessInput,
+    output = M.PutUseCaseForModelAccessOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/use-case-for-model-access" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.RegisterMarketplaceModelEndpoint = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "RegisterMarketplaceModelEndpoint"),
+    input = M.RegisterMarketplaceModelEndpointInput,
+    output = M.RegisterMarketplaceModelEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/marketplace-model/endpoints/{endpointIdentifier}/registration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.StartAutomatedReasoningPolicyBuildWorkflow = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "StartAutomatedReasoningPolicyBuildWorkflow"),
+    input = M.StartAutomatedReasoningPolicyBuildWorkflowInput,
+    output = M.StartAutomatedReasoningPolicyBuildWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowType}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.StartAutomatedReasoningPolicyTestWorkflow = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "StartAutomatedReasoningPolicyTestWorkflow"),
+    input = M.StartAutomatedReasoningPolicyTestWorkflowInput,
+    output = M.StartAutomatedReasoningPolicyTestWorkflowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/test-workflows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.StopEvaluationJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "StopEvaluationJob"),
+    input = M.StopEvaluationJobInput,
+    output = M.StopEvaluationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/evaluation-job/{jobIdentifier}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.StopModelCustomizationJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "StopModelCustomizationJob"),
+    input = M.StopModelCustomizationJobInput,
+    output = M.StopModelCustomizationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/model-customization-jobs/{jobIdentifier}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.StopModelInvocationJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "StopModelInvocationJob"),
+    input = M.StopModelInvocationJobInput,
+    output = M.StopModelInvocationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/model-invocation-job/{jobIdentifier}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/untagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.UpdateAutomatedReasoningPolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "UpdateAutomatedReasoningPolicy"),
+    input = M.UpdateAutomatedReasoningPolicyInput,
+    output = M.UpdateAutomatedReasoningPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/automated-reasoning-policies/{policyArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.UpdateAutomatedReasoningPolicyAnnotations = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "UpdateAutomatedReasoningPolicyAnnotations"),
+    input = M.UpdateAutomatedReasoningPolicyAnnotationsInput,
+    output = M.UpdateAutomatedReasoningPolicyAnnotationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/annotations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.UpdateAutomatedReasoningPolicyTestCase = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "UpdateAutomatedReasoningPolicyTestCase"),
+    input = M.UpdateAutomatedReasoningPolicyTestCaseInput,
+    output = M.UpdateAutomatedReasoningPolicyTestCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/automated-reasoning-policies/{policyArn}/test-cases/{testCaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.UpdateCustomModelDeployment = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "UpdateCustomModelDeployment"),
+    input = M.UpdateCustomModelDeploymentInput,
+    output = M.UpdateCustomModelDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/model-customization/custom-model-deployments/{customModelDeploymentIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.UpdateGuardrail = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "UpdateGuardrail"),
+    input = M.UpdateGuardrailInput,
+    output = M.UpdateGuardrailOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/guardrails/{guardrailIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.UpdateMarketplaceModelEndpoint = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "UpdateMarketplaceModelEndpoint"),
+    input = M.UpdateMarketplaceModelEndpointInput,
+    output = M.UpdateMarketplaceModelEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/marketplace-model/endpoints/{endpointArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.UpdateProvisionedModelThroughput = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "UpdateProvisionedModelThroughput"),
+    input = M.UpdateProvisionedModelThroughputInput,
+    output = M.UpdateProvisionedModelThroughputOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/provisioned-model-throughput/{provisionedModelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
 return M

@@ -2281,4 +2281,278 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.synthetics", "Synthetics"),
+    version = "2017-10-11",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateResource = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "AssociateResource"),
+    input = M.AssociateResourceInput,
+    output = M.AssociateResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/group/{GroupIdentifier}/associate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCanary = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "CreateCanary"),
+    input = M.CreateCanaryInput,
+    output = M.CreateCanaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/canary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGroup = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "CreateGroup"),
+    input = M.CreateGroupInput,
+    output = M.CreateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCanary = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "DeleteCanary"),
+    input = M.DeleteCanaryInput,
+    output = M.DeleteCanaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/canary/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGroup = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "DeleteGroup"),
+    input = M.DeleteGroupInput,
+    output = M.DeleteGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/group/{GroupIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCanaries = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "DescribeCanaries"),
+    input = M.DescribeCanariesInput,
+    output = M.DescribeCanariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/canaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCanariesLastRun = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "DescribeCanariesLastRun"),
+    input = M.DescribeCanariesLastRunInput,
+    output = M.DescribeCanariesLastRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/canaries/last-run" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRuntimeVersions = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "DescribeRuntimeVersions"),
+    input = M.DescribeRuntimeVersionsInput,
+    output = M.DescribeRuntimeVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runtime-versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateResource = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "DisassociateResource"),
+    input = M.DisassociateResourceInput,
+    output = M.DisassociateResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/group/{GroupIdentifier}/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCanary = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "GetCanary"),
+    input = M.GetCanaryInput,
+    output = M.GetCanaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/canary/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCanaryRuns = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "GetCanaryRuns"),
+    input = M.GetCanaryRunsInput,
+    output = M.GetCanaryRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/canary/{Name}/runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGroup = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "GetGroup"),
+    input = M.GetGroupInput,
+    output = M.GetGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/group/{GroupIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociatedGroups = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "ListAssociatedGroups"),
+    input = M.ListAssociatedGroupsInput,
+    output = M.ListAssociatedGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resource/{ResourceArn}/groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroupResources = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "ListGroupResources"),
+    input = M.ListGroupResourcesInput,
+    output = M.ListGroupResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/group/{GroupIdentifier}/resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroups = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "ListGroups"),
+    input = M.ListGroupsInput,
+    output = M.ListGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCanary = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "StartCanary"),
+    input = M.StartCanaryInput,
+    output = M.StartCanaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/canary/{Name}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCanaryDryRun = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "StartCanaryDryRun"),
+    input = M.StartCanaryDryRunInput,
+    output = M.StartCanaryDryRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/canary/{Name}/dry-run/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopCanary = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "StopCanary"),
+    input = M.StopCanaryInput,
+    output = M.StopCanaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/canary/{Name}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCanary = schema.operation({
+    id = id.from("com.amazonaws.synthetics", "UpdateCanary"),
+    input = M.UpdateCanaryInput,
+    output = M.UpdateCanaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/canary/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

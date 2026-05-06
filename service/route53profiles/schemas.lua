@@ -1157,4 +1157,206 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.route53profiles", "Route53Profiles"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateProfile = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "AssociateProfile"),
+    input = M.AssociateProfileInput,
+    output = M.AssociateProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profileassociation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateResourceToProfile = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "AssociateResourceToProfile"),
+    input = M.AssociateResourceToProfileInput,
+    output = M.AssociateResourceToProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profileresourceassociation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProfile = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "CreateProfile"),
+    input = M.CreateProfileInput,
+    output = M.CreateProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProfile = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "DeleteProfile"),
+    input = M.DeleteProfileInput,
+    output = M.DeleteProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/profile/{ProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateProfile = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "DisassociateProfile"),
+    input = M.DisassociateProfileInput,
+    output = M.DisassociateProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/profileassociation/Profileid/{ProfileId}/resourceid/{ResourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateResourceFromProfile = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "DisassociateResourceFromProfile"),
+    input = M.DisassociateResourceFromProfileInput,
+    output = M.DisassociateResourceFromProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/profileresourceassociation/profileid/{ProfileId}/resourcearn/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfile = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "GetProfile"),
+    input = M.GetProfileInput,
+    output = M.GetProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profile/{ProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfileAssociation = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "GetProfileAssociation"),
+    input = M.GetProfileAssociationInput,
+    output = M.GetProfileAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profileassociation/{ProfileAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfileResourceAssociation = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "GetProfileResourceAssociation"),
+    input = M.GetProfileResourceAssociationInput,
+    output = M.GetProfileResourceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profileresourceassociation/{ProfileResourceAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfileAssociations = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "ListProfileAssociations"),
+    input = M.ListProfileAssociationsInput,
+    output = M.ListProfileAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profileassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfileResourceAssociations = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "ListProfileResourceAssociations"),
+    input = M.ListProfileResourceAssociationsInput,
+    output = M.ListProfileResourceAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profileresourceassociations/profileid/{ProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProfiles = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "ListProfiles"),
+    input = M.ListProfilesInput,
+    output = M.ListProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProfileResourceAssociation = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "UpdateProfileResourceAssociation"),
+    input = M.UpdateProfileResourceAssociationInput,
+    output = M.UpdateProfileResourceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/profileresourceassociation/{ProfileResourceAssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

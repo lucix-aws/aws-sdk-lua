@@ -12897,4 +12897,1070 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cleanrooms", "AWSBastionControlPlaneServiceLambda"),
+    version = "2022-02-17",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetCollaborationAnalysisTemplate = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "BatchGetCollaborationAnalysisTemplate"),
+    input = M.BatchGetCollaborationAnalysisTemplateInput,
+    output = M.BatchGetCollaborationAnalysisTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/collaborations/{collaborationIdentifier}/batch-analysistemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetSchema = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "BatchGetSchema"),
+    input = M.BatchGetSchemaInput,
+    output = M.BatchGetSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/collaborations/{collaborationIdentifier}/batch-schema" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetSchemaAnalysisRule = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "BatchGetSchemaAnalysisRule"),
+    input = M.BatchGetSchemaAnalysisRuleInput,
+    output = M.BatchGetSchemaAnalysisRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/collaborations/{collaborationIdentifier}/batch-schema-analysis-rule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAnalysisTemplate = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "CreateAnalysisTemplate"),
+    input = M.CreateAnalysisTemplateInput,
+    output = M.CreateAnalysisTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/analysistemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCollaboration = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "CreateCollaboration"),
+    input = M.CreateCollaborationInput,
+    output = M.CreateCollaborationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/collaborations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCollaborationChangeRequest = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "CreateCollaborationChangeRequest"),
+    input = M.CreateCollaborationChangeRequestInput,
+    output = M.CreateCollaborationChangeRequestOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/collaborations/{collaborationIdentifier}/changeRequests" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfiguredAudienceModelAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "CreateConfiguredAudienceModelAssociation"),
+    input = M.CreateConfiguredAudienceModelAssociationInput,
+    output = M.CreateConfiguredAudienceModelAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfiguredTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "CreateConfiguredTable"),
+    input = M.CreateConfiguredTableInput,
+    output = M.CreateConfiguredTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configuredTables" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfiguredTableAnalysisRule = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "CreateConfiguredTableAnalysisRule"),
+    input = M.CreateConfiguredTableAnalysisRuleInput,
+    output = M.CreateConfiguredTableAnalysisRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configuredTables/{configuredTableIdentifier}/analysisRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfiguredTableAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "CreateConfiguredTableAssociation"),
+    input = M.CreateConfiguredTableAssociationInput,
+    output = M.CreateConfiguredTableAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/configuredTableAssociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConfiguredTableAssociationAnalysisRule = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "CreateConfiguredTableAssociationAnalysisRule"),
+    input = M.CreateConfiguredTableAssociationAnalysisRuleInput,
+    output = M.CreateConfiguredTableAssociationAnalysisRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIdMappingTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "CreateIdMappingTable"),
+    input = M.CreateIdMappingTableInput,
+    output = M.CreateIdMappingTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/idmappingtables" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIdNamespaceAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "CreateIdNamespaceAssociation"),
+    input = M.CreateIdNamespaceAssociationInput,
+    output = M.CreateIdNamespaceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/idnamespaceassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMembership = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "CreateMembership"),
+    input = M.CreateMembershipInput,
+    output = M.CreateMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePrivacyBudgetTemplate = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "CreatePrivacyBudgetTemplate"),
+    input = M.CreatePrivacyBudgetTemplateInput,
+    output = M.CreatePrivacyBudgetTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/privacybudgettemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAnalysisTemplate = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DeleteAnalysisTemplate"),
+    input = M.DeleteAnalysisTemplateInput,
+    output = M.DeleteAnalysisTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCollaboration = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DeleteCollaboration"),
+    input = M.DeleteCollaborationInput,
+    output = M.DeleteCollaborationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/collaborations/{collaborationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfiguredAudienceModelAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DeleteConfiguredAudienceModelAssociation"),
+    input = M.DeleteConfiguredAudienceModelAssociationInput,
+    output = M.DeleteConfiguredAudienceModelAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfiguredTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DeleteConfiguredTable"),
+    input = M.DeleteConfiguredTableInput,
+    output = M.DeleteConfiguredTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/configuredTables/{configuredTableIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfiguredTableAnalysisRule = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DeleteConfiguredTableAnalysisRule"),
+    input = M.DeleteConfiguredTableAnalysisRuleInput,
+    output = M.DeleteConfiguredTableAnalysisRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/configuredTables/{configuredTableIdentifier}/analysisRule/{analysisRuleType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfiguredTableAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DeleteConfiguredTableAssociation"),
+    input = M.DeleteConfiguredTableAssociationInput,
+    output = M.DeleteConfiguredTableAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConfiguredTableAssociationAnalysisRule = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DeleteConfiguredTableAssociationAnalysisRule"),
+    input = M.DeleteConfiguredTableAssociationAnalysisRuleInput,
+    output = M.DeleteConfiguredTableAssociationAnalysisRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdMappingTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DeleteIdMappingTable"),
+    input = M.DeleteIdMappingTableInput,
+    output = M.DeleteIdMappingTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdNamespaceAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DeleteIdNamespaceAssociation"),
+    input = M.DeleteIdNamespaceAssociationInput,
+    output = M.DeleteIdNamespaceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMember = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DeleteMember"),
+    input = M.DeleteMemberInput,
+    output = M.DeleteMemberOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/collaborations/{collaborationIdentifier}/member/{accountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMembership = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DeleteMembership"),
+    input = M.DeleteMembershipInput,
+    output = M.DeleteMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePrivacyBudgetTemplate = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DeletePrivacyBudgetTemplate"),
+    input = M.DeletePrivacyBudgetTemplateInput,
+    output = M.DeletePrivacyBudgetTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAnalysisTemplate = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetAnalysisTemplate"),
+    input = M.GetAnalysisTemplateInput,
+    output = M.GetAnalysisTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCollaboration = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetCollaboration"),
+    input = M.GetCollaborationInput,
+    output = M.GetCollaborationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCollaborationAnalysisTemplate = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetCollaborationAnalysisTemplate"),
+    input = M.GetCollaborationAnalysisTemplateInput,
+    output = M.GetCollaborationAnalysisTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/analysistemplates/{analysisTemplateArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCollaborationChangeRequest = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetCollaborationChangeRequest"),
+    input = M.GetCollaborationChangeRequestInput,
+    output = M.GetCollaborationChangeRequestOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/changeRequests/{changeRequestIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCollaborationConfiguredAudienceModelAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetCollaborationConfiguredAudienceModelAssociation"),
+    input = M.GetCollaborationConfiguredAudienceModelAssociationInput,
+    output = M.GetCollaborationConfiguredAudienceModelAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCollaborationIdNamespaceAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetCollaborationIdNamespaceAssociation"),
+    input = M.GetCollaborationIdNamespaceAssociationInput,
+    output = M.GetCollaborationIdNamespaceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCollaborationPrivacyBudgetTemplate = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetCollaborationPrivacyBudgetTemplate"),
+    input = M.GetCollaborationPrivacyBudgetTemplateInput,
+    output = M.GetCollaborationPrivacyBudgetTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfiguredAudienceModelAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetConfiguredAudienceModelAssociation"),
+    input = M.GetConfiguredAudienceModelAssociationInput,
+    output = M.GetConfiguredAudienceModelAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfiguredTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetConfiguredTable"),
+    input = M.GetConfiguredTableInput,
+    output = M.GetConfiguredTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configuredTables/{configuredTableIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfiguredTableAnalysisRule = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetConfiguredTableAnalysisRule"),
+    input = M.GetConfiguredTableAnalysisRuleInput,
+    output = M.GetConfiguredTableAnalysisRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configuredTables/{configuredTableIdentifier}/analysisRule/{analysisRuleType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfiguredTableAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetConfiguredTableAssociation"),
+    input = M.GetConfiguredTableAssociationInput,
+    output = M.GetConfiguredTableAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConfiguredTableAssociationAnalysisRule = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetConfiguredTableAssociationAnalysisRule"),
+    input = M.GetConfiguredTableAssociationAnalysisRuleInput,
+    output = M.GetConfiguredTableAssociationAnalysisRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdMappingTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetIdMappingTable"),
+    input = M.GetIdMappingTableInput,
+    output = M.GetIdMappingTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdNamespaceAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetIdNamespaceAssociation"),
+    input = M.GetIdNamespaceAssociationInput,
+    output = M.GetIdNamespaceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMembership = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetMembership"),
+    input = M.GetMembershipInput,
+    output = M.GetMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPrivacyBudgetTemplate = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetPrivacyBudgetTemplate"),
+    input = M.GetPrivacyBudgetTemplateInput,
+    output = M.GetPrivacyBudgetTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProtectedJob = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetProtectedJob"),
+    input = M.GetProtectedJobInput,
+    output = M.GetProtectedJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/protectedJobs/{protectedJobIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProtectedQuery = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetProtectedQuery"),
+    input = M.GetProtectedQueryInput,
+    output = M.GetProtectedQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/protectedQueries/{protectedQueryIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSchema = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetSchema"),
+    input = M.GetSchemaInput,
+    output = M.GetSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/schemas/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSchemaAnalysisRule = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetSchemaAnalysisRule"),
+    input = M.GetSchemaAnalysisRuleInput,
+    output = M.GetSchemaAnalysisRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/schemas/{name}/analysisRule/{type}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnalysisTemplates = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListAnalysisTemplates"),
+    input = M.ListAnalysisTemplatesInput,
+    output = M.ListAnalysisTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/analysistemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollaborationAnalysisTemplates = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListCollaborationAnalysisTemplates"),
+    input = M.ListCollaborationAnalysisTemplatesInput,
+    output = M.ListCollaborationAnalysisTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/analysistemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollaborationChangeRequests = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListCollaborationChangeRequests"),
+    input = M.ListCollaborationChangeRequestsInput,
+    output = M.ListCollaborationChangeRequestsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/changeRequests" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollaborationConfiguredAudienceModelAssociations = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListCollaborationConfiguredAudienceModelAssociations"),
+    input = M.ListCollaborationConfiguredAudienceModelAssociationsInput,
+    output = M.ListCollaborationConfiguredAudienceModelAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/configuredaudiencemodelassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollaborationIdNamespaceAssociations = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListCollaborationIdNamespaceAssociations"),
+    input = M.ListCollaborationIdNamespaceAssociationsInput,
+    output = M.ListCollaborationIdNamespaceAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/idnamespaceassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollaborationPrivacyBudgets = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListCollaborationPrivacyBudgets"),
+    input = M.ListCollaborationPrivacyBudgetsInput,
+    output = M.ListCollaborationPrivacyBudgetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/privacybudgets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollaborationPrivacyBudgetTemplates = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListCollaborationPrivacyBudgetTemplates"),
+    input = M.ListCollaborationPrivacyBudgetTemplatesInput,
+    output = M.ListCollaborationPrivacyBudgetTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/privacybudgettemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollaborations = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListCollaborations"),
+    input = M.ListCollaborationsInput,
+    output = M.ListCollaborationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfiguredAudienceModelAssociations = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListConfiguredAudienceModelAssociations"),
+    input = M.ListConfiguredAudienceModelAssociationsInput,
+    output = M.ListConfiguredAudienceModelAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfiguredTableAssociations = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListConfiguredTableAssociations"),
+    input = M.ListConfiguredTableAssociationsInput,
+    output = M.ListConfiguredTableAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/configuredTableAssociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConfiguredTables = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListConfiguredTables"),
+    input = M.ListConfiguredTablesInput,
+    output = M.ListConfiguredTablesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configuredTables" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdMappingTables = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListIdMappingTables"),
+    input = M.ListIdMappingTablesInput,
+    output = M.ListIdMappingTablesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/idmappingtables" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdNamespaceAssociations = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListIdNamespaceAssociations"),
+    input = M.ListIdNamespaceAssociationsInput,
+    output = M.ListIdNamespaceAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/idnamespaceassociations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMembers = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListMembers"),
+    input = M.ListMembersInput,
+    output = M.ListMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMemberships = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListMemberships"),
+    input = M.ListMembershipsInput,
+    output = M.ListMembershipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPrivacyBudgets = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListPrivacyBudgets"),
+    input = M.ListPrivacyBudgetsInput,
+    output = M.ListPrivacyBudgetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/privacybudgets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPrivacyBudgetTemplates = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListPrivacyBudgetTemplates"),
+    input = M.ListPrivacyBudgetTemplatesInput,
+    output = M.ListPrivacyBudgetTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/privacybudgettemplates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProtectedJobs = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListProtectedJobs"),
+    input = M.ListProtectedJobsInput,
+    output = M.ListProtectedJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/protectedJobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProtectedQueries = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListProtectedQueries"),
+    input = M.ListProtectedQueriesInput,
+    output = M.ListProtectedQueriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/protectedQueries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSchemas = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListSchemas"),
+    input = M.ListSchemasInput,
+    output = M.ListSchemasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/schemas" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PopulateIdMappingTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "PopulateIdMappingTable"),
+    input = M.PopulateIdMappingTableInput,
+    output = M.PopulateIdMappingTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}/populate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PreviewPrivacyImpact = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "PreviewPrivacyImpact"),
+    input = M.PreviewPrivacyImpactInput,
+    output = M.PreviewPrivacyImpactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/previewprivacyimpact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartProtectedJob = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "StartProtectedJob"),
+    input = M.StartProtectedJobInput,
+    output = M.StartProtectedJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/protectedJobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartProtectedQuery = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "StartProtectedQuery"),
+    input = M.StartProtectedQueryInput,
+    output = M.StartProtectedQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/protectedQueries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAnalysisTemplate = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateAnalysisTemplate"),
+    input = M.UpdateAnalysisTemplateInput,
+    output = M.UpdateAnalysisTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCollaboration = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateCollaboration"),
+    input = M.UpdateCollaborationInput,
+    output = M.UpdateCollaborationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/collaborations/{collaborationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCollaborationChangeRequest = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateCollaborationChangeRequest"),
+    input = M.UpdateCollaborationChangeRequestInput,
+    output = M.UpdateCollaborationChangeRequestOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/collaborations/{collaborationIdentifier}/changeRequests/{changeRequestIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfiguredAudienceModelAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateConfiguredAudienceModelAssociation"),
+    input = M.UpdateConfiguredAudienceModelAssociationInput,
+    output = M.UpdateConfiguredAudienceModelAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfiguredTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateConfiguredTable"),
+    input = M.UpdateConfiguredTableInput,
+    output = M.UpdateConfiguredTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/configuredTables/{configuredTableIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfiguredTableAnalysisRule = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateConfiguredTableAnalysisRule"),
+    input = M.UpdateConfiguredTableAnalysisRuleInput,
+    output = M.UpdateConfiguredTableAnalysisRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/configuredTables/{configuredTableIdentifier}/analysisRule/{analysisRuleType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfiguredTableAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateConfiguredTableAssociation"),
+    input = M.UpdateConfiguredTableAssociationInput,
+    output = M.UpdateConfiguredTableAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfiguredTableAssociationAnalysisRule = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateConfiguredTableAssociationAnalysisRule"),
+    input = M.UpdateConfiguredTableAssociationAnalysisRuleInput,
+    output = M.UpdateConfiguredTableAssociationAnalysisRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIdMappingTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateIdMappingTable"),
+    input = M.UpdateIdMappingTableInput,
+    output = M.UpdateIdMappingTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIdNamespaceAssociation = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateIdNamespaceAssociation"),
+    input = M.UpdateIdNamespaceAssociationInput,
+    output = M.UpdateIdNamespaceAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMembership = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateMembership"),
+    input = M.UpdateMembershipInput,
+    output = M.UpdateMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePrivacyBudgetTemplate = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdatePrivacyBudgetTemplate"),
+    input = M.UpdatePrivacyBudgetTemplateInput,
+    output = M.UpdatePrivacyBudgetTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProtectedJob = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateProtectedJob"),
+    input = M.UpdateProtectedJobInput,
+    output = M.UpdateProtectedJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}/protectedJobs/{protectedJobIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProtectedQuery = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateProtectedQuery"),
+    input = M.UpdateProtectedQueryInput,
+    output = M.UpdateProtectedQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}/protectedQueries/{protectedQueryIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

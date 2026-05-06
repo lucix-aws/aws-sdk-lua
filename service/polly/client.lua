@@ -7,6 +7,7 @@ local endpoint_rules = require("polly.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("polly.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "polly", signing_region = cfg.region } }
                 else
@@ -49,120 +52,39 @@ function M.new(cfg)
 end
 
 function Client:deleteLexicon(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteLexicon",
-        input_schema = schemas.DeleteLexiconInput,
-        output_schema = schemas.DeleteLexiconOutput,
-        http_method = "DELETE",
-        http_path = "/v1/lexicons/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteLexicon, input, options)
 end
 
 function Client:describeVoices(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeVoices",
-        input_schema = schemas.DescribeVoicesInput,
-        output_schema = schemas.DescribeVoicesOutput,
-        http_method = "GET",
-        http_path = "/v1/voices",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeVoices, input, options)
 end
 
 function Client:getLexicon(input, options)
-    return self:invokeOperation(input, {
-        name = "GetLexicon",
-        input_schema = schemas.GetLexiconInput,
-        output_schema = schemas.GetLexiconOutput,
-        http_method = "GET",
-        http_path = "/v1/lexicons/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetLexicon, input, options)
 end
 
 function Client:getSpeechSynthesisTask(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSpeechSynthesisTask",
-        input_schema = schemas.GetSpeechSynthesisTaskInput,
-        output_schema = schemas.GetSpeechSynthesisTaskOutput,
-        http_method = "GET",
-        http_path = "/v1/synthesisTasks/{TaskId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSpeechSynthesisTask, input, options)
 end
 
 function Client:listLexicons(input, options)
-    return self:invokeOperation(input, {
-        name = "ListLexicons",
-        input_schema = schemas.ListLexiconsInput,
-        output_schema = schemas.ListLexiconsOutput,
-        http_method = "GET",
-        http_path = "/v1/lexicons",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListLexicons, input, options)
 end
 
 function Client:listSpeechSynthesisTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSpeechSynthesisTasks",
-        input_schema = schemas.ListSpeechSynthesisTasksInput,
-        output_schema = schemas.ListSpeechSynthesisTasksOutput,
-        http_method = "GET",
-        http_path = "/v1/synthesisTasks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSpeechSynthesisTasks, input, options)
 end
 
 function Client:putLexicon(input, options)
-    return self:invokeOperation(input, {
-        name = "PutLexicon",
-        input_schema = schemas.PutLexiconInput,
-        output_schema = schemas.PutLexiconOutput,
-        http_method = "PUT",
-        http_path = "/v1/lexicons/{Name}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutLexicon, input, options)
 end
 
 function Client:startSpeechSynthesisTask(input, options)
-    return self:invokeOperation(input, {
-        name = "StartSpeechSynthesisTask",
-        input_schema = schemas.StartSpeechSynthesisTaskInput,
-        output_schema = schemas.StartSpeechSynthesisTaskOutput,
-        http_method = "POST",
-        http_path = "/v1/synthesisTasks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartSpeechSynthesisTask, input, options)
 end
 
 function Client:synthesizeSpeech(input, options)
-    return self:invokeOperation(input, {
-        name = "SynthesizeSpeech",
-        input_schema = schemas.SynthesizeSpeechInput,
-        output_schema = schemas.SynthesizeSpeechOutput,
-        http_method = "POST",
-        http_path = "/v1/speech",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SynthesizeSpeech, input, options)
 end
 
 return M

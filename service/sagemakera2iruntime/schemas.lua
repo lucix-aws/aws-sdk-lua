@@ -495,4 +495,74 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sagemakera2iruntime", "AmazonSageMakerA2IRuntime"),
+    version = "2019-11-07",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHumanLoop = schema.operation({
+    id = id.from("com.amazonaws.sagemakera2iruntime", "DeleteHumanLoop"),
+    input = M.DeleteHumanLoopInput,
+    output = M.DeleteHumanLoopOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/human-loops/{HumanLoopName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeHumanLoop = schema.operation({
+    id = id.from("com.amazonaws.sagemakera2iruntime", "DescribeHumanLoop"),
+    input = M.DescribeHumanLoopInput,
+    output = M.DescribeHumanLoopOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/human-loops/{HumanLoopName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHumanLoops = schema.operation({
+    id = id.from("com.amazonaws.sagemakera2iruntime", "ListHumanLoops"),
+    input = M.ListHumanLoopsInput,
+    output = M.ListHumanLoopsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/human-loops" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartHumanLoop = schema.operation({
+    id = id.from("com.amazonaws.sagemakera2iruntime", "StartHumanLoop"),
+    input = M.StartHumanLoopInput,
+    output = M.StartHumanLoopOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/human-loops" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopHumanLoop = schema.operation({
+    id = id.from("com.amazonaws.sagemakera2iruntime", "StopHumanLoop"),
+    input = M.StopHumanLoopInput,
+    output = M.StopHumanLoopOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/human-loops/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

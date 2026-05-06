@@ -5710,4 +5710,322 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.computeoptimizer", "ComputeOptimizerService"),
+    version = "2019-11-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecommendationPreferences = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "DeleteRecommendationPreferences"),
+    input = M.DeleteRecommendationPreferencesInput,
+    output = M.DeleteRecommendationPreferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRecommendationExportJobs = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "DescribeRecommendationExportJobs"),
+    input = M.DescribeRecommendationExportJobsInput,
+    output = M.DescribeRecommendationExportJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportAutoScalingGroupRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "ExportAutoScalingGroupRecommendations"),
+    input = M.ExportAutoScalingGroupRecommendationsInput,
+    output = M.ExportAutoScalingGroupRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportEBSVolumeRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "ExportEBSVolumeRecommendations"),
+    input = M.ExportEBSVolumeRecommendationsInput,
+    output = M.ExportEBSVolumeRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportEC2InstanceRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "ExportEC2InstanceRecommendations"),
+    input = M.ExportEC2InstanceRecommendationsInput,
+    output = M.ExportEC2InstanceRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportECSServiceRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "ExportECSServiceRecommendations"),
+    input = M.ExportECSServiceRecommendationsInput,
+    output = M.ExportECSServiceRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportIdleRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "ExportIdleRecommendations"),
+    input = M.ExportIdleRecommendationsInput,
+    output = M.ExportIdleRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportLambdaFunctionRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "ExportLambdaFunctionRecommendations"),
+    input = M.ExportLambdaFunctionRecommendationsInput,
+    output = M.ExportLambdaFunctionRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportLicenseRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "ExportLicenseRecommendations"),
+    input = M.ExportLicenseRecommendationsInput,
+    output = M.ExportLicenseRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportRDSDatabaseRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "ExportRDSDatabaseRecommendations"),
+    input = M.ExportRDSDatabaseRecommendationsInput,
+    output = M.ExportRDSDatabaseRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAutoScalingGroupRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetAutoScalingGroupRecommendations"),
+    input = M.GetAutoScalingGroupRecommendationsInput,
+    output = M.GetAutoScalingGroupRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEBSVolumeRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetEBSVolumeRecommendations"),
+    input = M.GetEBSVolumeRecommendationsInput,
+    output = M.GetEBSVolumeRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEC2InstanceRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetEC2InstanceRecommendations"),
+    input = M.GetEC2InstanceRecommendationsInput,
+    output = M.GetEC2InstanceRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEC2RecommendationProjectedMetrics = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetEC2RecommendationProjectedMetrics"),
+    input = M.GetEC2RecommendationProjectedMetricsInput,
+    output = M.GetEC2RecommendationProjectedMetricsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetECSServiceRecommendationProjectedMetrics = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetECSServiceRecommendationProjectedMetrics"),
+    input = M.GetECSServiceRecommendationProjectedMetricsInput,
+    output = M.GetECSServiceRecommendationProjectedMetricsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetECSServiceRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetECSServiceRecommendations"),
+    input = M.GetECSServiceRecommendationsInput,
+    output = M.GetECSServiceRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEffectiveRecommendationPreferences = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetEffectiveRecommendationPreferences"),
+    input = M.GetEffectiveRecommendationPreferencesInput,
+    output = M.GetEffectiveRecommendationPreferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnrollmentStatus = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetEnrollmentStatus"),
+    input = M.GetEnrollmentStatusInput,
+    output = M.GetEnrollmentStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnrollmentStatusesForOrganization = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetEnrollmentStatusesForOrganization"),
+    input = M.GetEnrollmentStatusesForOrganizationInput,
+    output = M.GetEnrollmentStatusesForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdleRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetIdleRecommendations"),
+    input = M.GetIdleRecommendationsInput,
+    output = M.GetIdleRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLambdaFunctionRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetLambdaFunctionRecommendations"),
+    input = M.GetLambdaFunctionRecommendationsInput,
+    output = M.GetLambdaFunctionRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLicenseRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetLicenseRecommendations"),
+    input = M.GetLicenseRecommendationsInput,
+    output = M.GetLicenseRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRDSDatabaseRecommendationProjectedMetrics = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetRDSDatabaseRecommendationProjectedMetrics"),
+    input = M.GetRDSDatabaseRecommendationProjectedMetricsInput,
+    output = M.GetRDSDatabaseRecommendationProjectedMetricsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRDSDatabaseRecommendations = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetRDSDatabaseRecommendations"),
+    input = M.GetRDSDatabaseRecommendationsInput,
+    output = M.GetRDSDatabaseRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommendationPreferences = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetRecommendationPreferences"),
+    input = M.GetRecommendationPreferencesInput,
+    output = M.GetRecommendationPreferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommendationSummaries = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "GetRecommendationSummaries"),
+    input = M.GetRecommendationSummariesInput,
+    output = M.GetRecommendationSummariesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRecommendationPreferences = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "PutRecommendationPreferences"),
+    input = M.PutRecommendationPreferencesInput,
+    output = M.PutRecommendationPreferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnrollmentStatus = schema.operation({
+    id = id.from("com.amazonaws.computeoptimizer", "UpdateEnrollmentStatus"),
+    input = M.UpdateEnrollmentStatusInput,
+    output = M.UpdateEnrollmentStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("pcs.endpoint_rules")
 local schemas = require("pcs.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "pcs", signing_region = cfg.region } }
                 else
@@ -49,250 +52,79 @@ function M.new(cfg)
 end
 
 function Client:createCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCluster",
-        input_schema = schemas.CreateClusterInput,
-        output_schema = schemas.CreateClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCluster, input, options)
 end
 
 function Client:createComputeNodeGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateComputeNodeGroup",
-        input_schema = schemas.CreateComputeNodeGroupInput,
-        output_schema = schemas.CreateComputeNodeGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateComputeNodeGroup, input, options)
 end
 
 function Client:createQueue(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateQueue",
-        input_schema = schemas.CreateQueueInput,
-        output_schema = schemas.CreateQueueOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateQueue, input, options)
 end
 
 function Client:deleteCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCluster",
-        input_schema = schemas.DeleteClusterInput,
-        output_schema = schemas.DeleteClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCluster, input, options)
 end
 
 function Client:deleteComputeNodeGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteComputeNodeGroup",
-        input_schema = schemas.DeleteComputeNodeGroupInput,
-        output_schema = schemas.DeleteComputeNodeGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteComputeNodeGroup, input, options)
 end
 
 function Client:deleteQueue(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteQueue",
-        input_schema = schemas.DeleteQueueInput,
-        output_schema = schemas.DeleteQueueOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteQueue, input, options)
 end
 
 function Client:getCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCluster",
-        input_schema = schemas.GetClusterInput,
-        output_schema = schemas.GetClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCluster, input, options)
 end
 
 function Client:getComputeNodeGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "GetComputeNodeGroup",
-        input_schema = schemas.GetComputeNodeGroupInput,
-        output_schema = schemas.GetComputeNodeGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetComputeNodeGroup, input, options)
 end
 
 function Client:getQueue(input, options)
-    return self:invokeOperation(input, {
-        name = "GetQueue",
-        input_schema = schemas.GetQueueInput,
-        output_schema = schemas.GetQueueOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetQueue, input, options)
 end
 
 function Client:listClusters(input, options)
-    return self:invokeOperation(input, {
-        name = "ListClusters",
-        input_schema = schemas.ListClustersInput,
-        output_schema = schemas.ListClustersOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListClusters, input, options)
 end
 
 function Client:listComputeNodeGroups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListComputeNodeGroups",
-        input_schema = schemas.ListComputeNodeGroupsInput,
-        output_schema = schemas.ListComputeNodeGroupsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListComputeNodeGroups, input, options)
 end
 
 function Client:listQueues(input, options)
-    return self:invokeOperation(input, {
-        name = "ListQueues",
-        input_schema = schemas.ListQueuesInput,
-        output_schema = schemas.ListQueuesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListQueues, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:registerComputeNodeGroupInstance(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterComputeNodeGroupInstance",
-        input_schema = schemas.RegisterComputeNodeGroupInstanceInput,
-        output_schema = schemas.RegisterComputeNodeGroupInstanceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterComputeNodeGroupInstance, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCluster",
-        input_schema = schemas.UpdateClusterInput,
-        output_schema = schemas.UpdateClusterOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCluster, input, options)
 end
 
 function Client:updateComputeNodeGroup(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateComputeNodeGroup",
-        input_schema = schemas.UpdateComputeNodeGroupInput,
-        output_schema = schemas.UpdateComputeNodeGroupOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateComputeNodeGroup, input, options)
 end
 
 function Client:updateQueue(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateQueue",
-        input_schema = schemas.UpdateQueueInput,
-        output_schema = schemas.UpdateQueueOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateQueue, input, options)
 end
 
 return M

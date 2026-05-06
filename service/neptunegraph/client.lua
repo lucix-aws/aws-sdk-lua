@@ -7,6 +7,7 @@ local endpoint_rules = require("neptunegraph.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("neptunegraph.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "neptune-graph", signing_region = cfg.region } }
                 else
@@ -49,445 +52,139 @@ function M.new(cfg)
 end
 
 function Client:cancelExportTask(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelExportTask",
-        input_schema = schemas.CancelExportTaskInput,
-        output_schema = schemas.CancelExportTaskOutput,
-        http_method = "DELETE",
-        http_path = "/exporttasks/{taskIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelExportTask, input, options)
 end
 
 function Client:cancelImportTask(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelImportTask",
-        input_schema = schemas.CancelImportTaskInput,
-        output_schema = schemas.CancelImportTaskOutput,
-        http_method = "DELETE",
-        http_path = "/importtasks/{taskIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelImportTask, input, options)
 end
 
 function Client:cancelQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "CancelQuery",
-        input_schema = schemas.CancelQueryInput,
-        output_schema = schemas.CancelQueryOutput,
-        http_method = "DELETE",
-        http_path = "/queries/{queryId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CancelQuery, input, options)
 end
 
 function Client:createGraph(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGraph",
-        input_schema = schemas.CreateGraphInput,
-        output_schema = schemas.CreateGraphOutput,
-        http_method = "POST",
-        http_path = "/graphs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGraph, input, options)
 end
 
 function Client:createGraphSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGraphSnapshot",
-        input_schema = schemas.CreateGraphSnapshotInput,
-        output_schema = schemas.CreateGraphSnapshotOutput,
-        http_method = "POST",
-        http_path = "/snapshots",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGraphSnapshot, input, options)
 end
 
 function Client:createGraphUsingImportTask(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGraphUsingImportTask",
-        input_schema = schemas.CreateGraphUsingImportTaskInput,
-        output_schema = schemas.CreateGraphUsingImportTaskOutput,
-        http_method = "POST",
-        http_path = "/importtasks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGraphUsingImportTask, input, options)
 end
 
 function Client:createPrivateGraphEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "CreatePrivateGraphEndpoint",
-        input_schema = schemas.CreatePrivateGraphEndpointInput,
-        output_schema = schemas.CreatePrivateGraphEndpointOutput,
-        http_method = "POST",
-        http_path = "/graphs/{graphIdentifier}/endpoints/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreatePrivateGraphEndpoint, input, options)
 end
 
 function Client:deleteGraph(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGraph",
-        input_schema = schemas.DeleteGraphInput,
-        output_schema = schemas.DeleteGraphOutput,
-        http_method = "DELETE",
-        http_path = "/graphs/{graphIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGraph, input, options)
 end
 
 function Client:deleteGraphSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGraphSnapshot",
-        input_schema = schemas.DeleteGraphSnapshotInput,
-        output_schema = schemas.DeleteGraphSnapshotOutput,
-        http_method = "DELETE",
-        http_path = "/snapshots/{snapshotIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGraphSnapshot, input, options)
 end
 
 function Client:deletePrivateGraphEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePrivateGraphEndpoint",
-        input_schema = schemas.DeletePrivateGraphEndpointInput,
-        output_schema = schemas.DeletePrivateGraphEndpointOutput,
-        http_method = "DELETE",
-        http_path = "/graphs/{graphIdentifier}/endpoints/{vpcId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePrivateGraphEndpoint, input, options)
 end
 
 function Client:executeQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "ExecuteQuery",
-        input_schema = schemas.ExecuteQueryInput,
-        output_schema = schemas.ExecuteQueryOutput,
-        http_method = "POST",
-        http_path = "/queries",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ExecuteQuery, input, options)
 end
 
 function Client:getExportTask(input, options)
-    return self:invokeOperation(input, {
-        name = "GetExportTask",
-        input_schema = schemas.GetExportTaskInput,
-        output_schema = schemas.GetExportTaskOutput,
-        http_method = "GET",
-        http_path = "/exporttasks/{taskIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetExportTask, input, options)
 end
 
 function Client:getGraph(input, options)
-    return self:invokeOperation(input, {
-        name = "GetGraph",
-        input_schema = schemas.GetGraphInput,
-        output_schema = schemas.GetGraphOutput,
-        http_method = "GET",
-        http_path = "/graphs/{graphIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetGraph, input, options)
 end
 
 function Client:getGraphSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "GetGraphSnapshot",
-        input_schema = schemas.GetGraphSnapshotInput,
-        output_schema = schemas.GetGraphSnapshotOutput,
-        http_method = "GET",
-        http_path = "/snapshots/{snapshotIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetGraphSnapshot, input, options)
 end
 
 function Client:getGraphSummary(input, options)
-    return self:invokeOperation(input, {
-        name = "GetGraphSummary",
-        input_schema = schemas.GetGraphSummaryInput,
-        output_schema = schemas.GetGraphSummaryOutput,
-        http_method = "GET",
-        http_path = "/summary",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetGraphSummary, input, options)
 end
 
 function Client:getImportTask(input, options)
-    return self:invokeOperation(input, {
-        name = "GetImportTask",
-        input_schema = schemas.GetImportTaskInput,
-        output_schema = schemas.GetImportTaskOutput,
-        http_method = "GET",
-        http_path = "/importtasks/{taskIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetImportTask, input, options)
 end
 
 function Client:getPrivateGraphEndpoint(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPrivateGraphEndpoint",
-        input_schema = schemas.GetPrivateGraphEndpointInput,
-        output_schema = schemas.GetPrivateGraphEndpointOutput,
-        http_method = "GET",
-        http_path = "/graphs/{graphIdentifier}/endpoints/{vpcId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPrivateGraphEndpoint, input, options)
 end
 
 function Client:getQuery(input, options)
-    return self:invokeOperation(input, {
-        name = "GetQuery",
-        input_schema = schemas.GetQueryInput,
-        output_schema = schemas.GetQueryOutput,
-        http_method = "GET",
-        http_path = "/queries/{queryId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetQuery, input, options)
 end
 
 function Client:listExportTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListExportTasks",
-        input_schema = schemas.ListExportTasksInput,
-        output_schema = schemas.ListExportTasksOutput,
-        http_method = "GET",
-        http_path = "/exporttasks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListExportTasks, input, options)
 end
 
 function Client:listGraphs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGraphs",
-        input_schema = schemas.ListGraphsInput,
-        output_schema = schemas.ListGraphsOutput,
-        http_method = "GET",
-        http_path = "/graphs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGraphs, input, options)
 end
 
 function Client:listGraphSnapshots(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGraphSnapshots",
-        input_schema = schemas.ListGraphSnapshotsInput,
-        output_schema = schemas.ListGraphSnapshotsOutput,
-        http_method = "GET",
-        http_path = "/snapshots",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGraphSnapshots, input, options)
 end
 
 function Client:listImportTasks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListImportTasks",
-        input_schema = schemas.ListImportTasksInput,
-        output_schema = schemas.ListImportTasksOutput,
-        http_method = "GET",
-        http_path = "/importtasks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListImportTasks, input, options)
 end
 
 function Client:listPrivateGraphEndpoints(input, options)
-    return self:invokeOperation(input, {
-        name = "ListPrivateGraphEndpoints",
-        input_schema = schemas.ListPrivateGraphEndpointsInput,
-        output_schema = schemas.ListPrivateGraphEndpointsOutput,
-        http_method = "GET",
-        http_path = "/graphs/{graphIdentifier}/endpoints/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListPrivateGraphEndpoints, input, options)
 end
 
 function Client:listQueries(input, options)
-    return self:invokeOperation(input, {
-        name = "ListQueries",
-        input_schema = schemas.ListQueriesInput,
-        output_schema = schemas.ListQueriesOutput,
-        http_method = "GET",
-        http_path = "/queries",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListQueries, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:resetGraph(input, options)
-    return self:invokeOperation(input, {
-        name = "ResetGraph",
-        input_schema = schemas.ResetGraphInput,
-        output_schema = schemas.ResetGraphOutput,
-        http_method = "PUT",
-        http_path = "/graphs/{graphIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ResetGraph, input, options)
 end
 
 function Client:restoreGraphFromSnapshot(input, options)
-    return self:invokeOperation(input, {
-        name = "RestoreGraphFromSnapshot",
-        input_schema = schemas.RestoreGraphFromSnapshotInput,
-        output_schema = schemas.RestoreGraphFromSnapshotOutput,
-        http_method = "POST",
-        http_path = "/snapshots/{snapshotIdentifier}/restore",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RestoreGraphFromSnapshot, input, options)
 end
 
 function Client:startExportTask(input, options)
-    return self:invokeOperation(input, {
-        name = "StartExportTask",
-        input_schema = schemas.StartExportTaskInput,
-        output_schema = schemas.StartExportTaskOutput,
-        http_method = "POST",
-        http_path = "/exporttasks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartExportTask, input, options)
 end
 
 function Client:startGraph(input, options)
-    return self:invokeOperation(input, {
-        name = "StartGraph",
-        input_schema = schemas.StartGraphInput,
-        output_schema = schemas.StartGraphOutput,
-        http_method = "POST",
-        http_path = "/graphs/{graphIdentifier}/start",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartGraph, input, options)
 end
 
 function Client:startImportTask(input, options)
-    return self:invokeOperation(input, {
-        name = "StartImportTask",
-        input_schema = schemas.StartImportTaskInput,
-        output_schema = schemas.StartImportTaskOutput,
-        http_method = "POST",
-        http_path = "/graphs/{graphIdentifier}/importtasks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartImportTask, input, options)
 end
 
 function Client:stopGraph(input, options)
-    return self:invokeOperation(input, {
-        name = "StopGraph",
-        input_schema = schemas.StopGraphInput,
-        output_schema = schemas.StopGraphOutput,
-        http_method = "POST",
-        http_path = "/graphs/{graphIdentifier}/stop",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopGraph, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateGraph(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateGraph",
-        input_schema = schemas.UpdateGraphInput,
-        output_schema = schemas.UpdateGraphOutput,
-        http_method = "PATCH",
-        http_path = "/graphs/{graphIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateGraph, input, options)
 end
 
 return M

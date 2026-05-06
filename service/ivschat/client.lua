@@ -7,6 +7,7 @@ local endpoint_rules = require("ivschat.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("ivschat.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ivschat", signing_region = cfg.region } }
                 else
@@ -49,224 +52,71 @@ function M.new(cfg)
 end
 
 function Client:createChatToken(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateChatToken",
-        input_schema = schemas.CreateChatTokenInput,
-        output_schema = schemas.CreateChatTokenOutput,
-        http_method = "POST",
-        http_path = "/CreateChatToken",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateChatToken, input, options)
 end
 
 function Client:createLoggingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateLoggingConfiguration",
-        input_schema = schemas.CreateLoggingConfigurationInput,
-        output_schema = schemas.CreateLoggingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/CreateLoggingConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateLoggingConfiguration, input, options)
 end
 
 function Client:createRoom(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRoom",
-        input_schema = schemas.CreateRoomInput,
-        output_schema = schemas.CreateRoomOutput,
-        http_method = "POST",
-        http_path = "/CreateRoom",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRoom, input, options)
 end
 
 function Client:deleteLoggingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteLoggingConfiguration",
-        input_schema = schemas.DeleteLoggingConfigurationInput,
-        output_schema = schemas.DeleteLoggingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/DeleteLoggingConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteLoggingConfiguration, input, options)
 end
 
 function Client:deleteMessage(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMessage",
-        input_schema = schemas.DeleteMessageInput,
-        output_schema = schemas.DeleteMessageOutput,
-        http_method = "POST",
-        http_path = "/DeleteMessage",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMessage, input, options)
 end
 
 function Client:deleteRoom(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRoom",
-        input_schema = schemas.DeleteRoomInput,
-        output_schema = schemas.DeleteRoomOutput,
-        http_method = "POST",
-        http_path = "/DeleteRoom",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRoom, input, options)
 end
 
 function Client:disconnectUser(input, options)
-    return self:invokeOperation(input, {
-        name = "DisconnectUser",
-        input_schema = schemas.DisconnectUserInput,
-        output_schema = schemas.DisconnectUserOutput,
-        http_method = "POST",
-        http_path = "/DisconnectUser",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisconnectUser, input, options)
 end
 
 function Client:getLoggingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetLoggingConfiguration",
-        input_schema = schemas.GetLoggingConfigurationInput,
-        output_schema = schemas.GetLoggingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/GetLoggingConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetLoggingConfiguration, input, options)
 end
 
 function Client:getRoom(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRoom",
-        input_schema = schemas.GetRoomInput,
-        output_schema = schemas.GetRoomOutput,
-        http_method = "POST",
-        http_path = "/GetRoom",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRoom, input, options)
 end
 
 function Client:listLoggingConfigurations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListLoggingConfigurations",
-        input_schema = schemas.ListLoggingConfigurationsInput,
-        output_schema = schemas.ListLoggingConfigurationsOutput,
-        http_method = "POST",
-        http_path = "/ListLoggingConfigurations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListLoggingConfigurations, input, options)
 end
 
 function Client:listRooms(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRooms",
-        input_schema = schemas.ListRoomsInput,
-        output_schema = schemas.ListRoomsOutput,
-        http_method = "POST",
-        http_path = "/ListRooms",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRooms, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:sendEvent(input, options)
-    return self:invokeOperation(input, {
-        name = "SendEvent",
-        input_schema = schemas.SendEventInput,
-        output_schema = schemas.SendEventOutput,
-        http_method = "POST",
-        http_path = "/SendEvent",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SendEvent, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateLoggingConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateLoggingConfiguration",
-        input_schema = schemas.UpdateLoggingConfigurationInput,
-        output_schema = schemas.UpdateLoggingConfigurationOutput,
-        http_method = "POST",
-        http_path = "/UpdateLoggingConfiguration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateLoggingConfiguration, input, options)
 end
 
 function Client:updateRoom(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRoom",
-        input_schema = schemas.UpdateRoomInput,
-        output_schema = schemas.UpdateRoomOutput,
-        http_method = "POST",
-        http_path = "/UpdateRoom",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRoom, input, options)
 end
 
 return M

@@ -13134,4 +13134,1263 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.iotsitewise", "AWSIoTSiteWise"),
+    version = "2019-12-02",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAssets = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "AssociateAssets"),
+    input = M.AssociateAssetsInput,
+    output = M.AssociateAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assets/{assetId}/associate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateTimeSeriesToAssetProperty = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "AssociateTimeSeriesToAssetProperty"),
+    input = M.AssociateTimeSeriesToAssetPropertyInput,
+    output = M.AssociateTimeSeriesToAssetPropertyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/timeseries/associate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAssociateProjectAssets = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "BatchAssociateProjectAssets"),
+    input = M.BatchAssociateProjectAssetsInput,
+    output = M.BatchAssociateProjectAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/projects/{projectId}/assets/associate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDisassociateProjectAssets = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "BatchDisassociateProjectAssets"),
+    input = M.BatchDisassociateProjectAssetsInput,
+    output = M.BatchDisassociateProjectAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/projects/{projectId}/assets/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetAssetPropertyAggregates = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "BatchGetAssetPropertyAggregates"),
+    input = M.BatchGetAssetPropertyAggregatesInput,
+    output = M.BatchGetAssetPropertyAggregatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/properties/batch/aggregates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetAssetPropertyValue = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "BatchGetAssetPropertyValue"),
+    input = M.BatchGetAssetPropertyValueInput,
+    output = M.BatchGetAssetPropertyValueOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/properties/batch/latest" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetAssetPropertyValueHistory = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "BatchGetAssetPropertyValueHistory"),
+    input = M.BatchGetAssetPropertyValueHistoryInput,
+    output = M.BatchGetAssetPropertyValueHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/properties/batch/history" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchPutAssetPropertyValue = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "BatchPutAssetPropertyValue"),
+    input = M.BatchPutAssetPropertyValueInput,
+    output = M.BatchPutAssetPropertyValueOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/properties" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "CreateAccessPolicy"),
+    input = M.CreateAccessPolicyInput,
+    output = M.CreateAccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/access-policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAsset = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "CreateAsset"),
+    input = M.CreateAssetInput,
+    output = M.CreateAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssetModel = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "CreateAssetModel"),
+    input = M.CreateAssetModelInput,
+    output = M.CreateAssetModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/asset-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssetModelCompositeModel = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "CreateAssetModelCompositeModel"),
+    input = M.CreateAssetModelCompositeModelInput,
+    output = M.CreateAssetModelCompositeModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/asset-models/{assetModelId}/composite-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBulkImportJob = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "CreateBulkImportJob"),
+    input = M.CreateBulkImportJobInput,
+    output = M.CreateBulkImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateComputationModel = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "CreateComputationModel"),
+    input = M.CreateComputationModelInput,
+    output = M.CreateComputationModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/computation-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDashboard = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "CreateDashboard"),
+    input = M.CreateDashboardInput,
+    output = M.CreateDashboardOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/dashboards" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataset = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "CreateDataset"),
+    input = M.CreateDatasetInput,
+    output = M.CreateDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datasets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGateway = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "CreateGateway"),
+    input = M.CreateGatewayInput,
+    output = M.CreateGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/20200301/gateways" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePortal = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "CreatePortal"),
+    input = M.CreatePortalInput,
+    output = M.CreatePortalOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/portals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProject = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "CreateProject"),
+    input = M.CreateProjectInput,
+    output = M.CreateProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/projects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DeleteAccessPolicy"),
+    input = M.DeleteAccessPolicyInput,
+    output = M.DeleteAccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/access-policies/{accessPolicyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAsset = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DeleteAsset"),
+    input = M.DeleteAssetInput,
+    output = M.DeleteAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assets/{assetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssetModel = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DeleteAssetModel"),
+    input = M.DeleteAssetModelInput,
+    output = M.DeleteAssetModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/asset-models/{assetModelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssetModelCompositeModel = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DeleteAssetModelCompositeModel"),
+    input = M.DeleteAssetModelCompositeModelInput,
+    output = M.DeleteAssetModelCompositeModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/asset-models/{assetModelId}/composite-models/{assetModelCompositeModelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssetModelInterfaceRelationship = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DeleteAssetModelInterfaceRelationship"),
+    input = M.DeleteAssetModelInterfaceRelationshipInput,
+    output = M.DeleteAssetModelInterfaceRelationshipOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/asset-models/{assetModelId}/interface/{interfaceAssetModelId}/asset-model-interface-relationship" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteComputationModel = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DeleteComputationModel"),
+    input = M.DeleteComputationModelInput,
+    output = M.DeleteComputationModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/computation-models/{computationModelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDashboard = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DeleteDashboard"),
+    input = M.DeleteDashboardInput,
+    output = M.DeleteDashboardOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/dashboards/{dashboardId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataset = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DeleteDataset"),
+    input = M.DeleteDatasetInput,
+    output = M.DeleteDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/datasets/{datasetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGateway = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DeleteGateway"),
+    input = M.DeleteGatewayInput,
+    output = M.DeleteGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/20200301/gateways/{gatewayId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePortal = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DeletePortal"),
+    input = M.DeletePortalInput,
+    output = M.DeletePortalOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/portals/{portalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProject = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DeleteProject"),
+    input = M.DeleteProjectInput,
+    output = M.DeleteProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/projects/{projectId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTimeSeries = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DeleteTimeSeries"),
+    input = M.DeleteTimeSeriesInput,
+    output = M.DeleteTimeSeriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/timeseries/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeAccessPolicy"),
+    input = M.DescribeAccessPolicyInput,
+    output = M.DescribeAccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/access-policies/{accessPolicyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAction = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeAction"),
+    input = M.DescribeActionInput,
+    output = M.DescribeActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/actions/{actionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAsset = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeAsset"),
+    input = M.DescribeAssetInput,
+    output = M.DescribeAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assets/{assetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAssetCompositeModel = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeAssetCompositeModel"),
+    input = M.DescribeAssetCompositeModelInput,
+    output = M.DescribeAssetCompositeModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assets/{assetId}/composite-models/{assetCompositeModelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAssetModel = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeAssetModel"),
+    input = M.DescribeAssetModelInput,
+    output = M.DescribeAssetModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset-models/{assetModelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAssetModelCompositeModel = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeAssetModelCompositeModel"),
+    input = M.DescribeAssetModelCompositeModelInput,
+    output = M.DescribeAssetModelCompositeModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset-models/{assetModelId}/composite-models/{assetModelCompositeModelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAssetModelInterfaceRelationship = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeAssetModelInterfaceRelationship"),
+    input = M.DescribeAssetModelInterfaceRelationshipInput,
+    output = M.DescribeAssetModelInterfaceRelationshipOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset-models/{assetModelId}/interface/{interfaceAssetModelId}/asset-model-interface-relationship" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAssetProperty = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeAssetProperty"),
+    input = M.DescribeAssetPropertyInput,
+    output = M.DescribeAssetPropertyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assets/{assetId}/properties/{propertyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBulkImportJob = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeBulkImportJob"),
+    input = M.DescribeBulkImportJobInput,
+    output = M.DescribeBulkImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobs/{jobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeComputationModel = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeComputationModel"),
+    input = M.DescribeComputationModelInput,
+    output = M.DescribeComputationModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/computation-models/{computationModelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeComputationModelExecutionSummary = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeComputationModelExecutionSummary"),
+    input = M.DescribeComputationModelExecutionSummaryInput,
+    output = M.DescribeComputationModelExecutionSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/computation-models/{computationModelId}/execution-summary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDashboard = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeDashboard"),
+    input = M.DescribeDashboardInput,
+    output = M.DescribeDashboardOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/dashboards/{dashboardId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataset = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeDataset"),
+    input = M.DescribeDatasetInput,
+    output = M.DescribeDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/datasets/{datasetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDefaultEncryptionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeDefaultEncryptionConfiguration"),
+    input = M.DescribeDefaultEncryptionConfigurationInput,
+    output = M.DescribeDefaultEncryptionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configuration/account/encryption" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExecution = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeExecution"),
+    input = M.DescribeExecutionInput,
+    output = M.DescribeExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/executions/{executionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGateway = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeGateway"),
+    input = M.DescribeGatewayInput,
+    output = M.DescribeGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/20200301/gateways/{gatewayId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGatewayCapabilityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeGatewayCapabilityConfiguration"),
+    input = M.DescribeGatewayCapabilityConfigurationInput,
+    output = M.DescribeGatewayCapabilityConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/20200301/gateways/{gatewayId}/capability/{capabilityNamespace}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLoggingOptions = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeLoggingOptions"),
+    input = M.DescribeLoggingOptionsInput,
+    output = M.DescribeLoggingOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/logging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePortal = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribePortal"),
+    input = M.DescribePortalInput,
+    output = M.DescribePortalOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/portals/{portalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProject = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeProject"),
+    input = M.DescribeProjectInput,
+    output = M.DescribeProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/projects/{projectId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStorageConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeStorageConfiguration"),
+    input = M.DescribeStorageConfigurationInput,
+    output = M.DescribeStorageConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/configuration/account/storage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTimeSeries = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DescribeTimeSeries"),
+    input = M.DescribeTimeSeriesInput,
+    output = M.DescribeTimeSeriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/timeseries/describe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateAssets = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DisassociateAssets"),
+    input = M.DisassociateAssetsInput,
+    output = M.DisassociateAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assets/{assetId}/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateTimeSeriesFromAssetProperty = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "DisassociateTimeSeriesFromAssetProperty"),
+    input = M.DisassociateTimeSeriesFromAssetPropertyInput,
+    output = M.DisassociateTimeSeriesFromAssetPropertyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/timeseries/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteAction = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ExecuteAction"),
+    input = M.ExecuteActionInput,
+    output = M.ExecuteActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteQuery = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ExecuteQuery"),
+    input = M.ExecuteQueryInput,
+    output = M.ExecuteQueryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/queries/execution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssetPropertyAggregates = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "GetAssetPropertyAggregates"),
+    input = M.GetAssetPropertyAggregatesInput,
+    output = M.GetAssetPropertyAggregatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/properties/aggregates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssetPropertyValue = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "GetAssetPropertyValue"),
+    input = M.GetAssetPropertyValueInput,
+    output = M.GetAssetPropertyValueOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/properties/latest" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssetPropertyValueHistory = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "GetAssetPropertyValueHistory"),
+    input = M.GetAssetPropertyValueHistoryInput,
+    output = M.GetAssetPropertyValueHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/properties/history" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInterpolatedAssetPropertyValues = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "GetInterpolatedAssetPropertyValues"),
+    input = M.GetInterpolatedAssetPropertyValuesInput,
+    output = M.GetInterpolatedAssetPropertyValuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/properties/interpolated" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InvokeAssistant = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "InvokeAssistant"),
+    input = M.InvokeAssistantInput,
+    output = M.InvokeAssistantOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assistant/invocation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.ResponseStream,
+    },
+})
+
+M.ListAccessPolicies = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListAccessPolicies"),
+    input = M.ListAccessPoliciesInput,
+    output = M.ListAccessPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/access-policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListActions = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListActions"),
+    input = M.ListActionsInput,
+    output = M.ListActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetModelCompositeModels = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListAssetModelCompositeModels"),
+    input = M.ListAssetModelCompositeModelsInput,
+    output = M.ListAssetModelCompositeModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset-models/{assetModelId}/composite-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetModelProperties = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListAssetModelProperties"),
+    input = M.ListAssetModelPropertiesInput,
+    output = M.ListAssetModelPropertiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset-models/{assetModelId}/properties" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetModels = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListAssetModels"),
+    input = M.ListAssetModelsInput,
+    output = M.ListAssetModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetProperties = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListAssetProperties"),
+    input = M.ListAssetPropertiesInput,
+    output = M.ListAssetPropertiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assets/{assetId}/properties" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetRelationships = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListAssetRelationships"),
+    input = M.ListAssetRelationshipsInput,
+    output = M.ListAssetRelationshipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assets/{assetId}/assetRelationships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssets = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListAssets"),
+    input = M.ListAssetsInput,
+    output = M.ListAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssociatedAssets = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListAssociatedAssets"),
+    input = M.ListAssociatedAssetsInput,
+    output = M.ListAssociatedAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assets/{assetId}/hierarchies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBulkImportJobs = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListBulkImportJobs"),
+    input = M.ListBulkImportJobsInput,
+    output = M.ListBulkImportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCompositionRelationships = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListCompositionRelationships"),
+    input = M.ListCompositionRelationshipsInput,
+    output = M.ListCompositionRelationshipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset-models/{assetModelId}/composition-relationships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComputationModelDataBindingUsages = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListComputationModelDataBindingUsages"),
+    input = M.ListComputationModelDataBindingUsagesInput,
+    output = M.ListComputationModelDataBindingUsagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/computation-models/data-binding-usages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComputationModelResolveToResources = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListComputationModelResolveToResources"),
+    input = M.ListComputationModelResolveToResourcesInput,
+    output = M.ListComputationModelResolveToResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/computation-models/{computationModelId}/resolve-to-resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComputationModels = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListComputationModels"),
+    input = M.ListComputationModelsInput,
+    output = M.ListComputationModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/computation-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDashboards = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListDashboards"),
+    input = M.ListDashboardsInput,
+    output = M.ListDashboardsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/dashboards" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasets = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListDatasets"),
+    input = M.ListDatasetsInput,
+    output = M.ListDatasetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/datasets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExecutions = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListExecutions"),
+    input = M.ListExecutionsInput,
+    output = M.ListExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/executions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGateways = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListGateways"),
+    input = M.ListGatewaysInput,
+    output = M.ListGatewaysOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/20200301/gateways" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInterfaceRelationships = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListInterfaceRelationships"),
+    input = M.ListInterfaceRelationshipsInput,
+    output = M.ListInterfaceRelationshipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/interface/{interfaceAssetModelId}/asset-models" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPortals = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListPortals"),
+    input = M.ListPortalsInput,
+    output = M.ListPortalsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/portals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProjectAssets = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListProjectAssets"),
+    input = M.ListProjectAssetsInput,
+    output = M.ListProjectAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/projects/{projectId}/assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProjects = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListProjects"),
+    input = M.ListProjectsInput,
+    output = M.ListProjectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/projects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTimeSeries = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "ListTimeSeries"),
+    input = M.ListTimeSeriesInput,
+    output = M.ListTimeSeriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/timeseries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAssetModelInterfaceRelationship = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "PutAssetModelInterfaceRelationship"),
+    input = M.PutAssetModelInterfaceRelationshipInput,
+    output = M.PutAssetModelInterfaceRelationshipOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/asset-models/{assetModelId}/interface/{interfaceAssetModelId}/asset-model-interface-relationship" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDefaultEncryptionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "PutDefaultEncryptionConfiguration"),
+    input = M.PutDefaultEncryptionConfigurationInput,
+    output = M.PutDefaultEncryptionConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configuration/account/encryption" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLoggingOptions = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "PutLoggingOptions"),
+    input = M.PutLoggingOptionsInput,
+    output = M.PutLoggingOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/logging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutStorageConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "PutStorageConfiguration"),
+    input = M.PutStorageConfigurationInput,
+    output = M.PutStorageConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/configuration/account/storage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "UpdateAccessPolicy"),
+    input = M.UpdateAccessPolicyInput,
+    output = M.UpdateAccessPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/access-policies/{accessPolicyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAsset = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "UpdateAsset"),
+    input = M.UpdateAssetInput,
+    output = M.UpdateAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assets/{assetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssetModel = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "UpdateAssetModel"),
+    input = M.UpdateAssetModelInput,
+    output = M.UpdateAssetModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/asset-models/{assetModelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssetModelCompositeModel = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "UpdateAssetModelCompositeModel"),
+    input = M.UpdateAssetModelCompositeModelInput,
+    output = M.UpdateAssetModelCompositeModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/asset-models/{assetModelId}/composite-models/{assetModelCompositeModelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssetProperty = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "UpdateAssetProperty"),
+    input = M.UpdateAssetPropertyInput,
+    output = M.UpdateAssetPropertyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assets/{assetId}/properties/{propertyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateComputationModel = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "UpdateComputationModel"),
+    input = M.UpdateComputationModelInput,
+    output = M.UpdateComputationModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/computation-models/{computationModelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDashboard = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "UpdateDashboard"),
+    input = M.UpdateDashboardInput,
+    output = M.UpdateDashboardOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/dashboards/{dashboardId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataset = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "UpdateDataset"),
+    input = M.UpdateDatasetInput,
+    output = M.UpdateDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/datasets/{datasetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGateway = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "UpdateGateway"),
+    input = M.UpdateGatewayInput,
+    output = M.UpdateGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/20200301/gateways/{gatewayId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGatewayCapabilityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "UpdateGatewayCapabilityConfiguration"),
+    input = M.UpdateGatewayCapabilityConfigurationInput,
+    output = M.UpdateGatewayCapabilityConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/20200301/gateways/{gatewayId}/capability" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePortal = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "UpdatePortal"),
+    input = M.UpdatePortalInput,
+    output = M.UpdatePortalOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/portals/{portalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProject = schema.operation({
+    id = id.from("com.amazonaws.iotsitewise", "UpdateProject"),
+    input = M.UpdateProjectInput,
+    output = M.UpdateProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/projects/{projectId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

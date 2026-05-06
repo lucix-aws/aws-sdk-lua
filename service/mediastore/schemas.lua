@@ -900,4 +900,245 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.mediastore", "MediaStore_20170901"),
+    version = "2017-09-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContainer = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "CreateContainer"),
+    input = M.CreateContainerInput,
+    output = M.CreateContainerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContainer = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "DeleteContainer"),
+    input = M.DeleteContainerInput,
+    output = M.DeleteContainerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContainerPolicy = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "DeleteContainerPolicy"),
+    input = M.DeleteContainerPolicyInput,
+    output = M.DeleteContainerPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCorsPolicy = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "DeleteCorsPolicy"),
+    input = M.DeleteCorsPolicyInput,
+    output = M.DeleteCorsPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "DeleteLifecyclePolicy"),
+    input = M.DeleteLifecyclePolicyInput,
+    output = M.DeleteLifecyclePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMetricPolicy = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "DeleteMetricPolicy"),
+    input = M.DeleteMetricPolicyInput,
+    output = M.DeleteMetricPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContainer = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "DescribeContainer"),
+    input = M.DescribeContainerInput,
+    output = M.DescribeContainerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContainerPolicy = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "GetContainerPolicy"),
+    input = M.GetContainerPolicyInput,
+    output = M.GetContainerPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCorsPolicy = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "GetCorsPolicy"),
+    input = M.GetCorsPolicyInput,
+    output = M.GetCorsPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "GetLifecyclePolicy"),
+    input = M.GetLifecyclePolicyInput,
+    output = M.GetLifecyclePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMetricPolicy = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "GetMetricPolicy"),
+    input = M.GetMetricPolicyInput,
+    output = M.GetMetricPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContainers = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "ListContainers"),
+    input = M.ListContainersInput,
+    output = M.ListContainersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutContainerPolicy = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "PutContainerPolicy"),
+    input = M.PutContainerPolicyInput,
+    output = M.PutContainerPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutCorsPolicy = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "PutCorsPolicy"),
+    input = M.PutCorsPolicyInput,
+    output = M.PutCorsPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "PutLifecyclePolicy"),
+    input = M.PutLifecyclePolicyInput,
+    output = M.PutLifecyclePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMetricPolicy = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "PutMetricPolicy"),
+    input = M.PutMetricPolicyInput,
+    output = M.PutMetricPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAccessLogging = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "StartAccessLogging"),
+    input = M.StartAccessLoggingInput,
+    output = M.StartAccessLoggingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopAccessLogging = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "StopAccessLogging"),
+    input = M.StopAccessLoggingInput,
+    output = M.StopAccessLoggingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.mediastore", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

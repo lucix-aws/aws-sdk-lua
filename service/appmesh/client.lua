@@ -7,6 +7,7 @@ local endpoint_rules = require("appmesh.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("appmesh.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "appmesh", signing_region = cfg.region } }
                 else
@@ -49,497 +52,155 @@ function M.new(cfg)
 end
 
 function Client:createGatewayRoute(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateGatewayRoute",
-        input_schema = schemas.CreateGatewayRouteInput,
-        output_schema = schemas.CreateGatewayRouteOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateGatewayRoute, input, options)
 end
 
 function Client:createMesh(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateMesh",
-        input_schema = schemas.CreateMeshInput,
-        output_schema = schemas.CreateMeshOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/meshes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateMesh, input, options)
 end
 
 function Client:createRoute(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateRoute",
-        input_schema = schemas.CreateRouteInput,
-        output_schema = schemas.CreateRouteOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateRoute, input, options)
 end
 
 function Client:createVirtualGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateVirtualGateway",
-        input_schema = schemas.CreateVirtualGatewayInput,
-        output_schema = schemas.CreateVirtualGatewayOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/meshes/{meshName}/virtualGateways",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateVirtualGateway, input, options)
 end
 
 function Client:createVirtualNode(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateVirtualNode",
-        input_schema = schemas.CreateVirtualNodeInput,
-        output_schema = schemas.CreateVirtualNodeOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/meshes/{meshName}/virtualNodes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateVirtualNode, input, options)
 end
 
 function Client:createVirtualRouter(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateVirtualRouter",
-        input_schema = schemas.CreateVirtualRouterInput,
-        output_schema = schemas.CreateVirtualRouterOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/meshes/{meshName}/virtualRouters",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateVirtualRouter, input, options)
 end
 
 function Client:createVirtualService(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateVirtualService",
-        input_schema = schemas.CreateVirtualServiceInput,
-        output_schema = schemas.CreateVirtualServiceOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/meshes/{meshName}/virtualServices",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateVirtualService, input, options)
 end
 
 function Client:deleteGatewayRoute(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteGatewayRoute",
-        input_schema = schemas.DeleteGatewayRouteInput,
-        output_schema = schemas.DeleteGatewayRouteOutput,
-        http_method = "DELETE",
-        http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteGatewayRoute, input, options)
 end
 
 function Client:deleteMesh(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMesh",
-        input_schema = schemas.DeleteMeshInput,
-        output_schema = schemas.DeleteMeshOutput,
-        http_method = "DELETE",
-        http_path = "/v20190125/meshes/{meshName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMesh, input, options)
 end
 
 function Client:deleteRoute(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteRoute",
-        input_schema = schemas.DeleteRouteInput,
-        output_schema = schemas.DeleteRouteOutput,
-        http_method = "DELETE",
-        http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes/{routeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteRoute, input, options)
 end
 
 function Client:deleteVirtualGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVirtualGateway",
-        input_schema = schemas.DeleteVirtualGatewayInput,
-        output_schema = schemas.DeleteVirtualGatewayOutput,
-        http_method = "DELETE",
-        http_path = "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVirtualGateway, input, options)
 end
 
 function Client:deleteVirtualNode(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVirtualNode",
-        input_schema = schemas.DeleteVirtualNodeInput,
-        output_schema = schemas.DeleteVirtualNodeOutput,
-        http_method = "DELETE",
-        http_path = "/v20190125/meshes/{meshName}/virtualNodes/{virtualNodeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVirtualNode, input, options)
 end
 
 function Client:deleteVirtualRouter(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVirtualRouter",
-        input_schema = schemas.DeleteVirtualRouterInput,
-        output_schema = schemas.DeleteVirtualRouterOutput,
-        http_method = "DELETE",
-        http_path = "/v20190125/meshes/{meshName}/virtualRouters/{virtualRouterName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVirtualRouter, input, options)
 end
 
 function Client:deleteVirtualService(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteVirtualService",
-        input_schema = schemas.DeleteVirtualServiceInput,
-        output_schema = schemas.DeleteVirtualServiceOutput,
-        http_method = "DELETE",
-        http_path = "/v20190125/meshes/{meshName}/virtualServices/{virtualServiceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteVirtualService, input, options)
 end
 
 function Client:describeGatewayRoute(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeGatewayRoute",
-        input_schema = schemas.DescribeGatewayRouteInput,
-        output_schema = schemas.DescribeGatewayRouteOutput,
-        http_method = "GET",
-        http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeGatewayRoute, input, options)
 end
 
 function Client:describeMesh(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeMesh",
-        input_schema = schemas.DescribeMeshInput,
-        output_schema = schemas.DescribeMeshOutput,
-        http_method = "GET",
-        http_path = "/v20190125/meshes/{meshName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeMesh, input, options)
 end
 
 function Client:describeRoute(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeRoute",
-        input_schema = schemas.DescribeRouteInput,
-        output_schema = schemas.DescribeRouteOutput,
-        http_method = "GET",
-        http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes/{routeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeRoute, input, options)
 end
 
 function Client:describeVirtualGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeVirtualGateway",
-        input_schema = schemas.DescribeVirtualGatewayInput,
-        output_schema = schemas.DescribeVirtualGatewayOutput,
-        http_method = "GET",
-        http_path = "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeVirtualGateway, input, options)
 end
 
 function Client:describeVirtualNode(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeVirtualNode",
-        input_schema = schemas.DescribeVirtualNodeInput,
-        output_schema = schemas.DescribeVirtualNodeOutput,
-        http_method = "GET",
-        http_path = "/v20190125/meshes/{meshName}/virtualNodes/{virtualNodeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeVirtualNode, input, options)
 end
 
 function Client:describeVirtualRouter(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeVirtualRouter",
-        input_schema = schemas.DescribeVirtualRouterInput,
-        output_schema = schemas.DescribeVirtualRouterOutput,
-        http_method = "GET",
-        http_path = "/v20190125/meshes/{meshName}/virtualRouters/{virtualRouterName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeVirtualRouter, input, options)
 end
 
 function Client:describeVirtualService(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeVirtualService",
-        input_schema = schemas.DescribeVirtualServiceInput,
-        output_schema = schemas.DescribeVirtualServiceOutput,
-        http_method = "GET",
-        http_path = "/v20190125/meshes/{meshName}/virtualServices/{virtualServiceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeVirtualService, input, options)
 end
 
 function Client:listGatewayRoutes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListGatewayRoutes",
-        input_schema = schemas.ListGatewayRoutesInput,
-        output_schema = schemas.ListGatewayRoutesOutput,
-        http_method = "GET",
-        http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListGatewayRoutes, input, options)
 end
 
 function Client:listMeshes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMeshes",
-        input_schema = schemas.ListMeshesInput,
-        output_schema = schemas.ListMeshesOutput,
-        http_method = "GET",
-        http_path = "/v20190125/meshes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMeshes, input, options)
 end
 
 function Client:listRoutes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRoutes",
-        input_schema = schemas.ListRoutesInput,
-        output_schema = schemas.ListRoutesOutput,
-        http_method = "GET",
-        http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRoutes, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/v20190125/tags",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listVirtualGateways(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVirtualGateways",
-        input_schema = schemas.ListVirtualGatewaysInput,
-        output_schema = schemas.ListVirtualGatewaysOutput,
-        http_method = "GET",
-        http_path = "/v20190125/meshes/{meshName}/virtualGateways",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVirtualGateways, input, options)
 end
 
 function Client:listVirtualNodes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVirtualNodes",
-        input_schema = schemas.ListVirtualNodesInput,
-        output_schema = schemas.ListVirtualNodesOutput,
-        http_method = "GET",
-        http_path = "/v20190125/meshes/{meshName}/virtualNodes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVirtualNodes, input, options)
 end
 
 function Client:listVirtualRouters(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVirtualRouters",
-        input_schema = schemas.ListVirtualRoutersInput,
-        output_schema = schemas.ListVirtualRoutersOutput,
-        http_method = "GET",
-        http_path = "/v20190125/meshes/{meshName}/virtualRouters",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVirtualRouters, input, options)
 end
 
 function Client:listVirtualServices(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVirtualServices",
-        input_schema = schemas.ListVirtualServicesInput,
-        output_schema = schemas.ListVirtualServicesOutput,
-        http_method = "GET",
-        http_path = "/v20190125/meshes/{meshName}/virtualServices",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVirtualServices, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/tag",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/untag",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateGatewayRoute(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateGatewayRoute",
-        input_schema = schemas.UpdateGatewayRouteInput,
-        output_schema = schemas.UpdateGatewayRouteOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateGatewayRoute, input, options)
 end
 
 function Client:updateMesh(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateMesh",
-        input_schema = schemas.UpdateMeshInput,
-        output_schema = schemas.UpdateMeshOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/meshes/{meshName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateMesh, input, options)
 end
 
 function Client:updateRoute(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRoute",
-        input_schema = schemas.UpdateRouteInput,
-        output_schema = schemas.UpdateRouteOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes/{routeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRoute, input, options)
 end
 
 function Client:updateVirtualGateway(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateVirtualGateway",
-        input_schema = schemas.UpdateVirtualGatewayInput,
-        output_schema = schemas.UpdateVirtualGatewayOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateVirtualGateway, input, options)
 end
 
 function Client:updateVirtualNode(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateVirtualNode",
-        input_schema = schemas.UpdateVirtualNodeInput,
-        output_schema = schemas.UpdateVirtualNodeOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/meshes/{meshName}/virtualNodes/{virtualNodeName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateVirtualNode, input, options)
 end
 
 function Client:updateVirtualRouter(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateVirtualRouter",
-        input_schema = schemas.UpdateVirtualRouterInput,
-        output_schema = schemas.UpdateVirtualRouterOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/meshes/{meshName}/virtualRouters/{virtualRouterName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateVirtualRouter, input, options)
 end
 
 function Client:updateVirtualService(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateVirtualService",
-        input_schema = schemas.UpdateVirtualServiceInput,
-        output_schema = schemas.UpdateVirtualServiceOutput,
-        http_method = "PUT",
-        http_path = "/v20190125/meshes/{meshName}/virtualServices/{virtualServiceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateVirtualService, input, options)
 end
 
 return M

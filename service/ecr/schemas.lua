@@ -5837,4 +5837,652 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.ecr", "AmazonEC2ContainerRegistry_V20150921"),
+    version = "2015-09-21",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCheckLayerAvailability = schema.operation({
+    id = id.from("com.amazonaws.ecr", "BatchCheckLayerAvailability"),
+    input = M.BatchCheckLayerAvailabilityInput,
+    output = M.BatchCheckLayerAvailabilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteImage = schema.operation({
+    id = id.from("com.amazonaws.ecr", "BatchDeleteImage"),
+    input = M.BatchDeleteImageInput,
+    output = M.BatchDeleteImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetImage = schema.operation({
+    id = id.from("com.amazonaws.ecr", "BatchGetImage"),
+    input = M.BatchGetImageInput,
+    output = M.BatchGetImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetRepositoryScanningConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ecr", "BatchGetRepositoryScanningConfiguration"),
+    input = M.BatchGetRepositoryScanningConfigurationInput,
+    output = M.BatchGetRepositoryScanningConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CompleteLayerUpload = schema.operation({
+    id = id.from("com.amazonaws.ecr", "CompleteLayerUpload"),
+    input = M.CompleteLayerUploadInput,
+    output = M.CompleteLayerUploadOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePullThroughCacheRule = schema.operation({
+    id = id.from("com.amazonaws.ecr", "CreatePullThroughCacheRule"),
+    input = M.CreatePullThroughCacheRuleInput,
+    output = M.CreatePullThroughCacheRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRepository = schema.operation({
+    id = id.from("com.amazonaws.ecr", "CreateRepository"),
+    input = M.CreateRepositoryInput,
+    output = M.CreateRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRepositoryCreationTemplate = schema.operation({
+    id = id.from("com.amazonaws.ecr", "CreateRepositoryCreationTemplate"),
+    input = M.CreateRepositoryCreationTemplateInput,
+    output = M.CreateRepositoryCreationTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DeleteLifecyclePolicy"),
+    input = M.DeleteLifecyclePolicyInput,
+    output = M.DeleteLifecyclePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePullThroughCacheRule = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DeletePullThroughCacheRule"),
+    input = M.DeletePullThroughCacheRuleInput,
+    output = M.DeletePullThroughCacheRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRegistryPolicy = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DeleteRegistryPolicy"),
+    input = M.DeleteRegistryPolicyInput,
+    output = M.DeleteRegistryPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRepository = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DeleteRepository"),
+    input = M.DeleteRepositoryInput,
+    output = M.DeleteRepositoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRepositoryCreationTemplate = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DeleteRepositoryCreationTemplate"),
+    input = M.DeleteRepositoryCreationTemplateInput,
+    output = M.DeleteRepositoryCreationTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRepositoryPolicy = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DeleteRepositoryPolicy"),
+    input = M.DeleteRepositoryPolicyInput,
+    output = M.DeleteRepositoryPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSigningConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DeleteSigningConfiguration"),
+    input = M.DeleteSigningConfigurationInput,
+    output = M.DeleteSigningConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterPullTimeUpdateExclusion = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DeregisterPullTimeUpdateExclusion"),
+    input = M.DeregisterPullTimeUpdateExclusionInput,
+    output = M.DeregisterPullTimeUpdateExclusionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImageReplicationStatus = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DescribeImageReplicationStatus"),
+    input = M.DescribeImageReplicationStatusInput,
+    output = M.DescribeImageReplicationStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImages = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DescribeImages"),
+    input = M.DescribeImagesInput,
+    output = M.DescribeImagesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImageScanFindings = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DescribeImageScanFindings"),
+    input = M.DescribeImageScanFindingsInput,
+    output = M.DescribeImageScanFindingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeImageSigningStatus = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DescribeImageSigningStatus"),
+    input = M.DescribeImageSigningStatusInput,
+    output = M.DescribeImageSigningStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePullThroughCacheRules = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DescribePullThroughCacheRules"),
+    input = M.DescribePullThroughCacheRulesInput,
+    output = M.DescribePullThroughCacheRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRegistry = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DescribeRegistry"),
+    input = M.DescribeRegistryInput,
+    output = M.DescribeRegistryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRepositories = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DescribeRepositories"),
+    input = M.DescribeRepositoriesInput,
+    output = M.DescribeRepositoriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRepositoryCreationTemplates = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DescribeRepositoryCreationTemplates"),
+    input = M.DescribeRepositoryCreationTemplatesInput,
+    output = M.DescribeRepositoryCreationTemplatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountSetting = schema.operation({
+    id = id.from("com.amazonaws.ecr", "GetAccountSetting"),
+    input = M.GetAccountSettingInput,
+    output = M.GetAccountSettingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAuthorizationToken = schema.operation({
+    id = id.from("com.amazonaws.ecr", "GetAuthorizationToken"),
+    input = M.GetAuthorizationTokenInput,
+    output = M.GetAuthorizationTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDownloadUrlForLayer = schema.operation({
+    id = id.from("com.amazonaws.ecr", "GetDownloadUrlForLayer"),
+    input = M.GetDownloadUrlForLayerInput,
+    output = M.GetDownloadUrlForLayerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.ecr", "GetLifecyclePolicy"),
+    input = M.GetLifecyclePolicyInput,
+    output = M.GetLifecyclePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLifecyclePolicyPreview = schema.operation({
+    id = id.from("com.amazonaws.ecr", "GetLifecyclePolicyPreview"),
+    input = M.GetLifecyclePolicyPreviewInput,
+    output = M.GetLifecyclePolicyPreviewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRegistryPolicy = schema.operation({
+    id = id.from("com.amazonaws.ecr", "GetRegistryPolicy"),
+    input = M.GetRegistryPolicyInput,
+    output = M.GetRegistryPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRegistryScanningConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ecr", "GetRegistryScanningConfiguration"),
+    input = M.GetRegistryScanningConfigurationInput,
+    output = M.GetRegistryScanningConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRepositoryPolicy = schema.operation({
+    id = id.from("com.amazonaws.ecr", "GetRepositoryPolicy"),
+    input = M.GetRepositoryPolicyInput,
+    output = M.GetRepositoryPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSigningConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ecr", "GetSigningConfiguration"),
+    input = M.GetSigningConfigurationInput,
+    output = M.GetSigningConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InitiateLayerUpload = schema.operation({
+    id = id.from("com.amazonaws.ecr", "InitiateLayerUpload"),
+    input = M.InitiateLayerUploadInput,
+    output = M.InitiateLayerUploadOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImageReferrers = schema.operation({
+    id = id.from("com.amazonaws.ecr", "ListImageReferrers"),
+    input = M.ListImageReferrersInput,
+    output = M.ListImageReferrersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImages = schema.operation({
+    id = id.from("com.amazonaws.ecr", "ListImages"),
+    input = M.ListImagesInput,
+    output = M.ListImagesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPullTimeUpdateExclusions = schema.operation({
+    id = id.from("com.amazonaws.ecr", "ListPullTimeUpdateExclusions"),
+    input = M.ListPullTimeUpdateExclusionsInput,
+    output = M.ListPullTimeUpdateExclusionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.ecr", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountSetting = schema.operation({
+    id = id.from("com.amazonaws.ecr", "PutAccountSetting"),
+    input = M.PutAccountSettingInput,
+    output = M.PutAccountSettingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutImage = schema.operation({
+    id = id.from("com.amazonaws.ecr", "PutImage"),
+    input = M.PutImageInput,
+    output = M.PutImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutImageScanningConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ecr", "PutImageScanningConfiguration"),
+    input = M.PutImageScanningConfigurationInput,
+    output = M.PutImageScanningConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutImageTagMutability = schema.operation({
+    id = id.from("com.amazonaws.ecr", "PutImageTagMutability"),
+    input = M.PutImageTagMutabilityInput,
+    output = M.PutImageTagMutabilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.ecr", "PutLifecyclePolicy"),
+    input = M.PutLifecyclePolicyInput,
+    output = M.PutLifecyclePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRegistryPolicy = schema.operation({
+    id = id.from("com.amazonaws.ecr", "PutRegistryPolicy"),
+    input = M.PutRegistryPolicyInput,
+    output = M.PutRegistryPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRegistryScanningConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ecr", "PutRegistryScanningConfiguration"),
+    input = M.PutRegistryScanningConfigurationInput,
+    output = M.PutRegistryScanningConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutReplicationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ecr", "PutReplicationConfiguration"),
+    input = M.PutReplicationConfigurationInput,
+    output = M.PutReplicationConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSigningConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ecr", "PutSigningConfiguration"),
+    input = M.PutSigningConfigurationInput,
+    output = M.PutSigningConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterPullTimeUpdateExclusion = schema.operation({
+    id = id.from("com.amazonaws.ecr", "RegisterPullTimeUpdateExclusion"),
+    input = M.RegisterPullTimeUpdateExclusionInput,
+    output = M.RegisterPullTimeUpdateExclusionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetRepositoryPolicy = schema.operation({
+    id = id.from("com.amazonaws.ecr", "SetRepositoryPolicy"),
+    input = M.SetRepositoryPolicyInput,
+    output = M.SetRepositoryPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartImageScan = schema.operation({
+    id = id.from("com.amazonaws.ecr", "StartImageScan"),
+    input = M.StartImageScanInput,
+    output = M.StartImageScanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartLifecyclePolicyPreview = schema.operation({
+    id = id.from("com.amazonaws.ecr", "StartLifecyclePolicyPreview"),
+    input = M.StartLifecyclePolicyPreviewInput,
+    output = M.StartLifecyclePolicyPreviewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.ecr", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.ecr", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateImageStorageClass = schema.operation({
+    id = id.from("com.amazonaws.ecr", "UpdateImageStorageClass"),
+    input = M.UpdateImageStorageClassInput,
+    output = M.UpdateImageStorageClassOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePullThroughCacheRule = schema.operation({
+    id = id.from("com.amazonaws.ecr", "UpdatePullThroughCacheRule"),
+    input = M.UpdatePullThroughCacheRuleInput,
+    output = M.UpdatePullThroughCacheRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRepositoryCreationTemplate = schema.operation({
+    id = id.from("com.amazonaws.ecr", "UpdateRepositoryCreationTemplate"),
+    input = M.UpdateRepositoryCreationTemplateInput,
+    output = M.UpdateRepositoryCreationTemplateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UploadLayerPart = schema.operation({
+    id = id.from("com.amazonaws.ecr", "UploadLayerPart"),
+    input = M.UploadLayerPartInput,
+    output = M.UploadLayerPartOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidatePullThroughCacheRule = schema.operation({
+    id = id.from("com.amazonaws.ecr", "ValidatePullThroughCacheRule"),
+    input = M.ValidatePullThroughCacheRuleInput,
+    output = M.ValidatePullThroughCacheRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

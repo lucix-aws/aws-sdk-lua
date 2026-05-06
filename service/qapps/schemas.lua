@@ -4281,4 +4281,434 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.qapps", "QAppsService"),
+    version = "2023-11-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateLibraryItemReview = schema.operation({
+    id = id.from("com.amazonaws.qapps", "AssociateLibraryItemReview"),
+    input = M.AssociateLibraryItemReviewInput,
+    output = M.AssociateLibraryItemReviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/catalog.associateItemRating" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateQAppWithUser = schema.operation({
+    id = id.from("com.amazonaws.qapps", "AssociateQAppWithUser"),
+    input = M.AssociateQAppWithUserInput,
+    output = M.AssociateQAppWithUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps.install" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateCategory = schema.operation({
+    id = id.from("com.amazonaws.qapps", "BatchCreateCategory"),
+    input = M.BatchCreateCategoryInput,
+    output = M.BatchCreateCategoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/catalog.createCategories" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteCategory = schema.operation({
+    id = id.from("com.amazonaws.qapps", "BatchDeleteCategory"),
+    input = M.BatchDeleteCategoryInput,
+    output = M.BatchDeleteCategoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/catalog.deleteCategories" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateCategory = schema.operation({
+    id = id.from("com.amazonaws.qapps", "BatchUpdateCategory"),
+    input = M.BatchUpdateCategoryInput,
+    output = M.BatchUpdateCategoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/catalog.updateCategories" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLibraryItem = schema.operation({
+    id = id.from("com.amazonaws.qapps", "CreateLibraryItem"),
+    input = M.CreateLibraryItemInput,
+    output = M.CreateLibraryItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/catalog.createItem" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePresignedUrl = schema.operation({
+    id = id.from("com.amazonaws.qapps", "CreatePresignedUrl"),
+    input = M.CreatePresignedUrlInput,
+    output = M.CreatePresignedUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps.createPresignedUrl" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateQApp = schema.operation({
+    id = id.from("com.amazonaws.qapps", "CreateQApp"),
+    input = M.CreateQAppInput,
+    output = M.CreateQAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps.create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLibraryItem = schema.operation({
+    id = id.from("com.amazonaws.qapps", "DeleteLibraryItem"),
+    input = M.DeleteLibraryItemInput,
+    output = M.DeleteLibraryItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/catalog.deleteItem" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQApp = schema.operation({
+    id = id.from("com.amazonaws.qapps", "DeleteQApp"),
+    input = M.DeleteQAppInput,
+    output = M.DeleteQAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps.delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeQAppPermissions = schema.operation({
+    id = id.from("com.amazonaws.qapps", "DescribeQAppPermissions"),
+    input = M.DescribeQAppPermissionsInput,
+    output = M.DescribeQAppPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps.describeQAppPermissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateLibraryItemReview = schema.operation({
+    id = id.from("com.amazonaws.qapps", "DisassociateLibraryItemReview"),
+    input = M.DisassociateLibraryItemReviewInput,
+    output = M.DisassociateLibraryItemReviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/catalog.disassociateItemRating" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateQAppFromUser = schema.operation({
+    id = id.from("com.amazonaws.qapps", "DisassociateQAppFromUser"),
+    input = M.DisassociateQAppFromUserInput,
+    output = M.DisassociateQAppFromUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps.uninstall" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportQAppSessionData = schema.operation({
+    id = id.from("com.amazonaws.qapps", "ExportQAppSessionData"),
+    input = M.ExportQAppSessionDataInput,
+    output = M.ExportQAppSessionDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runtime.exportQAppSessionData" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLibraryItem = schema.operation({
+    id = id.from("com.amazonaws.qapps", "GetLibraryItem"),
+    input = M.GetLibraryItemInput,
+    output = M.GetLibraryItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/catalog.getItem" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQApp = schema.operation({
+    id = id.from("com.amazonaws.qapps", "GetQApp"),
+    input = M.GetQAppInput,
+    output = M.GetQAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps.get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQAppSession = schema.operation({
+    id = id.from("com.amazonaws.qapps", "GetQAppSession"),
+    input = M.GetQAppSessionInput,
+    output = M.GetQAppSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/runtime.getQAppSession" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQAppSessionMetadata = schema.operation({
+    id = id.from("com.amazonaws.qapps", "GetQAppSessionMetadata"),
+    input = M.GetQAppSessionMetadataInput,
+    output = M.GetQAppSessionMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/runtime.getQAppSessionMetadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportDocument = schema.operation({
+    id = id.from("com.amazonaws.qapps", "ImportDocument"),
+    input = M.ImportDocumentInput,
+    output = M.ImportDocumentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps.importDocument" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCategories = schema.operation({
+    id = id.from("com.amazonaws.qapps", "ListCategories"),
+    input = M.ListCategoriesInput,
+    output = M.ListCategoriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/catalog.listCategories" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLibraryItems = schema.operation({
+    id = id.from("com.amazonaws.qapps", "ListLibraryItems"),
+    input = M.ListLibraryItemsInput,
+    output = M.ListLibraryItemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/catalog.list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQApps = schema.operation({
+    id = id.from("com.amazonaws.qapps", "ListQApps"),
+    input = M.ListQAppsInput,
+    output = M.ListQAppsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/apps.list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQAppSessionData = schema.operation({
+    id = id.from("com.amazonaws.qapps", "ListQAppSessionData"),
+    input = M.ListQAppSessionDataInput,
+    output = M.ListQAppSessionDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/runtime.listQAppSessionData" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.qapps", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PredictQApp = schema.operation({
+    id = id.from("com.amazonaws.qapps", "PredictQApp"),
+    input = M.PredictQAppInput,
+    output = M.PredictQAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps.predictQApp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartQAppSession = schema.operation({
+    id = id.from("com.amazonaws.qapps", "StartQAppSession"),
+    input = M.StartQAppSessionInput,
+    output = M.StartQAppSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runtime.startQAppSession" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopQAppSession = schema.operation({
+    id = id.from("com.amazonaws.qapps", "StopQAppSession"),
+    input = M.StopQAppSessionInput,
+    output = M.StopQAppSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runtime.deleteMiniAppRun" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.qapps", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.qapps", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceARN}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLibraryItem = schema.operation({
+    id = id.from("com.amazonaws.qapps", "UpdateLibraryItem"),
+    input = M.UpdateLibraryItemInput,
+    output = M.UpdateLibraryItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/catalog.updateItem" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLibraryItemMetadata = schema.operation({
+    id = id.from("com.amazonaws.qapps", "UpdateLibraryItemMetadata"),
+    input = M.UpdateLibraryItemMetadataInput,
+    output = M.UpdateLibraryItemMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/catalog.updateItemMetadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQApp = schema.operation({
+    id = id.from("com.amazonaws.qapps", "UpdateQApp"),
+    input = M.UpdateQAppInput,
+    output = M.UpdateQAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps.update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQAppPermissions = schema.operation({
+    id = id.from("com.amazonaws.qapps", "UpdateQAppPermissions"),
+    input = M.UpdateQAppPermissionsInput,
+    output = M.UpdateQAppPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/apps.updateQAppPermissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQAppSession = schema.operation({
+    id = id.from("com.amazonaws.qapps", "UpdateQAppSession"),
+    input = M.UpdateQAppSessionInput,
+    output = M.UpdateQAppSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runtime.updateQAppSession" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQAppSessionMetadata = schema.operation({
+    id = id.from("com.amazonaws.qapps", "UpdateQAppSessionMetadata"),
+    input = M.UpdateQAppSessionMetadataInput,
+    output = M.UpdateQAppSessionMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/runtime.updateQAppSessionMetadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

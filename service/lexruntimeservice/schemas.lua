@@ -1376,4 +1376,74 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.lexruntimeservice", "AWSDeepSenseRunTimeService"),
+    version = "2016-11-28",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSession = schema.operation({
+    id = id.from("com.amazonaws.lexruntimeservice", "DeleteSession"),
+    input = M.DeleteSessionInput,
+    output = M.DeleteSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/bot/{botName}/alias/{botAlias}/user/{userId}/session" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSession = schema.operation({
+    id = id.from("com.amazonaws.lexruntimeservice", "GetSession"),
+    input = M.GetSessionInput,
+    output = M.GetSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/bot/{botName}/alias/{botAlias}/user/{userId}/session" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PostContent = schema.operation({
+    id = id.from("com.amazonaws.lexruntimeservice", "PostContent"),
+    input = M.PostContentInput,
+    output = M.PostContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bot/{botName}/alias/{botAlias}/user/{userId}/content" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PostText = schema.operation({
+    id = id.from("com.amazonaws.lexruntimeservice", "PostText"),
+    input = M.PostTextInput,
+    output = M.PostTextOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bot/{botName}/alias/{botAlias}/user/{userId}/text" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSession = schema.operation({
+    id = id.from("com.amazonaws.lexruntimeservice", "PutSession"),
+    input = M.PutSessionInput,
+    output = M.PutSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/bot/{botName}/alias/{botAlias}/user/{userId}/session" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

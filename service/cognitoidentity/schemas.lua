@@ -1797,4 +1797,267 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cognitoidentity", "AWSCognitoIdentityService"),
+    version = "2014-06-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIdentityPool = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "CreateIdentityPool"),
+    input = M.CreateIdentityPoolInput,
+    output = M.CreateIdentityPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdentities = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "DeleteIdentities"),
+    input = M.DeleteIdentitiesInput,
+    output = M.DeleteIdentitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdentityPool = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "DeleteIdentityPool"),
+    input = M.DeleteIdentityPoolInput,
+    output = M.DeleteIdentityPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIdentity = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "DescribeIdentity"),
+    input = M.DescribeIdentityInput,
+    output = M.DescribeIdentityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIdentityPool = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "DescribeIdentityPool"),
+    input = M.DescribeIdentityPoolInput,
+    output = M.DescribeIdentityPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCredentialsForIdentity = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "GetCredentialsForIdentity"),
+    input = M.GetCredentialsForIdentityInput,
+    output = M.GetCredentialsForIdentityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.GetId = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "GetId"),
+    input = M.GetIdInput,
+    output = M.GetIdOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.GetIdentityPoolRoles = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "GetIdentityPoolRoles"),
+    input = M.GetIdentityPoolRolesInput,
+    output = M.GetIdentityPoolRolesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOpenIdToken = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "GetOpenIdToken"),
+    input = M.GetOpenIdTokenInput,
+    output = M.GetOpenIdTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.GetOpenIdTokenForDeveloperIdentity = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "GetOpenIdTokenForDeveloperIdentity"),
+    input = M.GetOpenIdTokenForDeveloperIdentityInput,
+    output = M.GetOpenIdTokenForDeveloperIdentityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPrincipalTagAttributeMap = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "GetPrincipalTagAttributeMap"),
+    input = M.GetPrincipalTagAttributeMapInput,
+    output = M.GetPrincipalTagAttributeMapOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdentities = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "ListIdentities"),
+    input = M.ListIdentitiesInput,
+    output = M.ListIdentitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdentityPools = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "ListIdentityPools"),
+    input = M.ListIdentityPoolsInput,
+    output = M.ListIdentityPoolsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.LookupDeveloperIdentity = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "LookupDeveloperIdentity"),
+    input = M.LookupDeveloperIdentityInput,
+    output = M.LookupDeveloperIdentityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.MergeDeveloperIdentities = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "MergeDeveloperIdentities"),
+    input = M.MergeDeveloperIdentitiesInput,
+    output = M.MergeDeveloperIdentitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetIdentityPoolRoles = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "SetIdentityPoolRoles"),
+    input = M.SetIdentityPoolRolesInput,
+    output = M.SetIdentityPoolRolesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetPrincipalTagAttributeMap = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "SetPrincipalTagAttributeMap"),
+    input = M.SetPrincipalTagAttributeMapInput,
+    output = M.SetPrincipalTagAttributeMapOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UnlinkDeveloperIdentity = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "UnlinkDeveloperIdentity"),
+    input = M.UnlinkDeveloperIdentityInput,
+    output = M.UnlinkDeveloperIdentityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UnlinkIdentity = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "UnlinkIdentity"),
+    input = M.UnlinkIdentityInput,
+    output = M.UnlinkIdentityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIdentityPool = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentity", "UpdateIdentityPool"),
+    input = M.UpdateIdentityPoolInput,
+    output = M.UpdateIdentityPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

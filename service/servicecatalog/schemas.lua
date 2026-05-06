@@ -7481,4 +7481,1004 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.servicecatalog", "AWS242ServiceCatalogService"),
+    version = "2015-12-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptPortfolioShare = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "AcceptPortfolioShare"),
+    input = M.AcceptPortfolioShareInput,
+    output = M.AcceptPortfolioShareOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateBudgetWithResource = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "AssociateBudgetWithResource"),
+    input = M.AssociateBudgetWithResourceInput,
+    output = M.AssociateBudgetWithResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociatePrincipalWithPortfolio = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "AssociatePrincipalWithPortfolio"),
+    input = M.AssociatePrincipalWithPortfolioInput,
+    output = M.AssociatePrincipalWithPortfolioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateProductWithPortfolio = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "AssociateProductWithPortfolio"),
+    input = M.AssociateProductWithPortfolioInput,
+    output = M.AssociateProductWithPortfolioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateServiceActionWithProvisioningArtifact = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "AssociateServiceActionWithProvisioningArtifact"),
+    input = M.AssociateServiceActionWithProvisioningArtifactInput,
+    output = M.AssociateServiceActionWithProvisioningArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateTagOptionWithResource = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "AssociateTagOptionWithResource"),
+    input = M.AssociateTagOptionWithResourceInput,
+    output = M.AssociateTagOptionWithResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAssociateServiceActionWithProvisioningArtifact = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "BatchAssociateServiceActionWithProvisioningArtifact"),
+    input = M.BatchAssociateServiceActionWithProvisioningArtifactInput,
+    output = M.BatchAssociateServiceActionWithProvisioningArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDisassociateServiceActionFromProvisioningArtifact = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "BatchDisassociateServiceActionFromProvisioningArtifact"),
+    input = M.BatchDisassociateServiceActionFromProvisioningArtifactInput,
+    output = M.BatchDisassociateServiceActionFromProvisioningArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyProduct = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "CopyProduct"),
+    input = M.CopyProductInput,
+    output = M.CopyProductOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConstraint = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "CreateConstraint"),
+    input = M.CreateConstraintInput,
+    output = M.CreateConstraintOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePortfolio = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "CreatePortfolio"),
+    input = M.CreatePortfolioInput,
+    output = M.CreatePortfolioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePortfolioShare = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "CreatePortfolioShare"),
+    input = M.CreatePortfolioShareInput,
+    output = M.CreatePortfolioShareOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProduct = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "CreateProduct"),
+    input = M.CreateProductInput,
+    output = M.CreateProductOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProvisionedProductPlan = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "CreateProvisionedProductPlan"),
+    input = M.CreateProvisionedProductPlanInput,
+    output = M.CreateProvisionedProductPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProvisioningArtifact = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "CreateProvisioningArtifact"),
+    input = M.CreateProvisioningArtifactInput,
+    output = M.CreateProvisioningArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServiceAction = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "CreateServiceAction"),
+    input = M.CreateServiceActionInput,
+    output = M.CreateServiceActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTagOption = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "CreateTagOption"),
+    input = M.CreateTagOptionInput,
+    output = M.CreateTagOptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConstraint = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DeleteConstraint"),
+    input = M.DeleteConstraintInput,
+    output = M.DeleteConstraintOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePortfolio = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DeletePortfolio"),
+    input = M.DeletePortfolioInput,
+    output = M.DeletePortfolioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePortfolioShare = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DeletePortfolioShare"),
+    input = M.DeletePortfolioShareInput,
+    output = M.DeletePortfolioShareOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProduct = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DeleteProduct"),
+    input = M.DeleteProductInput,
+    output = M.DeleteProductOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProvisionedProductPlan = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DeleteProvisionedProductPlan"),
+    input = M.DeleteProvisionedProductPlanInput,
+    output = M.DeleteProvisionedProductPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProvisioningArtifact = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DeleteProvisioningArtifact"),
+    input = M.DeleteProvisioningArtifactInput,
+    output = M.DeleteProvisioningArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceAction = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DeleteServiceAction"),
+    input = M.DeleteServiceActionInput,
+    output = M.DeleteServiceActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTagOption = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DeleteTagOption"),
+    input = M.DeleteTagOptionInput,
+    output = M.DeleteTagOptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConstraint = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribeConstraint"),
+    input = M.DescribeConstraintInput,
+    output = M.DescribeConstraintOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCopyProductStatus = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribeCopyProductStatus"),
+    input = M.DescribeCopyProductStatusInput,
+    output = M.DescribeCopyProductStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePortfolio = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribePortfolio"),
+    input = M.DescribePortfolioInput,
+    output = M.DescribePortfolioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePortfolioShares = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribePortfolioShares"),
+    input = M.DescribePortfolioSharesInput,
+    output = M.DescribePortfolioSharesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePortfolioShareStatus = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribePortfolioShareStatus"),
+    input = M.DescribePortfolioShareStatusInput,
+    output = M.DescribePortfolioShareStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProduct = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribeProduct"),
+    input = M.DescribeProductInput,
+    output = M.DescribeProductOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProductAsAdmin = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribeProductAsAdmin"),
+    input = M.DescribeProductAsAdminInput,
+    output = M.DescribeProductAsAdminOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProductView = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribeProductView"),
+    input = M.DescribeProductViewInput,
+    output = M.DescribeProductViewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProvisionedProduct = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribeProvisionedProduct"),
+    input = M.DescribeProvisionedProductInput,
+    output = M.DescribeProvisionedProductOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProvisionedProductPlan = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribeProvisionedProductPlan"),
+    input = M.DescribeProvisionedProductPlanInput,
+    output = M.DescribeProvisionedProductPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProvisioningArtifact = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribeProvisioningArtifact"),
+    input = M.DescribeProvisioningArtifactInput,
+    output = M.DescribeProvisioningArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProvisioningParameters = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribeProvisioningParameters"),
+    input = M.DescribeProvisioningParametersInput,
+    output = M.DescribeProvisioningParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRecord = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribeRecord"),
+    input = M.DescribeRecordInput,
+    output = M.DescribeRecordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServiceAction = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribeServiceAction"),
+    input = M.DescribeServiceActionInput,
+    output = M.DescribeServiceActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServiceActionExecutionParameters = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribeServiceActionExecutionParameters"),
+    input = M.DescribeServiceActionExecutionParametersInput,
+    output = M.DescribeServiceActionExecutionParametersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTagOption = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DescribeTagOption"),
+    input = M.DescribeTagOptionInput,
+    output = M.DescribeTagOptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableAWSOrganizationsAccess = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DisableAWSOrganizationsAccess"),
+    input = M.DisableAWSOrganizationsAccessInput,
+    output = M.DisableAWSOrganizationsAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateBudgetFromResource = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DisassociateBudgetFromResource"),
+    input = M.DisassociateBudgetFromResourceInput,
+    output = M.DisassociateBudgetFromResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociatePrincipalFromPortfolio = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DisassociatePrincipalFromPortfolio"),
+    input = M.DisassociatePrincipalFromPortfolioInput,
+    output = M.DisassociatePrincipalFromPortfolioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateProductFromPortfolio = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DisassociateProductFromPortfolio"),
+    input = M.DisassociateProductFromPortfolioInput,
+    output = M.DisassociateProductFromPortfolioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateServiceActionFromProvisioningArtifact = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DisassociateServiceActionFromProvisioningArtifact"),
+    input = M.DisassociateServiceActionFromProvisioningArtifactInput,
+    output = M.DisassociateServiceActionFromProvisioningArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateTagOptionFromResource = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "DisassociateTagOptionFromResource"),
+    input = M.DisassociateTagOptionFromResourceInput,
+    output = M.DisassociateTagOptionFromResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableAWSOrganizationsAccess = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "EnableAWSOrganizationsAccess"),
+    input = M.EnableAWSOrganizationsAccessInput,
+    output = M.EnableAWSOrganizationsAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteProvisionedProductPlan = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ExecuteProvisionedProductPlan"),
+    input = M.ExecuteProvisionedProductPlanInput,
+    output = M.ExecuteProvisionedProductPlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteProvisionedProductServiceAction = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ExecuteProvisionedProductServiceAction"),
+    input = M.ExecuteProvisionedProductServiceActionInput,
+    output = M.ExecuteProvisionedProductServiceActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAWSOrganizationsAccessStatus = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "GetAWSOrganizationsAccessStatus"),
+    input = M.GetAWSOrganizationsAccessStatusInput,
+    output = M.GetAWSOrganizationsAccessStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProvisionedProductOutputs = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "GetProvisionedProductOutputs"),
+    input = M.GetProvisionedProductOutputsInput,
+    output = M.GetProvisionedProductOutputsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportAsProvisionedProduct = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ImportAsProvisionedProduct"),
+    input = M.ImportAsProvisionedProductInput,
+    output = M.ImportAsProvisionedProductOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAcceptedPortfolioShares = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListAcceptedPortfolioShares"),
+    input = M.ListAcceptedPortfolioSharesInput,
+    output = M.ListAcceptedPortfolioSharesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBudgetsForResource = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListBudgetsForResource"),
+    input = M.ListBudgetsForResourceInput,
+    output = M.ListBudgetsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConstraintsForPortfolio = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListConstraintsForPortfolio"),
+    input = M.ListConstraintsForPortfolioInput,
+    output = M.ListConstraintsForPortfolioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLaunchPaths = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListLaunchPaths"),
+    input = M.ListLaunchPathsInput,
+    output = M.ListLaunchPathsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOrganizationPortfolioAccess = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListOrganizationPortfolioAccess"),
+    input = M.ListOrganizationPortfolioAccessInput,
+    output = M.ListOrganizationPortfolioAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPortfolioAccess = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListPortfolioAccess"),
+    input = M.ListPortfolioAccessInput,
+    output = M.ListPortfolioAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPortfolios = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListPortfolios"),
+    input = M.ListPortfoliosInput,
+    output = M.ListPortfoliosOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPortfoliosForProduct = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListPortfoliosForProduct"),
+    input = M.ListPortfoliosForProductInput,
+    output = M.ListPortfoliosForProductOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPrincipalsForPortfolio = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListPrincipalsForPortfolio"),
+    input = M.ListPrincipalsForPortfolioInput,
+    output = M.ListPrincipalsForPortfolioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProvisionedProductPlans = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListProvisionedProductPlans"),
+    input = M.ListProvisionedProductPlansInput,
+    output = M.ListProvisionedProductPlansOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProvisioningArtifacts = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListProvisioningArtifacts"),
+    input = M.ListProvisioningArtifactsInput,
+    output = M.ListProvisioningArtifactsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProvisioningArtifactsForServiceAction = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListProvisioningArtifactsForServiceAction"),
+    input = M.ListProvisioningArtifactsForServiceActionInput,
+    output = M.ListProvisioningArtifactsForServiceActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecordHistory = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListRecordHistory"),
+    input = M.ListRecordHistoryInput,
+    output = M.ListRecordHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourcesForTagOption = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListResourcesForTagOption"),
+    input = M.ListResourcesForTagOptionInput,
+    output = M.ListResourcesForTagOptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceActions = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListServiceActions"),
+    input = M.ListServiceActionsInput,
+    output = M.ListServiceActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceActionsForProvisioningArtifact = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListServiceActionsForProvisioningArtifact"),
+    input = M.ListServiceActionsForProvisioningArtifactInput,
+    output = M.ListServiceActionsForProvisioningArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStackInstancesForProvisionedProduct = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListStackInstancesForProvisionedProduct"),
+    input = M.ListStackInstancesForProvisionedProductInput,
+    output = M.ListStackInstancesForProvisionedProductOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagOptions = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ListTagOptions"),
+    input = M.ListTagOptionsInput,
+    output = M.ListTagOptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.NotifyProvisionProductEngineWorkflowResult = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "NotifyProvisionProductEngineWorkflowResult"),
+    input = M.NotifyProvisionProductEngineWorkflowResultInput,
+    output = M.NotifyProvisionProductEngineWorkflowResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.NotifyTerminateProvisionedProductEngineWorkflowResult = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "NotifyTerminateProvisionedProductEngineWorkflowResult"),
+    input = M.NotifyTerminateProvisionedProductEngineWorkflowResultInput,
+    output = M.NotifyTerminateProvisionedProductEngineWorkflowResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.NotifyUpdateProvisionedProductEngineWorkflowResult = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "NotifyUpdateProvisionedProductEngineWorkflowResult"),
+    input = M.NotifyUpdateProvisionedProductEngineWorkflowResultInput,
+    output = M.NotifyUpdateProvisionedProductEngineWorkflowResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ProvisionProduct = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ProvisionProduct"),
+    input = M.ProvisionProductInput,
+    output = M.ProvisionProductOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectPortfolioShare = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "RejectPortfolioShare"),
+    input = M.RejectPortfolioShareInput,
+    output = M.RejectPortfolioShareOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ScanProvisionedProducts = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "ScanProvisionedProducts"),
+    input = M.ScanProvisionedProductsInput,
+    output = M.ScanProvisionedProductsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchProducts = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "SearchProducts"),
+    input = M.SearchProductsInput,
+    output = M.SearchProductsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchProductsAsAdmin = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "SearchProductsAsAdmin"),
+    input = M.SearchProductsAsAdminInput,
+    output = M.SearchProductsAsAdminOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchProvisionedProducts = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "SearchProvisionedProducts"),
+    input = M.SearchProvisionedProductsInput,
+    output = M.SearchProvisionedProductsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateProvisionedProduct = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "TerminateProvisionedProduct"),
+    input = M.TerminateProvisionedProductInput,
+    output = M.TerminateProvisionedProductOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConstraint = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "UpdateConstraint"),
+    input = M.UpdateConstraintInput,
+    output = M.UpdateConstraintOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePortfolio = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "UpdatePortfolio"),
+    input = M.UpdatePortfolioInput,
+    output = M.UpdatePortfolioOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePortfolioShare = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "UpdatePortfolioShare"),
+    input = M.UpdatePortfolioShareInput,
+    output = M.UpdatePortfolioShareOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProduct = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "UpdateProduct"),
+    input = M.UpdateProductInput,
+    output = M.UpdateProductOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProvisionedProduct = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "UpdateProvisionedProduct"),
+    input = M.UpdateProvisionedProductInput,
+    output = M.UpdateProvisionedProductOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProvisionedProductProperties = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "UpdateProvisionedProductProperties"),
+    input = M.UpdateProvisionedProductPropertiesInput,
+    output = M.UpdateProvisionedProductPropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProvisioningArtifact = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "UpdateProvisioningArtifact"),
+    input = M.UpdateProvisioningArtifactInput,
+    output = M.UpdateProvisioningArtifactOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceAction = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "UpdateServiceAction"),
+    input = M.UpdateServiceActionInput,
+    output = M.UpdateServiceActionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTagOption = schema.operation({
+    id = id.from("com.amazonaws.servicecatalog", "UpdateTagOption"),
+    input = M.UpdateTagOptionInput,
+    output = M.UpdateTagOptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

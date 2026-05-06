@@ -325,4 +325,26 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.signin", "Signin"),
+    version = "2023-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOAuth2Token = schema.operation({
+    id = id.from("com.amazonaws.signin", "CreateOAuth2Token"),
+    input = M.CreateOAuth2TokenInput,
+    output = M.CreateOAuth2TokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/token" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
 return M

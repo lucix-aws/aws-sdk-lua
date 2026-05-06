@@ -2399,4 +2399,206 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.taxsettings", "TaxSettings"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteTaxRegistration = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "BatchDeleteTaxRegistration"),
+    input = M.BatchDeleteTaxRegistrationInput,
+    output = M.BatchDeleteTaxRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchDeleteTaxRegistration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetTaxExemptions = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "BatchGetTaxExemptions"),
+    input = M.BatchGetTaxExemptionsInput,
+    output = M.BatchGetTaxExemptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetTaxExemptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchPutTaxRegistration = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "BatchPutTaxRegistration"),
+    input = M.BatchPutTaxRegistrationInput,
+    output = M.BatchPutTaxRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchPutTaxRegistration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSupplementalTaxRegistration = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "DeleteSupplementalTaxRegistration"),
+    input = M.DeleteSupplementalTaxRegistrationInput,
+    output = M.DeleteSupplementalTaxRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteSupplementalTaxRegistration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTaxRegistration = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "DeleteTaxRegistration"),
+    input = M.DeleteTaxRegistrationInput,
+    output = M.DeleteTaxRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteTaxRegistration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTaxExemptionTypes = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "GetTaxExemptionTypes"),
+    input = M.GetTaxExemptionTypesInput,
+    output = M.GetTaxExemptionTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTaxExemptionTypes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTaxInheritance = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "GetTaxInheritance"),
+    input = M.GetTaxInheritanceInput,
+    output = M.GetTaxInheritanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTaxInheritance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTaxRegistration = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "GetTaxRegistration"),
+    input = M.GetTaxRegistrationInput,
+    output = M.GetTaxRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTaxRegistration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTaxRegistrationDocument = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "GetTaxRegistrationDocument"),
+    input = M.GetTaxRegistrationDocumentInput,
+    output = M.GetTaxRegistrationDocumentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTaxRegistrationDocument" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSupplementalTaxRegistrations = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "ListSupplementalTaxRegistrations"),
+    input = M.ListSupplementalTaxRegistrationsInput,
+    output = M.ListSupplementalTaxRegistrationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListSupplementalTaxRegistrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTaxExemptions = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "ListTaxExemptions"),
+    input = M.ListTaxExemptionsInput,
+    output = M.ListTaxExemptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTaxExemptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTaxRegistrations = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "ListTaxRegistrations"),
+    input = M.ListTaxRegistrationsInput,
+    output = M.ListTaxRegistrationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTaxRegistrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSupplementalTaxRegistration = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "PutSupplementalTaxRegistration"),
+    input = M.PutSupplementalTaxRegistrationInput,
+    output = M.PutSupplementalTaxRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutSupplementalTaxRegistration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTaxExemption = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "PutTaxExemption"),
+    input = M.PutTaxExemptionInput,
+    output = M.PutTaxExemptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutTaxExemption" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTaxInheritance = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "PutTaxInheritance"),
+    input = M.PutTaxInheritanceInput,
+    output = M.PutTaxInheritanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutTaxInheritance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTaxRegistration = schema.operation({
+    id = id.from("com.amazonaws.taxsettings", "PutTaxRegistration"),
+    input = M.PutTaxRegistrationInput,
+    output = M.PutTaxRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutTaxRegistration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

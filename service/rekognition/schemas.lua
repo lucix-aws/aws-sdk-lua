@@ -9072,4 +9072,839 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.rekognition", "RekognitionService"),
+    version = "2016-06-27",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateFaces = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "AssociateFaces"),
+    input = M.AssociateFacesInput,
+    output = M.AssociateFacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CompareFaces = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "CompareFaces"),
+    input = M.CompareFacesInput,
+    output = M.CompareFacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CopyProjectVersion = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "CopyProjectVersion"),
+    input = M.CopyProjectVersionInput,
+    output = M.CopyProjectVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCollection = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "CreateCollection"),
+    input = M.CreateCollectionInput,
+    output = M.CreateCollectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataset = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "CreateDataset"),
+    input = M.CreateDatasetInput,
+    output = M.CreateDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFaceLivenessSession = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "CreateFaceLivenessSession"),
+    input = M.CreateFaceLivenessSessionInput,
+    output = M.CreateFaceLivenessSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProject = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "CreateProject"),
+    input = M.CreateProjectInput,
+    output = M.CreateProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProjectVersion = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "CreateProjectVersion"),
+    input = M.CreateProjectVersionInput,
+    output = M.CreateProjectVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStreamProcessor = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "CreateStreamProcessor"),
+    input = M.CreateStreamProcessorInput,
+    output = M.CreateStreamProcessorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCollection = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DeleteCollection"),
+    input = M.DeleteCollectionInput,
+    output = M.DeleteCollectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataset = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DeleteDataset"),
+    input = M.DeleteDatasetInput,
+    output = M.DeleteDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFaces = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DeleteFaces"),
+    input = M.DeleteFacesInput,
+    output = M.DeleteFacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProject = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DeleteProject"),
+    input = M.DeleteProjectInput,
+    output = M.DeleteProjectOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProjectPolicy = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DeleteProjectPolicy"),
+    input = M.DeleteProjectPolicyInput,
+    output = M.DeleteProjectPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProjectVersion = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DeleteProjectVersion"),
+    input = M.DeleteProjectVersionInput,
+    output = M.DeleteProjectVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStreamProcessor = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DeleteStreamProcessor"),
+    input = M.DeleteStreamProcessorInput,
+    output = M.DeleteStreamProcessorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCollection = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DescribeCollection"),
+    input = M.DescribeCollectionInput,
+    output = M.DescribeCollectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataset = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DescribeDataset"),
+    input = M.DescribeDatasetInput,
+    output = M.DescribeDatasetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProjects = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DescribeProjects"),
+    input = M.DescribeProjectsInput,
+    output = M.DescribeProjectsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProjectVersions = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DescribeProjectVersions"),
+    input = M.DescribeProjectVersionsInput,
+    output = M.DescribeProjectVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStreamProcessor = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DescribeStreamProcessor"),
+    input = M.DescribeStreamProcessorInput,
+    output = M.DescribeStreamProcessorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectCustomLabels = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DetectCustomLabels"),
+    input = M.DetectCustomLabelsInput,
+    output = M.DetectCustomLabelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectFaces = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DetectFaces"),
+    input = M.DetectFacesInput,
+    output = M.DetectFacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectLabels = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DetectLabels"),
+    input = M.DetectLabelsInput,
+    output = M.DetectLabelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectModerationLabels = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DetectModerationLabels"),
+    input = M.DetectModerationLabelsInput,
+    output = M.DetectModerationLabelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectProtectiveEquipment = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DetectProtectiveEquipment"),
+    input = M.DetectProtectiveEquipmentInput,
+    output = M.DetectProtectiveEquipmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetectText = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DetectText"),
+    input = M.DetectTextInput,
+    output = M.DetectTextOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFaces = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DisassociateFaces"),
+    input = M.DisassociateFacesInput,
+    output = M.DisassociateFacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DistributeDatasetEntries = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "DistributeDatasetEntries"),
+    input = M.DistributeDatasetEntriesInput,
+    output = M.DistributeDatasetEntriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCelebrityInfo = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "GetCelebrityInfo"),
+    input = M.GetCelebrityInfoInput,
+    output = M.GetCelebrityInfoOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCelebrityRecognition = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "GetCelebrityRecognition"),
+    input = M.GetCelebrityRecognitionInput,
+    output = M.GetCelebrityRecognitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContentModeration = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "GetContentModeration"),
+    input = M.GetContentModerationInput,
+    output = M.GetContentModerationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFaceDetection = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "GetFaceDetection"),
+    input = M.GetFaceDetectionInput,
+    output = M.GetFaceDetectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFaceLivenessSessionResults = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "GetFaceLivenessSessionResults"),
+    input = M.GetFaceLivenessSessionResultsInput,
+    output = M.GetFaceLivenessSessionResultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFaceSearch = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "GetFaceSearch"),
+    input = M.GetFaceSearchInput,
+    output = M.GetFaceSearchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLabelDetection = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "GetLabelDetection"),
+    input = M.GetLabelDetectionInput,
+    output = M.GetLabelDetectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMediaAnalysisJob = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "GetMediaAnalysisJob"),
+    input = M.GetMediaAnalysisJobInput,
+    output = M.GetMediaAnalysisJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPersonTracking = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "GetPersonTracking"),
+    input = M.GetPersonTrackingInput,
+    output = M.GetPersonTrackingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSegmentDetection = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "GetSegmentDetection"),
+    input = M.GetSegmentDetectionInput,
+    output = M.GetSegmentDetectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTextDetection = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "GetTextDetection"),
+    input = M.GetTextDetectionInput,
+    output = M.GetTextDetectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.IndexFaces = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "IndexFaces"),
+    input = M.IndexFacesInput,
+    output = M.IndexFacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollections = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "ListCollections"),
+    input = M.ListCollectionsInput,
+    output = M.ListCollectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasetEntries = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "ListDatasetEntries"),
+    input = M.ListDatasetEntriesInput,
+    output = M.ListDatasetEntriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasetLabels = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "ListDatasetLabels"),
+    input = M.ListDatasetLabelsInput,
+    output = M.ListDatasetLabelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFaces = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "ListFaces"),
+    input = M.ListFacesInput,
+    output = M.ListFacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMediaAnalysisJobs = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "ListMediaAnalysisJobs"),
+    input = M.ListMediaAnalysisJobsInput,
+    output = M.ListMediaAnalysisJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProjectPolicies = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "ListProjectPolicies"),
+    input = M.ListProjectPoliciesInput,
+    output = M.ListProjectPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStreamProcessors = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "ListStreamProcessors"),
+    input = M.ListStreamProcessorsInput,
+    output = M.ListStreamProcessorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsers = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "ListUsers"),
+    input = M.ListUsersInput,
+    output = M.ListUsersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutProjectPolicy = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "PutProjectPolicy"),
+    input = M.PutProjectPolicyInput,
+    output = M.PutProjectPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RecognizeCelebrities = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "RecognizeCelebrities"),
+    input = M.RecognizeCelebritiesInput,
+    output = M.RecognizeCelebritiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchFaces = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "SearchFaces"),
+    input = M.SearchFacesInput,
+    output = M.SearchFacesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchFacesByImage = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "SearchFacesByImage"),
+    input = M.SearchFacesByImageInput,
+    output = M.SearchFacesByImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchUsers = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "SearchUsers"),
+    input = M.SearchUsersInput,
+    output = M.SearchUsersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchUsersByImage = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "SearchUsersByImage"),
+    input = M.SearchUsersByImageInput,
+    output = M.SearchUsersByImageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartCelebrityRecognition = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "StartCelebrityRecognition"),
+    input = M.StartCelebrityRecognitionInput,
+    output = M.StartCelebrityRecognitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartContentModeration = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "StartContentModeration"),
+    input = M.StartContentModerationInput,
+    output = M.StartContentModerationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFaceDetection = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "StartFaceDetection"),
+    input = M.StartFaceDetectionInput,
+    output = M.StartFaceDetectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartFaceSearch = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "StartFaceSearch"),
+    input = M.StartFaceSearchInput,
+    output = M.StartFaceSearchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartLabelDetection = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "StartLabelDetection"),
+    input = M.StartLabelDetectionInput,
+    output = M.StartLabelDetectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMediaAnalysisJob = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "StartMediaAnalysisJob"),
+    input = M.StartMediaAnalysisJobInput,
+    output = M.StartMediaAnalysisJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartPersonTracking = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "StartPersonTracking"),
+    input = M.StartPersonTrackingInput,
+    output = M.StartPersonTrackingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartProjectVersion = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "StartProjectVersion"),
+    input = M.StartProjectVersionInput,
+    output = M.StartProjectVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSegmentDetection = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "StartSegmentDetection"),
+    input = M.StartSegmentDetectionInput,
+    output = M.StartSegmentDetectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartStreamProcessor = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "StartStreamProcessor"),
+    input = M.StartStreamProcessorInput,
+    output = M.StartStreamProcessorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTextDetection = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "StartTextDetection"),
+    input = M.StartTextDetectionInput,
+    output = M.StartTextDetectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopProjectVersion = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "StopProjectVersion"),
+    input = M.StopProjectVersionInput,
+    output = M.StopProjectVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopStreamProcessor = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "StopStreamProcessor"),
+    input = M.StopStreamProcessorInput,
+    output = M.StopStreamProcessorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDatasetEntries = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "UpdateDatasetEntries"),
+    input = M.UpdateDatasetEntriesInput,
+    output = M.UpdateDatasetEntriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateStreamProcessor = schema.operation({
+    id = id.from("com.amazonaws.rekognition", "UpdateStreamProcessor"),
+    input = M.UpdateStreamProcessorInput,
+    output = M.UpdateStreamProcessorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

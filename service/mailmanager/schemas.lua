@@ -5524,4 +5524,674 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.mailmanager", "MailManagerSvc"),
+    version = "2023-10-17",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAddonInstance = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "CreateAddonInstance"),
+    input = M.CreateAddonInstanceInput,
+    output = M.CreateAddonInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAddonSubscription = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "CreateAddonSubscription"),
+    input = M.CreateAddonSubscriptionInput,
+    output = M.CreateAddonSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAddressList = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "CreateAddressList"),
+    input = M.CreateAddressListInput,
+    output = M.CreateAddressListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAddressListImportJob = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "CreateAddressListImportJob"),
+    input = M.CreateAddressListImportJobInput,
+    output = M.CreateAddressListImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateArchive = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "CreateArchive"),
+    input = M.CreateArchiveInput,
+    output = M.CreateArchiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIngressPoint = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "CreateIngressPoint"),
+    input = M.CreateIngressPointInput,
+    output = M.CreateIngressPointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRelay = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "CreateRelay"),
+    input = M.CreateRelayInput,
+    output = M.CreateRelayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRuleSet = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "CreateRuleSet"),
+    input = M.CreateRuleSetInput,
+    output = M.CreateRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrafficPolicy = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "CreateTrafficPolicy"),
+    input = M.CreateTrafficPolicyInput,
+    output = M.CreateTrafficPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAddonInstance = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "DeleteAddonInstance"),
+    input = M.DeleteAddonInstanceInput,
+    output = M.DeleteAddonInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAddonSubscription = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "DeleteAddonSubscription"),
+    input = M.DeleteAddonSubscriptionInput,
+    output = M.DeleteAddonSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAddressList = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "DeleteAddressList"),
+    input = M.DeleteAddressListInput,
+    output = M.DeleteAddressListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteArchive = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "DeleteArchive"),
+    input = M.DeleteArchiveInput,
+    output = M.DeleteArchiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIngressPoint = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "DeleteIngressPoint"),
+    input = M.DeleteIngressPointInput,
+    output = M.DeleteIngressPointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRelay = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "DeleteRelay"),
+    input = M.DeleteRelayInput,
+    output = M.DeleteRelayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRuleSet = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "DeleteRuleSet"),
+    input = M.DeleteRuleSetInput,
+    output = M.DeleteRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrafficPolicy = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "DeleteTrafficPolicy"),
+    input = M.DeleteTrafficPolicyInput,
+    output = M.DeleteTrafficPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterMemberFromAddressList = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "DeregisterMemberFromAddressList"),
+    input = M.DeregisterMemberFromAddressListInput,
+    output = M.DeregisterMemberFromAddressListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAddonInstance = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetAddonInstance"),
+    input = M.GetAddonInstanceInput,
+    output = M.GetAddonInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAddonSubscription = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetAddonSubscription"),
+    input = M.GetAddonSubscriptionInput,
+    output = M.GetAddonSubscriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAddressList = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetAddressList"),
+    input = M.GetAddressListInput,
+    output = M.GetAddressListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAddressListImportJob = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetAddressListImportJob"),
+    input = M.GetAddressListImportJobInput,
+    output = M.GetAddressListImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetArchive = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetArchive"),
+    input = M.GetArchiveInput,
+    output = M.GetArchiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetArchiveExport = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetArchiveExport"),
+    input = M.GetArchiveExportInput,
+    output = M.GetArchiveExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetArchiveMessage = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetArchiveMessage"),
+    input = M.GetArchiveMessageInput,
+    output = M.GetArchiveMessageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetArchiveMessageContent = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetArchiveMessageContent"),
+    input = M.GetArchiveMessageContentInput,
+    output = M.GetArchiveMessageContentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetArchiveSearch = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetArchiveSearch"),
+    input = M.GetArchiveSearchInput,
+    output = M.GetArchiveSearchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetArchiveSearchResults = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetArchiveSearchResults"),
+    input = M.GetArchiveSearchResultsInput,
+    output = M.GetArchiveSearchResultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIngressPoint = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetIngressPoint"),
+    input = M.GetIngressPointInput,
+    output = M.GetIngressPointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMemberOfAddressList = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetMemberOfAddressList"),
+    input = M.GetMemberOfAddressListInput,
+    output = M.GetMemberOfAddressListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRelay = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetRelay"),
+    input = M.GetRelayInput,
+    output = M.GetRelayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRuleSet = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetRuleSet"),
+    input = M.GetRuleSetInput,
+    output = M.GetRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrafficPolicy = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "GetTrafficPolicy"),
+    input = M.GetTrafficPolicyInput,
+    output = M.GetTrafficPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAddonInstances = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "ListAddonInstances"),
+    input = M.ListAddonInstancesInput,
+    output = M.ListAddonInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAddonSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "ListAddonSubscriptions"),
+    input = M.ListAddonSubscriptionsInput,
+    output = M.ListAddonSubscriptionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAddressListImportJobs = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "ListAddressListImportJobs"),
+    input = M.ListAddressListImportJobsInput,
+    output = M.ListAddressListImportJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAddressLists = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "ListAddressLists"),
+    input = M.ListAddressListsInput,
+    output = M.ListAddressListsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListArchiveExports = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "ListArchiveExports"),
+    input = M.ListArchiveExportsInput,
+    output = M.ListArchiveExportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListArchives = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "ListArchives"),
+    input = M.ListArchivesInput,
+    output = M.ListArchivesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListArchiveSearches = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "ListArchiveSearches"),
+    input = M.ListArchiveSearchesInput,
+    output = M.ListArchiveSearchesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIngressPoints = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "ListIngressPoints"),
+    input = M.ListIngressPointsInput,
+    output = M.ListIngressPointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMembersOfAddressList = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "ListMembersOfAddressList"),
+    input = M.ListMembersOfAddressListInput,
+    output = M.ListMembersOfAddressListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRelays = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "ListRelays"),
+    input = M.ListRelaysInput,
+    output = M.ListRelaysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRuleSets = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "ListRuleSets"),
+    input = M.ListRuleSetsInput,
+    output = M.ListRuleSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrafficPolicies = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "ListTrafficPolicies"),
+    input = M.ListTrafficPoliciesInput,
+    output = M.ListTrafficPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterMemberToAddressList = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "RegisterMemberToAddressList"),
+    input = M.RegisterMemberToAddressListInput,
+    output = M.RegisterMemberToAddressListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAddressListImportJob = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "StartAddressListImportJob"),
+    input = M.StartAddressListImportJobInput,
+    output = M.StartAddressListImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartArchiveExport = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "StartArchiveExport"),
+    input = M.StartArchiveExportInput,
+    output = M.StartArchiveExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartArchiveSearch = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "StartArchiveSearch"),
+    input = M.StartArchiveSearchInput,
+    output = M.StartArchiveSearchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopAddressListImportJob = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "StopAddressListImportJob"),
+    input = M.StopAddressListImportJobInput,
+    output = M.StopAddressListImportJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopArchiveExport = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "StopArchiveExport"),
+    input = M.StopArchiveExportInput,
+    output = M.StopArchiveExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopArchiveSearch = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "StopArchiveSearch"),
+    input = M.StopArchiveSearchInput,
+    output = M.StopArchiveSearchOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateArchive = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "UpdateArchive"),
+    input = M.UpdateArchiveInput,
+    output = M.UpdateArchiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIngressPoint = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "UpdateIngressPoint"),
+    input = M.UpdateIngressPointInput,
+    output = M.UpdateIngressPointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRelay = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "UpdateRelay"),
+    input = M.UpdateRelayInput,
+    output = M.UpdateRelayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRuleSet = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "UpdateRuleSet"),
+    input = M.UpdateRuleSetInput,
+    output = M.UpdateRuleSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrafficPolicy = schema.operation({
+    id = id.from("com.amazonaws.mailmanager", "UpdateTrafficPolicy"),
+    input = M.UpdateTrafficPolicyInput,
+    output = M.UpdateTrafficPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

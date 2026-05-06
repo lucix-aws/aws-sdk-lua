@@ -4107,4 +4107,520 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.opensearchserverless", "OpenSearchServerless"),
+    version = "2021-11-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetCollection = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "BatchGetCollection"),
+    input = M.BatchGetCollectionInput,
+    output = M.BatchGetCollectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetCollectionGroup = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "BatchGetCollectionGroup"),
+    input = M.BatchGetCollectionGroupInput,
+    output = M.BatchGetCollectionGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetEffectiveLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "BatchGetEffectiveLifecyclePolicy"),
+    input = M.BatchGetEffectiveLifecyclePolicyInput,
+    output = M.BatchGetEffectiveLifecyclePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "BatchGetLifecyclePolicy"),
+    input = M.BatchGetLifecyclePolicyInput,
+    output = M.BatchGetLifecyclePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetVpcEndpoint = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "BatchGetVpcEndpoint"),
+    input = M.BatchGetVpcEndpointInput,
+    output = M.BatchGetVpcEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "CreateAccessPolicy"),
+    input = M.CreateAccessPolicyInput,
+    output = M.CreateAccessPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCollection = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "CreateCollection"),
+    input = M.CreateCollectionInput,
+    output = M.CreateCollectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCollectionGroup = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "CreateCollectionGroup"),
+    input = M.CreateCollectionGroupInput,
+    output = M.CreateCollectionGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIndex = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "CreateIndex"),
+    input = M.CreateIndexInput,
+    output = M.CreateIndexOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "CreateLifecyclePolicy"),
+    input = M.CreateLifecyclePolicyInput,
+    output = M.CreateLifecyclePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSecurityConfig = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "CreateSecurityConfig"),
+    input = M.CreateSecurityConfigInput,
+    output = M.CreateSecurityConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSecurityPolicy = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "CreateSecurityPolicy"),
+    input = M.CreateSecurityPolicyInput,
+    output = M.CreateSecurityPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVpcEndpoint = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "CreateVpcEndpoint"),
+    input = M.CreateVpcEndpointInput,
+    output = M.CreateVpcEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "DeleteAccessPolicy"),
+    input = M.DeleteAccessPolicyInput,
+    output = M.DeleteAccessPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCollection = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "DeleteCollection"),
+    input = M.DeleteCollectionInput,
+    output = M.DeleteCollectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCollectionGroup = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "DeleteCollectionGroup"),
+    input = M.DeleteCollectionGroupInput,
+    output = M.DeleteCollectionGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIndex = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "DeleteIndex"),
+    input = M.DeleteIndexInput,
+    output = M.DeleteIndexOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "DeleteLifecyclePolicy"),
+    input = M.DeleteLifecyclePolicyInput,
+    output = M.DeleteLifecyclePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSecurityConfig = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "DeleteSecurityConfig"),
+    input = M.DeleteSecurityConfigInput,
+    output = M.DeleteSecurityConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSecurityPolicy = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "DeleteSecurityPolicy"),
+    input = M.DeleteSecurityPolicyInput,
+    output = M.DeleteSecurityPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVpcEndpoint = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "DeleteVpcEndpoint"),
+    input = M.DeleteVpcEndpointInput,
+    output = M.DeleteVpcEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "GetAccessPolicy"),
+    input = M.GetAccessPolicyInput,
+    output = M.GetAccessPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "GetAccountSettings"),
+    input = M.GetAccountSettingsInput,
+    output = M.GetAccountSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIndex = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "GetIndex"),
+    input = M.GetIndexInput,
+    output = M.GetIndexOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPoliciesStats = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "GetPoliciesStats"),
+    input = M.GetPoliciesStatsInput,
+    output = M.GetPoliciesStatsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSecurityConfig = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "GetSecurityConfig"),
+    input = M.GetSecurityConfigInput,
+    output = M.GetSecurityConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSecurityPolicy = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "GetSecurityPolicy"),
+    input = M.GetSecurityPolicyInput,
+    output = M.GetSecurityPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccessPolicies = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "ListAccessPolicies"),
+    input = M.ListAccessPoliciesInput,
+    output = M.ListAccessPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollectionGroups = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "ListCollectionGroups"),
+    input = M.ListCollectionGroupsInput,
+    output = M.ListCollectionGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCollections = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "ListCollections"),
+    input = M.ListCollectionsInput,
+    output = M.ListCollectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLifecyclePolicies = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "ListLifecyclePolicies"),
+    input = M.ListLifecyclePoliciesInput,
+    output = M.ListLifecyclePoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityConfigs = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "ListSecurityConfigs"),
+    input = M.ListSecurityConfigsInput,
+    output = M.ListSecurityConfigsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityPolicies = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "ListSecurityPolicies"),
+    input = M.ListSecurityPoliciesInput,
+    output = M.ListSecurityPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVpcEndpoints = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "ListVpcEndpoints"),
+    input = M.ListVpcEndpointsInput,
+    output = M.ListVpcEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccessPolicy = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "UpdateAccessPolicy"),
+    input = M.UpdateAccessPolicyInput,
+    output = M.UpdateAccessPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "UpdateAccountSettings"),
+    input = M.UpdateAccountSettingsInput,
+    output = M.UpdateAccountSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCollection = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "UpdateCollection"),
+    input = M.UpdateCollectionInput,
+    output = M.UpdateCollectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCollectionGroup = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "UpdateCollectionGroup"),
+    input = M.UpdateCollectionGroupInput,
+    output = M.UpdateCollectionGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIndex = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "UpdateIndex"),
+    input = M.UpdateIndexInput,
+    output = M.UpdateIndexOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLifecyclePolicy = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "UpdateLifecyclePolicy"),
+    input = M.UpdateLifecyclePolicyInput,
+    output = M.UpdateLifecyclePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSecurityConfig = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "UpdateSecurityConfig"),
+    input = M.UpdateSecurityConfigInput,
+    output = M.UpdateSecurityConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSecurityPolicy = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "UpdateSecurityPolicy"),
+    input = M.UpdateSecurityPolicyInput,
+    output = M.UpdateSecurityPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVpcEndpoint = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "UpdateVpcEndpoint"),
+    input = M.UpdateVpcEndpointInput,
+    output = M.UpdateVpcEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

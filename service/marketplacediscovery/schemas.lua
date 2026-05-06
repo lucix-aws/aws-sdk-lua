@@ -3999,4 +3999,122 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.marketplacediscovery", "AWSMarketplaceDiscovery"),
+    version = "2026-02-05",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetListing = schema.operation({
+    id = id.from("com.amazonaws.marketplacediscovery", "GetListing"),
+    input = M.GetListingInput,
+    output = M.GetListingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2026-02-05/getListing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOffer = schema.operation({
+    id = id.from("com.amazonaws.marketplacediscovery", "GetOffer"),
+    input = M.GetOfferInput,
+    output = M.GetOfferOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2026-02-05/getOffer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOfferSet = schema.operation({
+    id = id.from("com.amazonaws.marketplacediscovery", "GetOfferSet"),
+    input = M.GetOfferSetInput,
+    output = M.GetOfferSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2026-02-05/getOfferSet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOfferTerms = schema.operation({
+    id = id.from("com.amazonaws.marketplacediscovery", "GetOfferTerms"),
+    input = M.GetOfferTermsInput,
+    output = M.GetOfferTermsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2026-02-05/getOfferTerms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProduct = schema.operation({
+    id = id.from("com.amazonaws.marketplacediscovery", "GetProduct"),
+    input = M.GetProductInput,
+    output = M.GetProductOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2026-02-05/getProduct" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFulfillmentOptions = schema.operation({
+    id = id.from("com.amazonaws.marketplacediscovery", "ListFulfillmentOptions"),
+    input = M.ListFulfillmentOptionsInput,
+    output = M.ListFulfillmentOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2026-02-05/listFulfillmentOptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPurchaseOptions = schema.operation({
+    id = id.from("com.amazonaws.marketplacediscovery", "ListPurchaseOptions"),
+    input = M.ListPurchaseOptionsInput,
+    output = M.ListPurchaseOptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2026-02-05/listPurchaseOptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchFacets = schema.operation({
+    id = id.from("com.amazonaws.marketplacediscovery", "SearchFacets"),
+    input = M.SearchFacetsInput,
+    output = M.SearchFacetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2026-02-05/searchFacets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchListings = schema.operation({
+    id = id.from("com.amazonaws.marketplacediscovery", "SearchListings"),
+    input = M.SearchListingsInput,
+    output = M.SearchListingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2026-02-05/searchListings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

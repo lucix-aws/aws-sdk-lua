@@ -2427,4 +2427,236 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.partnercentralchannel", "PartnerCentralChannel"),
+    version = "2024-03-18",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptChannelHandshake = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "AcceptChannelHandshake"),
+    input = M.AcceptChannelHandshakeInput,
+    output = M.AcceptChannelHandshakeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/AcceptChannelHandshake" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelChannelHandshake = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "CancelChannelHandshake"),
+    input = M.CancelChannelHandshakeInput,
+    output = M.CancelChannelHandshakeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CancelChannelHandshake" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChannelHandshake = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "CreateChannelHandshake"),
+    input = M.CreateChannelHandshakeInput,
+    output = M.CreateChannelHandshakeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateChannelHandshake" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProgramManagementAccount = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "CreateProgramManagementAccount"),
+    input = M.CreateProgramManagementAccountInput,
+    output = M.CreateProgramManagementAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateProgramManagementAccount" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRelationship = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "CreateRelationship"),
+    input = M.CreateRelationshipInput,
+    output = M.CreateRelationshipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateRelationship" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProgramManagementAccount = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "DeleteProgramManagementAccount"),
+    input = M.DeleteProgramManagementAccountInput,
+    output = M.DeleteProgramManagementAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteProgramManagementAccount" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRelationship = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "DeleteRelationship"),
+    input = M.DeleteRelationshipInput,
+    output = M.DeleteRelationshipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteRelationship" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRelationship = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "GetRelationship"),
+    input = M.GetRelationshipInput,
+    output = M.GetRelationshipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetRelationship" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannelHandshakes = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "ListChannelHandshakes"),
+    input = M.ListChannelHandshakesInput,
+    output = M.ListChannelHandshakesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListChannelHandshakes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProgramManagementAccounts = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "ListProgramManagementAccounts"),
+    input = M.ListProgramManagementAccountsInput,
+    output = M.ListProgramManagementAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListProgramManagementAccounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRelationships = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "ListRelationships"),
+    input = M.ListRelationshipsInput,
+    output = M.ListRelationshipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListRelationships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectChannelHandshake = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "RejectChannelHandshake"),
+    input = M.RejectChannelHandshakeInput,
+    output = M.RejectChannelHandshakeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/RejectChannelHandshake" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UntagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProgramManagementAccount = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "UpdateProgramManagementAccount"),
+    input = M.UpdateProgramManagementAccountInput,
+    output = M.UpdateProgramManagementAccountOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateProgramManagementAccount" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRelationship = schema.operation({
+    id = id.from("com.amazonaws.partnercentralchannel", "UpdateRelationship"),
+    input = M.UpdateRelationshipInput,
+    output = M.UpdateRelationshipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateRelationship" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

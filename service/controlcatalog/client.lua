@@ -7,6 +7,7 @@ local endpoint_rules = require("controlcatalog.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("controlcatalog.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "controlcatalog", signing_region = cfg.region } }
                 else
@@ -49,81 +52,27 @@ function M.new(cfg)
 end
 
 function Client:getControl(input, options)
-    return self:invokeOperation(input, {
-        name = "GetControl",
-        input_schema = schemas.GetControlInput,
-        output_schema = schemas.GetControlOutput,
-        http_method = "POST",
-        http_path = "/get-control",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetControl, input, options)
 end
 
 function Client:listCommonControls(input, options)
-    return self:invokeOperation(input, {
-        name = "ListCommonControls",
-        input_schema = schemas.ListCommonControlsInput,
-        output_schema = schemas.ListCommonControlsOutput,
-        http_method = "POST",
-        http_path = "/common-controls",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListCommonControls, input, options)
 end
 
 function Client:listControlMappings(input, options)
-    return self:invokeOperation(input, {
-        name = "ListControlMappings",
-        input_schema = schemas.ListControlMappingsInput,
-        output_schema = schemas.ListControlMappingsOutput,
-        http_method = "POST",
-        http_path = "/list-control-mappings",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListControlMappings, input, options)
 end
 
 function Client:listControls(input, options)
-    return self:invokeOperation(input, {
-        name = "ListControls",
-        input_schema = schemas.ListControlsInput,
-        output_schema = schemas.ListControlsOutput,
-        http_method = "POST",
-        http_path = "/list-controls",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListControls, input, options)
 end
 
 function Client:listDomains(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDomains",
-        input_schema = schemas.ListDomainsInput,
-        output_schema = schemas.ListDomainsOutput,
-        http_method = "POST",
-        http_path = "/domains",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDomains, input, options)
 end
 
 function Client:listObjectives(input, options)
-    return self:invokeOperation(input, {
-        name = "ListObjectives",
-        input_schema = schemas.ListObjectivesInput,
-        output_schema = schemas.ListObjectivesOutput,
-        http_method = "POST",
-        http_path = "/objectives",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListObjectives, input, options)
 end
 
 return M

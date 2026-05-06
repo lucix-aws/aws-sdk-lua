@@ -2430,4 +2430,350 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.controltower", "AWSControlTowerApis"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLandingZone = schema.operation({
+    id = id.from("com.amazonaws.controltower", "CreateLandingZone"),
+    input = M.CreateLandingZoneInput,
+    output = M.CreateLandingZoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-landingzone" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLandingZone = schema.operation({
+    id = id.from("com.amazonaws.controltower", "DeleteLandingZone"),
+    input = M.DeleteLandingZoneInput,
+    output = M.DeleteLandingZoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-landingzone" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableBaseline = schema.operation({
+    id = id.from("com.amazonaws.controltower", "DisableBaseline"),
+    input = M.DisableBaselineInput,
+    output = M.DisableBaselineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/disable-baseline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableControl = schema.operation({
+    id = id.from("com.amazonaws.controltower", "DisableControl"),
+    input = M.DisableControlInput,
+    output = M.DisableControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/disable-control" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableBaseline = schema.operation({
+    id = id.from("com.amazonaws.controltower", "EnableBaseline"),
+    input = M.EnableBaselineInput,
+    output = M.EnableBaselineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/enable-baseline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableControl = schema.operation({
+    id = id.from("com.amazonaws.controltower", "EnableControl"),
+    input = M.EnableControlInput,
+    output = M.EnableControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/enable-control" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBaseline = schema.operation({
+    id = id.from("com.amazonaws.controltower", "GetBaseline"),
+    input = M.GetBaselineInput,
+    output = M.GetBaselineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-baseline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBaselineOperation = schema.operation({
+    id = id.from("com.amazonaws.controltower", "GetBaselineOperation"),
+    input = M.GetBaselineOperationInput,
+    output = M.GetBaselineOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-baseline-operation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetControlOperation = schema.operation({
+    id = id.from("com.amazonaws.controltower", "GetControlOperation"),
+    input = M.GetControlOperationInput,
+    output = M.GetControlOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-control-operation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnabledBaseline = schema.operation({
+    id = id.from("com.amazonaws.controltower", "GetEnabledBaseline"),
+    input = M.GetEnabledBaselineInput,
+    output = M.GetEnabledBaselineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-enabled-baseline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnabledControl = schema.operation({
+    id = id.from("com.amazonaws.controltower", "GetEnabledControl"),
+    input = M.GetEnabledControlInput,
+    output = M.GetEnabledControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-enabled-control" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLandingZone = schema.operation({
+    id = id.from("com.amazonaws.controltower", "GetLandingZone"),
+    input = M.GetLandingZoneInput,
+    output = M.GetLandingZoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-landingzone" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLandingZoneOperation = schema.operation({
+    id = id.from("com.amazonaws.controltower", "GetLandingZoneOperation"),
+    input = M.GetLandingZoneOperationInput,
+    output = M.GetLandingZoneOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-landingzone-operation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBaselines = schema.operation({
+    id = id.from("com.amazonaws.controltower", "ListBaselines"),
+    input = M.ListBaselinesInput,
+    output = M.ListBaselinesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-baselines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListControlOperations = schema.operation({
+    id = id.from("com.amazonaws.controltower", "ListControlOperations"),
+    input = M.ListControlOperationsInput,
+    output = M.ListControlOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-control-operations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnabledBaselines = schema.operation({
+    id = id.from("com.amazonaws.controltower", "ListEnabledBaselines"),
+    input = M.ListEnabledBaselinesInput,
+    output = M.ListEnabledBaselinesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-enabled-baselines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnabledControls = schema.operation({
+    id = id.from("com.amazonaws.controltower", "ListEnabledControls"),
+    input = M.ListEnabledControlsInput,
+    output = M.ListEnabledControlsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-enabled-controls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLandingZoneOperations = schema.operation({
+    id = id.from("com.amazonaws.controltower", "ListLandingZoneOperations"),
+    input = M.ListLandingZoneOperationsInput,
+    output = M.ListLandingZoneOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-landingzone-operations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLandingZones = schema.operation({
+    id = id.from("com.amazonaws.controltower", "ListLandingZones"),
+    input = M.ListLandingZonesInput,
+    output = M.ListLandingZonesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-landingzones" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.controltower", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetEnabledBaseline = schema.operation({
+    id = id.from("com.amazonaws.controltower", "ResetEnabledBaseline"),
+    input = M.ResetEnabledBaselineInput,
+    output = M.ResetEnabledBaselineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/reset-enabled-baseline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetEnabledControl = schema.operation({
+    id = id.from("com.amazonaws.controltower", "ResetEnabledControl"),
+    input = M.ResetEnabledControlInput,
+    output = M.ResetEnabledControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/reset-enabled-control" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetLandingZone = schema.operation({
+    id = id.from("com.amazonaws.controltower", "ResetLandingZone"),
+    input = M.ResetLandingZoneInput,
+    output = M.ResetLandingZoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/reset-landingzone" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.controltower", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.controltower", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnabledBaseline = schema.operation({
+    id = id.from("com.amazonaws.controltower", "UpdateEnabledBaseline"),
+    input = M.UpdateEnabledBaselineInput,
+    output = M.UpdateEnabledBaselineOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-enabled-baseline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnabledControl = schema.operation({
+    id = id.from("com.amazonaws.controltower", "UpdateEnabledControl"),
+    input = M.UpdateEnabledControlInput,
+    output = M.UpdateEnabledControlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-enabled-control" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLandingZone = schema.operation({
+    id = id.from("com.amazonaws.controltower", "UpdateLandingZone"),
+    input = M.UpdateLandingZoneInput,
+    output = M.UpdateLandingZoneOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-landingzone" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

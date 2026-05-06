@@ -4079,4 +4079,482 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.notifications", "Notifications"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateChannel = schema.operation({
+    id = id.from("com.amazonaws.notifications", "AssociateChannel"),
+    input = M.AssociateChannelInput,
+    output = M.AssociateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channels/associate/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateManagedNotificationAccountContact = schema.operation({
+    id = id.from("com.amazonaws.notifications", "AssociateManagedNotificationAccountContact"),
+    input = M.AssociateManagedNotificationAccountContactInput,
+    output = M.AssociateManagedNotificationAccountContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contacts/associate-managed-notification/{contactIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateManagedNotificationAdditionalChannel = schema.operation({
+    id = id.from("com.amazonaws.notifications", "AssociateManagedNotificationAdditionalChannel"),
+    input = M.AssociateManagedNotificationAdditionalChannelInput,
+    output = M.AssociateManagedNotificationAdditionalChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channels/associate-managed-notification/{channelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateOrganizationalUnit = schema.operation({
+    id = id.from("com.amazonaws.notifications", "AssociateOrganizationalUnit"),
+    input = M.AssociateOrganizationalUnitInput,
+    output = M.AssociateOrganizationalUnitOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/organizational-units/associate/{organizationalUnitId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventRule = schema.operation({
+    id = id.from("com.amazonaws.notifications", "CreateEventRule"),
+    input = M.CreateEventRuleInput,
+    output = M.CreateEventRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/event-rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNotificationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.notifications", "CreateNotificationConfiguration"),
+    input = M.CreateNotificationConfigurationInput,
+    output = M.CreateNotificationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/notification-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventRule = schema.operation({
+    id = id.from("com.amazonaws.notifications", "DeleteEventRule"),
+    input = M.DeleteEventRuleInput,
+    output = M.DeleteEventRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/event-rules/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNotificationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.notifications", "DeleteNotificationConfiguration"),
+    input = M.DeleteNotificationConfigurationInput,
+    output = M.DeleteNotificationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/notification-configurations/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterNotificationHub = schema.operation({
+    id = id.from("com.amazonaws.notifications", "DeregisterNotificationHub"),
+    input = M.DeregisterNotificationHubInput,
+    output = M.DeregisterNotificationHubOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/notification-hubs/{notificationHubRegion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableNotificationsAccessForOrganization = schema.operation({
+    id = id.from("com.amazonaws.notifications", "DisableNotificationsAccessForOrganization"),
+    input = M.DisableNotificationsAccessForOrganizationInput,
+    output = M.DisableNotificationsAccessForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/organization/access" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateChannel = schema.operation({
+    id = id.from("com.amazonaws.notifications", "DisassociateChannel"),
+    input = M.DisassociateChannelInput,
+    output = M.DisassociateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/channels/disassociate/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateManagedNotificationAccountContact = schema.operation({
+    id = id.from("com.amazonaws.notifications", "DisassociateManagedNotificationAccountContact"),
+    input = M.DisassociateManagedNotificationAccountContactInput,
+    output = M.DisassociateManagedNotificationAccountContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contacts/disassociate-managed-notification/{contactIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateManagedNotificationAdditionalChannel = schema.operation({
+    id = id.from("com.amazonaws.notifications", "DisassociateManagedNotificationAdditionalChannel"),
+    input = M.DisassociateManagedNotificationAdditionalChannelInput,
+    output = M.DisassociateManagedNotificationAdditionalChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channels/disassociate-managed-notification/{channelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateOrganizationalUnit = schema.operation({
+    id = id.from("com.amazonaws.notifications", "DisassociateOrganizationalUnit"),
+    input = M.DisassociateOrganizationalUnitInput,
+    output = M.DisassociateOrganizationalUnitOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/organizational-units/disassociate/{organizationalUnitId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableNotificationsAccessForOrganization = schema.operation({
+    id = id.from("com.amazonaws.notifications", "EnableNotificationsAccessForOrganization"),
+    input = M.EnableNotificationsAccessForOrganizationInput,
+    output = M.EnableNotificationsAccessForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/organization/access" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventRule = schema.operation({
+    id = id.from("com.amazonaws.notifications", "GetEventRule"),
+    input = M.GetEventRuleInput,
+    output = M.GetEventRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/event-rules/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetManagedNotificationChildEvent = schema.operation({
+    id = id.from("com.amazonaws.notifications", "GetManagedNotificationChildEvent"),
+    input = M.GetManagedNotificationChildEventInput,
+    output = M.GetManagedNotificationChildEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/managed-notification-child-events/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetManagedNotificationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.notifications", "GetManagedNotificationConfiguration"),
+    input = M.GetManagedNotificationConfigurationInput,
+    output = M.GetManagedNotificationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/managed-notification-configurations/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetManagedNotificationEvent = schema.operation({
+    id = id.from("com.amazonaws.notifications", "GetManagedNotificationEvent"),
+    input = M.GetManagedNotificationEventInput,
+    output = M.GetManagedNotificationEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/managed-notification-events/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNotificationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.notifications", "GetNotificationConfiguration"),
+    input = M.GetNotificationConfigurationInput,
+    output = M.GetNotificationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/notification-configurations/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNotificationEvent = schema.operation({
+    id = id.from("com.amazonaws.notifications", "GetNotificationEvent"),
+    input = M.GetNotificationEventInput,
+    output = M.GetNotificationEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/notification-events/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNotificationsAccessForOrganization = schema.operation({
+    id = id.from("com.amazonaws.notifications", "GetNotificationsAccessForOrganization"),
+    input = M.GetNotificationsAccessForOrganizationInput,
+    output = M.GetNotificationsAccessForOrganizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/organization/access" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannels = schema.operation({
+    id = id.from("com.amazonaws.notifications", "ListChannels"),
+    input = M.ListChannelsInput,
+    output = M.ListChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventRules = schema.operation({
+    id = id.from("com.amazonaws.notifications", "ListEventRules"),
+    input = M.ListEventRulesInput,
+    output = M.ListEventRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/event-rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedNotificationChannelAssociations = schema.operation({
+    id = id.from("com.amazonaws.notifications", "ListManagedNotificationChannelAssociations"),
+    input = M.ListManagedNotificationChannelAssociationsInput,
+    output = M.ListManagedNotificationChannelAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/channels/list-managed-notification-channel-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedNotificationChildEvents = schema.operation({
+    id = id.from("com.amazonaws.notifications", "ListManagedNotificationChildEvents"),
+    input = M.ListManagedNotificationChildEventsInput,
+    output = M.ListManagedNotificationChildEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/list-managed-notification-child-events/{aggregateManagedNotificationEventArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedNotificationConfigurations = schema.operation({
+    id = id.from("com.amazonaws.notifications", "ListManagedNotificationConfigurations"),
+    input = M.ListManagedNotificationConfigurationsInput,
+    output = M.ListManagedNotificationConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/managed-notification-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedNotificationEvents = schema.operation({
+    id = id.from("com.amazonaws.notifications", "ListManagedNotificationEvents"),
+    input = M.ListManagedNotificationEventsInput,
+    output = M.ListManagedNotificationEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/managed-notification-events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMemberAccounts = schema.operation({
+    id = id.from("com.amazonaws.notifications", "ListMemberAccounts"),
+    input = M.ListMemberAccountsInput,
+    output = M.ListMemberAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/list-member-accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotificationConfigurations = schema.operation({
+    id = id.from("com.amazonaws.notifications", "ListNotificationConfigurations"),
+    input = M.ListNotificationConfigurationsInput,
+    output = M.ListNotificationConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/notification-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotificationEvents = schema.operation({
+    id = id.from("com.amazonaws.notifications", "ListNotificationEvents"),
+    input = M.ListNotificationEventsInput,
+    output = M.ListNotificationEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/notification-events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNotificationHubs = schema.operation({
+    id = id.from("com.amazonaws.notifications", "ListNotificationHubs"),
+    input = M.ListNotificationHubsInput,
+    output = M.ListNotificationHubsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/notification-hubs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOrganizationalUnits = schema.operation({
+    id = id.from("com.amazonaws.notifications", "ListOrganizationalUnits"),
+    input = M.ListOrganizationalUnitsInput,
+    output = M.ListOrganizationalUnitsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/organizational-units" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.notifications", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterNotificationHub = schema.operation({
+    id = id.from("com.amazonaws.notifications", "RegisterNotificationHub"),
+    input = M.RegisterNotificationHubInput,
+    output = M.RegisterNotificationHubOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/notification-hubs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.notifications", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.notifications", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEventRule = schema.operation({
+    id = id.from("com.amazonaws.notifications", "UpdateEventRule"),
+    input = M.UpdateEventRuleInput,
+    output = M.UpdateEventRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/event-rules/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNotificationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.notifications", "UpdateNotificationConfiguration"),
+    input = M.UpdateNotificationConfigurationInput,
+    output = M.UpdateNotificationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/notification-configurations/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

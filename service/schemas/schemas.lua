@@ -2377,4 +2377,386 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.schemas", "schemas"),
+    version = "2019-12-02",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDiscoverer = schema.operation({
+    id = id.from("com.amazonaws.schemas", "CreateDiscoverer"),
+    input = M.CreateDiscovererInput,
+    output = M.CreateDiscovererOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/discoverers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRegistry = schema.operation({
+    id = id.from("com.amazonaws.schemas", "CreateRegistry"),
+    input = M.CreateRegistryInput,
+    output = M.CreateRegistryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/registries/name/{RegistryName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSchema = schema.operation({
+    id = id.from("com.amazonaws.schemas", "CreateSchema"),
+    input = M.CreateSchemaInput,
+    output = M.CreateSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDiscoverer = schema.operation({
+    id = id.from("com.amazonaws.schemas", "DeleteDiscoverer"),
+    input = M.DeleteDiscovererInput,
+    output = M.DeleteDiscovererOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/discoverers/id/{DiscovererId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRegistry = schema.operation({
+    id = id.from("com.amazonaws.schemas", "DeleteRegistry"),
+    input = M.DeleteRegistryInput,
+    output = M.DeleteRegistryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/registries/name/{RegistryName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.schemas", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSchema = schema.operation({
+    id = id.from("com.amazonaws.schemas", "DeleteSchema"),
+    input = M.DeleteSchemaInput,
+    output = M.DeleteSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSchemaVersion = schema.operation({
+    id = id.from("com.amazonaws.schemas", "DeleteSchemaVersion"),
+    input = M.DeleteSchemaVersionInput,
+    output = M.DeleteSchemaVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}/version/{SchemaVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCodeBinding = schema.operation({
+    id = id.from("com.amazonaws.schemas", "DescribeCodeBinding"),
+    input = M.DescribeCodeBindingInput,
+    output = M.DescribeCodeBindingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}/language/{Language}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDiscoverer = schema.operation({
+    id = id.from("com.amazonaws.schemas", "DescribeDiscoverer"),
+    input = M.DescribeDiscovererInput,
+    output = M.DescribeDiscovererOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/discoverers/id/{DiscovererId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRegistry = schema.operation({
+    id = id.from("com.amazonaws.schemas", "DescribeRegistry"),
+    input = M.DescribeRegistryInput,
+    output = M.DescribeRegistryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/registries/name/{RegistryName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSchema = schema.operation({
+    id = id.from("com.amazonaws.schemas", "DescribeSchema"),
+    input = M.DescribeSchemaInput,
+    output = M.DescribeSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportSchema = schema.operation({
+    id = id.from("com.amazonaws.schemas", "ExportSchema"),
+    input = M.ExportSchemaInput,
+    output = M.ExportSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}/export" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCodeBindingSource = schema.operation({
+    id = id.from("com.amazonaws.schemas", "GetCodeBindingSource"),
+    input = M.GetCodeBindingSourceInput,
+    output = M.GetCodeBindingSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}/language/{Language}/source" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDiscoveredSchema = schema.operation({
+    id = id.from("com.amazonaws.schemas", "GetDiscoveredSchema"),
+    input = M.GetDiscoveredSchemaInput,
+    output = M.GetDiscoveredSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/discover" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.schemas", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDiscoverers = schema.operation({
+    id = id.from("com.amazonaws.schemas", "ListDiscoverers"),
+    input = M.ListDiscoverersInput,
+    output = M.ListDiscoverersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/discoverers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRegistries = schema.operation({
+    id = id.from("com.amazonaws.schemas", "ListRegistries"),
+    input = M.ListRegistriesInput,
+    output = M.ListRegistriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/registries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSchemas = schema.operation({
+    id = id.from("com.amazonaws.schemas", "ListSchemas"),
+    input = M.ListSchemasInput,
+    output = M.ListSchemasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/registries/name/{RegistryName}/schemas" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSchemaVersions = schema.operation({
+    id = id.from("com.amazonaws.schemas", "ListSchemaVersions"),
+    input = M.ListSchemaVersionsInput,
+    output = M.ListSchemaVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.schemas", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutCodeBinding = schema.operation({
+    id = id.from("com.amazonaws.schemas", "PutCodeBinding"),
+    input = M.PutCodeBindingInput,
+    output = M.PutCodeBindingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}/language/{Language}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.schemas", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchSchemas = schema.operation({
+    id = id.from("com.amazonaws.schemas", "SearchSchemas"),
+    input = M.SearchSchemasInput,
+    output = M.SearchSchemasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/registries/name/{RegistryName}/schemas/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDiscoverer = schema.operation({
+    id = id.from("com.amazonaws.schemas", "StartDiscoverer"),
+    input = M.StartDiscovererInput,
+    output = M.StartDiscovererOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/discoverers/id/{DiscovererId}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopDiscoverer = schema.operation({
+    id = id.from("com.amazonaws.schemas", "StopDiscoverer"),
+    input = M.StopDiscovererInput,
+    output = M.StopDiscovererOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/discoverers/id/{DiscovererId}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.schemas", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.schemas", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDiscoverer = schema.operation({
+    id = id.from("com.amazonaws.schemas", "UpdateDiscoverer"),
+    input = M.UpdateDiscovererInput,
+    output = M.UpdateDiscovererOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/discoverers/id/{DiscovererId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRegistry = schema.operation({
+    id = id.from("com.amazonaws.schemas", "UpdateRegistry"),
+    input = M.UpdateRegistryInput,
+    output = M.UpdateRegistryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/registries/name/{RegistryName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSchema = schema.operation({
+    id = id.from("com.amazonaws.schemas", "UpdateSchema"),
+    input = M.UpdateSchemaInput,
+    output = M.UpdateSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

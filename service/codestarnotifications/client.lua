@@ -7,6 +7,7 @@ local endpoint_rules = require("codestarnotifications.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("codestarnotifications.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codestar-notifications", signing_region = cfg.region } }
                 else
@@ -49,172 +52,55 @@ function M.new(cfg)
 end
 
 function Client:createNotificationRule(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateNotificationRule",
-        input_schema = schemas.CreateNotificationRuleInput,
-        output_schema = schemas.CreateNotificationRuleOutput,
-        http_method = "POST",
-        http_path = "/createNotificationRule",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateNotificationRule, input, options)
 end
 
 function Client:deleteNotificationRule(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteNotificationRule",
-        input_schema = schemas.DeleteNotificationRuleInput,
-        output_schema = schemas.DeleteNotificationRuleOutput,
-        http_method = "POST",
-        http_path = "/deleteNotificationRule",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteNotificationRule, input, options)
 end
 
 function Client:deleteTarget(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteTarget",
-        input_schema = schemas.DeleteTargetInput,
-        output_schema = schemas.DeleteTargetOutput,
-        http_method = "POST",
-        http_path = "/deleteTarget",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteTarget, input, options)
 end
 
 function Client:describeNotificationRule(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeNotificationRule",
-        input_schema = schemas.DescribeNotificationRuleInput,
-        output_schema = schemas.DescribeNotificationRuleOutput,
-        http_method = "POST",
-        http_path = "/describeNotificationRule",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeNotificationRule, input, options)
 end
 
 function Client:listEventTypes(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEventTypes",
-        input_schema = schemas.ListEventTypesInput,
-        output_schema = schemas.ListEventTypesOutput,
-        http_method = "POST",
-        http_path = "/listEventTypes",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEventTypes, input, options)
 end
 
 function Client:listNotificationRules(input, options)
-    return self:invokeOperation(input, {
-        name = "ListNotificationRules",
-        input_schema = schemas.ListNotificationRulesInput,
-        output_schema = schemas.ListNotificationRulesOutput,
-        http_method = "POST",
-        http_path = "/listNotificationRules",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListNotificationRules, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/listTagsForResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listTargets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTargets",
-        input_schema = schemas.ListTargetsInput,
-        output_schema = schemas.ListTargetsOutput,
-        http_method = "POST",
-        http_path = "/listTargets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTargets, input, options)
 end
 
 function Client:subscribe(input, options)
-    return self:invokeOperation(input, {
-        name = "Subscribe",
-        input_schema = schemas.SubscribeInput,
-        output_schema = schemas.SubscribeOutput,
-        http_method = "POST",
-        http_path = "/subscribe",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Subscribe, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tagResource",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:unsubscribe(input, options)
-    return self:invokeOperation(input, {
-        name = "Unsubscribe",
-        input_schema = schemas.UnsubscribeInput,
-        output_schema = schemas.UnsubscribeOutput,
-        http_method = "POST",
-        http_path = "/unsubscribe",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Unsubscribe, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/untagResource/{Arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateNotificationRule(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateNotificationRule",
-        input_schema = schemas.UpdateNotificationRuleInput,
-        output_schema = schemas.UpdateNotificationRuleOutput,
-        http_method = "POST",
-        http_path = "/updateNotificationRule",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateNotificationRule, input, options)
 end
 
 return M

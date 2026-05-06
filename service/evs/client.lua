@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("evs.endpoint_rules")
 local schemas = require("evs.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "evs", signing_region = cfg.region } }
                 else
@@ -49,276 +52,87 @@ function M.new(cfg)
 end
 
 function Client:associateEipToVlan(input, options)
-    return self:invokeOperation(input, {
-        name = "AssociateEipToVlan",
-        input_schema = schemas.AssociateEipToVlanInput,
-        output_schema = schemas.AssociateEipToVlanOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AssociateEipToVlan, input, options)
 end
 
 function Client:createEntitlement(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEntitlement",
-        input_schema = schemas.CreateEntitlementInput,
-        output_schema = schemas.CreateEntitlementOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEntitlement, input, options)
 end
 
 function Client:createEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEnvironment",
-        input_schema = schemas.CreateEnvironmentInput,
-        output_schema = schemas.CreateEnvironmentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEnvironment, input, options)
 end
 
 function Client:createEnvironmentConnector(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEnvironmentConnector",
-        input_schema = schemas.CreateEnvironmentConnectorInput,
-        output_schema = schemas.CreateEnvironmentConnectorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEnvironmentConnector, input, options)
 end
 
 function Client:createEnvironmentHost(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateEnvironmentHost",
-        input_schema = schemas.CreateEnvironmentHostInput,
-        output_schema = schemas.CreateEnvironmentHostOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateEnvironmentHost, input, options)
 end
 
 function Client:deleteEntitlement(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEntitlement",
-        input_schema = schemas.DeleteEntitlementInput,
-        output_schema = schemas.DeleteEntitlementOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEntitlement, input, options)
 end
 
 function Client:deleteEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEnvironment",
-        input_schema = schemas.DeleteEnvironmentInput,
-        output_schema = schemas.DeleteEnvironmentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironment, input, options)
 end
 
 function Client:deleteEnvironmentConnector(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEnvironmentConnector",
-        input_schema = schemas.DeleteEnvironmentConnectorInput,
-        output_schema = schemas.DeleteEnvironmentConnectorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironmentConnector, input, options)
 end
 
 function Client:deleteEnvironmentHost(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteEnvironmentHost",
-        input_schema = schemas.DeleteEnvironmentHostInput,
-        output_schema = schemas.DeleteEnvironmentHostOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironmentHost, input, options)
 end
 
 function Client:disassociateEipFromVlan(input, options)
-    return self:invokeOperation(input, {
-        name = "DisassociateEipFromVlan",
-        input_schema = schemas.DisassociateEipFromVlanInput,
-        output_schema = schemas.DisassociateEipFromVlanOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DisassociateEipFromVlan, input, options)
 end
 
 function Client:getEnvironment(input, options)
-    return self:invokeOperation(input, {
-        name = "GetEnvironment",
-        input_schema = schemas.GetEnvironmentInput,
-        output_schema = schemas.GetEnvironmentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetEnvironment, input, options)
 end
 
 function Client:getVersions(input, options)
-    return self:invokeOperation(input, {
-        name = "GetVersions",
-        input_schema = schemas.GetVersionsInput,
-        output_schema = schemas.GetVersionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetVersions, input, options)
 end
 
 function Client:listEnvironmentConnectors(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEnvironmentConnectors",
-        input_schema = schemas.ListEnvironmentConnectorsInput,
-        output_schema = schemas.ListEnvironmentConnectorsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEnvironmentConnectors, input, options)
 end
 
 function Client:listEnvironmentHosts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEnvironmentHosts",
-        input_schema = schemas.ListEnvironmentHostsInput,
-        output_schema = schemas.ListEnvironmentHostsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEnvironmentHosts, input, options)
 end
 
 function Client:listEnvironments(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEnvironments",
-        input_schema = schemas.ListEnvironmentsInput,
-        output_schema = schemas.ListEnvironmentsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEnvironments, input, options)
 end
 
 function Client:listEnvironmentVlans(input, options)
-    return self:invokeOperation(input, {
-        name = "ListEnvironmentVlans",
-        input_schema = schemas.ListEnvironmentVlansInput,
-        output_schema = schemas.ListEnvironmentVlansOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListEnvironmentVlans, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:listVmEntitlements(input, options)
-    return self:invokeOperation(input, {
-        name = "ListVmEntitlements",
-        input_schema = schemas.ListVmEntitlementsInput,
-        output_schema = schemas.ListVmEntitlementsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListVmEntitlements, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateEnvironmentConnector(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateEnvironmentConnector",
-        input_schema = schemas.UpdateEnvironmentConnectorInput,
-        output_schema = schemas.UpdateEnvironmentConnectorOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateEnvironmentConnector, input, options)
 end
 
 return M

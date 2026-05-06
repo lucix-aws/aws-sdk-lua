@@ -213,4 +213,26 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.kinesisvideomedia", "AWSAcuityInletService"),
+    version = "2017-09-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMedia = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideomedia", "GetMedia"),
+    input = M.GetMediaInput,
+    output = M.GetMediaOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getMedia" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -250,4 +250,38 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.kinesisvideosignaling", "AWSAcuitySignalingService"),
+    version = "2019-12-04",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIceServerConfig = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideosignaling", "GetIceServerConfig"),
+    input = M.GetIceServerConfigInput,
+    output = M.GetIceServerConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/get-ice-server-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendAlexaOfferToMaster = schema.operation({
+    id = id.from("com.amazonaws.kinesisvideosignaling", "SendAlexaOfferToMaster"),
+    input = M.SendAlexaOfferToMasterInput,
+    output = M.SendAlexaOfferToMasterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/send-alexa-offer-to-master" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

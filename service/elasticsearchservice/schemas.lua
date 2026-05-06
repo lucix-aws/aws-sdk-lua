@@ -5433,4 +5433,626 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.elasticsearchservice", "AmazonElasticsearchService2015"),
+    version = "2015-01-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptInboundCrossClusterSearchConnection = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "AcceptInboundCrossClusterSearchConnection"),
+    input = M.AcceptInboundCrossClusterSearchConnectionInput,
+    output = M.AcceptInboundCrossClusterSearchConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2015-01-01/es/ccs/inboundConnection/{CrossClusterSearchConnectionId}/accept" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTags = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "AddTags"),
+    input = M.AddTagsInput,
+    output = M.AddTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociatePackage = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "AssociatePackage"),
+    input = M.AssociatePackageInput,
+    output = M.AssociatePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/packages/associate/{PackageID}/{DomainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AuthorizeVpcEndpointAccess = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "AuthorizeVpcEndpointAccess"),
+    input = M.AuthorizeVpcEndpointAccessInput,
+    output = M.AuthorizeVpcEndpointAccessOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/domain/{DomainName}/authorizeVpcEndpointAccess" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelDomainConfigChange = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "CancelDomainConfigChange"),
+    input = M.CancelDomainConfigChangeInput,
+    output = M.CancelDomainConfigChangeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/domain/{DomainName}/config/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelElasticsearchServiceSoftwareUpdate = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "CancelElasticsearchServiceSoftwareUpdate"),
+    input = M.CancelElasticsearchServiceSoftwareUpdateInput,
+    output = M.CancelElasticsearchServiceSoftwareUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/serviceSoftwareUpdate/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateElasticsearchDomain = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "CreateElasticsearchDomain"),
+    input = M.CreateElasticsearchDomainInput,
+    output = M.CreateElasticsearchDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/domain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOutboundCrossClusterSearchConnection = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "CreateOutboundCrossClusterSearchConnection"),
+    input = M.CreateOutboundCrossClusterSearchConnectionInput,
+    output = M.CreateOutboundCrossClusterSearchConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/ccs/outboundConnection" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePackage = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "CreatePackage"),
+    input = M.CreatePackageInput,
+    output = M.CreatePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/packages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVpcEndpoint = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "CreateVpcEndpoint"),
+    input = M.CreateVpcEndpointInput,
+    output = M.CreateVpcEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/vpcEndpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteElasticsearchDomain = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DeleteElasticsearchDomain"),
+    input = M.DeleteElasticsearchDomainInput,
+    output = M.DeleteElasticsearchDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-01-01/es/domain/{DomainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteElasticsearchServiceRole = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DeleteElasticsearchServiceRole"),
+    input = M.DeleteElasticsearchServiceRoleInput,
+    output = M.DeleteElasticsearchServiceRoleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-01-01/es/role" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInboundCrossClusterSearchConnection = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DeleteInboundCrossClusterSearchConnection"),
+    input = M.DeleteInboundCrossClusterSearchConnectionInput,
+    output = M.DeleteInboundCrossClusterSearchConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-01-01/es/ccs/inboundConnection/{CrossClusterSearchConnectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOutboundCrossClusterSearchConnection = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DeleteOutboundCrossClusterSearchConnection"),
+    input = M.DeleteOutboundCrossClusterSearchConnectionInput,
+    output = M.DeleteOutboundCrossClusterSearchConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-01-01/es/ccs/outboundConnection/{CrossClusterSearchConnectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePackage = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DeletePackage"),
+    input = M.DeletePackageInput,
+    output = M.DeletePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-01-01/packages/{PackageID}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVpcEndpoint = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DeleteVpcEndpoint"),
+    input = M.DeleteVpcEndpointInput,
+    output = M.DeleteVpcEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2015-01-01/es/vpcEndpoints/{VpcEndpointId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomainAutoTunes = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DescribeDomainAutoTunes"),
+    input = M.DescribeDomainAutoTunesInput,
+    output = M.DescribeDomainAutoTunesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/domain/{DomainName}/autoTunes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDomainChangeProgress = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DescribeDomainChangeProgress"),
+    input = M.DescribeDomainChangeProgressInput,
+    output = M.DescribeDomainChangeProgressOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/domain/{DomainName}/progress" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeElasticsearchDomain = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DescribeElasticsearchDomain"),
+    input = M.DescribeElasticsearchDomainInput,
+    output = M.DescribeElasticsearchDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/domain/{DomainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeElasticsearchDomainConfig = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DescribeElasticsearchDomainConfig"),
+    input = M.DescribeElasticsearchDomainConfigInput,
+    output = M.DescribeElasticsearchDomainConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/domain/{DomainName}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeElasticsearchDomains = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DescribeElasticsearchDomains"),
+    input = M.DescribeElasticsearchDomainsInput,
+    output = M.DescribeElasticsearchDomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/domain-info" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeElasticsearchInstanceTypeLimits = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DescribeElasticsearchInstanceTypeLimits"),
+    input = M.DescribeElasticsearchInstanceTypeLimitsInput,
+    output = M.DescribeElasticsearchInstanceTypeLimitsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/instanceTypeLimits/{ElasticsearchVersion}/{InstanceType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInboundCrossClusterSearchConnections = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DescribeInboundCrossClusterSearchConnections"),
+    input = M.DescribeInboundCrossClusterSearchConnectionsInput,
+    output = M.DescribeInboundCrossClusterSearchConnectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/ccs/inboundConnection/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOutboundCrossClusterSearchConnections = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DescribeOutboundCrossClusterSearchConnections"),
+    input = M.DescribeOutboundCrossClusterSearchConnectionsInput,
+    output = M.DescribeOutboundCrossClusterSearchConnectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/ccs/outboundConnection/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePackages = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DescribePackages"),
+    input = M.DescribePackagesInput,
+    output = M.DescribePackagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/packages/describe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReservedElasticsearchInstanceOfferings = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DescribeReservedElasticsearchInstanceOfferings"),
+    input = M.DescribeReservedElasticsearchInstanceOfferingsInput,
+    output = M.DescribeReservedElasticsearchInstanceOfferingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/reservedInstanceOfferings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReservedElasticsearchInstances = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DescribeReservedElasticsearchInstances"),
+    input = M.DescribeReservedElasticsearchInstancesInput,
+    output = M.DescribeReservedElasticsearchInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/reservedInstances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVpcEndpoints = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DescribeVpcEndpoints"),
+    input = M.DescribeVpcEndpointsInput,
+    output = M.DescribeVpcEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/vpcEndpoints/describe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DissociatePackage = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "DissociatePackage"),
+    input = M.DissociatePackageInput,
+    output = M.DissociatePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/packages/dissociate/{PackageID}/{DomainName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCompatibleElasticsearchVersions = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "GetCompatibleElasticsearchVersions"),
+    input = M.GetCompatibleElasticsearchVersionsInput,
+    output = M.GetCompatibleElasticsearchVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/compatibleVersions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPackageVersionHistory = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "GetPackageVersionHistory"),
+    input = M.GetPackageVersionHistoryInput,
+    output = M.GetPackageVersionHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/packages/{PackageID}/history" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUpgradeHistory = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "GetUpgradeHistory"),
+    input = M.GetUpgradeHistoryInput,
+    output = M.GetUpgradeHistoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/upgradeDomain/{DomainName}/history" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUpgradeStatus = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "GetUpgradeStatus"),
+    input = M.GetUpgradeStatusInput,
+    output = M.GetUpgradeStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/upgradeDomain/{DomainName}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainNames = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "ListDomainNames"),
+    input = M.ListDomainNamesInput,
+    output = M.ListDomainNamesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/domain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDomainsForPackage = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "ListDomainsForPackage"),
+    input = M.ListDomainsForPackageInput,
+    output = M.ListDomainsForPackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/packages/{PackageID}/domains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListElasticsearchInstanceTypes = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "ListElasticsearchInstanceTypes"),
+    input = M.ListElasticsearchInstanceTypesInput,
+    output = M.ListElasticsearchInstanceTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/instanceTypes/{ElasticsearchVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListElasticsearchVersions = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "ListElasticsearchVersions"),
+    input = M.ListElasticsearchVersionsInput,
+    output = M.ListElasticsearchVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPackagesForDomain = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "ListPackagesForDomain"),
+    input = M.ListPackagesForDomainInput,
+    output = M.ListPackagesForDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/domain/{DomainName}/packages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTags = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "ListTags"),
+    input = M.ListTagsInput,
+    output = M.ListTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVpcEndpointAccess = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "ListVpcEndpointAccess"),
+    input = M.ListVpcEndpointAccessInput,
+    output = M.ListVpcEndpointAccessOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/domain/{DomainName}/listVpcEndpointAccess" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVpcEndpoints = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "ListVpcEndpoints"),
+    input = M.ListVpcEndpointsInput,
+    output = M.ListVpcEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/vpcEndpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVpcEndpointsForDomain = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "ListVpcEndpointsForDomain"),
+    input = M.ListVpcEndpointsForDomainInput,
+    output = M.ListVpcEndpointsForDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2015-01-01/es/domain/{DomainName}/vpcEndpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PurchaseReservedElasticsearchInstanceOffering = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "PurchaseReservedElasticsearchInstanceOffering"),
+    input = M.PurchaseReservedElasticsearchInstanceOfferingInput,
+    output = M.PurchaseReservedElasticsearchInstanceOfferingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/purchaseReservedInstanceOffering" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectInboundCrossClusterSearchConnection = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "RejectInboundCrossClusterSearchConnection"),
+    input = M.RejectInboundCrossClusterSearchConnectionInput,
+    output = M.RejectInboundCrossClusterSearchConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2015-01-01/es/ccs/inboundConnection/{CrossClusterSearchConnectionId}/reject" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTags = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "RemoveTags"),
+    input = M.RemoveTagsInput,
+    output = M.RemoveTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/tags-removal" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeVpcEndpointAccess = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "RevokeVpcEndpointAccess"),
+    input = M.RevokeVpcEndpointAccessInput,
+    output = M.RevokeVpcEndpointAccessOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/domain/{DomainName}/revokeVpcEndpointAccess" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartElasticsearchServiceSoftwareUpdate = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "StartElasticsearchServiceSoftwareUpdate"),
+    input = M.StartElasticsearchServiceSoftwareUpdateInput,
+    output = M.StartElasticsearchServiceSoftwareUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/serviceSoftwareUpdate/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateElasticsearchDomainConfig = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "UpdateElasticsearchDomainConfig"),
+    input = M.UpdateElasticsearchDomainConfigInput,
+    output = M.UpdateElasticsearchDomainConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/domain/{DomainName}/config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePackage = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "UpdatePackage"),
+    input = M.UpdatePackageInput,
+    output = M.UpdatePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/packages/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVpcEndpoint = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "UpdateVpcEndpoint"),
+    input = M.UpdateVpcEndpointInput,
+    output = M.UpdateVpcEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/vpcEndpoints/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpgradeElasticsearchDomain = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "UpgradeElasticsearchDomain"),
+    input = M.UpgradeElasticsearchDomainInput,
+    output = M.UpgradeElasticsearchDomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/upgradeDomain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

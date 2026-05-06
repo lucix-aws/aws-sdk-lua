@@ -4026,4 +4026,422 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.panorama", "OmniCloudServiceLambda"),
+    version = "2019-07-24",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplicationInstance = schema.operation({
+    id = id.from("com.amazonaws.panorama", "CreateApplicationInstance"),
+    input = M.CreateApplicationInstanceInput,
+    output = M.CreateApplicationInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/application-instances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateJobForDevices = schema.operation({
+    id = id.from("com.amazonaws.panorama", "CreateJobForDevices"),
+    input = M.CreateJobForDevicesInput,
+    output = M.CreateJobForDevicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNodeFromTemplateJob = schema.operation({
+    id = id.from("com.amazonaws.panorama", "CreateNodeFromTemplateJob"),
+    input = M.CreateNodeFromTemplateJobInput,
+    output = M.CreateNodeFromTemplateJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/packages/template-job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePackage = schema.operation({
+    id = id.from("com.amazonaws.panorama", "CreatePackage"),
+    input = M.CreatePackageInput,
+    output = M.CreatePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/packages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePackageImportJob = schema.operation({
+    id = id.from("com.amazonaws.panorama", "CreatePackageImportJob"),
+    input = M.CreatePackageImportJobInput,
+    output = M.CreatePackageImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/packages/import-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDevice = schema.operation({
+    id = id.from("com.amazonaws.panorama", "DeleteDevice"),
+    input = M.DeleteDeviceInput,
+    output = M.DeleteDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/devices/{DeviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePackage = schema.operation({
+    id = id.from("com.amazonaws.panorama", "DeletePackage"),
+    input = M.DeletePackageInput,
+    output = M.DeletePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/packages/{PackageId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterPackageVersion = schema.operation({
+    id = id.from("com.amazonaws.panorama", "DeregisterPackageVersion"),
+    input = M.DeregisterPackageVersionInput,
+    output = M.DeregisterPackageVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/packages/{PackageId}/versions/{PackageVersion}/patch/{PatchVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicationInstance = schema.operation({
+    id = id.from("com.amazonaws.panorama", "DescribeApplicationInstance"),
+    input = M.DescribeApplicationInstanceInput,
+    output = M.DescribeApplicationInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/application-instances/{ApplicationInstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicationInstanceDetails = schema.operation({
+    id = id.from("com.amazonaws.panorama", "DescribeApplicationInstanceDetails"),
+    input = M.DescribeApplicationInstanceDetailsInput,
+    output = M.DescribeApplicationInstanceDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/application-instances/{ApplicationInstanceId}/details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDevice = schema.operation({
+    id = id.from("com.amazonaws.panorama", "DescribeDevice"),
+    input = M.DescribeDeviceInput,
+    output = M.DescribeDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/devices/{DeviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDeviceJob = schema.operation({
+    id = id.from("com.amazonaws.panorama", "DescribeDeviceJob"),
+    input = M.DescribeDeviceJobInput,
+    output = M.DescribeDeviceJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobs/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNode = schema.operation({
+    id = id.from("com.amazonaws.panorama", "DescribeNode"),
+    input = M.DescribeNodeInput,
+    output = M.DescribeNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/nodes/{NodeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNodeFromTemplateJob = schema.operation({
+    id = id.from("com.amazonaws.panorama", "DescribeNodeFromTemplateJob"),
+    input = M.DescribeNodeFromTemplateJobInput,
+    output = M.DescribeNodeFromTemplateJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packages/template-job/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePackage = schema.operation({
+    id = id.from("com.amazonaws.panorama", "DescribePackage"),
+    input = M.DescribePackageInput,
+    output = M.DescribePackageOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packages/metadata/{PackageId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePackageImportJob = schema.operation({
+    id = id.from("com.amazonaws.panorama", "DescribePackageImportJob"),
+    input = M.DescribePackageImportJobInput,
+    output = M.DescribePackageImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packages/import-jobs/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePackageVersion = schema.operation({
+    id = id.from("com.amazonaws.panorama", "DescribePackageVersion"),
+    input = M.DescribePackageVersionInput,
+    output = M.DescribePackageVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packages/metadata/{PackageId}/versions/{PackageVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationInstanceDependencies = schema.operation({
+    id = id.from("com.amazonaws.panorama", "ListApplicationInstanceDependencies"),
+    input = M.ListApplicationInstanceDependenciesInput,
+    output = M.ListApplicationInstanceDependenciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/application-instances/{ApplicationInstanceId}/package-dependencies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationInstanceNodeInstances = schema.operation({
+    id = id.from("com.amazonaws.panorama", "ListApplicationInstanceNodeInstances"),
+    input = M.ListApplicationInstanceNodeInstancesInput,
+    output = M.ListApplicationInstanceNodeInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/application-instances/{ApplicationInstanceId}/node-instances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationInstances = schema.operation({
+    id = id.from("com.amazonaws.panorama", "ListApplicationInstances"),
+    input = M.ListApplicationInstancesInput,
+    output = M.ListApplicationInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/application-instances" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDevices = schema.operation({
+    id = id.from("com.amazonaws.panorama", "ListDevices"),
+    input = M.ListDevicesInput,
+    output = M.ListDevicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/devices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDevicesJobs = schema.operation({
+    id = id.from("com.amazonaws.panorama", "ListDevicesJobs"),
+    input = M.ListDevicesJobsInput,
+    output = M.ListDevicesJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNodeFromTemplateJobs = schema.operation({
+    id = id.from("com.amazonaws.panorama", "ListNodeFromTemplateJobs"),
+    input = M.ListNodeFromTemplateJobsInput,
+    output = M.ListNodeFromTemplateJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packages/template-job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNodes = schema.operation({
+    id = id.from("com.amazonaws.panorama", "ListNodes"),
+    input = M.ListNodesInput,
+    output = M.ListNodesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/nodes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPackageImportJobs = schema.operation({
+    id = id.from("com.amazonaws.panorama", "ListPackageImportJobs"),
+    input = M.ListPackageImportJobsInput,
+    output = M.ListPackageImportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packages/import-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPackages = schema.operation({
+    id = id.from("com.amazonaws.panorama", "ListPackages"),
+    input = M.ListPackagesInput,
+    output = M.ListPackagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/packages" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.panorama", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ProvisionDevice = schema.operation({
+    id = id.from("com.amazonaws.panorama", "ProvisionDevice"),
+    input = M.ProvisionDeviceInput,
+    output = M.ProvisionDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/devices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterPackageVersion = schema.operation({
+    id = id.from("com.amazonaws.panorama", "RegisterPackageVersion"),
+    input = M.RegisterPackageVersionInput,
+    output = M.RegisterPackageVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/packages/{PackageId}/versions/{PackageVersion}/patch/{PatchVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveApplicationInstance = schema.operation({
+    id = id.from("com.amazonaws.panorama", "RemoveApplicationInstance"),
+    input = M.RemoveApplicationInstanceInput,
+    output = M.RemoveApplicationInstanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/application-instances/{ApplicationInstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SignalApplicationInstanceNodeInstances = schema.operation({
+    id = id.from("com.amazonaws.panorama", "SignalApplicationInstanceNodeInstances"),
+    input = M.SignalApplicationInstanceNodeInstancesInput,
+    output = M.SignalApplicationInstanceNodeInstancesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/application-instances/{ApplicationInstanceId}/node-signals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.panorama", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.panorama", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDeviceMetadata = schema.operation({
+    id = id.from("com.amazonaws.panorama", "UpdateDeviceMetadata"),
+    input = M.UpdateDeviceMetadataInput,
+    output = M.UpdateDeviceMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/devices/{DeviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

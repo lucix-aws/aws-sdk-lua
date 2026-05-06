@@ -7,6 +7,7 @@ local endpoint_rules = require("entityresolution.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("entityresolution.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "entityresolution", signing_region = cfg.region } }
                 else
@@ -49,497 +52,155 @@ function M.new(cfg)
 end
 
 function Client:addPolicyStatement(input, options)
-    return self:invokeOperation(input, {
-        name = "AddPolicyStatement",
-        input_schema = schemas.AddPolicyStatementInput,
-        output_schema = schemas.AddPolicyStatementOutput,
-        http_method = "POST",
-        http_path = "/policies/{arn}/{statementId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddPolicyStatement, input, options)
 end
 
 function Client:batchDeleteUniqueId(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchDeleteUniqueId",
-        input_schema = schemas.BatchDeleteUniqueIdInput,
-        output_schema = schemas.BatchDeleteUniqueIdOutput,
-        http_method = "DELETE",
-        http_path = "/matchingworkflows/{workflowName}/uniqueids",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchDeleteUniqueId, input, options)
 end
 
 function Client:createIdMappingWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateIdMappingWorkflow",
-        input_schema = schemas.CreateIdMappingWorkflowInput,
-        output_schema = schemas.CreateIdMappingWorkflowOutput,
-        http_method = "POST",
-        http_path = "/idmappingworkflows",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateIdMappingWorkflow, input, options)
 end
 
 function Client:createIdNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateIdNamespace",
-        input_schema = schemas.CreateIdNamespaceInput,
-        output_schema = schemas.CreateIdNamespaceOutput,
-        http_method = "POST",
-        http_path = "/idnamespaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateIdNamespace, input, options)
 end
 
 function Client:createMatchingWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateMatchingWorkflow",
-        input_schema = schemas.CreateMatchingWorkflowInput,
-        output_schema = schemas.CreateMatchingWorkflowOutput,
-        http_method = "POST",
-        http_path = "/matchingworkflows",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateMatchingWorkflow, input, options)
 end
 
 function Client:createSchemaMapping(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateSchemaMapping",
-        input_schema = schemas.CreateSchemaMappingInput,
-        output_schema = schemas.CreateSchemaMappingOutput,
-        http_method = "POST",
-        http_path = "/schemas",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateSchemaMapping, input, options)
 end
 
 function Client:deleteIdMappingWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIdMappingWorkflow",
-        input_schema = schemas.DeleteIdMappingWorkflowInput,
-        output_schema = schemas.DeleteIdMappingWorkflowOutput,
-        http_method = "DELETE",
-        http_path = "/idmappingworkflows/{workflowName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIdMappingWorkflow, input, options)
 end
 
 function Client:deleteIdNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteIdNamespace",
-        input_schema = schemas.DeleteIdNamespaceInput,
-        output_schema = schemas.DeleteIdNamespaceOutput,
-        http_method = "DELETE",
-        http_path = "/idnamespaces/{idNamespaceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteIdNamespace, input, options)
 end
 
 function Client:deleteMatchingWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteMatchingWorkflow",
-        input_schema = schemas.DeleteMatchingWorkflowInput,
-        output_schema = schemas.DeleteMatchingWorkflowOutput,
-        http_method = "DELETE",
-        http_path = "/matchingworkflows/{workflowName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteMatchingWorkflow, input, options)
 end
 
 function Client:deletePolicyStatement(input, options)
-    return self:invokeOperation(input, {
-        name = "DeletePolicyStatement",
-        input_schema = schemas.DeletePolicyStatementInput,
-        output_schema = schemas.DeletePolicyStatementOutput,
-        http_method = "DELETE",
-        http_path = "/policies/{arn}/{statementId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeletePolicyStatement, input, options)
 end
 
 function Client:deleteSchemaMapping(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteSchemaMapping",
-        input_schema = schemas.DeleteSchemaMappingInput,
-        output_schema = schemas.DeleteSchemaMappingOutput,
-        http_method = "DELETE",
-        http_path = "/schemas/{schemaName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteSchemaMapping, input, options)
 end
 
 function Client:generateMatchId(input, options)
-    return self:invokeOperation(input, {
-        name = "GenerateMatchId",
-        input_schema = schemas.GenerateMatchIdInput,
-        output_schema = schemas.GenerateMatchIdOutput,
-        http_method = "POST",
-        http_path = "/matchingworkflows/{workflowName}/generateMatches",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GenerateMatchId, input, options)
 end
 
 function Client:getIdMappingJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdMappingJob",
-        input_schema = schemas.GetIdMappingJobInput,
-        output_schema = schemas.GetIdMappingJobOutput,
-        http_method = "GET",
-        http_path = "/idmappingworkflows/{workflowName}/jobs/{jobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdMappingJob, input, options)
 end
 
 function Client:getIdMappingWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdMappingWorkflow",
-        input_schema = schemas.GetIdMappingWorkflowInput,
-        output_schema = schemas.GetIdMappingWorkflowOutput,
-        http_method = "GET",
-        http_path = "/idmappingworkflows/{workflowName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdMappingWorkflow, input, options)
 end
 
 function Client:getIdNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdNamespace",
-        input_schema = schemas.GetIdNamespaceInput,
-        output_schema = schemas.GetIdNamespaceOutput,
-        http_method = "GET",
-        http_path = "/idnamespaces/{idNamespaceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdNamespace, input, options)
 end
 
 function Client:getMatchId(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMatchId",
-        input_schema = schemas.GetMatchIdInput,
-        output_schema = schemas.GetMatchIdOutput,
-        http_method = "POST",
-        http_path = "/matchingworkflows/{workflowName}/matches",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMatchId, input, options)
 end
 
 function Client:getMatchingJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMatchingJob",
-        input_schema = schemas.GetMatchingJobInput,
-        output_schema = schemas.GetMatchingJobOutput,
-        http_method = "GET",
-        http_path = "/matchingworkflows/{workflowName}/jobs/{jobId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMatchingJob, input, options)
 end
 
 function Client:getMatchingWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "GetMatchingWorkflow",
-        input_schema = schemas.GetMatchingWorkflowInput,
-        output_schema = schemas.GetMatchingWorkflowOutput,
-        http_method = "GET",
-        http_path = "/matchingworkflows/{workflowName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetMatchingWorkflow, input, options)
 end
 
 function Client:getPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPolicy",
-        input_schema = schemas.GetPolicyInput,
-        output_schema = schemas.GetPolicyOutput,
-        http_method = "GET",
-        http_path = "/policies/{arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPolicy, input, options)
 end
 
 function Client:getProviderService(input, options)
-    return self:invokeOperation(input, {
-        name = "GetProviderService",
-        input_schema = schemas.GetProviderServiceInput,
-        output_schema = schemas.GetProviderServiceOutput,
-        http_method = "GET",
-        http_path = "/providerservices/{providerName}/{providerServiceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetProviderService, input, options)
 end
 
 function Client:getSchemaMapping(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSchemaMapping",
-        input_schema = schemas.GetSchemaMappingInput,
-        output_schema = schemas.GetSchemaMappingOutput,
-        http_method = "GET",
-        http_path = "/schemas/{schemaName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSchemaMapping, input, options)
 end
 
 function Client:listIdMappingJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIdMappingJobs",
-        input_schema = schemas.ListIdMappingJobsInput,
-        output_schema = schemas.ListIdMappingJobsOutput,
-        http_method = "GET",
-        http_path = "/idmappingworkflows/{workflowName}/jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIdMappingJobs, input, options)
 end
 
 function Client:listIdMappingWorkflows(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIdMappingWorkflows",
-        input_schema = schemas.ListIdMappingWorkflowsInput,
-        output_schema = schemas.ListIdMappingWorkflowsOutput,
-        http_method = "GET",
-        http_path = "/idmappingworkflows",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIdMappingWorkflows, input, options)
 end
 
 function Client:listIdNamespaces(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIdNamespaces",
-        input_schema = schemas.ListIdNamespacesInput,
-        output_schema = schemas.ListIdNamespacesOutput,
-        http_method = "GET",
-        http_path = "/idnamespaces",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIdNamespaces, input, options)
 end
 
 function Client:listMatchingJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMatchingJobs",
-        input_schema = schemas.ListMatchingJobsInput,
-        output_schema = schemas.ListMatchingJobsOutput,
-        http_method = "GET",
-        http_path = "/matchingworkflows/{workflowName}/jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMatchingJobs, input, options)
 end
 
 function Client:listMatchingWorkflows(input, options)
-    return self:invokeOperation(input, {
-        name = "ListMatchingWorkflows",
-        input_schema = schemas.ListMatchingWorkflowsInput,
-        output_schema = schemas.ListMatchingWorkflowsOutput,
-        http_method = "GET",
-        http_path = "/matchingworkflows",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListMatchingWorkflows, input, options)
 end
 
 function Client:listProviderServices(input, options)
-    return self:invokeOperation(input, {
-        name = "ListProviderServices",
-        input_schema = schemas.ListProviderServicesInput,
-        output_schema = schemas.ListProviderServicesOutput,
-        http_method = "GET",
-        http_path = "/providerservices",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListProviderServices, input, options)
 end
 
 function Client:listSchemaMappings(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSchemaMappings",
-        input_schema = schemas.ListSchemaMappingsInput,
-        output_schema = schemas.ListSchemaMappingsOutput,
-        http_method = "GET",
-        http_path = "/schemas",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSchemaMappings, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutPolicy",
-        input_schema = schemas.PutPolicyInput,
-        output_schema = schemas.PutPolicyOutput,
-        http_method = "PUT",
-        http_path = "/policies/{arn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutPolicy, input, options)
 end
 
 function Client:startIdMappingJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartIdMappingJob",
-        input_schema = schemas.StartIdMappingJobInput,
-        output_schema = schemas.StartIdMappingJobOutput,
-        http_method = "POST",
-        http_path = "/idmappingworkflows/{workflowName}/jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartIdMappingJob, input, options)
 end
 
 function Client:startMatchingJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartMatchingJob",
-        input_schema = schemas.StartMatchingJobInput,
-        output_schema = schemas.StartMatchingJobOutput,
-        http_method = "POST",
-        http_path = "/matchingworkflows/{workflowName}/jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartMatchingJob, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateIdMappingWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateIdMappingWorkflow",
-        input_schema = schemas.UpdateIdMappingWorkflowInput,
-        output_schema = schemas.UpdateIdMappingWorkflowOutput,
-        http_method = "PUT",
-        http_path = "/idmappingworkflows/{workflowName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateIdMappingWorkflow, input, options)
 end
 
 function Client:updateIdNamespace(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateIdNamespace",
-        input_schema = schemas.UpdateIdNamespaceInput,
-        output_schema = schemas.UpdateIdNamespaceOutput,
-        http_method = "PUT",
-        http_path = "/idnamespaces/{idNamespaceName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateIdNamespace, input, options)
 end
 
 function Client:updateMatchingWorkflow(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateMatchingWorkflow",
-        input_schema = schemas.UpdateMatchingWorkflowInput,
-        output_schema = schemas.UpdateMatchingWorkflowOutput,
-        http_method = "PUT",
-        http_path = "/matchingworkflows/{workflowName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateMatchingWorkflow, input, options)
 end
 
 function Client:updateSchemaMapping(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateSchemaMapping",
-        input_schema = schemas.UpdateSchemaMappingInput,
-        output_schema = schemas.UpdateSchemaMappingOutput,
-        http_method = "PUT",
-        http_path = "/schemas/{schemaName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateSchemaMapping, input, options)
 end
 
 return M

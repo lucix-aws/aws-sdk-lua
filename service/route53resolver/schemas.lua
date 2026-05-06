@@ -4713,4 +4713,762 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.route53resolver", "Route53Resolver"),
+    version = "2018-04-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateFirewallRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "AssociateFirewallRuleGroup"),
+    input = M.AssociateFirewallRuleGroupInput,
+    output = M.AssociateFirewallRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateResolverEndpointIpAddress = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "AssociateResolverEndpointIpAddress"),
+    input = M.AssociateResolverEndpointIpAddressInput,
+    output = M.AssociateResolverEndpointIpAddressOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateResolverQueryLogConfig = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "AssociateResolverQueryLogConfig"),
+    input = M.AssociateResolverQueryLogConfigInput,
+    output = M.AssociateResolverQueryLogConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateResolverRule = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "AssociateResolverRule"),
+    input = M.AssociateResolverRuleInput,
+    output = M.AssociateResolverRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFirewallDomainList = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "CreateFirewallDomainList"),
+    input = M.CreateFirewallDomainListInput,
+    output = M.CreateFirewallDomainListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFirewallRule = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "CreateFirewallRule"),
+    input = M.CreateFirewallRuleInput,
+    output = M.CreateFirewallRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFirewallRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "CreateFirewallRuleGroup"),
+    input = M.CreateFirewallRuleGroupInput,
+    output = M.CreateFirewallRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOutpostResolver = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "CreateOutpostResolver"),
+    input = M.CreateOutpostResolverInput,
+    output = M.CreateOutpostResolverOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResolverEndpoint = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "CreateResolverEndpoint"),
+    input = M.CreateResolverEndpointInput,
+    output = M.CreateResolverEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResolverQueryLogConfig = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "CreateResolverQueryLogConfig"),
+    input = M.CreateResolverQueryLogConfigInput,
+    output = M.CreateResolverQueryLogConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResolverRule = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "CreateResolverRule"),
+    input = M.CreateResolverRuleInput,
+    output = M.CreateResolverRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFirewallDomainList = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "DeleteFirewallDomainList"),
+    input = M.DeleteFirewallDomainListInput,
+    output = M.DeleteFirewallDomainListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFirewallRule = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "DeleteFirewallRule"),
+    input = M.DeleteFirewallRuleInput,
+    output = M.DeleteFirewallRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFirewallRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "DeleteFirewallRuleGroup"),
+    input = M.DeleteFirewallRuleGroupInput,
+    output = M.DeleteFirewallRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOutpostResolver = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "DeleteOutpostResolver"),
+    input = M.DeleteOutpostResolverInput,
+    output = M.DeleteOutpostResolverOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResolverEndpoint = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "DeleteResolverEndpoint"),
+    input = M.DeleteResolverEndpointInput,
+    output = M.DeleteResolverEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResolverQueryLogConfig = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "DeleteResolverQueryLogConfig"),
+    input = M.DeleteResolverQueryLogConfigInput,
+    output = M.DeleteResolverQueryLogConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResolverRule = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "DeleteResolverRule"),
+    input = M.DeleteResolverRuleInput,
+    output = M.DeleteResolverRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateFirewallRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "DisassociateFirewallRuleGroup"),
+    input = M.DisassociateFirewallRuleGroupInput,
+    output = M.DisassociateFirewallRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateResolverEndpointIpAddress = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "DisassociateResolverEndpointIpAddress"),
+    input = M.DisassociateResolverEndpointIpAddressInput,
+    output = M.DisassociateResolverEndpointIpAddressOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateResolverQueryLogConfig = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "DisassociateResolverQueryLogConfig"),
+    input = M.DisassociateResolverQueryLogConfigInput,
+    output = M.DisassociateResolverQueryLogConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateResolverRule = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "DisassociateResolverRule"),
+    input = M.DisassociateResolverRuleInput,
+    output = M.DisassociateResolverRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFirewallConfig = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetFirewallConfig"),
+    input = M.GetFirewallConfigInput,
+    output = M.GetFirewallConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFirewallDomainList = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetFirewallDomainList"),
+    input = M.GetFirewallDomainListInput,
+    output = M.GetFirewallDomainListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFirewallRuleGroup = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetFirewallRuleGroup"),
+    input = M.GetFirewallRuleGroupInput,
+    output = M.GetFirewallRuleGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFirewallRuleGroupAssociation = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetFirewallRuleGroupAssociation"),
+    input = M.GetFirewallRuleGroupAssociationInput,
+    output = M.GetFirewallRuleGroupAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFirewallRuleGroupPolicy = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetFirewallRuleGroupPolicy"),
+    input = M.GetFirewallRuleGroupPolicyInput,
+    output = M.GetFirewallRuleGroupPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOutpostResolver = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetOutpostResolver"),
+    input = M.GetOutpostResolverInput,
+    output = M.GetOutpostResolverOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResolverConfig = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetResolverConfig"),
+    input = M.GetResolverConfigInput,
+    output = M.GetResolverConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResolverDnssecConfig = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetResolverDnssecConfig"),
+    input = M.GetResolverDnssecConfigInput,
+    output = M.GetResolverDnssecConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResolverEndpoint = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetResolverEndpoint"),
+    input = M.GetResolverEndpointInput,
+    output = M.GetResolverEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResolverQueryLogConfig = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetResolverQueryLogConfig"),
+    input = M.GetResolverQueryLogConfigInput,
+    output = M.GetResolverQueryLogConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResolverQueryLogConfigAssociation = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetResolverQueryLogConfigAssociation"),
+    input = M.GetResolverQueryLogConfigAssociationInput,
+    output = M.GetResolverQueryLogConfigAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResolverQueryLogConfigPolicy = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetResolverQueryLogConfigPolicy"),
+    input = M.GetResolverQueryLogConfigPolicyInput,
+    output = M.GetResolverQueryLogConfigPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResolverRule = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetResolverRule"),
+    input = M.GetResolverRuleInput,
+    output = M.GetResolverRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResolverRuleAssociation = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetResolverRuleAssociation"),
+    input = M.GetResolverRuleAssociationInput,
+    output = M.GetResolverRuleAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResolverRulePolicy = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "GetResolverRulePolicy"),
+    input = M.GetResolverRulePolicyInput,
+    output = M.GetResolverRulePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportFirewallDomains = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ImportFirewallDomains"),
+    input = M.ImportFirewallDomainsInput,
+    output = M.ImportFirewallDomainsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFirewallConfigs = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListFirewallConfigs"),
+    input = M.ListFirewallConfigsInput,
+    output = M.ListFirewallConfigsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFirewallDomainLists = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListFirewallDomainLists"),
+    input = M.ListFirewallDomainListsInput,
+    output = M.ListFirewallDomainListsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFirewallDomains = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListFirewallDomains"),
+    input = M.ListFirewallDomainsInput,
+    output = M.ListFirewallDomainsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFirewallRuleGroupAssociations = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListFirewallRuleGroupAssociations"),
+    input = M.ListFirewallRuleGroupAssociationsInput,
+    output = M.ListFirewallRuleGroupAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFirewallRuleGroups = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListFirewallRuleGroups"),
+    input = M.ListFirewallRuleGroupsInput,
+    output = M.ListFirewallRuleGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFirewallRules = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListFirewallRules"),
+    input = M.ListFirewallRulesInput,
+    output = M.ListFirewallRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOutpostResolvers = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListOutpostResolvers"),
+    input = M.ListOutpostResolversInput,
+    output = M.ListOutpostResolversOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResolverConfigs = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListResolverConfigs"),
+    input = M.ListResolverConfigsInput,
+    output = M.ListResolverConfigsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResolverDnssecConfigs = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListResolverDnssecConfigs"),
+    input = M.ListResolverDnssecConfigsInput,
+    output = M.ListResolverDnssecConfigsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResolverEndpointIpAddresses = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListResolverEndpointIpAddresses"),
+    input = M.ListResolverEndpointIpAddressesInput,
+    output = M.ListResolverEndpointIpAddressesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResolverEndpoints = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListResolverEndpoints"),
+    input = M.ListResolverEndpointsInput,
+    output = M.ListResolverEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResolverQueryLogConfigAssociations = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListResolverQueryLogConfigAssociations"),
+    input = M.ListResolverQueryLogConfigAssociationsInput,
+    output = M.ListResolverQueryLogConfigAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResolverQueryLogConfigs = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListResolverQueryLogConfigs"),
+    input = M.ListResolverQueryLogConfigsInput,
+    output = M.ListResolverQueryLogConfigsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResolverRuleAssociations = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListResolverRuleAssociations"),
+    input = M.ListResolverRuleAssociationsInput,
+    output = M.ListResolverRuleAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResolverRules = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListResolverRules"),
+    input = M.ListResolverRulesInput,
+    output = M.ListResolverRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFirewallRuleGroupPolicy = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "PutFirewallRuleGroupPolicy"),
+    input = M.PutFirewallRuleGroupPolicyInput,
+    output = M.PutFirewallRuleGroupPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResolverQueryLogConfigPolicy = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "PutResolverQueryLogConfigPolicy"),
+    input = M.PutResolverQueryLogConfigPolicyInput,
+    output = M.PutResolverQueryLogConfigPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResolverRulePolicy = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "PutResolverRulePolicy"),
+    input = M.PutResolverRulePolicyInput,
+    output = M.PutResolverRulePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFirewallConfig = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "UpdateFirewallConfig"),
+    input = M.UpdateFirewallConfigInput,
+    output = M.UpdateFirewallConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFirewallDomains = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "UpdateFirewallDomains"),
+    input = M.UpdateFirewallDomainsInput,
+    output = M.UpdateFirewallDomainsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFirewallRule = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "UpdateFirewallRule"),
+    input = M.UpdateFirewallRuleInput,
+    output = M.UpdateFirewallRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFirewallRuleGroupAssociation = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "UpdateFirewallRuleGroupAssociation"),
+    input = M.UpdateFirewallRuleGroupAssociationInput,
+    output = M.UpdateFirewallRuleGroupAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOutpostResolver = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "UpdateOutpostResolver"),
+    input = M.UpdateOutpostResolverInput,
+    output = M.UpdateOutpostResolverOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResolverConfig = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "UpdateResolverConfig"),
+    input = M.UpdateResolverConfigInput,
+    output = M.UpdateResolverConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResolverDnssecConfig = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "UpdateResolverDnssecConfig"),
+    input = M.UpdateResolverDnssecConfigInput,
+    output = M.UpdateResolverDnssecConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResolverEndpoint = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "UpdateResolverEndpoint"),
+    input = M.UpdateResolverEndpointInput,
+    output = M.UpdateResolverEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResolverRule = schema.operation({
+    id = id.from("com.amazonaws.route53resolver", "UpdateResolverRule"),
+    input = M.UpdateResolverRuleInput,
+    output = M.UpdateResolverRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

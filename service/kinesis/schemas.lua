@@ -3094,4 +3094,582 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.kinesis", "Kinesis_20131202"),
+    version = "2013-12-02",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTagsToStream = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "AddTagsToStream"),
+    input = M.AddTagsToStreamInput,
+    output = M.AddTagsToStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.CreateStream = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "CreateStream"),
+    input = M.CreateStreamInput,
+    output = M.CreateStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DecreaseStreamRetentionPeriod = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "DecreaseStreamRetentionPeriod"),
+    input = M.DecreaseStreamRetentionPeriodInput,
+    output = M.DecreaseStreamRetentionPeriodOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceARN = "ResourceARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.DeleteStream = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "DeleteStream"),
+    input = M.DeleteStreamInput,
+    output = M.DeleteStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.DeregisterStreamConsumer = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "DeregisterStreamConsumer"),
+    input = M.DeregisterStreamConsumerInput,
+    output = M.DeregisterStreamConsumerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ConsumerARN = "ConsumerARN",
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.DescribeAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "DescribeAccountSettings"),
+    input = M.DescribeAccountSettingsInput,
+    output = M.DescribeAccountSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLimits = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "DescribeLimits"),
+    input = M.DescribeLimitsInput,
+    output = M.DescribeLimitsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeStream = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "DescribeStream"),
+    input = M.DescribeStreamInput,
+    output = M.DescribeStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.DescribeStreamConsumer = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "DescribeStreamConsumer"),
+    input = M.DescribeStreamConsumerInput,
+    output = M.DescribeStreamConsumerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ConsumerARN = "ConsumerARN",
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.DescribeStreamSummary = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "DescribeStreamSummary"),
+    input = M.DescribeStreamSummaryInput,
+    output = M.DescribeStreamSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.DisableEnhancedMonitoring = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "DisableEnhancedMonitoring"),
+    input = M.DisableEnhancedMonitoringInput,
+    output = M.DisableEnhancedMonitoringOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.EnableEnhancedMonitoring = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "EnableEnhancedMonitoring"),
+    input = M.EnableEnhancedMonitoringInput,
+    output = M.EnableEnhancedMonitoringOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.GetRecords = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "GetRecords"),
+    input = M.GetRecordsInput,
+    output = M.GetRecordsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceARN = "ResourceARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.GetShardIterator = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "GetShardIterator"),
+    input = M.GetShardIteratorInput,
+    output = M.GetShardIteratorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.IncreaseStreamRetentionPeriod = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "IncreaseStreamRetentionPeriod"),
+    input = M.IncreaseStreamRetentionPeriodInput,
+    output = M.IncreaseStreamRetentionPeriodOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.ListShards = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "ListShards"),
+    input = M.ListShardsInput,
+    output = M.ListShardsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.ListStreamConsumers = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "ListStreamConsumers"),
+    input = M.ListStreamConsumersInput,
+    output = M.ListStreamConsumersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.ListStreams = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "ListStreams"),
+    input = M.ListStreamsInput,
+    output = M.ListStreamsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceARN = "ResourceARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.ListTagsForStream = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "ListTagsForStream"),
+    input = M.ListTagsForStreamInput,
+    output = M.ListTagsForStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.MergeShards = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "MergeShards"),
+    input = M.MergeShardsInput,
+    output = M.MergeShardsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.PutRecord = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "PutRecord"),
+    input = M.PutRecordInput,
+    output = M.PutRecordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.PutRecords = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "PutRecords"),
+    input = M.PutRecordsInput,
+    output = M.PutRecordsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceARN = "ResourceARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.RegisterStreamConsumer = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "RegisterStreamConsumer"),
+    input = M.RegisterStreamConsumerInput,
+    output = M.RegisterStreamConsumerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.RemoveTagsFromStream = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "RemoveTagsFromStream"),
+    input = M.RemoveTagsFromStreamInput,
+    output = M.RemoveTagsFromStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.SplitShard = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "SplitShard"),
+    input = M.SplitShardInput,
+    output = M.SplitShardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.StartStreamEncryption = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "StartStreamEncryption"),
+    input = M.StartStreamEncryptionInput,
+    output = M.StartStreamEncryptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.StopStreamEncryption = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "StopStreamEncryption"),
+    input = M.StopStreamEncryptionInput,
+    output = M.StopStreamEncryptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.SubscribeToShard = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "SubscribeToShard"),
+    input = M.SubscribeToShardInput,
+    output = M.SubscribeToShardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ConsumerARN = "ConsumerARN",
+            StreamId = "StreamId",
+        },
+        [traits.EVENT_STREAM] = M.SubscribeToShardEventStream,
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceARN = "ResourceARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceARN = "ResourceARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.UpdateAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "UpdateAccountSettings"),
+    input = M.UpdateAccountSettingsInput,
+    output = M.UpdateAccountSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMaxRecordSize = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "UpdateMaxRecordSize"),
+    input = M.UpdateMaxRecordSizeInput,
+    output = M.UpdateMaxRecordSizeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.UpdateShardCount = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "UpdateShardCount"),
+    input = M.UpdateShardCountInput,
+    output = M.UpdateShardCountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.UpdateStreamMode = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "UpdateStreamMode"),
+    input = M.UpdateStreamModeInput,
+    output = M.UpdateStreamModeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
+M.UpdateStreamWarmThroughput = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "UpdateStreamWarmThroughput"),
+    input = M.UpdateStreamWarmThroughputInput,
+    output = M.UpdateStreamWarmThroughputOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+    },
+})
+
 return M

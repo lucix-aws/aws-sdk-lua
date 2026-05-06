@@ -2933,4 +2933,102 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.costoptimizationhub", "CostOptimizationHubService"),
+    version = "2022-07-26",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPreferences = schema.operation({
+    id = id.from("com.amazonaws.costoptimizationhub", "GetPreferences"),
+    input = M.GetPreferencesInput,
+    output = M.GetPreferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommendation = schema.operation({
+    id = id.from("com.amazonaws.costoptimizationhub", "GetRecommendation"),
+    input = M.GetRecommendationInput,
+    output = M.GetRecommendationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEfficiencyMetrics = schema.operation({
+    id = id.from("com.amazonaws.costoptimizationhub", "ListEfficiencyMetrics"),
+    input = M.ListEfficiencyMetricsInput,
+    output = M.ListEfficiencyMetricsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnrollmentStatuses = schema.operation({
+    id = id.from("com.amazonaws.costoptimizationhub", "ListEnrollmentStatuses"),
+    input = M.ListEnrollmentStatusesInput,
+    output = M.ListEnrollmentStatusesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommendations = schema.operation({
+    id = id.from("com.amazonaws.costoptimizationhub", "ListRecommendations"),
+    input = M.ListRecommendationsInput,
+    output = M.ListRecommendationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecommendationSummaries = schema.operation({
+    id = id.from("com.amazonaws.costoptimizationhub", "ListRecommendationSummaries"),
+    input = M.ListRecommendationSummariesInput,
+    output = M.ListRecommendationSummariesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnrollmentStatus = schema.operation({
+    id = id.from("com.amazonaws.costoptimizationhub", "UpdateEnrollmentStatus"),
+    input = M.UpdateEnrollmentStatusInput,
+    output = M.UpdateEnrollmentStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePreferences = schema.operation({
+    id = id.from("com.amazonaws.costoptimizationhub", "UpdatePreferences"),
+    input = M.UpdatePreferencesInput,
+    output = M.UpdatePreferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

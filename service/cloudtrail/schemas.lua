@@ -6341,4 +6341,674 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cloudtrail", "CloudTrail_20131101"),
+    version = "2013-11-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTags = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "AddTags"),
+    input = M.AddTagsInput,
+    output = M.AddTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelQuery = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "CancelQuery"),
+    input = M.CancelQueryInput,
+    output = M.CancelQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChannel = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "CreateChannel"),
+    input = M.CreateChannelInput,
+    output = M.CreateChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDashboard = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "CreateDashboard"),
+    input = M.CreateDashboardInput,
+    output = M.CreateDashboardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventDataStore = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "CreateEventDataStore"),
+    input = M.CreateEventDataStoreInput,
+    output = M.CreateEventDataStoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTrail = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "CreateTrail"),
+    input = M.CreateTrailInput,
+    output = M.CreateTrailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChannel = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "DeleteChannel"),
+    input = M.DeleteChannelInput,
+    output = M.DeleteChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDashboard = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "DeleteDashboard"),
+    input = M.DeleteDashboardInput,
+    output = M.DeleteDashboardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventDataStore = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "DeleteEventDataStore"),
+    input = M.DeleteEventDataStoreInput,
+    output = M.DeleteEventDataStoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrail = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "DeleteTrail"),
+    input = M.DeleteTrailInput,
+    output = M.DeleteTrailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterOrganizationDelegatedAdmin = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "DeregisterOrganizationDelegatedAdmin"),
+    input = M.DeregisterOrganizationDelegatedAdminInput,
+    output = M.DeregisterOrganizationDelegatedAdminOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeQuery = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "DescribeQuery"),
+    input = M.DescribeQueryInput,
+    output = M.DescribeQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrails = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "DescribeTrails"),
+    input = M.DescribeTrailsInput,
+    output = M.DescribeTrailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableFederation = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "DisableFederation"),
+    input = M.DisableFederationInput,
+    output = M.DisableFederationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableFederation = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "EnableFederation"),
+    input = M.EnableFederationInput,
+    output = M.EnableFederationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateQuery = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "GenerateQuery"),
+    input = M.GenerateQueryInput,
+    output = M.GenerateQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChannel = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "GetChannel"),
+    input = M.GetChannelInput,
+    output = M.GetChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDashboard = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "GetDashboard"),
+    input = M.GetDashboardInput,
+    output = M.GetDashboardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "GetEventConfiguration"),
+    input = M.GetEventConfigurationInput,
+    output = M.GetEventConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventDataStore = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "GetEventDataStore"),
+    input = M.GetEventDataStoreInput,
+    output = M.GetEventDataStoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventSelectors = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "GetEventSelectors"),
+    input = M.GetEventSelectorsInput,
+    output = M.GetEventSelectorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImport = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "GetImport"),
+    input = M.GetImportInput,
+    output = M.GetImportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInsightSelectors = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "GetInsightSelectors"),
+    input = M.GetInsightSelectorsInput,
+    output = M.GetInsightSelectorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryResults = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "GetQueryResults"),
+    input = M.GetQueryResultsInput,
+    output = M.GetQueryResultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrail = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "GetTrail"),
+    input = M.GetTrailInput,
+    output = M.GetTrailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrailStatus = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "GetTrailStatus"),
+    input = M.GetTrailStatusInput,
+    output = M.GetTrailStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannels = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "ListChannels"),
+    input = M.ListChannelsInput,
+    output = M.ListChannelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDashboards = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "ListDashboards"),
+    input = M.ListDashboardsInput,
+    output = M.ListDashboardsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventDataStores = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "ListEventDataStores"),
+    input = M.ListEventDataStoresInput,
+    output = M.ListEventDataStoresOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImportFailures = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "ListImportFailures"),
+    input = M.ListImportFailuresInput,
+    output = M.ListImportFailuresOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListImports = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "ListImports"),
+    input = M.ListImportsInput,
+    output = M.ListImportsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInsightsData = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "ListInsightsData"),
+    input = M.ListInsightsDataInput,
+    output = M.ListInsightsDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInsightsMetricData = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "ListInsightsMetricData"),
+    input = M.ListInsightsMetricDataInput,
+    output = M.ListInsightsMetricDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPublicKeys = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "ListPublicKeys"),
+    input = M.ListPublicKeysInput,
+    output = M.ListPublicKeysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQueries = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "ListQueries"),
+    input = M.ListQueriesInput,
+    output = M.ListQueriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTags = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "ListTags"),
+    input = M.ListTagsInput,
+    output = M.ListTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTrails = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "ListTrails"),
+    input = M.ListTrailsInput,
+    output = M.ListTrailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.LookupEvents = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "LookupEvents"),
+    input = M.LookupEventsInput,
+    output = M.LookupEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEventConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "PutEventConfiguration"),
+    input = M.PutEventConfigurationInput,
+    output = M.PutEventConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEventSelectors = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "PutEventSelectors"),
+    input = M.PutEventSelectorsInput,
+    output = M.PutEventSelectorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutInsightSelectors = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "PutInsightSelectors"),
+    input = M.PutInsightSelectorsInput,
+    output = M.PutInsightSelectorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterOrganizationDelegatedAdmin = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "RegisterOrganizationDelegatedAdmin"),
+    input = M.RegisterOrganizationDelegatedAdminInput,
+    output = M.RegisterOrganizationDelegatedAdminOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTags = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "RemoveTags"),
+    input = M.RemoveTagsInput,
+    output = M.RemoveTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreEventDataStore = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "RestoreEventDataStore"),
+    input = M.RestoreEventDataStoreInput,
+    output = M.RestoreEventDataStoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchSampleQueries = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "SearchSampleQueries"),
+    input = M.SearchSampleQueriesInput,
+    output = M.SearchSampleQueriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDashboardRefresh = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "StartDashboardRefresh"),
+    input = M.StartDashboardRefreshInput,
+    output = M.StartDashboardRefreshOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartEventDataStoreIngestion = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "StartEventDataStoreIngestion"),
+    input = M.StartEventDataStoreIngestionInput,
+    output = M.StartEventDataStoreIngestionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartImport = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "StartImport"),
+    input = M.StartImportInput,
+    output = M.StartImportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartLogging = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "StartLogging"),
+    input = M.StartLoggingInput,
+    output = M.StartLoggingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartQuery = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "StartQuery"),
+    input = M.StartQueryInput,
+    output = M.StartQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopEventDataStoreIngestion = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "StopEventDataStoreIngestion"),
+    input = M.StopEventDataStoreIngestionInput,
+    output = M.StopEventDataStoreIngestionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopImport = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "StopImport"),
+    input = M.StopImportInput,
+    output = M.StopImportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopLogging = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "StopLogging"),
+    input = M.StopLoggingInput,
+    output = M.StopLoggingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChannel = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "UpdateChannel"),
+    input = M.UpdateChannelInput,
+    output = M.UpdateChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDashboard = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "UpdateDashboard"),
+    input = M.UpdateDashboardInput,
+    output = M.UpdateDashboardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEventDataStore = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "UpdateEventDataStore"),
+    input = M.UpdateEventDataStoreInput,
+    output = M.UpdateEventDataStoreOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrail = schema.operation({
+    id = id.from("com.amazonaws.cloudtrail", "UpdateTrail"),
+    input = M.UpdateTrailInput,
+    output = M.UpdateTrailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -570,4 +570,69 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.pricing", "AWSPriceListService"),
+    version = "2017-10-15",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServices = schema.operation({
+    id = id.from("com.amazonaws.pricing", "DescribeServices"),
+    input = M.DescribeServicesInput,
+    output = M.DescribeServicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAttributeValues = schema.operation({
+    id = id.from("com.amazonaws.pricing", "GetAttributeValues"),
+    input = M.GetAttributeValuesInput,
+    output = M.GetAttributeValuesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPriceListFileUrl = schema.operation({
+    id = id.from("com.amazonaws.pricing", "GetPriceListFileUrl"),
+    input = M.GetPriceListFileUrlInput,
+    output = M.GetPriceListFileUrlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProducts = schema.operation({
+    id = id.from("com.amazonaws.pricing", "GetProducts"),
+    input = M.GetProductsInput,
+    output = M.GetProductsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPriceLists = schema.operation({
+    id = id.from("com.amazonaws.pricing", "ListPriceLists"),
+    input = M.ListPriceListsInput,
+    output = M.ListPriceListsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

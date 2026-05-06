@@ -7,6 +7,7 @@ local endpoint_rules = require("cognitosync.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("cognitosync.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cognito-sync", signing_region = cfg.region } }
                 else
@@ -49,224 +52,71 @@ function M.new(cfg)
 end
 
 function Client:bulkPublish(input, options)
-    return self:invokeOperation(input, {
-        name = "BulkPublish",
-        input_schema = schemas.BulkPublishInput,
-        output_schema = schemas.BulkPublishOutput,
-        http_method = "POST",
-        http_path = "/identitypools/{IdentityPoolId}/bulkpublish",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BulkPublish, input, options)
 end
 
 function Client:deleteDataset(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDataset",
-        input_schema = schemas.DeleteDatasetInput,
-        output_schema = schemas.DeleteDatasetOutput,
-        http_method = "DELETE",
-        http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDataset, input, options)
 end
 
 function Client:describeDataset(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDataset",
-        input_schema = schemas.DescribeDatasetInput,
-        output_schema = schemas.DescribeDatasetOutput,
-        http_method = "GET",
-        http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDataset, input, options)
 end
 
 function Client:describeIdentityPoolUsage(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeIdentityPoolUsage",
-        input_schema = schemas.DescribeIdentityPoolUsageInput,
-        output_schema = schemas.DescribeIdentityPoolUsageOutput,
-        http_method = "GET",
-        http_path = "/identitypools/{IdentityPoolId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeIdentityPoolUsage, input, options)
 end
 
 function Client:describeIdentityUsage(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeIdentityUsage",
-        input_schema = schemas.DescribeIdentityUsageInput,
-        output_schema = schemas.DescribeIdentityUsageOutput,
-        http_method = "GET",
-        http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeIdentityUsage, input, options)
 end
 
 function Client:getBulkPublishDetails(input, options)
-    return self:invokeOperation(input, {
-        name = "GetBulkPublishDetails",
-        input_schema = schemas.GetBulkPublishDetailsInput,
-        output_schema = schemas.GetBulkPublishDetailsOutput,
-        http_method = "POST",
-        http_path = "/identitypools/{IdentityPoolId}/getBulkPublishDetails",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetBulkPublishDetails, input, options)
 end
 
 function Client:getCognitoEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCognitoEvents",
-        input_schema = schemas.GetCognitoEventsInput,
-        output_schema = schemas.GetCognitoEventsOutput,
-        http_method = "GET",
-        http_path = "/identitypools/{IdentityPoolId}/events",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCognitoEvents, input, options)
 end
 
 function Client:getIdentityPoolConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "GetIdentityPoolConfiguration",
-        input_schema = schemas.GetIdentityPoolConfigurationInput,
-        output_schema = schemas.GetIdentityPoolConfigurationOutput,
-        http_method = "GET",
-        http_path = "/identitypools/{IdentityPoolId}/configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetIdentityPoolConfiguration, input, options)
 end
 
 function Client:listDatasets(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDatasets",
-        input_schema = schemas.ListDatasetsInput,
-        output_schema = schemas.ListDatasetsOutput,
-        http_method = "GET",
-        http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDatasets, input, options)
 end
 
 function Client:listIdentityPoolUsage(input, options)
-    return self:invokeOperation(input, {
-        name = "ListIdentityPoolUsage",
-        input_schema = schemas.ListIdentityPoolUsageInput,
-        output_schema = schemas.ListIdentityPoolUsageOutput,
-        http_method = "GET",
-        http_path = "/identitypools",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListIdentityPoolUsage, input, options)
 end
 
 function Client:listRecords(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRecords",
-        input_schema = schemas.ListRecordsInput,
-        output_schema = schemas.ListRecordsOutput,
-        http_method = "GET",
-        http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/records",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRecords, input, options)
 end
 
 function Client:registerDevice(input, options)
-    return self:invokeOperation(input, {
-        name = "RegisterDevice",
-        input_schema = schemas.RegisterDeviceInput,
-        output_schema = schemas.RegisterDeviceOutput,
-        http_method = "POST",
-        http_path = "/identitypools/{IdentityPoolId}/identity/{IdentityId}/device",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RegisterDevice, input, options)
 end
 
 function Client:setCognitoEvents(input, options)
-    return self:invokeOperation(input, {
-        name = "SetCognitoEvents",
-        input_schema = schemas.SetCognitoEventsInput,
-        output_schema = schemas.SetCognitoEventsOutput,
-        http_method = "POST",
-        http_path = "/identitypools/{IdentityPoolId}/events",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetCognitoEvents, input, options)
 end
 
 function Client:setIdentityPoolConfiguration(input, options)
-    return self:invokeOperation(input, {
-        name = "SetIdentityPoolConfiguration",
-        input_schema = schemas.SetIdentityPoolConfigurationInput,
-        output_schema = schemas.SetIdentityPoolConfigurationOutput,
-        http_method = "POST",
-        http_path = "/identitypools/{IdentityPoolId}/configuration",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SetIdentityPoolConfiguration, input, options)
 end
 
 function Client:subscribeToDataset(input, options)
-    return self:invokeOperation(input, {
-        name = "SubscribeToDataset",
-        input_schema = schemas.SubscribeToDatasetInput,
-        output_schema = schemas.SubscribeToDatasetOutput,
-        http_method = "POST",
-        http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SubscribeToDataset, input, options)
 end
 
 function Client:unsubscribeFromDataset(input, options)
-    return self:invokeOperation(input, {
-        name = "UnsubscribeFromDataset",
-        input_schema = schemas.UnsubscribeFromDatasetInput,
-        output_schema = schemas.UnsubscribeFromDatasetOutput,
-        http_method = "DELETE",
-        http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UnsubscribeFromDataset, input, options)
 end
 
 function Client:updateRecords(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRecords",
-        input_schema = schemas.UpdateRecordsInput,
-        output_schema = schemas.UpdateRecordsOutput,
-        http_method = "POST",
-        http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRecords, input, options)
 end
 
 return M

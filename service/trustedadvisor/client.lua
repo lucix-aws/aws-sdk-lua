@@ -7,6 +7,7 @@ local endpoint_rules = require("trustedadvisor.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("trustedadvisor.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "trustedadvisor", signing_region = cfg.region } }
                 else
@@ -49,146 +52,47 @@ function M.new(cfg)
 end
 
 function Client:batchUpdateRecommendationResourceExclusion(input, options)
-    return self:invokeOperation(input, {
-        name = "BatchUpdateRecommendationResourceExclusion",
-        input_schema = schemas.BatchUpdateRecommendationResourceExclusionInput,
-        output_schema = schemas.BatchUpdateRecommendationResourceExclusionOutput,
-        http_method = "PUT",
-        http_path = "/v1/batch-update-recommendation-resource-exclusion",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.BatchUpdateRecommendationResourceExclusion, input, options)
 end
 
 function Client:getOrganizationRecommendation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetOrganizationRecommendation",
-        input_schema = schemas.GetOrganizationRecommendationInput,
-        output_schema = schemas.GetOrganizationRecommendationOutput,
-        http_method = "GET",
-        http_path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetOrganizationRecommendation, input, options)
 end
 
 function Client:getRecommendation(input, options)
-    return self:invokeOperation(input, {
-        name = "GetRecommendation",
-        input_schema = schemas.GetRecommendationInput,
-        output_schema = schemas.GetRecommendationOutput,
-        http_method = "GET",
-        http_path = "/v1/recommendations/{recommendationIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRecommendation, input, options)
 end
 
 function Client:listChecks(input, options)
-    return self:invokeOperation(input, {
-        name = "ListChecks",
-        input_schema = schemas.ListChecksInput,
-        output_schema = schemas.ListChecksOutput,
-        http_method = "GET",
-        http_path = "/v1/checks",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListChecks, input, options)
 end
 
 function Client:listOrganizationRecommendationAccounts(input, options)
-    return self:invokeOperation(input, {
-        name = "ListOrganizationRecommendationAccounts",
-        input_schema = schemas.ListOrganizationRecommendationAccountsInput,
-        output_schema = schemas.ListOrganizationRecommendationAccountsOutput,
-        http_method = "GET",
-        http_path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}/accounts",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListOrganizationRecommendationAccounts, input, options)
 end
 
 function Client:listOrganizationRecommendationResources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListOrganizationRecommendationResources",
-        input_schema = schemas.ListOrganizationRecommendationResourcesInput,
-        output_schema = schemas.ListOrganizationRecommendationResourcesOutput,
-        http_method = "GET",
-        http_path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}/resources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListOrganizationRecommendationResources, input, options)
 end
 
 function Client:listOrganizationRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListOrganizationRecommendations",
-        input_schema = schemas.ListOrganizationRecommendationsInput,
-        output_schema = schemas.ListOrganizationRecommendationsOutput,
-        http_method = "GET",
-        http_path = "/v1/organization-recommendations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListOrganizationRecommendations, input, options)
 end
 
 function Client:listRecommendationResources(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRecommendationResources",
-        input_schema = schemas.ListRecommendationResourcesInput,
-        output_schema = schemas.ListRecommendationResourcesOutput,
-        http_method = "GET",
-        http_path = "/v1/recommendations/{recommendationIdentifier}/resources",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRecommendationResources, input, options)
 end
 
 function Client:listRecommendations(input, options)
-    return self:invokeOperation(input, {
-        name = "ListRecommendations",
-        input_schema = schemas.ListRecommendationsInput,
-        output_schema = schemas.ListRecommendationsOutput,
-        http_method = "GET",
-        http_path = "/v1/recommendations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListRecommendations, input, options)
 end
 
 function Client:updateOrganizationRecommendationLifecycle(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateOrganizationRecommendationLifecycle",
-        input_schema = schemas.UpdateOrganizationRecommendationLifecycleInput,
-        output_schema = schemas.UpdateOrganizationRecommendationLifecycleOutput,
-        http_method = "PUT",
-        http_path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}/lifecycle",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateOrganizationRecommendationLifecycle, input, options)
 end
 
 function Client:updateRecommendationLifecycle(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateRecommendationLifecycle",
-        input_schema = schemas.UpdateRecommendationLifecycleInput,
-        output_schema = schemas.UpdateRecommendationLifecycleOutput,
-        http_method = "PUT",
-        http_path = "/v1/recommendations/{recommendationIdentifier}/lifecycle",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateRecommendationLifecycle, input, options)
 end
 
 return M

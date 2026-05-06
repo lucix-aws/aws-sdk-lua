@@ -7,6 +7,7 @@ local endpoint_rules = require("backupsearch.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("backupsearch.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "backup-search", signing_region = cfg.region } }
                 else
@@ -49,159 +52,51 @@ function M.new(cfg)
 end
 
 function Client:getSearchJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSearchJob",
-        input_schema = schemas.GetSearchJobInput,
-        output_schema = schemas.GetSearchJobOutput,
-        http_method = "GET",
-        http_path = "/search-jobs/{SearchJobIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSearchJob, input, options)
 end
 
 function Client:getSearchResultExportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "GetSearchResultExportJob",
-        input_schema = schemas.GetSearchResultExportJobInput,
-        output_schema = schemas.GetSearchResultExportJobOutput,
-        http_method = "GET",
-        http_path = "/export-search-jobs/{ExportJobIdentifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetSearchResultExportJob, input, options)
 end
 
 function Client:listSearchJobBackups(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSearchJobBackups",
-        input_schema = schemas.ListSearchJobBackupsInput,
-        output_schema = schemas.ListSearchJobBackupsOutput,
-        http_method = "GET",
-        http_path = "/search-jobs/{SearchJobIdentifier}/backups",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSearchJobBackups, input, options)
 end
 
 function Client:listSearchJobResults(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSearchJobResults",
-        input_schema = schemas.ListSearchJobResultsInput,
-        output_schema = schemas.ListSearchJobResultsOutput,
-        http_method = "GET",
-        http_path = "/search-jobs/{SearchJobIdentifier}/search-results",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSearchJobResults, input, options)
 end
 
 function Client:listSearchJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSearchJobs",
-        input_schema = schemas.ListSearchJobsInput,
-        output_schema = schemas.ListSearchJobsOutput,
-        http_method = "GET",
-        http_path = "/search-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSearchJobs, input, options)
 end
 
 function Client:listSearchResultExportJobs(input, options)
-    return self:invokeOperation(input, {
-        name = "ListSearchResultExportJobs",
-        input_schema = schemas.ListSearchResultExportJobsInput,
-        output_schema = schemas.ListSearchResultExportJobsOutput,
-        http_method = "GET",
-        http_path = "/export-search-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListSearchResultExportJobs, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:startSearchJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartSearchJob",
-        input_schema = schemas.StartSearchJobInput,
-        output_schema = schemas.StartSearchJobOutput,
-        http_method = "PUT",
-        http_path = "/search-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartSearchJob, input, options)
 end
 
 function Client:startSearchResultExportJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StartSearchResultExportJob",
-        input_schema = schemas.StartSearchResultExportJobInput,
-        output_schema = schemas.StartSearchResultExportJobOutput,
-        http_method = "PUT",
-        http_path = "/export-search-jobs",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartSearchResultExportJob, input, options)
 end
 
 function Client:stopSearchJob(input, options)
-    return self:invokeOperation(input, {
-        name = "StopSearchJob",
-        input_schema = schemas.StopSearchJobInput,
-        output_schema = schemas.StopSearchJobOutput,
-        http_method = "PUT",
-        http_path = "/search-jobs/{SearchJobIdentifier}/actions/cancel",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopSearchJob, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{ResourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 return M

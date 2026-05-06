@@ -1979,4 +1979,254 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.rum", "RUM"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateRumMetricDefinitions = schema.operation({
+    id = id.from("com.amazonaws.rum", "BatchCreateRumMetricDefinitions"),
+    input = M.BatchCreateRumMetricDefinitionsInput,
+    output = M.BatchCreateRumMetricDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/rummetrics/{AppMonitorName}/metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteRumMetricDefinitions = schema.operation({
+    id = id.from("com.amazonaws.rum", "BatchDeleteRumMetricDefinitions"),
+    input = M.BatchDeleteRumMetricDefinitionsInput,
+    output = M.BatchDeleteRumMetricDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/rummetrics/{AppMonitorName}/metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetRumMetricDefinitions = schema.operation({
+    id = id.from("com.amazonaws.rum", "BatchGetRumMetricDefinitions"),
+    input = M.BatchGetRumMetricDefinitionsInput,
+    output = M.BatchGetRumMetricDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/rummetrics/{AppMonitorName}/metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAppMonitor = schema.operation({
+    id = id.from("com.amazonaws.rum", "CreateAppMonitor"),
+    input = M.CreateAppMonitorInput,
+    output = M.CreateAppMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/appmonitor" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAppMonitor = schema.operation({
+    id = id.from("com.amazonaws.rum", "DeleteAppMonitor"),
+    input = M.DeleteAppMonitorInput,
+    output = M.DeleteAppMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/appmonitor/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.rum", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/appmonitor/{Name}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRumMetricsDestination = schema.operation({
+    id = id.from("com.amazonaws.rum", "DeleteRumMetricsDestination"),
+    input = M.DeleteRumMetricsDestinationInput,
+    output = M.DeleteRumMetricsDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/rummetrics/{AppMonitorName}/metricsdestination" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAppMonitor = schema.operation({
+    id = id.from("com.amazonaws.rum", "GetAppMonitor"),
+    input = M.GetAppMonitorInput,
+    output = M.GetAppMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/appmonitor/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAppMonitorData = schema.operation({
+    id = id.from("com.amazonaws.rum", "GetAppMonitorData"),
+    input = M.GetAppMonitorDataInput,
+    output = M.GetAppMonitorDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/appmonitor/{Name}/data" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.rum", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/appmonitor/{Name}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppMonitors = schema.operation({
+    id = id.from("com.amazonaws.rum", "ListAppMonitors"),
+    input = M.ListAppMonitorsInput,
+    output = M.ListAppMonitorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/appmonitors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRumMetricsDestinations = schema.operation({
+    id = id.from("com.amazonaws.rum", "ListRumMetricsDestinations"),
+    input = M.ListRumMetricsDestinationsInput,
+    output = M.ListRumMetricsDestinationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/rummetrics/{AppMonitorName}/metricsdestination" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.rum", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.rum", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/appmonitor/{Name}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRumEvents = schema.operation({
+    id = id.from("com.amazonaws.rum", "PutRumEvents"),
+    input = M.PutRumEventsInput,
+    output = M.PutRumEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/appmonitors/{Id}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRumMetricsDestination = schema.operation({
+    id = id.from("com.amazonaws.rum", "PutRumMetricsDestination"),
+    input = M.PutRumMetricsDestinationInput,
+    output = M.PutRumMetricsDestinationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/rummetrics/{AppMonitorName}/metricsdestination" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.rum", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.rum", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAppMonitor = schema.operation({
+    id = id.from("com.amazonaws.rum", "UpdateAppMonitor"),
+    input = M.UpdateAppMonitorInput,
+    output = M.UpdateAppMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/appmonitor/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRumMetricDefinition = schema.operation({
+    id = id.from("com.amazonaws.rum", "UpdateRumMetricDefinition"),
+    input = M.UpdateRumMetricDefinitionInput,
+    output = M.UpdateRumMetricDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/rummetrics/{AppMonitorName}/metrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

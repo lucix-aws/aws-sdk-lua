@@ -7,6 +7,7 @@ local endpoint_rules = require("geoplaces.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("geoplaces.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "geo-places", signing_region = cfg.region } }
                 else
@@ -49,94 +52,31 @@ function M.new(cfg)
 end
 
 function Client:autocomplete(input, options)
-    return self:invokeOperation(input, {
-        name = "Autocomplete",
-        input_schema = schemas.AutocompleteInput,
-        output_schema = schemas.AutocompleteOutput,
-        http_method = "POST",
-        http_path = "/v2/autocomplete",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Autocomplete, input, options)
 end
 
 function Client:geocode(input, options)
-    return self:invokeOperation(input, {
-        name = "Geocode",
-        input_schema = schemas.GeocodeInput,
-        output_schema = schemas.GeocodeOutput,
-        http_method = "POST",
-        http_path = "/v2/geocode",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Geocode, input, options)
 end
 
 function Client:getPlace(input, options)
-    return self:invokeOperation(input, {
-        name = "GetPlace",
-        input_schema = schemas.GetPlaceInput,
-        output_schema = schemas.GetPlaceOutput,
-        http_method = "GET",
-        http_path = "/v2/place/{PlaceId}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetPlace, input, options)
 end
 
 function Client:reverseGeocode(input, options)
-    return self:invokeOperation(input, {
-        name = "ReverseGeocode",
-        input_schema = schemas.ReverseGeocodeInput,
-        output_schema = schemas.ReverseGeocodeOutput,
-        http_method = "POST",
-        http_path = "/v2/reverse-geocode",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ReverseGeocode, input, options)
 end
 
 function Client:searchNearby(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchNearby",
-        input_schema = schemas.SearchNearbyInput,
-        output_schema = schemas.SearchNearbyOutput,
-        http_method = "POST",
-        http_path = "/v2/search-nearby",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchNearby, input, options)
 end
 
 function Client:searchText(input, options)
-    return self:invokeOperation(input, {
-        name = "SearchText",
-        input_schema = schemas.SearchTextInput,
-        output_schema = schemas.SearchTextOutput,
-        http_method = "POST",
-        http_path = "/v2/search-text",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.SearchText, input, options)
 end
 
 function Client:suggest(input, options)
-    return self:invokeOperation(input, {
-        name = "Suggest",
-        input_schema = schemas.SuggestInput,
-        output_schema = schemas.SuggestOutput,
-        http_method = "POST",
-        http_path = "/v2/suggest",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.Suggest, input, options)
 end
 
 return M

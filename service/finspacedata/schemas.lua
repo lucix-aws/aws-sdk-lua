@@ -2897,4 +2897,386 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.finspacedata", "AWSHabaneroPublicAPI"),
+    version = "2020-07-13",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateUserToPermissionGroup = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "AssociateUserToPermissionGroup"),
+    input = M.AssociateUserToPermissionGroupInput,
+    output = M.AssociateUserToPermissionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/permission-group/{permissionGroupId}/users/{userId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChangeset = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "CreateChangeset"),
+    input = M.CreateChangesetInput,
+    output = M.CreateChangesetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datasets/{datasetId}/changesetsv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataset = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "CreateDataset"),
+    input = M.CreateDatasetInput,
+    output = M.CreateDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datasetsv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataView = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "CreateDataView"),
+    input = M.CreateDataViewInput,
+    output = M.CreateDataViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datasets/{datasetId}/dataviewsv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePermissionGroup = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "CreatePermissionGroup"),
+    input = M.CreatePermissionGroupInput,
+    output = M.CreatePermissionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/permission-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/user" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataset = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "DeleteDataset"),
+    input = M.DeleteDatasetInput,
+    output = M.DeleteDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/datasetsv2/{datasetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePermissionGroup = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "DeletePermissionGroup"),
+    input = M.DeletePermissionGroupInput,
+    output = M.DeletePermissionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/permission-group/{permissionGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableUser = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "DisableUser"),
+    input = M.DisableUserInput,
+    output = M.DisableUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/user/{userId}/disable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateUserFromPermissionGroup = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "DisassociateUserFromPermissionGroup"),
+    input = M.DisassociateUserFromPermissionGroupInput,
+    output = M.DisassociateUserFromPermissionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/permission-group/{permissionGroupId}/users/{userId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableUser = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "EnableUser"),
+    input = M.EnableUserInput,
+    output = M.EnableUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/user/{userId}/enable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetChangeset = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "GetChangeset"),
+    input = M.GetChangesetInput,
+    output = M.GetChangesetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/datasets/{datasetId}/changesetsv2/{changesetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataset = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "GetDataset"),
+    input = M.GetDatasetInput,
+    output = M.GetDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/datasetsv2/{datasetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataView = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "GetDataView"),
+    input = M.GetDataViewInput,
+    output = M.GetDataViewOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/datasets/{datasetId}/dataviewsv2/{dataViewId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExternalDataViewAccessDetails = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "GetExternalDataViewAccessDetails"),
+    input = M.GetExternalDataViewAccessDetailsInput,
+    output = M.GetExternalDataViewAccessDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datasets/{datasetId}/dataviewsv2/{dataViewId}/external-access-details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPermissionGroup = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "GetPermissionGroup"),
+    input = M.GetPermissionGroupInput,
+    output = M.GetPermissionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/permission-group/{permissionGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProgrammaticAccessCredentials = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "GetProgrammaticAccessCredentials"),
+    input = M.GetProgrammaticAccessCredentialsInput,
+    output = M.GetProgrammaticAccessCredentialsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/credentials/programmatic" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUser = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "GetUser"),
+    input = M.GetUserInput,
+    output = M.GetUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/user/{userId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWorkingLocation = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "GetWorkingLocation"),
+    input = M.GetWorkingLocationInput,
+    output = M.GetWorkingLocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workingLocationV1" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChangesets = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "ListChangesets"),
+    input = M.ListChangesetsInput,
+    output = M.ListChangesetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/datasets/{datasetId}/changesetsv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasets = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "ListDatasets"),
+    input = M.ListDatasetsInput,
+    output = M.ListDatasetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/datasetsv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataViews = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "ListDataViews"),
+    input = M.ListDataViewsInput,
+    output = M.ListDataViewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/datasets/{datasetId}/dataviewsv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPermissionGroups = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "ListPermissionGroups"),
+    input = M.ListPermissionGroupsInput,
+    output = M.ListPermissionGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/permission-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPermissionGroupsByUser = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "ListPermissionGroupsByUser"),
+    input = M.ListPermissionGroupsByUserInput,
+    output = M.ListPermissionGroupsByUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/user/{userId}/permission-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsers = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "ListUsers"),
+    input = M.ListUsersInput,
+    output = M.ListUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/user" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsersByPermissionGroup = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "ListUsersByPermissionGroup"),
+    input = M.ListUsersByPermissionGroupInput,
+    output = M.ListUsersByPermissionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/permission-group/{permissionGroupId}/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetUserPassword = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "ResetUserPassword"),
+    input = M.ResetUserPasswordInput,
+    output = M.ResetUserPasswordOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/user/{userId}/password" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChangeset = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "UpdateChangeset"),
+    input = M.UpdateChangesetInput,
+    output = M.UpdateChangesetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/datasets/{datasetId}/changesetsv2/{changesetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataset = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "UpdateDataset"),
+    input = M.UpdateDatasetInput,
+    output = M.UpdateDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/datasetsv2/{datasetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePermissionGroup = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "UpdatePermissionGroup"),
+    input = M.UpdatePermissionGroupInput,
+    output = M.UpdatePermissionGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/permission-group/{permissionGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUser = schema.operation({
+    id = id.from("com.amazonaws.finspacedata", "UpdateUser"),
+    input = M.UpdateUserInput,
+    output = M.UpdateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/user/{userId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

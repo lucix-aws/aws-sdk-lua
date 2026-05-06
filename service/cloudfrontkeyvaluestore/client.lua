@@ -7,6 +7,7 @@ local endpoint_rules = require("cloudfrontkeyvaluestore.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("cloudfrontkeyvaluestore.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cloudfront-keyvaluestore", signing_region = cfg.region } }
                 else
@@ -49,99 +52,27 @@ function M.new(cfg)
 end
 
 function Client:deleteKey(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteKey",
-        input_schema = schemas.DeleteKeyInput,
-        output_schema = schemas.DeleteKeyOutput,
-        http_method = "DELETE",
-        http_path = "/key-value-stores/{KvsARN}/keys/{Key}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-        context_params = {
-            KvsARN = "KvsARN",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteKey, input, options)
 end
 
 function Client:describeKeyValueStore(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeKeyValueStore",
-        input_schema = schemas.DescribeKeyValueStoreInput,
-        output_schema = schemas.DescribeKeyValueStoreOutput,
-        http_method = "GET",
-        http_path = "/key-value-stores/{KvsARN}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-        context_params = {
-            KvsARN = "KvsARN",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeKeyValueStore, input, options)
 end
 
 function Client:getKey(input, options)
-    return self:invokeOperation(input, {
-        name = "GetKey",
-        input_schema = schemas.GetKeyInput,
-        output_schema = schemas.GetKeyOutput,
-        http_method = "GET",
-        http_path = "/key-value-stores/{KvsARN}/keys/{Key}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-        context_params = {
-            KvsARN = "KvsARN",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetKey, input, options)
 end
 
 function Client:listKeys(input, options)
-    return self:invokeOperation(input, {
-        name = "ListKeys",
-        input_schema = schemas.ListKeysInput,
-        output_schema = schemas.ListKeysOutput,
-        http_method = "GET",
-        http_path = "/key-value-stores/{KvsARN}/keys",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-        context_params = {
-            KvsARN = "KvsARN",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListKeys, input, options)
 end
 
 function Client:putKey(input, options)
-    return self:invokeOperation(input, {
-        name = "PutKey",
-        input_schema = schemas.PutKeyInput,
-        output_schema = schemas.PutKeyOutput,
-        http_method = "PUT",
-        http_path = "/key-value-stores/{KvsARN}/keys/{Key}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-        context_params = {
-            KvsARN = "KvsARN",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutKey, input, options)
 end
 
 function Client:updateKeys(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateKeys",
-        input_schema = schemas.UpdateKeysInput,
-        output_schema = schemas.UpdateKeysOutput,
-        http_method = "POST",
-        http_path = "/key-value-stores/{KvsARN}/keys",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-        context_params = {
-            KvsARN = "KvsARN",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateKeys, input, options)
 end
 
 return M

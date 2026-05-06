@@ -1225,4 +1225,147 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.billing", "AWSBilling"),
+    version = "2023-09-07",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateSourceViews = schema.operation({
+    id = id.from("com.amazonaws.billing", "AssociateSourceViews"),
+    input = M.AssociateSourceViewsInput,
+    output = M.AssociateSourceViewsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBillingView = schema.operation({
+    id = id.from("com.amazonaws.billing", "CreateBillingView"),
+    input = M.CreateBillingViewInput,
+    output = M.CreateBillingViewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBillingView = schema.operation({
+    id = id.from("com.amazonaws.billing", "DeleteBillingView"),
+    input = M.DeleteBillingViewInput,
+    output = M.DeleteBillingViewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateSourceViews = schema.operation({
+    id = id.from("com.amazonaws.billing", "DisassociateSourceViews"),
+    input = M.DisassociateSourceViewsInput,
+    output = M.DisassociateSourceViewsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBillingView = schema.operation({
+    id = id.from("com.amazonaws.billing", "GetBillingView"),
+    input = M.GetBillingViewInput,
+    output = M.GetBillingViewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.billing", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBillingViews = schema.operation({
+    id = id.from("com.amazonaws.billing", "ListBillingViews"),
+    input = M.ListBillingViewsInput,
+    output = M.ListBillingViewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSourceViewsForBillingView = schema.operation({
+    id = id.from("com.amazonaws.billing", "ListSourceViewsForBillingView"),
+    input = M.ListSourceViewsForBillingViewInput,
+    output = M.ListSourceViewsForBillingViewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.billing", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.billing", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.billing", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBillingView = schema.operation({
+    id = id.from("com.amazonaws.billing", "UpdateBillingView"),
+    input = M.UpdateBillingViewInput,
+    output = M.UpdateBillingViewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

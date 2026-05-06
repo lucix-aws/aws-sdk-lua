@@ -10153,4 +10153,1950 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.iam", "AWSIdentityManagementV20100508"),
+    version = "2010-05-08",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptDelegationRequest = schema.operation({
+    id = id.from("com.amazonaws.iam", "AcceptDelegationRequest"),
+    input = M.AcceptDelegationRequestInput,
+    output = M.AcceptDelegationRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddClientIDToOpenIDConnectProvider = schema.operation({
+    id = id.from("com.amazonaws.iam", "AddClientIDToOpenIDConnectProvider"),
+    input = M.AddClientIDToOpenIDConnectProviderInput,
+    output = M.AddClientIDToOpenIDConnectProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddRoleToInstanceProfile = schema.operation({
+    id = id.from("com.amazonaws.iam", "AddRoleToInstanceProfile"),
+    input = M.AddRoleToInstanceProfileInput,
+    output = M.AddRoleToInstanceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddUserToGroup = schema.operation({
+    id = id.from("com.amazonaws.iam", "AddUserToGroup"),
+    input = M.AddUserToGroupInput,
+    output = M.AddUserToGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateDelegationRequest = schema.operation({
+    id = id.from("com.amazonaws.iam", "AssociateDelegationRequest"),
+    input = M.AssociateDelegationRequestInput,
+    output = M.AssociateDelegationRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachGroupPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "AttachGroupPolicy"),
+    input = M.AttachGroupPolicyInput,
+    output = M.AttachGroupPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachRolePolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "AttachRolePolicy"),
+    input = M.AttachRolePolicyInput,
+    output = M.AttachRolePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachUserPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "AttachUserPolicy"),
+    input = M.AttachUserPolicyInput,
+    output = M.AttachUserPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ChangePassword = schema.operation({
+    id = id.from("com.amazonaws.iam", "ChangePassword"),
+    input = M.ChangePasswordInput,
+    output = M.ChangePasswordOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccessKey = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreateAccessKey"),
+    input = M.CreateAccessKeyInput,
+    output = M.CreateAccessKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccountAlias = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreateAccountAlias"),
+    input = M.CreateAccountAliasInput,
+    output = M.CreateAccountAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDelegationRequest = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreateDelegationRequest"),
+    input = M.CreateDelegationRequestInput,
+    output = M.CreateDelegationRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGroup = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreateGroup"),
+    input = M.CreateGroupInput,
+    output = M.CreateGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInstanceProfile = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreateInstanceProfile"),
+    input = M.CreateInstanceProfileInput,
+    output = M.CreateInstanceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLoginProfile = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreateLoginProfile"),
+    input = M.CreateLoginProfileInput,
+    output = M.CreateLoginProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateOpenIDConnectProvider = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreateOpenIDConnectProvider"),
+    input = M.CreateOpenIDConnectProviderInput,
+    output = M.CreateOpenIDConnectProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreatePolicy"),
+    input = M.CreatePolicyInput,
+    output = M.CreatePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePolicyVersion = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreatePolicyVersion"),
+    input = M.CreatePolicyVersionInput,
+    output = M.CreatePolicyVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRole = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreateRole"),
+    input = M.CreateRoleInput,
+    output = M.CreateRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSAMLProvider = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreateSAMLProvider"),
+    input = M.CreateSAMLProviderInput,
+    output = M.CreateSAMLProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServiceLinkedRole = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreateServiceLinkedRole"),
+    input = M.CreateServiceLinkedRoleInput,
+    output = M.CreateServiceLinkedRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateServiceSpecificCredential = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreateServiceSpecificCredential"),
+    input = M.CreateServiceSpecificCredentialInput,
+    output = M.CreateServiceSpecificCredentialOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateUser = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreateUser"),
+    input = M.CreateUserInput,
+    output = M.CreateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVirtualMFADevice = schema.operation({
+    id = id.from("com.amazonaws.iam", "CreateVirtualMFADevice"),
+    input = M.CreateVirtualMFADeviceInput,
+    output = M.CreateVirtualMFADeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeactivateMFADevice = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeactivateMFADevice"),
+    input = M.DeactivateMFADeviceInput,
+    output = M.DeactivateMFADeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccessKey = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteAccessKey"),
+    input = M.DeleteAccessKeyInput,
+    output = M.DeleteAccessKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccountAlias = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteAccountAlias"),
+    input = M.DeleteAccountAliasInput,
+    output = M.DeleteAccountAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccountPasswordPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteAccountPasswordPolicy"),
+    input = M.DeleteAccountPasswordPolicyInput,
+    output = M.DeleteAccountPasswordPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGroup = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteGroup"),
+    input = M.DeleteGroupInput,
+    output = M.DeleteGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGroupPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteGroupPolicy"),
+    input = M.DeleteGroupPolicyInput,
+    output = M.DeleteGroupPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInstanceProfile = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteInstanceProfile"),
+    input = M.DeleteInstanceProfileInput,
+    output = M.DeleteInstanceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLoginProfile = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteLoginProfile"),
+    input = M.DeleteLoginProfileInput,
+    output = M.DeleteLoginProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOpenIDConnectProvider = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteOpenIDConnectProvider"),
+    input = M.DeleteOpenIDConnectProviderInput,
+    output = M.DeleteOpenIDConnectProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeletePolicy"),
+    input = M.DeletePolicyInput,
+    output = M.DeletePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePolicyVersion = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeletePolicyVersion"),
+    input = M.DeletePolicyVersionInput,
+    output = M.DeletePolicyVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRole = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteRole"),
+    input = M.DeleteRoleInput,
+    output = M.DeleteRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRolePermissionsBoundary = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteRolePermissionsBoundary"),
+    input = M.DeleteRolePermissionsBoundaryInput,
+    output = M.DeleteRolePermissionsBoundaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRolePolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteRolePolicy"),
+    input = M.DeleteRolePolicyInput,
+    output = M.DeleteRolePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSAMLProvider = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteSAMLProvider"),
+    input = M.DeleteSAMLProviderInput,
+    output = M.DeleteSAMLProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServerCertificate = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteServerCertificate"),
+    input = M.DeleteServerCertificateInput,
+    output = M.DeleteServerCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceLinkedRole = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteServiceLinkedRole"),
+    input = M.DeleteServiceLinkedRoleInput,
+    output = M.DeleteServiceLinkedRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceSpecificCredential = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteServiceSpecificCredential"),
+    input = M.DeleteServiceSpecificCredentialInput,
+    output = M.DeleteServiceSpecificCredentialOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSigningCertificate = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteSigningCertificate"),
+    input = M.DeleteSigningCertificateInput,
+    output = M.DeleteSigningCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSSHPublicKey = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteSSHPublicKey"),
+    input = M.DeleteSSHPublicKeyInput,
+    output = M.DeleteSSHPublicKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserPermissionsBoundary = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteUserPermissionsBoundary"),
+    input = M.DeleteUserPermissionsBoundaryInput,
+    output = M.DeleteUserPermissionsBoundaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteUserPolicy"),
+    input = M.DeleteUserPolicyInput,
+    output = M.DeleteUserPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVirtualMFADevice = schema.operation({
+    id = id.from("com.amazonaws.iam", "DeleteVirtualMFADevice"),
+    input = M.DeleteVirtualMFADeviceInput,
+    output = M.DeleteVirtualMFADeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachGroupPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "DetachGroupPolicy"),
+    input = M.DetachGroupPolicyInput,
+    output = M.DetachGroupPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachRolePolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "DetachRolePolicy"),
+    input = M.DetachRolePolicyInput,
+    output = M.DetachRolePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachUserPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "DetachUserPolicy"),
+    input = M.DetachUserPolicyInput,
+    output = M.DetachUserPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableOrganizationsRootCredentialsManagement = schema.operation({
+    id = id.from("com.amazonaws.iam", "DisableOrganizationsRootCredentialsManagement"),
+    input = M.DisableOrganizationsRootCredentialsManagementInput,
+    output = M.DisableOrganizationsRootCredentialsManagementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableOrganizationsRootSessions = schema.operation({
+    id = id.from("com.amazonaws.iam", "DisableOrganizationsRootSessions"),
+    input = M.DisableOrganizationsRootSessionsInput,
+    output = M.DisableOrganizationsRootSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableOutboundWebIdentityFederation = schema.operation({
+    id = id.from("com.amazonaws.iam", "DisableOutboundWebIdentityFederation"),
+    input = M.DisableOutboundWebIdentityFederationInput,
+    output = M.DisableOutboundWebIdentityFederationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableMFADevice = schema.operation({
+    id = id.from("com.amazonaws.iam", "EnableMFADevice"),
+    input = M.EnableMFADeviceInput,
+    output = M.EnableMFADeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableOrganizationsRootCredentialsManagement = schema.operation({
+    id = id.from("com.amazonaws.iam", "EnableOrganizationsRootCredentialsManagement"),
+    input = M.EnableOrganizationsRootCredentialsManagementInput,
+    output = M.EnableOrganizationsRootCredentialsManagementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableOrganizationsRootSessions = schema.operation({
+    id = id.from("com.amazonaws.iam", "EnableOrganizationsRootSessions"),
+    input = M.EnableOrganizationsRootSessionsInput,
+    output = M.EnableOrganizationsRootSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableOutboundWebIdentityFederation = schema.operation({
+    id = id.from("com.amazonaws.iam", "EnableOutboundWebIdentityFederation"),
+    input = M.EnableOutboundWebIdentityFederationInput,
+    output = M.EnableOutboundWebIdentityFederationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateCredentialReport = schema.operation({
+    id = id.from("com.amazonaws.iam", "GenerateCredentialReport"),
+    input = M.GenerateCredentialReportInput,
+    output = M.GenerateCredentialReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateOrganizationsAccessReport = schema.operation({
+    id = id.from("com.amazonaws.iam", "GenerateOrganizationsAccessReport"),
+    input = M.GenerateOrganizationsAccessReportInput,
+    output = M.GenerateOrganizationsAccessReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateServiceLastAccessedDetails = schema.operation({
+    id = id.from("com.amazonaws.iam", "GenerateServiceLastAccessedDetails"),
+    input = M.GenerateServiceLastAccessedDetailsInput,
+    output = M.GenerateServiceLastAccessedDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccessKeyLastUsed = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetAccessKeyLastUsed"),
+    input = M.GetAccessKeyLastUsedInput,
+    output = M.GetAccessKeyLastUsedOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountAuthorizationDetails = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetAccountAuthorizationDetails"),
+    input = M.GetAccountAuthorizationDetailsInput,
+    output = M.GetAccountAuthorizationDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountPasswordPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetAccountPasswordPolicy"),
+    input = M.GetAccountPasswordPolicyInput,
+    output = M.GetAccountPasswordPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAccountSummary = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetAccountSummary"),
+    input = M.GetAccountSummaryInput,
+    output = M.GetAccountSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContextKeysForCustomPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetContextKeysForCustomPolicy"),
+    input = M.GetContextKeysForCustomPolicyInput,
+    output = M.GetContextKeysForCustomPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContextKeysForPrincipalPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetContextKeysForPrincipalPolicy"),
+    input = M.GetContextKeysForPrincipalPolicyInput,
+    output = M.GetContextKeysForPrincipalPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCredentialReport = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetCredentialReport"),
+    input = M.GetCredentialReportInput,
+    output = M.GetCredentialReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDelegationRequest = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetDelegationRequest"),
+    input = M.GetDelegationRequestInput,
+    output = M.GetDelegationRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGroup = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetGroup"),
+    input = M.GetGroupInput,
+    output = M.GetGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGroupPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetGroupPolicy"),
+    input = M.GetGroupPolicyInput,
+    output = M.GetGroupPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHumanReadableSummary = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetHumanReadableSummary"),
+    input = M.GetHumanReadableSummaryInput,
+    output = M.GetHumanReadableSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstanceProfile = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetInstanceProfile"),
+    input = M.GetInstanceProfileInput,
+    output = M.GetInstanceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLoginProfile = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetLoginProfile"),
+    input = M.GetLoginProfileInput,
+    output = M.GetLoginProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMFADevice = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetMFADevice"),
+    input = M.GetMFADeviceInput,
+    output = M.GetMFADeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOpenIDConnectProvider = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetOpenIDConnectProvider"),
+    input = M.GetOpenIDConnectProviderInput,
+    output = M.GetOpenIDConnectProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOrganizationsAccessReport = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetOrganizationsAccessReport"),
+    input = M.GetOrganizationsAccessReportInput,
+    output = M.GetOrganizationsAccessReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetOutboundWebIdentityFederationInfo = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetOutboundWebIdentityFederationInfo"),
+    input = M.GetOutboundWebIdentityFederationInfoInput,
+    output = M.GetOutboundWebIdentityFederationInfoOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetPolicy"),
+    input = M.GetPolicyInput,
+    output = M.GetPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicyVersion = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetPolicyVersion"),
+    input = M.GetPolicyVersionInput,
+    output = M.GetPolicyVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRole = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetRole"),
+    input = M.GetRoleInput,
+    output = M.GetRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRolePolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetRolePolicy"),
+    input = M.GetRolePolicyInput,
+    output = M.GetRolePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSAMLProvider = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetSAMLProvider"),
+    input = M.GetSAMLProviderInput,
+    output = M.GetSAMLProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServerCertificate = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetServerCertificate"),
+    input = M.GetServerCertificateInput,
+    output = M.GetServerCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceLastAccessedDetails = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetServiceLastAccessedDetails"),
+    input = M.GetServiceLastAccessedDetailsInput,
+    output = M.GetServiceLastAccessedDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceLastAccessedDetailsWithEntities = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetServiceLastAccessedDetailsWithEntities"),
+    input = M.GetServiceLastAccessedDetailsWithEntitiesInput,
+    output = M.GetServiceLastAccessedDetailsWithEntitiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetServiceLinkedRoleDeletionStatus = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetServiceLinkedRoleDeletionStatus"),
+    input = M.GetServiceLinkedRoleDeletionStatusInput,
+    output = M.GetServiceLinkedRoleDeletionStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSSHPublicKey = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetSSHPublicKey"),
+    input = M.GetSSHPublicKeyInput,
+    output = M.GetSSHPublicKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUser = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetUser"),
+    input = M.GetUserInput,
+    output = M.GetUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUserPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetUserPolicy"),
+    input = M.GetUserPolicyInput,
+    output = M.GetUserPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccessKeys = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListAccessKeys"),
+    input = M.ListAccessKeysInput,
+    output = M.ListAccessKeysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccountAliases = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListAccountAliases"),
+    input = M.ListAccountAliasesInput,
+    output = M.ListAccountAliasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttachedGroupPolicies = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListAttachedGroupPolicies"),
+    input = M.ListAttachedGroupPoliciesInput,
+    output = M.ListAttachedGroupPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttachedRolePolicies = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListAttachedRolePolicies"),
+    input = M.ListAttachedRolePoliciesInput,
+    output = M.ListAttachedRolePoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttachedUserPolicies = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListAttachedUserPolicies"),
+    input = M.ListAttachedUserPoliciesInput,
+    output = M.ListAttachedUserPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDelegationRequests = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListDelegationRequests"),
+    input = M.ListDelegationRequestsInput,
+    output = M.ListDelegationRequestsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEntitiesForPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListEntitiesForPolicy"),
+    input = M.ListEntitiesForPolicyInput,
+    output = M.ListEntitiesForPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroupPolicies = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListGroupPolicies"),
+    input = M.ListGroupPoliciesInput,
+    output = M.ListGroupPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroups = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListGroups"),
+    input = M.ListGroupsInput,
+    output = M.ListGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroupsForUser = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListGroupsForUser"),
+    input = M.ListGroupsForUserInput,
+    output = M.ListGroupsForUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstanceProfiles = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListInstanceProfiles"),
+    input = M.ListInstanceProfilesInput,
+    output = M.ListInstanceProfilesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstanceProfilesForRole = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListInstanceProfilesForRole"),
+    input = M.ListInstanceProfilesForRoleInput,
+    output = M.ListInstanceProfilesForRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstanceProfileTags = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListInstanceProfileTags"),
+    input = M.ListInstanceProfileTagsInput,
+    output = M.ListInstanceProfileTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMFADevices = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListMFADevices"),
+    input = M.ListMFADevicesInput,
+    output = M.ListMFADevicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMFADeviceTags = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListMFADeviceTags"),
+    input = M.ListMFADeviceTagsInput,
+    output = M.ListMFADeviceTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOpenIDConnectProviders = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListOpenIDConnectProviders"),
+    input = M.ListOpenIDConnectProvidersInput,
+    output = M.ListOpenIDConnectProvidersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOpenIDConnectProviderTags = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListOpenIDConnectProviderTags"),
+    input = M.ListOpenIDConnectProviderTagsInput,
+    output = M.ListOpenIDConnectProviderTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOrganizationsFeatures = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListOrganizationsFeatures"),
+    input = M.ListOrganizationsFeaturesInput,
+    output = M.ListOrganizationsFeaturesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicies = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListPolicies"),
+    input = M.ListPoliciesInput,
+    output = M.ListPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPoliciesGrantingServiceAccess = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListPoliciesGrantingServiceAccess"),
+    input = M.ListPoliciesGrantingServiceAccessInput,
+    output = M.ListPoliciesGrantingServiceAccessOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyTags = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListPolicyTags"),
+    input = M.ListPolicyTagsInput,
+    output = M.ListPolicyTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyVersions = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListPolicyVersions"),
+    input = M.ListPolicyVersionsInput,
+    output = M.ListPolicyVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRolePolicies = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListRolePolicies"),
+    input = M.ListRolePoliciesInput,
+    output = M.ListRolePoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRoles = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListRoles"),
+    input = M.ListRolesInput,
+    output = M.ListRolesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRoleTags = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListRoleTags"),
+    input = M.ListRoleTagsInput,
+    output = M.ListRoleTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSAMLProviders = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListSAMLProviders"),
+    input = M.ListSAMLProvidersInput,
+    output = M.ListSAMLProvidersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSAMLProviderTags = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListSAMLProviderTags"),
+    input = M.ListSAMLProviderTagsInput,
+    output = M.ListSAMLProviderTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServerCertificates = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListServerCertificates"),
+    input = M.ListServerCertificatesInput,
+    output = M.ListServerCertificatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServerCertificateTags = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListServerCertificateTags"),
+    input = M.ListServerCertificateTagsInput,
+    output = M.ListServerCertificateTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceSpecificCredentials = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListServiceSpecificCredentials"),
+    input = M.ListServiceSpecificCredentialsInput,
+    output = M.ListServiceSpecificCredentialsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSigningCertificates = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListSigningCertificates"),
+    input = M.ListSigningCertificatesInput,
+    output = M.ListSigningCertificatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSSHPublicKeys = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListSSHPublicKeys"),
+    input = M.ListSSHPublicKeysInput,
+    output = M.ListSSHPublicKeysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUserPolicies = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListUserPolicies"),
+    input = M.ListUserPoliciesInput,
+    output = M.ListUserPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsers = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListUsers"),
+    input = M.ListUsersInput,
+    output = M.ListUsersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUserTags = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListUserTags"),
+    input = M.ListUserTagsInput,
+    output = M.ListUserTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVirtualMFADevices = schema.operation({
+    id = id.from("com.amazonaws.iam", "ListVirtualMFADevices"),
+    input = M.ListVirtualMFADevicesInput,
+    output = M.ListVirtualMFADevicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutGroupPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "PutGroupPolicy"),
+    input = M.PutGroupPolicyInput,
+    output = M.PutGroupPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRolePermissionsBoundary = schema.operation({
+    id = id.from("com.amazonaws.iam", "PutRolePermissionsBoundary"),
+    input = M.PutRolePermissionsBoundaryInput,
+    output = M.PutRolePermissionsBoundaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRolePolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "PutRolePolicy"),
+    input = M.PutRolePolicyInput,
+    output = M.PutRolePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutUserPermissionsBoundary = schema.operation({
+    id = id.from("com.amazonaws.iam", "PutUserPermissionsBoundary"),
+    input = M.PutUserPermissionsBoundaryInput,
+    output = M.PutUserPermissionsBoundaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutUserPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "PutUserPolicy"),
+    input = M.PutUserPolicyInput,
+    output = M.PutUserPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectDelegationRequest = schema.operation({
+    id = id.from("com.amazonaws.iam", "RejectDelegationRequest"),
+    input = M.RejectDelegationRequestInput,
+    output = M.RejectDelegationRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveClientIDFromOpenIDConnectProvider = schema.operation({
+    id = id.from("com.amazonaws.iam", "RemoveClientIDFromOpenIDConnectProvider"),
+    input = M.RemoveClientIDFromOpenIDConnectProviderInput,
+    output = M.RemoveClientIDFromOpenIDConnectProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveRoleFromInstanceProfile = schema.operation({
+    id = id.from("com.amazonaws.iam", "RemoveRoleFromInstanceProfile"),
+    input = M.RemoveRoleFromInstanceProfileInput,
+    output = M.RemoveRoleFromInstanceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveUserFromGroup = schema.operation({
+    id = id.from("com.amazonaws.iam", "RemoveUserFromGroup"),
+    input = M.RemoveUserFromGroupInput,
+    output = M.RemoveUserFromGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetServiceSpecificCredential = schema.operation({
+    id = id.from("com.amazonaws.iam", "ResetServiceSpecificCredential"),
+    input = M.ResetServiceSpecificCredentialInput,
+    output = M.ResetServiceSpecificCredentialOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResyncMFADevice = schema.operation({
+    id = id.from("com.amazonaws.iam", "ResyncMFADevice"),
+    input = M.ResyncMFADeviceInput,
+    output = M.ResyncMFADeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendDelegationToken = schema.operation({
+    id = id.from("com.amazonaws.iam", "SendDelegationToken"),
+    input = M.SendDelegationTokenInput,
+    output = M.SendDelegationTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetDefaultPolicyVersion = schema.operation({
+    id = id.from("com.amazonaws.iam", "SetDefaultPolicyVersion"),
+    input = M.SetDefaultPolicyVersionInput,
+    output = M.SetDefaultPolicyVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetSecurityTokenServicePreferences = schema.operation({
+    id = id.from("com.amazonaws.iam", "SetSecurityTokenServicePreferences"),
+    input = M.SetSecurityTokenServicePreferencesInput,
+    output = M.SetSecurityTokenServicePreferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SimulateCustomPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "SimulateCustomPolicy"),
+    input = M.SimulateCustomPolicyInput,
+    output = M.SimulateCustomPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SimulatePrincipalPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "SimulatePrincipalPolicy"),
+    input = M.SimulatePrincipalPolicyInput,
+    output = M.SimulatePrincipalPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagInstanceProfile = schema.operation({
+    id = id.from("com.amazonaws.iam", "TagInstanceProfile"),
+    input = M.TagInstanceProfileInput,
+    output = M.TagInstanceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagMFADevice = schema.operation({
+    id = id.from("com.amazonaws.iam", "TagMFADevice"),
+    input = M.TagMFADeviceInput,
+    output = M.TagMFADeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagOpenIDConnectProvider = schema.operation({
+    id = id.from("com.amazonaws.iam", "TagOpenIDConnectProvider"),
+    input = M.TagOpenIDConnectProviderInput,
+    output = M.TagOpenIDConnectProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "TagPolicy"),
+    input = M.TagPolicyInput,
+    output = M.TagPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagRole = schema.operation({
+    id = id.from("com.amazonaws.iam", "TagRole"),
+    input = M.TagRoleInput,
+    output = M.TagRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagSAMLProvider = schema.operation({
+    id = id.from("com.amazonaws.iam", "TagSAMLProvider"),
+    input = M.TagSAMLProviderInput,
+    output = M.TagSAMLProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagServerCertificate = schema.operation({
+    id = id.from("com.amazonaws.iam", "TagServerCertificate"),
+    input = M.TagServerCertificateInput,
+    output = M.TagServerCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagUser = schema.operation({
+    id = id.from("com.amazonaws.iam", "TagUser"),
+    input = M.TagUserInput,
+    output = M.TagUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagInstanceProfile = schema.operation({
+    id = id.from("com.amazonaws.iam", "UntagInstanceProfile"),
+    input = M.UntagInstanceProfileInput,
+    output = M.UntagInstanceProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagMFADevice = schema.operation({
+    id = id.from("com.amazonaws.iam", "UntagMFADevice"),
+    input = M.UntagMFADeviceInput,
+    output = M.UntagMFADeviceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagOpenIDConnectProvider = schema.operation({
+    id = id.from("com.amazonaws.iam", "UntagOpenIDConnectProvider"),
+    input = M.UntagOpenIDConnectProviderInput,
+    output = M.UntagOpenIDConnectProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "UntagPolicy"),
+    input = M.UntagPolicyInput,
+    output = M.UntagPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagRole = schema.operation({
+    id = id.from("com.amazonaws.iam", "UntagRole"),
+    input = M.UntagRoleInput,
+    output = M.UntagRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagSAMLProvider = schema.operation({
+    id = id.from("com.amazonaws.iam", "UntagSAMLProvider"),
+    input = M.UntagSAMLProviderInput,
+    output = M.UntagSAMLProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagServerCertificate = schema.operation({
+    id = id.from("com.amazonaws.iam", "UntagServerCertificate"),
+    input = M.UntagServerCertificateInput,
+    output = M.UntagServerCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagUser = schema.operation({
+    id = id.from("com.amazonaws.iam", "UntagUser"),
+    input = M.UntagUserInput,
+    output = M.UntagUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccessKey = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateAccessKey"),
+    input = M.UpdateAccessKeyInput,
+    output = M.UpdateAccessKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountPasswordPolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateAccountPasswordPolicy"),
+    input = M.UpdateAccountPasswordPolicyInput,
+    output = M.UpdateAccountPasswordPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssumeRolePolicy = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateAssumeRolePolicy"),
+    input = M.UpdateAssumeRolePolicyInput,
+    output = M.UpdateAssumeRolePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDelegationRequest = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateDelegationRequest"),
+    input = M.UpdateDelegationRequestInput,
+    output = M.UpdateDelegationRequestOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGroup = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateGroup"),
+    input = M.UpdateGroupInput,
+    output = M.UpdateGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLoginProfile = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateLoginProfile"),
+    input = M.UpdateLoginProfileInput,
+    output = M.UpdateLoginProfileOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOpenIDConnectProviderThumbprint = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateOpenIDConnectProviderThumbprint"),
+    input = M.UpdateOpenIDConnectProviderThumbprintInput,
+    output = M.UpdateOpenIDConnectProviderThumbprintOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRole = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateRole"),
+    input = M.UpdateRoleInput,
+    output = M.UpdateRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoleDescription = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateRoleDescription"),
+    input = M.UpdateRoleDescriptionInput,
+    output = M.UpdateRoleDescriptionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSAMLProvider = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateSAMLProvider"),
+    input = M.UpdateSAMLProviderInput,
+    output = M.UpdateSAMLProviderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServerCertificate = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateServerCertificate"),
+    input = M.UpdateServerCertificateInput,
+    output = M.UpdateServerCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateServiceSpecificCredential = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateServiceSpecificCredential"),
+    input = M.UpdateServiceSpecificCredentialInput,
+    output = M.UpdateServiceSpecificCredentialOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSigningCertificate = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateSigningCertificate"),
+    input = M.UpdateSigningCertificateInput,
+    output = M.UpdateSigningCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSSHPublicKey = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateSSHPublicKey"),
+    input = M.UpdateSSHPublicKeyInput,
+    output = M.UpdateSSHPublicKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUser = schema.operation({
+    id = id.from("com.amazonaws.iam", "UpdateUser"),
+    input = M.UpdateUserInput,
+    output = M.UpdateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UploadServerCertificate = schema.operation({
+    id = id.from("com.amazonaws.iam", "UploadServerCertificate"),
+    input = M.UploadServerCertificateInput,
+    output = M.UploadServerCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UploadSigningCertificate = schema.operation({
+    id = id.from("com.amazonaws.iam", "UploadSigningCertificate"),
+    input = M.UploadSigningCertificateInput,
+    output = M.UploadSigningCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UploadSSHPublicKey = schema.operation({
+    id = id.from("com.amazonaws.iam", "UploadSSHPublicKey"),
+    input = M.UploadSSHPublicKeyInput,
+    output = M.UploadSSHPublicKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

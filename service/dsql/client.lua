@@ -7,6 +7,7 @@ local endpoint_rules = require("dsql.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("dsql.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "dsql", signing_region = cfg.region } }
                 else
@@ -49,159 +52,51 @@ function M.new(cfg)
 end
 
 function Client:createCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCluster",
-        input_schema = schemas.CreateClusterInput,
-        output_schema = schemas.CreateClusterOutput,
-        http_method = "POST",
-        http_path = "/cluster",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCluster, input, options)
 end
 
 function Client:deleteCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteCluster",
-        input_schema = schemas.DeleteClusterInput,
-        output_schema = schemas.DeleteClusterOutput,
-        http_method = "DELETE",
-        http_path = "/cluster/{identifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteCluster, input, options)
 end
 
 function Client:deleteClusterPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteClusterPolicy",
-        input_schema = schemas.DeleteClusterPolicyInput,
-        output_schema = schemas.DeleteClusterPolicyOutput,
-        http_method = "DELETE",
-        http_path = "/cluster/{identifier}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteClusterPolicy, input, options)
 end
 
 function Client:getCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "GetCluster",
-        input_schema = schemas.GetClusterInput,
-        output_schema = schemas.GetClusterOutput,
-        http_method = "GET",
-        http_path = "/cluster/{identifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetCluster, input, options)
 end
 
 function Client:getClusterPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "GetClusterPolicy",
-        input_schema = schemas.GetClusterPolicyInput,
-        output_schema = schemas.GetClusterPolicyOutput,
-        http_method = "GET",
-        http_path = "/cluster/{identifier}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetClusterPolicy, input, options)
 end
 
 function Client:getVpcEndpointServiceName(input, options)
-    return self:invokeOperation(input, {
-        name = "GetVpcEndpointServiceName",
-        input_schema = schemas.GetVpcEndpointServiceNameInput,
-        output_schema = schemas.GetVpcEndpointServiceNameOutput,
-        http_method = "GET",
-        http_path = "/clusters/{identifier}/vpc-endpoint-service-name",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.GetVpcEndpointServiceName, input, options)
 end
 
 function Client:listClusters(input, options)
-    return self:invokeOperation(input, {
-        name = "ListClusters",
-        input_schema = schemas.ListClustersInput,
-        output_schema = schemas.ListClustersOutput,
-        http_method = "GET",
-        http_path = "/cluster",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListClusters, input, options)
 end
 
 function Client:listTagsForResource(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForResource",
-        input_schema = schemas.ListTagsForResourceInput,
-        output_schema = schemas.ListTagsForResourceOutput,
-        http_method = "GET",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
 function Client:putClusterPolicy(input, options)
-    return self:invokeOperation(input, {
-        name = "PutClusterPolicy",
-        input_schema = schemas.PutClusterPolicyInput,
-        output_schema = schemas.PutClusterPolicyOutput,
-        http_method = "POST",
-        http_path = "/cluster/{identifier}/policy",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutClusterPolicy, input, options)
 end
 
 function Client:tagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "TagResource",
-        input_schema = schemas.TagResourceInput,
-        output_schema = schemas.TagResourceOutput,
-        http_method = "POST",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options)
 end
 
 function Client:untagResource(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagResource",
-        input_schema = schemas.UntagResourceInput,
-        output_schema = schemas.UntagResourceOutput,
-        http_method = "DELETE",
-        http_path = "/tags/{resourceArn}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options)
 end
 
 function Client:updateCluster(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateCluster",
-        input_schema = schemas.UpdateClusterInput,
-        output_schema = schemas.UpdateClusterOutput,
-        http_method = "POST",
-        http_path = "/cluster/{identifier}",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateCluster, input, options)
 end
 
 return M

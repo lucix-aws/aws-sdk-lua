@@ -2264,4 +2264,333 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.elasticloadbalancing", "ElasticLoadBalancing_v7"),
+    version = "2012-06-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTags = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "AddTags"),
+    input = M.AddTagsInput,
+    output = M.AddTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ApplySecurityGroupsToLoadBalancer = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "ApplySecurityGroupsToLoadBalancer"),
+    input = M.ApplySecurityGroupsToLoadBalancerInput,
+    output = M.ApplySecurityGroupsToLoadBalancerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachLoadBalancerToSubnets = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "AttachLoadBalancerToSubnets"),
+    input = M.AttachLoadBalancerToSubnetsInput,
+    output = M.AttachLoadBalancerToSubnetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfigureHealthCheck = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "ConfigureHealthCheck"),
+    input = M.ConfigureHealthCheckInput,
+    output = M.ConfigureHealthCheckOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAppCookieStickinessPolicy = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "CreateAppCookieStickinessPolicy"),
+    input = M.CreateAppCookieStickinessPolicyInput,
+    output = M.CreateAppCookieStickinessPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLBCookieStickinessPolicy = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "CreateLBCookieStickinessPolicy"),
+    input = M.CreateLBCookieStickinessPolicyInput,
+    output = M.CreateLBCookieStickinessPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLoadBalancer = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "CreateLoadBalancer"),
+    input = M.CreateLoadBalancerInput,
+    output = M.CreateLoadBalancerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLoadBalancerListeners = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "CreateLoadBalancerListeners"),
+    input = M.CreateLoadBalancerListenersInput,
+    output = M.CreateLoadBalancerListenersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLoadBalancerPolicy = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "CreateLoadBalancerPolicy"),
+    input = M.CreateLoadBalancerPolicyInput,
+    output = M.CreateLoadBalancerPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLoadBalancer = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "DeleteLoadBalancer"),
+    input = M.DeleteLoadBalancerInput,
+    output = M.DeleteLoadBalancerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLoadBalancerListeners = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "DeleteLoadBalancerListeners"),
+    input = M.DeleteLoadBalancerListenersInput,
+    output = M.DeleteLoadBalancerListenersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLoadBalancerPolicy = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "DeleteLoadBalancerPolicy"),
+    input = M.DeleteLoadBalancerPolicyInput,
+    output = M.DeleteLoadBalancerPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterInstancesFromLoadBalancer = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "DeregisterInstancesFromLoadBalancer"),
+    input = M.DeregisterInstancesFromLoadBalancerInput,
+    output = M.DeregisterInstancesFromLoadBalancerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountLimits = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "DescribeAccountLimits"),
+    input = M.DescribeAccountLimitsInput,
+    output = M.DescribeAccountLimitsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInstanceHealth = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "DescribeInstanceHealth"),
+    input = M.DescribeInstanceHealthInput,
+    output = M.DescribeInstanceHealthOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLoadBalancerAttributes = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "DescribeLoadBalancerAttributes"),
+    input = M.DescribeLoadBalancerAttributesInput,
+    output = M.DescribeLoadBalancerAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLoadBalancerPolicies = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "DescribeLoadBalancerPolicies"),
+    input = M.DescribeLoadBalancerPoliciesInput,
+    output = M.DescribeLoadBalancerPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLoadBalancerPolicyTypes = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "DescribeLoadBalancerPolicyTypes"),
+    input = M.DescribeLoadBalancerPolicyTypesInput,
+    output = M.DescribeLoadBalancerPolicyTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLoadBalancers = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "DescribeLoadBalancers"),
+    input = M.DescribeLoadBalancersInput,
+    output = M.DescribeLoadBalancersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTags = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "DescribeTags"),
+    input = M.DescribeTagsInput,
+    output = M.DescribeTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachLoadBalancerFromSubnets = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "DetachLoadBalancerFromSubnets"),
+    input = M.DetachLoadBalancerFromSubnetsInput,
+    output = M.DetachLoadBalancerFromSubnetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableAvailabilityZonesForLoadBalancer = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "DisableAvailabilityZonesForLoadBalancer"),
+    input = M.DisableAvailabilityZonesForLoadBalancerInput,
+    output = M.DisableAvailabilityZonesForLoadBalancerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableAvailabilityZonesForLoadBalancer = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "EnableAvailabilityZonesForLoadBalancer"),
+    input = M.EnableAvailabilityZonesForLoadBalancerInput,
+    output = M.EnableAvailabilityZonesForLoadBalancerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyLoadBalancerAttributes = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "ModifyLoadBalancerAttributes"),
+    input = M.ModifyLoadBalancerAttributesInput,
+    output = M.ModifyLoadBalancerAttributesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterInstancesWithLoadBalancer = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "RegisterInstancesWithLoadBalancer"),
+    input = M.RegisterInstancesWithLoadBalancerInput,
+    output = M.RegisterInstancesWithLoadBalancerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTags = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "RemoveTags"),
+    input = M.RemoveTagsInput,
+    output = M.RemoveTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetLoadBalancerListenerSSLCertificate = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "SetLoadBalancerListenerSSLCertificate"),
+    input = M.SetLoadBalancerListenerSSLCertificateInput,
+    output = M.SetLoadBalancerListenerSSLCertificateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetLoadBalancerPoliciesForBackendServer = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "SetLoadBalancerPoliciesForBackendServer"),
+    input = M.SetLoadBalancerPoliciesForBackendServerInput,
+    output = M.SetLoadBalancerPoliciesForBackendServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetLoadBalancerPoliciesOfListener = schema.operation({
+    id = id.from("com.amazonaws.elasticloadbalancing", "SetLoadBalancerPoliciesOfListener"),
+    input = M.SetLoadBalancerPoliciesOfListenerInput,
+    output = M.SetLoadBalancerPoliciesOfListenerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

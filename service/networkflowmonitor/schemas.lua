@@ -2172,4 +2172,314 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.networkflowmonitor", "NetworkFlowMonitor"),
+    version = "2023-04-19",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "CreateMonitor"),
+    input = M.CreateMonitorInput,
+    output = M.CreateMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/monitors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateScope = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "CreateScope"),
+    input = M.CreateScopeInput,
+    output = M.CreateScopeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/scopes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "DeleteMonitor"),
+    input = M.DeleteMonitorInput,
+    output = M.DeleteMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/monitors/{monitorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScope = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "DeleteScope"),
+    input = M.DeleteScopeInput,
+    output = M.DeleteScopeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/scopes/{scopeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "GetMonitor"),
+    input = M.GetMonitorInput,
+    output = M.GetMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/monitors/{monitorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryResultsMonitorTopContributors = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "GetQueryResultsMonitorTopContributors"),
+    input = M.GetQueryResultsMonitorTopContributorsInput,
+    output = M.GetQueryResultsMonitorTopContributorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/monitors/{monitorName}/topContributorsQueries/{queryId}/results" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryResultsWorkloadInsightsTopContributors = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "GetQueryResultsWorkloadInsightsTopContributors"),
+    input = M.GetQueryResultsWorkloadInsightsTopContributorsInput,
+    output = M.GetQueryResultsWorkloadInsightsTopContributorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workloadInsights/{scopeId}/topContributorsQueries/{queryId}/results" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryResultsWorkloadInsightsTopContributorsData = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "GetQueryResultsWorkloadInsightsTopContributorsData"),
+    input = M.GetQueryResultsWorkloadInsightsTopContributorsDataInput,
+    output = M.GetQueryResultsWorkloadInsightsTopContributorsDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workloadInsights/{scopeId}/topContributorsDataQueries/{queryId}/results" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryStatusMonitorTopContributors = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "GetQueryStatusMonitorTopContributors"),
+    input = M.GetQueryStatusMonitorTopContributorsInput,
+    output = M.GetQueryStatusMonitorTopContributorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/monitors/{monitorName}/topContributorsQueries/{queryId}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryStatusWorkloadInsightsTopContributors = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "GetQueryStatusWorkloadInsightsTopContributors"),
+    input = M.GetQueryStatusWorkloadInsightsTopContributorsInput,
+    output = M.GetQueryStatusWorkloadInsightsTopContributorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workloadInsights/{scopeId}/topContributorsQueries/{queryId}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryStatusWorkloadInsightsTopContributorsData = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "GetQueryStatusWorkloadInsightsTopContributorsData"),
+    input = M.GetQueryStatusWorkloadInsightsTopContributorsDataInput,
+    output = M.GetQueryStatusWorkloadInsightsTopContributorsDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/workloadInsights/{scopeId}/topContributorsDataQueries/{queryId}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetScope = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "GetScope"),
+    input = M.GetScopeInput,
+    output = M.GetScopeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/scopes/{scopeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMonitors = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "ListMonitors"),
+    input = M.ListMonitorsInput,
+    output = M.ListMonitorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/monitors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScopes = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "ListScopes"),
+    input = M.ListScopesInput,
+    output = M.ListScopesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/scopes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartQueryMonitorTopContributors = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "StartQueryMonitorTopContributors"),
+    input = M.StartQueryMonitorTopContributorsInput,
+    output = M.StartQueryMonitorTopContributorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/monitors/{monitorName}/topContributorsQueries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartQueryWorkloadInsightsTopContributors = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "StartQueryWorkloadInsightsTopContributors"),
+    input = M.StartQueryWorkloadInsightsTopContributorsInput,
+    output = M.StartQueryWorkloadInsightsTopContributorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workloadInsights/{scopeId}/topContributorsQueries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartQueryWorkloadInsightsTopContributorsData = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "StartQueryWorkloadInsightsTopContributorsData"),
+    input = M.StartQueryWorkloadInsightsTopContributorsDataInput,
+    output = M.StartQueryWorkloadInsightsTopContributorsDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/workloadInsights/{scopeId}/topContributorsDataQueries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopQueryMonitorTopContributors = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "StopQueryMonitorTopContributors"),
+    input = M.StopQueryMonitorTopContributorsInput,
+    output = M.StopQueryMonitorTopContributorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/monitors/{monitorName}/topContributorsQueries/{queryId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopQueryWorkloadInsightsTopContributors = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "StopQueryWorkloadInsightsTopContributors"),
+    input = M.StopQueryWorkloadInsightsTopContributorsInput,
+    output = M.StopQueryWorkloadInsightsTopContributorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workloadInsights/{scopeId}/topContributorsQueries/{queryId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopQueryWorkloadInsightsTopContributorsData = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "StopQueryWorkloadInsightsTopContributorsData"),
+    input = M.StopQueryWorkloadInsightsTopContributorsDataInput,
+    output = M.StopQueryWorkloadInsightsTopContributorsDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/workloadInsights/{scopeId}/topContributorsDataQueries/{queryId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "UpdateMonitor"),
+    input = M.UpdateMonitorInput,
+    output = M.UpdateMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/monitors/{monitorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateScope = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "UpdateScope"),
+    input = M.UpdateScopeInput,
+    output = M.UpdateScopeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/scopes/{scopeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

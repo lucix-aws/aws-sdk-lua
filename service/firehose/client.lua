@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("firehose.endpoint_rules")
 local schemas = require("firehose.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "firehose", signing_region = cfg.region } }
                 else
@@ -49,159 +52,51 @@ function M.new(cfg)
 end
 
 function Client:createDeliveryStream(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateDeliveryStream",
-        input_schema = schemas.CreateDeliveryStreamInput,
-        output_schema = schemas.CreateDeliveryStreamOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateDeliveryStream, input, options)
 end
 
 function Client:deleteDeliveryStream(input, options)
-    return self:invokeOperation(input, {
-        name = "DeleteDeliveryStream",
-        input_schema = schemas.DeleteDeliveryStreamInput,
-        output_schema = schemas.DeleteDeliveryStreamOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DeleteDeliveryStream, input, options)
 end
 
 function Client:describeDeliveryStream(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeDeliveryStream",
-        input_schema = schemas.DescribeDeliveryStreamInput,
-        output_schema = schemas.DescribeDeliveryStreamOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeDeliveryStream, input, options)
 end
 
 function Client:listDeliveryStreams(input, options)
-    return self:invokeOperation(input, {
-        name = "ListDeliveryStreams",
-        input_schema = schemas.ListDeliveryStreamsInput,
-        output_schema = schemas.ListDeliveryStreamsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListDeliveryStreams, input, options)
 end
 
 function Client:listTagsForDeliveryStream(input, options)
-    return self:invokeOperation(input, {
-        name = "ListTagsForDeliveryStream",
-        input_schema = schemas.ListTagsForDeliveryStreamInput,
-        output_schema = schemas.ListTagsForDeliveryStreamOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ListTagsForDeliveryStream, input, options)
 end
 
 function Client:putRecord(input, options)
-    return self:invokeOperation(input, {
-        name = "PutRecord",
-        input_schema = schemas.PutRecordInput,
-        output_schema = schemas.PutRecordOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutRecord, input, options)
 end
 
 function Client:putRecordBatch(input, options)
-    return self:invokeOperation(input, {
-        name = "PutRecordBatch",
-        input_schema = schemas.PutRecordBatchInput,
-        output_schema = schemas.PutRecordBatchOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.PutRecordBatch, input, options)
 end
 
 function Client:startDeliveryStreamEncryption(input, options)
-    return self:invokeOperation(input, {
-        name = "StartDeliveryStreamEncryption",
-        input_schema = schemas.StartDeliveryStreamEncryptionInput,
-        output_schema = schemas.StartDeliveryStreamEncryptionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StartDeliveryStreamEncryption, input, options)
 end
 
 function Client:stopDeliveryStreamEncryption(input, options)
-    return self:invokeOperation(input, {
-        name = "StopDeliveryStreamEncryption",
-        input_schema = schemas.StopDeliveryStreamEncryptionInput,
-        output_schema = schemas.StopDeliveryStreamEncryptionOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.StopDeliveryStreamEncryption, input, options)
 end
 
 function Client:tagDeliveryStream(input, options)
-    return self:invokeOperation(input, {
-        name = "TagDeliveryStream",
-        input_schema = schemas.TagDeliveryStreamInput,
-        output_schema = schemas.TagDeliveryStreamOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.TagDeliveryStream, input, options)
 end
 
 function Client:untagDeliveryStream(input, options)
-    return self:invokeOperation(input, {
-        name = "UntagDeliveryStream",
-        input_schema = schemas.UntagDeliveryStreamInput,
-        output_schema = schemas.UntagDeliveryStreamOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UntagDeliveryStream, input, options)
 end
 
 function Client:updateDestination(input, options)
-    return self:invokeOperation(input, {
-        name = "UpdateDestination",
-        input_schema = schemas.UpdateDestinationInput,
-        output_schema = schemas.UpdateDestinationOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.UpdateDestination, input, options)
 end
 
 return M

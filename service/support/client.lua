@@ -7,6 +7,7 @@ local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("support.endpoint_rules")
 local schemas = require("support.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
+local traits = require("smithy.traits")
 
 local M = {}
 
@@ -27,9 +28,11 @@ function M.new(cfg)
         end
     end
     if not cfg.auth_scheme_resolver then
-        cfg.auth_scheme_resolver = function(operation)
+        cfg.auth_scheme_resolver = function(service, operation)
+            local auth_trait = operation:trait(traits.AUTH) or service:trait(traits.AUTH)
             local options = {}
-            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+            for _, scheme in ipairs(auth_trait or {}) do
+                local scheme_id = scheme.scheme_id or scheme
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "support", signing_region = cfg.region } }
                 else
@@ -49,211 +52,67 @@ function M.new(cfg)
 end
 
 function Client:addAttachmentsToSet(input, options)
-    return self:invokeOperation(input, {
-        name = "AddAttachmentsToSet",
-        input_schema = schemas.AddAttachmentsToSetInput,
-        output_schema = schemas.AddAttachmentsToSetOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddAttachmentsToSet, input, options)
 end
 
 function Client:addCommunicationToCase(input, options)
-    return self:invokeOperation(input, {
-        name = "AddCommunicationToCase",
-        input_schema = schemas.AddCommunicationToCaseInput,
-        output_schema = schemas.AddCommunicationToCaseOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.AddCommunicationToCase, input, options)
 end
 
 function Client:createCase(input, options)
-    return self:invokeOperation(input, {
-        name = "CreateCase",
-        input_schema = schemas.CreateCaseInput,
-        output_schema = schemas.CreateCaseOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.CreateCase, input, options)
 end
 
 function Client:describeAttachment(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeAttachment",
-        input_schema = schemas.DescribeAttachmentInput,
-        output_schema = schemas.DescribeAttachmentOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeAttachment, input, options)
 end
 
 function Client:describeCases(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCases",
-        input_schema = schemas.DescribeCasesInput,
-        output_schema = schemas.DescribeCasesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCases, input, options)
 end
 
 function Client:describeCommunications(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCommunications",
-        input_schema = schemas.DescribeCommunicationsInput,
-        output_schema = schemas.DescribeCommunicationsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCommunications, input, options)
 end
 
 function Client:describeCreateCaseOptions(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeCreateCaseOptions",
-        input_schema = schemas.DescribeCreateCaseOptionsInput,
-        output_schema = schemas.DescribeCreateCaseOptionsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeCreateCaseOptions, input, options)
 end
 
 function Client:describeServices(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeServices",
-        input_schema = schemas.DescribeServicesInput,
-        output_schema = schemas.DescribeServicesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeServices, input, options)
 end
 
 function Client:describeSeverityLevels(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeSeverityLevels",
-        input_schema = schemas.DescribeSeverityLevelsInput,
-        output_schema = schemas.DescribeSeverityLevelsOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeSeverityLevels, input, options)
 end
 
 function Client:describeSupportedLanguages(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeSupportedLanguages",
-        input_schema = schemas.DescribeSupportedLanguagesInput,
-        output_schema = schemas.DescribeSupportedLanguagesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeSupportedLanguages, input, options)
 end
 
 function Client:describeTrustedAdvisorCheckRefreshStatuses(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTrustedAdvisorCheckRefreshStatuses",
-        input_schema = schemas.DescribeTrustedAdvisorCheckRefreshStatusesInput,
-        output_schema = schemas.DescribeTrustedAdvisorCheckRefreshStatusesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTrustedAdvisorCheckRefreshStatuses, input, options)
 end
 
 function Client:describeTrustedAdvisorCheckResult(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTrustedAdvisorCheckResult",
-        input_schema = schemas.DescribeTrustedAdvisorCheckResultInput,
-        output_schema = schemas.DescribeTrustedAdvisorCheckResultOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTrustedAdvisorCheckResult, input, options)
 end
 
 function Client:describeTrustedAdvisorChecks(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTrustedAdvisorChecks",
-        input_schema = schemas.DescribeTrustedAdvisorChecksInput,
-        output_schema = schemas.DescribeTrustedAdvisorChecksOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTrustedAdvisorChecks, input, options)
 end
 
 function Client:describeTrustedAdvisorCheckSummaries(input, options)
-    return self:invokeOperation(input, {
-        name = "DescribeTrustedAdvisorCheckSummaries",
-        input_schema = schemas.DescribeTrustedAdvisorCheckSummariesInput,
-        output_schema = schemas.DescribeTrustedAdvisorCheckSummariesOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.DescribeTrustedAdvisorCheckSummaries, input, options)
 end
 
 function Client:refreshTrustedAdvisorCheck(input, options)
-    return self:invokeOperation(input, {
-        name = "RefreshTrustedAdvisorCheck",
-        input_schema = schemas.RefreshTrustedAdvisorCheckInput,
-        output_schema = schemas.RefreshTrustedAdvisorCheckOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.RefreshTrustedAdvisorCheck, input, options)
 end
 
 function Client:resolveCase(input, options)
-    return self:invokeOperation(input, {
-        name = "ResolveCase",
-        input_schema = schemas.ResolveCaseInput,
-        output_schema = schemas.ResolveCaseOutput,
-        http_method = "POST",
-        http_path = "/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
+    return self:invokeOperation(schemas.Service, schemas.ResolveCase, input, options)
 end
 
 return M

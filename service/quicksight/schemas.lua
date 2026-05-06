@@ -53696,4 +53696,2798 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.quicksight", "QuickSight_20180401"),
+    version = "2018-04-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchCreateTopicReviewedAnswer = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "BatchCreateTopicReviewedAnswer"),
+    input = M.BatchCreateTopicReviewedAnswerInput,
+    output = M.BatchCreateTopicReviewedAnswerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/topics/{TopicId}/batch-create-reviewed-answers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteTopicReviewedAnswer = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "BatchDeleteTopicReviewedAnswer"),
+    input = M.BatchDeleteTopicReviewedAnswerInput,
+    output = M.BatchDeleteTopicReviewedAnswerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/topics/{TopicId}/batch-delete-reviewed-answers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelIngestion = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CancelIngestion"),
+    input = M.CancelIngestionInput,
+    output = M.CancelIngestionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/ingestions/{IngestionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccountCustomization = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateAccountCustomization"),
+    input = M.CreateAccountCustomizationInput,
+    output = M.CreateAccountCustomizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/customizations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAccountSubscription = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateAccountSubscription"),
+    input = M.CreateAccountSubscriptionInput,
+    output = M.CreateAccountSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/account/{AwsAccountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateActionConnector = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateActionConnector"),
+    input = M.CreateActionConnectorInput,
+    output = M.CreateActionConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/action-connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAnalysis = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateAnalysis"),
+    input = M.CreateAnalysisInput,
+    output = M.CreateAnalysisOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/analyses/{AnalysisId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBrand = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateBrand"),
+    input = M.CreateBrandInput,
+    output = M.CreateBrandOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/brands/{BrandId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateCustomPermissions"),
+    input = M.CreateCustomPermissionsInput,
+    output = M.CreateCustomPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/custom-permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDashboard = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateDashboard"),
+    input = M.CreateDashboardInput,
+    output = M.CreateDashboardOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataSet = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateDataSet"),
+    input = M.CreateDataSetInput,
+    output = M.CreateDataSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/data-sets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataSource = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateDataSource"),
+    input = M.CreateDataSourceInput,
+    output = M.CreateDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/data-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFolder = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateFolder"),
+    input = M.CreateFolderInput,
+    output = M.CreateFolderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/folders/{FolderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFolderMembership = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateFolderMembership"),
+    input = M.CreateFolderMembershipInput,
+    output = M.CreateFolderMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/folders/{FolderId}/members/{MemberType}/{MemberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGroup = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateGroup"),
+    input = M.CreateGroupInput,
+    output = M.CreateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGroupMembership = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateGroupMembership"),
+    input = M.CreateGroupMembershipInput,
+    output = M.CreateGroupMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups/{GroupName}/members/{MemberName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIAMPolicyAssignment = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateIAMPolicyAssignment"),
+    input = M.CreateIAMPolicyAssignmentInput,
+    output = M.CreateIAMPolicyAssignmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/iam-policy-assignments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIngestion = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateIngestion"),
+    input = M.CreateIngestionInput,
+    output = M.CreateIngestionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/ingestions/{IngestionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNamespace = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateNamespace"),
+    input = M.CreateNamespaceInput,
+    output = M.CreateNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRefreshSchedule = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateRefreshSchedule"),
+    input = M.CreateRefreshScheduleInput,
+    output = M.CreateRefreshScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRoleMembership = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateRoleMembership"),
+    input = M.CreateRoleMembershipInput,
+    output = M.CreateRoleMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/roles/{Role}/members/{MemberName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTemplate = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateTemplate"),
+    input = M.CreateTemplateInput,
+    output = M.CreateTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/templates/{TemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTemplateAlias = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateTemplateAlias"),
+    input = M.CreateTemplateAliasInput,
+    output = M.CreateTemplateAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/templates/{TemplateId}/aliases/{AliasName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTheme = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateTheme"),
+    input = M.CreateThemeInput,
+    output = M.CreateThemeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/themes/{ThemeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateThemeAlias = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateThemeAlias"),
+    input = M.CreateThemeAliasInput,
+    output = M.CreateThemeAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/themes/{ThemeId}/aliases/{AliasName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTopic = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateTopic"),
+    input = M.CreateTopicInput,
+    output = M.CreateTopicOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/topics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTopicRefreshSchedule = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateTopicRefreshSchedule"),
+    input = M.CreateTopicRefreshScheduleInput,
+    output = M.CreateTopicRefreshScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/topics/{TopicId}/schedules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVPCConnection = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateVPCConnection"),
+    input = M.CreateVPCConnectionInput,
+    output = M.CreateVPCConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/vpc-connections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccountCustomization = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteAccountCustomization"),
+    input = M.DeleteAccountCustomizationInput,
+    output = M.DeleteAccountCustomizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/customizations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccountCustomPermission = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteAccountCustomPermission"),
+    input = M.DeleteAccountCustomPermissionInput,
+    output = M.DeleteAccountCustomPermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/custom-permission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAccountSubscription = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteAccountSubscription"),
+    input = M.DeleteAccountSubscriptionInput,
+    output = M.DeleteAccountSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/account/{AwsAccountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteActionConnector = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteActionConnector"),
+    input = M.DeleteActionConnectorInput,
+    output = M.DeleteActionConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/action-connectors/{ActionConnectorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAnalysis = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteAnalysis"),
+    input = M.DeleteAnalysisInput,
+    output = M.DeleteAnalysisOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/analyses/{AnalysisId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBrand = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteBrand"),
+    input = M.DeleteBrandInput,
+    output = M.DeleteBrandOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/brands/{BrandId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBrandAssignment = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteBrandAssignment"),
+    input = M.DeleteBrandAssignmentInput,
+    output = M.DeleteBrandAssignmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/brandassignments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteCustomPermissions"),
+    input = M.DeleteCustomPermissionsInput,
+    output = M.DeleteCustomPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/custom-permissions/{CustomPermissionsName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDashboard = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteDashboard"),
+    input = M.DeleteDashboardInput,
+    output = M.DeleteDashboardOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataSet = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteDataSet"),
+    input = M.DeleteDataSetInput,
+    output = M.DeleteDataSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataSetRefreshProperties = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteDataSetRefreshProperties"),
+    input = M.DeleteDataSetRefreshPropertiesInput,
+    output = M.DeleteDataSetRefreshPropertiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-properties" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataSource = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteDataSource"),
+    input = M.DeleteDataSourceInput,
+    output = M.DeleteDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/data-sources/{DataSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDefaultQBusinessApplication = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteDefaultQBusinessApplication"),
+    input = M.DeleteDefaultQBusinessApplicationInput,
+    output = M.DeleteDefaultQBusinessApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/default-qbusiness-application" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFolder = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteFolder"),
+    input = M.DeleteFolderInput,
+    output = M.DeleteFolderOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/folders/{FolderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFolderMembership = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteFolderMembership"),
+    input = M.DeleteFolderMembershipInput,
+    output = M.DeleteFolderMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/folders/{FolderId}/members/{MemberType}/{MemberId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGroup = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteGroup"),
+    input = M.DeleteGroupInput,
+    output = M.DeleteGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups/{GroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGroupMembership = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteGroupMembership"),
+    input = M.DeleteGroupMembershipInput,
+    output = M.DeleteGroupMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups/{GroupName}/members/{MemberName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIAMPolicyAssignment = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteIAMPolicyAssignment"),
+    input = M.DeleteIAMPolicyAssignmentInput,
+    output = M.DeleteIAMPolicyAssignmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/namespace/{Namespace}/iam-policy-assignments/{AssignmentName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIdentityPropagationConfig = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteIdentityPropagationConfig"),
+    input = M.DeleteIdentityPropagationConfigInput,
+    output = M.DeleteIdentityPropagationConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/identity-propagation-config/{Service}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNamespace = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteNamespace"),
+    input = M.DeleteNamespaceInput,
+    output = M.DeleteNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRefreshSchedule = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteRefreshSchedule"),
+    input = M.DeleteRefreshScheduleInput,
+    output = M.DeleteRefreshScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules/{ScheduleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRoleCustomPermission = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteRoleCustomPermission"),
+    input = M.DeleteRoleCustomPermissionInput,
+    output = M.DeleteRoleCustomPermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/roles/{Role}/custom-permission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRoleMembership = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteRoleMembership"),
+    input = M.DeleteRoleMembershipInput,
+    output = M.DeleteRoleMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/roles/{Role}/members/{MemberName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTemplate = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteTemplate"),
+    input = M.DeleteTemplateInput,
+    output = M.DeleteTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/templates/{TemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTemplateAlias = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteTemplateAlias"),
+    input = M.DeleteTemplateAliasInput,
+    output = M.DeleteTemplateAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/templates/{TemplateId}/aliases/{AliasName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTheme = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteTheme"),
+    input = M.DeleteThemeInput,
+    output = M.DeleteThemeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/themes/{ThemeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteThemeAlias = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteThemeAlias"),
+    input = M.DeleteThemeAliasInput,
+    output = M.DeleteThemeAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/themes/{ThemeId}/aliases/{AliasName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTopic = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteTopic"),
+    input = M.DeleteTopicInput,
+    output = M.DeleteTopicOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/topics/{TopicId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTopicRefreshSchedule = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteTopicRefreshSchedule"),
+    input = M.DeleteTopicRefreshScheduleInput,
+    output = M.DeleteTopicRefreshScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/topics/{TopicId}/schedules/{DatasetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUser = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteUser"),
+    input = M.DeleteUserInput,
+    output = M.DeleteUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/users/{UserName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserByPrincipalId = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteUserByPrincipalId"),
+    input = M.DeleteUserByPrincipalIdInput,
+    output = M.DeleteUserByPrincipalIdOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/user-principals/{PrincipalId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserCustomPermission = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteUserCustomPermission"),
+    input = M.DeleteUserCustomPermissionInput,
+    output = M.DeleteUserCustomPermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/users/{UserName}/custom-permission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVPCConnection = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteVPCConnection"),
+    input = M.DeleteVPCConnectionInput,
+    output = M.DeleteVPCConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/vpc-connections/{VPCConnectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountCustomization = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeAccountCustomization"),
+    input = M.DescribeAccountCustomizationInput,
+    output = M.DescribeAccountCustomizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/customizations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountCustomPermission = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeAccountCustomPermission"),
+    input = M.DescribeAccountCustomPermissionInput,
+    output = M.DescribeAccountCustomPermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/custom-permission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeAccountSettings"),
+    input = M.DescribeAccountSettingsInput,
+    output = M.DescribeAccountSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountSubscription = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeAccountSubscription"),
+    input = M.DescribeAccountSubscriptionInput,
+    output = M.DescribeAccountSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/account/{AwsAccountId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeActionConnector = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeActionConnector"),
+    input = M.DescribeActionConnectorInput,
+    output = M.DescribeActionConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/action-connectors/{ActionConnectorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeActionConnectorPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeActionConnectorPermissions"),
+    input = M.DescribeActionConnectorPermissionsInput,
+    output = M.DescribeActionConnectorPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/action-connectors/{ActionConnectorId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAnalysis = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeAnalysis"),
+    input = M.DescribeAnalysisInput,
+    output = M.DescribeAnalysisOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/analyses/{AnalysisId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAnalysisDefinition = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeAnalysisDefinition"),
+    input = M.DescribeAnalysisDefinitionInput,
+    output = M.DescribeAnalysisDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/analyses/{AnalysisId}/definition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAnalysisPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeAnalysisPermissions"),
+    input = M.DescribeAnalysisPermissionsInput,
+    output = M.DescribeAnalysisPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/analyses/{AnalysisId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAssetBundleExportJob = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeAssetBundleExportJob"),
+    input = M.DescribeAssetBundleExportJobInput,
+    output = M.DescribeAssetBundleExportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/asset-bundle-export-jobs/{AssetBundleExportJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAssetBundleImportJob = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeAssetBundleImportJob"),
+    input = M.DescribeAssetBundleImportJobInput,
+    output = M.DescribeAssetBundleImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/asset-bundle-import-jobs/{AssetBundleImportJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAutomationJob = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeAutomationJob"),
+    input = M.DescribeAutomationJobInput,
+    output = M.DescribeAutomationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/automation-groups/{AutomationGroupId}/automations/{AutomationId}/jobs/{JobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBrand = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeBrand"),
+    input = M.DescribeBrandInput,
+    output = M.DescribeBrandOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/brands/{BrandId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBrandAssignment = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeBrandAssignment"),
+    input = M.DescribeBrandAssignmentInput,
+    output = M.DescribeBrandAssignmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/brandassignments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBrandPublishedVersion = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeBrandPublishedVersion"),
+    input = M.DescribeBrandPublishedVersionInput,
+    output = M.DescribeBrandPublishedVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/brands/{BrandId}/publishedversion" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCustomPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeCustomPermissions"),
+    input = M.DescribeCustomPermissionsInput,
+    output = M.DescribeCustomPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/custom-permissions/{CustomPermissionsName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDashboard = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeDashboard"),
+    input = M.DescribeDashboardInput,
+    output = M.DescribeDashboardOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDashboardDefinition = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeDashboardDefinition"),
+    input = M.DescribeDashboardDefinitionInput,
+    output = M.DescribeDashboardDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}/definition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDashboardPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeDashboardPermissions"),
+    input = M.DescribeDashboardPermissionsInput,
+    output = M.DescribeDashboardPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDashboardSnapshotJob = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeDashboardSnapshotJob"),
+    input = M.DescribeDashboardSnapshotJobInput,
+    output = M.DescribeDashboardSnapshotJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}/snapshot-jobs/{SnapshotJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDashboardSnapshotJobResult = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeDashboardSnapshotJobResult"),
+    input = M.DescribeDashboardSnapshotJobResultInput,
+    output = M.DescribeDashboardSnapshotJobResultOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}/snapshot-jobs/{SnapshotJobId}/result" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDashboardsQAConfiguration = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeDashboardsQAConfiguration"),
+    input = M.DescribeDashboardsQAConfigurationInput,
+    output = M.DescribeDashboardsQAConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/dashboards-qa-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataSet = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeDataSet"),
+    input = M.DescribeDataSetInput,
+    output = M.DescribeDataSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataSetPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeDataSetPermissions"),
+    input = M.DescribeDataSetPermissionsInput,
+    output = M.DescribeDataSetPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataSetRefreshProperties = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeDataSetRefreshProperties"),
+    input = M.DescribeDataSetRefreshPropertiesInput,
+    output = M.DescribeDataSetRefreshPropertiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-properties" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataSource = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeDataSource"),
+    input = M.DescribeDataSourceInput,
+    output = M.DescribeDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/data-sources/{DataSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataSourcePermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeDataSourcePermissions"),
+    input = M.DescribeDataSourcePermissionsInput,
+    output = M.DescribeDataSourcePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/data-sources/{DataSourceId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDefaultQBusinessApplication = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeDefaultQBusinessApplication"),
+    input = M.DescribeDefaultQBusinessApplicationInput,
+    output = M.DescribeDefaultQBusinessApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/default-qbusiness-application" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFolder = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeFolder"),
+    input = M.DescribeFolderInput,
+    output = M.DescribeFolderOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/folders/{FolderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFolderPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeFolderPermissions"),
+    input = M.DescribeFolderPermissionsInput,
+    output = M.DescribeFolderPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/folders/{FolderId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFolderResolvedPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeFolderResolvedPermissions"),
+    input = M.DescribeFolderResolvedPermissionsInput,
+    output = M.DescribeFolderResolvedPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/folders/{FolderId}/resolved-permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGroup = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeGroup"),
+    input = M.DescribeGroupInput,
+    output = M.DescribeGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups/{GroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGroupMembership = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeGroupMembership"),
+    input = M.DescribeGroupMembershipInput,
+    output = M.DescribeGroupMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups/{GroupName}/members/{MemberName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIAMPolicyAssignment = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeIAMPolicyAssignment"),
+    input = M.DescribeIAMPolicyAssignmentInput,
+    output = M.DescribeIAMPolicyAssignmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/iam-policy-assignments/{AssignmentName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIngestion = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeIngestion"),
+    input = M.DescribeIngestionInput,
+    output = M.DescribeIngestionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/ingestions/{IngestionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIpRestriction = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeIpRestriction"),
+    input = M.DescribeIpRestrictionInput,
+    output = M.DescribeIpRestrictionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/ip-restriction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeKeyRegistration = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeKeyRegistration"),
+    input = M.DescribeKeyRegistrationInput,
+    output = M.DescribeKeyRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/key-registration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNamespace = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeNamespace"),
+    input = M.DescribeNamespaceInput,
+    output = M.DescribeNamespaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeQPersonalizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeQPersonalizationConfiguration"),
+    input = M.DescribeQPersonalizationConfigurationInput,
+    output = M.DescribeQPersonalizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/q-personalization-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeQuickSightQSearchConfiguration = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeQuickSightQSearchConfiguration"),
+    input = M.DescribeQuickSightQSearchConfigurationInput,
+    output = M.DescribeQuickSightQSearchConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/quicksight-q-search-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRefreshSchedule = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeRefreshSchedule"),
+    input = M.DescribeRefreshScheduleInput,
+    output = M.DescribeRefreshScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules/{ScheduleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRoleCustomPermission = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeRoleCustomPermission"),
+    input = M.DescribeRoleCustomPermissionInput,
+    output = M.DescribeRoleCustomPermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/roles/{Role}/custom-permission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSelfUpgradeConfiguration = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeSelfUpgradeConfiguration"),
+    input = M.DescribeSelfUpgradeConfigurationInput,
+    output = M.DescribeSelfUpgradeConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/self-upgrade-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTemplate = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeTemplate"),
+    input = M.DescribeTemplateInput,
+    output = M.DescribeTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/templates/{TemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTemplateAlias = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeTemplateAlias"),
+    input = M.DescribeTemplateAliasInput,
+    output = M.DescribeTemplateAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/templates/{TemplateId}/aliases/{AliasName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTemplateDefinition = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeTemplateDefinition"),
+    input = M.DescribeTemplateDefinitionInput,
+    output = M.DescribeTemplateDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/templates/{TemplateId}/definition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTemplatePermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeTemplatePermissions"),
+    input = M.DescribeTemplatePermissionsInput,
+    output = M.DescribeTemplatePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/templates/{TemplateId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTheme = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeTheme"),
+    input = M.DescribeThemeInput,
+    output = M.DescribeThemeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/themes/{ThemeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeThemeAlias = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeThemeAlias"),
+    input = M.DescribeThemeAliasInput,
+    output = M.DescribeThemeAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/themes/{ThemeId}/aliases/{AliasName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeThemePermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeThemePermissions"),
+    input = M.DescribeThemePermissionsInput,
+    output = M.DescribeThemePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/themes/{ThemeId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTopic = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeTopic"),
+    input = M.DescribeTopicInput,
+    output = M.DescribeTopicOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/topics/{TopicId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTopicPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeTopicPermissions"),
+    input = M.DescribeTopicPermissionsInput,
+    output = M.DescribeTopicPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/topics/{TopicId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTopicRefresh = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeTopicRefresh"),
+    input = M.DescribeTopicRefreshInput,
+    output = M.DescribeTopicRefreshOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/topics/{TopicId}/refresh/{RefreshId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTopicRefreshSchedule = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeTopicRefreshSchedule"),
+    input = M.DescribeTopicRefreshScheduleInput,
+    output = M.DescribeTopicRefreshScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/topics/{TopicId}/schedules/{DatasetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeUser = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeUser"),
+    input = M.DescribeUserInput,
+    output = M.DescribeUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/users/{UserName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeVPCConnection = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeVPCConnection"),
+    input = M.DescribeVPCConnectionInput,
+    output = M.DescribeVPCConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/vpc-connections/{VPCConnectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateEmbedUrlForAnonymousUser = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "GenerateEmbedUrlForAnonymousUser"),
+    input = M.GenerateEmbedUrlForAnonymousUserInput,
+    output = M.GenerateEmbedUrlForAnonymousUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/embed-url/anonymous-user" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateEmbedUrlForRegisteredUser = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "GenerateEmbedUrlForRegisteredUser"),
+    input = M.GenerateEmbedUrlForRegisteredUserInput,
+    output = M.GenerateEmbedUrlForRegisteredUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/embed-url/registered-user" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateEmbedUrlForRegisteredUserWithIdentity = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "GenerateEmbedUrlForRegisteredUserWithIdentity"),
+    input = M.GenerateEmbedUrlForRegisteredUserWithIdentityInput,
+    output = M.GenerateEmbedUrlForRegisteredUserWithIdentityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/embed-url/registered-user-with-identity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDashboardEmbedUrl = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "GetDashboardEmbedUrl"),
+    input = M.GetDashboardEmbedUrlInput,
+    output = M.GetDashboardEmbedUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}/embed-url" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFlowMetadata = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "GetFlowMetadata"),
+    input = M.GetFlowMetadataInput,
+    output = M.GetFlowMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/flows/{FlowId}/metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFlowPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "GetFlowPermissions"),
+    input = M.GetFlowPermissionsInput,
+    output = M.GetFlowPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/flows/{FlowId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIdentityContext = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "GetIdentityContext"),
+    input = M.GetIdentityContextInput,
+    output = M.GetIdentityContextOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/identity-context" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSessionEmbedUrl = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "GetSessionEmbedUrl"),
+    input = M.GetSessionEmbedUrlInput,
+    output = M.GetSessionEmbedUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/session-embed-url" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListActionConnectors = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListActionConnectors"),
+    input = M.ListActionConnectorsInput,
+    output = M.ListActionConnectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/action-connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnalyses = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListAnalyses"),
+    input = M.ListAnalysesInput,
+    output = M.ListAnalysesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/analyses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetBundleExportJobs = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListAssetBundleExportJobs"),
+    input = M.ListAssetBundleExportJobsInput,
+    output = M.ListAssetBundleExportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/asset-bundle-export-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetBundleImportJobs = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListAssetBundleImportJobs"),
+    input = M.ListAssetBundleImportJobsInput,
+    output = M.ListAssetBundleImportJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/asset-bundle-import-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBrands = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListBrands"),
+    input = M.ListBrandsInput,
+    output = M.ListBrandsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/brands" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListCustomPermissions"),
+    input = M.ListCustomPermissionsInput,
+    output = M.ListCustomPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/custom-permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDashboards = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListDashboards"),
+    input = M.ListDashboardsInput,
+    output = M.ListDashboardsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/dashboards" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDashboardVersions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListDashboardVersions"),
+    input = M.ListDashboardVersionsInput,
+    output = M.ListDashboardVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSets = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListDataSets"),
+    input = M.ListDataSetsInput,
+    output = M.ListDataSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/data-sets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSources = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListDataSources"),
+    input = M.ListDataSourcesInput,
+    output = M.ListDataSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/data-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlows = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListFlows"),
+    input = M.ListFlowsInput,
+    output = M.ListFlowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/flows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFolderMembers = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListFolderMembers"),
+    input = M.ListFolderMembersInput,
+    output = M.ListFolderMembersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/folders/{FolderId}/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFolders = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListFolders"),
+    input = M.ListFoldersInput,
+    output = M.ListFoldersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/folders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFoldersForResource = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListFoldersForResource"),
+    input = M.ListFoldersForResourceInput,
+    output = M.ListFoldersForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/resource/{ResourceArn}/folders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroupMemberships = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListGroupMemberships"),
+    input = M.ListGroupMembershipsInput,
+    output = M.ListGroupMembershipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups/{GroupName}/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGroups = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListGroups"),
+    input = M.ListGroupsInput,
+    output = M.ListGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIAMPolicyAssignments = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListIAMPolicyAssignments"),
+    input = M.ListIAMPolicyAssignmentsInput,
+    output = M.ListIAMPolicyAssignmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/v2/iam-policy-assignments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIAMPolicyAssignmentsForUser = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListIAMPolicyAssignmentsForUser"),
+    input = M.ListIAMPolicyAssignmentsForUserInput,
+    output = M.ListIAMPolicyAssignmentsForUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/users/{UserName}/iam-policy-assignments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIdentityPropagationConfigs = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListIdentityPropagationConfigs"),
+    input = M.ListIdentityPropagationConfigsInput,
+    output = M.ListIdentityPropagationConfigsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/identity-propagation-config" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIngestions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListIngestions"),
+    input = M.ListIngestionsInput,
+    output = M.ListIngestionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/ingestions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNamespaces = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListNamespaces"),
+    input = M.ListNamespacesInput,
+    output = M.ListNamespacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRefreshSchedules = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListRefreshSchedules"),
+    input = M.ListRefreshSchedulesInput,
+    output = M.ListRefreshSchedulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRoleMemberships = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListRoleMemberships"),
+    input = M.ListRoleMembershipsInput,
+    output = M.ListRoleMembershipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/roles/{Role}/members" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSelfUpgrades = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListSelfUpgrades"),
+    input = M.ListSelfUpgradesInput,
+    output = M.ListSelfUpgradesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/self-upgrade-requests" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resources/{ResourceArn}/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTemplateAliases = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListTemplateAliases"),
+    input = M.ListTemplateAliasesInput,
+    output = M.ListTemplateAliasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/templates/{TemplateId}/aliases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTemplates = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListTemplates"),
+    input = M.ListTemplatesInput,
+    output = M.ListTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTemplateVersions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListTemplateVersions"),
+    input = M.ListTemplateVersionsInput,
+    output = M.ListTemplateVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/templates/{TemplateId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThemeAliases = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListThemeAliases"),
+    input = M.ListThemeAliasesInput,
+    output = M.ListThemeAliasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/themes/{ThemeId}/aliases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThemes = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListThemes"),
+    input = M.ListThemesInput,
+    output = M.ListThemesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/themes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListThemeVersions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListThemeVersions"),
+    input = M.ListThemeVersionsInput,
+    output = M.ListThemeVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/themes/{ThemeId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTopicRefreshSchedules = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListTopicRefreshSchedules"),
+    input = M.ListTopicRefreshSchedulesInput,
+    output = M.ListTopicRefreshSchedulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/topics/{TopicId}/schedules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTopicReviewedAnswers = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListTopicReviewedAnswers"),
+    input = M.ListTopicReviewedAnswersInput,
+    output = M.ListTopicReviewedAnswersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/topics/{TopicId}/reviewed-answers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTopics = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListTopics"),
+    input = M.ListTopicsInput,
+    output = M.ListTopicsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/topics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUserGroups = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListUserGroups"),
+    input = M.ListUserGroupsInput,
+    output = M.ListUserGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/users/{UserName}/groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListUsers = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListUsers"),
+    input = M.ListUsersInput,
+    output = M.ListUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVPCConnections = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListVPCConnections"),
+    input = M.ListVPCConnectionsInput,
+    output = M.ListVPCConnectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/vpc-connections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PredictQAResults = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "PredictQAResults"),
+    input = M.PredictQAResultsInput,
+    output = M.PredictQAResultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/qa/predict" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDataSetRefreshProperties = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "PutDataSetRefreshProperties"),
+    input = M.PutDataSetRefreshPropertiesInput,
+    output = M.PutDataSetRefreshPropertiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-properties" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterUser = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "RegisterUser"),
+    input = M.RegisterUserInput,
+    output = M.RegisterUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreAnalysis = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "RestoreAnalysis"),
+    input = M.RestoreAnalysisInput,
+    output = M.RestoreAnalysisOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/restore/analyses/{AnalysisId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchActionConnectors = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "SearchActionConnectors"),
+    input = M.SearchActionConnectorsInput,
+    output = M.SearchActionConnectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/search/action-connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchAnalyses = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "SearchAnalyses"),
+    input = M.SearchAnalysesInput,
+    output = M.SearchAnalysesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/search/analyses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchDashboards = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "SearchDashboards"),
+    input = M.SearchDashboardsInput,
+    output = M.SearchDashboardsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/search/dashboards" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchDataSets = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "SearchDataSets"),
+    input = M.SearchDataSetsInput,
+    output = M.SearchDataSetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/search/data-sets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchDataSources = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "SearchDataSources"),
+    input = M.SearchDataSourcesInput,
+    output = M.SearchDataSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/search/data-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchFlows = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "SearchFlows"),
+    input = M.SearchFlowsInput,
+    output = M.SearchFlowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/flows/searchFlows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchFolders = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "SearchFolders"),
+    input = M.SearchFoldersInput,
+    output = M.SearchFoldersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/search/folders" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchGroups = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "SearchGroups"),
+    input = M.SearchGroupsInput,
+    output = M.SearchGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups-search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchTopics = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "SearchTopics"),
+    input = M.SearchTopicsInput,
+    output = M.SearchTopicsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/search/topics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAssetBundleExportJob = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "StartAssetBundleExportJob"),
+    input = M.StartAssetBundleExportJobInput,
+    output = M.StartAssetBundleExportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/asset-bundle-export-jobs/export" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAssetBundleImportJob = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "StartAssetBundleImportJob"),
+    input = M.StartAssetBundleImportJobInput,
+    output = M.StartAssetBundleImportJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/asset-bundle-import-jobs/import" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAutomationJob = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "StartAutomationJob"),
+    input = M.StartAutomationJobInput,
+    output = M.StartAutomationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/automation-groups/{AutomationGroupId}/automations/{AutomationId}/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDashboardSnapshotJob = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "StartDashboardSnapshotJob"),
+    input = M.StartDashboardSnapshotJobInput,
+    output = M.StartDashboardSnapshotJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}/snapshot-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDashboardSnapshotJobSchedule = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "StartDashboardSnapshotJobSchedule"),
+    input = M.StartDashboardSnapshotJobScheduleInput,
+    output = M.StartDashboardSnapshotJobScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}/schedules/{ScheduleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resources/{ResourceArn}/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/resources/{ResourceArn}/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountCustomization = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateAccountCustomization"),
+    input = M.UpdateAccountCustomizationInput,
+    output = M.UpdateAccountCustomizationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/customizations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountCustomPermission = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateAccountCustomPermission"),
+    input = M.UpdateAccountCustomPermissionInput,
+    output = M.UpdateAccountCustomPermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/custom-permission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateAccountSettings"),
+    input = M.UpdateAccountSettingsInput,
+    output = M.UpdateAccountSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateActionConnector = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateActionConnector"),
+    input = M.UpdateActionConnectorInput,
+    output = M.UpdateActionConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/action-connectors/{ActionConnectorId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateActionConnectorPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateActionConnectorPermissions"),
+    input = M.UpdateActionConnectorPermissionsInput,
+    output = M.UpdateActionConnectorPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/action-connectors/{ActionConnectorId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAnalysis = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateAnalysis"),
+    input = M.UpdateAnalysisInput,
+    output = M.UpdateAnalysisOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/analyses/{AnalysisId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAnalysisPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateAnalysisPermissions"),
+    input = M.UpdateAnalysisPermissionsInput,
+    output = M.UpdateAnalysisPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/analyses/{AnalysisId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplicationWithTokenExchangeGrant = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateApplicationWithTokenExchangeGrant"),
+    input = M.UpdateApplicationWithTokenExchangeGrantInput,
+    output = M.UpdateApplicationWithTokenExchangeGrantOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/application-with-token-exchange-grant" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBrand = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateBrand"),
+    input = M.UpdateBrandInput,
+    output = M.UpdateBrandOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/brands/{BrandId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBrandAssignment = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateBrandAssignment"),
+    input = M.UpdateBrandAssignmentInput,
+    output = M.UpdateBrandAssignmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/brandassignments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBrandPublishedVersion = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateBrandPublishedVersion"),
+    input = M.UpdateBrandPublishedVersionInput,
+    output = M.UpdateBrandPublishedVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/brands/{BrandId}/publishedversion" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCustomPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateCustomPermissions"),
+    input = M.UpdateCustomPermissionsInput,
+    output = M.UpdateCustomPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/custom-permissions/{CustomPermissionsName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDashboard = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateDashboard"),
+    input = M.UpdateDashboardInput,
+    output = M.UpdateDashboardOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDashboardLinks = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateDashboardLinks"),
+    input = M.UpdateDashboardLinksInput,
+    output = M.UpdateDashboardLinksOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}/linked-entities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDashboardPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateDashboardPermissions"),
+    input = M.UpdateDashboardPermissionsInput,
+    output = M.UpdateDashboardPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDashboardPublishedVersion = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateDashboardPublishedVersion"),
+    input = M.UpdateDashboardPublishedVersionInput,
+    output = M.UpdateDashboardPublishedVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/dashboards/{DashboardId}/versions/{VersionNumber}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDashboardsQAConfiguration = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateDashboardsQAConfiguration"),
+    input = M.UpdateDashboardsQAConfigurationInput,
+    output = M.UpdateDashboardsQAConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/dashboards-qa-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataSet = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateDataSet"),
+    input = M.UpdateDataSetInput,
+    output = M.UpdateDataSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataSetPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateDataSetPermissions"),
+    input = M.UpdateDataSetPermissionsInput,
+    output = M.UpdateDataSetPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataSource = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateDataSource"),
+    input = M.UpdateDataSourceInput,
+    output = M.UpdateDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/data-sources/{DataSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataSourcePermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateDataSourcePermissions"),
+    input = M.UpdateDataSourcePermissionsInput,
+    output = M.UpdateDataSourcePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/data-sources/{DataSourceId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDefaultQBusinessApplication = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateDefaultQBusinessApplication"),
+    input = M.UpdateDefaultQBusinessApplicationInput,
+    output = M.UpdateDefaultQBusinessApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/default-qbusiness-application" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFlowPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateFlowPermissions"),
+    input = M.UpdateFlowPermissionsInput,
+    output = M.UpdateFlowPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/flows/{FlowId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFolder = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateFolder"),
+    input = M.UpdateFolderInput,
+    output = M.UpdateFolderOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/folders/{FolderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFolderPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateFolderPermissions"),
+    input = M.UpdateFolderPermissionsInput,
+    output = M.UpdateFolderPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/folders/{FolderId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGroup = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateGroup"),
+    input = M.UpdateGroupInput,
+    output = M.UpdateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups/{GroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIAMPolicyAssignment = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateIAMPolicyAssignment"),
+    input = M.UpdateIAMPolicyAssignmentInput,
+    output = M.UpdateIAMPolicyAssignmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/iam-policy-assignments/{AssignmentName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIdentityPropagationConfig = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateIdentityPropagationConfig"),
+    input = M.UpdateIdentityPropagationConfigInput,
+    output = M.UpdateIdentityPropagationConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/identity-propagation-config/{Service}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIpRestriction = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateIpRestriction"),
+    input = M.UpdateIpRestrictionInput,
+    output = M.UpdateIpRestrictionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/ip-restriction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKeyRegistration = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateKeyRegistration"),
+    input = M.UpdateKeyRegistrationInput,
+    output = M.UpdateKeyRegistrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/key-registration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePublicSharingSettings = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdatePublicSharingSettings"),
+    input = M.UpdatePublicSharingSettingsInput,
+    output = M.UpdatePublicSharingSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/public-sharing-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQPersonalizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateQPersonalizationConfiguration"),
+    input = M.UpdateQPersonalizationConfigurationInput,
+    output = M.UpdateQPersonalizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/q-personalization-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQuickSightQSearchConfiguration = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateQuickSightQSearchConfiguration"),
+    input = M.UpdateQuickSightQSearchConfigurationInput,
+    output = M.UpdateQuickSightQSearchConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/quicksight-q-search-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRefreshSchedule = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateRefreshSchedule"),
+    input = M.UpdateRefreshScheduleInput,
+    output = M.UpdateRefreshScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRoleCustomPermission = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateRoleCustomPermission"),
+    input = M.UpdateRoleCustomPermissionInput,
+    output = M.UpdateRoleCustomPermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/roles/{Role}/custom-permission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSelfUpgrade = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateSelfUpgrade"),
+    input = M.UpdateSelfUpgradeInput,
+    output = M.UpdateSelfUpgradeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/update-self-upgrade-request" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSelfUpgradeConfiguration = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateSelfUpgradeConfiguration"),
+    input = M.UpdateSelfUpgradeConfigurationInput,
+    output = M.UpdateSelfUpgradeConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/self-upgrade-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSPICECapacityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateSPICECapacityConfiguration"),
+    input = M.UpdateSPICECapacityConfigurationInput,
+    output = M.UpdateSPICECapacityConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/spice-capacity-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTemplate = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateTemplate"),
+    input = M.UpdateTemplateInput,
+    output = M.UpdateTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/templates/{TemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTemplateAlias = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateTemplateAlias"),
+    input = M.UpdateTemplateAliasInput,
+    output = M.UpdateTemplateAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/templates/{TemplateId}/aliases/{AliasName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTemplatePermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateTemplatePermissions"),
+    input = M.UpdateTemplatePermissionsInput,
+    output = M.UpdateTemplatePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/templates/{TemplateId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTheme = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateTheme"),
+    input = M.UpdateThemeInput,
+    output = M.UpdateThemeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/themes/{ThemeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateThemeAlias = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateThemeAlias"),
+    input = M.UpdateThemeAliasInput,
+    output = M.UpdateThemeAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/themes/{ThemeId}/aliases/{AliasName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateThemePermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateThemePermissions"),
+    input = M.UpdateThemePermissionsInput,
+    output = M.UpdateThemePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/themes/{ThemeId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTopic = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateTopic"),
+    input = M.UpdateTopicInput,
+    output = M.UpdateTopicOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/topics/{TopicId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTopicPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateTopicPermissions"),
+    input = M.UpdateTopicPermissionsInput,
+    output = M.UpdateTopicPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/topics/{TopicId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTopicRefreshSchedule = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateTopicRefreshSchedule"),
+    input = M.UpdateTopicRefreshScheduleInput,
+    output = M.UpdateTopicRefreshScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/topics/{TopicId}/schedules/{DatasetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUser = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateUser"),
+    input = M.UpdateUserInput,
+    output = M.UpdateUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/users/{UserName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserCustomPermission = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateUserCustomPermission"),
+    input = M.UpdateUserCustomPermissionInput,
+    output = M.UpdateUserCustomPermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/users/{UserName}/custom-permission" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVPCConnection = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateVPCConnection"),
+    input = M.UpdateVPCConnectionInput,
+    output = M.UpdateVPCConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/vpc-connections/{VPCConnectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

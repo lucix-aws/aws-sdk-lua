@@ -5022,4 +5022,542 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.databrew", "AWSGlueDataBrew"),
+    version = "2017-07-25",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDeleteRecipeVersion = schema.operation({
+    id = id.from("com.amazonaws.databrew", "BatchDeleteRecipeVersion"),
+    input = M.BatchDeleteRecipeVersionInput,
+    output = M.BatchDeleteRecipeVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/recipes/{Name}/batchDeleteRecipeVersion" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataset = schema.operation({
+    id = id.from("com.amazonaws.databrew", "CreateDataset"),
+    input = M.CreateDatasetInput,
+    output = M.CreateDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/datasets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProfileJob = schema.operation({
+    id = id.from("com.amazonaws.databrew", "CreateProfileJob"),
+    input = M.CreateProfileJobInput,
+    output = M.CreateProfileJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/profileJobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateProject = schema.operation({
+    id = id.from("com.amazonaws.databrew", "CreateProject"),
+    input = M.CreateProjectInput,
+    output = M.CreateProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/projects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRecipe = schema.operation({
+    id = id.from("com.amazonaws.databrew", "CreateRecipe"),
+    input = M.CreateRecipeInput,
+    output = M.CreateRecipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/recipes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRecipeJob = schema.operation({
+    id = id.from("com.amazonaws.databrew", "CreateRecipeJob"),
+    input = M.CreateRecipeJobInput,
+    output = M.CreateRecipeJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/recipeJobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRuleset = schema.operation({
+    id = id.from("com.amazonaws.databrew", "CreateRuleset"),
+    input = M.CreateRulesetInput,
+    output = M.CreateRulesetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/rulesets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSchedule = schema.operation({
+    id = id.from("com.amazonaws.databrew", "CreateSchedule"),
+    input = M.CreateScheduleInput,
+    output = M.CreateScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/schedules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataset = schema.operation({
+    id = id.from("com.amazonaws.databrew", "DeleteDataset"),
+    input = M.DeleteDatasetInput,
+    output = M.DeleteDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/datasets/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteJob = schema.operation({
+    id = id.from("com.amazonaws.databrew", "DeleteJob"),
+    input = M.DeleteJobInput,
+    output = M.DeleteJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/jobs/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteProject = schema.operation({
+    id = id.from("com.amazonaws.databrew", "DeleteProject"),
+    input = M.DeleteProjectInput,
+    output = M.DeleteProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/projects/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecipeVersion = schema.operation({
+    id = id.from("com.amazonaws.databrew", "DeleteRecipeVersion"),
+    input = M.DeleteRecipeVersionInput,
+    output = M.DeleteRecipeVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/recipes/{Name}/recipeVersion/{RecipeVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRuleset = schema.operation({
+    id = id.from("com.amazonaws.databrew", "DeleteRuleset"),
+    input = M.DeleteRulesetInput,
+    output = M.DeleteRulesetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/rulesets/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSchedule = schema.operation({
+    id = id.from("com.amazonaws.databrew", "DeleteSchedule"),
+    input = M.DeleteScheduleInput,
+    output = M.DeleteScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/schedules/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataset = schema.operation({
+    id = id.from("com.amazonaws.databrew", "DescribeDataset"),
+    input = M.DescribeDatasetInput,
+    output = M.DescribeDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/datasets/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJob = schema.operation({
+    id = id.from("com.amazonaws.databrew", "DescribeJob"),
+    input = M.DescribeJobInput,
+    output = M.DescribeJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobs/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobRun = schema.operation({
+    id = id.from("com.amazonaws.databrew", "DescribeJobRun"),
+    input = M.DescribeJobRunInput,
+    output = M.DescribeJobRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobs/{Name}/jobRun/{RunId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeProject = schema.operation({
+    id = id.from("com.amazonaws.databrew", "DescribeProject"),
+    input = M.DescribeProjectInput,
+    output = M.DescribeProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/projects/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRecipe = schema.operation({
+    id = id.from("com.amazonaws.databrew", "DescribeRecipe"),
+    input = M.DescribeRecipeInput,
+    output = M.DescribeRecipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/recipes/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRuleset = schema.operation({
+    id = id.from("com.amazonaws.databrew", "DescribeRuleset"),
+    input = M.DescribeRulesetInput,
+    output = M.DescribeRulesetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/rulesets/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSchedule = schema.operation({
+    id = id.from("com.amazonaws.databrew", "DescribeSchedule"),
+    input = M.DescribeScheduleInput,
+    output = M.DescribeScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/schedules/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasets = schema.operation({
+    id = id.from("com.amazonaws.databrew", "ListDatasets"),
+    input = M.ListDatasetsInput,
+    output = M.ListDatasetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/datasets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobRuns = schema.operation({
+    id = id.from("com.amazonaws.databrew", "ListJobRuns"),
+    input = M.ListJobRunsInput,
+    output = M.ListJobRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobs/{Name}/jobRuns" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobs = schema.operation({
+    id = id.from("com.amazonaws.databrew", "ListJobs"),
+    input = M.ListJobsInput,
+    output = M.ListJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProjects = schema.operation({
+    id = id.from("com.amazonaws.databrew", "ListProjects"),
+    input = M.ListProjectsInput,
+    output = M.ListProjectsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/projects" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecipes = schema.operation({
+    id = id.from("com.amazonaws.databrew", "ListRecipes"),
+    input = M.ListRecipesInput,
+    output = M.ListRecipesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/recipes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecipeVersions = schema.operation({
+    id = id.from("com.amazonaws.databrew", "ListRecipeVersions"),
+    input = M.ListRecipeVersionsInput,
+    output = M.ListRecipeVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/recipeVersions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRulesets = schema.operation({
+    id = id.from("com.amazonaws.databrew", "ListRulesets"),
+    input = M.ListRulesetsInput,
+    output = M.ListRulesetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/rulesets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSchedules = schema.operation({
+    id = id.from("com.amazonaws.databrew", "ListSchedules"),
+    input = M.ListSchedulesInput,
+    output = M.ListSchedulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/schedules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.databrew", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PublishRecipe = schema.operation({
+    id = id.from("com.amazonaws.databrew", "PublishRecipe"),
+    input = M.PublishRecipeInput,
+    output = M.PublishRecipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/recipes/{Name}/publishRecipe" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendProjectSessionAction = schema.operation({
+    id = id.from("com.amazonaws.databrew", "SendProjectSessionAction"),
+    input = M.SendProjectSessionActionInput,
+    output = M.SendProjectSessionActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/projects/{Name}/sendProjectSessionAction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartJobRun = schema.operation({
+    id = id.from("com.amazonaws.databrew", "StartJobRun"),
+    input = M.StartJobRunInput,
+    output = M.StartJobRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/jobs/{Name}/startJobRun" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartProjectSession = schema.operation({
+    id = id.from("com.amazonaws.databrew", "StartProjectSession"),
+    input = M.StartProjectSessionInput,
+    output = M.StartProjectSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/projects/{Name}/startProjectSession" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopJobRun = schema.operation({
+    id = id.from("com.amazonaws.databrew", "StopJobRun"),
+    input = M.StopJobRunInput,
+    output = M.StopJobRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/jobs/{Name}/jobRun/{RunId}/stopJobRun" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.databrew", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.databrew", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataset = schema.operation({
+    id = id.from("com.amazonaws.databrew", "UpdateDataset"),
+    input = M.UpdateDatasetInput,
+    output = M.UpdateDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/datasets/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProfileJob = schema.operation({
+    id = id.from("com.amazonaws.databrew", "UpdateProfileJob"),
+    input = M.UpdateProfileJobInput,
+    output = M.UpdateProfileJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/profileJobs/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProject = schema.operation({
+    id = id.from("com.amazonaws.databrew", "UpdateProject"),
+    input = M.UpdateProjectInput,
+    output = M.UpdateProjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/projects/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecipe = schema.operation({
+    id = id.from("com.amazonaws.databrew", "UpdateRecipe"),
+    input = M.UpdateRecipeInput,
+    output = M.UpdateRecipeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/recipes/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecipeJob = schema.operation({
+    id = id.from("com.amazonaws.databrew", "UpdateRecipeJob"),
+    input = M.UpdateRecipeJobInput,
+    output = M.UpdateRecipeJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/recipeJobs/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRuleset = schema.operation({
+    id = id.from("com.amazonaws.databrew", "UpdateRuleset"),
+    input = M.UpdateRulesetInput,
+    output = M.UpdateRulesetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/rulesets/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSchedule = schema.operation({
+    id = id.from("com.amazonaws.databrew", "UpdateSchedule"),
+    input = M.UpdateScheduleInput,
+    output = M.UpdateScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/schedules/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

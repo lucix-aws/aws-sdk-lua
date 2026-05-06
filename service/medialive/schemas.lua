@@ -29489,4 +29489,1490 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.medialive", "MediaLive"),
+    version = "2017-10-14",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptInputDeviceTransfer = schema.operation({
+    id = id.from("com.amazonaws.medialive", "AcceptInputDeviceTransfer"),
+    input = M.AcceptInputDeviceTransferInput,
+    output = M.AcceptInputDeviceTransferOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/inputDevices/{InputDeviceId}/accept" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDelete = schema.operation({
+    id = id.from("com.amazonaws.medialive", "BatchDelete"),
+    input = M.BatchDeleteInput,
+    output = M.BatchDeleteOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/batch/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchStart = schema.operation({
+    id = id.from("com.amazonaws.medialive", "BatchStart"),
+    input = M.BatchStartInput,
+    output = M.BatchStartOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/batch/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchStop = schema.operation({
+    id = id.from("com.amazonaws.medialive", "BatchStop"),
+    input = M.BatchStopInput,
+    output = M.BatchStopOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/batch/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateSchedule = schema.operation({
+    id = id.from("com.amazonaws.medialive", "BatchUpdateSchedule"),
+    input = M.BatchUpdateScheduleInput,
+    output = M.BatchUpdateScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/channels/{ChannelId}/schedule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelInputDeviceTransfer = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CancelInputDeviceTransfer"),
+    input = M.CancelInputDeviceTransferInput,
+    output = M.CancelInputDeviceTransferOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/inputDevices/{InputDeviceId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ClaimDevice = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ClaimDevice"),
+    input = M.ClaimDeviceInput,
+    output = M.ClaimDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/claimDevice" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChannel = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateChannel"),
+    input = M.CreateChannelInput,
+    output = M.CreateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateChannelPlacementGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateChannelPlacementGroup"),
+    input = M.CreateChannelPlacementGroupInput,
+    output = M.CreateChannelPlacementGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/clusters/{ClusterId}/channelplacementgroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCloudWatchAlarmTemplate = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateCloudWatchAlarmTemplate"),
+    input = M.CreateCloudWatchAlarmTemplateInput,
+    output = M.CreateCloudWatchAlarmTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/cloudwatch-alarm-templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCloudWatchAlarmTemplateGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateCloudWatchAlarmTemplateGroup"),
+    input = M.CreateCloudWatchAlarmTemplateGroupInput,
+    output = M.CreateCloudWatchAlarmTemplateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/cloudwatch-alarm-template-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCluster = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateCluster"),
+    input = M.CreateClusterInput,
+    output = M.CreateClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/clusters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventBridgeRuleTemplate = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateEventBridgeRuleTemplate"),
+    input = M.CreateEventBridgeRuleTemplateInput,
+    output = M.CreateEventBridgeRuleTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/eventbridge-rule-templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventBridgeRuleTemplateGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateEventBridgeRuleTemplateGroup"),
+    input = M.CreateEventBridgeRuleTemplateGroupInput,
+    output = M.CreateEventBridgeRuleTemplateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/eventbridge-rule-template-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInput = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateInput"),
+    input = M.CreateInputInput,
+    output = M.CreateInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/inputs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInputSecurityGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateInputSecurityGroup"),
+    input = M.CreateInputSecurityGroupInput,
+    output = M.CreateInputSecurityGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/inputSecurityGroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMultiplex = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateMultiplex"),
+    input = M.CreateMultiplexInput,
+    output = M.CreateMultiplexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/multiplexes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMultiplexProgram = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateMultiplexProgram"),
+    input = M.CreateMultiplexProgramInput,
+    output = M.CreateMultiplexProgramOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/multiplexes/{MultiplexId}/programs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNetwork = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateNetwork"),
+    input = M.CreateNetworkInput,
+    output = M.CreateNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/networks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNode = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateNode"),
+    input = M.CreateNodeInput,
+    output = M.CreateNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/clusters/{ClusterId}/nodes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNodeRegistrationScript = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateNodeRegistrationScript"),
+    input = M.CreateNodeRegistrationScriptInput,
+    output = M.CreateNodeRegistrationScriptOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/clusters/{ClusterId}/nodeRegistrationScript" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePartnerInput = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreatePartnerInput"),
+    input = M.CreatePartnerInputInput,
+    output = M.CreatePartnerInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/inputs/{InputId}/partners" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSdiSource = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateSdiSource"),
+    input = M.CreateSdiSourceInput,
+    output = M.CreateSdiSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/sdiSources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSignalMap = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateSignalMap"),
+    input = M.CreateSignalMapInput,
+    output = M.CreateSignalMapOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/signal-maps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTags = schema.operation({
+    id = id.from("com.amazonaws.medialive", "CreateTags"),
+    input = M.CreateTagsInput,
+    output = M.CreateTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChannel = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteChannel"),
+    input = M.DeleteChannelInput,
+    output = M.DeleteChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/channels/{ChannelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteChannelPlacementGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteChannelPlacementGroup"),
+    input = M.DeleteChannelPlacementGroupInput,
+    output = M.DeleteChannelPlacementGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/clusters/{ClusterId}/channelplacementgroups/{ChannelPlacementGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCloudWatchAlarmTemplate = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteCloudWatchAlarmTemplate"),
+    input = M.DeleteCloudWatchAlarmTemplateInput,
+    output = M.DeleteCloudWatchAlarmTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/cloudwatch-alarm-templates/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCloudWatchAlarmTemplateGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteCloudWatchAlarmTemplateGroup"),
+    input = M.DeleteCloudWatchAlarmTemplateGroupInput,
+    output = M.DeleteCloudWatchAlarmTemplateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/cloudwatch-alarm-template-groups/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCluster = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteCluster"),
+    input = M.DeleteClusterInput,
+    output = M.DeleteClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/clusters/{ClusterId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventBridgeRuleTemplate = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteEventBridgeRuleTemplate"),
+    input = M.DeleteEventBridgeRuleTemplateInput,
+    output = M.DeleteEventBridgeRuleTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/eventbridge-rule-templates/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventBridgeRuleTemplateGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteEventBridgeRuleTemplateGroup"),
+    input = M.DeleteEventBridgeRuleTemplateGroupInput,
+    output = M.DeleteEventBridgeRuleTemplateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/eventbridge-rule-template-groups/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInput = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteInput"),
+    input = M.DeleteInputInput,
+    output = M.DeleteInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/inputs/{InputId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInputSecurityGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteInputSecurityGroup"),
+    input = M.DeleteInputSecurityGroupInput,
+    output = M.DeleteInputSecurityGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/inputSecurityGroups/{InputSecurityGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMultiplex = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteMultiplex"),
+    input = M.DeleteMultiplexInput,
+    output = M.DeleteMultiplexOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/multiplexes/{MultiplexId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMultiplexProgram = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteMultiplexProgram"),
+    input = M.DeleteMultiplexProgramInput,
+    output = M.DeleteMultiplexProgramOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/multiplexes/{MultiplexId}/programs/{ProgramName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNetwork = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteNetwork"),
+    input = M.DeleteNetworkInput,
+    output = M.DeleteNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/networks/{NetworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNode = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteNode"),
+    input = M.DeleteNodeInput,
+    output = M.DeleteNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/clusters/{ClusterId}/nodes/{NodeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteReservation = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteReservation"),
+    input = M.DeleteReservationInput,
+    output = M.DeleteReservationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/reservations/{ReservationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSchedule = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteSchedule"),
+    input = M.DeleteScheduleInput,
+    output = M.DeleteScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/channels/{ChannelId}/schedule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSdiSource = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteSdiSource"),
+    input = M.DeleteSdiSourceInput,
+    output = M.DeleteSdiSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/sdiSources/{SdiSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSignalMap = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteSignalMap"),
+    input = M.DeleteSignalMapInput,
+    output = M.DeleteSignalMapOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/signal-maps/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTags = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DeleteTags"),
+    input = M.DeleteTagsInput,
+    output = M.DeleteTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAccountConfiguration = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeAccountConfiguration"),
+    input = M.DescribeAccountConfigurationInput,
+    output = M.DescribeAccountConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/accountConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChannel = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeChannel"),
+    input = M.DescribeChannelInput,
+    output = M.DescribeChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/channels/{ChannelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChannelPlacementGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeChannelPlacementGroup"),
+    input = M.DescribeChannelPlacementGroupInput,
+    output = M.DescribeChannelPlacementGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/clusters/{ClusterId}/channelplacementgroups/{ChannelPlacementGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCluster = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeCluster"),
+    input = M.DescribeClusterInput,
+    output = M.DescribeClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/clusters/{ClusterId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInput = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeInput"),
+    input = M.DescribeInputInput,
+    output = M.DescribeInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/inputs/{InputId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInputDevice = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeInputDevice"),
+    input = M.DescribeInputDeviceInput,
+    output = M.DescribeInputDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/inputDevices/{InputDeviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInputDeviceThumbnail = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeInputDeviceThumbnail"),
+    input = M.DescribeInputDeviceThumbnailInput,
+    output = M.DescribeInputDeviceThumbnailOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/inputDevices/{InputDeviceId}/thumbnailData" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeInputSecurityGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeInputSecurityGroup"),
+    input = M.DescribeInputSecurityGroupInput,
+    output = M.DescribeInputSecurityGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/inputSecurityGroups/{InputSecurityGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMultiplex = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeMultiplex"),
+    input = M.DescribeMultiplexInput,
+    output = M.DescribeMultiplexOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/multiplexes/{MultiplexId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMultiplexProgram = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeMultiplexProgram"),
+    input = M.DescribeMultiplexProgramInput,
+    output = M.DescribeMultiplexProgramOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/multiplexes/{MultiplexId}/programs/{ProgramName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNetwork = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeNetwork"),
+    input = M.DescribeNetworkInput,
+    output = M.DescribeNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/networks/{NetworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNode = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeNode"),
+    input = M.DescribeNodeInput,
+    output = M.DescribeNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/clusters/{ClusterId}/nodes/{NodeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeOffering = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeOffering"),
+    input = M.DescribeOfferingInput,
+    output = M.DescribeOfferingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/offerings/{OfferingId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReservation = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeReservation"),
+    input = M.DescribeReservationInput,
+    output = M.DescribeReservationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/reservations/{ReservationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSchedule = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeSchedule"),
+    input = M.DescribeScheduleInput,
+    output = M.DescribeScheduleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/channels/{ChannelId}/schedule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSdiSource = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeSdiSource"),
+    input = M.DescribeSdiSourceInput,
+    output = M.DescribeSdiSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/sdiSources/{SdiSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeThumbnails = schema.operation({
+    id = id.from("com.amazonaws.medialive", "DescribeThumbnails"),
+    input = M.DescribeThumbnailsInput,
+    output = M.DescribeThumbnailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/channels/{ChannelId}/thumbnails" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCloudWatchAlarmTemplate = schema.operation({
+    id = id.from("com.amazonaws.medialive", "GetCloudWatchAlarmTemplate"),
+    input = M.GetCloudWatchAlarmTemplateInput,
+    output = M.GetCloudWatchAlarmTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/cloudwatch-alarm-templates/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCloudWatchAlarmTemplateGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "GetCloudWatchAlarmTemplateGroup"),
+    input = M.GetCloudWatchAlarmTemplateGroupInput,
+    output = M.GetCloudWatchAlarmTemplateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/cloudwatch-alarm-template-groups/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventBridgeRuleTemplate = schema.operation({
+    id = id.from("com.amazonaws.medialive", "GetEventBridgeRuleTemplate"),
+    input = M.GetEventBridgeRuleTemplateInput,
+    output = M.GetEventBridgeRuleTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/eventbridge-rule-templates/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEventBridgeRuleTemplateGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "GetEventBridgeRuleTemplateGroup"),
+    input = M.GetEventBridgeRuleTemplateGroupInput,
+    output = M.GetEventBridgeRuleTemplateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/eventbridge-rule-template-groups/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSignalMap = schema.operation({
+    id = id.from("com.amazonaws.medialive", "GetSignalMap"),
+    input = M.GetSignalMapInput,
+    output = M.GetSignalMapOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/signal-maps/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAlerts = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListAlerts"),
+    input = M.ListAlertsInput,
+    output = M.ListAlertsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/channels/{ChannelId}/alerts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannelPlacementGroups = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListChannelPlacementGroups"),
+    input = M.ListChannelPlacementGroupsInput,
+    output = M.ListChannelPlacementGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/clusters/{ClusterId}/channelplacementgroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannels = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListChannels"),
+    input = M.ListChannelsInput,
+    output = M.ListChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCloudWatchAlarmTemplateGroups = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListCloudWatchAlarmTemplateGroups"),
+    input = M.ListCloudWatchAlarmTemplateGroupsInput,
+    output = M.ListCloudWatchAlarmTemplateGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/cloudwatch-alarm-template-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCloudWatchAlarmTemplates = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListCloudWatchAlarmTemplates"),
+    input = M.ListCloudWatchAlarmTemplatesInput,
+    output = M.ListCloudWatchAlarmTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/cloudwatch-alarm-templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusterAlerts = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListClusterAlerts"),
+    input = M.ListClusterAlertsInput,
+    output = M.ListClusterAlertsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/clusters/{ClusterId}/alerts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusters = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListClusters"),
+    input = M.ListClustersInput,
+    output = M.ListClustersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/clusters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventBridgeRuleTemplateGroups = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListEventBridgeRuleTemplateGroups"),
+    input = M.ListEventBridgeRuleTemplateGroupsInput,
+    output = M.ListEventBridgeRuleTemplateGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/eventbridge-rule-template-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventBridgeRuleTemplates = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListEventBridgeRuleTemplates"),
+    input = M.ListEventBridgeRuleTemplatesInput,
+    output = M.ListEventBridgeRuleTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/eventbridge-rule-templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInputDevices = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListInputDevices"),
+    input = M.ListInputDevicesInput,
+    output = M.ListInputDevicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/inputDevices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInputDeviceTransfers = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListInputDeviceTransfers"),
+    input = M.ListInputDeviceTransfersInput,
+    output = M.ListInputDeviceTransfersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/inputDeviceTransfers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInputs = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListInputs"),
+    input = M.ListInputsInput,
+    output = M.ListInputsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/inputs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInputSecurityGroups = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListInputSecurityGroups"),
+    input = M.ListInputSecurityGroupsInput,
+    output = M.ListInputSecurityGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/inputSecurityGroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMultiplexAlerts = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListMultiplexAlerts"),
+    input = M.ListMultiplexAlertsInput,
+    output = M.ListMultiplexAlertsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/multiplexes/{MultiplexId}/alerts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMultiplexes = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListMultiplexes"),
+    input = M.ListMultiplexesInput,
+    output = M.ListMultiplexesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/multiplexes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMultiplexPrograms = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListMultiplexPrograms"),
+    input = M.ListMultiplexProgramsInput,
+    output = M.ListMultiplexProgramsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/multiplexes/{MultiplexId}/programs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworks = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListNetworks"),
+    input = M.ListNetworksInput,
+    output = M.ListNetworksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/networks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNodes = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListNodes"),
+    input = M.ListNodesInput,
+    output = M.ListNodesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/clusters/{ClusterId}/nodes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOfferings = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListOfferings"),
+    input = M.ListOfferingsInput,
+    output = M.ListOfferingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/offerings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReservations = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListReservations"),
+    input = M.ListReservationsInput,
+    output = M.ListReservationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/reservations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSdiSources = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListSdiSources"),
+    input = M.ListSdiSourcesInput,
+    output = M.ListSdiSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/sdiSources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSignalMaps = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListSignalMaps"),
+    input = M.ListSignalMapsInput,
+    output = M.ListSignalMapsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/signal-maps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVersions = schema.operation({
+    id = id.from("com.amazonaws.medialive", "ListVersions"),
+    input = M.ListVersionsInput,
+    output = M.ListVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prod/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PurchaseOffering = schema.operation({
+    id = id.from("com.amazonaws.medialive", "PurchaseOffering"),
+    input = M.PurchaseOfferingInput,
+    output = M.PurchaseOfferingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/offerings/{OfferingId}/purchase" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RebootInputDevice = schema.operation({
+    id = id.from("com.amazonaws.medialive", "RebootInputDevice"),
+    input = M.RebootInputDeviceInput,
+    output = M.RebootInputDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/inputDevices/{InputDeviceId}/reboot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectInputDeviceTransfer = schema.operation({
+    id = id.from("com.amazonaws.medialive", "RejectInputDeviceTransfer"),
+    input = M.RejectInputDeviceTransferInput,
+    output = M.RejectInputDeviceTransferOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/inputDevices/{InputDeviceId}/reject" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestartChannelPipelines = schema.operation({
+    id = id.from("com.amazonaws.medialive", "RestartChannelPipelines"),
+    input = M.RestartChannelPipelinesInput,
+    output = M.RestartChannelPipelinesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/channels/{ChannelId}/restartChannelPipelines" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartChannel = schema.operation({
+    id = id.from("com.amazonaws.medialive", "StartChannel"),
+    input = M.StartChannelInput,
+    output = M.StartChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/channels/{ChannelId}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDeleteMonitorDeployment = schema.operation({
+    id = id.from("com.amazonaws.medialive", "StartDeleteMonitorDeployment"),
+    input = M.StartDeleteMonitorDeploymentInput,
+    output = M.StartDeleteMonitorDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prod/signal-maps/{Identifier}/monitor-deployment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartInputDevice = schema.operation({
+    id = id.from("com.amazonaws.medialive", "StartInputDevice"),
+    input = M.StartInputDeviceInput,
+    output = M.StartInputDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/inputDevices/{InputDeviceId}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartInputDeviceMaintenanceWindow = schema.operation({
+    id = id.from("com.amazonaws.medialive", "StartInputDeviceMaintenanceWindow"),
+    input = M.StartInputDeviceMaintenanceWindowInput,
+    output = M.StartInputDeviceMaintenanceWindowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/inputDevices/{InputDeviceId}/startInputDeviceMaintenanceWindow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMonitorDeployment = schema.operation({
+    id = id.from("com.amazonaws.medialive", "StartMonitorDeployment"),
+    input = M.StartMonitorDeploymentInput,
+    output = M.StartMonitorDeploymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/signal-maps/{Identifier}/monitor-deployment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMultiplex = schema.operation({
+    id = id.from("com.amazonaws.medialive", "StartMultiplex"),
+    input = M.StartMultiplexInput,
+    output = M.StartMultiplexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/multiplexes/{MultiplexId}/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartUpdateSignalMap = schema.operation({
+    id = id.from("com.amazonaws.medialive", "StartUpdateSignalMap"),
+    input = M.StartUpdateSignalMapInput,
+    output = M.StartUpdateSignalMapOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/prod/signal-maps/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopChannel = schema.operation({
+    id = id.from("com.amazonaws.medialive", "StopChannel"),
+    input = M.StopChannelInput,
+    output = M.StopChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/channels/{ChannelId}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopInputDevice = schema.operation({
+    id = id.from("com.amazonaws.medialive", "StopInputDevice"),
+    input = M.StopInputDeviceInput,
+    output = M.StopInputDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/inputDevices/{InputDeviceId}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopMultiplex = schema.operation({
+    id = id.from("com.amazonaws.medialive", "StopMultiplex"),
+    input = M.StopMultiplexInput,
+    output = M.StopMultiplexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/multiplexes/{MultiplexId}/stop" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TransferInputDevice = schema.operation({
+    id = id.from("com.amazonaws.medialive", "TransferInputDevice"),
+    input = M.TransferInputDeviceInput,
+    output = M.TransferInputDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prod/inputDevices/{InputDeviceId}/transfer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAccountConfiguration = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateAccountConfiguration"),
+    input = M.UpdateAccountConfigurationInput,
+    output = M.UpdateAccountConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/accountConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChannel = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateChannel"),
+    input = M.UpdateChannelInput,
+    output = M.UpdateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/channels/{ChannelId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChannelClass = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateChannelClass"),
+    input = M.UpdateChannelClassInput,
+    output = M.UpdateChannelClassOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/channels/{ChannelId}/channelClass" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChannelPlacementGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateChannelPlacementGroup"),
+    input = M.UpdateChannelPlacementGroupInput,
+    output = M.UpdateChannelPlacementGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/clusters/{ClusterId}/channelplacementgroups/{ChannelPlacementGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCloudWatchAlarmTemplate = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateCloudWatchAlarmTemplate"),
+    input = M.UpdateCloudWatchAlarmTemplateInput,
+    output = M.UpdateCloudWatchAlarmTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/prod/cloudwatch-alarm-templates/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCloudWatchAlarmTemplateGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateCloudWatchAlarmTemplateGroup"),
+    input = M.UpdateCloudWatchAlarmTemplateGroupInput,
+    output = M.UpdateCloudWatchAlarmTemplateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/prod/cloudwatch-alarm-template-groups/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCluster = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateCluster"),
+    input = M.UpdateClusterInput,
+    output = M.UpdateClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/clusters/{ClusterId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEventBridgeRuleTemplate = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateEventBridgeRuleTemplate"),
+    input = M.UpdateEventBridgeRuleTemplateInput,
+    output = M.UpdateEventBridgeRuleTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/prod/eventbridge-rule-templates/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEventBridgeRuleTemplateGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateEventBridgeRuleTemplateGroup"),
+    input = M.UpdateEventBridgeRuleTemplateGroupInput,
+    output = M.UpdateEventBridgeRuleTemplateGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/prod/eventbridge-rule-template-groups/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInput = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateInput"),
+    input = M.UpdateInputInput,
+    output = M.UpdateInputOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/inputs/{InputId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInputDevice = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateInputDevice"),
+    input = M.UpdateInputDeviceInput,
+    output = M.UpdateInputDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/inputDevices/{InputDeviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInputSecurityGroup = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateInputSecurityGroup"),
+    input = M.UpdateInputSecurityGroupInput,
+    output = M.UpdateInputSecurityGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/inputSecurityGroups/{InputSecurityGroupId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMultiplex = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateMultiplex"),
+    input = M.UpdateMultiplexInput,
+    output = M.UpdateMultiplexOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/multiplexes/{MultiplexId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMultiplexProgram = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateMultiplexProgram"),
+    input = M.UpdateMultiplexProgramInput,
+    output = M.UpdateMultiplexProgramOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/multiplexes/{MultiplexId}/programs/{ProgramName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNetwork = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateNetwork"),
+    input = M.UpdateNetworkInput,
+    output = M.UpdateNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/networks/{NetworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNode = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateNode"),
+    input = M.UpdateNodeInput,
+    output = M.UpdateNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/clusters/{ClusterId}/nodes/{NodeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNodeState = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateNodeState"),
+    input = M.UpdateNodeStateInput,
+    output = M.UpdateNodeStateOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/clusters/{ClusterId}/nodes/{NodeId}/state" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateReservation = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateReservation"),
+    input = M.UpdateReservationInput,
+    output = M.UpdateReservationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/reservations/{ReservationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSdiSource = schema.operation({
+    id = id.from("com.amazonaws.medialive", "UpdateSdiSource"),
+    input = M.UpdateSdiSourceInput,
+    output = M.UpdateSdiSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/prod/sdiSources/{SdiSourceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

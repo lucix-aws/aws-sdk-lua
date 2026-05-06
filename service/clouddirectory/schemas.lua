@@ -6563,4 +6563,806 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.clouddirectory", "AmazonCloudDirectory_20170111"),
+    version = "2017-01-11",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddFacetToObject = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "AddFacetToObject"),
+    input = M.AddFacetToObjectInput,
+    output = M.AddFacetToObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/object/facets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ApplySchema = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ApplySchema"),
+    input = M.ApplySchemaInput,
+    output = M.ApplySchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/schema/apply" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachObject = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "AttachObject"),
+    input = M.AttachObjectInput,
+    output = M.AttachObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/object/attach" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachPolicy = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "AttachPolicy"),
+    input = M.AttachPolicyInput,
+    output = M.AttachPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/policy/attach" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachToIndex = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "AttachToIndex"),
+    input = M.AttachToIndexInput,
+    output = M.AttachToIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/index/attach" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachTypedLink = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "AttachTypedLink"),
+    input = M.AttachTypedLinkInput,
+    output = M.AttachTypedLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/typedlink/attach" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchRead = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "BatchRead"),
+    input = M.BatchReadInput,
+    output = M.BatchReadOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/batchread" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchWrite = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "BatchWrite"),
+    input = M.BatchWriteInput,
+    output = M.BatchWriteOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/batchwrite" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDirectory = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "CreateDirectory"),
+    input = M.CreateDirectoryInput,
+    output = M.CreateDirectoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/directory/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFacet = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "CreateFacet"),
+    input = M.CreateFacetInput,
+    output = M.CreateFacetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/facet/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIndex = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "CreateIndex"),
+    input = M.CreateIndexInput,
+    output = M.CreateIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/index" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateObject = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "CreateObject"),
+    input = M.CreateObjectInput,
+    output = M.CreateObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/object" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSchema = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "CreateSchema"),
+    input = M.CreateSchemaInput,
+    output = M.CreateSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/schema/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTypedLinkFacet = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "CreateTypedLinkFacet"),
+    input = M.CreateTypedLinkFacetInput,
+    output = M.CreateTypedLinkFacetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/typedlink/facet/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDirectory = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "DeleteDirectory"),
+    input = M.DeleteDirectoryInput,
+    output = M.DeleteDirectoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/directory" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFacet = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "DeleteFacet"),
+    input = M.DeleteFacetInput,
+    output = M.DeleteFacetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/facet/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteObject = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "DeleteObject"),
+    input = M.DeleteObjectInput,
+    output = M.DeleteObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/object/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSchema = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "DeleteSchema"),
+    input = M.DeleteSchemaInput,
+    output = M.DeleteSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/schema" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTypedLinkFacet = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "DeleteTypedLinkFacet"),
+    input = M.DeleteTypedLinkFacetInput,
+    output = M.DeleteTypedLinkFacetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/typedlink/facet/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachFromIndex = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "DetachFromIndex"),
+    input = M.DetachFromIndexInput,
+    output = M.DetachFromIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/index/detach" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachObject = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "DetachObject"),
+    input = M.DetachObjectInput,
+    output = M.DetachObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/object/detach" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachPolicy = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "DetachPolicy"),
+    input = M.DetachPolicyInput,
+    output = M.DetachPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/policy/detach" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachTypedLink = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "DetachTypedLink"),
+    input = M.DetachTypedLinkInput,
+    output = M.DetachTypedLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/typedlink/detach" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableDirectory = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "DisableDirectory"),
+    input = M.DisableDirectoryInput,
+    output = M.DisableDirectoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/directory/disable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableDirectory = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "EnableDirectory"),
+    input = M.EnableDirectoryInput,
+    output = M.EnableDirectoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/directory/enable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAppliedSchemaVersion = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "GetAppliedSchemaVersion"),
+    input = M.GetAppliedSchemaVersionInput,
+    output = M.GetAppliedSchemaVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/schema/getappliedschema" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDirectory = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "GetDirectory"),
+    input = M.GetDirectoryInput,
+    output = M.GetDirectoryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/directory/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFacet = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "GetFacet"),
+    input = M.GetFacetInput,
+    output = M.GetFacetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/facet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLinkAttributes = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "GetLinkAttributes"),
+    input = M.GetLinkAttributesInput,
+    output = M.GetLinkAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/typedlink/attributes/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetObjectAttributes = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "GetObjectAttributes"),
+    input = M.GetObjectAttributesInput,
+    output = M.GetObjectAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/object/attributes/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetObjectInformation = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "GetObjectInformation"),
+    input = M.GetObjectInformationInput,
+    output = M.GetObjectInformationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/object/information" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSchemaAsJson = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "GetSchemaAsJson"),
+    input = M.GetSchemaAsJsonInput,
+    output = M.GetSchemaAsJsonOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/schema/json" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTypedLinkFacetInformation = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "GetTypedLinkFacetInformation"),
+    input = M.GetTypedLinkFacetInformationInput,
+    output = M.GetTypedLinkFacetInformationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/typedlink/facet/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAppliedSchemaArns = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListAppliedSchemaArns"),
+    input = M.ListAppliedSchemaArnsInput,
+    output = M.ListAppliedSchemaArnsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/schema/applied" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttachedIndices = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListAttachedIndices"),
+    input = M.ListAttachedIndicesInput,
+    output = M.ListAttachedIndicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/object/indices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDevelopmentSchemaArns = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListDevelopmentSchemaArns"),
+    input = M.ListDevelopmentSchemaArnsInput,
+    output = M.ListDevelopmentSchemaArnsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/schema/development" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDirectories = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListDirectories"),
+    input = M.ListDirectoriesInput,
+    output = M.ListDirectoriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/directory/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFacetAttributes = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListFacetAttributes"),
+    input = M.ListFacetAttributesInput,
+    output = M.ListFacetAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/facet/attributes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFacetNames = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListFacetNames"),
+    input = M.ListFacetNamesInput,
+    output = M.ListFacetNamesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/facet/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIncomingTypedLinks = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListIncomingTypedLinks"),
+    input = M.ListIncomingTypedLinksInput,
+    output = M.ListIncomingTypedLinksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/typedlink/incoming" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIndex = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListIndex"),
+    input = M.ListIndexInput,
+    output = M.ListIndexOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/index/targets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListManagedSchemaArns = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListManagedSchemaArns"),
+    input = M.ListManagedSchemaArnsInput,
+    output = M.ListManagedSchemaArnsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/schema/managed" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListObjectAttributes = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListObjectAttributes"),
+    input = M.ListObjectAttributesInput,
+    output = M.ListObjectAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/object/attributes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListObjectChildren = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListObjectChildren"),
+    input = M.ListObjectChildrenInput,
+    output = M.ListObjectChildrenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/object/children" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListObjectParentPaths = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListObjectParentPaths"),
+    input = M.ListObjectParentPathsInput,
+    output = M.ListObjectParentPathsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/object/parentpaths" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListObjectParents = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListObjectParents"),
+    input = M.ListObjectParentsInput,
+    output = M.ListObjectParentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/object/parent" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListObjectPolicies = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListObjectPolicies"),
+    input = M.ListObjectPoliciesInput,
+    output = M.ListObjectPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/object/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOutgoingTypedLinks = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListOutgoingTypedLinks"),
+    input = M.ListOutgoingTypedLinksInput,
+    output = M.ListOutgoingTypedLinksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/typedlink/outgoing" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyAttachments = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListPolicyAttachments"),
+    input = M.ListPolicyAttachmentsInput,
+    output = M.ListPolicyAttachmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/policy/attachment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPublishedSchemaArns = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListPublishedSchemaArns"),
+    input = M.ListPublishedSchemaArnsInput,
+    output = M.ListPublishedSchemaArnsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/schema/published" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTypedLinkFacetAttributes = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListTypedLinkFacetAttributes"),
+    input = M.ListTypedLinkFacetAttributesInput,
+    output = M.ListTypedLinkFacetAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/typedlink/facet/attributes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTypedLinkFacetNames = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "ListTypedLinkFacetNames"),
+    input = M.ListTypedLinkFacetNamesInput,
+    output = M.ListTypedLinkFacetNamesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/typedlink/facet/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.LookupPolicy = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "LookupPolicy"),
+    input = M.LookupPolicyInput,
+    output = M.LookupPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/policy/lookup" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PublishSchema = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "PublishSchema"),
+    input = M.PublishSchemaInput,
+    output = M.PublishSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/schema/publish" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSchemaFromJson = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "PutSchemaFromJson"),
+    input = M.PutSchemaFromJsonInput,
+    output = M.PutSchemaFromJsonOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/schema/json" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveFacetFromObject = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "RemoveFacetFromObject"),
+    input = M.RemoveFacetFromObjectInput,
+    output = M.RemoveFacetFromObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/object/facets/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/tags/add" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/tags/remove" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFacet = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "UpdateFacet"),
+    input = M.UpdateFacetInput,
+    output = M.UpdateFacetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/facet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLinkAttributes = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "UpdateLinkAttributes"),
+    input = M.UpdateLinkAttributesInput,
+    output = M.UpdateLinkAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/amazonclouddirectory/2017-01-11/typedlink/attributes/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateObjectAttributes = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "UpdateObjectAttributes"),
+    input = M.UpdateObjectAttributesInput,
+    output = M.UpdateObjectAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/object/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSchema = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "UpdateSchema"),
+    input = M.UpdateSchemaInput,
+    output = M.UpdateSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/schema/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTypedLinkFacet = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "UpdateTypedLinkFacet"),
+    input = M.UpdateTypedLinkFacetInput,
+    output = M.UpdateTypedLinkFacetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/typedlink/facet" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpgradeAppliedSchema = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "UpgradeAppliedSchema"),
+    input = M.UpgradeAppliedSchemaInput,
+    output = M.UpgradeAppliedSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/schema/upgradeapplied" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpgradePublishedSchema = schema.operation({
+    id = id.from("com.amazonaws.clouddirectory", "UpgradePublishedSchema"),
+    input = M.UpgradePublishedSchemaInput,
+    output = M.UpgradePublishedSchemaOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/amazonclouddirectory/2017-01-11/schema/upgradepublished" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

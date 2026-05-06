@@ -2877,4 +2877,230 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.kafkaconnect", "KafkaConnect"),
+    version = "2021-09-14",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnector = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "CreateConnector"),
+    input = M.CreateConnectorInput,
+    output = M.CreateConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomPlugin = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "CreateCustomPlugin"),
+    input = M.CreateCustomPluginInput,
+    output = M.CreateCustomPluginOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/custom-plugins" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWorkerConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "CreateWorkerConfiguration"),
+    input = M.CreateWorkerConfigurationInput,
+    output = M.CreateWorkerConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/worker-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnector = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "DeleteConnector"),
+    input = M.DeleteConnectorInput,
+    output = M.DeleteConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/connectors/{connectorArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomPlugin = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "DeleteCustomPlugin"),
+    input = M.DeleteCustomPluginInput,
+    output = M.DeleteCustomPluginOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/custom-plugins/{customPluginArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWorkerConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "DeleteWorkerConfiguration"),
+    input = M.DeleteWorkerConfigurationInput,
+    output = M.DeleteWorkerConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/worker-configurations/{workerConfigurationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnector = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "DescribeConnector"),
+    input = M.DescribeConnectorInput,
+    output = M.DescribeConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/connectors/{connectorArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnectorOperation = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "DescribeConnectorOperation"),
+    input = M.DescribeConnectorOperationInput,
+    output = M.DescribeConnectorOperationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/connectorOperations/{connectorOperationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCustomPlugin = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "DescribeCustomPlugin"),
+    input = M.DescribeCustomPluginInput,
+    output = M.DescribeCustomPluginOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/custom-plugins/{customPluginArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeWorkerConfiguration = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "DescribeWorkerConfiguration"),
+    input = M.DescribeWorkerConfigurationInput,
+    output = M.DescribeWorkerConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/worker-configurations/{workerConfigurationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectorOperations = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "ListConnectorOperations"),
+    input = M.ListConnectorOperationsInput,
+    output = M.ListConnectorOperationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/connectors/{connectorArn}/operations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectors = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "ListConnectors"),
+    input = M.ListConnectorsInput,
+    output = M.ListConnectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomPlugins = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "ListCustomPlugins"),
+    input = M.ListCustomPluginsInput,
+    output = M.ListCustomPluginsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/custom-plugins" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWorkerConfigurations = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "ListWorkerConfigurations"),
+    input = M.ListWorkerConfigurationsInput,
+    output = M.ListWorkerConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/worker-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnector = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "UpdateConnector"),
+    input = M.UpdateConnectorInput,
+    output = M.UpdateConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/connectors/{connectorArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

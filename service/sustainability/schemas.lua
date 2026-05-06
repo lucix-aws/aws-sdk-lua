@@ -435,4 +435,41 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sustainability", "AwsSustainabilityApiService"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEstimatedCarbonEmissions = schema.operation({
+    id = id.from("com.amazonaws.sustainability", "GetEstimatedCarbonEmissions"),
+    input = M.GetEstimatedCarbonEmissionsInput,
+    output = M.GetEstimatedCarbonEmissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/estimated-carbon-emissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEstimatedCarbonEmissionsDimensionValues = schema.operation({
+    id = id.from("com.amazonaws.sustainability", "GetEstimatedCarbonEmissionsDimensionValues"),
+    input = M.GetEstimatedCarbonEmissionsDimensionValuesInput,
+    output = M.GetEstimatedCarbonEmissionsDimensionValuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/estimated-carbon-emissions-dimension-values" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -3665,4 +3665,398 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.billingconductor", "AWSBillingConductor"),
+    version = "2021-07-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateAccounts = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "AssociateAccounts"),
+    input = M.AssociateAccountsInput,
+    output = M.AssociateAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/associate-accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociatePricingRules = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "AssociatePricingRules"),
+    input = M.AssociatePricingRulesInput,
+    output = M.AssociatePricingRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/associate-pricing-rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchAssociateResourcesToCustomLineItem = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "BatchAssociateResourcesToCustomLineItem"),
+    input = M.BatchAssociateResourcesToCustomLineItemInput,
+    output = M.BatchAssociateResourcesToCustomLineItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/batch-associate-resources-to-custom-line-item" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDisassociateResourcesFromCustomLineItem = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "BatchDisassociateResourcesFromCustomLineItem"),
+    input = M.BatchDisassociateResourcesFromCustomLineItemInput,
+    output = M.BatchDisassociateResourcesFromCustomLineItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/batch-disassociate-resources-from-custom-line-item" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBillingGroup = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "CreateBillingGroup"),
+    input = M.CreateBillingGroupInput,
+    output = M.CreateBillingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-billing-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomLineItem = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "CreateCustomLineItem"),
+    input = M.CreateCustomLineItemInput,
+    output = M.CreateCustomLineItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-custom-line-item" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePricingPlan = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "CreatePricingPlan"),
+    input = M.CreatePricingPlanInput,
+    output = M.CreatePricingPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-pricing-plan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePricingRule = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "CreatePricingRule"),
+    input = M.CreatePricingRuleInput,
+    output = M.CreatePricingRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-pricing-rule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBillingGroup = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "DeleteBillingGroup"),
+    input = M.DeleteBillingGroupInput,
+    output = M.DeleteBillingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-billing-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomLineItem = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "DeleteCustomLineItem"),
+    input = M.DeleteCustomLineItemInput,
+    output = M.DeleteCustomLineItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-custom-line-item" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePricingPlan = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "DeletePricingPlan"),
+    input = M.DeletePricingPlanInput,
+    output = M.DeletePricingPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-pricing-plan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePricingRule = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "DeletePricingRule"),
+    input = M.DeletePricingRuleInput,
+    output = M.DeletePricingRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-pricing-rule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateAccounts = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "DisassociateAccounts"),
+    input = M.DisassociateAccountsInput,
+    output = M.DisassociateAccountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/disassociate-accounts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociatePricingRules = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "DisassociatePricingRules"),
+    input = M.DisassociatePricingRulesInput,
+    output = M.DisassociatePricingRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/disassociate-pricing-rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBillingGroupCostReport = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "GetBillingGroupCostReport"),
+    input = M.GetBillingGroupCostReportInput,
+    output = M.GetBillingGroupCostReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-billing-group-cost-report" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAccountAssociations = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "ListAccountAssociations"),
+    input = M.ListAccountAssociationsInput,
+    output = M.ListAccountAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-account-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBillingGroupCostReports = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "ListBillingGroupCostReports"),
+    input = M.ListBillingGroupCostReportsInput,
+    output = M.ListBillingGroupCostReportsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-billing-group-cost-reports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBillingGroups = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "ListBillingGroups"),
+    input = M.ListBillingGroupsInput,
+    output = M.ListBillingGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-billing-groups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomLineItems = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "ListCustomLineItems"),
+    input = M.ListCustomLineItemsInput,
+    output = M.ListCustomLineItemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-custom-line-items" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomLineItemVersions = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "ListCustomLineItemVersions"),
+    input = M.ListCustomLineItemVersionsInput,
+    output = M.ListCustomLineItemVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-custom-line-item-versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPricingPlans = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "ListPricingPlans"),
+    input = M.ListPricingPlansInput,
+    output = M.ListPricingPlansOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-pricing-plans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPricingPlansAssociatedWithPricingRule = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "ListPricingPlansAssociatedWithPricingRule"),
+    input = M.ListPricingPlansAssociatedWithPricingRuleInput,
+    output = M.ListPricingPlansAssociatedWithPricingRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-pricing-plans-associated-with-pricing-rule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPricingRules = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "ListPricingRules"),
+    input = M.ListPricingRulesInput,
+    output = M.ListPricingRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-pricing-rules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPricingRulesAssociatedToPricingPlan = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "ListPricingRulesAssociatedToPricingPlan"),
+    input = M.ListPricingRulesAssociatedToPricingPlanInput,
+    output = M.ListPricingRulesAssociatedToPricingPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-pricing-rules-associated-to-pricing-plan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourcesAssociatedToCustomLineItem = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "ListResourcesAssociatedToCustomLineItem"),
+    input = M.ListResourcesAssociatedToCustomLineItemInput,
+    output = M.ListResourcesAssociatedToCustomLineItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-resources-associated-to-custom-line-item" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBillingGroup = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "UpdateBillingGroup"),
+    input = M.UpdateBillingGroupInput,
+    output = M.UpdateBillingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-billing-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCustomLineItem = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "UpdateCustomLineItem"),
+    input = M.UpdateCustomLineItemInput,
+    output = M.UpdateCustomLineItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-custom-line-item" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePricingPlan = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "UpdatePricingPlan"),
+    input = M.UpdatePricingPlanInput,
+    output = M.UpdatePricingPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/update-pricing-plan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePricingRule = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "UpdatePricingRule"),
+    input = M.UpdatePricingRuleInput,
+    output = M.UpdatePricingRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/update-pricing-rule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

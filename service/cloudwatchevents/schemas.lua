@@ -4708,4 +4708,575 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.cloudwatchevents", "AWSEvents"),
+    version = "2015-10-07",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ActivateEventSource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "ActivateEventSource"),
+    input = M.ActivateEventSourceInput,
+    output = M.ActivateEventSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelReplay = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "CancelReplay"),
+    input = M.CancelReplayInput,
+    output = M.CancelReplayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApiDestination = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "CreateApiDestination"),
+    input = M.CreateApiDestinationInput,
+    output = M.CreateApiDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateArchive = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "CreateArchive"),
+    input = M.CreateArchiveInput,
+    output = M.CreateArchiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnection = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "CreateConnection"),
+    input = M.CreateConnectionInput,
+    output = M.CreateConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEventBus = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "CreateEventBus"),
+    input = M.CreateEventBusInput,
+    output = M.CreateEventBusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePartnerEventSource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "CreatePartnerEventSource"),
+    input = M.CreatePartnerEventSourceInput,
+    output = M.CreatePartnerEventSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeactivateEventSource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DeactivateEventSource"),
+    input = M.DeactivateEventSourceInput,
+    output = M.DeactivateEventSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeauthorizeConnection = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DeauthorizeConnection"),
+    input = M.DeauthorizeConnectionInput,
+    output = M.DeauthorizeConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApiDestination = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DeleteApiDestination"),
+    input = M.DeleteApiDestinationInput,
+    output = M.DeleteApiDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteArchive = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DeleteArchive"),
+    input = M.DeleteArchiveInput,
+    output = M.DeleteArchiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnection = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DeleteConnection"),
+    input = M.DeleteConnectionInput,
+    output = M.DeleteConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEventBus = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DeleteEventBus"),
+    input = M.DeleteEventBusInput,
+    output = M.DeleteEventBusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePartnerEventSource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DeletePartnerEventSource"),
+    input = M.DeletePartnerEventSourceInput,
+    output = M.DeletePartnerEventSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRule = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DeleteRule"),
+    input = M.DeleteRuleInput,
+    output = M.DeleteRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApiDestination = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DescribeApiDestination"),
+    input = M.DescribeApiDestinationInput,
+    output = M.DescribeApiDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeArchive = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DescribeArchive"),
+    input = M.DescribeArchiveInput,
+    output = M.DescribeArchiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeConnection = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DescribeConnection"),
+    input = M.DescribeConnectionInput,
+    output = M.DescribeConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventBus = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DescribeEventBus"),
+    input = M.DescribeEventBusInput,
+    output = M.DescribeEventBusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEventSource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DescribeEventSource"),
+    input = M.DescribeEventSourceInput,
+    output = M.DescribeEventSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribePartnerEventSource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DescribePartnerEventSource"),
+    input = M.DescribePartnerEventSourceInput,
+    output = M.DescribePartnerEventSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeReplay = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DescribeReplay"),
+    input = M.DescribeReplayInput,
+    output = M.DescribeReplayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRule = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DescribeRule"),
+    input = M.DescribeRuleInput,
+    output = M.DescribeRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableRule = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "DisableRule"),
+    input = M.DisableRuleInput,
+    output = M.DisableRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableRule = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "EnableRule"),
+    input = M.EnableRuleInput,
+    output = M.EnableRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApiDestinations = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "ListApiDestinations"),
+    input = M.ListApiDestinationsInput,
+    output = M.ListApiDestinationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListArchives = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "ListArchives"),
+    input = M.ListArchivesInput,
+    output = M.ListArchivesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnections = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "ListConnections"),
+    input = M.ListConnectionsInput,
+    output = M.ListConnectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventBuses = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "ListEventBuses"),
+    input = M.ListEventBusesInput,
+    output = M.ListEventBusesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEventSources = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "ListEventSources"),
+    input = M.ListEventSourcesInput,
+    output = M.ListEventSourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPartnerEventSourceAccounts = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "ListPartnerEventSourceAccounts"),
+    input = M.ListPartnerEventSourceAccountsInput,
+    output = M.ListPartnerEventSourceAccountsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPartnerEventSources = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "ListPartnerEventSources"),
+    input = M.ListPartnerEventSourcesInput,
+    output = M.ListPartnerEventSourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReplays = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "ListReplays"),
+    input = M.ListReplaysInput,
+    output = M.ListReplaysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRuleNamesByTarget = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "ListRuleNamesByTarget"),
+    input = M.ListRuleNamesByTargetInput,
+    output = M.ListRuleNamesByTargetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRules = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "ListRules"),
+    input = M.ListRulesInput,
+    output = M.ListRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTargetsByRule = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "ListTargetsByRule"),
+    input = M.ListTargetsByRuleInput,
+    output = M.ListTargetsByRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEvents = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "PutEvents"),
+    input = M.PutEventsInput,
+    output = M.PutEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPartnerEvents = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "PutPartnerEvents"),
+    input = M.PutPartnerEventsInput,
+    output = M.PutPartnerEventsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutPermission = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "PutPermission"),
+    input = M.PutPermissionInput,
+    output = M.PutPermissionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutRule = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "PutRule"),
+    input = M.PutRuleInput,
+    output = M.PutRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTargets = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "PutTargets"),
+    input = M.PutTargetsInput,
+    output = M.PutTargetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemovePermission = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "RemovePermission"),
+    input = M.RemovePermissionInput,
+    output = M.RemovePermissionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveTargets = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "RemoveTargets"),
+    input = M.RemoveTargetsInput,
+    output = M.RemoveTargetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReplay = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "StartReplay"),
+    input = M.StartReplayInput,
+    output = M.StartReplayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TestEventPattern = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "TestEventPattern"),
+    input = M.TestEventPatternInput,
+    output = M.TestEventPatternOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApiDestination = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "UpdateApiDestination"),
+    input = M.UpdateApiDestinationInput,
+    output = M.UpdateApiDestinationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateArchive = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "UpdateArchive"),
+    input = M.UpdateArchiveInput,
+    output = M.UpdateArchiveOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnection = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchevents", "UpdateConnection"),
+    input = M.UpdateConnectionInput,
+    output = M.UpdateConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

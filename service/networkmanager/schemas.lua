@@ -8576,4 +8576,1154 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.networkmanager", "NetworkManager"),
+    version = "2019-07-05",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcceptAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "AcceptAttachment"),
+    input = M.AcceptAttachmentInput,
+    output = M.AcceptAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/attachments/{AttachmentId}/accept" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateConnectPeer = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "AssociateConnectPeer"),
+    input = M.AssociateConnectPeerInput,
+    output = M.AssociateConnectPeerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/global-networks/{GlobalNetworkId}/connect-peer-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateCustomerGateway = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "AssociateCustomerGateway"),
+    input = M.AssociateCustomerGatewayInput,
+    output = M.AssociateCustomerGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/global-networks/{GlobalNetworkId}/customer-gateway-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateLink = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "AssociateLink"),
+    input = M.AssociateLinkInput,
+    output = M.AssociateLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/global-networks/{GlobalNetworkId}/link-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateTransitGatewayConnectPeer = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "AssociateTransitGatewayConnectPeer"),
+    input = M.AssociateTransitGatewayConnectPeerInput,
+    output = M.AssociateTransitGatewayConnectPeerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/global-networks/{GlobalNetworkId}/transit-gateway-connect-peer-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnectAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateConnectAttachment"),
+    input = M.CreateConnectAttachmentInput,
+    output = M.CreateConnectAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connect-attachments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnection = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateConnection"),
+    input = M.CreateConnectionInput,
+    output = M.CreateConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/global-networks/{GlobalNetworkId}/connections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateConnectPeer = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateConnectPeer"),
+    input = M.CreateConnectPeerInput,
+    output = M.CreateConnectPeerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connect-peers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCoreNetwork = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateCoreNetwork"),
+    input = M.CreateCoreNetworkInput,
+    output = M.CreateCoreNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/core-networks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCoreNetworkPrefixListAssociation = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateCoreNetworkPrefixListAssociation"),
+    input = M.CreateCoreNetworkPrefixListAssociationInput,
+    output = M.CreateCoreNetworkPrefixListAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/prefix-list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDevice = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateDevice"),
+    input = M.CreateDeviceInput,
+    output = M.CreateDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/global-networks/{GlobalNetworkId}/devices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDirectConnectGatewayAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateDirectConnectGatewayAttachment"),
+    input = M.CreateDirectConnectGatewayAttachmentInput,
+    output = M.CreateDirectConnectGatewayAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/direct-connect-gateway-attachments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGlobalNetwork = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateGlobalNetwork"),
+    input = M.CreateGlobalNetworkInput,
+    output = M.CreateGlobalNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/global-networks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLink = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateLink"),
+    input = M.CreateLinkInput,
+    output = M.CreateLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/global-networks/{GlobalNetworkId}/links" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSite = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateSite"),
+    input = M.CreateSiteInput,
+    output = M.CreateSiteOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/global-networks/{GlobalNetworkId}/sites" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSiteToSiteVpnAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateSiteToSiteVpnAttachment"),
+    input = M.CreateSiteToSiteVpnAttachmentInput,
+    output = M.CreateSiteToSiteVpnAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/site-to-site-vpn-attachments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTransitGatewayPeering = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateTransitGatewayPeering"),
+    input = M.CreateTransitGatewayPeeringInput,
+    output = M.CreateTransitGatewayPeeringOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/transit-gateway-peerings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateTransitGatewayRouteTableAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateTransitGatewayRouteTableAttachment"),
+    input = M.CreateTransitGatewayRouteTableAttachmentInput,
+    output = M.CreateTransitGatewayRouteTableAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/transit-gateway-route-table-attachments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateVpcAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateVpcAttachment"),
+    input = M.CreateVpcAttachmentInput,
+    output = M.CreateVpcAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/vpc-attachments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DeleteAttachment"),
+    input = M.DeleteAttachmentInput,
+    output = M.DeleteAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/attachments/{AttachmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnection = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DeleteConnection"),
+    input = M.DeleteConnectionInput,
+    output = M.DeleteConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/global-networks/{GlobalNetworkId}/connections/{ConnectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnectPeer = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DeleteConnectPeer"),
+    input = M.DeleteConnectPeerInput,
+    output = M.DeleteConnectPeerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/connect-peers/{ConnectPeerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCoreNetwork = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DeleteCoreNetwork"),
+    input = M.DeleteCoreNetworkInput,
+    output = M.DeleteCoreNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/core-networks/{CoreNetworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCoreNetworkPolicyVersion = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DeleteCoreNetworkPolicyVersion"),
+    input = M.DeleteCoreNetworkPolicyVersionInput,
+    output = M.DeleteCoreNetworkPolicyVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/core-networks/{CoreNetworkId}/core-network-policy-versions/{PolicyVersionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCoreNetworkPrefixListAssociation = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DeleteCoreNetworkPrefixListAssociation"),
+    input = M.DeleteCoreNetworkPrefixListAssociationInput,
+    output = M.DeleteCoreNetworkPrefixListAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/prefix-list/{PrefixListArn}/core-network/{CoreNetworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDevice = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DeleteDevice"),
+    input = M.DeleteDeviceInput,
+    output = M.DeleteDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/global-networks/{GlobalNetworkId}/devices/{DeviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGlobalNetwork = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DeleteGlobalNetwork"),
+    input = M.DeleteGlobalNetworkInput,
+    output = M.DeleteGlobalNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/global-networks/{GlobalNetworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLink = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DeleteLink"),
+    input = M.DeleteLinkInput,
+    output = M.DeleteLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/global-networks/{GlobalNetworkId}/links/{LinkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePeering = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DeletePeering"),
+    input = M.DeletePeeringInput,
+    output = M.DeletePeeringOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/peerings/{PeeringId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/resource-policy/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSite = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DeleteSite"),
+    input = M.DeleteSiteInput,
+    output = M.DeleteSiteOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/global-networks/{GlobalNetworkId}/sites/{SiteId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterTransitGateway = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DeregisterTransitGateway"),
+    input = M.DeregisterTransitGatewayInput,
+    output = M.DeregisterTransitGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/global-networks/{GlobalNetworkId}/transit-gateway-registrations/{TransitGatewayArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGlobalNetworks = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DescribeGlobalNetworks"),
+    input = M.DescribeGlobalNetworksInput,
+    output = M.DescribeGlobalNetworksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateConnectPeer = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DisassociateConnectPeer"),
+    input = M.DisassociateConnectPeerInput,
+    output = M.DisassociateConnectPeerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/global-networks/{GlobalNetworkId}/connect-peer-associations/{ConnectPeerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateCustomerGateway = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DisassociateCustomerGateway"),
+    input = M.DisassociateCustomerGatewayInput,
+    output = M.DisassociateCustomerGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/global-networks/{GlobalNetworkId}/customer-gateway-associations/{CustomerGatewayArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateLink = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DisassociateLink"),
+    input = M.DisassociateLinkInput,
+    output = M.DisassociateLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/global-networks/{GlobalNetworkId}/link-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateTransitGatewayConnectPeer = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DisassociateTransitGatewayConnectPeer"),
+    input = M.DisassociateTransitGatewayConnectPeerInput,
+    output = M.DisassociateTransitGatewayConnectPeerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/global-networks/{GlobalNetworkId}/transit-gateway-connect-peer-associations/{TransitGatewayConnectPeerArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExecuteCoreNetworkChangeSet = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ExecuteCoreNetworkChangeSet"),
+    input = M.ExecuteCoreNetworkChangeSetInput,
+    output = M.ExecuteCoreNetworkChangeSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/core-networks/{CoreNetworkId}/core-network-change-sets/{PolicyVersionId}/execute" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnectAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetConnectAttachment"),
+    input = M.GetConnectAttachmentInput,
+    output = M.GetConnectAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connect-attachments/{AttachmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnections = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetConnections"),
+    input = M.GetConnectionsInput,
+    output = M.GetConnectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/connections" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnectPeer = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetConnectPeer"),
+    input = M.GetConnectPeerInput,
+    output = M.GetConnectPeerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connect-peers/{ConnectPeerId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnectPeerAssociations = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetConnectPeerAssociations"),
+    input = M.GetConnectPeerAssociationsInput,
+    output = M.GetConnectPeerAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/connect-peer-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCoreNetwork = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetCoreNetwork"),
+    input = M.GetCoreNetworkInput,
+    output = M.GetCoreNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/core-networks/{CoreNetworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCoreNetworkChangeEvents = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetCoreNetworkChangeEvents"),
+    input = M.GetCoreNetworkChangeEventsInput,
+    output = M.GetCoreNetworkChangeEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/core-networks/{CoreNetworkId}/core-network-change-events/{PolicyVersionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCoreNetworkChangeSet = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetCoreNetworkChangeSet"),
+    input = M.GetCoreNetworkChangeSetInput,
+    output = M.GetCoreNetworkChangeSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/core-networks/{CoreNetworkId}/core-network-change-sets/{PolicyVersionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCoreNetworkPolicy = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetCoreNetworkPolicy"),
+    input = M.GetCoreNetworkPolicyInput,
+    output = M.GetCoreNetworkPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/core-networks/{CoreNetworkId}/core-network-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCustomerGatewayAssociations = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetCustomerGatewayAssociations"),
+    input = M.GetCustomerGatewayAssociationsInput,
+    output = M.GetCustomerGatewayAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/customer-gateway-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDevices = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetDevices"),
+    input = M.GetDevicesInput,
+    output = M.GetDevicesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/devices" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDirectConnectGatewayAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetDirectConnectGatewayAttachment"),
+    input = M.GetDirectConnectGatewayAttachmentInput,
+    output = M.GetDirectConnectGatewayAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/direct-connect-gateway-attachments/{AttachmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLinkAssociations = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetLinkAssociations"),
+    input = M.GetLinkAssociationsInput,
+    output = M.GetLinkAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/link-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLinks = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetLinks"),
+    input = M.GetLinksInput,
+    output = M.GetLinksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/links" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNetworkResourceCounts = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetNetworkResourceCounts"),
+    input = M.GetNetworkResourceCountsInput,
+    output = M.GetNetworkResourceCountsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/network-resource-count" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNetworkResourceRelationships = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetNetworkResourceRelationships"),
+    input = M.GetNetworkResourceRelationshipsInput,
+    output = M.GetNetworkResourceRelationshipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/network-resource-relationships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNetworkResources = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetNetworkResources"),
+    input = M.GetNetworkResourcesInput,
+    output = M.GetNetworkResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/network-resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNetworkRoutes = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetNetworkRoutes"),
+    input = M.GetNetworkRoutesInput,
+    output = M.GetNetworkRoutesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/global-networks/{GlobalNetworkId}/network-routes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNetworkTelemetry = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetNetworkTelemetry"),
+    input = M.GetNetworkTelemetryInput,
+    output = M.GetNetworkTelemetryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/network-telemetry" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resource-policy/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRouteAnalysis = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetRouteAnalysis"),
+    input = M.GetRouteAnalysisInput,
+    output = M.GetRouteAnalysisOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/route-analyses/{RouteAnalysisId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSites = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetSites"),
+    input = M.GetSitesInput,
+    output = M.GetSitesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/sites" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSiteToSiteVpnAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetSiteToSiteVpnAttachment"),
+    input = M.GetSiteToSiteVpnAttachmentInput,
+    output = M.GetSiteToSiteVpnAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/site-to-site-vpn-attachments/{AttachmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTransitGatewayConnectPeerAssociations = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetTransitGatewayConnectPeerAssociations"),
+    input = M.GetTransitGatewayConnectPeerAssociationsInput,
+    output = M.GetTransitGatewayConnectPeerAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/transit-gateway-connect-peer-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTransitGatewayPeering = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetTransitGatewayPeering"),
+    input = M.GetTransitGatewayPeeringInput,
+    output = M.GetTransitGatewayPeeringOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/transit-gateway-peerings/{PeeringId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTransitGatewayRegistrations = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetTransitGatewayRegistrations"),
+    input = M.GetTransitGatewayRegistrationsInput,
+    output = M.GetTransitGatewayRegistrationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/transit-gateway-registrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTransitGatewayRouteTableAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetTransitGatewayRouteTableAttachment"),
+    input = M.GetTransitGatewayRouteTableAttachmentInput,
+    output = M.GetTransitGatewayRouteTableAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/transit-gateway-route-table-attachments/{AttachmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVpcAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetVpcAttachment"),
+    input = M.GetVpcAttachmentInput,
+    output = M.GetVpcAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/vpc-attachments/{AttachmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttachmentRoutingPolicyAssociations = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListAttachmentRoutingPolicyAssociations"),
+    input = M.ListAttachmentRoutingPolicyAssociationsInput,
+    output = M.ListAttachmentRoutingPolicyAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/routing-policy-label/core-network/{CoreNetworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAttachments = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListAttachments"),
+    input = M.ListAttachmentsInput,
+    output = M.ListAttachmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/attachments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectPeers = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListConnectPeers"),
+    input = M.ListConnectPeersInput,
+    output = M.ListConnectPeersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connect-peers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCoreNetworkPolicyVersions = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListCoreNetworkPolicyVersions"),
+    input = M.ListCoreNetworkPolicyVersionsInput,
+    output = M.ListCoreNetworkPolicyVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/core-networks/{CoreNetworkId}/core-network-policy-versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCoreNetworkPrefixListAssociations = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListCoreNetworkPrefixListAssociations"),
+    input = M.ListCoreNetworkPrefixListAssociationsInput,
+    output = M.ListCoreNetworkPrefixListAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/prefix-list/core-network/{CoreNetworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCoreNetworkRoutingInformation = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListCoreNetworkRoutingInformation"),
+    input = M.ListCoreNetworkRoutingInformationInput,
+    output = M.ListCoreNetworkRoutingInformationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/core-networks/{CoreNetworkId}/core-network-routing-information" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCoreNetworks = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListCoreNetworks"),
+    input = M.ListCoreNetworksInput,
+    output = M.ListCoreNetworksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/core-networks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOrganizationServiceAccessStatus = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListOrganizationServiceAccessStatus"),
+    input = M.ListOrganizationServiceAccessStatusInput,
+    output = M.ListOrganizationServiceAccessStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/organizations/service-access" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPeerings = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListPeerings"),
+    input = M.ListPeeringsInput,
+    output = M.ListPeeringsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/peerings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAttachmentRoutingPolicyLabel = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "PutAttachmentRoutingPolicyLabel"),
+    input = M.PutAttachmentRoutingPolicyLabelInput,
+    output = M.PutAttachmentRoutingPolicyLabelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/routing-policy-label" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutCoreNetworkPolicy = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "PutCoreNetworkPolicy"),
+    input = M.PutCoreNetworkPolicyInput,
+    output = M.PutCoreNetworkPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/core-networks/{CoreNetworkId}/core-network-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/resource-policy/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterTransitGateway = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "RegisterTransitGateway"),
+    input = M.RegisterTransitGatewayInput,
+    output = M.RegisterTransitGatewayOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/global-networks/{GlobalNetworkId}/transit-gateway-registrations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RejectAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "RejectAttachment"),
+    input = M.RejectAttachmentInput,
+    output = M.RejectAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/attachments/{AttachmentId}/reject" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RemoveAttachmentRoutingPolicyLabel = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "RemoveAttachmentRoutingPolicyLabel"),
+    input = M.RemoveAttachmentRoutingPolicyLabelInput,
+    output = M.RemoveAttachmentRoutingPolicyLabelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/routing-policy-label/core-network/{CoreNetworkId}/attachment/{AttachmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreCoreNetworkPolicyVersion = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "RestoreCoreNetworkPolicyVersion"),
+    input = M.RestoreCoreNetworkPolicyVersionInput,
+    output = M.RestoreCoreNetworkPolicyVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/core-networks/{CoreNetworkId}/core-network-policy-versions/{PolicyVersionId}/restore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartOrganizationServiceAccessUpdate = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "StartOrganizationServiceAccessUpdate"),
+    input = M.StartOrganizationServiceAccessUpdateInput,
+    output = M.StartOrganizationServiceAccessUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/organizations/service-access" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRouteAnalysis = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "StartRouteAnalysis"),
+    input = M.StartRouteAnalysisInput,
+    output = M.StartRouteAnalysisOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/global-networks/{GlobalNetworkId}/route-analyses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnection = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "UpdateConnection"),
+    input = M.UpdateConnectionInput,
+    output = M.UpdateConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/global-networks/{GlobalNetworkId}/connections/{ConnectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCoreNetwork = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "UpdateCoreNetwork"),
+    input = M.UpdateCoreNetworkInput,
+    output = M.UpdateCoreNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/core-networks/{CoreNetworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDevice = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "UpdateDevice"),
+    input = M.UpdateDeviceInput,
+    output = M.UpdateDeviceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/global-networks/{GlobalNetworkId}/devices/{DeviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDirectConnectGatewayAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "UpdateDirectConnectGatewayAttachment"),
+    input = M.UpdateDirectConnectGatewayAttachmentInput,
+    output = M.UpdateDirectConnectGatewayAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/direct-connect-gateway-attachments/{AttachmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGlobalNetwork = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "UpdateGlobalNetwork"),
+    input = M.UpdateGlobalNetworkInput,
+    output = M.UpdateGlobalNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/global-networks/{GlobalNetworkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLink = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "UpdateLink"),
+    input = M.UpdateLinkInput,
+    output = M.UpdateLinkOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/global-networks/{GlobalNetworkId}/links/{LinkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNetworkResourceMetadata = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "UpdateNetworkResourceMetadata"),
+    input = M.UpdateNetworkResourceMetadataInput,
+    output = M.UpdateNetworkResourceMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/global-networks/{GlobalNetworkId}/network-resources/{ResourceArn}/metadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSite = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "UpdateSite"),
+    input = M.UpdateSiteInput,
+    output = M.UpdateSiteOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/global-networks/{GlobalNetworkId}/sites/{SiteId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVpcAttachment = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "UpdateVpcAttachment"),
+    input = M.UpdateVpcAttachmentInput,
+    output = M.UpdateVpcAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/vpc-attachments/{AttachmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

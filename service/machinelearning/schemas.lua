@@ -2978,4 +2978,322 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.machinelearning", "AmazonML_20141212"),
+    version = "2014-12-12",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AddTags = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "AddTags"),
+    input = M.AddTagsInput,
+    output = M.AddTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBatchPrediction = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "CreateBatchPrediction"),
+    input = M.CreateBatchPredictionInput,
+    output = M.CreateBatchPredictionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataSourceFromRDS = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "CreateDataSourceFromRDS"),
+    input = M.CreateDataSourceFromRDSInput,
+    output = M.CreateDataSourceFromRDSOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataSourceFromRedshift = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "CreateDataSourceFromRedshift"),
+    input = M.CreateDataSourceFromRedshiftInput,
+    output = M.CreateDataSourceFromRedshiftOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDataSourceFromS3 = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "CreateDataSourceFromS3"),
+    input = M.CreateDataSourceFromS3Input,
+    output = M.CreateDataSourceFromS3Output,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEvaluation = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "CreateEvaluation"),
+    input = M.CreateEvaluationInput,
+    output = M.CreateEvaluationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMLModel = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "CreateMLModel"),
+    input = M.CreateMLModelInput,
+    output = M.CreateMLModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRealtimeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "CreateRealtimeEndpoint"),
+    input = M.CreateRealtimeEndpointInput,
+    output = M.CreateRealtimeEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBatchPrediction = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "DeleteBatchPrediction"),
+    input = M.DeleteBatchPredictionInput,
+    output = M.DeleteBatchPredictionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataSource = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "DeleteDataSource"),
+    input = M.DeleteDataSourceInput,
+    output = M.DeleteDataSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEvaluation = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "DeleteEvaluation"),
+    input = M.DeleteEvaluationInput,
+    output = M.DeleteEvaluationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMLModel = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "DeleteMLModel"),
+    input = M.DeleteMLModelInput,
+    output = M.DeleteMLModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRealtimeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "DeleteRealtimeEndpoint"),
+    input = M.DeleteRealtimeEndpointInput,
+    output = M.DeleteRealtimeEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTags = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "DeleteTags"),
+    input = M.DeleteTagsInput,
+    output = M.DeleteTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBatchPredictions = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "DescribeBatchPredictions"),
+    input = M.DescribeBatchPredictionsInput,
+    output = M.DescribeBatchPredictionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataSources = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "DescribeDataSources"),
+    input = M.DescribeDataSourcesInput,
+    output = M.DescribeDataSourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeEvaluations = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "DescribeEvaluations"),
+    input = M.DescribeEvaluationsInput,
+    output = M.DescribeEvaluationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMLModels = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "DescribeMLModels"),
+    input = M.DescribeMLModelsInput,
+    output = M.DescribeMLModelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTags = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "DescribeTags"),
+    input = M.DescribeTagsInput,
+    output = M.DescribeTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBatchPrediction = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "GetBatchPrediction"),
+    input = M.GetBatchPredictionInput,
+    output = M.GetBatchPredictionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataSource = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "GetDataSource"),
+    input = M.GetDataSourceInput,
+    output = M.GetDataSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEvaluation = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "GetEvaluation"),
+    input = M.GetEvaluationInput,
+    output = M.GetEvaluationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMLModel = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "GetMLModel"),
+    input = M.GetMLModelInput,
+    output = M.GetMLModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Predict = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "Predict"),
+    input = M.PredictInput,
+    output = M.PredictOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBatchPrediction = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "UpdateBatchPrediction"),
+    input = M.UpdateBatchPredictionInput,
+    output = M.UpdateBatchPredictionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataSource = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "UpdateDataSource"),
+    input = M.UpdateDataSourceInput,
+    output = M.UpdateDataSourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEvaluation = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "UpdateEvaluation"),
+    input = M.UpdateEvaluationInput,
+    output = M.UpdateEvaluationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMLModel = schema.operation({
+    id = id.from("com.amazonaws.machinelearning", "UpdateMLModel"),
+    input = M.UpdateMLModelInput,
+    output = M.UpdateMLModelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

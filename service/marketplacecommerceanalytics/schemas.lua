@@ -199,4 +199,36 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.marketplacecommerceanalytics", "MarketplaceCommerceAnalytics20150701"),
+    version = "2015-07-01",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateDataSet = schema.operation({
+    id = id.from("com.amazonaws.marketplacecommerceanalytics", "GenerateDataSet"),
+    input = M.GenerateDataSetInput,
+    output = M.GenerateDataSetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartSupportDataExport = schema.operation({
+    id = id.from("com.amazonaws.marketplacecommerceanalytics", "StartSupportDataExport"),
+    input = M.StartSupportDataExportInput,
+    output = M.StartSupportDataExportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

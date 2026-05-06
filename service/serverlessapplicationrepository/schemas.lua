@@ -2200,4 +2200,182 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "ServerlessApplicationRepository"),
+    version = "2017-09-08",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplication = schema.operation({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "CreateApplication"),
+    input = M.CreateApplicationInput,
+    output = M.CreateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplicationVersion = schema.operation({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "CreateApplicationVersion"),
+    input = M.CreateApplicationVersionInput,
+    output = M.CreateApplicationVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{ApplicationId}/versions/{SemanticVersion}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCloudFormationChangeSet = schema.operation({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "CreateCloudFormationChangeSet"),
+    input = M.CreateCloudFormationChangeSetInput,
+    output = M.CreateCloudFormationChangeSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{ApplicationId}/changesets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCloudFormationTemplate = schema.operation({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "CreateCloudFormationTemplate"),
+    input = M.CreateCloudFormationTemplateInput,
+    output = M.CreateCloudFormationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{ApplicationId}/templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplication = schema.operation({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "DeleteApplication"),
+    input = M.DeleteApplicationInput,
+    output = M.DeleteApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/applications/{ApplicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplication = schema.operation({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "GetApplication"),
+    input = M.GetApplicationInput,
+    output = M.GetApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetApplicationPolicy = schema.operation({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "GetApplicationPolicy"),
+    input = M.GetApplicationPolicyInput,
+    output = M.GetApplicationPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCloudFormationTemplate = schema.operation({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "GetCloudFormationTemplate"),
+    input = M.GetCloudFormationTemplateInput,
+    output = M.GetCloudFormationTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}/templates/{TemplateId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationDependencies = schema.operation({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "ListApplicationDependencies"),
+    input = M.ListApplicationDependenciesInput,
+    output = M.ListApplicationDependenciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}/dependencies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplications = schema.operation({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "ListApplications"),
+    input = M.ListApplicationsInput,
+    output = M.ListApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationVersions = schema.operation({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "ListApplicationVersions"),
+    input = M.ListApplicationVersionsInput,
+    output = M.ListApplicationVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{ApplicationId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutApplicationPolicy = schema.operation({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "PutApplicationPolicy"),
+    input = M.PutApplicationPolicyInput,
+    output = M.PutApplicationPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/applications/{ApplicationId}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UnshareApplication = schema.operation({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "UnshareApplication"),
+    input = M.UnshareApplicationInput,
+    output = M.UnshareApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/applications/{ApplicationId}/unshare" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApplication = schema.operation({
+    id = id.from("com.amazonaws.serverlessapplicationrepository", "UpdateApplication"),
+    input = M.UpdateApplicationInput,
+    output = M.UpdateApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/applications/{ApplicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

@@ -718,4 +718,119 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.kendraranking", "AWSKendraRerankingFrontendService"),
+    version = "2022-10-19",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRescoreExecutionPlan = schema.operation({
+    id = id.from("com.amazonaws.kendraranking", "CreateRescoreExecutionPlan"),
+    input = M.CreateRescoreExecutionPlanInput,
+    output = M.CreateRescoreExecutionPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/rescore-execution-plans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRescoreExecutionPlan = schema.operation({
+    id = id.from("com.amazonaws.kendraranking", "DeleteRescoreExecutionPlan"),
+    input = M.DeleteRescoreExecutionPlanInput,
+    output = M.DeleteRescoreExecutionPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/rescore-execution-plans/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeRescoreExecutionPlan = schema.operation({
+    id = id.from("com.amazonaws.kendraranking", "DescribeRescoreExecutionPlan"),
+    input = M.DescribeRescoreExecutionPlanInput,
+    output = M.DescribeRescoreExecutionPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/rescore-execution-plans/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRescoreExecutionPlans = schema.operation({
+    id = id.from("com.amazonaws.kendraranking", "ListRescoreExecutionPlans"),
+    input = M.ListRescoreExecutionPlansInput,
+    output = M.ListRescoreExecutionPlansOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/rescore-execution-plans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.kendraranking", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Rescore = schema.operation({
+    id = id.from("com.amazonaws.kendraranking", "Rescore"),
+    input = M.RescoreInput,
+    output = M.RescoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/rescore-execution-plans/{RescoreExecutionPlanId}/rescore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.kendraranking", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.kendraranking", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRescoreExecutionPlan = schema.operation({
+    id = id.from("com.amazonaws.kendraranking", "UpdateRescoreExecutionPlan"),
+    input = M.UpdateRescoreExecutionPlanInput,
+    output = M.UpdateRescoreExecutionPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/rescore-execution-plans/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

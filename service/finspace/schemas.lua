@@ -5941,4 +5941,614 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.finspace", "AWSHabaneroManagementService"),
+    version = "2021-03-12",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.finspace", "CreateEnvironment"),
+    input = M.CreateEnvironmentInput,
+    output = M.CreateEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/environment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKxChangeset = schema.operation({
+    id = id.from("com.amazonaws.finspace", "CreateKxChangeset"),
+    input = M.CreateKxChangesetInput,
+    output = M.CreateKxChangesetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/kx/environments/{environmentId}/databases/{databaseName}/changesets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKxCluster = schema.operation({
+    id = id.from("com.amazonaws.finspace", "CreateKxCluster"),
+    input = M.CreateKxClusterInput,
+    output = M.CreateKxClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/kx/environments/{environmentId}/clusters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKxDatabase = schema.operation({
+    id = id.from("com.amazonaws.finspace", "CreateKxDatabase"),
+    input = M.CreateKxDatabaseInput,
+    output = M.CreateKxDatabaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/kx/environments/{environmentId}/databases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKxDataview = schema.operation({
+    id = id.from("com.amazonaws.finspace", "CreateKxDataview"),
+    input = M.CreateKxDataviewInput,
+    output = M.CreateKxDataviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/kx/environments/{environmentId}/databases/{databaseName}/dataviews" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKxEnvironment = schema.operation({
+    id = id.from("com.amazonaws.finspace", "CreateKxEnvironment"),
+    input = M.CreateKxEnvironmentInput,
+    output = M.CreateKxEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/kx/environments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKxScalingGroup = schema.operation({
+    id = id.from("com.amazonaws.finspace", "CreateKxScalingGroup"),
+    input = M.CreateKxScalingGroupInput,
+    output = M.CreateKxScalingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/kx/environments/{environmentId}/scalingGroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKxUser = schema.operation({
+    id = id.from("com.amazonaws.finspace", "CreateKxUser"),
+    input = M.CreateKxUserInput,
+    output = M.CreateKxUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/kx/environments/{environmentId}/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKxVolume = schema.operation({
+    id = id.from("com.amazonaws.finspace", "CreateKxVolume"),
+    input = M.CreateKxVolumeInput,
+    output = M.CreateKxVolumeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/kx/environments/{environmentId}/kxvolumes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEnvironment = schema.operation({
+    id = id.from("com.amazonaws.finspace", "DeleteEnvironment"),
+    input = M.DeleteEnvironmentInput,
+    output = M.DeleteEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/environment/{environmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKxCluster = schema.operation({
+    id = id.from("com.amazonaws.finspace", "DeleteKxCluster"),
+    input = M.DeleteKxClusterInput,
+    output = M.DeleteKxClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/kx/environments/{environmentId}/clusters/{clusterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKxClusterNode = schema.operation({
+    id = id.from("com.amazonaws.finspace", "DeleteKxClusterNode"),
+    input = M.DeleteKxClusterNodeInput,
+    output = M.DeleteKxClusterNodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/kx/environments/{environmentId}/clusters/{clusterName}/nodes/{nodeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKxDatabase = schema.operation({
+    id = id.from("com.amazonaws.finspace", "DeleteKxDatabase"),
+    input = M.DeleteKxDatabaseInput,
+    output = M.DeleteKxDatabaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/kx/environments/{environmentId}/databases/{databaseName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKxDataview = schema.operation({
+    id = id.from("com.amazonaws.finspace", "DeleteKxDataview"),
+    input = M.DeleteKxDataviewInput,
+    output = M.DeleteKxDataviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/kx/environments/{environmentId}/databases/{databaseName}/dataviews/{dataviewName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKxEnvironment = schema.operation({
+    id = id.from("com.amazonaws.finspace", "DeleteKxEnvironment"),
+    input = M.DeleteKxEnvironmentInput,
+    output = M.DeleteKxEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/kx/environments/{environmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKxScalingGroup = schema.operation({
+    id = id.from("com.amazonaws.finspace", "DeleteKxScalingGroup"),
+    input = M.DeleteKxScalingGroupInput,
+    output = M.DeleteKxScalingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/kx/environments/{environmentId}/scalingGroups/{scalingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKxUser = schema.operation({
+    id = id.from("com.amazonaws.finspace", "DeleteKxUser"),
+    input = M.DeleteKxUserInput,
+    output = M.DeleteKxUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/kx/environments/{environmentId}/users/{userName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteKxVolume = schema.operation({
+    id = id.from("com.amazonaws.finspace", "DeleteKxVolume"),
+    input = M.DeleteKxVolumeInput,
+    output = M.DeleteKxVolumeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/kx/environments/{environmentId}/kxvolumes/{volumeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEnvironment = schema.operation({
+    id = id.from("com.amazonaws.finspace", "GetEnvironment"),
+    input = M.GetEnvironmentInput,
+    output = M.GetEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/environment/{environmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKxChangeset = schema.operation({
+    id = id.from("com.amazonaws.finspace", "GetKxChangeset"),
+    input = M.GetKxChangesetInput,
+    output = M.GetKxChangesetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/databases/{databaseName}/changesets/{changesetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKxCluster = schema.operation({
+    id = id.from("com.amazonaws.finspace", "GetKxCluster"),
+    input = M.GetKxClusterInput,
+    output = M.GetKxClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/clusters/{clusterName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKxConnectionString = schema.operation({
+    id = id.from("com.amazonaws.finspace", "GetKxConnectionString"),
+    input = M.GetKxConnectionStringInput,
+    output = M.GetKxConnectionStringOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/connectionString" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKxDatabase = schema.operation({
+    id = id.from("com.amazonaws.finspace", "GetKxDatabase"),
+    input = M.GetKxDatabaseInput,
+    output = M.GetKxDatabaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/databases/{databaseName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKxDataview = schema.operation({
+    id = id.from("com.amazonaws.finspace", "GetKxDataview"),
+    input = M.GetKxDataviewInput,
+    output = M.GetKxDataviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/databases/{databaseName}/dataviews/{dataviewName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKxEnvironment = schema.operation({
+    id = id.from("com.amazonaws.finspace", "GetKxEnvironment"),
+    input = M.GetKxEnvironmentInput,
+    output = M.GetKxEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKxScalingGroup = schema.operation({
+    id = id.from("com.amazonaws.finspace", "GetKxScalingGroup"),
+    input = M.GetKxScalingGroupInput,
+    output = M.GetKxScalingGroupOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/scalingGroups/{scalingGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKxUser = schema.operation({
+    id = id.from("com.amazonaws.finspace", "GetKxUser"),
+    input = M.GetKxUserInput,
+    output = M.GetKxUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/users/{userName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetKxVolume = schema.operation({
+    id = id.from("com.amazonaws.finspace", "GetKxVolume"),
+    input = M.GetKxVolumeInput,
+    output = M.GetKxVolumeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/kxvolumes/{volumeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEnvironments = schema.operation({
+    id = id.from("com.amazonaws.finspace", "ListEnvironments"),
+    input = M.ListEnvironmentsInput,
+    output = M.ListEnvironmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/environment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKxChangesets = schema.operation({
+    id = id.from("com.amazonaws.finspace", "ListKxChangesets"),
+    input = M.ListKxChangesetsInput,
+    output = M.ListKxChangesetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/databases/{databaseName}/changesets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKxClusterNodes = schema.operation({
+    id = id.from("com.amazonaws.finspace", "ListKxClusterNodes"),
+    input = M.ListKxClusterNodesInput,
+    output = M.ListKxClusterNodesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/clusters/{clusterName}/nodes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKxClusters = schema.operation({
+    id = id.from("com.amazonaws.finspace", "ListKxClusters"),
+    input = M.ListKxClustersInput,
+    output = M.ListKxClustersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/clusters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKxDatabases = schema.operation({
+    id = id.from("com.amazonaws.finspace", "ListKxDatabases"),
+    input = M.ListKxDatabasesInput,
+    output = M.ListKxDatabasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/databases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKxDataviews = schema.operation({
+    id = id.from("com.amazonaws.finspace", "ListKxDataviews"),
+    input = M.ListKxDataviewsInput,
+    output = M.ListKxDataviewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/databases/{databaseName}/dataviews" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKxEnvironments = schema.operation({
+    id = id.from("com.amazonaws.finspace", "ListKxEnvironments"),
+    input = M.ListKxEnvironmentsInput,
+    output = M.ListKxEnvironmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKxScalingGroups = schema.operation({
+    id = id.from("com.amazonaws.finspace", "ListKxScalingGroups"),
+    input = M.ListKxScalingGroupsInput,
+    output = M.ListKxScalingGroupsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/scalingGroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKxUsers = schema.operation({
+    id = id.from("com.amazonaws.finspace", "ListKxUsers"),
+    input = M.ListKxUsersInput,
+    output = M.ListKxUsersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/users" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListKxVolumes = schema.operation({
+    id = id.from("com.amazonaws.finspace", "ListKxVolumes"),
+    input = M.ListKxVolumesInput,
+    output = M.ListKxVolumesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/kx/environments/{environmentId}/kxvolumes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.finspace", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.finspace", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.finspace", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateEnvironment = schema.operation({
+    id = id.from("com.amazonaws.finspace", "UpdateEnvironment"),
+    input = M.UpdateEnvironmentInput,
+    output = M.UpdateEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/environment/{environmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKxClusterCodeConfiguration = schema.operation({
+    id = id.from("com.amazonaws.finspace", "UpdateKxClusterCodeConfiguration"),
+    input = M.UpdateKxClusterCodeConfigurationInput,
+    output = M.UpdateKxClusterCodeConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/kx/environments/{environmentId}/clusters/{clusterName}/configuration/code" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKxClusterDatabases = schema.operation({
+    id = id.from("com.amazonaws.finspace", "UpdateKxClusterDatabases"),
+    input = M.UpdateKxClusterDatabasesInput,
+    output = M.UpdateKxClusterDatabasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/kx/environments/{environmentId}/clusters/{clusterName}/configuration/databases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKxDatabase = schema.operation({
+    id = id.from("com.amazonaws.finspace", "UpdateKxDatabase"),
+    input = M.UpdateKxDatabaseInput,
+    output = M.UpdateKxDatabaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/kx/environments/{environmentId}/databases/{databaseName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKxDataview = schema.operation({
+    id = id.from("com.amazonaws.finspace", "UpdateKxDataview"),
+    input = M.UpdateKxDataviewInput,
+    output = M.UpdateKxDataviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/kx/environments/{environmentId}/databases/{databaseName}/dataviews/{dataviewName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKxEnvironment = schema.operation({
+    id = id.from("com.amazonaws.finspace", "UpdateKxEnvironment"),
+    input = M.UpdateKxEnvironmentInput,
+    output = M.UpdateKxEnvironmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/kx/environments/{environmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKxEnvironmentNetwork = schema.operation({
+    id = id.from("com.amazonaws.finspace", "UpdateKxEnvironmentNetwork"),
+    input = M.UpdateKxEnvironmentNetworkInput,
+    output = M.UpdateKxEnvironmentNetworkOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/kx/environments/{environmentId}/network" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKxUser = schema.operation({
+    id = id.from("com.amazonaws.finspace", "UpdateKxUser"),
+    input = M.UpdateKxUserInput,
+    output = M.UpdateKxUserOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/kx/environments/{environmentId}/users/{userName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKxVolume = schema.operation({
+    id = id.from("com.amazonaws.finspace", "UpdateKxVolume"),
+    input = M.UpdateKxVolumeInput,
+    output = M.UpdateKxVolumeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/kx/environments/{environmentId}/kxvolumes/{volumeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

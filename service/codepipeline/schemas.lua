@@ -6504,4 +6504,498 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.codepipeline", "CodePipeline_20150709"),
+    version = "2015-07-09",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcknowledgeJob = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "AcknowledgeJob"),
+    input = M.AcknowledgeJobInput,
+    output = M.AcknowledgeJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AcknowledgeThirdPartyJob = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "AcknowledgeThirdPartyJob"),
+    input = M.AcknowledgeThirdPartyJobInput,
+    output = M.AcknowledgeThirdPartyJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomActionType = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "CreateCustomActionType"),
+    input = M.CreateCustomActionTypeInput,
+    output = M.CreateCustomActionTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePipeline = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "CreatePipeline"),
+    input = M.CreatePipelineInput,
+    output = M.CreatePipelineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomActionType = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "DeleteCustomActionType"),
+    input = M.DeleteCustomActionTypeInput,
+    output = M.DeleteCustomActionTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePipeline = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "DeletePipeline"),
+    input = M.DeletePipelineInput,
+    output = M.DeletePipelineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWebhook = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "DeleteWebhook"),
+    input = M.DeleteWebhookInput,
+    output = M.DeleteWebhookOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterWebhookWithThirdParty = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "DeregisterWebhookWithThirdParty"),
+    input = M.DeregisterWebhookWithThirdPartyInput,
+    output = M.DeregisterWebhookWithThirdPartyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableStageTransition = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "DisableStageTransition"),
+    input = M.DisableStageTransitionInput,
+    output = M.DisableStageTransitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableStageTransition = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "EnableStageTransition"),
+    input = M.EnableStageTransitionInput,
+    output = M.EnableStageTransitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetActionType = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "GetActionType"),
+    input = M.GetActionTypeInput,
+    output = M.GetActionTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetJobDetails = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "GetJobDetails"),
+    input = M.GetJobDetailsInput,
+    output = M.GetJobDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPipeline = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "GetPipeline"),
+    input = M.GetPipelineInput,
+    output = M.GetPipelineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPipelineExecution = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "GetPipelineExecution"),
+    input = M.GetPipelineExecutionInput,
+    output = M.GetPipelineExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPipelineState = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "GetPipelineState"),
+    input = M.GetPipelineStateInput,
+    output = M.GetPipelineStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetThirdPartyJobDetails = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "GetThirdPartyJobDetails"),
+    input = M.GetThirdPartyJobDetailsInput,
+    output = M.GetThirdPartyJobDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListActionExecutions = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "ListActionExecutions"),
+    input = M.ListActionExecutionsInput,
+    output = M.ListActionExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListActionTypes = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "ListActionTypes"),
+    input = M.ListActionTypesInput,
+    output = M.ListActionTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDeployActionExecutionTargets = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "ListDeployActionExecutionTargets"),
+    input = M.ListDeployActionExecutionTargetsInput,
+    output = M.ListDeployActionExecutionTargetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPipelineExecutions = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "ListPipelineExecutions"),
+    input = M.ListPipelineExecutionsInput,
+    output = M.ListPipelineExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPipelines = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "ListPipelines"),
+    input = M.ListPipelinesInput,
+    output = M.ListPipelinesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRuleExecutions = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "ListRuleExecutions"),
+    input = M.ListRuleExecutionsInput,
+    output = M.ListRuleExecutionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRuleTypes = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "ListRuleTypes"),
+    input = M.ListRuleTypesInput,
+    output = M.ListRuleTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWebhooks = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "ListWebhooks"),
+    input = M.ListWebhooksInput,
+    output = M.ListWebhooksOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.OverrideStageCondition = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "OverrideStageCondition"),
+    input = M.OverrideStageConditionInput,
+    output = M.OverrideStageConditionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PollForJobs = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "PollForJobs"),
+    input = M.PollForJobsInput,
+    output = M.PollForJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PollForThirdPartyJobs = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "PollForThirdPartyJobs"),
+    input = M.PollForThirdPartyJobsInput,
+    output = M.PollForThirdPartyJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutActionRevision = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "PutActionRevision"),
+    input = M.PutActionRevisionInput,
+    output = M.PutActionRevisionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutApprovalResult = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "PutApprovalResult"),
+    input = M.PutApprovalResultInput,
+    output = M.PutApprovalResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutJobFailureResult = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "PutJobFailureResult"),
+    input = M.PutJobFailureResultInput,
+    output = M.PutJobFailureResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutJobSuccessResult = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "PutJobSuccessResult"),
+    input = M.PutJobSuccessResultInput,
+    output = M.PutJobSuccessResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutThirdPartyJobFailureResult = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "PutThirdPartyJobFailureResult"),
+    input = M.PutThirdPartyJobFailureResultInput,
+    output = M.PutThirdPartyJobFailureResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutThirdPartyJobSuccessResult = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "PutThirdPartyJobSuccessResult"),
+    input = M.PutThirdPartyJobSuccessResultInput,
+    output = M.PutThirdPartyJobSuccessResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutWebhook = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "PutWebhook"),
+    input = M.PutWebhookInput,
+    output = M.PutWebhookOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterWebhookWithThirdParty = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "RegisterWebhookWithThirdParty"),
+    input = M.RegisterWebhookWithThirdPartyInput,
+    output = M.RegisterWebhookWithThirdPartyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetryStageExecution = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "RetryStageExecution"),
+    input = M.RetryStageExecutionInput,
+    output = M.RetryStageExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RollbackStage = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "RollbackStage"),
+    input = M.RollbackStageInput,
+    output = M.RollbackStageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartPipelineExecution = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "StartPipelineExecution"),
+    input = M.StartPipelineExecutionInput,
+    output = M.StartPipelineExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopPipelineExecution = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "StopPipelineExecution"),
+    input = M.StopPipelineExecutionInput,
+    output = M.StopPipelineExecutionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateActionType = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "UpdateActionType"),
+    input = M.UpdateActionTypeInput,
+    output = M.UpdateActionTypeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePipeline = schema.operation({
+    id = id.from("com.amazonaws.codepipeline", "UpdatePipeline"),
+    input = M.UpdatePipelineInput,
+    output = M.UpdatePipelineOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

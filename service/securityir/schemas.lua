@@ -2424,4 +2424,302 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.securityir", "SecurityIncidentResponse"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetMemberAccountDetails = schema.operation({
+    id = id.from("com.amazonaws.securityir", "BatchGetMemberAccountDetails"),
+    input = M.BatchGetMemberAccountDetailsInput,
+    output = M.BatchGetMemberAccountDetailsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/membership/{membershipId}/batch-member-details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelMembership = schema.operation({
+    id = id.from("com.amazonaws.securityir", "CancelMembership"),
+    input = M.CancelMembershipInput,
+    output = M.CancelMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/membership/{membershipId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CloseCase = schema.operation({
+    id = id.from("com.amazonaws.securityir", "CloseCase"),
+    input = M.CloseCaseInput,
+    output = M.CloseCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/cases/{caseId}/close-case" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCase = schema.operation({
+    id = id.from("com.amazonaws.securityir", "CreateCase"),
+    input = M.CreateCaseInput,
+    output = M.CreateCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/create-case" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCaseComment = schema.operation({
+    id = id.from("com.amazonaws.securityir", "CreateCaseComment"),
+    input = M.CreateCaseCommentInput,
+    output = M.CreateCaseCommentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/cases/{caseId}/create-comment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateMembership = schema.operation({
+    id = id.from("com.amazonaws.securityir", "CreateMembership"),
+    input = M.CreateMembershipInput,
+    output = M.CreateMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/membership" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCase = schema.operation({
+    id = id.from("com.amazonaws.securityir", "GetCase"),
+    input = M.GetCaseInput,
+    output = M.GetCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/cases/{caseId}/get-case" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCaseAttachmentDownloadUrl = schema.operation({
+    id = id.from("com.amazonaws.securityir", "GetCaseAttachmentDownloadUrl"),
+    input = M.GetCaseAttachmentDownloadUrlInput,
+    output = M.GetCaseAttachmentDownloadUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/cases/{caseId}/get-presigned-url/{attachmentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCaseAttachmentUploadUrl = schema.operation({
+    id = id.from("com.amazonaws.securityir", "GetCaseAttachmentUploadUrl"),
+    input = M.GetCaseAttachmentUploadUrlInput,
+    output = M.GetCaseAttachmentUploadUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/cases/{caseId}/get-presigned-url" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetMembership = schema.operation({
+    id = id.from("com.amazonaws.securityir", "GetMembership"),
+    input = M.GetMembershipInput,
+    output = M.GetMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/membership/{membershipId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCaseEdits = schema.operation({
+    id = id.from("com.amazonaws.securityir", "ListCaseEdits"),
+    input = M.ListCaseEditsInput,
+    output = M.ListCaseEditsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/cases/{caseId}/list-case-edits" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCases = schema.operation({
+    id = id.from("com.amazonaws.securityir", "ListCases"),
+    input = M.ListCasesInput,
+    output = M.ListCasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/list-cases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComments = schema.operation({
+    id = id.from("com.amazonaws.securityir", "ListComments"),
+    input = M.ListCommentsInput,
+    output = M.ListCommentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/cases/{caseId}/list-comments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvestigations = schema.operation({
+    id = id.from("com.amazonaws.securityir", "ListInvestigations"),
+    input = M.ListInvestigationsInput,
+    output = M.ListInvestigationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/cases/{caseId}/list-investigations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMemberships = schema.operation({
+    id = id.from("com.amazonaws.securityir", "ListMemberships"),
+    input = M.ListMembershipsInput,
+    output = M.ListMembershipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/memberships" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.securityir", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendFeedback = schema.operation({
+    id = id.from("com.amazonaws.securityir", "SendFeedback"),
+    input = M.SendFeedbackInput,
+    output = M.SendFeedbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/cases/{caseId}/feedback/{resultId}/send-feedback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.securityir", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.securityir", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCase = schema.operation({
+    id = id.from("com.amazonaws.securityir", "UpdateCase"),
+    input = M.UpdateCaseInput,
+    output = M.UpdateCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/cases/{caseId}/update-case" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCaseComment = schema.operation({
+    id = id.from("com.amazonaws.securityir", "UpdateCaseComment"),
+    input = M.UpdateCaseCommentInput,
+    output = M.UpdateCaseCommentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/cases/{caseId}/update-case-comment/{commentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCaseStatus = schema.operation({
+    id = id.from("com.amazonaws.securityir", "UpdateCaseStatus"),
+    input = M.UpdateCaseStatusInput,
+    output = M.UpdateCaseStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/cases/{caseId}/update-case-status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMembership = schema.operation({
+    id = id.from("com.amazonaws.securityir", "UpdateMembership"),
+    input = M.UpdateMembershipInput,
+    output = M.UpdateMembershipOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/membership/{membershipId}/update-membership" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResolverType = schema.operation({
+    id = id.from("com.amazonaws.securityir", "UpdateResolverType"),
+    input = M.UpdateResolverTypeInput,
+    output = M.UpdateResolverTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/cases/{caseId}/update-resolver-type" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

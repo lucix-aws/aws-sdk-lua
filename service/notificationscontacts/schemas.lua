@@ -672,4 +672,122 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.notificationscontacts", "NotificationsContacts"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ActivateEmailContact = schema.operation({
+    id = id.from("com.amazonaws.notificationscontacts", "ActivateEmailContact"),
+    input = M.ActivateEmailContactInput,
+    output = M.ActivateEmailContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/emailcontacts/{arn}/activate/{code}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateEmailContact = schema.operation({
+    id = id.from("com.amazonaws.notificationscontacts", "CreateEmailContact"),
+    input = M.CreateEmailContactInput,
+    output = M.CreateEmailContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2022-09-19/emailcontacts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteEmailContact = schema.operation({
+    id = id.from("com.amazonaws.notificationscontacts", "DeleteEmailContact"),
+    input = M.DeleteEmailContactInput,
+    output = M.DeleteEmailContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/emailcontacts/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEmailContact = schema.operation({
+    id = id.from("com.amazonaws.notificationscontacts", "GetEmailContact"),
+    input = M.GetEmailContactInput,
+    output = M.GetEmailContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/emailcontacts/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEmailContacts = schema.operation({
+    id = id.from("com.amazonaws.notificationscontacts", "ListEmailContacts"),
+    input = M.ListEmailContactsInput,
+    output = M.ListEmailContactsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/emailcontacts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.notificationscontacts", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendActivationCode = schema.operation({
+    id = id.from("com.amazonaws.notificationscontacts", "SendActivationCode"),
+    input = M.SendActivationCodeInput,
+    output = M.SendActivationCodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2022-10-31/emailcontacts/{arn}/activate/send" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.notificationscontacts", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.notificationscontacts", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

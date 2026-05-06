@@ -2223,4 +2223,218 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.partnercentralbenefits", "PartnerCentralBenefitsService"),
+    version = "2018-05-10",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AmendBenefitApplication = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "AmendBenefitApplication"),
+    input = M.AmendBenefitApplicationInput,
+    output = M.AmendBenefitApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/AmendBenefitApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateBenefitApplicationResource = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "AssociateBenefitApplicationResource"),
+    input = M.AssociateBenefitApplicationResourceInput,
+    output = M.AssociateBenefitApplicationResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/AssociateBenefitApplicationResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelBenefitApplication = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "CancelBenefitApplication"),
+    input = M.CancelBenefitApplicationInput,
+    output = M.CancelBenefitApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CancelBenefitApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBenefitApplication = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "CreateBenefitApplication"),
+    input = M.CreateBenefitApplicationInput,
+    output = M.CreateBenefitApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateBenefitApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateBenefitApplicationResource = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "DisassociateBenefitApplicationResource"),
+    input = M.DisassociateBenefitApplicationResourceInput,
+    output = M.DisassociateBenefitApplicationResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DisassociateBenefitApplicationResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBenefit = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "GetBenefit"),
+    input = M.GetBenefitInput,
+    output = M.GetBenefitOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetBenefit" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBenefitAllocation = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "GetBenefitAllocation"),
+    input = M.GetBenefitAllocationInput,
+    output = M.GetBenefitAllocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetBenefitAllocation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBenefitApplication = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "GetBenefitApplication"),
+    input = M.GetBenefitApplicationInput,
+    output = M.GetBenefitApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetBenefitApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBenefitAllocations = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "ListBenefitAllocations"),
+    input = M.ListBenefitAllocationsInput,
+    output = M.ListBenefitAllocationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListBenefitAllocations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBenefitApplications = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "ListBenefitApplications"),
+    input = M.ListBenefitApplicationsInput,
+    output = M.ListBenefitApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListBenefitApplications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBenefits = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "ListBenefits"),
+    input = M.ListBenefitsInput,
+    output = M.ListBenefitsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListBenefits" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RecallBenefitApplication = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "RecallBenefitApplication"),
+    input = M.RecallBenefitApplicationInput,
+    output = M.RecallBenefitApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/RecallBenefitApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SubmitBenefitApplication = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "SubmitBenefitApplication"),
+    input = M.SubmitBenefitApplicationInput,
+    output = M.SubmitBenefitApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/SubmitBenefitApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/TagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UntagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBenefitApplication = schema.operation({
+    id = id.from("com.amazonaws.partnercentralbenefits", "UpdateBenefitApplication"),
+    input = M.UpdateBenefitApplicationInput,
+    output = M.UpdateBenefitApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateBenefitApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

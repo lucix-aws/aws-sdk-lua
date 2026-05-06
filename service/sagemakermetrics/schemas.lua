@@ -271,4 +271,38 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sagemakermetrics", "SageMakerMetricsService"),
+    version = "2022-09-30",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetMetrics = schema.operation({
+    id = id.from("com.amazonaws.sagemakermetrics", "BatchGetMetrics"),
+    input = M.BatchGetMetricsInput,
+    output = M.BatchGetMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetMetrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchPutMetrics = schema.operation({
+    id = id.from("com.amazonaws.sagemakermetrics", "BatchPutMetrics"),
+    input = M.BatchPutMetricsInput,
+    output = M.BatchPutMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/BatchPutMetrics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 return M

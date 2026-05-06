@@ -677,4 +677,51 @@ for _, s in pairs(M) do
     end
 end
 
+M.Service = schema.service({
+    id = id.from("com.amazonaws.sagemakerruntime", "AmazonSageMakerRuntime"),
+    version = "2017-05-13",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InvokeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.sagemakerruntime", "InvokeEndpoint"),
+    input = M.InvokeEndpointInput,
+    output = M.InvokeEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/endpoints/{EndpointName}/invocations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InvokeEndpointAsync = schema.operation({
+    id = id.from("com.amazonaws.sagemakerruntime", "InvokeEndpointAsync"),
+    input = M.InvokeEndpointAsyncInput,
+    output = M.InvokeEndpointAsyncOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/endpoints/{EndpointName}/async-invocations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InvokeEndpointWithResponseStream = schema.operation({
+    id = id.from("com.amazonaws.sagemakerruntime", "InvokeEndpointWithResponseStream"),
+    input = M.InvokeEndpointWithResponseStreamInput,
+    output = M.InvokeEndpointWithResponseStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/endpoints/{EndpointName}/invocations-response-stream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.ResponseStream,
+    },
+})
+
 return M
