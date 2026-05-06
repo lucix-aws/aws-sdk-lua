@@ -5,10 +5,8 @@
 -- Downloads an object from S3 and writes it to stdout.
 -- The response body is a streaming reader — it is NOT buffered into memory.
 --
--- Requires AWS credentials in environment:
---   export AWS_ACCESS_KEY_ID=...
---   export AWS_SECRET_ACCESS_KEY=...
---   export AWS_SESSION_TOKEN=...  (optional)
+-- Requires AWS credentials via environment variables, ~/.aws/credentials,
+-- or ~/.aws/config (standard credential chain).
 --
 -- Usage:
 --   cd aws-sdk-lua

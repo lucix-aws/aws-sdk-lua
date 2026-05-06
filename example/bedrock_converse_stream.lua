@@ -4,10 +4,8 @@
 --
 -- Streams a response from a Bedrock model using event streams.
 --
--- Requires AWS credentials in environment:
---   export AWS_ACCESS_KEY_ID=...
---   export AWS_SECRET_ACCESS_KEY=...
---   export AWS_SESSION_TOKEN=...  (optional)
+-- Requires AWS credentials via environment variables, ~/.aws/credentials,
+-- or ~/.aws/config (standard credential chain).
 --
 -- Usage:
 --   make run-example EXAMPLE=bedrock_converse_stream
